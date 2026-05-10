@@ -208,101 +208,6 @@
   .hero-product-grid-ultimate .hero-product-thumb { aspect-ratio: 1/1; background: var(--cream-warm); border: 1px solid rgba(184, 153, 104, 0.35); overflow: hidden; }
   .hero-product-grid-ultimate .hero-product-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .hero-product-grid-ultimate .hero-thumb-empty { aspect-ratio: 1/1; background: rgba(184, 153, 104, 0.06); border: 1px solid rgba(184, 153, 104, 0.2); display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--gold); font-size: 12px; opacity: 0.6; }
-
-
-  /* ═══ BUNDLE PRODUCT LIGHTBOX ═══ */
-  .bundle-thumb { cursor: pointer; transition: transform 0.3s, box-shadow 0.3s; position: relative; }
-  .bundle-thumb:hover { transform: scale(1.06); box-shadow: 0 8px 24px rgba(31,27,23,0.18); z-index: 5; }
-  .bundle-thumb::after {
-    content: '⤢'; position: absolute; top: 4px; right: 4px;
-    background: var(--ink); color: var(--cream);
-    width: 18px; height: 18px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 9px; opacity: 0; transition: opacity 0.3s;
-  }
-  .bundle-thumb:hover::after { opacity: 0.85; }
-
-  .lightbox-overlay {
-    position: fixed; inset: 0; background: rgba(31,27,23,0.92);
-    z-index: 1100; display: flex; align-items: center; justify-content: center;
-    opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
-    padding: 60px 40px;
-  }
-  .lightbox-overlay.open { opacity: 1; pointer-events: all; }
-  .lightbox {
-    background: var(--cream); max-width: 720px; width: 100%;
-    max-height: 90vh; display: flex; flex-direction: column;
-    transform: scale(0.95); transition: transform 0.3s ease;
-    border: 1px solid var(--gold);
-  }
-  .lightbox-overlay.open .lightbox { transform: scale(1); }
-  .lightbox-header {
-    padding: 18px 24px; display: flex; justify-content: space-between; align-items: center;
-    border-bottom: 1px solid var(--rule);
-  }
-  .lightbox-counter {
-    font-family: 'Cormorant Garamond', serif; font-style: italic;
-    font-size: 18px; color: var(--ink-soft);
-  }
-  .lightbox-close {
-    background: transparent; border: none; cursor: pointer;
-    font-size: 28px; color: var(--ink-soft); width: 36px; height: 36px;
-  }
-  .lightbox-close:hover { color: var(--ink); }
-  .lightbox-body {
-    flex: 1; display: flex; align-items: center; gap: 20px;
-    padding: 28px 24px; min-height: 0;
-  }
-  .lightbox-arrow {
-    background: transparent; border: 1px solid var(--rule);
-    width: 44px; height: 44px; cursor: pointer; flex-shrink: 0;
-    font-size: 18px; color: var(--ink-soft); transition: all 0.3s;
-  }
-  .lightbox-arrow:hover { border-color: var(--gold); color: var(--gold); }
-  .lightbox-content { flex: 1; text-align: center; min-width: 0; }
-  .lightbox-img {
-    width: 100%; max-width: 360px; aspect-ratio: 1/1; margin: 0 auto 20px;
-    background: var(--cream-warm); border: 1px solid var(--rule);
-    overflow: hidden;
-  }
-  .lightbox-img img { width: 100%; height: 100%; object-fit: cover; }
-  .lightbox-name {
-    font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 500; margin-bottom: 8px;
-  }
-  .lightbox-name em { font-style: italic; color: var(--sage); }
-  .lightbox-tag {
-    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
-    color: var(--gold); font-weight: 500; margin-bottom: 14px;
-  }
-  .lightbox-desc {
-    font-family: 'Cormorant Garamond', serif; font-style: italic;
-    font-size: 16px; color: var(--ink-soft); line-height: 1.5;
-    max-width: 480px; margin: 0 auto 18px;
-  }
-  .lightbox-price {
-    font-family: 'Cormorant Garamond', serif; font-size: 24px; margin-bottom: 16px;
-  }
-  .lightbox-link {
-    display: inline-block; padding: 12px 28px;
-    background: var(--ink); color: var(--cream);
-    text-decoration: none; font-size: 11px; letter-spacing: 0.22em;
-    text-transform: uppercase; font-weight: 500;
-  }
-  .lightbox-link:hover { background: var(--sage); }
-  .lightbox-dots {
-    display: flex; gap: 6px; justify-content: center;
-    padding: 12px 24px 20px;
-    border-top: 1px solid var(--rule);
-    flex-wrap: wrap;
-  }
-  .lightbox-dot {
-    width: 8px; height: 8px; background: var(--rule); cursor: pointer;
-    border-radius: 50%; border: none; padding: 0;
-    transition: background 0.3s;
-  }
-  .lightbox-dot.active { background: var(--gold); }
-  @media (max-width: 720px) {
-    .lightbox-overlay { padding: 20px; }
     .lightbox-body { flex-direction: column; }
     .lightbox-arrow { width: 100%; }
     .lightbox-img { max-width: 240px; }
@@ -312,10 +217,6 @@
 </style>
 </head>
 <body>
-
-<div class="announce">
-  Free shipping on orders over $60 · <strong>30-day satisfaction guarantee</strong>
-</div>
 
 <div class="shipping-bar">
   <div class="shipping-bar-progress"></div>
@@ -353,7 +254,7 @@
     <div class="cred-item"><div class="cred-num">9<em>.</em></div><div class="cred-label">Curated bundles</div></div>
     <div class="cred-item"><div class="cred-num">$179</div><div class="cred-label">Max bundle savings</div></div>
     <div class="cred-item"><div class="cred-num">30<em>.</em></div><div class="cred-label">Day satisfaction guarantee</div></div>
-    <div class="cred-item"><div class="cred-num">Free</div><div class="cred-label">Shipping over $60</div></div>
+    <div class="cred-item"><div class="cred-num">Free</div><div class="cred-label">Shipping over $75</div></div>
   </div>
 
   <!-- ═══ HERO: THE ULTIMATE BUNDLE ═══ -->
@@ -411,7 +312,7 @@
           <div class="hero-savings-label">$717 → $538 · 25% off</div>
         </div>
 
-        <a href="#build-your-own" class="hero-cta">Build the Ultimate →</a>
+        <div class="bundle-subscribe-toggle" data-bundle-id="ultimate" style="max-width: 480px; margin-bottom: 16px;"><span class="toggle-label">Delivery</span><button type="button" data-mode="once" class="active">One-Time<span class="sub-meta">Single order</span></button><button type="button" data-mode="subscribe">Monthly<span class="sub-meta">Cancel anytime</span></button></div><button class="hero-cta" data-bundle-add="ultimate" style="border: none; cursor: pointer;">Add Ultimate to Cart →</button>
       </div>
     </div>
   </div>
@@ -454,7 +355,7 @@
           <div class="bundle-save">Save $57</div>
           <div class="bundle-save-label">$315 → $258</div>
         </div>
-        <a href="#build-your-own" class="bundle-cta">Build This Bundle →</a>
+        <div class="bundle-subscribe-toggle" data-bundle-id="daniels-daily"><span class="toggle-label">Delivery</span><button type="button" data-mode="once" class="active">One-Time<span class="sub-meta">Single order</span></button><button type="button" data-mode="subscribe">Monthly<span class="sub-meta">Cancel anytime</span></button></div><button class="bundle-cta" data-bundle-add="daniels-daily">Add Bundle to Cart →</button>
       </div>
     </div>
 
@@ -483,7 +384,7 @@
           <div class="bundle-save">Save $27</div>
           <div class="bundle-save-label">$182 → $155</div>
         </div>
-        <a href="#build-your-own" class="bundle-cta">Build This Bundle →</a>
+        <div class="bundle-subscribe-toggle" data-bundle-id="am"><span class="toggle-label">Delivery</span><button type="button" data-mode="once" class="active">One-Time<span class="sub-meta">Single order</span></button><button type="button" data-mode="subscribe">Monthly<span class="sub-meta">Cancel anytime</span></button></div><button class="bundle-cta" data-bundle-add="am">Add Bundle to Cart →</button>
       </div>
     </div>
 
@@ -512,7 +413,7 @@
           <div class="bundle-save">Save $33</div>
           <div class="bundle-save-label">$220 → $187</div>
         </div>
-        <a href="#build-your-own" class="bundle-cta">Build This Bundle →</a>
+        <div class="bundle-subscribe-toggle" data-bundle-id="pm"><span class="toggle-label">Delivery</span><button type="button" data-mode="once" class="active">One-Time<span class="sub-meta">Single order</span></button><button type="button" data-mode="subscribe">Monthly<span class="sub-meta">Cancel anytime</span></button></div><button class="bundle-cta" data-bundle-add="pm">Add Bundle to Cart →</button>
       </div>
     </div>
 
@@ -540,7 +441,7 @@
           <div class="bundle-save">Save $26</div>
           <div class="bundle-save-label">$174 → $148</div>
         </div>
-        <a href="#build-your-own" class="bundle-cta">Build This Bundle →</a>
+        <div class="bundle-subscribe-toggle" data-bundle-id="workout"><span class="toggle-label">Delivery</span><button type="button" data-mode="once" class="active">One-Time<span class="sub-meta">Single order</span></button><button type="button" data-mode="subscribe">Monthly<span class="sub-meta">Cancel anytime</span></button></div><button class="bundle-cta" data-bundle-add="workout">Add Bundle to Cart →</button>
       </div>
     </div>
 
@@ -568,7 +469,7 @@
           <div class="bundle-save">Save $27</div>
           <div class="bundle-save-label">$179 → $152</div>
         </div>
-        <a href="#build-your-own" class="bundle-cta">Build This Bundle →</a>
+        <div class="bundle-subscribe-toggle" data-bundle-id="longevity"><span class="toggle-label">Delivery</span><button type="button" data-mode="once" class="active">One-Time<span class="sub-meta">Single order</span></button><button type="button" data-mode="subscribe">Monthly<span class="sub-meta">Cancel anytime</span></button></div><button class="bundle-cta" data-bundle-add="longevity">Add Bundle to Cart →</button>
       </div>
     </div>
 
@@ -597,7 +498,7 @@
           <div class="bundle-save">Save $31</div>
           <div class="bundle-save-label">$207 → $176</div>
         </div>
-        <a href="#build-your-own" class="bundle-cta">Build This Bundle →</a>
+        <div class="bundle-subscribe-toggle" data-bundle-id="glow"><span class="toggle-label">Delivery</span><button type="button" data-mode="once" class="active">One-Time<span class="sub-meta">Single order</span></button><button type="button" data-mode="subscribe">Monthly<span class="sub-meta">Cancel anytime</span></button></div><button class="bundle-cta" data-bundle-add="glow">Add Bundle to Cart →</button>
       </div>
     </div>
 
@@ -628,7 +529,7 @@
           <div class="bundle-save">Save $36</div>
           <div class="bundle-save-label">$238 → $202</div>
         </div>
-        <a href="#build-your-own" class="bundle-cta">Build This Bundle →</a>
+        <div class="bundle-subscribe-toggle" data-bundle-id="moms"><span class="toggle-label">Delivery</span><button type="button" data-mode="once" class="active">One-Time<span class="sub-meta">Single order</span></button><button type="button" data-mode="subscribe">Monthly<span class="sub-meta">Cancel anytime</span></button></div><button class="bundle-cta" data-bundle-add="moms">Add Bundle to Cart →</button>
       </div>
     </div>
 
@@ -659,7 +560,7 @@
           <div class="bundle-save">Save $38</div>
           <div class="bundle-save-label">$250 → $212</div>
         </div>
-        <a href="#build-your-own" class="bundle-cta">Build This Bundle →</a>
+        <div class="bundle-subscribe-toggle" data-bundle-id="arianas"><span class="toggle-label">Delivery</span><button type="button" data-mode="once" class="active">One-Time<span class="sub-meta">Single order</span></button><button type="button" data-mode="subscribe">Monthly<span class="sub-meta">Cancel anytime</span></button></div><button class="bundle-cta" data-bundle-add="arianas">Add Bundle to Cart →</button>
       </div>
     </div>
 
@@ -710,9 +611,14 @@
           <span class="total-final-label">Bundle Total</span><span id="summaryTotal" class="total-final">$0.00</span>
         </div>
         <div class="builder-summary-code">
-          Use code <strong>BUILD6</strong> at checkout to apply your 15% bundle discount.
+          Use code <strong>BUILD6</strong> at checkout, or click below to add directly with discount applied.
         </div>
-        <a href="https://rvttkx-99.myshopify.com/collections/all" target="_blank" rel="noopener" class="builder-summary-cta">Continue to Shop →</a>
+        <div class="bundle-subscribe-toggle" data-bundle-id="byo" style="margin: 18px 0; max-width: 480px;">
+          <span class="toggle-label">Delivery</span>
+          <button type="button" data-mode="once" class="active">One-Time<span class="sub-meta">Single order</span></button>
+          <button type="button" data-mode="subscribe">Monthly<span class="sub-meta">Cancel anytime</span></button>
+        </div>
+        <button class="builder-summary-cta" id="byoAddBundle" style="border: none; cursor: pointer; font-family: 'Poppins', sans-serif;">Add Custom Bundle to Cart →</button>
       </div>
     </div>
   </section>
@@ -953,129 +859,158 @@
   </div>
 </div>
 
-<!-- Bundle Image Lightbox -->
+<!-- Shared Lightbox / Product Carousel -->
 <div class="lightbox-overlay">
   <div class="lightbox">
     <div class="lightbox-header">
-      <div class="lightbox-counter"><span id="lb-current">1</span> of <span id="lb-total">1</span></div>
+      <div class="lightbox-title"></div>
       <button class="lightbox-close" aria-label="Close">×</button>
     </div>
     <div class="lightbox-body">
-      <button class="lightbox-arrow lightbox-prev" aria-label="Previous">←</button>
-      <div class="lightbox-content">
-        <div class="lightbox-img"><img id="lb-img" src="" alt=""/></div>
-        <div class="lightbox-tag" id="lb-tag"></div>
-        <div class="lightbox-name" id="lb-name"></div>
-        <div class="lightbox-desc" id="lb-desc"></div>
-        <div class="lightbox-price" id="lb-price"></div>
-        <a id="lb-link" class="lightbox-link" href="#">View Full Details →</a>
+      <div class="lightbox-image-side">
+        <button class="lightbox-arrow prev" aria-label="Previous">←</button>
+        <img class="lightbox-image" src="" alt="" />
+        <button class="lightbox-arrow next" aria-label="Next">→</button>
       </div>
-      <button class="lightbox-arrow lightbox-next" aria-label="Next">→</button>
+      <div class="lightbox-info-side">
+        <div class="lightbox-counter"></div>
+        <div class="lightbox-tag"></div>
+        <div class="lightbox-name"></div>
+        <div class="lightbox-tagline"></div>
+        <div class="lightbox-desc"></div>
+        <div class="lightbox-price-row">
+          <div class="lightbox-price"></div>
+          <div class="lightbox-size"></div>
+        </div>
+        <div class="lightbox-actions"></div>
+      </div>
     </div>
-    <div class="lightbox-dots" id="lb-dots"></div>
+    <div class="lightbox-dots"></div>
   </div>
 </div>
 
 <script src="data/products.js"></script>
 <script src="js/shared.js"></script>
 <script>
-// ═══ Bundle Lightbox / Carousel ═══
+// Bundle thumb clicks → open shared lightbox carousel
 (function() {
-  let currentBundle = [];
-  let currentIndex = 0;
-
   function findProductByImage(imgSrc) {
     if (!window.PRODUCTS) return null;
     return window.PRODUCTS.find(p => imgSrc.includes(p.image.split('/').pop()));
   }
 
-  function getBundleProducts(bundleCard) {
-    const thumbs = bundleCard.querySelectorAll('.bundle-thumb img');
-    const products = [];
+  function getBundleSlugs(card) {
+    const thumbs = card.querySelectorAll('.bundle-thumb img, .hero-product-thumb img');
+    const slugs = [];
     thumbs.forEach(img => {
       const product = findProductByImage(img.src);
-      if (product) products.push(product);
+      if (product) slugs.push(product.slug);
     });
-    return products;
-  }
-
-  function updateLightbox() {
-    if (currentBundle.length === 0) return;
-    const p = currentBundle[currentIndex];
-    document.getElementById('lb-img').src = p.image;
-    document.getElementById('lb-img').alt = p.name;
-    document.getElementById('lb-tag').textContent = p.tag;
-    document.getElementById('lb-name').innerHTML = `The House <em>${p.name}</em>`;
-    document.getElementById('lb-desc').textContent = p.tagline;
-    document.getElementById('lb-price').textContent = `$${p.price.toFixed(2)}`;
-    document.getElementById('lb-link').href = `product.html?slug=${p.slug}`;
-    document.getElementById('lb-current').textContent = currentIndex + 1;
-    document.getElementById('lb-total').textContent = currentBundle.length;
-
-    // Dots
-    const dotsEl = document.getElementById('lb-dots');
-    dotsEl.innerHTML = currentBundle.map((_, i) =>
-      `<button class="lightbox-dot ${i === currentIndex ? 'active' : ''}" data-idx="${i}" aria-label="Go to slide ${i+1}"></button>`
-    ).join('');
-    dotsEl.querySelectorAll('.lightbox-dot').forEach(d => {
-      d.addEventListener('click', () => {
-        currentIndex = parseInt(d.dataset.idx);
-        updateLightbox();
-      });
-    });
-  }
-
-  function openLightbox(bundleCard, startIndex) {
-    currentBundle = getBundleProducts(bundleCard);
-    if (currentBundle.length === 0) return;
-    currentIndex = startIndex;
-    updateLightbox();
-    document.querySelector('.lightbox-overlay').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeLightbox() {
-    document.querySelector('.lightbox-overlay').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-  function nextSlide() {
-    currentIndex = (currentIndex + 1) % currentBundle.length;
-    updateLightbox();
-  }
-  function prevSlide() {
-    currentIndex = (currentIndex - 1 + currentBundle.length) % currentBundle.length;
-    updateLightbox();
+    return slugs;
   }
 
   document.addEventListener('DOMContentLoaded', () => {
-    // Wire up bundle thumb clicks
     document.querySelectorAll('.bundle-card, .hero-section').forEach(card => {
       const thumbs = card.querySelectorAll('.bundle-thumb, .hero-product-thumb');
       thumbs.forEach((thumb, idx) => {
-        // Only thumbs with images (skip empty decorative cells)
         const img = thumb.querySelector('img');
         if (!img) return;
         thumb.style.cursor = 'pointer';
         thumb.addEventListener('click', () => {
-          // Get all thumbs with images in this card
+          const slugs = getBundleSlugs(card);
           const validThumbs = Array.from(thumbs).filter(t => t.querySelector('img'));
           const validIdx = validThumbs.indexOf(thumb);
-          openLightbox(card, validIdx);
+          if (slugs.length === 0) return;
+          const titleEl = card.querySelector('.bundle-title, .hero-title');
+          const title = titleEl ? `Browsing <strong>${titleEl.textContent.trim()}</strong>` : 'Browsing';
+          // Find the bundle id from a sibling toggle, if present
+          const toggle = card.querySelector('[data-bundle-id]');
+          const bundleId = toggle?.dataset.bundleId;
+          const bundleData = bundleId ? window.getCuratedBundleById(bundleId) : null;
+          const subscribeMode = toggle?.querySelector('button.active')?.dataset.mode === 'subscribe';
+          if (bundleData) {
+            window.dhLightbox.open(slugs, validIdx, {
+              title,
+              bundleName: bundleData.name,
+              bundleSlugs: bundleData.slugs,
+              bundleDiscount: bundleData.discount,
+              bundleSubscribe: subscribeMode
+            });
+          } else {
+            window.dhLightbox.open(slugs, validIdx, { title });
+          }
+        });
+      });
+    });
+  });
+})();
+
+// ═══ Bundle Subscribe Toggles + Add Bundle CTAs ═══
+(function() {
+  document.addEventListener('DOMContentLoaded', () => {
+    // Wire each bundle subscribe toggle
+    document.querySelectorAll('.bundle-subscribe-toggle').forEach(toggle => {
+      toggle.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          toggle.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          // Update CTA label if there's a paired add-bundle button
+          const bundleId = toggle.dataset.bundleId;
+          const addBtn = document.querySelector(`[data-bundle-add="${bundleId}"]`);
+          if (addBtn) {
+            const isSub = btn.dataset.mode === 'subscribe';
+            if (bundleId === 'ultimate') {
+              addBtn.textContent = isSub ? 'Subscribe to Ultimate →' : 'Add Ultimate to Cart →';
+            } else {
+              addBtn.textContent = isSub ? 'Subscribe to Bundle →' : 'Add Bundle to Cart →';
+            }
+          }
+          // BYO custom button label
+          if (bundleId === 'byo') {
+            const byoBtn = document.getElementById('byoAddBundle');
+            if (byoBtn) {
+              byoBtn.textContent = btn.dataset.mode === 'subscribe'
+                ? 'Subscribe to Custom Bundle →'
+                : 'Add Custom Bundle to Cart →';
+            }
+          }
         });
       });
     });
 
-    document.querySelector('.lightbox-overlay')?.addEventListener('click', e => {
-      if (e.target === e.currentTarget) closeLightbox();
+    // Wire each Add Bundle CTA (curated bundles)
+    document.querySelectorAll('[data-bundle-add]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const bundleId = btn.dataset.bundleAdd;
+        const bundle = window.getCuratedBundleById(bundleId);
+        if (!bundle) return;
+        const toggle = document.querySelector(`.bundle-subscribe-toggle[data-bundle-id="${bundleId}"]`);
+        const subscribe = toggle?.querySelector('button.active')?.dataset.mode === 'subscribe';
+        window.dhCart.addBundle(bundle.slugs, bundle.name, bundle.discount, subscribe);
+      });
     });
-    document.querySelector('.lightbox-close')?.addEventListener('click', closeLightbox);
-    document.querySelector('.lightbox-next')?.addEventListener('click', nextSlide);
-    document.querySelector('.lightbox-prev')?.addEventListener('click', prevSlide);
-    document.addEventListener('keydown', e => {
-      if (!document.querySelector('.lightbox-overlay').classList.contains('open')) return;
-      if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowRight') nextSlide();
-      if (e.key === 'ArrowLeft') prevSlide();
-    });
+
+    // Wire BYO add-to-cart
+    const byoBtn = document.getElementById('byoAddBundle');
+    if (byoBtn) {
+      byoBtn.addEventListener('click', () => {
+        // Read the current selection from the BYO picker state
+        // The picker stores selected slugs in a global window state (via the IIFE state.size and state.selected)
+        // We need to read from the DOM directly: builder-card.selected items
+        const selectedSlugs = [];
+        document.querySelectorAll('.builder-card.selected').forEach(card => {
+          const handle = card.dataset.handle;
+          if (handle) selectedSlugs.push(handle);
+        });
+        if (selectedSlugs.length < 6) {
+          alert('Please select at least 6 products to build your bundle.');
+          return;
+        }
+        const toggle = document.querySelector('.bundle-subscribe-toggle[data-bundle-id="byo"]');
+        const subscribe = toggle?.querySelector('button.active')?.dataset.mode === 'subscribe';
+        window.dhCart.addBundle(selectedSlugs, 'Build Your Own Bundle', 0.15, subscribe);
+      });
+    }
   });
 })();
 </script>
