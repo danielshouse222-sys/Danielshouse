@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Skincare — Daniel's House</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAF6F0;
+    --cream-warm: #F2EBDD;
+    --ink: #1F1B17;
+    --ink-soft: #4A433B;
+    --sage: #5D6E5C;
+    --gold: #B89968;
+    --tan: #E8E1D5;
+    --rule: #D4C9B6;
+    --night: #1A1714;
+    --night-warm: #25201B;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--cream); color: var(--ink); font-family: 'Poppins', sans-serif; font-weight: 300; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  .announce { background: var(--ink); color: var(--cream); text-align: center; padding: 11px 20px; font-size: 12px; letter-spacing: 0.08em; font-weight: 300; }
+  .announce strong { color: var(--gold); font-weight: 500; }
+  nav { border-bottom: 1px solid var(--rule); padding: 24px 48px; background: var(--cream); position: sticky; top: 0; z-index: 100; }
+  .nav-inner { max-width: 1320px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+  .logo { font-family: 'Cormorant Garamond', serif; font-size: 30px; letter-spacing: 0.02em; color: var(--ink); text-decoration: none; font-weight: 500; }
+  .logo .amp { color: var(--gold); font-style: italic; }
+  .nav-links { list-style: none; display: flex; gap: 38px; }
+  .nav-links a { text-decoration: none; color: var(--ink); font-size: 13px; letter-spacing: 0.06em; font-weight: 400; transition: color 0.3s; position: relative; }
+  .nav-links a.active { color: var(--gold); }
+  .nav-links a.active::after { content: ""; position: absolute; bottom: -6px; left: 0; right: 0; height: 1px; background: var(--gold); }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cart { font-size: 13px; letter-spacing: 0.06em; }
+
+  /* HEADER */
+  .page-header { max-width: 920px; margin: 0 auto; padding: 100px 40px 70px; text-align: center; }
+  .page-header-eyebrow { font-size: 12px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 28px; font-weight: 500; }
+  .page-header h1 { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: clamp(48px, 6vw, 76px); line-height: 1.05; letter-spacing: -0.01em; margin-bottom: 32px; }
+  .page-header h1 em { font-style: italic; color: var(--sage); font-weight: 400; }
+  .page-header p { font-size: 16px; line-height: 1.75; color: var(--ink-soft); max-width: 640px; margin: 0 auto; }
+
+  /* "Built on research" eyebrow strip above the splitscreen */
+  .credibility {
+    max-width: 1080px;
+    margin: 0 auto 0;
+    padding: 0 40px 50px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 50px;
+    text-align: center;
+  }
+  .cred-item { display: flex; flex-direction: column; align-items: center; }
+  .cred-num { font-family: 'Cormorant Garamond', serif; font-size: 44px; font-weight: 500; color: var(--sage); line-height: 1; margin-bottom: 6px; }
+  .cred-num em { color: var(--gold); font-style: italic; }
+  .cred-label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft); font-weight: 500; }
+
+  /* SPLITSCREEN */
+  .split { display: grid; grid-template-columns: 1fr 1fr; margin: 60px auto 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); position: relative; }
+  .split::before { content: ""; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: var(--rule); z-index: 5; }
+  .ritual { padding: 70px 50px 80px; position: relative; }
+  .ritual.am { background: var(--cream); color: var(--ink); }
+  .ritual.pm { background: var(--night); color: var(--cream); }
+
+  .ritual-header { text-align: center; margin-bottom: 48px; padding-bottom: 28px; border-bottom: 1px solid; }
+  .ritual.am .ritual-header { border-color: var(--rule); }
+  .ritual.pm .ritual-header { border-color: rgba(184, 153, 104, 0.25); }
+  .ritual-icon { font-size: 36px; margin-bottom: 14px; }
+  .ritual-title { font-family: 'Cormorant Garamond', serif; font-size: 56px; font-weight: 400; line-height: 0.95; margin-bottom: 10px; }
+  .ritual-title em { font-style: italic; }
+  .ritual.am .ritual-title em { color: var(--sage); }
+  .ritual.pm .ritual-title em { color: var(--gold); }
+  .ritual-sub { font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); font-weight: 500; }
+  .ritual-blurb { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 17px; line-height: 1.55; margin-top: 18px; max-width: 380px; margin-left: auto; margin-right: auto; }
+  .ritual.am .ritual-blurb { color: var(--ink-soft); }
+  .ritual.pm .ritual-blurb { color: rgba(244, 246, 240, 0.75); }
+
+  .row { display: grid; grid-template-columns: 90px 1fr 150px; gap: 24px; align-items: center; padding: 24px 0; border-bottom: 1px solid; cursor: pointer; transition: padding-left 0.3s ease, background 0.3s ease; min-height: 158px; }
+  .ritual.am .row { border-color: var(--rule); }
+  .ritual.pm .row { border-color: rgba(184, 153, 104, 0.18); }
+  .ritual.am .row:hover { padding-left: 8px; background: rgba(184, 153, 104, 0.05); }
+  .ritual.pm .row:hover { padding-left: 8px; background: rgba(184, 153, 104, 0.08); }
+  .row:last-child { border-bottom: none; }
+  .row-img { width: 90px; height: 90px; display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 38px; font-style: italic; font-weight: 400; border: 1px solid; position: relative; flex-shrink: 0; letter-spacing: -0.02em; overflow: hidden; }
+  .ritual.am .row-img { background: linear-gradient(140deg, var(--tan) 0%, var(--cream) 60%, var(--tan) 100%); border-color: var(--rule); color: var(--sage); }
+  .ritual.pm .row-img { background: linear-gradient(140deg, var(--night-warm) 0%, var(--night) 60%, var(--night-warm) 100%); border-color: rgba(184, 153, 104, 0.3); color: var(--gold); }
+  .row-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .row-img-placeholder::after { content: ""; position: absolute; inset: 5px; border: 1px solid var(--gold); opacity: 0.3; pointer-events: none; }
+  .row-content { min-width: 0; }
+  .row-tag { font-size: 9.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; font-weight: 500; }
+  .row-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; line-height: 1.15; font-weight: 500; margin-bottom: 4px; }
+  .row-name em { font-style: italic; }
+  .ritual.am .row-name em { color: var(--sage); }
+  .ritual.pm .row-name em { color: var(--gold); }
+  .row-desc { font-size: 12.5px; line-height: 1.55; opacity: 0.78; max-width: 95%; }
+  .row-shop { min-width: 150px; display: flex; flex-direction: column; gap: 6px; align-items: stretch; flex-shrink: 0; }
+  .row-shop > a { width: 100%; }
+  .row-price { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 500; color: var(--ink); line-height: 1; margin-bottom: 4px; text-align: right; }
+  .row-view-link { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); text-decoration: none; transition: color 0.3s; font-weight: 500; text-align: center; }
+  .row-view-link:hover { color: var(--sage); }
+  .row-add-cart { display: block; width: 100%; text-align: center; background: var(--ink); color: var(--cream); text-decoration: none; padding: 13px 12px; font-family: 'Poppins', sans-serif; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 500; border: none; cursor: pointer; transition: background 0.3s; margin-top: auto; }
+  .row-add-cart:hover { background: var(--sage); color: var(--cream); }
+  .ritual.pm .row-price { color: var(--cream); }
+  .ritual.pm .row-view-link { color: var(--gold); }
+  .ritual.pm .row-add-cart { background: var(--gold); color: var(--ink); }
+  .ritual.pm .row-add-cart:hover { background: var(--cream); color: var(--ink); }
+
+  /* Alternate option banner — sits between splitscreen and weekly section */
+  .alt-banner {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 60px 40px 0;
+  }
+  .alt-banner-inner {
+    background: var(--cream-warm);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--gold);
+    padding: 24px 28px;
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 22px;
+    align-items: center;
+  }
+  .alt-banner-img { width: 80px; height: 80px; border: 1px solid var(--rule); overflow: hidden; background: var(--cream); }
+  .alt-banner-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .alt-banner strong { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 500; color: var(--ink); display: block; margin-bottom: 4px; }
+  .alt-banner-text { font-size: 13px; line-height: 1.6; color: var(--ink-soft); }
+  .alt-banner a { color: var(--gold); text-decoration: underline; }
+
+  /* WEEKLY TREATMENTS section */
+  .weekly {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 100px 40px 80px;
+    text-align: center;
+    border-bottom: 1px solid var(--rule);
+  }
+  .weekly-eyebrow { font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; font-weight: 500; }
+  .weekly-title { font-family: 'Cormorant Garamond', serif; font-size: 56px; font-weight: 400; line-height: 1; margin-bottom: 14px; }
+  .weekly-title em { font-style: italic; color: var(--sage); }
+  .weekly-blurb { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 17px; color: var(--ink-soft); max-width: 540px; margin: 0 auto 50px; line-height: 1.55; }
+  .weekly-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+  .weekly-card {
+    background: var(--cream-warm);
+    border: 1px solid var(--rule);
+    padding: 36px 32px;
+    text-align: left;
+    cursor: pointer;
+    transition: border-color 0.3s, transform 0.4s, box-shadow 0.3s;
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 26px;
+    align-items: center;
+  }
+  .weekly-card:hover { border-color: var(--gold); transform: translateY(-4px); box-shadow: 0 14px 38px rgba(31, 27, 23, 0.08); }
+  .weekly-img { width: 110px; height: 110px; display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 52px; color: var(--sage); background: linear-gradient(140deg, var(--tan) 0%, var(--cream) 60%, var(--tan) 100%); border: 1px solid var(--rule); position: relative; overflow: hidden; }
+  .weekly-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .weekly-img::after { content: ""; position: absolute; inset: 6px; border: 1px solid var(--gold); opacity: 0.3; pointer-events: none; }
+  .weekly-tag { font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; font-weight: 500; }
+  .weekly-name { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 500; line-height: 1.1; margin-bottom: 8px; }
+  .weekly-name em { font-style: italic; color: var(--sage); }
+  .weekly-desc { font-size: 13px; line-height: 1.55; color: var(--ink-soft); margin-bottom: 14px; }
+  .weekly-foot { display: flex; justify-content: space-between; align-items: center; padding-top: 12px; border-top: 1px solid var(--rule); }
+  .weekly-price { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 500; line-height: 1; margin-bottom: 6px; }
+  .weekly-foot { display: flex; flex-direction: column; gap: 6px; align-items: stretch; margin-top: 16px; }
+  .weekly-view-link { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); text-decoration: none; transition: color 0.3s; font-weight: 500; text-align: center; }
+  .weekly-view-link:hover { color: var(--sage); }
+  .weekly-add-cart { display: block; width: 100%; text-align: center; background: var(--ink); color: var(--cream); text-decoration: none; padding: 14px 12px; font-family: 'Poppins', sans-serif; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 500; border: none; cursor: pointer; transition: background 0.3s; }
+  .weekly-add-cart:hover { background: var(--sage); }
+  .weekly-add { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); font-weight: 500; }
+
+  /* RESEARCH section */
+  .research {
+    background: var(--cream-warm);
+    padding: 100px 40px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .research-inner { max-width: 1080px; margin: 0 auto; }
+  .research-header { text-align: center; margin-bottom: 70px; }
+  .research-eyebrow { font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; font-weight: 500; }
+  .research-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(44px, 5vw, 64px); font-weight: 400; line-height: 1.05; margin-bottom: 14px; }
+  .research-title em { font-style: italic; color: var(--sage); }
+  .research-blurb { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 17px; color: var(--ink-soft); max-width: 620px; margin: 0 auto; line-height: 1.55; }
+
+  .study-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+  .study {
+    background: var(--cream);
+    padding: 32px 32px 28px;
+    border: 1px solid var(--rule);
+    position: relative;
+    transition: border-color 0.3s, transform 0.4s;
+  }
+  .study:hover { border-color: var(--gold); transform: translateY(-3px); }
+  .study-marker {
+    position: absolute;
+    top: -12px;
+    left: 24px;
+    background: var(--gold);
+    color: var(--cream);
+    padding: 4px 14px;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .study-actor { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 500; margin-bottom: 4px; line-height: 1.15; margin-top: 12px; }
+  .study-actor em { font-style: italic; color: var(--sage); }
+  .study-finding { font-size: 13.5px; line-height: 1.65; color: var(--ink); margin-bottom: 14px; }
+  .study-finding strong { color: var(--sage); font-weight: 500; }
+  .study-source { font-size: 11px; letter-spacing: 0.06em; color: var(--ink-soft); padding-top: 12px; border-top: 1px solid var(--rule); font-style: italic; }
+  .study-products { font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-top: 6px; font-weight: 500; }
+
+  .research-disclaimer {
+    max-width: 720px;
+    margin: 60px auto 0;
+    text-align: center;
+    font-size: 12px;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    font-style: italic;
+    padding: 20px;
+    border-top: 1px solid var(--rule);
+  }
+
+  /* CLOSING */
+  .closing { text-align: center; padding: 100px 40px 80px; max-width: 720px; margin: 0 auto; }
+  .closing h2 { font-family: 'Cormorant Garamond', serif; font-size: 40px; font-weight: 400; margin-bottom: 16px; line-height: 1.15; }
+  .closing h2 em { font-style: italic; color: var(--sage); }
+  .closing p { color: var(--ink-soft); margin-bottom: 28px; font-size: 15px; }
+  .closing-btn { display: inline-block; padding: 16px 40px; background: var(--ink); color: var(--cream); text-decoration: none; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500; transition: background 0.3s; }
+  .closing-btn:hover { background: var(--sage); }
+
+  /* FOOTER */
+  footer { background: var(--ink); color: var(--cream); padding: 80px 48px 30px; }
+  .footer-inner { max-width: 1320px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 50px; }
+  .footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 500; margin-bottom: 14px; }
+  .footer-brand .amp { color: var(--gold); font-style: italic; }
+  .footer-tag { font-size: 13.5px; line-height: 1.7; color: var(--cream-warm); margin-bottom: 22px; max-width: 320px; }
+  .footer-attr { font-size: 11.5px; line-height: 1.9; letter-spacing: 0.04em; color: var(--gold); }
+  .footer-col h4 { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 500; margin-bottom: 18px; color: var(--gold); }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 10px; }
+  .footer-col a { color: var(--cream-warm); text-decoration: none; font-size: 13.5px; transition: color 0.3s; }
+  .footer-col a:hover { color: var(--gold); }
+  .footer-base { max-width: 1320px; margin: 60px auto 0; padding-top: 24px; border-top: 1px solid rgba(244, 235, 220, 0.15); display: flex; justify-content: space-between; font-size: 12px; color: var(--cream-warm); }
+
+  @media (max-width: 1000px) {
+    .credibility { grid-template-columns: 1fr 1fr; gap: 30px 20px; }
+    .split { grid-template-columns: 1fr; }
+    .split::before { display: none; }
+    .ritual { padding: 50px 30px; }
+    .row { grid-template-columns: 70px 1fr 140px; gap: 16px; min-height: 140px; }
+    .row-img { width: 70px; height: 70px; }
+    .row-img { width: 70px; height: 70px; font-size: 28px; }
+    .weekly-grid, .study-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .credibility { grid-template-columns: 1fr 1fr; }
+    .row { grid-template-columns: 70px 1fr; }
+    .row-shop { grid-column: 1 / -1; padding-top: 8px; flex-direction: row; align-items: center; flex-wrap: wrap; }
+    .row-shop .row-price { text-align: left; flex: 1 1 auto; }
+    .row-shop .row-view-link { flex: 0 1 auto; }
+    .row-shop .row-add-cart { flex: 1 0 100%; margin-top: 8px; }
+    /* row-meta replaced by row-shop above */
+    .weekly-card { grid-template-columns: 1fr; text-align: center; }
+    .weekly-img { margin: 0 auto; }
+    .footer-inner { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="announce">Free shipping on orders over $60 · <strong>30-day satisfaction guarantee</strong></div>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Daniel<span class="amp">'s</span> House</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">Daniel's Story</a></li>
+      <li><a href="skincare.html" class="active">Skincare</a></li>
+      <li><a href="supplements.html">Supplements</a></li>
+      <li><a href="bundles.html">Bundles</a></li>
+    </ul>
+    <div class="nav-cart">Cart (0)</div>
+  </div>
+</nav>
+
+<section class="page">
+  <div class="page-header">
+    <div class="page-header-eyebrow">The Skincare Line · 15 Products · Two Rituals · Built on Research</div>
+    <h1>Daniel's Skin Transformation —<br><em>Now Available for Yours.</em></h1>
+    <p>Every product in the Daniel's House skincare line earns its place by passing two tests: did Daniel see a real difference using it, and does the science back the actives inside it? If yes to both, it's here. If not, it didn't make the cut.</p>
+  </div>
+
+  <!-- Credibility strip -->
+  <div class="credibility">
+    <div class="cred-item">
+      <div class="cred-num">15<em>.</em></div>
+      <div class="cred-label">Products in the line</div>
+    </div>
+    <div class="cred-item">
+      <div class="cred-num">100<em>%</em></div>
+      <div class="cred-label">Made in North America</div>
+    </div>
+    <div class="cred-item">
+      <div class="cred-num">7<em>+</em></div>
+      <div class="cred-label">Clinically-studied actives</div>
+    </div>
+    <div class="cred-item">
+      <div class="cred-num">0</div>
+      <div class="cred-label">Parabens or sulfates</div>
+    </div>
+  </div>
+
+  <!-- DAILY ROUTINE -->
+  <div class="weekly" style="padding-bottom: 0; border-bottom: none;">
+    <div class="weekly-eyebrow">Morning &amp; Evening · Daily</div>
+    <div class="weekly-title">The <em>Daily</em> Routine</div>
+    <div class="weekly-blurb">Twelve products. Two rituals. The brightening, hydrating, protecting work in the morning — the resurfacing, repairing, restoring work at night.</div>
+  </div>
+
+  <!-- SPLITSCREEN -->
+  <div class="split">
+
+    <div class="ritual am">
+      <div class="ritual-header">
+        <div class="ritual-icon">🌅</div>
+        <div class="ritual-title">The <em>Morning</em><br>Ritual</div>
+        <div class="ritual-sub">AM Routine · 6 Steps</div>
+        <div class="ritual-blurb">Wake the skin up. Brighten, hydrate, protect. Six steps before the day starts.</div>
+      </div>
+
+      <div class="row">
+        <div class="row-img"><img src="images/Wash.jpeg" alt="The House Wash" /></div>
+        <div class="row-content">
+          <div class="row-tag">Cleanse · Hydrate · Barrier Defense</div>
+          <div class="row-name">The House <em>Wash</em></div>
+          <div class="row-desc">Hydrolyzed kale, carrot, and lemon proteins lift oil and dirt while protecting the skin's moisture barrier. The daily cleanser that doesn't punish.</div>
+        </div>
+        <div class="row-shop">
+          <div class="row-price">$26</div>
+          <a href="https://rvttkx-99.myshopify.com/products/the-house-wash" class="row-view-link" target="_blank" rel="noopener">View Details →</a>
+          <a href="https://rvttkx-99.myshopify.com/products/the-house-wash" class="row-add-cart" target="_blank" rel="noopener">Add to Cart →</a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="row-img"><img src="images/balance.jpeg" alt="The House Balance" /></div>
+        <div class="row-content">
+          <div class="row-tag">Tone · Refresh · Calm</div>
+          <div class="row-name">The House <em>Balance</em></div>
+          <div class="row-desc">Witch hazel, aloe, white tea, and cucumber balance and prep without stripping. The reset between cleanser and serum, not a five-alarm astringent.</div>
+        </div>
+        <div class="row-shop">
+          <div class="row-price">$24</div>
+          <a href="https://rvttkx-99.myshopify.com/products/the-house-balance" class="row-view-link" target="_blank" rel="noopener">View Details →</a>
+          <a href="https://rvttkx-99.myshopify.com/products/the-house-balance" class="row-add-cart" target="_blank" rel="noopener">Add to Cart →</a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="row-img"><img src="images/boost.jpeg" alt="The House Boost" /></div>
+        <div class="row-content">
+          <div class="row-tag">Brighten · Even Tone · Refine</div>
+          <div class="row-name">The House <em>Boost</em></div>
+          <div class="row-desc">Vitamin C, niacinamide (B3), and panthenol (B5) brighten dull skin, even tone, and strengthen the barrier. The triple-vitamin serum that earns its spot.</div>
+        </div>
+        <div class="row-shop">
+          <div class="row-price">$34</div>
+          <a href="https://rvttkx-99.myshopify.com/products/the-house-boost" class="row-view-link" target="_blank" rel="noopener">View Details →</a>
+          <a href="https://rvttkx-99.myshopify.com/products/the-house-boost" class="row-add-cart" target="_blank" rel="noopener">Add to Cart →</a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="row-img"><img src="images/hyaluronic.jpeg" alt="The House Hyaluronic" /></div>
+        <div class="row-content">
+          <div class="row-tag">Hydrate · Plump · Smooth</div>
+          <div class="row-name">The House <em>Hyaluronic</em></div>
+          <div class="row-desc">Multi-weight hyaluronic acid pulls moisture into deeper layers; glycerin keeps it there. Six ingredients total — pure, layerable hydration.</div>
+        </div>
+        <div class="row-shop">
+          <div class="row-price">$28</div>
+          <a href="https://rvttkx-99.myshopify.com/products/the-house-hyaluronic" class="row-view-link" target="_blank" rel="noopener">View Details →</a>
+          <a href="https://rvttkx-99.myshopify.com/products/the-house-hyaluronic" class="row-add-cart" target="_blank" rel="noopener">Add to Cart →</a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="row-img"><img src="images/defense.jpeg" alt="The House Defense" /></div>
+        <div class="row-content">
+          <div class="row-tag">Antioxidant · Age-Defy · Brighten</div>
+          <div class="row-name">The House <em>Defense</em></div>
+          <div class="row-desc">Squalane, hydrolyzed soy protein, stable vitamin C, and caffeine. The heavy hitter that does multiple jobs in a single bottle.</div>
+        </div>
+        <div class="row-shop">
+          <div class="row-price">$38</div>
+          <a href="https://rvttkx-99.myshopify.com/products/the-house-defense" class="row-view-link" target="_blank" rel="noopener">View Details →</a>
+          <a href="https://rvttkx-99.myshopify.com/products/the-house-defense" class="row-add-cart" target="_blank" rel="noopener">Add to Cart →</a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="row-img"><img src="images/Soft.jpeg" alt="The House Soft" /></div>
+        <div class="row-content">
+          <div class="row-tag">Hydrate · Soothe · Soften</div>
+          <div class="row-name">The House <em>Soft</em></div>
+          <div class="row-desc">Multi-weight hyaluronic acid, calming aloe, and a silky non-greasy finish. The daily moisturizer that doesn't make you choose.</div>
+        </div>
+        <div class="row-shop">
+          <div class="row-price">$32</div>
+          <a href="https://rvttkx-99.myshopify.com/products/the-house-soft" class="row-view-link" target="_blank" rel="noopener">View Details →</a>
+          <a href="https://rvttkx-99.myshopify.com/products/the-house-soft" class="row-add-cart" target="_blank" rel="noopener">Add to Cart →</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- PM column -->
+    <div class="ritual pm">
+      <div class="ritual-header">
+        <div class="ritual-icon">🌙</div>
+        <div class="ritual-title">The <em>Evening</em><br>Ritual</div>
+        <div class="ritual-sub">PM Routine · 6 Steps</div>
+        <div class="ritual-blurb">Wind it down. Resurface, repair, restore. Six steps to wake up better.</div>
+      </div>
+
+      <div class="row">
+        <div class="row-img"><img src="images/bounce.jpeg" alt="The House Bounce" /></div>
+        <div class="row-content">
+          <div class="row-tag">Firm · Renew · Plump</div>
+          <div class="row-name">The House <em>Bounce</em></div>
+          <div class="row-desc">Hydrolyzed collagen, retinol, and hyaluronic acid target firmness, cell turnover, and deep hydration in one elegant step.</div>
+        </div>
+        <div class="row-shop">
+          <div class="row-price">$42</div>
+          <a href="https://rvttkx-99.myshopify.com/products/the-house-bounce" class="row-view-link" target="_blank" rel="noopener">View Details →</a>
+          <a href="https://rvttkx-99.myshopify.com/products/the-house-bounce" class="row-add-cart" target="_blank" rel="noopener">Add to Cart →</a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="row-img"><img src="images/Firm.jpeg" alt="The House Firm" /></div>
+        <div class="row-content">
+          <div class="row-tag">Firm · Smooth · Tighten</div>
+          <div class="row-name">The House <em>Firm</em></div>
+          <div class="row-desc">A peptide pair, cucumber, and chrysin in an oil-free, fragrance-free formula. Targeted for fine lines and the eye area.</div>
+        </div>
+        <div class="row-shop">
+          <div class="row-price">$36</div>
+          <a href="https://rvttkx-99.myshopify.com/products/the-house-firm" class="row-view-link" target="_blank" rel="noopener">View Details →</a>
+          <a href="https://rvttkx-99.myshopify.com/products/the-house-firm" class="row-add-cart" target="_blank" rel="noopener">Add to Cart →</a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="row-img"><img src="images/hydration.jpeg" alt="The House Hydration" /></div>
+        <div class="row-content">
+          <div class="row-tag">Hydrate · Moisture Lock · Antioxidant</div>
+          <div class="row-name">The House <em>Hydration</em></div>
+          <div class="row-desc">Glycerin mimics the skin's own moisture process; cassia obtusifolia adds antioxidant defense. Three actives, all pulling weight.</div>
+        </div>
+        <div class="row-shop">
+          <div class="row-price">$26</div>
+          <a href="https://rvttkx-99.myshopify.com/products/the-house-hydration" class="row-view-link" target="_blank" rel="noopener">View Details →</a>
+          <a href="https://rvttkx-99.myshopify.com/products/the-house-hydration" class="row-add-cart" target="_blank" rel="noopener">Add to Cart →</a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="row-img"><img src="images/Eye.jpeg" alt="The House Eye" /></div>
+        <div class="row-content">
+          <div class="row-tag">Depuff · Brighten · Firm</div>
+          <div class="row-name">The House <em>Eye</em></div>
+          <div class="row-desc">A lightweight peptide cream with cucumber, aloe, and safflower seed oil. Soothes, depuffs, and supports the look of firmer under-eyes.</div>
+        </div>
+        <div class="row-shop">
+          <div class="row-price">$36</div>
+          <a href="https://rvttkx-99.myshopify.com/products/the-house-eye" class="row-view-link" target="_blank" rel="noopener">View Details →</a>
+          <a href="https://rvttkx-99.myshopify.com/products/the-house-eye" class="row-add-cart" target="_blank" rel="noopener">Add to Cart →</a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="row-img"><img src="images/renewal.jpeg" alt="The House Renewal" /></div>
+        <div class="row-content">
+          <div class="row-tag">Resurface · Renew · Smooth</div>
+          <div class="row-name">The House <em>Renewal</em></div>
+          <div class="row-desc">Glycolic acid resurfaces while retinyl palmitate supports collagen overnight. Squalane and panthenol keep you from waking up tight.</div>
+        </div>
+        <div class="row-shop">
+          <div class="row-price">$44</div>
+          <a href="https://rvttkx-99.myshopify.com/products/the-house-renewal" class="row-view-link" target="_blank" rel="noopener">View Details →</a>
+          <a href="https://rvttkx-99.myshopify.com/products/the-house-renewal" class="row-add-cart" target="_blank" rel="noopener">Add to Cart →</a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="row-img"><img src="images/glow.jpeg" alt="The House Glow" /></div>
+        <div class="row-content">
+          <div class="row-tag">Nourish · Glow · Seal</div>
+          <div class="row-name">The House <em>Glow</em></div>
+          <div class="row-desc">A six-oil blend with rosehip, hemp seed, and grape seed. The luxe finishing step that ties the whole evening routine together.</div>
+        </div>
+        <div class="row-shop">
+          <div class="row-price">$36</div>
+          <a href="https://rvttkx-99.myshopify.com/products/the-house-glow" class="row-view-link" target="_blank" rel="noopener">View Details →</a>
+          <a href="https://rvttkx-99.myshopify.com/products/the-house-glow" class="row-add-cart" target="_blank" rel="noopener">Add to Cart →</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Alternate option for oily skin -->
+  <div class="alt-banner">
+    <div class="alt-banner-inner">
+      <div class="alt-banner-img"><img src="images/clear.jpeg" alt="The House Clear" /></div>
+      <div class="alt-banner-text">
+        <strong>Oily or acne-prone skin?</strong>
+        Swap step 06 for <a href="#clear">The House Clear</a> ($32) — a lightweight, oil-free hydrator built specifically for combination, oily, and acne-prone skin. Same routine, different finish.
+      </div>
+    </div>
+  </div>
+
+  <!-- WEEKLY TREATMENTS -->
+  <div class="weekly">
+    <div class="weekly-eyebrow">2× Weekly · Treatments</div>
+    <div class="weekly-title">The <em>Weekly</em> Reset</div>
+    <div class="weekly-blurb">Two products that take your routine deeper, one or two nights a week. Use one or the other — never both on the same day.</div>
+
+    <div class="weekly-grid">
+      <div class="weekly-card">
+        <div class="weekly-img"><img src="images/mask.jpeg" alt="The House Mask" /></div>
+        <div>
+          <div class="weekly-tag">Detox · Purify · Refine</div>
+          <div class="weekly-name">The House <em>Mask</em></div>
+          <div class="weekly-desc">Binchotan charcoal, sodium bicarbonate, and kaolin clay. A spa night in five minutes — activated by warm water, finished with a gentle massage.</div>
+          <div class="weekly-foot">
+            <div class="weekly-price">$30</div>
+            <a href="https://rvttkx-99.myshopify.com/products/the-house-mask" class="weekly-view-link" target="_blank" rel="noopener">View Details →</a>
+            <a href="https://rvttkx-99.myshopify.com/products/the-house-mask" class="weekly-add-cart" target="_blank" rel="noopener">Add to Cart →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="weekly-card">
+        <div class="weekly-img"><img src="images/Polish.jpeg" alt="The House Polish" /></div>
+        <div>
+          <div class="weekly-tag">Exfoliate · Smooth · Refresh</div>
+          <div class="weekly-name">The House <em>Polish</em></div>
+          <div class="weekly-desc">A plant-cellulose physical exfoliant gentle enough for weekly use, with a clean menthol cool that turns the step into a moment.</div>
+          <div class="weekly-foot">
+            <div class="weekly-price">$28</div>
+            <a href="https://rvttkx-99.myshopify.com/products/the-house-polish" class="weekly-view-link" target="_blank" rel="noopener">View Details →</a>
+            <a href="https://rvttkx-99.myshopify.com/products/the-house-polish" class="weekly-add-cart" target="_blank" rel="noopener">Add to Cart →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESEARCH SECTION -->
+  <section class="research">
+    <div class="research-inner">
+      <div class="research-header">
+        <div class="research-eyebrow">Built on Research · Not Marketing</div>
+        <div class="research-title">What the <em>Science</em> Says<br>About These Actives.</div>
+        <div class="research-blurb">The actives in the Daniel's House line aren't trends. They're ingredients with peer-reviewed evidence behind them. Here's a sample of what the research shows.</div>
+      </div>
+
+      <div class="study-grid">
+
+        <div class="study">
+          <div class="study-marker">Study 01</div>
+          <div class="study-actor"><em>Niacinamide</em> + Hyaluronic Acid</div>
+          <div class="study-finding">A 2024 controlled clinical trial of 44 women applying a 6% niacinamide and hyaluronic acid formula for two months found measurable improvements in <strong>fine lines, wrinkles, luminosity, smoothness, and skin plumpness</strong>. Genomic analysis confirmed changes in collagen and matrix-related gene expression.</div>
+          <div class="study-source">Source: Scientific Reports (Nature Publishing), 2024 — peer-reviewed clinical study.</div>
+          <div class="study-products">Found in: The House Boost · The House Soft</div>
+        </div>
+
+        <div class="study">
+          <div class="study-marker">Study 02</div>
+          <div class="study-actor"><em>Retinoids</em></div>
+          <div class="study-finding">Decades of clinical evidence position retinoids as the <strong>gold standard for anti-aging</strong>. Mechanistically, retinol stimulates fibroblasts (the cells that produce collagen and elastin), increases epidermal thickness, and accelerates cell turnover via TGF-β signaling pathways.</div>
+          <div class="study-source">Source: International Journal of Cosmetic Science; Journal of Dermatological Treatment — multi-decade evidence base.</div>
+          <div class="study-products">Found in: The House Bounce · The House Renewal</div>
+        </div>
+
+        <div class="study">
+          <div class="study-marker">Study 03</div>
+          <div class="study-actor">Peptides + <em>Vitamin C</em></div>
+          <div class="study-finding">A clinical study of a peptide and vitamin C formulation showed measurable wrinkle reduction after 28–29 days: <strong>crow's-feet decreased 9%, forehead wrinkles 11%</strong>, and 3D analysis showed an <strong>11.5% overall reduction in wrinkles</strong>. 65–79% of subjects reported visible smoothing and brightness.</div>
+          <div class="study-source">Source: International Journal of Cosmetic Science (Escobar et al., 2021).</div>
+          <div class="study-products">Found in: The House Firm · The House Eye · The House Defense · The House Boost</div>
+        </div>
+
+        <div class="study">
+          <div class="study-marker">Study 04</div>
+          <div class="study-actor"><em>Hyaluronic</em> Acid</div>
+          <div class="study-finding">Topical hyaluronic acid is clinically proven to <strong>increase skin hydration, restore epidermal thickness, and reduce p16 senescence markers</strong> in the dermis. Effects are most pronounced when multiple molecular weights are combined — exactly what's used across this line.</div>
+          <div class="study-source">Source: Scientific Reports, 2024; multiple peer-reviewed studies on dermatoporosis patients.</div>
+          <div class="study-products">Found in: The House Hyaluronic · The House Soft · The House Bounce · The House Eye</div>
+        </div>
+
+        <div class="study">
+          <div class="study-marker">Study 05</div>
+          <div class="study-actor"><em>Vitamin C</em> (Ascorbic Acid)</div>
+          <div class="study-finding">Vitamin C is a <strong>cofactor required for collagen synthesis</strong> and a potent antioxidant. Stable derivatives like 3-O-ethyl ascorbic acid (used in The House Boost) and tetrahexyldecyl ascorbate (used in The House Defense) deliver the brightening and antioxidant benefits without the irritation of L-ascorbic acid.</div>
+          <div class="study-source">Source: Antioxidants Journal (PubMed PMC9495646), 2022.</div>
+          <div class="study-products">Found in: The House Boost · The House Defense</div>
+        </div>
+
+        <div class="study">
+          <div class="study-marker">Study 06</div>
+          <div class="study-actor">Glycolic Acid (<em>AHA</em>)</div>
+          <div class="study-finding">Alpha hydroxy acids like glycolic acid are clinically proven to <strong>improve skin texture, reduce hyperpigmentation, and accelerate cell turnover</strong>. Effective at low concentrations when paired with hydrating actives — which is why The House Renewal pairs it with squalane, glycerin, and panthenol.</div>
+          <div class="study-source">Source: Reviewed in Journal of the American Academy of Dermatology and dermatology textbooks.</div>
+          <div class="study-products">Found in: The House Renewal</div>
+        </div>
+
+      </div>
+
+      <div class="research-disclaimer">
+        Research summarized above examines individual active ingredients and ingredient classes in published clinical studies. Daniel's House products contain these actives at cosmetic concentrations and are not intended to diagnose, treat, cure, or prevent any disease. Individual results vary. For specific medical concerns, consult a dermatologist.
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSING -->
+  <div class="closing">
+    <h2>Or — let us <em>build it for you.</em></h2>
+    <p>The Complete Skin System bundles the full 15-product line in the order you'll use them. One transformation. Boxed.</p>
+    <a href="bundles.html" class="closing-btn">Explore Bundles →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Daniel<span class="amp">'s</span> House</div>
+      <div class="footer-tag">Your home for premium wellness — built on real results, not marketing.</div>
+      <div class="footer-attr">🌿 Vegan · Cruelty-Free · Made in North America<br>📧 daniel@danielshouse.com</div>
+    </div>
+    <div class="footer-col"><h4>Shop</h4><ul><li><a href="skincare.html">Skincare</a></li><li><a href="supplements.html">Supplements</a></li><li><a href="bundles.html">Bundles</a></li><li><a href="#">Best Sellers</a></li></ul></div>
+    <div class="footer-col"><h4>The House</h4><ul><li><a href="about.html">Daniel's Story</a></li><li><a href="#">Daniel's Routine</a></li><li><a href="#">The Science</a></li><li><a href="#">Contact</a></li></ul></div>
+    <div class="footer-col"><h4>Help</h4><ul><li><a href="#">Shipping &amp; Returns</a></li><li><a href="#">30-Day Guarantee</a></li><li><a href="#">FAQ</a></li><li><a href="#">Track Order</a></li></ul></div>
+  </div>
+  <div class="footer-base">
+    <div>© Daniel's House — Premium Wellness</div>
+    <div>Made for Daniel. Built with intention.</div>
+  </div>
+</footer>
+
+</body>
+</html>
