@@ -234,16 +234,16 @@
       const subtotal = this.subtotal();
       const remaining = FREE_SHIPPING_THRESHOLD - subtotal;
       if (remaining <= 0 && subtotal > 0) {
-        text.innerHTML = `✓ <strong>Free shipping unlocked.</strong> 30-day satisfaction guarantee.`;
+        text.innerHTML = `✓ <strong>Free shipping unlocked</strong>`;
         fill.style.width = '100%';
         bar.classList.add('complete');
       } else if (subtotal > 0) {
         const pct = (subtotal / FREE_SHIPPING_THRESHOLD) * 100;
-        text.innerHTML = `Add <strong>$${remaining.toFixed(2)}</strong> more for free shipping · 30-day guarantee`;
+        text.innerHTML = `Add <strong>$${remaining.toFixed(2)}</strong> more for free shipping`;
         fill.style.width = pct + '%';
         bar.classList.remove('complete');
       } else {
-        text.innerHTML = `Free shipping on orders over <strong>$${FREE_SHIPPING_THRESHOLD}</strong> · 30-day satisfaction guarantee`;
+        text.innerHTML = `Free shipping on orders over <strong>$${FREE_SHIPPING_THRESHOLD}</strong>`;
         fill.style.width = '0%';
         bar.classList.remove('complete');
       }
