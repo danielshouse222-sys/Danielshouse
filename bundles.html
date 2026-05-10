@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="css/shared.css">
 <style>
   :root {
     --cream: #FAF6F0;
@@ -208,12 +209,117 @@
   .hero-product-grid-ultimate .hero-product-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .hero-product-grid-ultimate .hero-thumb-empty { aspect-ratio: 1/1; background: rgba(184, 153, 104, 0.06); border: 1px solid rgba(184, 153, 104, 0.2); display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--gold); font-size: 12px; opacity: 0.6; }
 
+
+  /* ═══ BUNDLE PRODUCT LIGHTBOX ═══ */
+  .bundle-thumb { cursor: pointer; transition: transform 0.3s, box-shadow 0.3s; position: relative; }
+  .bundle-thumb:hover { transform: scale(1.06); box-shadow: 0 8px 24px rgba(31,27,23,0.18); z-index: 5; }
+  .bundle-thumb::after {
+    content: '⤢'; position: absolute; top: 4px; right: 4px;
+    background: var(--ink); color: var(--cream);
+    width: 18px; height: 18px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 9px; opacity: 0; transition: opacity 0.3s;
+  }
+  .bundle-thumb:hover::after { opacity: 0.85; }
+
+  .lightbox-overlay {
+    position: fixed; inset: 0; background: rgba(31,27,23,0.92);
+    z-index: 1100; display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+    padding: 60px 40px;
+  }
+  .lightbox-overlay.open { opacity: 1; pointer-events: all; }
+  .lightbox {
+    background: var(--cream); max-width: 720px; width: 100%;
+    max-height: 90vh; display: flex; flex-direction: column;
+    transform: scale(0.95); transition: transform 0.3s ease;
+    border: 1px solid var(--gold);
+  }
+  .lightbox-overlay.open .lightbox { transform: scale(1); }
+  .lightbox-header {
+    padding: 18px 24px; display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 1px solid var(--rule);
+  }
+  .lightbox-counter {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: 18px; color: var(--ink-soft);
+  }
+  .lightbox-close {
+    background: transparent; border: none; cursor: pointer;
+    font-size: 28px; color: var(--ink-soft); width: 36px; height: 36px;
+  }
+  .lightbox-close:hover { color: var(--ink); }
+  .lightbox-body {
+    flex: 1; display: flex; align-items: center; gap: 20px;
+    padding: 28px 24px; min-height: 0;
+  }
+  .lightbox-arrow {
+    background: transparent; border: 1px solid var(--rule);
+    width: 44px; height: 44px; cursor: pointer; flex-shrink: 0;
+    font-size: 18px; color: var(--ink-soft); transition: all 0.3s;
+  }
+  .lightbox-arrow:hover { border-color: var(--gold); color: var(--gold); }
+  .lightbox-content { flex: 1; text-align: center; min-width: 0; }
+  .lightbox-img {
+    width: 100%; max-width: 360px; aspect-ratio: 1/1; margin: 0 auto 20px;
+    background: var(--cream-warm); border: 1px solid var(--rule);
+    overflow: hidden;
+  }
+  .lightbox-img img { width: 100%; height: 100%; object-fit: cover; }
+  .lightbox-name {
+    font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 500; margin-bottom: 8px;
+  }
+  .lightbox-name em { font-style: italic; color: var(--sage); }
+  .lightbox-tag {
+    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--gold); font-weight: 500; margin-bottom: 14px;
+  }
+  .lightbox-desc {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: 16px; color: var(--ink-soft); line-height: 1.5;
+    max-width: 480px; margin: 0 auto 18px;
+  }
+  .lightbox-price {
+    font-family: 'Cormorant Garamond', serif; font-size: 24px; margin-bottom: 16px;
+  }
+  .lightbox-link {
+    display: inline-block; padding: 12px 28px;
+    background: var(--ink); color: var(--cream);
+    text-decoration: none; font-size: 11px; letter-spacing: 0.22em;
+    text-transform: uppercase; font-weight: 500;
+  }
+  .lightbox-link:hover { background: var(--sage); }
+  .lightbox-dots {
+    display: flex; gap: 6px; justify-content: center;
+    padding: 12px 24px 20px;
+    border-top: 1px solid var(--rule);
+    flex-wrap: wrap;
+  }
+  .lightbox-dot {
+    width: 8px; height: 8px; background: var(--rule); cursor: pointer;
+    border-radius: 50%; border: none; padding: 0;
+    transition: background 0.3s;
+  }
+  .lightbox-dot.active { background: var(--gold); }
+  @media (max-width: 720px) {
+    .lightbox-overlay { padding: 20px; }
+    .lightbox-body { flex-direction: column; }
+    .lightbox-arrow { width: 100%; }
+    .lightbox-img { max-width: 240px; }
+    .lightbox-name { font-size: 26px; }
+  }
+
 </style>
 </head>
 <body>
 
 <div class="announce">
   Free shipping on orders over $60 · <strong>30-day satisfaction guarantee</strong>
+</div>
+
+<div class="shipping-bar">
+  <div class="shipping-bar-progress"></div>
+  <div class="shipping-bar-text">Free shipping on orders over <strong>$75</strong> · 30-day satisfaction guarantee</div>
 </div>
 
 <nav>
@@ -225,15 +331,12 @@
       <li><a href="skincare.html">Skincare</a></li>
       <li><a href="supplements.html">Supplements</a></li>
       <li><a href="bundles.html" class="active">Bundles</a></li>
+      <li><a href="shop.html">Shop By Concern</a></li>
     </ul>
-    <div class="nav-cart">Cart (0)</div>
-  </div>
-  <div class="mobile-pages">
-    <a href="index.html">Home</a>
-    <a href="about.html">Story</a>
-    <a href="skincare.html">Skincare</a>
-    <a href="supplements.html">Supplements</a>
-    <a href="bundles.html" class="active">Bundles</a>
+    <div style="display: flex; gap: 4px;">
+      <button class="search-trigger" aria-label="Search">Search</button>
+      <button class="cart-trigger" aria-label="Open cart">Cart <span class="cart-trigger-count">0</span></button>
+    </div>
   </div>
 </nav>
 
@@ -308,7 +411,7 @@
           <div class="hero-savings-label">$717 → $538 · 25% off</div>
         </div>
 
-        <a href="#" class="hero-cta">Add Ultimate to Cart →</a>
+        <a href="#build-your-own" class="hero-cta">Build the Ultimate →</a>
       </div>
     </div>
   </div>
@@ -351,7 +454,7 @@
           <div class="bundle-save">Save $57</div>
           <div class="bundle-save-label">$315 → $258</div>
         </div>
-        <a href="#" class="bundle-cta">Add to Cart →</a>
+        <a href="#build-your-own" class="bundle-cta">Build This Bundle →</a>
       </div>
     </div>
 
@@ -380,7 +483,7 @@
           <div class="bundle-save">Save $27</div>
           <div class="bundle-save-label">$182 → $155</div>
         </div>
-        <a href="#" class="bundle-cta">Add to Cart →</a>
+        <a href="#build-your-own" class="bundle-cta">Build This Bundle →</a>
       </div>
     </div>
 
@@ -409,7 +512,7 @@
           <div class="bundle-save">Save $33</div>
           <div class="bundle-save-label">$220 → $187</div>
         </div>
-        <a href="#" class="bundle-cta">Add to Cart →</a>
+        <a href="#build-your-own" class="bundle-cta">Build This Bundle →</a>
       </div>
     </div>
 
@@ -437,7 +540,7 @@
           <div class="bundle-save">Save $26</div>
           <div class="bundle-save-label">$174 → $148</div>
         </div>
-        <a href="#" class="bundle-cta">Add to Cart →</a>
+        <a href="#build-your-own" class="bundle-cta">Build This Bundle →</a>
       </div>
     </div>
 
@@ -465,7 +568,36 @@
           <div class="bundle-save">Save $27</div>
           <div class="bundle-save-label">$179 → $152</div>
         </div>
-        <a href="#" class="bundle-cta">Add to Cart →</a>
+        <a href="#build-your-own" class="bundle-cta">Build This Bundle →</a>
+      </div>
+    </div>
+
+    <!-- The Glow Bundle (NEW) -->
+    <div class="bundle-card">
+      <div class="bundle-img-area">
+        <div class="bundle-product-grid cols-3">
+          <div class="bundle-thumb"><img src="images/boost.jpeg" alt="Boost" loading="lazy"/></div>
+          <div class="bundle-thumb"><img src="images/defense.jpeg" alt="Defense" loading="lazy"/></div>
+          <div class="bundle-thumb"><img src="images/glow.jpeg" alt="Glow" loading="lazy"/></div>
+          <div class="bundle-thumb"><img src="images/mask.jpeg" alt="Mask" loading="lazy"/></div>
+          <div class="bundle-thumb"><img src="products/radiance.jpeg" alt="Radiance" loading="lazy"/></div>
+          <div class="bundle-thumb"><img src="products/collagen.jpeg" alt="Collagen" loading="lazy"/></div>
+        </div>
+      </div>
+      <div class="bundle-body">
+        <div class="bundle-eyebrow">Inside-Out Radiance</div>
+        <div class="bundle-title">The <em>Glow</em> Bundle</div>
+        <div class="bundle-sub">4 Skincare + 2 Supplements</div>
+        <div class="bundle-desc">The full glow protocol. Topical brightening + antioxidant defense + finishing oil + the weekly detox mask — paired with the beauty gummy and collagen peptides that build it from within.</div>
+        <div class="bundle-included">
+          <div class="bundle-included-label">What's Inside</div>
+          <div class="bundle-included-list">Boost · Defense · Glow · Mask<br>Radiance · Collagen</div>
+        </div>
+        <div class="bundle-savings">
+          <div class="bundle-save">Save $31</div>
+          <div class="bundle-save-label">$207 → $176</div>
+        </div>
+        <a href="#build-your-own" class="bundle-cta">Build This Bundle →</a>
       </div>
     </div>
 
@@ -496,7 +628,7 @@
           <div class="bundle-save">Save $36</div>
           <div class="bundle-save-label">$238 → $202</div>
         </div>
-        <a href="#" class="bundle-cta">Add to Cart →</a>
+        <a href="#build-your-own" class="bundle-cta">Build This Bundle →</a>
       </div>
     </div>
 
@@ -527,43 +659,18 @@
           <div class="bundle-save">Save $38</div>
           <div class="bundle-save-label">$250 → $212</div>
         </div>
-        <a href="#" class="bundle-cta">Add to Cart →</a>
+        <a href="#build-your-own" class="bundle-cta">Build This Bundle →</a>
       </div>
     </div>
 
-    <!-- The Glow Bundle (NEW) -->
-    <div class="bundle-card">
-      <div class="bundle-img-area">
-        <div class="bundle-product-grid cols-3">
-          <div class="bundle-thumb"><img src="images/boost.jpeg" alt="Boost" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="images/defense.jpeg" alt="Defense" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="images/glow.jpeg" alt="Glow" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="images/mask.jpeg" alt="Mask" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="products/radiance.jpeg" alt="Radiance" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="products/collagen.jpeg" alt="Collagen" loading="lazy"/></div>
-        </div>
-      </div>
-      <div class="bundle-body">
-        <div class="bundle-eyebrow">Inside-Out Radiance</div>
-        <div class="bundle-title">The <em>Glow</em> Bundle</div>
-        <div class="bundle-sub">4 Skincare + 2 Supplements</div>
-        <div class="bundle-desc">The full glow protocol. Topical brightening + antioxidant defense + finishing oil + the weekly detox mask — paired with the beauty gummy and collagen peptides that build it from within.</div>
-        <div class="bundle-included">
-          <div class="bundle-included-label">What's Inside</div>
-          <div class="bundle-included-list">Boost · Defense · Glow · Mask<br>Radiance · Collagen</div>
-        </div>
-        <div class="bundle-savings">
-          <div class="bundle-save">Save $31</div>
-          <div class="bundle-save-label">$207 → $176</div>
-        </div>
-        <a href="#" class="bundle-cta">Add to Cart →</a>
-      </div>
-    </div>
+
+
 
   </div>
 
 
   <!-- ═══ BUILD YOUR OWN BUNDLE ═══ -->
+<a id="build-your-own"></a>
   <section class="builder-section">
     <div class="builder-section-inner">
       <div class="builder-header">
@@ -635,25 +742,25 @@
         <li><a href="skincare.html">Skincare</a></li>
         <li><a href="supplements.html">Supplements</a></li>
         <li><a href="bundles.html">Bundles</a></li>
-        <li><a href="#">Best Sellers</a></li>
+        <li><a href="bundles.html">Bundles</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>The House</h4>
       <ul>
         <li><a href="about.html">Daniel's Story</a></li>
-        <li><a href="#">Daniel's Routine</a></li>
-        <li><a href="#">The Science</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="about.html">Daniel's Story</a></li>
+        <li><a href="ingredients.html">Ingredient Glossary</a></li>
+        <li><a href="faq.html">Contact</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>Help</h4>
       <ul>
-        <li><a href="#">Shipping &amp; Returns</a></li>
-        <li><a href="#">30-Day Guarantee</a></li>
-        <li><a href="#">FAQ</a></li>
-        <li><a href="#">Track Order</a></li>
+        <li><a href="faq.html">Shipping &amp; Returns</a></li>
+        <li><a href="faq.html">30-Day Guarantee</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="faq.html">Track Order</a></li>
       </ul>
     </div>
   </div>
@@ -801,6 +908,175 @@
   });
 
   update();
+})();
+</script>
+
+
+<!-- Cart Drawer -->
+<div class="cart-overlay"></div>
+<aside class="cart-drawer">
+  <div class="cart-header"><div class="cart-title">Your <em>Cart</em></div><button class="cart-close" aria-label="Close cart">×</button></div>
+  <div class="cart-body"></div>
+  <div class="cart-footer">
+    <div class="cart-totals">
+      <div class="cart-totals-line"><span>Subtotal</span><span class="subtotal-amount">$0.00</span></div>
+      <div class="cart-totals-line total"><span>Total</span><span class="amount total-amount">$0.00</span></div>
+    </div>
+    <button class="cart-checkout">Checkout →</button>
+    <div class="cart-shipping-note">Free shipping on orders over $75.</div>
+  </div>
+</aside>
+
+<!-- Email Popup -->
+<div class="popup-overlay">
+  <div class="popup">
+    <button class="popup-close" aria-label="Close">×</button>
+    <div class="popup-eyebrow">10% Off Your First Order</div>
+    <div class="popup-title">Welcome to <em>The House</em>.</div>
+    <div class="popup-blurb">Drop your email for 10% off your first order, plus first access to new launches and Daniel's actual routine notes.</div>
+    <form class="popup-form">
+      <input type="email" class="popup-input" placeholder="Your email address" required />
+      <button type="submit" class="popup-submit">Get My 10% Off →</button>
+    </form>
+    <button class="popup-skip">No thanks</button>
+  </div>
+</div>
+
+<!-- Search Modal -->
+<div class="search-overlay">
+  <div class="search-inner">
+    <div class="search-input-wrap">
+      <input type="text" class="search-input" placeholder="Search products, ingredients, concerns..." />
+      <button class="search-close" aria-label="Close search">×</button>
+    </div>
+    <div class="search-results"></div>
+  </div>
+</div>
+
+<!-- Bundle Image Lightbox -->
+<div class="lightbox-overlay">
+  <div class="lightbox">
+    <div class="lightbox-header">
+      <div class="lightbox-counter"><span id="lb-current">1</span> of <span id="lb-total">1</span></div>
+      <button class="lightbox-close" aria-label="Close">×</button>
+    </div>
+    <div class="lightbox-body">
+      <button class="lightbox-arrow lightbox-prev" aria-label="Previous">←</button>
+      <div class="lightbox-content">
+        <div class="lightbox-img"><img id="lb-img" src="" alt=""/></div>
+        <div class="lightbox-tag" id="lb-tag"></div>
+        <div class="lightbox-name" id="lb-name"></div>
+        <div class="lightbox-desc" id="lb-desc"></div>
+        <div class="lightbox-price" id="lb-price"></div>
+        <a id="lb-link" class="lightbox-link" href="#">View Full Details →</a>
+      </div>
+      <button class="lightbox-arrow lightbox-next" aria-label="Next">→</button>
+    </div>
+    <div class="lightbox-dots" id="lb-dots"></div>
+  </div>
+</div>
+
+<script src="data/products.js"></script>
+<script src="js/shared.js"></script>
+<script>
+// ═══ Bundle Lightbox / Carousel ═══
+(function() {
+  let currentBundle = [];
+  let currentIndex = 0;
+
+  function findProductByImage(imgSrc) {
+    if (!window.PRODUCTS) return null;
+    return window.PRODUCTS.find(p => imgSrc.includes(p.image.split('/').pop()));
+  }
+
+  function getBundleProducts(bundleCard) {
+    const thumbs = bundleCard.querySelectorAll('.bundle-thumb img');
+    const products = [];
+    thumbs.forEach(img => {
+      const product = findProductByImage(img.src);
+      if (product) products.push(product);
+    });
+    return products;
+  }
+
+  function updateLightbox() {
+    if (currentBundle.length === 0) return;
+    const p = currentBundle[currentIndex];
+    document.getElementById('lb-img').src = p.image;
+    document.getElementById('lb-img').alt = p.name;
+    document.getElementById('lb-tag').textContent = p.tag;
+    document.getElementById('lb-name').innerHTML = `The House <em>${p.name}</em>`;
+    document.getElementById('lb-desc').textContent = p.tagline;
+    document.getElementById('lb-price').textContent = `$${p.price.toFixed(2)}`;
+    document.getElementById('lb-link').href = `product.html?slug=${p.slug}`;
+    document.getElementById('lb-current').textContent = currentIndex + 1;
+    document.getElementById('lb-total').textContent = currentBundle.length;
+
+    // Dots
+    const dotsEl = document.getElementById('lb-dots');
+    dotsEl.innerHTML = currentBundle.map((_, i) =>
+      `<button class="lightbox-dot ${i === currentIndex ? 'active' : ''}" data-idx="${i}" aria-label="Go to slide ${i+1}"></button>`
+    ).join('');
+    dotsEl.querySelectorAll('.lightbox-dot').forEach(d => {
+      d.addEventListener('click', () => {
+        currentIndex = parseInt(d.dataset.idx);
+        updateLightbox();
+      });
+    });
+  }
+
+  function openLightbox(bundleCard, startIndex) {
+    currentBundle = getBundleProducts(bundleCard);
+    if (currentBundle.length === 0) return;
+    currentIndex = startIndex;
+    updateLightbox();
+    document.querySelector('.lightbox-overlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    document.querySelector('.lightbox-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function nextSlide() {
+    currentIndex = (currentIndex + 1) % currentBundle.length;
+    updateLightbox();
+  }
+  function prevSlide() {
+    currentIndex = (currentIndex - 1 + currentBundle.length) % currentBundle.length;
+    updateLightbox();
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // Wire up bundle thumb clicks
+    document.querySelectorAll('.bundle-card, .hero-section').forEach(card => {
+      const thumbs = card.querySelectorAll('.bundle-thumb, .hero-product-thumb');
+      thumbs.forEach((thumb, idx) => {
+        // Only thumbs with images (skip empty decorative cells)
+        const img = thumb.querySelector('img');
+        if (!img) return;
+        thumb.style.cursor = 'pointer';
+        thumb.addEventListener('click', () => {
+          // Get all thumbs with images in this card
+          const validThumbs = Array.from(thumbs).filter(t => t.querySelector('img'));
+          const validIdx = validThumbs.indexOf(thumb);
+          openLightbox(card, validIdx);
+        });
+      });
+    });
+
+    document.querySelector('.lightbox-overlay')?.addEventListener('click', e => {
+      if (e.target === e.currentTarget) closeLightbox();
+    });
+    document.querySelector('.lightbox-close')?.addEventListener('click', closeLightbox);
+    document.querySelector('.lightbox-next')?.addEventListener('click', nextSlide);
+    document.querySelector('.lightbox-prev')?.addEventListener('click', prevSlide);
+    document.addEventListener('keydown', e => {
+      if (!document.querySelector('.lightbox-overlay').classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') nextSlide();
+      if (e.key === 'ArrowLeft') prevSlide();
+    });
+  });
 })();
 </script>
 

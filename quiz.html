@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Take the Quiz — Daniel's House</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="css/shared.css">
+<style>
+  body { background: var(--cream); color: var(--ink); font-family: 'Poppins', sans-serif; margin: 0; }
+
+  /* Hero */
+  .quiz-hero {
+    text-align: center;
+    padding: 80px 40px 50px;
+    border-bottom: 1px solid var(--rule);
+    background: var(--cream-warm);
+  }
+  .quiz-eyebrow { font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 20px; }
+  .quiz-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(48px, 6vw, 72px); font-weight: 400; line-height: 0.95; margin-bottom: 18px; }
+  .quiz-title em { font-style: italic; color: var(--sage); }
+  .quiz-tagline { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(17px, 2.2vw, 22px); color: var(--ink-soft); max-width: 620px; margin: 0 auto; }
+
+  /* Progress */
+  .quiz-progress {
+    max-width: 720px;
+    margin: 60px auto 30px;
+    padding: 0 40px;
+  }
+  .progress-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+  .progress-bar {
+    height: 4px;
+    background: var(--rule);
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--gold);
+    width: 0%;
+    transition: width 0.4s ease;
+  }
+
+  /* Quiz container */
+  .quiz-container {
+    max-width: 720px;
+    margin: 30px auto 100px;
+    padding: 0 40px;
+  }
+
+  .quiz-step { display: none; }
+  .quiz-step.active { display: block; }
+
+  .quiz-q {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 4.5vw, 44px);
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 14px;
+  }
+  .quiz-q em { font-style: italic; color: var(--sage); }
+  .quiz-help {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--ink-soft);
+    margin-bottom: 36px;
+  }
+
+  .quiz-options {
+    display: grid;
+    gap: 12px;
+  }
+  .quiz-option {
+    display: block;
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    padding: 22px 28px;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.3s;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .quiz-option:hover {
+    border-color: var(--gold);
+    background: var(--cream-warm);
+  }
+  .quiz-option.selected {
+    border-color: var(--gold);
+    background: rgba(184, 153, 104, 0.08);
+  }
+  .quiz-option em { font-style: italic; color: var(--sage); }
+  .quiz-option-sub {
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    color: var(--ink-soft);
+    font-weight: 400;
+    margin-top: 4px;
+    letter-spacing: 0.02em;
+  }
+
+  /* Multi-select hint */
+  .quiz-multi-hint {
+    font-size: 11px;
+    color: var(--ink-soft);
+    font-style: italic;
+    margin-bottom: 20px;
+  }
+
+  /* Buttons */
+  .quiz-actions {
+    margin-top: 36px;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .quiz-btn {
+    padding: 14px 32px;
+    background: var(--ink);
+    color: var(--cream);
+    border: none;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: background 0.3s;
+  }
+  .quiz-btn:hover { background: var(--sage); }
+  .quiz-btn:disabled { background: var(--rule); cursor: not-allowed; }
+  .quiz-btn-back {
+    background: transparent;
+    color: var(--ink-soft);
+    text-decoration: underline;
+    padding: 14px 16px;
+  }
+  .quiz-btn-back:hover { background: transparent; color: var(--gold); }
+
+  /* Result */
+  .quiz-result {
+    text-align: center;
+  }
+  .result-eyebrow { font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 16px; }
+  .result-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(40px, 5.5vw, 56px); font-weight: 400; line-height: 1.05; margin-bottom: 14px; }
+  .result-title em { font-style: italic; color: var(--sage); }
+  .result-blurb { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 19px; color: var(--ink-soft); max-width: 520px; margin: 0 auto 50px; }
+
+  .result-products {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 50px;
+  }
+  .result-product {
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    padding: 24px;
+    text-decoration: none;
+    color: var(--ink);
+    text-align: center;
+    transition: all 0.3s;
+  }
+  .result-product:hover { border-color: var(--gold); transform: translateY(-3px); }
+  .result-product-img {
+    aspect-ratio: 1/1;
+    background: var(--cream-warm);
+    margin-bottom: 14px;
+    overflow: hidden;
+  }
+  .result-product-img img { width: 100%; height: 100%; object-fit: cover; }
+  .result-product-cat { font-size: 9.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 6px; }
+  .result-product-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 500; margin-bottom: 6px; }
+  .result-product-name em { font-style: italic; color: var(--sage); }
+  .result-product-price { font-family: 'Cormorant Garamond', serif; font-size: 17px; color: var(--ink-soft); }
+
+  .result-actions {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 720px) {
+    .result-products { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="shipping-bar">
+  <div class="shipping-bar-progress"></div>
+  <div class="shipping-bar-text">Free shipping on orders over <strong>$75</strong> · 30-day satisfaction guarantee</div>
+</div>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Daniel<span class="amp">'s</span> House</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">Daniel's Story</a></li>
+      <li><a href="skincare.html">Skincare</a></li>
+      <li><a href="supplements.html">Supplements</a></li>
+      <li><a href="bundles.html">Bundles</a></li>
+      <li><a href="shop.html">Shop By Concern</a></li>
+    </ul>
+    <div style="display: flex; gap: 4px;">
+      <button class="search-trigger" aria-label="Search">Search</button>
+      <button class="cart-trigger" aria-label="Open cart">Cart <span class="cart-trigger-count">0</span></button>
+    </div>
+  </div>
+</nav>
+
+<section class="quiz-hero">
+  <div class="quiz-eyebrow">2-Minute Routine Builder</div>
+  <h1 class="quiz-title">Find your <em>routine.</em></h1>
+  <p class="quiz-tagline">Answer 7 questions. We'll recommend the products and bundle built for you.</p>
+</section>
+
+<div class="quiz-progress">
+  <div class="progress-info">
+    <span id="progress-text">Question 1 of 7</span>
+    <span id="progress-pct">14%</span>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+</div>
+
+<div class="quiz-container">
+
+  <!-- Q1: Primary goal -->
+  <div class="quiz-step active" data-step="1">
+    <h2 class="quiz-q">What's your <em>primary goal?</em></h2>
+    <p class="quiz-help">Pick the one that matters most. We'll prioritize it.</p>
+    <div class="quiz-options">
+      <button class="quiz-option" data-q="goal" data-v="skin"><em>Skin</em> — better tone, texture, fewer fine lines<span class="quiz-option-sub">Lead with skincare</span></button>
+      <button class="quiz-option" data-q="goal" data-v="energy"><em>Energy</em> — more sustainable mental and physical output<span class="quiz-option-sub">Lead with foundational supplements</span></button>
+      <button class="quiz-option" data-q="goal" data-v="sleep"><em>Sleep</em> — deeper rest, less stress, calmer baseline<span class="quiz-option-sub">Lead with Calm + Tranquil</span></button>
+      <button class="quiz-option" data-q="goal" data-v="performance"><em>Performance</em> — strength, recovery, workout gains<span class="quiz-option-sub">Lead with workout stack</span></button>
+      <button class="quiz-option" data-q="goal" data-v="overall"><em>Overall</em> — total wellness, the full house<span class="quiz-option-sub">Recommends Ultimate Bundle</span></button>
+    </div>
+  </div>
+
+  <!-- Q2: Skin type -->
+  <div class="quiz-step" data-step="2">
+    <h2 class="quiz-q">What's your <em>skin type?</em></h2>
+    <p class="quiz-help">If you're not sure, "normal/combo" is the most common.</p>
+    <div class="quiz-options">
+      <button class="quiz-option" data-q="skin" data-v="dry"><em>Dry</em> — feels tight, sometimes flakes</button>
+      <button class="quiz-option" data-q="skin" data-v="oily"><em>Oily</em> — shines by midday, breakouts</button>
+      <button class="quiz-option" data-q="skin" data-v="combo"><em>Combination</em> — oily T-zone, dry cheeks</button>
+      <button class="quiz-option" data-q="skin" data-v="sensitive"><em>Sensitive</em> — reactive, easily irritated</button>
+      <button class="quiz-option" data-q="skin" data-v="normal"><em>Normal</em> — generally balanced</button>
+    </div>
+  </div>
+
+  <!-- Q3: Skin concern -->
+  <div class="quiz-step" data-step="3">
+    <h2 class="quiz-q">Top skin <em>concern?</em></h2>
+    <p class="quiz-help">What you'd most want to fix.</p>
+    <div class="quiz-options">
+      <button class="quiz-option" data-q="concern" data-v="aging"><em>Aging</em> — fine lines, firmness, elasticity</button>
+      <button class="quiz-option" data-q="concern" data-v="acne"><em>Acne</em> — breakouts, clogged pores</button>
+      <button class="quiz-option" data-q="concern" data-v="dullness"><em>Dullness</em> — uneven tone, lack of glow</button>
+      <button class="quiz-option" data-q="concern" data-v="dryness"><em>Dryness</em> — flaking, tight feeling</button>
+      <button class="quiz-option" data-q="concern" data-v="sensitivity"><em>Sensitivity</em> — redness, reactive skin</button>
+    </div>
+  </div>
+
+  <!-- Q4: Age -->
+  <div class="quiz-step" data-step="4">
+    <h2 class="quiz-q">Your <em>age range?</em></h2>
+    <p class="quiz-help">Helps us match the right products to your stage.</p>
+    <div class="quiz-options">
+      <button class="quiz-option" data-q="age" data-v="under25"><em>Under 25</em> — focus on prevention</button>
+      <button class="quiz-option" data-q="age" data-v="25-35"><em>25-35</em> — start building anti-aging</button>
+      <button class="quiz-option" data-q="age" data-v="35-50"><em>35-50</em> — full anti-aging stack</button>
+      <button class="quiz-option" data-q="age" data-v="50plus"><em>50+</em> — repair and longevity focus</button>
+    </div>
+  </div>
+
+  <!-- Q5: Lifestyle -->
+  <div class="quiz-step" data-step="5">
+    <h2 class="quiz-q">How active is your <em>lifestyle?</em></h2>
+    <p class="quiz-help">Helps determine if workout supplements fit.</p>
+    <div class="quiz-options">
+      <button class="quiz-option" data-q="active" data-v="high"><em>High</em> — train 4+ times/week, lift, run, perform</button>
+      <button class="quiz-option" data-q="active" data-v="medium"><em>Medium</em> — train 2-3 times/week consistently</button>
+      <button class="quiz-option" data-q="active" data-v="low"><em>Low</em> — daily walks, casual movement</button>
+    </div>
+  </div>
+
+  <!-- Q6: Stress level -->
+  <div class="quiz-step" data-step="6">
+    <h2 class="quiz-q">How would you rate your <em>stress?</em></h2>
+    <p class="quiz-help">Honest answer — adaptogens make a real difference.</p>
+    <div class="quiz-options">
+      <button class="quiz-option" data-q="stress" data-v="high"><em>High</em> — frequently anxious, can't shut off</button>
+      <button class="quiz-option" data-q="stress" data-v="medium"><em>Medium</em> — manageable but always present</button>
+      <button class="quiz-option" data-q="stress" data-v="low"><em>Low</em> — generally calm, occasional spikes</button>
+    </div>
+  </div>
+
+  <!-- Q7: Budget -->
+  <div class="quiz-step" data-step="7">
+    <h2 class="quiz-q">Comfortable <em>monthly</em> spend?</h2>
+    <p class="quiz-help">We'll match the recommendation to your budget.</p>
+    <div class="quiz-options">
+      <button class="quiz-option" data-q="budget" data-v="low"><em>Under $75</em> — start small, build later</button>
+      <button class="quiz-option" data-q="budget" data-v="medium"><em>$75-150</em> — solid starter routine</button>
+      <button class="quiz-option" data-q="budget" data-v="high"><em>$150-250</em> — full curated bundle</button>
+      <button class="quiz-option" data-q="budget" data-v="ultimate"><em>$250+</em> — go all in, the full house</button>
+    </div>
+  </div>
+
+  <!-- Result -->
+  <div class="quiz-step" data-step="8">
+    <div class="quiz-result">
+      <div class="result-eyebrow" id="result-eyebrow">Your Routine</div>
+      <h2 class="result-title" id="result-title">Built for <em>you.</em></h2>
+      <p class="result-blurb" id="result-blurb">Based on your answers, here's what we'd recommend.</p>
+      <div class="result-products" id="result-products"></div>
+      <div class="result-actions">
+        <a href="bundles.html" class="quiz-btn">View Recommended Bundle →</a>
+        <button class="quiz-btn quiz-btn-back" onclick="window.location.reload()">Retake Quiz</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="quiz-actions" id="quiz-actions">
+    <button class="quiz-btn quiz-btn-back" id="back-btn" style="visibility: hidden;">← Back</button>
+    <button class="quiz-btn" id="next-btn" disabled>Next →</button>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Daniel<span class="amp">'s</span> House</div>
+      <div class="footer-tag">Your home for premium wellness — built on real results, not marketing.</div>
+      <div class="footer-attr">🌿 Vegan · Cruelty-Free · Made in North America<br>📧 daniel@danielshouse.com</div>
+    </div>
+    <div class="footer-col"><h4>Shop</h4><ul><li><a href="skincare.html">Skincare</a></li><li><a href="supplements.html">Supplements</a></li><li><a href="bundles.html">Bundles</a></li><li><a href="shop.html">Shop by Concern</a></li></ul></div>
+    <div class="footer-col"><h4>The House</h4><ul><li><a href="about.html">Daniel's Story</a></li><li><a href="ingredients.html">Ingredient Glossary</a></li><li><a href="quiz.html">Take the Quiz</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
+    <div class="footer-col"><h4>Help</h4><ul><li><a href="faq.html">Shipping &amp; Returns</a></li><li><a href="faq.html">30-Day Guarantee</a></li><li><a href="faq.html">Contact</a></li></ul></div>
+  </div>
+</footer>
+
+<!-- Cart, popup, search markup -->
+<div class="cart-overlay"></div>
+<aside class="cart-drawer">
+  <div class="cart-header"><div class="cart-title">Your <em>Cart</em></div><button class="cart-close" aria-label="Close cart">×</button></div>
+  <div class="cart-body"></div>
+  <div class="cart-footer">
+    <div class="cart-totals">
+      <div class="cart-totals-line"><span>Subtotal</span><span class="subtotal-amount">$0.00</span></div>
+      <div class="cart-totals-line total"><span>Total</span><span class="amount total-amount">$0.00</span></div>
+    </div>
+    <button class="cart-checkout">Checkout →</button>
+    <div class="cart-shipping-note">Free shipping on orders over $75.</div>
+  </div>
+</aside>
+<div class="popup-overlay">
+  <div class="popup">
+    <button class="popup-close" aria-label="Close">×</button>
+    <div class="popup-eyebrow">10% Off Your First Order</div>
+    <div class="popup-title">Welcome to <em>The House</em>.</div>
+    <div class="popup-blurb">Drop your email for 10% off your first order, plus first access to new launches and Daniel's actual routine notes.</div>
+    <form class="popup-form">
+      <input type="email" class="popup-input" placeholder="Your email address" required />
+      <button type="submit" class="popup-submit">Get My 10% Off →</button>
+    </form>
+    <button class="popup-skip">No thanks</button>
+  </div>
+</div>
+<div class="search-overlay">
+  <div class="search-inner">
+    <div class="search-input-wrap">
+      <input type="text" class="search-input" placeholder="Search products, ingredients, concerns..." />
+      <button class="search-close" aria-label="Close search">×</button>
+    </div>
+    <div class="search-results"></div>
+  </div>
+</div>
+
+<script src="data/products.js"></script>
+<script src="js/shared.js"></script>
+<script>
+const TOTAL_STEPS = 7;
+let currentStep = 1;
+const answers = {};
+
+function updateProgress() {
+  const pct = (currentStep / TOTAL_STEPS) * 100;
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-text').textContent = `Question ${Math.min(currentStep, TOTAL_STEPS)} of ${TOTAL_STEPS}`;
+  document.getElementById('progress-pct').textContent = Math.round(pct) + '%';
+}
+
+function showStep(step) {
+  document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
+  document.querySelector(`[data-step="${step}"]`).classList.add('active');
+  currentStep = step;
+
+  const backBtn = document.getElementById('back-btn');
+  const nextBtn = document.getElementById('next-btn');
+  const actions = document.getElementById('quiz-actions');
+
+  if (step > TOTAL_STEPS) {
+    actions.style.display = 'none';
+    showResult();
+    return;
+  }
+
+  backBtn.style.visibility = step > 1 ? 'visible' : 'hidden';
+  nextBtn.textContent = step === TOTAL_STEPS ? 'Get My Routine →' : 'Next →';
+
+  // Check if this step has been answered
+  const stepEl = document.querySelector(`[data-step="${step}"]`);
+  const q = stepEl.querySelector('.quiz-option')?.dataset.q;
+  nextBtn.disabled = !answers[q];
+
+  updateProgress();
+}
+
+document.querySelectorAll('.quiz-option').forEach(opt => {
+  opt.addEventListener('click', () => {
+    const q = opt.dataset.q;
+    const v = opt.dataset.v;
+    answers[q] = v;
+
+    // Visually mark selection
+    const stepEl = opt.closest('.quiz-step');
+    stepEl.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('selected'));
+    opt.classList.add('selected');
+
+    document.getElementById('next-btn').disabled = false;
+  });
+});
+
+document.getElementById('next-btn').addEventListener('click', () => {
+  if (currentStep < TOTAL_STEPS) {
+    showStep(currentStep + 1);
+  } else {
+    // Show result
+    showStep(TOTAL_STEPS + 1);
+  }
+});
+
+document.getElementById('back-btn').addEventListener('click', () => {
+  if (currentStep > 1) showStep(currentStep - 1);
+});
+
+function showResult() {
+  // Determine recommendation based on answers
+  const { goal, skin, concern, age, active, stress, budget } = answers;
+
+  let recommendation = {
+    eyebrow: 'Your Routine',
+    title: 'Built for <em>you.</em>',
+    blurb: '',
+    productSlugs: []
+  };
+
+  // Big Ultimate Bundle for "overall" goal or ultimate budget
+  if (goal === 'overall' || budget === 'ultimate') {
+    recommendation.eyebrow = 'The Full House';
+    recommendation.title = 'You\'re going <em>all in.</em>';
+    recommendation.blurb = 'You want the complete approach — everything Daniel takes, every day. The Ultimate Bundle is built for exactly this.';
+    recommendation.productSlugs = ['the-house-multi', 'the-house-bounce', 'the-house-glow'];
+  }
+  // Skin-focused
+  else if (goal === 'skin') {
+    recommendation.eyebrow = 'Skin First';
+    if (concern === 'aging' || age === '35-50' || age === '50plus') {
+      recommendation.title = 'Anti-aging, <em>built right.</em>';
+      recommendation.blurb = 'Your routine should focus on retinol, peptides, and antioxidants — both topical and from within.';
+      recommendation.productSlugs = ['the-house-bounce', 'the-house-firm', 'the-house-collagen'];
+    } else if (concern === 'acne' || skin === 'oily') {
+      recommendation.title = 'Clear, <em>balanced skin.</em>';
+      recommendation.blurb = 'Salicylic acid, niacinamide, and oil-balancing actives. The clear-skin essentials.';
+      recommendation.productSlugs = ['the-house-clear', 'the-house-mask', 'the-house-boost'];
+    } else if (concern === 'dryness' || skin === 'dry') {
+      recommendation.title = 'Hydration, <em>compounded.</em>';
+      recommendation.blurb = 'Multi-weight HA, ceramide-supportive lipids, and barrier reinforcement. Skin that doesn\'t feel tight.';
+      recommendation.productSlugs = ['the-house-hyaluronic', 'the-house-soft', 'the-house-glow'];
+    } else if (concern === 'dullness') {
+      recommendation.title = 'Glow, <em>turned up.</em>';
+      recommendation.blurb = 'Vitamin C, niacinamide, and gentle exfoliation. Brightness with structure.';
+      recommendation.productSlugs = ['the-house-boost', 'the-house-defense', 'the-house-radiance'];
+    } else {
+      recommendation.title = 'A complete <em>skin routine.</em>';
+      recommendation.blurb = 'The AM Bundle covers your morning routine with targeted actives. The PM Bundle handles repair.';
+      recommendation.productSlugs = ['the-house-wash', 'the-house-boost', 'the-house-soft'];
+    }
+  }
+  // Energy
+  else if (goal === 'energy') {
+    recommendation.eyebrow = 'Sustainable Energy';
+    recommendation.title = 'Energy, <em>not stimulated.</em>';
+    recommendation.blurb = 'Foundational supplements that support energy at the cellular level. No crash, no jitter.';
+    if (active === 'high') {
+      recommendation.productSlugs = ['the-house-multi', 'the-house-vitality', 'the-house-greens'];
+    } else {
+      recommendation.productSlugs = ['the-house-multi', 'the-house-sunshine', 'the-house-vitality'];
+    }
+  }
+  // Sleep / stress
+  else if (goal === 'sleep' || stress === 'high') {
+    recommendation.eyebrow = 'Sleep & Stress';
+    recommendation.title = 'Calm, <em>compounded.</em>';
+    recommendation.blurb = 'Magnesium glycinate for sleep. KSM-66 ashwagandha for stress resilience. Together, the foundation of a calmer baseline.';
+    recommendation.productSlugs = ['the-house-calm', 'the-house-tranquil', 'the-house-multi'];
+  }
+  // Performance
+  else if (goal === 'performance' || active === 'high') {
+    recommendation.eyebrow = 'Workout & Recovery';
+    recommendation.title = 'Built for <em>training.</em>';
+    recommendation.blurb = 'Creatine, glutamine, greens — the workout essentials backed by real research. Not a stim-stack.';
+    recommendation.productSlugs = ['the-house-power', 'the-house-seal', 'the-house-greens'];
+  }
+  // Default
+  else {
+    recommendation.title = 'Start <em>here.</em>';
+    recommendation.blurb = 'A solid foundational routine — the best place for most people to start.';
+    recommendation.productSlugs = ['the-house-multi', 'the-house-calm', 'the-house-sunshine'];
+  }
+
+  document.getElementById('result-eyebrow').textContent = recommendation.eyebrow;
+  document.getElementById('result-title').innerHTML = recommendation.title;
+  document.getElementById('result-blurb').textContent = recommendation.blurb;
+
+  const products = recommendation.productSlugs
+    .map(s => window.getProductBySlug(s))
+    .filter(Boolean);
+
+  document.getElementById('result-products').innerHTML = products.map(p => `
+    <a href="product.html?slug=${p.slug}" class="result-product">
+      <div class="result-product-img"><img src="${p.image}" alt="${p.name}"/></div>
+      <div class="result-product-cat">${p.category === 'skincare' ? 'Skincare' : 'Supplement'}</div>
+      <div class="result-product-name">The House <em>${p.name}</em></div>
+      <div class="result-product-price">$${p.price.toFixed(2)}</div>
+    </a>
+  `).join('');
+}
+
+updateProgress();
+</script>
+</body>
+</html>

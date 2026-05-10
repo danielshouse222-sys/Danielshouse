@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Shop By Concern — Daniel's House</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="css/shared.css">
+<style>
+  body { background: var(--cream); color: var(--ink); font-family: 'Poppins', sans-serif; margin: 0; }
+
+  .shop-hero {
+    text-align: center;
+    padding: 80px 40px 50px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .shop-eyebrow { font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 20px; }
+  .shop-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(48px, 6.5vw, 76px); font-weight: 400; line-height: 0.95; margin-bottom: 16px; }
+  .shop-title em { font-style: italic; color: var(--sage); }
+  .shop-tagline { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(17px, 2.2vw, 22px); color: var(--ink-soft); max-width: 640px; margin: 0 auto; }
+
+  /* Tab switcher */
+  .shop-switch {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    background: var(--cream-warm);
+    padding: 30px 20px 0;
+  }
+  .shop-tab {
+    background: transparent;
+    border: none;
+    padding: 16px 36px;
+    cursor: pointer;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-style: italic;
+    color: var(--ink-soft);
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s;
+  }
+  .shop-tab:hover { color: var(--ink); }
+  .shop-tab.active {
+    color: var(--ink);
+    border-bottom-color: var(--gold);
+  }
+
+  .shop-content {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 60px 40px;
+  }
+
+  .concern-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  .concern-card {
+    background: var(--cream-warm);
+    border: 1px solid var(--rule);
+    padding: 36px 32px;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+  .concern-card:hover {
+    border-color: var(--gold);
+    background: var(--cream);
+    transform: translateY(-3px);
+  }
+  .concern-icon {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 64px;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+  .concern-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+  .concern-name em { font-style: italic; color: var(--sage); }
+  .concern-blurb {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    margin-bottom: 20px;
+  }
+  .concern-products {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    border-top: 1px solid var(--rule);
+    padding-top: 18px;
+  }
+  .concern-product-tag {
+    font-size: 11px;
+    color: var(--ink);
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    padding: 6px 12px;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+  .concern-product-tag:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+  .concern-product-tag em {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--sage);
+    margin-right: 2px;
+  }
+  .concern-cta {
+    margin-top: 14px;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  @media (max-width: 900px) {
+    .concern-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .concern-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="shipping-bar">
+  <div class="shipping-bar-progress"></div>
+  <div class="shipping-bar-text">Free shipping on orders over <strong>$75</strong> · 30-day satisfaction guarantee</div>
+</div>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Daniel<span class="amp">'s</span> House</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">Daniel's Story</a></li>
+      <li><a href="skincare.html">Skincare</a></li>
+      <li><a href="supplements.html">Supplements</a></li>
+      <li><a href="bundles.html">Bundles</a></li>
+      <li><a href="shop.html" class="active">Shop By Concern</a></li>
+    </ul>
+    <div style="display: flex; gap: 4px;">
+      <button class="search-trigger" aria-label="Search">Search</button>
+      <button class="cart-trigger" aria-label="Open cart">Cart <span class="cart-trigger-count">0</span></button>
+    </div>
+  </div>
+</nav>
+
+<section class="shop-hero">
+  <div class="shop-eyebrow">Find What's Right For You</div>
+  <h1 class="shop-title">Shop by <em>concern</em> or <em>goal.</em></h1>
+  <p class="shop-tagline">Skip the product names. Tell us what you want to fix or improve, and we'll show you exactly what does it.</p>
+</section>
+
+<div class="shop-switch">
+  <button class="shop-tab active" data-view="skin">Skin Concerns</button>
+  <button class="shop-tab" data-view="goal">Wellness Goals</button>
+</div>
+
+<div class="shop-content">
+
+  <!-- SKIN CONCERNS -->
+  <div class="concern-grid" id="skin-grid">
+    <div class="concern-card" data-products="the-house-bounce,the-house-firm,the-house-renewal,the-house-eye">
+      <div class="concern-icon">A.</div>
+      <div class="concern-name"><em>Aging</em> & Fine Lines</div>
+      <div class="concern-blurb">Retinol, peptides, and resurfacing actives that work overnight. Built for visible firmness and texture refinement in 8-12 weeks.</div>
+      <div class="concern-products">
+        <a href="product.html?slug=the-house-bounce" class="concern-product-tag"><em>The</em> Bounce</a>
+        <a href="product.html?slug=the-house-firm" class="concern-product-tag"><em>The</em> Firm</a>
+        <a href="product.html?slug=the-house-renewal" class="concern-product-tag"><em>The</em> Renewal</a>
+        <a href="product.html?slug=the-house-eye" class="concern-product-tag"><em>The</em> Eye</a>
+      </div>
+    </div>
+
+    <div class="concern-card">
+      <div class="concern-icon">B.</div>
+      <div class="concern-name"><em>Acne</em> & Breakouts</div>
+      <div class="concern-blurb">Salicylic acid, charcoal, and pore-refining actives. The clear-skin stack — gentle enough for daily use, strong enough to make a difference.</div>
+      <div class="concern-products">
+        <a href="product.html?slug=the-house-clear" class="concern-product-tag"><em>The</em> Clear</a>
+        <a href="product.html?slug=the-house-mask" class="concern-product-tag"><em>The</em> Mask</a>
+        <a href="product.html?slug=the-house-polish" class="concern-product-tag"><em>The</em> Polish</a>
+        <a href="product.html?slug=the-house-boost" class="concern-product-tag"><em>The</em> Boost</a>
+      </div>
+    </div>
+
+    <div class="concern-card">
+      <div class="concern-icon">C.</div>
+      <div class="concern-name"><em>Dryness</em> & Tightness</div>
+      <div class="concern-blurb">Multi-weight hyaluronic acid and barrier-supporting lipids. The hydration stack that doesn't quit by the end of the day.</div>
+      <div class="concern-products">
+        <a href="product.html?slug=the-house-hyaluronic" class="concern-product-tag"><em>The</em> Hyaluronic</a>
+        <a href="product.html?slug=the-house-hydration" class="concern-product-tag"><em>The</em> Hydration</a>
+        <a href="product.html?slug=the-house-soft" class="concern-product-tag"><em>The</em> Soft</a>
+        <a href="product.html?slug=the-house-glow" class="concern-product-tag"><em>The</em> Glow</a>
+      </div>
+    </div>
+
+    <div class="concern-card">
+      <div class="concern-icon">D.</div>
+      <div class="concern-name"><em>Dullness</em> & Uneven Tone</div>
+      <div class="concern-blurb">Vitamin C, niacinamide, and gentle resurfacing for measurable brightness. Glow without irritation.</div>
+      <div class="concern-products">
+        <a href="product.html?slug=the-house-boost" class="concern-product-tag"><em>The</em> Boost</a>
+        <a href="product.html?slug=the-house-defense" class="concern-product-tag"><em>The</em> Defense</a>
+        <a href="product.html?slug=the-house-renewal" class="concern-product-tag"><em>The</em> Renewal</a>
+        <a href="product.html?slug=the-house-radiance" class="concern-product-tag"><em>The</em> Radiance</a>
+      </div>
+    </div>
+
+    <div class="concern-card">
+      <div class="concern-icon">E.</div>
+      <div class="concern-name"><em>Sensitivity</em> & Redness</div>
+      <div class="concern-blurb">Calming cleansers, soothing toners, and gentle hydrators. The reactive-skin essentials — no fragrance, no aggressive actives.</div>
+      <div class="concern-products">
+        <a href="product.html?slug=the-house-wash" class="concern-product-tag"><em>The</em> Wash</a>
+        <a href="product.html?slug=the-house-balance" class="concern-product-tag"><em>The</em> Balance</a>
+        <a href="product.html?slug=the-house-hyaluronic" class="concern-product-tag"><em>The</em> Hyaluronic</a>
+        <a href="product.html?slug=the-house-soft" class="concern-product-tag"><em>The</em> Soft</a>
+      </div>
+    </div>
+
+    <div class="concern-card">
+      <div class="concern-icon">F.</div>
+      <div class="concern-name"><em>Pores</em> & Texture</div>
+      <div class="concern-blurb">Niacinamide, salicylic acid, and physical exfoliation. Smooth, refined skin without compromising the moisture barrier.</div>
+      <div class="concern-products">
+        <a href="product.html?slug=the-house-boost" class="concern-product-tag"><em>The</em> Boost</a>
+        <a href="product.html?slug=the-house-clear" class="concern-product-tag"><em>The</em> Clear</a>
+        <a href="product.html?slug=the-house-polish" class="concern-product-tag"><em>The</em> Polish</a>
+        <a href="product.html?slug=the-house-mask" class="concern-product-tag"><em>The</em> Mask</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- WELLNESS GOALS -->
+  <div class="concern-grid" id="goal-grid" style="display: none;">
+    <div class="concern-card">
+      <div class="concern-icon">A.</div>
+      <div class="concern-name"><em>Sleep</em> & Recovery</div>
+      <div class="concern-blurb">Magnesium glycinate, glycine, ashwagandha. Deeper rest, less middle-of-the-night waking, calmer mornings.</div>
+      <div class="concern-products">
+        <a href="product.html?slug=the-house-calm" class="concern-product-tag"><em>The</em> Calm</a>
+        <a href="product.html?slug=the-house-tranquil" class="concern-product-tag"><em>The</em> Tranquil</a>
+      </div>
+    </div>
+
+    <div class="concern-card">
+      <div class="concern-icon">B.</div>
+      <div class="concern-name"><em>Energy</em> & Vitality</div>
+      <div class="concern-blurb">Multivitamin, CoQ10, and Vitamin D — the foundational stack for sustainable mental and physical output.</div>
+      <div class="concern-products">
+        <a href="product.html?slug=the-house-multi" class="concern-product-tag"><em>The</em> Multi</a>
+        <a href="product.html?slug=the-house-vitality" class="concern-product-tag"><em>The</em> Vitality</a>
+        <a href="product.html?slug=the-house-sunshine" class="concern-product-tag"><em>The</em> Sunshine</a>
+        <a href="product.html?slug=the-house-burn" class="concern-product-tag"><em>The</em> Burn</a>
+      </div>
+    </div>
+
+    <div class="concern-card">
+      <div class="concern-icon">C.</div>
+      <div class="concern-name"><em>Focus</em> & Cognition</div>
+      <div class="concern-blurb">Lion's mane, bacopa, alpha GPC. Mental clarity that compounds — for thinking work and sustained output.</div>
+      <div class="concern-products">
+        <a href="product.html?slug=the-house-focus" class="concern-product-tag"><em>The</em> Focus</a>
+        <a href="product.html?slug=the-house-synapse" class="concern-product-tag"><em>The</em> Synapse</a>
+        <a href="product.html?slug=the-house-flow" class="concern-product-tag"><em>The</em> Flow</a>
+      </div>
+    </div>
+
+    <div class="concern-card">
+      <div class="concern-icon">D.</div>
+      <div class="concern-name"><em>Stress</em> Resilience</div>
+      <div class="concern-blurb">KSM-66 ashwagandha, magnesium glycinate, adaptogens. Lower cortisol, better stress recovery.</div>
+      <div class="concern-products">
+        <a href="product.html?slug=the-house-tranquil" class="concern-product-tag"><em>The</em> Tranquil</a>
+        <a href="product.html?slug=the-house-calm" class="concern-product-tag"><em>The</em> Calm</a>
+        <a href="product.html?slug=the-house-greens" class="concern-product-tag"><em>The</em> Greens</a>
+      </div>
+    </div>
+
+    <div class="concern-card">
+      <div class="concern-icon">E.</div>
+      <div class="concern-name"><em>Strength</em> & Performance</div>
+      <div class="concern-blurb">Creatine, glutamine, citrulline. The most-studied workout supplements at clinically-meaningful doses.</div>
+      <div class="concern-products">
+        <a href="product.html?slug=the-house-power" class="concern-product-tag"><em>The</em> Power</a>
+        <a href="product.html?slug=the-house-pump" class="concern-product-tag"><em>The</em> Pump</a>
+        <a href="product.html?slug=the-house-seal" class="concern-product-tag"><em>The</em> Seal</a>
+      </div>
+    </div>
+
+    <div class="concern-card">
+      <div class="concern-icon">F.</div>
+      <div class="concern-name"><em>Beauty</em> from Within</div>
+      <div class="concern-blurb">Marine collagen, biotin, vitamins A/C/E. Skin firmness, hair strength, nail growth — supplemented from inside.</div>
+      <div class="concern-products">
+        <a href="product.html?slug=the-house-radiance" class="concern-product-tag"><em>The</em> Radiance</a>
+        <a href="product.html?slug=the-house-collagen" class="concern-product-tag"><em>The</em> Collagen</a>
+      </div>
+    </div>
+
+    <div class="concern-card">
+      <div class="concern-icon">G.</div>
+      <div class="concern-name"><em>Longevity</em> & Cellular Health</div>
+      <div class="concern-blurb">NAD+, resveratrol, CoQ10. The longevity stack — the daily investments in cellular health that compound over years.</div>
+      <div class="concern-products">
+        <a href="product.html?slug=the-house-nad-plus" class="concern-product-tag"><em>The</em> NAD+</a>
+        <a href="product.html?slug=the-house-vitality" class="concern-product-tag"><em>The</em> Vitality</a>
+        <a href="product.html?slug=the-house-restore" class="concern-product-tag"><em>The</em> Restore</a>
+      </div>
+    </div>
+
+    <div class="concern-card">
+      <div class="concern-icon">H.</div>
+      <div class="concern-name"><em>Gut</em> & Digestion</div>
+      <div class="concern-blurb">Multi-strain probiotics, glutamine, digestive enzymes. The gut-health foundation for everything else to work better.</div>
+      <div class="concern-products">
+        <a href="product.html?slug=the-house-biome" class="concern-product-tag"><em>The</em> Biome</a>
+        <a href="product.html?slug=the-house-seal" class="concern-product-tag"><em>The</em> Seal</a>
+        <a href="product.html?slug=the-house-greens" class="concern-product-tag"><em>The</em> Greens</a>
+      </div>
+    </div>
+
+    <div class="concern-card">
+      <div class="concern-icon">I.</div>
+      <div class="concern-name"><em>Joints</em> & Recovery</div>
+      <div class="concern-blurb">Curcumin, glucosamine, omega-3, MSM. Daily joint support for active people whose bodies have earned a little extra care.</div>
+      <div class="concern-products">
+        <a href="product.html?slug=the-house-restore" class="concern-product-tag"><em>The</em> Restore</a>
+        <a href="product.html?slug=the-house-flow" class="concern-product-tag"><em>The</em> Flow</a>
+        <a href="product.html?slug=the-house-collagen" class="concern-product-tag"><em>The</em> Collagen</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Daniel<span class="amp">'s</span> House</div>
+      <div class="footer-tag">Your home for premium wellness — built on real results, not marketing.</div>
+      <div class="footer-attr">🌿 Vegan · Cruelty-Free · Made in North America<br>📧 daniel@danielshouse.com</div>
+    </div>
+    <div class="footer-col"><h4>Shop</h4><ul><li><a href="skincare.html">Skincare</a></li><li><a href="supplements.html">Supplements</a></li><li><a href="bundles.html">Bundles</a></li><li><a href="shop.html">Shop by Concern</a></li></ul></div>
+    <div class="footer-col"><h4>The House</h4><ul><li><a href="about.html">Daniel's Story</a></li><li><a href="ingredients.html">Ingredient Glossary</a></li><li><a href="quiz.html">Take the Quiz</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
+    <div class="footer-col"><h4>Help</h4><ul><li><a href="faq.html">Shipping &amp; Returns</a></li><li><a href="faq.html">30-Day Guarantee</a></li><li><a href="faq.html">Contact</a></li></ul></div>
+  </div>
+</footer>
+
+<!-- Cart, popup, search markup -->
+<div class="cart-overlay"></div>
+<aside class="cart-drawer">
+  <div class="cart-header"><div class="cart-title">Your <em>Cart</em></div><button class="cart-close" aria-label="Close cart">×</button></div>
+  <div class="cart-body"></div>
+  <div class="cart-footer">
+    <div class="cart-totals">
+      <div class="cart-totals-line"><span>Subtotal</span><span class="subtotal-amount">$0.00</span></div>
+      <div class="cart-totals-line total"><span>Total</span><span class="amount total-amount">$0.00</span></div>
+    </div>
+    <button class="cart-checkout">Checkout →</button>
+    <div class="cart-shipping-note">Free shipping on orders over $75.</div>
+  </div>
+</aside>
+<div class="popup-overlay">
+  <div class="popup">
+    <button class="popup-close" aria-label="Close">×</button>
+    <div class="popup-eyebrow">10% Off Your First Order</div>
+    <div class="popup-title">Welcome to <em>The House</em>.</div>
+    <div class="popup-blurb">Drop your email for 10% off your first order, plus first access to new launches and Daniel's actual routine notes.</div>
+    <form class="popup-form">
+      <input type="email" class="popup-input" placeholder="Your email address" required />
+      <button type="submit" class="popup-submit">Get My 10% Off →</button>
+    </form>
+    <button class="popup-skip">No thanks</button>
+  </div>
+</div>
+<div class="search-overlay">
+  <div class="search-inner">
+    <div class="search-input-wrap">
+      <input type="text" class="search-input" placeholder="Search products, ingredients, concerns..." />
+      <button class="search-close" aria-label="Close search">×</button>
+    </div>
+    <div class="search-results"></div>
+  </div>
+</div>
+
+<script src="data/products.js"></script>
+<script src="js/shared.js"></script>
+<script>
+// Tab switcher
+document.querySelectorAll('.shop-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.shop-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    const view = tab.dataset.view;
+    document.getElementById('skin-grid').style.display = view === 'skin' ? 'grid' : 'none';
+    document.getElementById('goal-grid').style.display = view === 'goal' ? 'grid' : 'none';
+  });
+});
+</script>
+</body>
+</html>

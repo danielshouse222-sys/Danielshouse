@@ -8,11 +8,228 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="css/shared.css">
+<style>
+  body { background: var(--cream); color: var(--ink); font-family: 'Poppins', sans-serif; margin: 0; }
+
+  /* Hero */
+  .about-hero {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 120px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .about-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(184, 153, 104, 0.1), transparent 60%);
+  }
+  .about-hero-inner { max-width: 920px; margin: 0 auto; position: relative; z-index: 2; }
+  .about-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 22px;
+  }
+  .about-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(56px, 8vw, 96px);
+    font-weight: 400;
+    line-height: 0.95;
+    margin-bottom: 24px;
+  }
+  .about-title em { font-style: italic; color: var(--gold); }
+  .about-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(20px, 2.4vw, 28px);
+    color: var(--cream);
+    opacity: 0.85;
+    line-height: 1.4;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  /* Story */
+  .story-section {
+    max-width: 760px;
+    margin: 100px auto;
+    padding: 0 40px;
+  }
+  .story-eyebrow {
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 18px;
+  }
+  .story-title {
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(40px, 5vw, 56px);
+    font-weight: 400;
+    line-height: 1.05;
+    margin-bottom: 60px;
+  }
+  .story-title em { font-style: italic; color: var(--sage); }
+  .story-para {
+    font-size: 17px;
+    line-height: 1.85;
+    margin-bottom: 28px;
+    color: var(--ink);
+  }
+  .story-para.lead {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 24px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    margin-bottom: 36px;
+  }
+  .story-para.callout {
+    border-left: 3px solid var(--gold);
+    padding-left: 28px;
+    background: var(--cream-warm);
+    padding: 28px;
+    margin: 36px 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 21px;
+    line-height: 1.55;
+  }
+
+  /* Principles */
+  .principles {
+    background: var(--cream-warm);
+    padding: 100px 40px;
+  }
+  .principles-inner { max-width: 1080px; margin: 0 auto; }
+  .principles-header { text-align: center; margin-bottom: 60px; }
+  .principles-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+  .principle {
+    background: var(--cream);
+    padding: 40px 32px;
+    border: 1px solid var(--rule);
+    border-top: 3px solid var(--gold);
+  }
+  .principle-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 38px;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 18px;
+  }
+  .principle-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 14px;
+  }
+  .principle-title em { font-style: italic; color: var(--sage); }
+  .principle-body {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+  }
+
+  /* Manufacturing */
+  .manufacturing {
+    max-width: 980px;
+    margin: 100px auto;
+    padding: 0 40px;
+    text-align: center;
+  }
+  .manufacturing-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    margin-top: 60px;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 40px 0;
+  }
+  .mfg-stat {
+    text-align: center;
+  }
+  .mfg-stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+  .mfg-stat-num em { font-style: italic; color: var(--gold); }
+  .mfg-stat-label {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+
+  /* CTA */
+  .about-closing {
+    text-align: center;
+    padding: 120px 40px;
+    background: var(--ink);
+    color: var(--cream);
+  }
+  .about-closing h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(40px, 5vw, 56px);
+    font-weight: 400;
+    margin-bottom: 18px;
+  }
+  .about-closing h2 em { font-style: italic; color: var(--gold); }
+  .about-closing p {
+    color: var(--cream);
+    opacity: 0.7;
+    margin-bottom: 32px;
+    font-size: 15px;
+    max-width: 540px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .about-closing-btn {
+    display: inline-block;
+    padding: 16px 42px;
+    background: var(--gold);
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: background 0.3s;
+  }
+  .about-closing-btn:hover { background: var(--cream); }
+
+  @media (max-width: 800px) {
+    .principles-grid { grid-template-columns: 1fr; }
+    .manufacturing-stats { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .about-hero { padding: 80px 24px; }
+    .story-section { margin: 60px auto; }
+  }
+</style>
 </head>
 <body>
 
-<div class="announce">
-  Free shipping on orders over $60 · <strong>30-day satisfaction guarantee</strong>
+<div class="shipping-bar">
+  <div class="shipping-bar-progress"></div>
+  <div class="shipping-bar-text">Free shipping on orders over <strong>$75</strong> · 30-day satisfaction guarantee</div>
 </div>
 
 <nav>
@@ -24,73 +241,99 @@
       <li><a href="skincare.html">Skincare</a></li>
       <li><a href="supplements.html">Supplements</a></li>
       <li><a href="bundles.html">Bundles</a></li>
+      <li><a href="shop.html">Shop By Concern</a></li>
     </ul>
-    <div class="nav-cart">Cart (0)</div>
-  </div>
-  <div class="mobile-pages">
-    <a href="index.html">Home</a>
-    <a href="about.html" class="active">Story</a>
-    <a href="skincare.html">Skincare</a>
-    <a href="supplements.html">Supplements</a>
-    <a href="bundles.html">Bundles</a>
+    <div style="display: flex; gap: 4px;">
+      <button class="search-trigger" aria-label="Search">Search</button>
+      <button class="cart-trigger" aria-label="Open cart">Cart <span class="cart-trigger-count">0</span></button>
+    </div>
   </div>
 </nav>
 
-<section class="page">
-  <div class="page-header">
-    <div class="page-header-eyebrow">Daniel's Story</div>
-    <h1>Not a store.<br>A <em>home for your health.</em></h1>
-    <p>Daniel's House wasn't built in a boardroom. It was built in the moments when one man decided to take his health seriously.</p>
+<section class="about-hero">
+  <div class="about-hero-inner">
+    <div class="about-eyebrow">Founder · Story · Philosophy</div>
+    <h1 class="about-title">Built on real <em>results</em>,<br/>not marketing.</h1>
+    <p class="about-tagline">Daniel's House started because the wellness aisle was full of promises and short on results. Here's what changed.</p>
   </div>
+</section>
 
-  <div class="founder" style="margin-top: 40px;">
-    <div class="founder-img">
-      <div class="founder-img-tag">Daniel, in the kitchen where it started</div>
-    </div>
-    <div class="founder-content">
-      <h2>The <em>origin story.</em></h2>
-      <p>Daniel's House wasn't built in a boardroom. It was built in the moments when I decided to take my health seriously.</p>
-      <p>Like a lot of people, I spent years ignoring what my body was telling me. I was tired, my skin was dull, and I felt like I was operating at half capacity. I tried the products on the shelves — the ones with long ingredient lists and short results — and kept coming up empty.</p>
-      <p>So I went back to basics. I studied what actually worked. I tested everything on myself. And slowly, my health changed. My skin changed. My energy changed.</p>
-      <p>Daniel's House is what I built when I realized other people deserved access to the same thing — a curated, premium wellness experience that actually works.</p>
-      <p>Welcome to Daniel's House. We saved you a seat.</p>
-      <div class="founder-sign">— Daniel</div>
-    </div>
-  </div>
+<section class="story-section">
+  <div class="story-eyebrow">The Story</div>
+  <h2 class="story-title">Why <em>this house</em> exists.</h2>
 
-  <div class="strip" style="margin-top: 40px;">
-    <p class="strip-quote">"To make premium, results-driven wellness accessible to everyone — not just those who can afford a high-end spa."</p>
-    <div class="strip-cite">Our Mission</div>
-  </div>
+  <p class="story-para lead">For ten years I bought wellness products that made promises and didn't keep them. Hundreds of dollars on supplements that didn't move the needle. Skincare that was either over-engineered with twelve actives or stripped down to nothing useful. The category was full of marketing and short on results.</p>
 
-  <div class="pillars">
-    <div class="pillar">
-      <div class="pillar-num">No. 01</div>
-      <div class="pillar-title">Transparency</div>
-      <div class="pillar-desc">We tell you exactly what's in every product, and why.</div>
+  <p class="story-para">In 2023 I started building my own routine from scratch. I read the studies myself. I ordered ingredients tested at proper doses, in forms my body could actually absorb. I cut what didn't work and kept what did. The results — sleep, energy, skin, focus — showed up over the first six months and have compounded ever since.</p>
+
+  <p class="story-para">Friends and family started asking what I was using. Then asking me to help them build their own routines. Then asking why I didn't just sell what I'd put together. So Daniel's House started.</p>
+
+  <div class="story-para callout">"This is the wellness brand I would have wanted to find when I started. Premium ingredients, properly dosed, paired together intelligently — not picked off a shelf because the bottle looked good."</div>
+
+  <p class="story-para">Every product in the house is something I personally take or use. Every ingredient is at a clinically-meaningful dose, in the form your body can absorb. Every routine is the routine I actually follow. The skincare is the skincare I put on my face every morning. The supplements are the supplements that sit on my counter.</p>
+
+  <p class="story-para">The brand is named Daniel's House because that's what it is: my house, the products I use, opened up to the people who want what I built. No celebrity endorsements. No influencer-led launches. No marketing spin on ingredients that don't earn their place.</p>
+
+  <p class="story-para">Just real results — the kind that compound when you commit to a routine that actually works. Welcome to the house.</p>
+</section>
+
+<section class="principles">
+  <div class="principles-inner">
+    <div class="principles-header">
+      <div class="story-eyebrow">The Principles</div>
+      <h2 class="story-title">What every <em>product</em> earns.</h2>
     </div>
-    <div class="pillar">
-      <div class="pillar-num">No. 02</div>
-      <div class="pillar-title">Results First</div>
-      <div class="pillar-desc">If it doesn't work, we don't sell it. Simple as that.</div>
-    </div>
-    <div class="pillar">
-      <div class="pillar-num">No. 03</div>
-      <div class="pillar-title">Personal</div>
-      <div class="pillar-desc">A real person built this. Daniel reads your emails himself.</div>
-    </div>
-    <div class="pillar">
-      <div class="pillar-num">No. 04</div>
-      <div class="pillar-title">Accessible Luxury</div>
-      <div class="pillar-desc">Premium quality at prices that don't require a second mortgage.</div>
-    </div>
-    <div class="pillar">
-      <div class="pillar-num">No. 05</div>
-      <div class="pillar-title">Community</div>
-      <div class="pillar-desc">Everyone who shops here is part of the story.</div>
+    <div class="principles-grid">
+      <div class="principle">
+        <div class="principle-num">01.</div>
+        <div class="principle-title"><em>Clinical</em> doses, not marketing doses.</div>
+        <div class="principle-body">Every active is at the dose used in the studies that prove it works. We don't sprinkle in trace amounts to put an ingredient on the label — if it's not at a clinically-meaningful dose, it's not in the bottle.</div>
+      </div>
+      <div class="principle">
+        <div class="principle-num">02.</div>
+        <div class="principle-title">Forms your body can <em>actually use</em>.</div>
+        <div class="principle-body">Magnesium glycinate, not magnesium oxide. Ascorbyl phosphate, not oxidized Vitamin C. KSM-66 ashwagandha, not generic powder. The form matters as much as the dose — we use what's been validated in clinical research.</div>
+      </div>
+      <div class="principle">
+        <div class="principle-num">03.</div>
+        <div class="principle-title">Paired to <em>compound</em>, not just shelved.</div>
+        <div class="principle-body">Vitamin C with E for antioxidant synergy. Curcumin with BioPerine for absorption. Resveratrol with quercetin. Every product is built knowing what it's typically taken with — and the bundles work because of that.</div>
+      </div>
     </div>
   </div>
 </section>
+
+<section class="manufacturing">
+  <div class="story-eyebrow">Manufacturing</div>
+  <h2 class="story-title">Made in <em>North America</em>. Verified at every step.</h2>
+
+  <p class="story-para" style="text-align: center; max-width: 680px; margin: 0 auto 16px;">All Daniel's House products are manufactured in FDA-registered, GMP-certified facilities across North America. Every batch is third-party tested for purity, potency, and contamination. The supply chain is short, transparent, and verifiable.</p>
+
+  <div class="manufacturing-stats">
+    <div class="mfg-stat">
+      <div class="mfg-stat-num">100<em>%</em></div>
+      <div class="mfg-stat-label">Made in North America</div>
+    </div>
+    <div class="mfg-stat">
+      <div class="mfg-stat-num">3<em>x</em></div>
+      <div class="mfg-stat-label">Batch tested for purity</div>
+    </div>
+    <div class="mfg-stat">
+      <div class="mfg-stat-num">GMP<em>.</em></div>
+      <div class="mfg-stat-label">Certified facilities only</div>
+    </div>
+    <div class="mfg-stat">
+      <div class="mfg-stat-num">30<em>d</em></div>
+      <div class="mfg-stat-label">Money-back guarantee</div>
+    </div>
+  </div>
+</section>
+
+<div class="about-closing">
+  <h2>Ready to build the <em>routine?</em></h2>
+  <p>Take the quiz to find your bundle, or browse the full collection.</p>
+  <a href="quiz.html" class="about-closing-btn">Take the Quiz →</a>
+</div>
 
 <footer>
   <div class="footer-inner">
@@ -99,39 +342,54 @@
       <div class="footer-tag">Your home for premium wellness — built on real results, not marketing.</div>
       <div class="footer-attr">🌿 Vegan · Cruelty-Free · Made in North America<br>📧 daniel@danielshouse.com</div>
     </div>
-    <div class="footer-col">
-      <h4>Shop</h4>
-      <ul>
-        <li><a href="skincare.html">Skincare</a></li>
-        <li><a href="supplements.html">Supplements</a></li>
-        <li><a href="bundles.html">Bundles</a></li>
-        <li><a href="#">Best Sellers</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>The House</h4>
-      <ul>
-        <li><a href="about.html">Daniel's Story</a></li>
-        <li><a href="#">Daniel's Routine</a></li>
-        <li><a href="#">Journal</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Help</h4>
-      <ul>
-        <li><a href="#">Shipping &amp; Returns</a></li>
-        <li><a href="#">30-Day Guarantee</a></li>
-        <li><a href="#">FAQ</a></li>
-        <li><a href="#">Track Order</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-base">
-    <div>© Daniel's House — Premium Wellness</div>
-    <div>Made for Daniel. Built with intention.</div>
+    <div class="footer-col"><h4>Shop</h4><ul><li><a href="skincare.html">Skincare</a></li><li><a href="supplements.html">Supplements</a></li><li><a href="bundles.html">Bundles</a></li><li><a href="shop.html">Shop by Concern</a></li></ul></div>
+    <div class="footer-col"><h4>The House</h4><ul><li><a href="about.html">Daniel's Story</a></li><li><a href="ingredients.html">Ingredient Glossary</a></li><li><a href="quiz.html">Take the Quiz</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
+    <div class="footer-col"><h4>Help</h4><ul><li><a href="faq.html">Shipping &amp; Returns</a></li><li><a href="faq.html">30-Day Guarantee</a></li><li><a href="faq.html">Contact</a></li></ul></div>
   </div>
 </footer>
 
+<!-- Cart Drawer -->
+<div class="cart-overlay"></div>
+<aside class="cart-drawer">
+  <div class="cart-header"><div class="cart-title">Your <em>Cart</em></div><button class="cart-close" aria-label="Close cart">×</button></div>
+  <div class="cart-body"></div>
+  <div class="cart-footer">
+    <div class="cart-totals">
+      <div class="cart-totals-line"><span>Subtotal</span><span class="subtotal-amount">$0.00</span></div>
+      <div class="cart-totals-line total"><span>Total</span><span class="amount total-amount">$0.00</span></div>
+    </div>
+    <button class="cart-checkout">Checkout →</button>
+    <div class="cart-shipping-note">Free shipping on orders over $75.</div>
+  </div>
+</aside>
+
+<!-- Email Popup -->
+<div class="popup-overlay">
+  <div class="popup">
+    <button class="popup-close" aria-label="Close">×</button>
+    <div class="popup-eyebrow">10% Off Your First Order</div>
+    <div class="popup-title">Welcome to <em>The House</em>.</div>
+    <div class="popup-blurb">Drop your email for 10% off your first order, plus first access to new launches and Daniel's actual routine notes.</div>
+    <form class="popup-form">
+      <input type="email" class="popup-input" placeholder="Your email address" required />
+      <button type="submit" class="popup-submit">Get My 10% Off →</button>
+    </form>
+    <button class="popup-skip">No thanks</button>
+  </div>
+</div>
+
+<!-- Search Modal -->
+<div class="search-overlay">
+  <div class="search-inner">
+    <div class="search-input-wrap">
+      <input type="text" class="search-input" placeholder="Search products, ingredients, concerns..." />
+      <button class="search-close" aria-label="Close search">×</button>
+    </div>
+    <div class="search-results"></div>
+  </div>
+</div>
+
+<script src="data/products.js"></script>
+<script src="js/shared.js"></script>
 </body>
 </html>

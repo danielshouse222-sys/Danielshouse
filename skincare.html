@@ -272,11 +272,28 @@
     .weekly-img { margin: 0 auto; }
     .footer-inner { grid-template-columns: 1fr 1fr; }
   }
+
+  /* Step badges on AM/PM rows */
+  .row { position: relative; }
+  .step-badge {
+    position: absolute; top: 16px; left: 16px; z-index: 3;
+    background: var(--ink); color: var(--cream);
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: 13px; padding: 4px 12px;
+    border: 1px solid var(--gold);
+  }
+  .step-badge em { color: var(--gold); font-style: italic; font-weight: 500; margin-right: 4px; }
+
 </style>
 </head>
 <body>
 
 <div class="announce">Free shipping on orders over $60 · <strong>30-day satisfaction guarantee</strong></div>
+
+<div class="shipping-bar">
+  <div class="shipping-bar-progress"></div>
+  <div class="shipping-bar-text">Free shipping on orders over <strong>$75</strong> · 30-day satisfaction guarantee</div>
+</div>
 
 <nav>
   <div class="nav-inner">
@@ -287,8 +304,12 @@
       <li><a href="skincare.html" class="active">Skincare</a></li>
       <li><a href="supplements.html">Supplements</a></li>
       <li><a href="bundles.html">Bundles</a></li>
+      <li><a href="shop.html">Shop By Concern</a></li>
     </ul>
-    <div class="nav-cart">Cart (0)</div>
+    <div style="display: flex; gap: 4px;">
+      <button class="search-trigger" aria-label="Search">Search</button>
+      <button class="cart-trigger" aria-label="Open cart">Cart <span class="cart-trigger-count">0</span></button>
+    </div>
   </div>
 </nav>
 
@@ -338,6 +359,7 @@
       </div>
 
       <div class="row">
+        <div class="step-badge"><em>Step</em> 01</div>
         <div class="row-img"><img src="images/Wash.jpeg" alt="The House Wash" /></div>
         <div class="row-content">
           <div class="row-tag">Cleanse · Hydrate · Barrier Defense</div>
@@ -346,12 +368,13 @@
         </div>
         <div class="row-shop">
           <div class="row-price">$26</div>
-          <a href="https://rvttkx-99.myshopify.com/products/the-house-wash" class="row-view-link" target="_blank" rel="noopener">View Details →</a>
-          <a href="https://rvttkx-99.myshopify.com/products/the-house-wash" class="row-add-cart" target="_blank" rel="noopener">Add to Cart →</a>
+          <a href="product.html?slug=the-house-wash" class="row-view-link">View Details →</a>
+          <button class="row-add-cart" data-add-slug="the-house-wash">Add to Cart →</button>
         </div>
       </div>
 
       <div class="row">
+        <div class="step-badge"><em>Step</em> 02</div>
         <div class="row-img"><img src="images/balance.jpeg" alt="The House Balance" /></div>
         <div class="row-content">
           <div class="row-tag">Tone · Refresh · Calm</div>
@@ -360,12 +383,13 @@
         </div>
         <div class="row-shop">
           <div class="row-price">$24</div>
-          <a href="https://rvttkx-99.myshopify.com/products/the-house-balance" class="row-view-link" target="_blank" rel="noopener">View Details →</a>
-          <a href="https://rvttkx-99.myshopify.com/products/the-house-balance" class="row-add-cart" target="_blank" rel="noopener">Add to Cart →</a>
+          <a href="product.html?slug=the-house-balance" class="row-view-link">View Details →</a>
+          <button class="row-add-cart" data-add-slug="the-house-balance">Add to Cart →</button>
         </div>
       </div>
 
       <div class="row">
+        <div class="step-badge"><em>Step</em> 03</div>
         <div class="row-img"><img src="images/boost.jpeg" alt="The House Boost" /></div>
         <div class="row-content">
           <div class="row-tag">Brighten · Even Tone · Refine</div>
@@ -374,12 +398,13 @@
         </div>
         <div class="row-shop">
           <div class="row-price">$34</div>
-          <a href="https://rvttkx-99.myshopify.com/products/the-house-boost" class="row-view-link" target="_blank" rel="noopener">View Details →</a>
-          <a href="https://rvttkx-99.myshopify.com/products/the-house-boost" class="row-add-cart" target="_blank" rel="noopener">Add to Cart →</a>
+          <a href="product.html?slug=the-house-boost" class="row-view-link">View Details →</a>
+          <button class="row-add-cart" data-add-slug="the-house-boost">Add to Cart →</button>
         </div>
       </div>
 
       <div class="row">
+        <div class="step-badge"><em>Step</em> 04</div>
         <div class="row-img"><img src="images/hyaluronic.jpeg" alt="The House Hyaluronic" /></div>
         <div class="row-content">
           <div class="row-tag">Hydrate · Plump · Smooth</div>
@@ -388,12 +413,13 @@
         </div>
         <div class="row-shop">
           <div class="row-price">$28</div>
-          <a href="https://rvttkx-99.myshopify.com/products/the-house-hyaluronic" class="row-view-link" target="_blank" rel="noopener">View Details →</a>
-          <a href="https://rvttkx-99.myshopify.com/products/the-house-hyaluronic" class="row-add-cart" target="_blank" rel="noopener">Add to Cart →</a>
+          <a href="product.html?slug=the-house-hyaluronic" class="row-view-link">View Details →</a>
+          <button class="row-add-cart" data-add-slug="the-house-hyaluronic">Add to Cart →</button>
         </div>
       </div>
 
       <div class="row">
+        <div class="step-badge"><em>Step</em> 05</div>
         <div class="row-img"><img src="images/defense.jpeg" alt="The House Defense" /></div>
         <div class="row-content">
           <div class="row-tag">Antioxidant · Age-Defy · Brighten</div>
@@ -402,12 +428,13 @@
         </div>
         <div class="row-shop">
           <div class="row-price">$38</div>
-          <a href="https://rvttkx-99.myshopify.com/products/the-house-defense" class="row-view-link" target="_blank" rel="noopener">View Details →</a>
-          <a href="https://rvttkx-99.myshopify.com/products/the-house-defense" class="row-add-cart" target="_blank" rel="noopener">Add to Cart →</a>
+          <a href="product.html?slug=the-house-defense" class="row-view-link">View Details →</a>
+          <button class="row-add-cart" data-add-slug="the-house-defense">Add to Cart →</button>
         </div>
       </div>
 
       <div class="row">
+        <div class="step-badge"><em>Step</em> 06</div>
         <div class="row-img"><img src="images/Soft.jpeg" alt="The House Soft" /></div>
         <div class="row-content">
           <div class="row-tag">Hydrate · Soothe · Soften</div>
@@ -416,8 +443,8 @@
         </div>
         <div class="row-shop">
           <div class="row-price">$32</div>
-          <a href="https://rvttkx-99.myshopify.com/products/the-house-soft" class="row-view-link" target="_blank" rel="noopener">View Details →</a>
-          <a href="https://rvttkx-99.myshopify.com/products/the-house-soft" class="row-add-cart" target="_blank" rel="noopener">Add to Cart →</a>
+          <a href="product.html?slug=the-house-soft" class="row-view-link">View Details →</a>
+          <button class="row-add-cart" data-add-slug="the-house-soft">Add to Cart →</button>
         </div>
       </div>
 
@@ -433,6 +460,7 @@
       </div>
 
       <div class="row">
+        <div class="step-badge"><em>Step</em> 01</div>
         <div class="row-img"><img src="images/bounce.jpeg" alt="The House Bounce" /></div>
         <div class="row-content">
           <div class="row-tag">Firm · Renew · Plump</div>
@@ -441,12 +469,13 @@
         </div>
         <div class="row-shop">
           <div class="row-price">$42</div>
-          <a href="https://rvttkx-99.myshopify.com/products/the-house-bounce" class="row-view-link" target="_blank" rel="noopener">View Details →</a>
-          <a href="https://rvttkx-99.myshopify.com/products/the-house-bounce" class="row-add-cart" target="_blank" rel="noopener">Add to Cart →</a>
+          <a href="product.html?slug=the-house-bounce" class="row-view-link">View Details →</a>
+          <button class="row-add-cart" data-add-slug="the-house-bounce">Add to Cart →</button>
         </div>
       </div>
 
       <div class="row">
+        <div class="step-badge"><em>Step</em> 02</div>
         <div class="row-img"><img src="images/Firm.jpeg" alt="The House Firm" /></div>
         <div class="row-content">
           <div class="row-tag">Firm · Smooth · Tighten</div>
@@ -455,12 +484,13 @@
         </div>
         <div class="row-shop">
           <div class="row-price">$36</div>
-          <a href="https://rvttkx-99.myshopify.com/products/the-house-firm" class="row-view-link" target="_blank" rel="noopener">View Details →</a>
-          <a href="https://rvttkx-99.myshopify.com/products/the-house-firm" class="row-add-cart" target="_blank" rel="noopener">Add to Cart →</a>
+          <a href="product.html?slug=the-house-firm" class="row-view-link">View Details →</a>
+          <button class="row-add-cart" data-add-slug="the-house-firm">Add to Cart →</button>
         </div>
       </div>
 
       <div class="row">
+        <div class="step-badge"><em>Step</em> 03</div>
         <div class="row-img"><img src="images/hydration.jpeg" alt="The House Hydration" /></div>
         <div class="row-content">
           <div class="row-tag">Hydrate · Moisture Lock · Antioxidant</div>
@@ -469,12 +499,13 @@
         </div>
         <div class="row-shop">
           <div class="row-price">$26</div>
-          <a href="https://rvttkx-99.myshopify.com/products/the-house-hydration" class="row-view-link" target="_blank" rel="noopener">View Details →</a>
-          <a href="https://rvttkx-99.myshopify.com/products/the-house-hydration" class="row-add-cart" target="_blank" rel="noopener">Add to Cart →</a>
+          <a href="product.html?slug=the-house-hydration" class="row-view-link">View Details →</a>
+          <button class="row-add-cart" data-add-slug="the-house-hydration">Add to Cart →</button>
         </div>
       </div>
 
       <div class="row">
+        <div class="step-badge"><em>Step</em> 04</div>
         <div class="row-img"><img src="images/Eye.jpeg" alt="The House Eye" /></div>
         <div class="row-content">
           <div class="row-tag">Depuff · Brighten · Firm</div>
@@ -483,12 +514,13 @@
         </div>
         <div class="row-shop">
           <div class="row-price">$36</div>
-          <a href="https://rvttkx-99.myshopify.com/products/the-house-eye" class="row-view-link" target="_blank" rel="noopener">View Details →</a>
-          <a href="https://rvttkx-99.myshopify.com/products/the-house-eye" class="row-add-cart" target="_blank" rel="noopener">Add to Cart →</a>
+          <a href="product.html?slug=the-house-eye" class="row-view-link">View Details →</a>
+          <button class="row-add-cart" data-add-slug="the-house-eye">Add to Cart →</button>
         </div>
       </div>
 
       <div class="row">
+        <div class="step-badge"><em>Step</em> 05</div>
         <div class="row-img"><img src="images/renewal.jpeg" alt="The House Renewal" /></div>
         <div class="row-content">
           <div class="row-tag">Resurface · Renew · Smooth</div>
@@ -497,12 +529,13 @@
         </div>
         <div class="row-shop">
           <div class="row-price">$44</div>
-          <a href="https://rvttkx-99.myshopify.com/products/the-house-renewal" class="row-view-link" target="_blank" rel="noopener">View Details →</a>
-          <a href="https://rvttkx-99.myshopify.com/products/the-house-renewal" class="row-add-cart" target="_blank" rel="noopener">Add to Cart →</a>
+          <a href="product.html?slug=the-house-renewal" class="row-view-link">View Details →</a>
+          <button class="row-add-cart" data-add-slug="the-house-renewal">Add to Cart →</button>
         </div>
       </div>
 
       <div class="row">
+        <div class="step-badge"><em>Step</em> 06</div>
         <div class="row-img"><img src="images/glow.jpeg" alt="The House Glow" /></div>
         <div class="row-content">
           <div class="row-tag">Nourish · Glow · Seal</div>
@@ -511,8 +544,8 @@
         </div>
         <div class="row-shop">
           <div class="row-price">$36</div>
-          <a href="https://rvttkx-99.myshopify.com/products/the-house-glow" class="row-view-link" target="_blank" rel="noopener">View Details →</a>
-          <a href="https://rvttkx-99.myshopify.com/products/the-house-glow" class="row-add-cart" target="_blank" rel="noopener">Add to Cart →</a>
+          <a href="product.html?slug=the-house-glow" class="row-view-link">View Details →</a>
+          <button class="row-add-cart" data-add-slug="the-house-glow">Add to Cart →</button>
         </div>
       </div>
     </div>
@@ -525,7 +558,7 @@
       <div class="alt-banner-img"><img src="images/clear.jpeg" alt="The House Clear" /></div>
       <div class="alt-banner-text">
         <strong>Oily or acne-prone skin?</strong>
-        Swap step 06 for <a href="#clear">The House Clear</a> ($32) — a lightweight, oil-free hydrator built specifically for combination, oily, and acne-prone skin. Same routine, different finish.
+        Swap step 06 for <a href="product.html?slug=the-house-clear">The House Clear</a> ($32) — a lightweight, oil-free hydrator built specifically for combination, oily, and acne-prone skin. Same routine, different finish.
       </div>
     </div>
   </div>
@@ -545,8 +578,8 @@
           <div class="weekly-desc">Binchotan charcoal, sodium bicarbonate, and kaolin clay. A spa night in five minutes — activated by warm water, finished with a gentle massage.</div>
           <div class="weekly-foot">
             <div class="weekly-price">$30</div>
-            <a href="https://rvttkx-99.myshopify.com/products/the-house-mask" class="weekly-view-link" target="_blank" rel="noopener">View Details →</a>
-            <a href="https://rvttkx-99.myshopify.com/products/the-house-mask" class="weekly-add-cart" target="_blank" rel="noopener">Add to Cart →</a>
+            <a href="product.html?slug=the-house-mask" class="weekly-view-link" target="_blank" rel="noopener">View Details →</a>
+            <button class="weekly-add-cart" data-add-slug="the-house-mask">Add to Cart →</button>
           </div>
         </div>
       </div>
@@ -559,8 +592,8 @@
           <div class="weekly-desc">A plant-cellulose physical exfoliant gentle enough for weekly use, with a clean menthol cool that turns the step into a moment.</div>
           <div class="weekly-foot">
             <div class="weekly-price">$28</div>
-            <a href="https://rvttkx-99.myshopify.com/products/the-house-polish" class="weekly-view-link" target="_blank" rel="noopener">View Details →</a>
-            <a href="https://rvttkx-99.myshopify.com/products/the-house-polish" class="weekly-add-cart" target="_blank" rel="noopener">Add to Cart →</a>
+            <a href="product.html?slug=the-house-polish" class="weekly-view-link" target="_blank" rel="noopener">View Details →</a>
+            <button class="weekly-add-cart" data-add-slug="the-house-polish">Add to Cart →</button>
           </div>
         </div>
       </div>
@@ -649,15 +682,73 @@
       <div class="footer-tag">Your home for premium wellness — built on real results, not marketing.</div>
       <div class="footer-attr">🌿 Vegan · Cruelty-Free · Made in North America<br>📧 daniel@danielshouse.com</div>
     </div>
-    <div class="footer-col"><h4>Shop</h4><ul><li><a href="skincare.html">Skincare</a></li><li><a href="supplements.html">Supplements</a></li><li><a href="bundles.html">Bundles</a></li><li><a href="#">Best Sellers</a></li></ul></div>
-    <div class="footer-col"><h4>The House</h4><ul><li><a href="about.html">Daniel's Story</a></li><li><a href="#">Daniel's Routine</a></li><li><a href="#">The Science</a></li><li><a href="#">Contact</a></li></ul></div>
-    <div class="footer-col"><h4>Help</h4><ul><li><a href="#">Shipping &amp; Returns</a></li><li><a href="#">30-Day Guarantee</a></li><li><a href="#">FAQ</a></li><li><a href="#">Track Order</a></li></ul></div>
+    <div class="footer-col"><h4>Shop</h4><ul><li><a href="skincare.html">Skincare</a></li><li><a href="supplements.html">Supplements</a></li><li><a href="bundles.html">Bundles</a></li><li><a href="bundles.html">Bundles</a></li></ul></div>
+    <div class="footer-col"><h4>The House</h4><ul><li><a href="about.html">Daniel's Story</a></li><li><a href="about.html">Daniel's Story</a></li><li><a href="ingredients.html">Ingredient Glossary</a></li><li><a href="faq.html">Contact</a></li></ul></div>
+    <div class="footer-col"><h4>Help</h4><ul><li><a href="faq.html">Shipping &amp; Returns</a></li><li><a href="faq.html">30-Day Guarantee</a></li><li><a href="faq.html">FAQ</a></li><li><a href="faq.html">Track Order</a></li></ul></div>
   </div>
   <div class="footer-base">
     <div>© Daniel's House — Premium Wellness</div>
     <div>Made for Daniel. Built with intention.</div>
   </div>
 </footer>
+
+
+<!-- Cart Drawer -->
+<div class="cart-overlay"></div>
+<aside class="cart-drawer">
+  <div class="cart-header"><div class="cart-title">Your <em>Cart</em></div><button class="cart-close" aria-label="Close cart">×</button></div>
+  <div class="cart-body"></div>
+  <div class="cart-footer">
+    <div class="cart-totals">
+      <div class="cart-totals-line"><span>Subtotal</span><span class="subtotal-amount">$0.00</span></div>
+      <div class="cart-totals-line total"><span>Total</span><span class="amount total-amount">$0.00</span></div>
+    </div>
+    <button class="cart-checkout">Checkout →</button>
+    <div class="cart-shipping-note">Free shipping on orders over $75.</div>
+  </div>
+</aside>
+
+<!-- Email Popup -->
+<div class="popup-overlay">
+  <div class="popup">
+    <button class="popup-close" aria-label="Close">×</button>
+    <div class="popup-eyebrow">10% Off Your First Order</div>
+    <div class="popup-title">Welcome to <em>The House</em>.</div>
+    <div class="popup-blurb">Drop your email for 10% off your first order, plus first access to new launches and Daniel's actual routine notes.</div>
+    <form class="popup-form">
+      <input type="email" class="popup-input" placeholder="Your email address" required />
+      <button type="submit" class="popup-submit">Get My 10% Off →</button>
+    </form>
+    <button class="popup-skip">No thanks</button>
+  </div>
+</div>
+
+<!-- Search Modal -->
+<div class="search-overlay">
+  <div class="search-inner">
+    <div class="search-input-wrap">
+      <input type="text" class="search-input" placeholder="Search products, ingredients, concerns..." />
+      <button class="search-close" aria-label="Close search">×</button>
+    </div>
+    <div class="search-results"></div>
+  </div>
+</div>
+
+<script src="data/products.js"></script>
+<script src="js/shared.js"></script>
+<script>
+// Wire up Add to Cart buttons on this page
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('[data-add-slug]').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.preventDefault();
+      const slug = btn.dataset.addSlug;
+      const product = window.getProductBySlug(slug);
+      if (product) window.dhCart.add(product, { subscribe: false });
+    });
+  });
+});
+</script>
 
 </body>
 </html>

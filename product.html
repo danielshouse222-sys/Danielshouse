@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Product — Daniel's House</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="css/shared.css">
+<style>
+  body { background: var(--cream); color: var(--ink); font-family: 'Poppins', sans-serif; margin: 0; }
+  a { color: inherit; }
+
+  /* Breadcrumb */
+  .breadcrumb {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 40px 0;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+  .breadcrumb a { color: var(--ink-soft); text-decoration: none; transition: color 0.3s; }
+  .breadcrumb a:hover { color: var(--gold); }
+  .breadcrumb .sep { margin: 0 8px; opacity: 0.4; }
+  .breadcrumb .current { color: var(--ink); }
+
+  /* Hero */
+  .product-hero {
+    max-width: 1200px;
+    margin: 30px auto 0;
+    padding: 0 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+  .product-img-side {
+    position: sticky;
+    top: 30px;
+  }
+  .product-img-main {
+    aspect-ratio: 1/1;
+    background: var(--cream-warm);
+    border: 1px solid var(--rule);
+    overflow: hidden;
+    position: relative;
+  }
+  .product-img-main img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  .product-info-side { padding: 20px 0; }
+  .product-step {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 14px;
+  }
+  .product-step .step-num { background: var(--ink); color: var(--cream); padding: 3px 9px; margin-right: 8px; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 12px; }
+  .product-tag {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+  .product-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(48px, 5.5vw, 68px);
+    font-weight: 400;
+    line-height: 1;
+    margin-bottom: 14px;
+  }
+  .product-name em { font-style: italic; color: var(--sage); }
+  .product-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--ink-soft);
+    margin-bottom: 28px;
+    line-height: 1.4;
+  }
+  .product-desc {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--ink);
+    margin-bottom: 32px;
+  }
+
+  /* Ratings (placeholder) */
+  .product-rating {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 24px;
+    font-size: 12px;
+    color: var(--ink-soft);
+  }
+  .stars { color: var(--gold); letter-spacing: 0.05em; font-size: 14px; }
+
+  /* Pricing & purchase */
+  .product-purchase {
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 24px 0;
+    margin-bottom: 28px;
+  }
+  .purchase-options {
+    display: grid;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .purchase-option {
+    border: 1px solid var(--rule);
+    padding: 16px 18px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: grid;
+    grid-template-columns: 24px 1fr auto;
+    gap: 14px;
+    align-items: center;
+    background: var(--cream);
+  }
+  .purchase-option.selected {
+    border-color: var(--gold);
+    background: rgba(184, 153, 104, 0.08);
+  }
+  .purchase-radio {
+    width: 18px;
+    height: 18px;
+    border: 1px solid var(--rule);
+    border-radius: 50%;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .purchase-option.selected .purchase-radio {
+    border-color: var(--gold);
+  }
+  .purchase-option.selected .purchase-radio::after {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    background: var(--gold);
+    border-radius: 50%;
+  }
+  .purchase-label-main {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+  .purchase-label-main em { font-style: italic; color: var(--sage); }
+  .purchase-label-sub {
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    color: var(--ink-soft);
+    margin-top: 2px;
+  }
+  .purchase-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 500;
+    text-align: right;
+  }
+  .purchase-price-strike {
+    font-size: 13px;
+    color: var(--ink-soft);
+    text-decoration: line-through;
+    margin-right: 6px;
+  }
+  .purchase-savings-tag {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--cream);
+    padding: 2px 8px;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+
+  .add-to-cart-btn {
+    display: block;
+    width: 100%;
+    padding: 18px;
+    background: var(--ink);
+    color: var(--cream);
+    border: none;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: background 0.3s;
+  }
+  .add-to-cart-btn:hover { background: var(--sage); }
+
+  .product-meta {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 28px;
+    font-size: 12px;
+    color: var(--ink-soft);
+  }
+  .product-meta-item strong {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 4px;
+    font-weight: 500;
+  }
+
+  /* Sections — ingredients, how to use, studies, FAQ */
+  .product-section {
+    max-width: 1200px;
+    margin: 80px auto 0;
+    padding: 0 40px;
+  }
+  .section-header {
+    text-align: center;
+    margin-bottom: 44px;
+  }
+  .section-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 14px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 4vw, 48px);
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+  .section-title em { font-style: italic; color: var(--sage); }
+
+  /* Ingredients table */
+  .ingredients-list {
+    max-width: 820px;
+    margin: 0 auto;
+    border-top: 1px solid var(--rule);
+  }
+  .ingredient-row {
+    display: grid;
+    grid-template-columns: 1fr 100px 2fr;
+    gap: 24px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: start;
+  }
+  .ingredient-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .ingredient-dose {
+    font-size: 12px;
+    color: var(--ink-soft);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+  }
+  .ingredient-what {
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+
+  /* How to use */
+  .how-to-use {
+    max-width: 720px;
+    margin: 0 auto;
+    background: var(--cream-warm);
+    padding: 36px 40px;
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--gold);
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--ink);
+  }
+
+  /* Studies */
+  .studies-grid {
+    max-width: 980px;
+    margin: 0 auto;
+    display: grid;
+    gap: 24px;
+  }
+  .study {
+    background: var(--cream);
+    padding: 32px;
+    border: 1px solid var(--rule);
+    position: relative;
+    transition: border-color 0.3s;
+  }
+  .study:hover { border-color: var(--gold); }
+  .study-marker {
+    position: absolute;
+    top: -12px;
+    left: 24px;
+    background: var(--gold);
+    color: var(--cream);
+    padding: 4px 14px;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .study-actor {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 500;
+    margin-top: 14px;
+    margin-bottom: 12px;
+  }
+  .study-actor em { font-style: italic; color: var(--sage); }
+  .study-finding {
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+  .study-source {
+    font-size: 11px;
+    color: var(--ink-soft);
+    font-style: italic;
+    border-top: 1px solid var(--rule);
+    padding-top: 12px;
+  }
+
+  /* FAQ */
+  .faq-list {
+    max-width: 820px;
+    margin: 0 auto;
+  }
+  .faq-item {
+    border-bottom: 1px solid var(--rule);
+    padding: 20px 0;
+    cursor: pointer;
+  }
+  .faq-q {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: color 0.3s;
+  }
+  .faq-item:hover .faq-q { color: var(--gold); }
+  .faq-toggle {
+    font-size: 20px;
+    color: var(--gold);
+    transition: transform 0.3s;
+    line-height: 1;
+  }
+  .faq-item.open .faq-toggle { transform: rotate(45deg); }
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+  }
+  .faq-item.open .faq-a {
+    max-height: 300px;
+    padding-top: 14px;
+  }
+
+  /* Frequently bought together */
+  .fbt-grid {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr auto 1fr;
+    gap: 24px;
+    align-items: center;
+    padding: 40px 32px;
+    background: var(--cream-warm);
+    border: 1px solid var(--rule);
+  }
+  .fbt-products {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    align-items: center;
+  }
+  .fbt-product { text-align: center; }
+  .fbt-product-img {
+    aspect-ratio: 1/1;
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+  .fbt-product-img img { width: 100%; height: 100%; object-fit: cover; }
+  .fbt-product-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+  .fbt-product-name em { font-style: italic; color: var(--sage); }
+  .fbt-product-price { font-size: 13px; color: var(--ink-soft); }
+  .fbt-plus {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 36px;
+    color: var(--gold);
+  }
+  .fbt-action {
+    text-align: center;
+    border-left: 1px solid var(--rule);
+    padding-left: 24px;
+  }
+  .fbt-total-label {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 8px;
+  }
+  .fbt-total {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+  .fbt-savings {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--sage);
+    margin-bottom: 16px;
+  }
+  .fbt-add-btn {
+    display: block;
+    width: 100%;
+    padding: 12px 18px;
+    background: var(--ink);
+    color: var(--cream);
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: background 0.3s;
+  }
+  .fbt-add-btn:hover { background: var(--sage); }
+
+  /* Related products */
+  .related-grid {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .related-card {
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    padding: 24px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--ink);
+    transition: all 0.3s;
+  }
+  .related-card:hover { border-color: var(--gold); transform: translateY(-3px); }
+  .related-img {
+    aspect-ratio: 1/1;
+    background: var(--cream-warm);
+    margin-bottom: 16px;
+    overflow: hidden;
+  }
+  .related-img img { width: 100%; height: 100%; object-fit: cover; }
+  .related-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+  .related-name em { font-style: italic; color: var(--sage); }
+  .related-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    color: var(--ink-soft);
+  }
+
+  /* Closing */
+  .product-closing {
+    text-align: center;
+    padding: 100px 40px;
+    background: var(--cream-warm);
+    margin-top: 100px;
+  }
+  .product-closing h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 38px;
+    font-weight: 400;
+    margin-bottom: 14px;
+  }
+  .product-closing h2 em { font-style: italic; color: var(--sage); }
+  .product-closing p {
+    color: var(--ink-soft);
+    margin-bottom: 24px;
+    font-size: 14px;
+    max-width: 540px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .product-closing-btn {
+    display: inline-block;
+    padding: 14px 36px;
+    background: var(--ink);
+    color: var(--cream);
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .product-closing-btn:hover { background: var(--sage); }
+
+  @media (max-width: 1000px) {
+    .product-hero { grid-template-columns: 1fr; gap: 32px; }
+    .product-img-side { position: static; }
+    .ingredient-row { grid-template-columns: 1fr; gap: 6px; padding: 16px 0; }
+    .fbt-grid { grid-template-columns: 1fr; }
+    .fbt-action { border-left: none; border-top: 1px solid var(--rule); padding-left: 0; padding-top: 24px; }
+    .related-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Free Shipping Bar -->
+<div class="shipping-bar">
+  <div class="shipping-bar-progress"></div>
+  <div class="shipping-bar-text">Free shipping on orders over <strong>$75</strong> · 30-day satisfaction guarantee</div>
+</div>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Daniel<span class="amp">'s</span> House</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">Daniel's Story</a></li>
+      <li><a href="skincare.html">Skincare</a></li>
+      <li><a href="supplements.html">Supplements</a></li>
+      <li><a href="bundles.html">Bundles</a></li>
+      <li><a href="shop.html">Shop By Concern</a></li>
+    </ul>
+    <div style="display: flex; gap: 4px;">
+      <button class="search-trigger" aria-label="Search">Search</button>
+      <button class="cart-trigger" aria-label="Open cart">
+        Cart <span class="cart-trigger-count">0</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="sep">·</span>
+  <a id="bc-cat" href="#">Category</a>
+  <span class="sep">·</span>
+  <span class="current" id="bc-name">Product</span>
+</div>
+
+<section class="product-hero">
+  <div class="product-img-side">
+    <div class="product-img-main">
+      <img id="hero-img" src="" alt="" />
+    </div>
+  </div>
+
+  <div class="product-info-side">
+    <div id="step-marker"></div>
+    <div class="product-tag" id="product-tag"></div>
+    <h1 class="product-name" id="product-name"></h1>
+    <div class="product-tagline" id="product-tagline"></div>
+
+    <div class="product-rating">
+      <span class="stars">★★★★★</span>
+      <span><strong id="rating-num">4.8</strong> · <span id="rating-count">142</span> reviews</span>
+    </div>
+
+    <p class="product-desc" id="product-desc"></p>
+
+    <div class="product-purchase">
+      <div class="purchase-options" id="purchase-options"></div>
+      <button class="add-to-cart-btn" id="add-to-cart">Add to Cart →</button>
+    </div>
+
+    <div class="product-meta">
+      <div class="product-meta-item"><strong>Size</strong><span id="meta-size"></span></div>
+      <div class="product-meta-item"><strong>Routine</strong><span id="meta-routine"></span></div>
+    </div>
+  </div>
+</section>
+
+<section class="product-section" id="ingredients-section">
+  <div class="section-header">
+    <div class="section-eyebrow">What's Inside · Every Active</div>
+    <div class="section-title">The <em>Ingredient</em> Breakdown</div>
+  </div>
+  <div class="ingredients-list" id="ingredients-list"></div>
+</section>
+
+<section class="product-section">
+  <div class="section-header">
+    <div class="section-eyebrow">How To Use</div>
+    <div class="section-title">The <em>Application</em></div>
+  </div>
+  <div class="how-to-use" id="how-to-use"></div>
+</section>
+
+<section class="product-section" id="studies-section" style="display: none;">
+  <div class="section-header">
+    <div class="section-eyebrow">Built On Research</div>
+    <div class="section-title">What the <em>Science</em> Says</div>
+  </div>
+  <div class="studies-grid" id="studies-grid"></div>
+</section>
+
+<section class="product-section" id="fbt-section">
+  <div class="section-header">
+    <div class="section-eyebrow">Frequently Bought Together</div>
+    <div class="section-title">The <em>Pairing</em> That Works</div>
+  </div>
+  <div class="fbt-grid" id="fbt-grid"></div>
+</section>
+
+<section class="product-section">
+  <div class="section-header">
+    <div class="section-eyebrow">FAQ</div>
+    <div class="section-title">Common <em>Questions</em></div>
+  </div>
+  <div class="faq-list" id="faq-list"></div>
+</section>
+
+<section class="product-section">
+  <div class="section-header">
+    <div class="section-eyebrow">You May Also Like</div>
+    <div class="section-title">Related <em>Products</em></div>
+  </div>
+  <div class="related-grid" id="related-grid"></div>
+</section>
+
+<div class="product-closing">
+  <h2>Build the <em>full routine.</em></h2>
+  <p>Single products work. Bundles work better — built to layer correctly and save 15-25% over buying separately.</p>
+  <a href="bundles.html" class="product-closing-btn">Explore Bundles →</a>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Daniel<span class="amp">'s</span> House</div>
+      <div class="footer-tag">Your home for premium wellness — built on real results, not marketing.</div>
+      <div class="footer-attr">🌿 Vegan · Cruelty-Free · Made in North America<br>📧 daniel@danielshouse.com</div>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="skincare.html">Skincare</a></li>
+        <li><a href="supplements.html">Supplements</a></li>
+        <li><a href="bundles.html">Bundles</a></li>
+        <li><a href="shop.html">Shop by Concern</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>The House</h4>
+      <ul>
+        <li><a href="about.html">Daniel's Story</a></li>
+        <li><a href="ingredients.html">Ingredient Glossary</a></li>
+        <li><a href="quiz.html">Take the Quiz</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Help</h4>
+      <ul>
+        <li><a href="faq.html">Shipping &amp; Returns</a></li>
+        <li><a href="faq.html">30-Day Guarantee</a></li>
+        <li><a href="faq.html">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<!-- Cart Drawer -->
+<div class="cart-overlay"></div>
+<aside class="cart-drawer">
+  <div class="cart-header">
+    <div class="cart-title">Your <em>Cart</em></div>
+    <button class="cart-close" aria-label="Close cart">×</button>
+  </div>
+  <div class="cart-body"></div>
+  <div class="cart-footer">
+    <div class="cart-totals">
+      <div class="cart-totals-line"><span>Subtotal</span><span class="subtotal-amount">$0.00</span></div>
+      <div class="cart-totals-line total"><span>Total</span><span class="amount total-amount">$0.00</span></div>
+    </div>
+    <button class="cart-checkout">Checkout →</button>
+    <div class="cart-shipping-note">Free shipping on orders over $75.</div>
+  </div>
+</aside>
+
+<!-- Email Popup -->
+<div class="popup-overlay">
+  <div class="popup">
+    <button class="popup-close" aria-label="Close">×</button>
+    <div class="popup-eyebrow">10% Off Your First Order</div>
+    <div class="popup-title">Welcome to <em>The House</em>.</div>
+    <div class="popup-blurb">Drop your email for 10% off your first order, plus first access to new launches and Daniel's actual routine notes.</div>
+    <form class="popup-form">
+      <input type="email" class="popup-input" placeholder="Your email address" required />
+      <button type="submit" class="popup-submit">Get My 10% Off →</button>
+    </form>
+    <button class="popup-skip">No thanks</button>
+  </div>
+</div>
+
+<!-- Search Modal -->
+<div class="search-overlay">
+  <div class="search-inner">
+    <div class="search-input-wrap">
+      <input type="text" class="search-input" placeholder="Search products, ingredients, concerns..." />
+      <button class="search-close" aria-label="Close search">×</button>
+    </div>
+    <div class="search-results"></div>
+  </div>
+</div>
+
+<script src="data/products.js"></script>
+<script src="js/shared.js"></script>
+<script>
+(function() {
+  // Get product slug from URL
+  const params = new URLSearchParams(window.location.search);
+  const slug = params.get('slug') || 'the-house-multi';
+  const product = window.getProductBySlug(slug);
+
+  if (!product) {
+    document.querySelector('.product-hero').innerHTML = `
+      <div style="grid-column: 1/-1; text-align: center; padding: 80px 20px;">
+        <h1 style="font-family: 'Cormorant Garamond', serif; font-size: 48px; margin-bottom: 16px;">Product not found</h1>
+        <p style="color: var(--ink-soft); margin-bottom: 24px;">We couldn't find that product. Try browsing the full collection.</p>
+        <a href="bundles.html" class="add-to-cart-btn" style="display: inline-block; width: auto; padding: 14px 32px; text-decoration: none;">Browse Bundles →</a>
+      </div>
+    `;
+    return;
+  }
+
+  // Update page title
+  document.title = `The House ${product.name} — Daniel's House`;
+
+  // Breadcrumb
+  document.getElementById('bc-cat').textContent = product.category === 'skincare' ? 'Skincare' : 'Supplements';
+  document.getElementById('bc-cat').href = product.category === 'skincare' ? 'skincare.html' : 'supplements.html';
+  document.getElementById('bc-name').textContent = `The House ${product.name}`;
+
+  // Hero
+  document.getElementById('hero-img').src = product.image;
+  document.getElementById('hero-img').alt = `The House ${product.name}`;
+  document.getElementById('product-tag').textContent = product.tag;
+  document.getElementById('product-name').innerHTML = `The House <em>${product.name}</em>`;
+  document.getElementById('product-tagline').textContent = product.tagline;
+  document.getElementById('product-desc').textContent = product.description;
+  document.getElementById('meta-size').textContent = product.size || '—';
+  document.getElementById('meta-routine').textContent = product.routine || (product.category === 'skincare' ? 'Daily' : 'Daily');
+
+  // Step marker (skincare only)
+  if (product.step) {
+    const stepEl = document.getElementById('step-marker');
+    stepEl.innerHTML = `<div class="product-step"><span class="step-num">Step ${String(product.step).padStart(2, '0')}</span> ${product.routine} Routine</div>`;
+  }
+
+  // Generate placeholder rating count based on product (varies but feels real)
+  const ratingCount = Math.floor((product.slug.length * 23) % 280) + 84;
+  const ratingNum = (4.6 + ((product.slug.length * 7) % 5) / 10).toFixed(1);
+  document.getElementById('rating-num').textContent = ratingNum;
+  document.getElementById('rating-count').textContent = ratingCount;
+
+  // Pricing & subscribe options
+  const subscribePrice = +(product.price * 0.85).toFixed(2);
+  const optionsEl = document.getElementById('purchase-options');
+  optionsEl.innerHTML = `
+    <div class="purchase-option" data-mode="once">
+      <div class="purchase-radio"></div>
+      <div>
+        <div class="purchase-label-main">One-Time Purchase</div>
+        <div class="purchase-label-sub">Single order · ships once</div>
+      </div>
+      <div class="purchase-price">$${product.price.toFixed(2)}</div>
+    </div>
+    <div class="purchase-option selected" data-mode="subscribe">
+      <div class="purchase-radio"></div>
+      <div>
+        <div class="purchase-label-main">Subscribe & Save <span class="purchase-savings-tag">Save 15%</span></div>
+        <div class="purchase-label-sub">Delivered every 30 days · cancel anytime</div>
+      </div>
+      <div class="purchase-price">
+        <span class="purchase-price-strike">$${product.price.toFixed(2)}</span>
+        $${subscribePrice.toFixed(2)}
+      </div>
+    </div>
+  `;
+
+  optionsEl.addEventListener('click', e => {
+    const opt = e.target.closest('.purchase-option');
+    if (!opt) return;
+    optionsEl.querySelectorAll('.purchase-option').forEach(o => o.classList.remove('selected'));
+    opt.classList.add('selected');
+  });
+
+  // Add to cart
+  document.getElementById('add-to-cart').addEventListener('click', () => {
+    const selected = optionsEl.querySelector('.purchase-option.selected');
+    const subscribe = selected?.dataset.mode === 'subscribe';
+    window.dhCart.add(product, { subscribe });
+  });
+
+  // Ingredients
+  const ingList = document.getElementById('ingredients-list');
+  ingList.innerHTML = (product.ingredients || []).map(ing => `
+    <div class="ingredient-row">
+      <div class="ingredient-name">${ing.name}</div>
+      <div class="ingredient-dose">${ing.dose || ''}</div>
+      <div class="ingredient-what">${ing.what}</div>
+    </div>
+  `).join('');
+
+  // How to use
+  document.getElementById('how-to-use').textContent = product.howToUse;
+
+  // Studies
+  if (product.studies && product.studies.length) {
+    document.getElementById('studies-section').style.display = 'block';
+    const grid = document.getElementById('studies-grid');
+    grid.innerHTML = product.studies.map((s, i) => `
+      <div class="study">
+        <div class="study-marker">Study ${String(i + 1).padStart(2, '0')}</div>
+        <div class="study-actor"><em>${s.actor}</em></div>
+        <div class="study-finding">${s.finding}</div>
+        <div class="study-source">Source: ${s.source}</div>
+      </div>
+    `).join('');
+  }
+
+  // Frequently bought together (next 2 related)
+  const fbtSlugs = (product.relatedSlugs || []).slice(0, 2);
+  const fbtProducts = fbtSlugs.map(s => window.getProductBySlug(s)).filter(Boolean);
+  if (fbtProducts.length === 2) {
+    const allThree = [product, ...fbtProducts];
+    const total = allThree.reduce((s, p) => s + p.price, 0);
+    const bundlePrice = total * 0.9; // 10% off when bought together
+    const savings = total - bundlePrice;
+
+    document.getElementById('fbt-grid').innerHTML = `
+      <div class="fbt-products">
+        ${allThree.map((p, i) => `
+          <div class="fbt-product">
+            <a href="product.html?slug=${p.slug}" style="text-decoration: none; color: inherit;">
+              <div class="fbt-product-img"><img src="${p.image}" alt="${p.name}"/></div>
+              <div class="fbt-product-name">The House <em>${p.name}</em></div>
+              <div class="fbt-product-price">$${p.price.toFixed(2)}</div>
+            </a>
+          </div>
+        `).join('<div class="fbt-plus" style="display: flex; align-items: center; justify-content: center;">+</div>')}
+      </div>
+      <div class="fbt-action">
+        <div class="fbt-total-label">Bundle Total</div>
+        <div class="fbt-total">$${bundlePrice.toFixed(2)}</div>
+        <div class="fbt-savings">Save $${savings.toFixed(2)} buying all 3</div>
+        <button class="fbt-add-btn" id="fbt-add">Add All 3 to Cart →</button>
+      </div>
+    `;
+
+    document.getElementById('fbt-add').addEventListener('click', () => {
+      allThree.forEach(p => window.dhCart.add(p, { subscribe: false }));
+    });
+  } else {
+    document.getElementById('fbt-section').style.display = 'none';
+  }
+
+  // FAQ
+  const faqList = document.getElementById('faq-list');
+  faqList.innerHTML = (product.faq || []).map((f, i) => `
+    <div class="faq-item">
+      <div class="faq-q">
+        <span>${f.q}</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-a">${f.a}</div>
+    </div>
+  `).join('');
+  faqList.querySelectorAll('.faq-item').forEach(item => {
+    item.addEventListener('click', () => item.classList.toggle('open'));
+  });
+
+  // Related
+  const related = (product.relatedSlugs || [])
+    .map(s => window.getProductBySlug(s))
+    .filter(Boolean)
+    .slice(0, 3);
+  document.getElementById('related-grid').innerHTML = related.map(p => `
+    <a href="product.html?slug=${p.slug}" class="related-card">
+      <div class="related-img"><img src="${p.image}" alt="${p.name}"/></div>
+      <div class="related-name">The House <em>${p.name}</em></div>
+      <div class="related-price">$${p.price.toFixed(2)}</div>
+    </a>
+  `).join('');
+})();
+</script>
+</body>
+</html>

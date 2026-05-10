@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FAQ — Daniel's House</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="css/shared.css">
+<style>
+  body { background: var(--cream); color: var(--ink); font-family: 'Poppins', sans-serif; margin: 0; }
+
+  .faq-hero {
+    text-align: center;
+    padding: 100px 40px 60px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .faq-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+  .faq-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(56px, 7vw, 84px);
+    font-weight: 400;
+    line-height: 0.95;
+    margin-bottom: 18px;
+  }
+  .faq-title em { font-style: italic; color: var(--sage); }
+  .faq-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(18px, 2.2vw, 24px);
+    color: var(--ink-soft);
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .faq-content {
+    max-width: 880px;
+    margin: 80px auto;
+    padding: 0 40px;
+  }
+
+  .faq-cat {
+    margin-bottom: 64px;
+  }
+  .faq-cat-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+  .faq-cat-title em { font-style: italic; color: var(--sage); }
+  .faq-cat-line {
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+    margin: 16px 0 28px;
+  }
+
+  .faq-q-block {
+    border-bottom: 1px solid var(--rule);
+    padding: 22px 0;
+    cursor: pointer;
+  }
+  .faq-q-block:first-of-type { border-top: 1px solid var(--rule); }
+  .faq-q-text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+  .faq-q-block:hover .faq-q-text { color: var(--gold); }
+  .faq-toggle-icon {
+    font-size: 24px;
+    color: var(--gold);
+    transition: transform 0.3s;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  .faq-q-block.open .faq-toggle-icon { transform: rotate(45deg); }
+  .faq-a-text {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, padding 0.5s ease;
+    font-size: 14.5px;
+    line-height: 1.75;
+    color: var(--ink-soft);
+  }
+  .faq-q-block.open .faq-a-text {
+    max-height: 600px;
+    padding-top: 18px;
+  }
+
+  .faq-help {
+    background: var(--cream-warm);
+    text-align: center;
+    padding: 80px 40px;
+    margin: 80px 0 0;
+  }
+  .faq-help h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 400;
+    margin-bottom: 12px;
+  }
+  .faq-help h3 em { font-style: italic; color: var(--sage); }
+  .faq-help p { color: var(--ink-soft); margin-bottom: 24px; }
+  .faq-help-btn {
+    display: inline-block;
+    padding: 14px 36px;
+    background: var(--ink);
+    color: var(--cream);
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .faq-help-btn:hover { background: var(--sage); }
+</style>
+</head>
+<body>
+
+<div class="shipping-bar">
+  <div class="shipping-bar-progress"></div>
+  <div class="shipping-bar-text">Free shipping on orders over <strong>$75</strong> · 30-day satisfaction guarantee</div>
+</div>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Daniel<span class="amp">'s</span> House</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">Daniel's Story</a></li>
+      <li><a href="skincare.html">Skincare</a></li>
+      <li><a href="supplements.html">Supplements</a></li>
+      <li><a href="bundles.html">Bundles</a></li>
+      <li><a href="shop.html">Shop By Concern</a></li>
+    </ul>
+    <div style="display: flex; gap: 4px;">
+      <button class="search-trigger" aria-label="Search">Search</button>
+      <button class="cart-trigger" aria-label="Open cart">Cart <span class="cart-trigger-count">0</span></button>
+    </div>
+  </div>
+</nav>
+
+<section class="faq-hero">
+  <div class="faq-eyebrow">Frequently Asked · Honestly Answered</div>
+  <h1 class="faq-title">Got <em>questions?</em></h1>
+  <p class="faq-tagline">Real answers, no fluff. If we missed yours, the contact link is at the bottom.</p>
+</section>
+
+<div class="faq-content">
+
+  <!-- Shipping & Orders -->
+  <div class="faq-cat">
+    <h2 class="faq-cat-title">Shipping &amp; <em>Orders</em></h2>
+    <div class="faq-cat-line"></div>
+
+    <div class="faq-q-block">
+      <div class="faq-q-text"><span>How fast does shipping arrive?</span><span class="faq-toggle-icon">+</span></div>
+      <div class="faq-a-text">Standard orders ship within 1-2 business days from our North American fulfillment center. Domestic delivery typically takes 3-5 business days. Free shipping on all orders over $75.</div>
+    </div>
+    <div class="faq-q-block">
+      <div class="faq-q-text"><span>Do you ship internationally?</span><span class="faq-toggle-icon">+</span></div>
+      <div class="faq-a-text">Yes — we ship to most countries. International orders typically take 7-14 business days. International shipping rates are calculated at checkout based on destination and order weight.</div>
+    </div>
+    <div class="faq-q-block">
+      <div class="faq-q-text"><span>How can I track my order?</span><span class="faq-toggle-icon">+</span></div>
+      <div class="faq-a-text">You'll receive a tracking link via email as soon as your order ships. Click the link anytime to see exactly where your package is.</div>
+    </div>
+    <div class="faq-q-block">
+      <div class="faq-q-text"><span>Can I change or cancel my order?</span><span class="faq-toggle-icon">+</span></div>
+      <div class="faq-a-text">Yes — if your order hasn't shipped yet. Email us within 2 hours of placing your order at daniel@danielshouse.com and we'll catch it before it leaves the warehouse.</div>
+    </div>
+  </div>
+
+  <!-- Returns & Guarantee -->
+  <div class="faq-cat">
+    <h2 class="faq-cat-title">Returns &amp; <em>Guarantee</em></h2>
+    <div class="faq-cat-line"></div>
+
+    <div class="faq-q-block">
+      <div class="faq-q-text"><span>What's your return policy?</span><span class="faq-toggle-icon">+</span></div>
+      <div class="faq-a-text">Every order comes with a 30-day satisfaction guarantee. If you don't love what you bought, send it back within 30 days for a full refund — even if the bottle is opened. We'd rather you be happy than hold onto a product that didn't work for you.</div>
+    </div>
+    <div class="faq-q-block">
+      <div class="faq-q-text"><span>How do I start a return?</span><span class="faq-toggle-icon">+</span></div>
+      <div class="faq-a-text">Email daniel@danielshouse.com with your order number. We'll send you a prepaid return label within one business day. Once we receive the return, refunds process within 3-5 business days.</div>
+    </div>
+    <div class="faq-q-block">
+      <div class="faq-q-text"><span>Can I return a bundle?</span><span class="faq-toggle-icon">+</span></div>
+      <div class="faq-a-text">Yes — bundles return the same way as individual products. Same 30-day window, same full-refund policy. You can also return individual items from a bundle if you like some products but not others.</div>
+    </div>
+  </div>
+
+  <!-- Subscriptions -->
+  <div class="faq-cat">
+    <h2 class="faq-cat-title">Subscribe &amp; <em>Save</em></h2>
+    <div class="faq-cat-line"></div>
+
+    <div class="faq-q-block">
+      <div class="faq-q-text"><span>How does Subscribe &amp; Save work?</span><span class="faq-toggle-icon">+</span></div>
+      <div class="faq-a-text">Pick any product, choose Subscribe &amp; Save at checkout, and we'll deliver it every 30 days at 15% off the regular price. You can change frequency, swap products, skip a delivery, or cancel anytime — no calls, no friction. Manage everything from your account.</div>
+    </div>
+    <div class="faq-q-block">
+      <div class="faq-q-text"><span>Can I cancel anytime?</span><span class="faq-toggle-icon">+</span></div>
+      <div class="faq-a-text">Yes — completely. Cancel from your account dashboard with one click. No phone calls, no retention pitches, no penalty. The 15% discount is our thank-you for the commitment, not a trap.</div>
+    </div>
+    <div class="faq-q-block">
+      <div class="faq-q-text"><span>Can I change shipping frequency?</span><span class="faq-toggle-icon">+</span></div>
+      <div class="faq-a-text">Yes — the default is 30 days, but you can set 45 or 60 day intervals if a bottle lasts you longer. Update from your account anytime.</div>
+    </div>
+    <div class="faq-q-block">
+      <div class="faq-q-text"><span>Do bundles work with Subscribe &amp; Save?</span><span class="faq-toggle-icon">+</span></div>
+      <div class="faq-a-text">Bundles already include their own discount (15-25% off retail). Subscription on bundles isn't currently available, but you can subscribe to individual products that match what's in any bundle.</div>
+    </div>
+  </div>
+
+  <!-- Ingredients & Safety -->
+  <div class="faq-cat">
+    <h2 class="faq-cat-title">Ingredients &amp; <em>Safety</em></h2>
+    <div class="faq-cat-line"></div>
+
+    <div class="faq-q-block">
+      <div class="faq-q-text"><span>Where are products manufactured?</span><span class="faq-toggle-icon">+</span></div>
+      <div class="faq-a-text">All Daniel's House products are manufactured in FDA-registered, GMP-certified facilities in North America. Every batch is third-party tested for purity, potency, and contamination before it leaves the warehouse.</div>
+    </div>
+    <div class="faq-q-block">
+      <div class="faq-q-text"><span>Are products vegan?</span><span class="faq-toggle-icon">+</span></div>
+      <div class="faq-a-text">Most are vegan — our skincare line is 100% vegan and cruelty-free. In supplements, exceptions include Flow (fish-based omega-3) and Collagen (bovine collagen). Each product page lists this clearly.</div>
+    </div>
+    <div class="faq-q-block">
+      <div class="faq-q-text"><span>Can I use products if I'm pregnant or nursing?</span><span class="faq-toggle-icon">+</span></div>
+      <div class="faq-a-text">For skincare, avoid retinol-containing products (Bounce, Renewal). Pregnancy-safe alternatives include Hydration, Soft, Hyaluronic, Defense, and Eye. For supplements, consult your healthcare provider before starting any new supplement during pregnancy or nursing.</div>
+    </div>
+    <div class="faq-q-block">
+      <div class="faq-q-text"><span>Are products gluten-free?</span><span class="faq-toggle-icon">+</span></div>
+      <div class="faq-a-text">Yes — all Daniel's House products are gluten-free. Common allergen warnings (soy, dairy, tree nuts, fish) are listed on each product page where applicable.</div>
+    </div>
+    <div class="faq-q-block">
+      <div class="faq-q-text"><span>Can I take supplements with prescription medication?</span><span class="faq-toggle-icon">+</span></div>
+      <div class="faq-a-text">For specific medications, consult your doctor or pharmacist. Supplements that warrant extra caution: Tranquil (ashwagandha) with thyroid medication, Flow (omega-3) with blood thinners, Restore (turmeric) with certain anti-inflammatory drugs. Most stacks are well-tolerated, but your healthcare provider knows your situation best.</div>
+    </div>
+    <div class="faq-q-block">
+      <div class="faq-q-text"><span>How do I store products?</span><span class="faq-toggle-icon">+</span></div>
+      <div class="faq-a-text">Skincare: cool, dry place out of direct sunlight. Most products last 6-12 months after opening. Supplements: cool, dry place. No refrigeration required even for our probiotic (Biome uses MAKTREK technology for shelf stability).</div>
+    </div>
+  </div>
+
+  <!-- Using the products -->
+  <div class="faq-cat">
+    <h2 class="faq-cat-title">Using the <em>Products</em></h2>
+    <div class="faq-cat-line"></div>
+
+    <div class="faq-q-block">
+      <div class="faq-q-text"><span>How long until I see results?</span><span class="faq-toggle-icon">+</span></div>
+      <div class="faq-a-text">It depends on the product. Sleep and energy supplements often shift within 1-2 weeks. Skincare changes are typically visible at 4-6 weeks for tone/texture, 8-12 weeks for fine line reduction. Longevity supplements compound over months and years. Consistency beats intensity — daily use is the variable that matters most.</div>
+    </div>
+    <div class="faq-q-block">
+      <div class="faq-q-text"><span>Can I combine multiple products?</span><span class="faq-toggle-icon">+</span></div>
+      <div class="faq-a-text">Yes — most are designed to be combined. Our bundles are pre-built combinations Daniel actually uses. The main rules: don't double up on retinol products in skincare (Bounce + Renewal alternate, never together); follow caffeine cutoff times for stim-containing supplements like Burn.</div>
+    </div>
+    <div class="faq-q-block">
+      <div class="faq-q-text"><span>Do I need to take supplements with food?</span><span class="faq-toggle-icon">+</span></div>
+      <div class="faq-a-text">Fat-soluble vitamins (A, D, E, K) absorb best with meals containing some fat. This includes Multi, Sunshine, Flow, and Vitality. Calm and Synapse can be taken with or without food. Each product page specifies the optimal timing.</div>
+    </div>
+    <div class="faq-q-block">
+      <div class="faq-q-text"><span>What if a product doesn't work for me?</span><span class="faq-toggle-icon">+</span></div>
+      <div class="faq-a-text">Send it back within 30 days for a full refund. Wellness is individual — what works for thousands may not be right for you. We'd rather you find a product that does work than feel stuck with one that doesn't.</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="faq-help">
+  <h3>Still have <em>questions?</em></h3>
+  <p>Email Daniel directly at daniel@danielshouse.com. Replies typically within one business day — sometimes faster.</p>
+  <a href="mailto:daniel@danielshouse.com" class="faq-help-btn">Email Us →</a>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Daniel<span class="amp">'s</span> House</div>
+      <div class="footer-tag">Your home for premium wellness — built on real results, not marketing.</div>
+      <div class="footer-attr">🌿 Vegan · Cruelty-Free · Made in North America<br>📧 daniel@danielshouse.com</div>
+    </div>
+    <div class="footer-col"><h4>Shop</h4><ul><li><a href="skincare.html">Skincare</a></li><li><a href="supplements.html">Supplements</a></li><li><a href="bundles.html">Bundles</a></li><li><a href="shop.html">Shop by Concern</a></li></ul></div>
+    <div class="footer-col"><h4>The House</h4><ul><li><a href="about.html">Daniel's Story</a></li><li><a href="ingredients.html">Ingredient Glossary</a></li><li><a href="quiz.html">Take the Quiz</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
+    <div class="footer-col"><h4>Help</h4><ul><li><a href="faq.html">Shipping &amp; Returns</a></li><li><a href="faq.html">30-Day Guarantee</a></li><li><a href="faq.html">Contact</a></li></ul></div>
+  </div>
+</footer>
+
+<!-- Cart Drawer -->
+<div class="cart-overlay"></div>
+<aside class="cart-drawer">
+  <div class="cart-header"><div class="cart-title">Your <em>Cart</em></div><button class="cart-close" aria-label="Close cart">×</button></div>
+  <div class="cart-body"></div>
+  <div class="cart-footer">
+    <div class="cart-totals">
+      <div class="cart-totals-line"><span>Subtotal</span><span class="subtotal-amount">$0.00</span></div>
+      <div class="cart-totals-line total"><span>Total</span><span class="amount total-amount">$0.00</span></div>
+    </div>
+    <button class="cart-checkout">Checkout →</button>
+    <div class="cart-shipping-note">Free shipping on orders over $75.</div>
+  </div>
+</aside>
+
+<!-- Email Popup -->
+<div class="popup-overlay">
+  <div class="popup">
+    <button class="popup-close" aria-label="Close">×</button>
+    <div class="popup-eyebrow">10% Off Your First Order</div>
+    <div class="popup-title">Welcome to <em>The House</em>.</div>
+    <div class="popup-blurb">Drop your email for 10% off your first order, plus first access to new launches and Daniel's actual routine notes.</div>
+    <form class="popup-form">
+      <input type="email" class="popup-input" placeholder="Your email address" required />
+      <button type="submit" class="popup-submit">Get My 10% Off →</button>
+    </form>
+    <button class="popup-skip">No thanks</button>
+  </div>
+</div>
+
+<!-- Search Modal -->
+<div class="search-overlay">
+  <div class="search-inner">
+    <div class="search-input-wrap">
+      <input type="text" class="search-input" placeholder="Search products, ingredients, concerns..." />
+      <button class="search-close" aria-label="Close search">×</button>
+    </div>
+    <div class="search-results"></div>
+  </div>
+</div>
+
+<script src="data/products.js"></script>
+<script src="js/shared.js"></script>
+<script>
+// FAQ accordion
+document.querySelectorAll('.faq-q-block').forEach(item => {
+  item.addEventListener('click', () => item.classList.toggle('open'));
+});
+</script>
+</body>
+</html>
