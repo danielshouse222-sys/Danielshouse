@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bundles — Daniel's House</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  :root {
+    --cream: #FAF6F0;
+    --cream-warm: #F2EBDD;
+    --ink: #1F1B17;
+    --ink-soft: #4A433B;
+    --sage: #5D6E5C;
+    --gold: #B89968;
+    --tan: #E8E1D5;
+    --rule: #D4C9B6;
+    --night: #1A1714;
+  }
+
+  /* Page header */
+  .page-header { max-width: 920px; margin: 0 auto; padding: 100px 40px 70px; text-align: center; }
+  .page-header-eyebrow { font-size: 12px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 28px; font-weight: 500; }
+  .page-header h1 { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: clamp(48px, 6vw, 76px); line-height: 1.05; letter-spacing: -0.01em; margin-bottom: 32px; }
+  .page-header h1 em { font-style: italic; color: var(--sage); font-weight: 400; }
+  .page-header p { font-size: 16px; line-height: 1.75; color: var(--ink-soft); max-width: 640px; margin: 0 auto; }
+
+  /* Credibility strip */
+  .credibility { max-width: 1080px; margin: 0 auto 0; padding: 0 40px 50px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; border-bottom: 1px solid var(--rule); padding-bottom: 50px; text-align: center; }
+  .cred-item { display: flex; flex-direction: column; align-items: center; }
+  .cred-num { font-family: 'Cormorant Garamond', serif; font-size: 44px; font-weight: 500; color: var(--sage); line-height: 1; margin-bottom: 6px; }
+  .cred-num em { color: var(--gold); font-style: italic; }
+  .cred-label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft); font-weight: 500; }
+
+  /* Hero bundle */
+  .hero-section { max-width: 1200px; margin: 80px auto 0; padding: 0 40px; }
+  .hero-eyebrow { text-align: center; font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; font-weight: 500; }
+  .hero-title { text-align: center; font-family: 'Cormorant Garamond', serif; font-size: clamp(40px, 4.5vw, 52px); font-weight: 400; line-height: 1.05; margin-bottom: 50px; }
+  .hero-title em { font-style: italic; color: var(--sage); }
+
+  .hero-bundle { display: grid; grid-template-columns: 1.1fr 1fr; gap: 0; background: var(--ink); color: var(--cream); border: 1px solid var(--gold); }
+  .hero-img-side { background: linear-gradient(140deg, #2a2520, var(--ink)); padding: 50px; display: flex; align-items: center; justify-content: center; position: relative; }
+  .hero-product-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; width: 100%; max-width: 480px; }
+  .hero-product-thumb { aspect-ratio: 1/1; background: var(--cream-warm); border: 1px solid rgba(184, 153, 104, 0.35); overflow: hidden; }
+  .hero-product-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .hero-product-thumb-label { aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center; background: rgba(184, 153, 104, 0.1); border: 1px solid rgba(184, 153, 104, 0.4); font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--gold); font-size: 11px; padding: 4px; text-align: center; }
+
+  .hero-content-side { padding: 60px 50px; display: flex; flex-direction: column; justify-content: center; }
+  .hero-badge { display: inline-block; font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; background: var(--gold); color: var(--ink); padding: 5px 14px; font-weight: 500; align-self: flex-start; margin-bottom: 24px; }
+  .hero-bundle-title { font-family: 'Cormorant Garamond', serif; font-size: 52px; font-weight: 400; line-height: 1; margin-bottom: 8px; }
+  .hero-bundle-title em { font-style: italic; color: var(--gold); }
+  .hero-bundle-sub { font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 24px; }
+  .hero-bundle-desc { font-size: 15px; line-height: 1.7; color: rgba(250, 246, 240, 0.78); margin-bottom: 28px; }
+  .hero-included { padding-top: 24px; border-top: 1px solid rgba(184, 153, 104, 0.3); margin-bottom: 28px; }
+  .hero-included-label { font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 14px; }
+  .hero-included-list { font-family: 'Cormorant Garamond', serif; font-size: 16px; line-height: 1.85; color: rgba(250, 246, 240, 0.92); }
+  .hero-savings { display: flex; justify-content: space-between; align-items: baseline; padding: 18px 0; border-top: 1px solid rgba(184, 153, 104, 0.3); border-bottom: 1px solid rgba(184, 153, 104, 0.3); margin-bottom: 28px; }
+  .hero-savings-amount { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 500; color: var(--gold); font-style: italic; }
+  .hero-savings-label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(250, 246, 240, 0.6); }
+  .hero-cta { display: inline-block; padding: 16px 40px; background: var(--gold); color: var(--ink); text-decoration: none; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500; transition: background 0.3s; text-align: center; }
+  .hero-cta:hover { background: var(--cream); }
+
+  /* Section header */
+  .sec-header { max-width: 1080px; margin: 0 auto; padding: 100px 40px 0; text-align: center; }
+  .sec-eyebrow { font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; font-weight: 500; }
+  .sec-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(44px, 5vw, 56px); font-weight: 400; line-height: 1; margin-bottom: 14px; }
+  .sec-title em { font-style: italic; color: var(--sage); }
+  .sec-blurb { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 17px; color: var(--ink-soft); max-width: 580px; margin: 0 auto; line-height: 1.55; }
+
+  /* Bundle grid */
+  .bundle-grid { max-width: 1200px; margin: 60px auto 0; padding: 0 40px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
+
+  .bundle-card { background: var(--cream); border: 1px solid var(--rule); padding: 0; display: flex; flex-direction: column; transition: transform 0.4s, border-color 0.3s, box-shadow 0.3s; }
+  .bundle-card:hover { transform: translateY(-4px); border-color: var(--gold); box-shadow: 0 12px 40px rgba(31, 27, 23, 0.06); }
+
+  .bundle-img-area { padding: 32px 32px 24px; background: var(--cream-warm); border-bottom: 1px solid var(--rule); }
+  .bundle-product-grid { display: grid; gap: 8px; max-width: 100%; }
+  .bundle-product-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .bundle-product-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+  .bundle-product-grid.cols-5 { grid-template-columns: repeat(5, 1fr); }
+  .bundle-thumb { aspect-ratio: 1/1; background: var(--cream); border: 1px solid var(--rule); overflow: hidden; position: relative; }
+  .bundle-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .bundle-thumb-label { aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center; background: var(--cream); border: 1px solid var(--rule); font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--sage); font-size: 11px; padding: 4px; text-align: center; line-height: 1.2; }
+
+  .bundle-body { padding: 30px 32px 32px; flex: 1; display: flex; flex-direction: column; }
+  .bundle-eyebrow { font-size: 10.5px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 10px; }
+  .bundle-title { font-family: 'Cormorant Garamond', serif; font-size: 34px; font-weight: 400; line-height: 1.05; margin-bottom: 6px; }
+  .bundle-title em { font-style: italic; color: var(--sage); }
+  .bundle-sub { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-soft); font-weight: 500; margin-bottom: 18px; }
+  .bundle-desc { font-size: 13.5px; line-height: 1.65; color: var(--ink-soft); margin-bottom: 22px; }
+  .bundle-included { padding-top: 18px; border-top: 1px solid var(--rule); margin-bottom: 22px; }
+  .bundle-included-label { font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 10px; }
+  .bundle-included-list { font-family: 'Cormorant Garamond', serif; font-size: 14.5px; line-height: 1.7; color: var(--ink); }
+  .bundle-savings { display: flex; justify-content: space-between; align-items: baseline; padding: 16px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin-bottom: 22px; }
+  .bundle-save { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 24px; font-weight: 500; color: var(--sage); }
+  .bundle-save-label { font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft); }
+  .bundle-cta { display: block; text-align: center; padding: 14px 0; background: var(--ink); color: var(--cream); text-decoration: none; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 500; transition: background 0.3s; margin-top: auto; }
+  .bundle-cta:hover { background: var(--sage); }
+
+  /* Closing */
+  .closing { text-align: center; padding: 120px 40px 100px; max-width: 720px; margin: 0 auto; }
+  .closing h2 { font-family: 'Cormorant Garamond', serif; font-size: 44px; font-weight: 400; margin-bottom: 16px; line-height: 1.15; }
+  .closing h2 em { font-style: italic; color: var(--sage); }
+  .closing p { color: var(--ink-soft); margin-bottom: 28px; font-size: 15px; line-height: 1.7; }
+  .closing-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .closing-btn { display: inline-block; padding: 16px 36px; text-decoration: none; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500; transition: all 0.3s; }
+  .closing-btn.primary { background: var(--ink); color: var(--cream); }
+  .closing-btn.primary:hover { background: var(--sage); }
+  .closing-btn.secondary { border: 1px solid var(--ink); color: var(--ink); }
+  .closing-btn.secondary:hover { background: var(--ink); color: var(--cream); }
+
+  @media (max-width: 1000px) {
+    .credibility { grid-template-columns: 1fr 1fr; gap: 30px 20px; }
+    .hero-bundle { grid-template-columns: 1fr; }
+    .hero-img-side { padding: 40px; }
+    .hero-content-side { padding: 40px 32px; }
+    .bundle-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .credibility { grid-template-columns: 1fr 1fr; }
+    .hero-product-grid { grid-template-columns: repeat(4, 1fr); }
+    .bundle-product-grid.cols-5 { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  /* ═══ BUILD YOUR OWN BUNDLE ═══ */
+  .builder-section { background: var(--cream-warm); padding: 100px 40px; border-top: 1px solid var(--rule); margin-top: 80px; }
+  .builder-section-inner { max-width: 1200px; margin: 0 auto; }
+  .builder-header { text-align: center; max-width: 720px; margin: 0 auto 50px; }
+  .builder-eyebrow { font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; font-weight: 500; }
+  .builder-header h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(44px, 5vw, 64px); font-weight: 400; line-height: 1.05; margin-bottom: 18px; }
+  .builder-header h2 em { font-style: italic; color: var(--sage); }
+  .builder-header p { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 17px; color: var(--ink-soft); line-height: 1.55; }
+
+  .builder-tracker { background: var(--cream); border: 1px solid var(--rule); border-left: 3px solid var(--gold); padding: 22px 28px; margin-bottom: 36px; display: grid; grid-template-columns: 1fr 1fr auto; gap: 32px; align-items: center; position: sticky; top: 70px; z-index: 30; box-shadow: 0 2px 12px rgba(31, 27, 23, 0.04); }
+  .tracker-progress { min-width: 0; }
+  .tracker-count { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 500; color: var(--ink); margin-bottom: 8px; line-height: 1; }
+  .tracker-count em { font-style: italic; color: var(--sage); }
+  .tracker-bar { height: 4px; background: var(--tan); border-radius: 2px; overflow: hidden; }
+  .tracker-fill { height: 100%; background: var(--gold); width: 0%; transition: width 0.4s ease; }
+  .tracker-prices { display: grid; gap: 4px; min-width: 0; font-size: 12.5px; color: var(--ink-soft); }
+  .tracker-line { display: flex; justify-content: space-between; gap: 16px; }
+  .tracker-line span:last-child { font-family: 'Cormorant Garamond', serif; font-size: 15px; font-weight: 500; color: var(--ink); }
+  .tracker-final { padding-top: 8px; border-top: 1px solid var(--rule); margin-top: 4px; }
+  .tracker-final span:last-child { color: var(--sage); font-size: 22px; font-style: italic; }
+  .builder-cta { display: inline-block; padding: 18px 28px; background: var(--ink); color: var(--cream); text-decoration: none; border: none; cursor: pointer; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 500; transition: background 0.3s, opacity 0.3s; font-family: 'Poppins', sans-serif; white-space: nowrap; }
+  .builder-cta:hover:not(:disabled) { background: var(--sage); }
+  .builder-cta:disabled { background: var(--ink-soft); opacity: 0.4; cursor: not-allowed; }
+
+  .builder-tabs { display: flex; gap: 8px; margin-bottom: 28px; justify-content: center; flex-wrap: wrap; }
+  .tab { padding: 10px 22px; background: transparent; border: 1px solid var(--rule); cursor: pointer; font-family: 'Poppins', sans-serif; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; color: var(--ink-soft); transition: all 0.3s; }
+  .tab:hover { border-color: var(--gold); color: var(--ink); }
+  .tab.active { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+
+  .builder-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+  .builder-card { background: var(--cream); border: 2px solid var(--rule); padding: 14px 14px 16px; cursor: pointer; transition: all 0.3s; position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; user-select: none; }
+  .builder-card:hover { border-color: var(--gold); transform: translateY(-2px); }
+  .builder-card.selected { border-color: var(--gold); background: rgba(184, 153, 104, 0.12); }
+  .builder-card-img { width: 100%; aspect-ratio: 1/1; background: var(--cream-warm); border: 1px solid var(--rule); margin-bottom: 12px; position: relative; overflow: hidden; }
+  .builder-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .builder-card-check { position: absolute; top: 8px; right: 8px; width: 28px; height: 28px; background: var(--gold); color: var(--cream); border-radius: 50%; display: none; align-items: center; justify-content: center; font-size: 16px; font-weight: 600; box-shadow: 0 2px 8px rgba(0,0,0,0.18); }
+  .builder-card.selected .builder-card-check { display: flex; }
+  .builder-card-cat { font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 5px; font-weight: 500; }
+  .builder-card-name { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-weight: 500; line-height: 1.15; margin-bottom: 5px; color: var(--ink); }
+  .builder-card-name em { font-style: italic; color: var(--sage); }
+  .builder-card-price { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 500; color: var(--ink); }
+
+  .builder-summary { display: none; margin-top: 50px; padding: 40px 36px 36px; background: var(--ink); color: var(--cream); border: 1px solid var(--gold); }
+  .builder-summary.visible { display: block; }
+  .builder-summary h3 { font-family: 'Cormorant Garamond', serif; font-size: 38px; font-weight: 400; margin-bottom: 4px; line-height: 1.05; }
+  .builder-summary h3 em { font-style: italic; color: var(--gold); }
+  .builder-summary-sub { font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 28px; font-weight: 500; }
+  .builder-summary-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 28px; }
+  .summary-item { display: flex; gap: 12px; align-items: center; padding: 12px; border: 1px solid rgba(184, 153, 104, 0.3); text-decoration: none; color: var(--cream); transition: border-color 0.3s, background 0.3s; }
+  .summary-item:hover { border-color: var(--gold); background: rgba(184, 153, 104, 0.08); }
+  .summary-item img { width: 52px; height: 52px; object-fit: cover; flex-shrink: 0; }
+  .summary-item-text { flex: 1; min-width: 0; }
+  .summary-item-name { font-family: 'Cormorant Garamond', serif; font-size: 15px; font-weight: 500; line-height: 1.15; }
+  .summary-item-name em { font-style: italic; color: var(--gold); }
+  .summary-item-price { font-size: 12px; color: rgba(250, 246, 240, 0.7); margin-top: 2px; }
+  .builder-summary-totals { display: grid; grid-template-columns: 1fr auto; gap: 8px 24px; padding: 20px 0; border-top: 1px solid rgba(184, 153, 104, 0.3); border-bottom: 1px solid rgba(184, 153, 104, 0.3); margin-bottom: 24px; font-size: 14px; align-items: baseline; }
+  .builder-summary-totals .total-final-label { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 18px; padding-top: 10px; }
+  .builder-summary-totals .total-final { font-family: 'Cormorant Garamond', serif; font-size: 30px; color: var(--gold); font-style: italic; padding-top: 10px; }
+  .builder-summary-code { background: rgba(184, 153, 104, 0.1); padding: 18px 22px; border: 1px dashed var(--gold); margin-bottom: 24px; text-align: center; font-size: 13px; color: rgba(250, 246, 240, 0.85); }
+  .builder-summary-code strong { font-family: 'Cormorant Garamond', serif; font-size: 24px; color: var(--gold); font-style: italic; letter-spacing: 0.05em; display: inline-block; padding: 0 6px; }
+  .builder-summary-cta { display: inline-block; padding: 16px 36px; background: var(--gold); color: var(--ink); text-decoration: none; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500; transition: background 0.3s; font-family: 'Poppins', sans-serif; }
+  .builder-summary-cta:hover { background: var(--cream); }
+
+  @media (max-width: 1000px) {
+    .builder-grid { grid-template-columns: repeat(3, 1fr); }
+    .builder-tracker { grid-template-columns: 1fr; gap: 18px; padding: 20px; }
+    .builder-summary-list { grid-template-columns: repeat(2, 1fr); }
+    .builder-summary { padding: 30px 24px; }
+  }
+  @media (max-width: 640px) {
+    .builder-grid { grid-template-columns: repeat(2, 1fr); }
+    .builder-summary-list { grid-template-columns: 1fr; }
+    .builder-section { padding: 70px 20px; }
+  }
+
+
+  /* Ultimate Bundle hero — overrides for 22-product grid */
+  .hero-product-grid-ultimate { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; width: 100%; max-width: 540px; }
+  .hero-product-grid-ultimate .hero-product-thumb { aspect-ratio: 1/1; background: var(--cream-warm); border: 1px solid rgba(184, 153, 104, 0.35); overflow: hidden; }
+  .hero-product-grid-ultimate .hero-product-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .hero-product-grid-ultimate .hero-thumb-empty { aspect-ratio: 1/1; background: rgba(184, 153, 104, 0.06); border: 1px solid rgba(184, 153, 104, 0.2); display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--gold); font-size: 12px; opacity: 0.6; }
+
+</style>
+</head>
+<body>
+
+<div class="announce">
+  Free shipping on orders over $60 · <strong>30-day satisfaction guarantee</strong>
+</div>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Daniel<span class="amp">'s</span> House</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">Daniel's Story</a></li>
+      <li><a href="skincare.html">Skincare</a></li>
+      <li><a href="supplements.html">Supplements</a></li>
+      <li><a href="bundles.html" class="active">Bundles</a></li>
+    </ul>
+    <div class="nav-cart">Cart (0)</div>
+  </div>
+  <div class="mobile-pages">
+    <a href="index.html">Home</a>
+    <a href="about.html">Story</a>
+    <a href="skincare.html">Skincare</a>
+    <a href="supplements.html">Supplements</a>
+    <a href="bundles.html" class="active">Bundles</a>
+  </div>
+</nav>
+
+<section class="page">
+
+  <div class="page-header">
+    <div class="page-header-eyebrow">Curated Collections · Built for Real Routines</div>
+    <h1>Bundles. Built —<br><em>The Way You'll Use Them.</em></h1>
+    <p>The full skincare line and supplement stack, organized into the routines, rituals, and gifts they're actually meant for. Save up to $179 per bundle versus buying individually — without the guesswork of figuring out which bottles work together.</p>
+  </div>
+
+  <!-- Credibility -->
+  <div class="credibility">
+    <div class="cred-item"><div class="cred-num">9<em>.</em></div><div class="cred-label">Curated bundles</div></div>
+    <div class="cred-item"><div class="cred-num">$179</div><div class="cred-label">Max bundle savings</div></div>
+    <div class="cred-item"><div class="cred-num">30<em>.</em></div><div class="cred-label">Day satisfaction guarantee</div></div>
+    <div class="cred-item"><div class="cred-num">Free</div><div class="cred-label">Shipping over $60</div></div>
+  </div>
+
+  <!-- ═══ HERO: THE ULTIMATE BUNDLE ═══ -->
+  <div class="hero-section">
+    <div class="hero-eyebrow">The Full Stack · Every Bottle, Every Bottle Worth Having</div>
+    <div class="hero-title">The <em>Ultimate</em> Bundle</div>
+
+    <div class="hero-bundle">
+      <div class="hero-img-side">
+        <div class="hero-product-grid hero-product-grid-ultimate">
+          <!-- Foundation supplements (5) -->
+          <div class="hero-product-thumb"><img src="products/multi.jpeg" alt="Multi" loading="lazy"/></div>
+          <div class="hero-product-thumb"><img src="products/calm.jpeg" alt="Calm" loading="lazy"/></div>
+          <div class="hero-product-thumb"><img src="products/sunshine.jpeg" alt="Sunshine" loading="lazy"/></div>
+          <div class="hero-product-thumb"><img src="products/flow.jpeg" alt="Flow" loading="lazy"/></div>
+          <div class="hero-product-thumb"><img src="products/biome.jpeg" alt="Biome" loading="lazy"/></div>
+          <!-- Longevity supplements (5) -->
+          <div class="hero-product-thumb"><img src="products/nadplus.jpeg" alt="NAD+" loading="lazy"/></div>
+          <div class="hero-product-thumb"><img src="products/vitality.jpeg" alt="Vitality" loading="lazy"/></div>
+          <div class="hero-product-thumb"><img src="products/synapse.jpeg" alt="Synapse" loading="lazy"/></div>
+          <div class="hero-product-thumb"><img src="products/tranquil.jpeg" alt="Tranquil" loading="lazy"/></div>
+          <div class="hero-product-thumb"><img src="products/restore.jpeg" alt="Restore" loading="lazy"/></div>
+          <!-- Skincare AM (6) -->
+          <div class="hero-product-thumb"><img src="images/Wash.jpeg" alt="Wash" loading="lazy"/></div>
+          <div class="hero-product-thumb"><img src="images/balance.jpeg" alt="Balance" loading="lazy"/></div>
+          <div class="hero-product-thumb"><img src="images/boost.jpeg" alt="Boost" loading="lazy"/></div>
+          <div class="hero-product-thumb"><img src="images/hyaluronic.jpeg" alt="Hyaluronic" loading="lazy"/></div>
+          <div class="hero-product-thumb"><img src="images/defense.jpeg" alt="Defense" loading="lazy"/></div>
+          <div class="hero-product-thumb"><img src="images/Soft.jpeg" alt="Soft" loading="lazy"/></div>
+          <!-- Skincare PM (6) -->
+          <div class="hero-product-thumb"><img src="images/bounce.jpeg" alt="Bounce" loading="lazy"/></div>
+          <div class="hero-product-thumb"><img src="images/Firm.jpeg" alt="Firm" loading="lazy"/></div>
+          <div class="hero-product-thumb"><img src="images/hydration.jpeg" alt="Hydration" loading="lazy"/></div>
+          <div class="hero-product-thumb"><img src="images/Eye.jpeg" alt="Eye" loading="lazy"/></div>
+          <div class="hero-product-thumb"><img src="images/renewal.jpeg" alt="Renewal" loading="lazy"/></div>
+          <div class="hero-product-thumb"><img src="images/glow.jpeg" alt="Glow" loading="lazy"/></div>
+          <!-- Two decorative empty cells -->
+          <div class="hero-thumb-empty">All 22</div>
+          <div class="hero-thumb-empty">In One Box</div>
+        </div>
+      </div>
+      <div class="hero-content-side">
+        <span class="hero-badge">Biggest Savings</span>
+        <div class="hero-bundle-title">The <em>Ultimate</em></div>
+        <div class="hero-bundle-sub">22 Bottles · Skincare + Supplements · Save 25%</div>
+        <div class="hero-bundle-desc">Everything Daniel actually uses on himself, every day. The complete Daily Stack of ten supplements plus the full AM and PM skincare rituals — twenty-two bottles in one box. The biggest savings on the site, the simplest decision: the whole house, all at once.</div>
+
+        <div class="hero-included">
+          <div class="hero-included-label">What's Inside · 22 Products</div>
+          <div class="hero-included-list">10 Daily Supplements · 6 AM Skincare<br>6 PM Skincare</div>
+        </div>
+
+        <div class="hero-savings">
+          <div class="hero-savings-amount">Save $179</div>
+          <div class="hero-savings-label">$717 → $538 · 25% off</div>
+        </div>
+
+        <a href="#" class="hero-cta">Add Ultimate to Cart →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ BUNDLE GRID ═══ -->
+  <div class="sec-header">
+    <div class="sec-eyebrow">More Ways to Stack</div>
+    <div class="sec-title">The <em>Curated</em> Collection</div>
+    <div class="sec-blurb">Eight more bundles — each built for a specific use, person, or moment in the day.</div>
+  </div>
+
+  <div class="bundle-grid">
+
+    <!-- Daniel's Daily Bundle (was hero, now grid card) -->
+    <div class="bundle-card">
+      <div class="bundle-img-area">
+        <div class="bundle-product-grid cols-5">
+          <div class="bundle-thumb"><img src="products/multi.jpeg" alt="Multi" loading="lazy"/></div>
+          <div class="bundle-thumb"><img src="products/calm.jpeg" alt="Calm" loading="lazy"/></div>
+          <div class="bundle-thumb"><img src="products/sunshine.jpeg" alt="Sunshine" loading="lazy"/></div>
+          <div class="bundle-thumb"><img src="products/flow.jpeg" alt="Flow" loading="lazy"/></div>
+          <div class="bundle-thumb"><img src="products/biome.jpeg" alt="Biome" loading="lazy"/></div>
+          <div class="bundle-thumb"><img src="products/nadplus.jpeg" alt="NAD+" loading="lazy"/></div>
+          <div class="bundle-thumb"><img src="products/vitality.jpeg" alt="Vitality" loading="lazy"/></div>
+          <div class="bundle-thumb"><img src="products/synapse.jpeg" alt="Synapse" loading="lazy"/></div>
+          <div class="bundle-thumb"><img src="products/tranquil.jpeg" alt="Tranquil" loading="lazy"/></div>
+          <div class="bundle-thumb"><img src="products/restore.jpeg" alt="Restore" loading="lazy"/></div>
+        </div>
+      </div>
+      <div class="bundle-body">
+        <div class="bundle-eyebrow">Founder's Stack · Supplements Only</div>
+        <div class="bundle-title">Daniel's <em>Daily</em> Bundle</div>
+        <div class="bundle-sub">10 Daily Supplements</div>
+        <div class="bundle-desc">Everything Daniel takes, every single day. Five Foundation essentials paired with five Longevity actives — the complete daily supplement protocol, no skincare. For customers who already have a routine and want the inside-out half.</div>
+        <div class="bundle-included">
+          <div class="bundle-included-label">What's Inside</div>
+          <div class="bundle-included-list">Multi · Calm · Sunshine · Flow · Biome<br>NAD+ · Vitality · Synapse · Tranquil · Restore</div>
+        </div>
+        <div class="bundle-savings">
+          <div class="bundle-save">Save $57</div>
+          <div class="bundle-save-label">$315 → $258</div>
+        </div>
+        <a href="#" class="bundle-cta">Add to Cart →</a>
+      </div>
+    </div>
+
+    <!-- AM Bundle -->
+    <div class="bundle-card">
+      <div class="bundle-img-area">
+        <div class="bundle-product-grid cols-3">
+          <div class="bundle-thumb"><img src="images/Wash.jpeg" alt="Wash" loading="lazy"/></div>
+          <div class="bundle-thumb"><img src="images/balance.jpeg" alt="Balance" loading="lazy"/></div>
+          <div class="bundle-thumb"><img src="images/boost.jpeg" alt="Boost" loading="lazy"/></div>
+          <div class="bundle-thumb"><img src="images/hyaluronic.jpeg" alt="Hyaluronic" loading="lazy"/></div>
+          <div class="bundle-thumb"><img src="images/defense.jpeg" alt="Defense" loading="lazy"/></div>
+          <div class="bundle-thumb"><img src="images/Soft.jpeg" alt="Soft" loading="lazy"/></div>
+        </div>
+      </div>
+      <div class="bundle-body">
+        <div class="bundle-eyebrow">Morning Skincare Ritual</div>
+        <div class="bundle-title">The <em>AM</em> Bundle</div>
+        <div class="bundle-sub">6 Skincare Steps</div>
+        <div class="bundle-desc">The full morning routine. Cleanse, tone, brighten, hydrate, defend, moisturize — six steps to start the day with a complete barrier and visible glow.</div>
+        <div class="bundle-included">
+          <div class="bundle-included-label">What's Inside</div>
+          <div class="bundle-included-list">Wash · Balance · Boost<br>Hyaluronic · Defense · Soft</div>
+        </div>
+        <div class="bundle-savings">
+          <div class="bundle-save">Save $27</div>
+          <div class="bundle-save-label">$182 → $155</div>
+        </div>
+        <a href="#" class="bundle-cta">Add to Cart →</a>
+      </div>
+    </div>
+
+    <!-- PM Bundle -->
+    <div class="bundle-card">
+      <div class="bundle-img-area">
+        <div class="bundle-product-grid cols-3">
+          <div class="bundle-thumb"><img src="images/bounce.jpeg" alt="Bounce" loading="lazy"/></div>
+          <div class="bundle-thumb"><img src="images/Firm.jpeg" alt="Firm" loading="lazy"/></div>
+          <div class="bundle-thumb"><img src="images/hydration.jpeg" alt="Hydration" loading="lazy"/></div>
+          <div class="bundle-thumb"><img src="images/Eye.jpeg" alt="Eye" loading="lazy"/></div>
+          <div class="bundle-thumb"><img src="images/renewal.jpeg" alt="Renewal" loading="lazy"/></div>
+          <div class="bundle-thumb"><img src="images/glow.jpeg" alt="Glow" loading="lazy"/></div>
+        </div>
+      </div>
+      <div class="bundle-body">
+        <div class="bundle-eyebrow">Evening Skincare Ritual</div>
+        <div class="bundle-title">The <em>PM</em> Bundle</div>
+        <div class="bundle-sub">6 Skincare Steps</div>
+        <div class="bundle-desc">The full evening routine. Resurface, firm, hydrate, treat the eyes, repair overnight, and seal it all in with the finishing oil. Wake up better.</div>
+        <div class="bundle-included">
+          <div class="bundle-included-label">What's Inside</div>
+          <div class="bundle-included-list">Bounce · Firm · Hydration<br>Eye · Renewal · Glow</div>
+        </div>
+        <div class="bundle-savings">
+          <div class="bundle-save">Save $33</div>
+          <div class="bundle-save-label">$220 → $187</div>
+        </div>
+        <a href="#" class="bundle-cta">Add to Cart →</a>
+      </div>
+    </div>
+
+    <!-- Workout Bundle -->
+    <div class="bundle-card">
+      <div class="bundle-img-area">
+        <div class="bundle-product-grid cols-5">
+          <div class="bundle-thumb"><img src="products/power.jpeg" alt="Power" loading="lazy"/></div>
+          <div class="bundle-thumb"><img src="products/pump.jpeg" alt="Pump" loading="lazy"/></div>
+          <div class="bundle-thumb"><img src="products/seal.jpeg" alt="Seal" loading="lazy"/></div>
+          <div class="bundle-thumb"><img src="products/greens.jpeg" alt="Greens" loading="lazy"/></div>
+          <div class="bundle-thumb"><img src="products/burn.jpeg" alt="Burn" loading="lazy"/></div>
+        </div>
+      </div>
+      <div class="bundle-body">
+        <div class="bundle-eyebrow">Train Harder · Recover Faster</div>
+        <div class="bundle-title">The <em>Workout</em> Bundle</div>
+        <div class="bundle-sub">5 Performance Supplements</div>
+        <div class="bundle-desc">The full performance stack. Strength, output, recovery, nutrient density, and the metabolic edge. Five formulations for the days you put in real work.</div>
+        <div class="bundle-included">
+          <div class="bundle-included-label">What's Inside</div>
+          <div class="bundle-included-list">Power · Pump · Seal<br>Greens · Burn</div>
+        </div>
+        <div class="bundle-savings">
+          <div class="bundle-save">Save $26</div>
+          <div class="bundle-save-label">$174 → $148</div>
+        </div>
+        <a href="#" class="bundle-cta">Add to Cart →</a>
+      </div>
+    </div>
+
+    <!-- Longevity Bundle -->
+    <div class="bundle-card">
+      <div class="bundle-img-area">
+        <div class="bundle-product-grid cols-5">
+          <div class="bundle-thumb"><img src="products/nadplus.jpeg" alt="NAD+" loading="lazy"/></div>
+          <div class="bundle-thumb"><img src="products/vitality.jpeg" alt="Vitality" loading="lazy"/></div>
+          <div class="bundle-thumb"><img src="products/synapse.jpeg" alt="Synapse" loading="lazy"/></div>
+          <div class="bundle-thumb"><img src="products/tranquil.jpeg" alt="Tranquil" loading="lazy"/></div>
+          <div class="bundle-thumb"><img src="products/restore.jpeg" alt="Restore" loading="lazy"/></div>
+        </div>
+      </div>
+      <div class="bundle-body">
+        <div class="bundle-eyebrow">Age Better · Live Longer</div>
+        <div class="bundle-title">The <em>Longevity</em> Bundle</div>
+        <div class="bundle-sub">5 Longevity Actives</div>
+        <div class="bundle-desc">The five actives that pay off over years. Cellular energy, cognitive support, stress resilience, and joint mobility — daily, with the science behind each one.</div>
+        <div class="bundle-included">
+          <div class="bundle-included-label">What's Inside</div>
+          <div class="bundle-included-list">NAD+ · Vitality · Synapse<br>Tranquil · Restore</div>
+        </div>
+        <div class="bundle-savings">
+          <div class="bundle-save">Save $27</div>
+          <div class="bundle-save-label">$179 → $152</div>
+        </div>
+        <a href="#" class="bundle-cta">Add to Cart →</a>
+      </div>
+    </div>
+
+    <!-- Mom's Bundle -->
+    <div class="bundle-card">
+      <div class="bundle-img-area">
+        <div class="bundle-product-grid cols-4">
+          <div class="bundle-thumb"><img src="products/calm.jpeg" alt="Calm" loading="lazy"/></div>
+          <div class="bundle-thumb"><img src="products/tranquil.jpeg" alt="Tranquil" loading="lazy"/></div>
+          <div class="bundle-thumb"><img src="products/multi.jpeg" alt="Multi" loading="lazy"/></div>
+          <div class="bundle-thumb"><img src="products/collagen.jpeg" alt="Collagen" loading="lazy"/></div>
+          <div class="bundle-thumb"><img src="products/radiance.jpeg" alt="Radiance" loading="lazy"/></div>
+          <div class="bundle-thumb"><img src="images/Eye.jpeg" alt="Eye" loading="lazy"/></div>
+          <div class="bundle-thumb"><img src="images/renewal.jpeg" alt="Renewal" loading="lazy"/></div>
+          <div class="bundle-thumb-label">Curated<br>Selection</div>
+        </div>
+      </div>
+      <div class="bundle-body">
+        <div class="bundle-eyebrow">Stress Less · Sleep Better · Glow More</div>
+        <div class="bundle-title">The <em>Mom's</em> Bundle</div>
+        <div class="bundle-sub">5 Supplements + 2 Skincare</div>
+        <div class="bundle-desc">For the woman holding it all together. Magnesium and ashwagandha for sleep and stress, the daily multi and collagen, the beauty gummy, plus the eye cream and night crème she'll actually look forward to using.</div>
+        <div class="bundle-included">
+          <div class="bundle-included-label">What's Inside</div>
+          <div class="bundle-included-list">Calm · Tranquil · Multi · Collagen · Radiance<br>Eye · Renewal</div>
+        </div>
+        <div class="bundle-savings">
+          <div class="bundle-save">Save $36</div>
+          <div class="bundle-save-label">$238 → $202</div>
+        </div>
+        <a href="#" class="bundle-cta">Add to Cart →</a>
+      </div>
+    </div>
+
+    <!-- Ariana's Bundle -->
+    <div class="bundle-card">
+      <div class="bundle-img-area">
+        <div class="bundle-product-grid cols-4">
+          <div class="bundle-thumb"><img src="images/Wash.jpeg" alt="Wash" loading="lazy"/></div>
+          <div class="bundle-thumb"><img src="images/boost.jpeg" alt="Boost" loading="lazy"/></div>
+          <div class="bundle-thumb"><img src="images/hyaluronic.jpeg" alt="Hyaluronic" loading="lazy"/></div>
+          <div class="bundle-thumb"><img src="images/Soft.jpeg" alt="Soft" loading="lazy"/></div>
+          <div class="bundle-thumb"><img src="images/Polish.jpeg" alt="Polish" loading="lazy"/></div>
+          <div class="bundle-thumb"><img src="products/multi.jpeg" alt="Multi" loading="lazy"/></div>
+          <div class="bundle-thumb"><img src="products/radiance.jpeg" alt="Radiance" loading="lazy"/></div>
+          <div class="bundle-thumb"><img src="products/collagen.jpeg" alt="Collagen" loading="lazy"/></div>
+        </div>
+      </div>
+      <div class="bundle-body">
+        <div class="bundle-eyebrow">Glow · Hydrate · Sharpen</div>
+        <div class="bundle-title">The <em>Ariana's</em> Bundle</div>
+        <div class="bundle-sub">5 Skincare + 3 Supplements</div>
+        <div class="bundle-desc">Skincare basics + beauty supplements for the everyday glow. Built for the morning person who likes a routine that's complete, intentional, and doesn't take twenty minutes to do.</div>
+        <div class="bundle-included">
+          <div class="bundle-included-label">What's Inside</div>
+          <div class="bundle-included-list">Wash · Boost · Hyaluronic · Soft · Polish<br>Multi · Radiance · Collagen</div>
+        </div>
+        <div class="bundle-savings">
+          <div class="bundle-save">Save $38</div>
+          <div class="bundle-save-label">$250 → $212</div>
+        </div>
+        <a href="#" class="bundle-cta">Add to Cart →</a>
+      </div>
+    </div>
+
+    <!-- The Glow Bundle (NEW) -->
+    <div class="bundle-card">
+      <div class="bundle-img-area">
+        <div class="bundle-product-grid cols-3">
+          <div class="bundle-thumb"><img src="images/boost.jpeg" alt="Boost" loading="lazy"/></div>
+          <div class="bundle-thumb"><img src="images/defense.jpeg" alt="Defense" loading="lazy"/></div>
+          <div class="bundle-thumb"><img src="images/glow.jpeg" alt="Glow" loading="lazy"/></div>
+          <div class="bundle-thumb"><img src="images/mask.jpeg" alt="Mask" loading="lazy"/></div>
+          <div class="bundle-thumb"><img src="products/radiance.jpeg" alt="Radiance" loading="lazy"/></div>
+          <div class="bundle-thumb"><img src="products/collagen.jpeg" alt="Collagen" loading="lazy"/></div>
+        </div>
+      </div>
+      <div class="bundle-body">
+        <div class="bundle-eyebrow">Inside-Out Radiance</div>
+        <div class="bundle-title">The <em>Glow</em> Bundle</div>
+        <div class="bundle-sub">4 Skincare + 2 Supplements</div>
+        <div class="bundle-desc">The full glow protocol. Topical brightening + antioxidant defense + finishing oil + the weekly detox mask — paired with the beauty gummy and collagen peptides that build it from within.</div>
+        <div class="bundle-included">
+          <div class="bundle-included-label">What's Inside</div>
+          <div class="bundle-included-list">Boost · Defense · Glow · Mask<br>Radiance · Collagen</div>
+        </div>
+        <div class="bundle-savings">
+          <div class="bundle-save">Save $31</div>
+          <div class="bundle-save-label">$207 → $176</div>
+        </div>
+        <a href="#" class="bundle-cta">Add to Cart →</a>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- ═══ BUILD YOUR OWN BUNDLE ═══ -->
+  <section class="builder-section">
+    <div class="builder-section-inner">
+      <div class="builder-header">
+        <div class="builder-eyebrow">Build Your Own · Skincare + Supplements</div>
+        <h2>Mix Six. Save <em>15%</em>.</h2>
+        <p>Pick any six products from skincare or supplements — the bundle saves you 15% no matter which combination you choose. Build the routine that fits the way you actually live.</p>
+      </div>
+
+      <div class="builder-tracker" id="builderTracker">
+        <div class="tracker-progress">
+          <div class="tracker-count"><span id="selectedCount">0</span> of <em>6</em> selected</div>
+          <div class="tracker-bar"><div class="tracker-fill"></div></div>
+        </div>
+        <div class="tracker-prices">
+          <div class="tracker-line"><span>Subtotal</span><span id="subtotal">$0.00</span></div>
+          <div class="tracker-line"><span>Save 15%</span><span id="savings">—</span></div>
+          <div class="tracker-line tracker-final"><span>Bundle Total</span><span id="total">$0.00</span></div>
+        </div>
+        <button class="builder-cta" id="builderCTA" disabled>Pick 6 to Save 15%</button>
+      </div>
+
+      <div class="builder-tabs">
+        <button class="tab active" data-filter="all">All <span style="opacity:0.5; margin-left:4px;">· 33</span></button>
+        <button class="tab" data-filter="skincare">Skincare <span style="opacity:0.5; margin-left:4px;">· 15</span></button>
+        <button class="tab" data-filter="supplement">Supplements <span style="opacity:0.5; margin-left:4px;">· 18</span></button>
+      </div>
+
+      <div class="builder-grid" id="builderGrid"></div>
+
+      <div class="builder-summary" id="builderSummary">
+        <h3>Your <em>Custom</em> Bundle</h3>
+        <div class="builder-summary-sub">Six Products · 15% Off</div>
+        <div class="builder-summary-list" id="summaryList"></div>
+        <div class="builder-summary-totals">
+          <span>Subtotal</span><span id="summarySubtotal">$0.00</span>
+          <span>Save 15%</span><span id="summarySavings">$0.00</span>
+          <span class="total-final-label">Bundle Total</span><span id="summaryTotal" class="total-final">$0.00</span>
+        </div>
+        <div class="builder-summary-code">
+          Use code <strong>BUILD6</strong> at checkout to apply your 15% bundle discount.
+        </div>
+        <a href="https://rvttkx-99.myshopify.com/collections/all" target="_blank" rel="noopener" class="builder-summary-cta">Continue to Shop →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSING -->
+  <div class="closing">
+    <h2>Or build <em>your own</em> stack.</h2>
+    <p>Every bundle here is a starting point — but the line was built so you can mix and match. Start with one ritual, add what you actually need, swap out what doesn't fit. The point is the routine, not the box.</p>
+    <div class="closing-btns">
+      <a href="skincare.html" class="closing-btn primary">Shop Skincare →</a>
+      <a href="supplements.html" class="closing-btn secondary">Shop Supplements →</a>
+    </div>
+  </div>
+
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Daniel<span class="amp">'s</span> House</div>
+      <div class="footer-tag">Your home for premium wellness — built on real results, not marketing.</div>
+      <div class="footer-attr">🌿 Vegan · Cruelty-Free · Made in North America<br>📧 daniel@danielshouse.com</div>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="skincare.html">Skincare</a></li>
+        <li><a href="supplements.html">Supplements</a></li>
+        <li><a href="bundles.html">Bundles</a></li>
+        <li><a href="#">Best Sellers</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>The House</h4>
+      <ul>
+        <li><a href="about.html">Daniel's Story</a></li>
+        <li><a href="#">Daniel's Routine</a></li>
+        <li><a href="#">The Science</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Help</h4>
+      <ul>
+        <li><a href="#">Shipping &amp; Returns</a></li>
+        <li><a href="#">30-Day Guarantee</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Track Order</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-base">
+    <div>© Daniel's House — Premium Wellness</div>
+    <div>Made for Daniel. Built with intention.</div>
+  </div>
+</footer>
+
+
+<script>
+(function() {
+  const products = [
+    { name: 'Wash', price: 26, img: 'images/Wash.jpeg', category: 'skincare', handle: 'the-house-wash' },
+    { name: 'Balance', price: 24, img: 'images/balance.jpeg', category: 'skincare', handle: 'the-house-balance' },
+    { name: 'Boost', price: 34, img: 'images/boost.jpeg', category: 'skincare', handle: 'the-house-boost' },
+    { name: 'Hyaluronic', price: 28, img: 'images/hyaluronic.jpeg', category: 'skincare', handle: 'the-house-hyaluronic' },
+    { name: 'Defense', price: 38, img: 'images/defense.jpeg', category: 'skincare', handle: 'the-house-defense' },
+    { name: 'Soft', price: 32, img: 'images/Soft.jpeg', category: 'skincare', handle: 'the-house-soft' },
+    { name: 'Clear', price: 32, img: 'images/clear.jpeg', category: 'skincare', handle: 'the-house-clear' },
+    { name: 'Bounce', price: 42, img: 'images/bounce.jpeg', category: 'skincare', handle: 'the-house-bounce' },
+    { name: 'Firm', price: 36, img: 'images/Firm.jpeg', category: 'skincare', handle: 'the-house-firm' },
+    { name: 'Hydration', price: 26, img: 'images/hydration.jpeg', category: 'skincare', handle: 'the-house-hydration' },
+    { name: 'Eye', price: 36, img: 'images/Eye.jpeg', category: 'skincare', handle: 'the-house-eye' },
+    { name: 'Renewal', price: 44, img: 'images/renewal.jpeg', category: 'skincare', handle: 'the-house-renewal' },
+    { name: 'Glow', price: 36, img: 'images/glow.jpeg', category: 'skincare', handle: 'the-house-glow' },
+    { name: 'Mask', price: 30, img: 'images/mask.jpeg', category: 'skincare', handle: 'the-house-mask' },
+    { name: 'Polish', price: 28, img: 'images/Polish.jpeg', category: 'skincare', handle: 'the-house-polish' },
+    { name: 'Multi', price: 32.90, img: 'products/multi.jpeg', category: 'supplement', handle: 'the-house-multi' },
+    { name: 'Calm', price: 26.90, img: 'products/calm.jpeg', category: 'supplement', handle: 'the-house-calm' },
+    { name: 'Sunshine', price: 19.90, img: 'products/sunshine.jpeg', category: 'supplement', handle: 'the-house-sunshine' },
+    { name: 'Flow', price: 24.90, img: 'products/flow.jpeg', category: 'supplement', handle: 'the-house-flow' },
+    { name: 'Biome', price: 30.90, img: 'products/biome.jpeg', category: 'supplement', handle: 'the-house-biome' },
+    { name: 'NAD+', price: 60, img: 'products/nadplus.jpeg', category: 'supplement', handle: 'the-house-nad-plus' },
+    { name: 'Vitality', price: 28.90, img: 'products/vitality.jpeg', category: 'supplement', handle: 'the-house-vitality' },
+    { name: 'Synapse', price: 34.90, img: 'products/synapse.jpeg', category: 'supplement', handle: 'the-house-synapse' },
+    { name: 'Tranquil', price: 29.50, img: 'products/tranquil.jpeg', category: 'supplement', handle: 'the-house-tranquil' },
+    { name: 'Restore', price: 25.90, img: 'products/restore.jpeg', category: 'supplement', handle: 'the-house-restore' },
+    { name: 'Power', price: 33.90, img: 'products/power.jpeg', category: 'supplement', handle: 'the-house-power' },
+    { name: 'Pump', price: 39.99, img: 'products/pump.jpeg', category: 'supplement', handle: 'the-house-pump' },
+    { name: 'Seal', price: 29.90, img: 'products/seal.jpeg', category: 'supplement', handle: 'the-house-seal' },
+    { name: 'Greens', price: 35.90, img: 'products/greens.jpeg', category: 'supplement', handle: 'the-house-greens' },
+    { name: 'Burn', price: 33.90, img: 'products/burn.jpeg', category: 'supplement', handle: 'the-house-burn' },
+    { name: 'Radiance', price: 34.90, img: 'products/radiance.jpeg', category: 'supplement', handle: 'the-house-radiance' },
+    { name: 'Collagen', price: 33.90, img: 'products/collagen.jpeg', category: 'supplement', handle: 'the-house-collagen' },
+    { name: 'Focus', price: 29.90, img: 'products/focus.jpeg', category: 'supplement', handle: 'the-house-focus' }
+  ];
+  const SHOPIFY = 'https://rvttkx-99.myshopify.com';
+  const MIN = 6;
+  const DISCOUNT = 0.15;
+  const grid = document.getElementById('builderGrid');
+  const state = new Set();
+
+  products.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'builder-card';
+    card.dataset.handle = p.handle;
+    card.dataset.category = p.category;
+    card.innerHTML = `
+      <div class="builder-card-img">
+        <img src="${p.img}" alt="The House ${p.name}" loading="lazy" />
+        <div class="builder-card-check">✓</div>
+      </div>
+      <div class="builder-card-cat">${p.category === 'skincare' ? 'Skincare' : 'Supplement'}</div>
+      <div class="builder-card-name">The House <em>${p.name}</em></div>
+      <div class="builder-card-price">$${p.price.toFixed(2)}</div>
+    `;
+    card.addEventListener('click', () => toggle(p, card));
+    grid.appendChild(card);
+  });
+
+  function toggle(p, card) {
+    if (state.has(p.handle)) {
+      state.delete(p.handle);
+      card.classList.remove('selected');
+    } else {
+      state.add(p.handle);
+      card.classList.add('selected');
+    }
+    update();
+  }
+
+  function update() {
+    const selected = products.filter(p => state.has(p.handle));
+    const count = selected.length;
+    const subtotal = selected.reduce((s, p) => s + p.price, 0);
+    const eligible = count >= MIN;
+    const savings = eligible ? subtotal * DISCOUNT : 0;
+    const total = subtotal - savings;
+
+    document.getElementById('selectedCount').textContent = count;
+    document.getElementById('subtotal').textContent = '$' + subtotal.toFixed(2);
+    document.getElementById('savings').textContent = eligible ? '−$' + savings.toFixed(2) : '—';
+    document.getElementById('total').textContent = '$' + total.toFixed(2);
+    document.querySelector('.tracker-fill').style.width = Math.min(count / MIN * 100, 100) + '%';
+
+    const cta = document.getElementById('builderCTA');
+    if (eligible) {
+      cta.disabled = false;
+      cta.textContent = 'See Your Bundle →';
+    } else {
+      cta.disabled = true;
+      cta.textContent = 'Pick ' + (MIN - count) + ' More to Save 15%';
+    }
+
+    if (eligible) {
+      updateSummary(selected, subtotal, savings, total);
+    } else {
+      document.getElementById('builderSummary').classList.remove('visible');
+    }
+  }
+
+  function updateSummary(selected, subtotal, savings, total) {
+    document.getElementById('summaryList').innerHTML = selected.map(p => `
+      <a href="${SHOPIFY}/products/${p.handle}" target="_blank" rel="noopener" class="summary-item">
+        <img src="${p.img}" alt="${p.name}" />
+        <div class="summary-item-text">
+          <div class="summary-item-name">The House <em>${p.name}</em></div>
+          <div class="summary-item-price">$${p.price.toFixed(2)}</div>
+        </div>
+      </a>
+    `).join('');
+    document.getElementById('summarySubtotal').textContent = '$' + subtotal.toFixed(2);
+    document.getElementById('summarySavings').textContent = '−$' + savings.toFixed(2);
+    document.getElementById('summaryTotal').textContent = '$' + total.toFixed(2);
+  }
+
+  document.getElementById('builderCTA').addEventListener('click', () => {
+    if (state.size >= MIN) {
+      const summary = document.getElementById('builderSummary');
+      summary.classList.add('visible');
+      summary.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+
+  document.querySelectorAll('.builder-tabs .tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.builder-tabs .tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const filter = tab.dataset.filter;
+      document.querySelectorAll('.builder-card').forEach(card => {
+        card.style.display = (filter === 'all' || card.dataset.category === filter) ? '' : 'none';
+      });
+    });
+  });
+
+  update();
+})();
+</script>
+
+</body>
+</html>
