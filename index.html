@@ -3,16 +3,666 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Daniel's House — Your Home for Premium Wellness</title>
+<title>Daniel's House — Premium Wellness, Built on Real Results</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="css/shared.css">
+<style>
+  body { background: var(--cream); color: var(--ink); font-family: 'Poppins', sans-serif; margin: 0; }
+  a { color: inherit; }
+
+  /* ═══ HERO ═══ */
+  .hero {
+    position: relative;
+    min-height: 88vh;
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    background: var(--cream);
+    overflow: hidden;
+  }
+  .hero-content {
+    padding: clamp(60px, 9vw, 110px) clamp(40px, 6vw, 80px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+  }
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    width: 36px;
+    height: 1px;
+    background: var(--gold);
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(56px, 8.5vw, 116px);
+    font-weight: 400;
+    line-height: 0.92;
+    letter-spacing: -0.015em;
+    margin-bottom: 28px;
+    color: var(--ink);
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--sage);
+    display: block;
+  }
+  .hero-blurb {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(18px, 2vw, 22px);
+    color: var(--ink-soft);
+    line-height: 1.5;
+    margin-bottom: 38px;
+    max-width: 480px;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .hero-btn {
+    padding: 16px 32px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: all 0.35s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .hero-btn.primary {
+    background: var(--ink);
+    color: var(--cream);
+  }
+  .hero-btn.primary:hover { background: var(--sage); transform: translateY(-2px); }
+  .hero-btn.secondary {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--ink);
+  }
+  .hero-btn.secondary:hover { background: var(--ink); color: var(--cream); }
+
+  .hero-quote {
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 1px solid var(--rule);
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--ink-soft);
+    max-width: 460px;
+    line-height: 1.55;
+    position: relative;
+  }
+  .hero-quote::before {
+    content: '“';
+    position: absolute;
+    top: 16px;
+    left: -8px;
+    font-size: 56px;
+    color: var(--gold);
+    line-height: 1;
+    opacity: 0.6;
+  }
+  .hero-quote .quote-attr {
+    display: block;
+    margin-top: 10px;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-style: normal;
+    font-weight: 500;
+  }
+
+  /* Hero visual side */
+  .hero-visual {
+    background: var(--cream-warm);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero-visual::before {
+    content: '';
+    position: absolute;
+    inset: 40px;
+    border: 1px solid rgba(184, 153, 104, 0.25);
+    pointer-events: none;
+  }
+  .hero-product-stack {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    padding: 60px;
+    max-width: 540px;
+    width: 100%;
+  }
+  .hero-prod {
+    aspect-ratio: 1/1;
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    overflow: hidden;
+    transition: transform 0.4s, box-shadow 0.4s;
+  }
+  .hero-prod:hover {
+    transform: scale(1.04);
+    box-shadow: 0 16px 40px rgba(31, 27, 23, 0.15);
+    z-index: 2;
+  }
+  .hero-prod img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .hero-prod:nth-child(1) { transform: rotate(-2deg); }
+  .hero-prod:nth-child(2) { transform: rotate(1.5deg) translateY(20px); }
+  .hero-prod:nth-child(3) { transform: rotate(2deg) translateY(-10px); }
+  .hero-prod:nth-child(4) { transform: rotate(-1.5deg); }
+  .hero-prod:nth-child(1):hover { transform: rotate(-2deg) scale(1.04); }
+  .hero-prod:nth-child(2):hover { transform: rotate(1.5deg) translateY(20px) scale(1.04); }
+  .hero-prod:nth-child(3):hover { transform: rotate(2deg) translateY(-10px) scale(1.04); }
+  .hero-prod:nth-child(4):hover { transform: rotate(-1.5deg) scale(1.04); }
+
+  .hero-badge {
+    position: absolute;
+    top: 80px;
+    right: 80px;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background: var(--ink);
+    color: var(--cream);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 3;
+    border: 1px solid var(--gold);
+    transform: rotate(-12deg);
+    box-shadow: 0 12px 32px rgba(31, 27, 23, 0.2);
+  }
+  .hero-badge-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 38px;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .hero-badge-text {
+    font-size: 8.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    line-height: 1.4;
+    padding: 0 14px;
+  }
+
+  /* ═══ MARQUEE STRIP — credibility ═══ */
+  .cred-strip {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 22px 40px;
+    text-align: center;
+    overflow: hidden;
+  }
+  .cred-strip-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    flex-wrap: wrap;
+  }
+  .cred-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .cred-item .cred-dot {
+    width: 5px;
+    height: 5px;
+    background: var(--gold);
+    border-radius: 50%;
+  }
+
+  /* ═══ SECTION DEFAULTS ═══ */
+  .sec {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: clamp(80px, 10vw, 130px) 40px;
+  }
+  .sec-header {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+  .sec-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 18px;
+  }
+  .sec-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(40px, 5.5vw, 64px);
+    font-weight: 400;
+    line-height: 1.05;
+    margin-bottom: 14px;
+  }
+  .sec-title em {
+    font-style: italic;
+    color: var(--sage);
+  }
+  .sec-blurb {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(17px, 1.8vw, 21px);
+    color: var(--ink-soft);
+    max-width: 620px;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+
+  /* ═══ TWO CATEGORIES ═══ */
+  .cats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .cat {
+    background: var(--cream-warm);
+    border: 1px solid var(--rule);
+    padding: 50px 44px 40px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.4s;
+    text-decoration: none;
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+  }
+  .cat:hover {
+    border-color: var(--gold);
+    transform: translateY(-4px);
+  }
+  .cat-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 18px;
+  }
+  .cat-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(40px, 5vw, 56px);
+    font-weight: 400;
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+  .cat-name em { font-style: italic; color: var(--sage); }
+  .cat-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: var(--ink-soft);
+    margin-bottom: 26px;
+    line-height: 1.5;
+    max-width: 380px;
+  }
+  .cat-thumbs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+  .cat-thumb {
+    aspect-ratio: 1/1;
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .cat-thumb:hover {
+    transform: scale(1.06);
+    box-shadow: 0 8px 24px rgba(31, 27, 23, 0.15);
+    z-index: 5;
+    position: relative;
+  }
+  .cat-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .cat-cta {
+    margin-top: auto;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink);
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: gap 0.3s;
+  }
+  .cat:hover .cat-cta { gap: 18px; color: var(--gold); }
+
+  /* ═══ FEATURED BUNDLE ═══ */
+  .featured {
+    background: var(--ink);
+    color: var(--cream);
+    padding: clamp(80px, 10vw, 130px) 40px;
+    overflow: hidden;
+    position: relative;
+  }
+  .featured-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .featured-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 22px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .featured-eyebrow::before {
+    content: '';
+    width: 36px;
+    height: 1px;
+    background: var(--gold);
+  }
+  .featured-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(44px, 6vw, 78px);
+    font-weight: 400;
+    line-height: 0.95;
+    margin-bottom: 20px;
+    color: var(--cream);
+  }
+  .featured-title em { font-style: italic; color: var(--gold); }
+  .featured-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 21px;
+    color: var(--cream);
+    opacity: 0.8;
+    margin-bottom: 28px;
+    line-height: 1.4;
+  }
+  .featured-stats {
+    display: flex;
+    gap: 36px;
+    margin-bottom: 36px;
+    padding: 22px 0;
+    border-top: 1px solid rgba(184, 153, 104, 0.25);
+    border-bottom: 1px solid rgba(184, 153, 104, 0.25);
+  }
+  .featured-stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 38px;
+    color: var(--gold);
+    line-height: 1;
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+  .featured-stat-num em { font-style: italic; }
+  .featured-stat-label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--cream);
+    opacity: 0.6;
+  }
+  .featured-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+  .featured-btn {
+    padding: 16px 32px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s;
+  }
+  .featured-btn.primary {
+    background: var(--gold);
+    color: var(--ink);
+  }
+  .featured-btn.primary:hover { background: var(--cream); }
+  .featured-btn.secondary {
+    background: transparent;
+    color: var(--cream);
+    border: 1px solid rgba(212, 201, 182, 0.35);
+  }
+  .featured-btn.secondary:hover { border-color: var(--cream); background: rgba(250, 246, 240, 0.08); }
+
+  .featured-mosaic {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+  .featured-prod {
+    aspect-ratio: 1/1;
+    background: var(--cream-warm);
+    overflow: hidden;
+    transition: transform 0.3s;
+  }
+  .featured-prod:hover {
+    transform: scale(1.04);
+    z-index: 2;
+    position: relative;
+  }
+  .featured-prod img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* ═══ QUIZ CALLOUT ═══ */
+  .quiz-callout {
+    background: var(--cream-warm);
+    text-align: center;
+    padding: clamp(70px, 8vw, 110px) 40px;
+    position: relative;
+  }
+  .quiz-callout-inner { max-width: 720px; margin: 0 auto; }
+  .quiz-flourish {
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+    margin: 0 auto 28px;
+  }
+
+  /* ═══ FOUNDER CARD ═══ */
+  .founder {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 50px;
+    align-items: center;
+  }
+  .founder-quote-side {
+    background: var(--cream-warm);
+    padding: 60px 50px;
+    position: relative;
+    border: 1px solid var(--rule);
+  }
+  .founder-quote-mark {
+    position: absolute;
+    top: 24px;
+    left: 28px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 100px;
+    color: var(--gold);
+    line-height: 1;
+    opacity: 0.4;
+  }
+  .founder-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(20px, 2.3vw, 28px);
+    line-height: 1.45;
+    color: var(--ink);
+    margin: 30px 0 28px;
+    position: relative;
+    z-index: 2;
+  }
+  .founder-attr {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+  }
+  .founder-attr-name {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--ink);
+    text-transform: none;
+    letter-spacing: 0;
+    margin-top: 4px;
+  }
+  .founder-content-side h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 4.5vw, 50px);
+    font-weight: 400;
+    line-height: 1.05;
+    margin-bottom: 20px;
+  }
+  .founder-content-side h3 em { font-style: italic; color: var(--sage); }
+  .founder-content-side p {
+    font-size: 15.5px;
+    line-height: 1.75;
+    color: var(--ink-soft);
+    margin-bottom: 20px;
+  }
+  .founder-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    text-decoration: none;
+    margin-top: 14px;
+    transition: gap 0.3s;
+  }
+  .founder-link:hover { gap: 20px; }
+
+  /* ═══ TESTIMONIALS ═══ */
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 26px;
+  }
+  .testimonial {
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    padding: 36px 30px;
+    transition: border-color 0.3s, transform 0.3s;
+    position: relative;
+  }
+  .testimonial:hover { border-color: var(--gold); transform: translateY(-3px); }
+  .testimonial-stars {
+    color: var(--gold);
+    letter-spacing: 0.06em;
+    font-size: 14px;
+    margin-bottom: 18px;
+  }
+  .testimonial-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--ink);
+    margin-bottom: 22px;
+  }
+  .testimonial-attr {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    border-top: 1px solid var(--rule);
+    padding-top: 14px;
+  }
+  .testimonial-attr-name {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: var(--ink);
+    text-transform: none;
+    letter-spacing: 0;
+    margin-bottom: 4px;
+  }
+  .testimonial-product {
+    color: var(--ink-soft);
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+    text-transform: none;
+    letter-spacing: 0.02em;
+    font-size: 12.5px;
+    font-weight: 400;
+  }
+
+  /* ═══ MOBILE ═══ */
+  @media (max-width: 1000px) {
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-visual { min-height: 400px; }
+    .hero-badge { top: 30px; right: 30px; width: 90px; height: 90px; }
+    .featured-inner { grid-template-columns: 1fr; gap: 40px; }
+    .founder { grid-template-columns: 1fr; gap: 30px; }
+  }
+  @media (max-width: 720px) {
+    .cats { grid-template-columns: 1fr; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .hero-content { padding: 60px 30px; }
+    .featured-stats { gap: 20px; flex-wrap: wrap; }
+  }
+</style>
 </head>
 <body>
 
-<div class="announce">
-  Free shipping on orders over $60 · <strong>30-day satisfaction guarantee</strong>
+<div class="shipping-bar">
+  <div class="shipping-bar-progress"></div>
+  <div class="shipping-bar-text">Free shipping on orders over <strong>$75</strong> · 30-day satisfaction guarantee</div>
 </div>
 
 <nav>
@@ -24,149 +674,325 @@
       <li><a href="skincare.html">Skincare</a></li>
       <li><a href="supplements.html">Supplements</a></li>
       <li><a href="bundles.html">Bundles</a></li>
+      <li><a href="shop.html">Shop By Concern</a></li>
     </ul>
-    <div class="nav-cart">Cart (0)</div>
-  </div>
-  <div class="mobile-pages">
-    <a href="index.html" class="active">Home</a>
-    <a href="about.html">Story</a>
-    <a href="skincare.html">Skincare</a>
-    <a href="supplements.html">Supplements</a>
-    <a href="bundles.html">Bundles</a>
+    <div style="display: flex; gap: 4px;">
+      <button class="search-trigger" aria-label="Search">Search</button>
+      <button class="cart-trigger" aria-label="Open cart">Cart <span class="cart-trigger-count">0</span></button>
+    </div>
   </div>
 </nav>
 
-<section class="page">
-  <div class="hero">
-    <div class="hero-eyebrow">Your Home for Premium Wellness</div>
-    <h1>Welcome to<br>Daniel's <em>House.</em></h1>
-    <p class="hero-sub">A premium wellness brand built on one man's transformation. Skincare that works. Supplements that deliver. All under one roof — yours.</p>
-    <a href="bundles.html" class="btn-primary">Shop the Collection →</a>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Premium Wellness · Made in North America</div>
+    <h1 class="hero-title">Built on real <em>results.</em></h1>
+    <p class="hero-blurb">Premium ingredients at clinical doses, in forms your body can actually use. The skincare and supplements Daniel built for himself — opened up to the people who want what he uses every day.</p>
+    <div class="hero-actions">
+      <a href="bundles.html" class="hero-btn primary">Shop Bundles →</a>
+      <a href="quiz.html" class="hero-btn secondary">Take the Quiz</a>
+    </div>
+    <div class="hero-quote">
+      Eight years of testing, ten products that didn't make the cut for every one that did. This is what's left.
+      <span class="quote-attr">— Daniel, Founder</span>
+    </div>
   </div>
-
-  <div class="props">
-    <span>🏡 Founded by Daniel, Built on Real Results</span>
-    <span>🌿 Premium Formulas, Clean Ingredients</span>
-    <span>✨ 30-Day Satisfaction Guarantee</span>
+  <div class="hero-visual">
+    <div class="hero-badge">
+      <div class="hero-badge-num">25<em>%</em></div>
+      <div class="hero-badge-text">Off the Ultimate Bundle</div>
+    </div>
+    <div class="hero-product-stack">
+      <div class="hero-prod"><img src="images/boost.jpeg" alt="The House Boost"/></div>
+      <div class="hero-prod"><img src="products/multi.jpeg" alt="The House Multi"/></div>
+      <div class="hero-prod"><img src="images/renewal.jpeg" alt="The House Renewal"/></div>
+      <div class="hero-prod"><img src="products/nadplus.jpeg" alt="The House NAD+"/></div>
+    </div>
   </div>
+</section>
 
-  <div class="strip">
-    <p class="strip-quote">"I built Daniel's House because I couldn't find a brand I actually trusted. So I became the brand."</p>
-    <div class="strip-cite">— Daniel, Founder</div>
+<!-- CREDIBILITY STRIP -->
+<div class="cred-strip">
+  <div class="cred-strip-inner">
+    <div class="cred-item"><span class="cred-dot"></span> Clinical Doses Only</div>
+    <div class="cred-item"><span class="cred-dot"></span> 100% Made in North America</div>
+    <div class="cred-item"><span class="cred-dot"></span> 3x Batch Tested</div>
+    <div class="cred-item"><span class="cred-dot"></span> Vegan & Cruelty-Free</div>
+    <div class="cred-item"><span class="cred-dot"></span> 30-Day Guarantee</div>
+  </div>
+</div>
+
+<!-- TWO CATEGORIES -->
+<section class="sec">
+  <div class="sec-header">
+    <div class="sec-eyebrow">Two Sides of the House</div>
+    <h2 class="sec-title">Outside in. <em>Inside out.</em></h2>
+    <p class="sec-blurb">Skincare for what shows on the surface. Supplements for what runs underneath. Built to work together, formulated to compound.</p>
   </div>
 
   <div class="cats">
-    <div class="cats-head">
-      <h2>Everything Your Body Needs.<br><em>Under One Roof.</em></h2>
+    <a href="skincare.html" class="cat">
+      <div class="cat-eyebrow">15 Products · AM + PM Routines</div>
+      <div class="cat-name"><em>Skincare</em></div>
+      <p class="cat-desc">Cleanser to seal — the full ritual. Six AM steps, six PM steps, two weekly resets, all formulated to layer.</p>
+      <div class="cat-thumbs">
+        <div class="cat-thumb"><img src="images/Wash.jpeg" alt="Wash"/></div>
+        <div class="cat-thumb"><img src="images/boost.jpeg" alt="Boost"/></div>
+        <div class="cat-thumb"><img src="images/bounce.jpeg" alt="Bounce"/></div>
+        <div class="cat-thumb"><img src="images/glow.jpeg" alt="Glow"/></div>
+      </div>
+      <span class="cat-cta">Explore Skincare →</span>
+    </a>
+
+    <a href="supplements.html" class="cat">
+      <div class="cat-eyebrow">18 Products · Daily, Workout & Beauty Stacks</div>
+      <div class="cat-name"><em>Supplements</em></div>
+      <p class="cat-desc">Foundational, longevity, workout, beauty — every product at a clinically-meaningful dose, in the form your body absorbs.</p>
+      <div class="cat-thumbs">
+        <div class="cat-thumb"><img src="products/multi.jpeg" alt="Multi"/></div>
+        <div class="cat-thumb"><img src="products/nadplus.jpeg" alt="NAD+"/></div>
+        <div class="cat-thumb"><img src="products/calm.jpeg" alt="Calm"/></div>
+        <div class="cat-thumb"><img src="products/radiance.jpeg" alt="Radiance"/></div>
+      </div>
+      <span class="cat-cta">Explore Supplements →</span>
+    </a>
+  </div>
+</section>
+
+<!-- FEATURED BUNDLE -->
+<section class="featured">
+  <div class="featured-inner">
+    <div>
+      <div class="featured-eyebrow">The House Hero · 22 Products</div>
+      <h2 class="featured-title">The <em>Ultimate</em> Bundle.</h2>
+      <p class="featured-tagline">Everything Daniel uses, every day. The complete house — opened up.</p>
+
+      <div class="featured-stats">
+        <div>
+          <div class="featured-stat-num">22</div>
+          <div class="featured-stat-label">Products</div>
+        </div>
+        <div>
+          <div class="featured-stat-num">25<em>%</em></div>
+          <div class="featured-stat-label">Bundle Discount</div>
+        </div>
+        <div>
+          <div class="featured-stat-num"><em>$179</em></div>
+          <div class="featured-stat-label">You Save</div>
+        </div>
+      </div>
+
+      <div class="featured-actions">
+        <a href="bundles.html" class="featured-btn primary">Shop the Ultimate →</a>
+        <a href="bundles.html#build-your-own" class="featured-btn secondary">Or Build Your Own</a>
+      </div>
     </div>
-    <div class="cats-grid">
-      <a href="skincare.html" class="cat-card cat-skincare" data-icon="✨">
-        <div class="cat-tag">The Skincare Line</div>
-        <div class="cat-name">AM &amp; PM Rituals</div>
-        <div class="cat-desc">Daniel's full AM/PM routine — the exact 12 products that transformed his skin. Now yours.</div>
-        <div class="cat-link">Shop Skincare →</div>
-      </a>
-      <a href="supplements.html" class="cat-card cat-supplements" data-icon="💊">
-        <div class="cat-tag">The Supplement Stack</div>
-        <div class="cat-name">Daily Essentials</div>
-        <div class="cat-desc">Science-backed formulas Daniel takes himself every single day. No filler. No compromise.</div>
-        <div class="cat-link">Shop Supplements →</div>
-      </a>
-      <a href="bundles.html" class="cat-card cat-bundles" data-icon="🎁">
-        <div class="cat-tag">Bundle &amp; Save</div>
-        <div class="cat-name">Routines, Curated</div>
-        <div class="cat-desc">The complete Daniel's House routine, bundled for maximum results and maximum savings.</div>
-        <div class="cat-link">Shop Bundles →</div>
-      </a>
+
+    <div class="featured-mosaic">
+      <div class="featured-prod"><img src="images/Wash.jpeg" alt="Wash"/></div>
+      <div class="featured-prod"><img src="images/balance.jpeg" alt="Balance"/></div>
+      <div class="featured-prod"><img src="images/boost.jpeg" alt="Boost"/></div>
+      <div class="featured-prod"><img src="images/hyaluronic.jpeg" alt="Hyaluronic"/></div>
+      <div class="featured-prod"><img src="images/defense.jpeg" alt="Defense"/></div>
+      <div class="featured-prod"><img src="images/Soft.jpeg" alt="Soft"/></div>
+      <div class="featured-prod"><img src="images/bounce.jpeg" alt="Bounce"/></div>
+      <div class="featured-prod"><img src="images/hydration.jpeg" alt="Hydration"/></div>
+      <div class="featured-prod"><img src="images/Firm.jpeg" alt="Firm"/></div>
+      <div class="featured-prod"><img src="images/Eye.jpeg" alt="Eye"/></div>
+      <div class="featured-prod"><img src="images/renewal.jpeg" alt="Renewal"/></div>
+      <div class="featured-prod"><img src="images/glow.jpeg" alt="Glow"/></div>
+      <div class="featured-prod"><img src="products/multi.jpeg" alt="Multi"/></div>
+      <div class="featured-prod"><img src="products/calm.jpeg" alt="Calm"/></div>
+      <div class="featured-prod"><img src="products/sunshine.jpeg" alt="Sunshine"/></div>
+      <div class="featured-prod"><img src="products/flow.jpeg" alt="Flow"/></div>
+      <div class="featured-prod"><img src="products/biome.jpeg" alt="Biome"/></div>
+      <div class="featured-prod"><img src="products/nadplus.jpeg" alt="NAD+"/></div>
+      <div class="featured-prod"><img src="products/vitality.jpeg" alt="Vitality"/></div>
+      <div class="featured-prod"><img src="products/synapse.jpeg" alt="Synapse"/></div>
+      <div class="featured-prod"><img src="products/tranquil.jpeg" alt="Tranquil"/></div>
+      <div class="featured-prod"><img src="products/restore.jpeg" alt="Restore"/></div>
     </div>
   </div>
+</section>
 
+<!-- QUIZ CALLOUT -->
+<section class="quiz-callout">
+  <div class="quiz-callout-inner">
+    <div class="quiz-flourish"></div>
+    <div class="sec-eyebrow">Find Your Routine</div>
+    <h2 class="sec-title">Don't know <em>where to start?</em></h2>
+    <p class="sec-blurb" style="margin-bottom: 32px;">Seven questions, two minutes, one personalized routine. We'll match the products and bundle that fit how you actually live.</p>
+    <a href="quiz.html" class="hero-btn primary">Take the 2-Minute Quiz →</a>
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section class="sec">
   <div class="founder">
-    <div class="founder-img">
-      <div class="founder-img-tag">Daniel, founder</div>
+    <div class="founder-quote-side">
+      <div class="founder-quote-mark">"</div>
+      <div class="founder-quote">For ten years I bought wellness products that made promises and didn't keep them. So I built the routine I wished existed — and opened it up.</div>
+      <div class="founder-attr">
+        From the Founder
+        <span class="founder-attr-name">Daniel</span>
+      </div>
     </div>
-    <div class="founder-content">
-      <h2>Hi, I'm Daniel.<br>This is My House — <em>and yours.</em></h2>
-      <p>I spent years trying wellness products that promised everything and delivered nothing. Eventually I stopped buying other people's versions of health and started building my own.</p>
-      <p>Daniel's House is the result of that journey — every product here is something I researched, tested, and use personally. When you buy from Daniel's House, you're not buying from a faceless brand. You're buying from someone who went through exactly what you're going through.</p>
-      <p>I built this place for you. Welcome home.</p>
-      <div class="founder-sign">— Daniel</div>
+    <div class="founder-content-side">
+      <h3>Why this <em>house</em> exists.</h3>
+      <p>Premium ingredients are easy to find. Premium ingredients at clinical doses, in forms the body can actually absorb, paired together intelligently — that's harder. The category is full of marketing and short on results.</p>
+      <p>Daniel's House started as one person's routine. Eight years of testing, hundreds of products tried, ten that didn't make the cut for every one that did. What's here is what stayed.</p>
+      <a href="about.html" class="founder-link">Read the Full Story →</a>
     </div>
   </div>
+</section>
 
-  <div class="reviews">
-    <div class="reviews-inner">
-      <h3>Real Customers, <em>Real Results.</em></h3>
-      <div class="reviews-grid">
-        <div class="review-card">
-          <div class="review-stars">★ ★ ★ ★ ★</div>
-          <p class="review-text">"I've been using the AM routine for 6 weeks. My skin has never looked like this. I actually had someone ask me if I'd had a facial."</p>
-          <div class="review-cite">Jasmine R. <span>· Verified Buyer</span></div>
-        </div>
-        <div class="review-card">
-          <div class="review-stars">★ ★ ★ ★ ★</div>
-          <p class="review-text">"What I love about Daniel's House is that you can tell a real person built this. The products are incredible but the story behind them makes me trust the brand completely."</p>
-          <div class="review-cite">Marcus T. <span>· Verified Buyer</span></div>
-        </div>
-        <div class="review-card">
-          <div class="review-stars">★ ★ ★ ★ ★</div>
-          <p class="review-text">"The collagen powder dissolved perfectly in my coffee and I noticed a difference in my nails within 3 weeks. Reordering immediately."</p>
-          <div class="review-cite">Priya K. <span>· Verified Buyer</span></div>
-        </div>
+<!-- TESTIMONIALS -->
+<section class="sec" style="padding-top: 0;">
+  <div class="sec-header">
+    <div class="sec-eyebrow">From the House</div>
+    <h2 class="sec-title">What people are <em>saying.</em></h2>
+  </div>
+
+  <div class="testimonials-grid">
+    <div class="testimonial">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">My skin texture changed in three weeks. I've tried every brand at every price point — these are the first products that actually delivered what they promised.</p>
+      <div class="testimonial-attr">
+        <span class="testimonial-attr-name">Sarah M.</span>
+        <span class="testimonial-product">on The House Bounce</span>
+      </div>
+    </div>
+    <div class="testimonial">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">I'm 47 and the energy difference from the Multi + NAD+ stack is the closest thing to magic I've experienced. Two weeks in and I noticed. Six months in, I'm a different person.</p>
+      <div class="testimonial-attr">
+        <span class="testimonial-attr-name">Michael R.</span>
+        <span class="testimonial-product">on The Longevity Bundle</span>
+      </div>
+    </div>
+    <div class="testimonial">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">The Calm changed my sleep. I've been on prescription sleep aids for years — this replaced them. I sleep through the night, wake up clear-headed, no grogginess.</p>
+      <div class="testimonial-attr">
+        <span class="testimonial-attr-name">Jennifer K.</span>
+        <span class="testimonial-product">on The House Calm</span>
       </div>
     </div>
   </div>
+</section>
 
-  <div class="email-cap">
-    <h3>Join <em>Daniel's House.</em></h3>
-    <p>Get 15% off your first order plus Daniel's personal wellness guide — the exact routine he follows every day.</p>
-    <form class="email-form" onsubmit="event.preventDefault(); alert('Welcome to Daniel\u0027s House — check your inbox.');">
-      <input type="email" placeholder="Enter your email" required />
-      <button type="submit">Join the House</button>
-    </form>
+<!-- CLOSING CTA -->
+<section style="background: var(--cream-warm); padding: clamp(80px, 9vw, 110px) 40px; text-align: center;">
+  <div style="max-width: 720px; margin: 0 auto;">
+    <div class="quiz-flourish"></div>
+    <h2 class="sec-title">Start with <em>one product.</em><br/>Build the routine.</h2>
+    <p class="sec-blurb" style="margin-bottom: 32px;">No need to buy the whole house at once. Pick what you need, subscribe at your pace, swap things in and out. The point is the routine, not the box.</p>
+    <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+      <a href="bundles.html" class="hero-btn primary">Browse Bundles →</a>
+      <a href="shop.html" class="hero-btn secondary">Shop By Concern</a>
+    </div>
   </div>
 </section>
 
 <footer>
+  <div class="footer-newsletter">
+    <div class="footer-newsletter-inner">
+      <div class="footer-newsletter-eyebrow">Letters from the House</div>
+      <div class="footer-newsletter-title">Get Daniel's actual <em>routine notes.</em></div>
+      <div class="footer-newsletter-blurb">First access to launches, ingredient deep-dives, and the rituals Daniel uses every week — sent twice a month, no spam.</div>
+      <form class="footer-newsletter-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent = '✓ Subscribed';">
+        <input type="email" placeholder="Your email" required />
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </div>
   <div class="footer-inner">
     <div>
       <div class="footer-brand">Daniel<span class="amp">'s</span> House</div>
       <div class="footer-tag">Your home for premium wellness — built on real results, not marketing.</div>
       <div class="footer-attr">🌿 Vegan · Cruelty-Free · Made in North America<br>📧 daniel@danielshouse.com</div>
     </div>
-    <div class="footer-col">
-      <h4>Shop</h4>
-      <ul>
-        <li><a href="skincare.html">Skincare</a></li>
-        <li><a href="supplements.html">Supplements</a></li>
-        <li><a href="bundles.html">Bundles</a></li>
-        <li><a href="#">Best Sellers</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>The House</h4>
-      <ul>
-        <li><a href="about.html">Daniel's Story</a></li>
-        <li><a href="#">Daniel's Routine</a></li>
-        <li><a href="#">Journal</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Help</h4>
-      <ul>
-        <li><a href="#">Shipping &amp; Returns</a></li>
-        <li><a href="#">30-Day Guarantee</a></li>
-        <li><a href="#">FAQ</a></li>
-        <li><a href="#">Track Order</a></li>
-      </ul>
-    </div>
+    <div class="footer-col"><h4>Shop</h4><ul><li><a href="skincare.html">Skincare</a></li><li><a href="supplements.html">Supplements</a></li><li><a href="bundles.html">Bundles</a></li><li><a href="shop.html">Shop by Concern</a></li></ul></div>
+    <div class="footer-col"><h4>The House</h4><ul><li><a href="about.html">Daniel's Story</a></li><li><a href="ingredients.html">Ingredient Glossary</a></li><li><a href="quiz.html">Take the Quiz</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
+    <div class="footer-col"><h4>Help</h4><ul><li><a href="faq.html">Shipping &amp; Returns</a></li><li><a href="faq.html">30-Day Guarantee</a></li><li><a href="faq.html">Contact</a></li></ul></div>
   </div>
-  <div class="footer-base">
-    <div>© Daniel's House — Premium Wellness</div>
-    <div>Made for Daniel. Built with intention.</div>
+  <div class="footer-credit">
+    <div class="footer-credit-left">© 2025 Daniel's House. Premium wellness, built on real results.</div>
+    <div class="footer-credit-right">
+      <a href="faq.html">Privacy</a>
+      <a href="faq.html">Terms</a>
+      <a href="faq.html">Accessibility</a>
+    </div>
   </div>
 </footer>
 
+<!-- Cart, popup, search markup -->
+<div class="cart-overlay"></div>
+<aside class="cart-drawer">
+  <div class="cart-header"><div class="cart-title">Your <em>Cart</em></div><button class="cart-close" aria-label="Close cart">×</button></div>
+  <div class="cart-body"></div>
+  <div class="cart-footer">
+    <div class="cart-totals">
+      <div class="cart-totals-line"><span>Subtotal</span><span class="subtotal-amount">$0.00</span></div>
+      <div class="cart-totals-line total"><span>Total</span><span class="amount total-amount">$0.00</span></div>
+    </div>
+    <button class="cart-checkout">Checkout →</button>
+    <div class="cart-shipping-note">Free shipping on orders over $75.</div>
+  </div>
+</aside>
+<div class="popup-overlay">
+  <div class="popup">
+    <button class="popup-close" aria-label="Close">×</button>
+    <div class="popup-eyebrow">10% Off Your First Order</div>
+    <div class="popup-title">Welcome to <em>The House</em>.</div>
+    <div class="popup-blurb">Drop your email for 10% off your first order, plus first access to new launches and Daniel's actual routine notes.</div>
+    <form class="popup-form">
+      <input type="email" class="popup-input" placeholder="Your email address" required />
+      <button type="submit" class="popup-submit">Get My 10% Off →</button>
+    </form>
+    <button class="popup-skip">No thanks</button>
+  </div>
+</div>
+<div class="search-overlay">
+  <div class="search-inner">
+    <div class="search-input-wrap">
+      <input type="text" class="search-input" placeholder="Search products, ingredients, concerns..." />
+      <button class="search-close" aria-label="Close search">×</button>
+    </div>
+    <div class="search-results"></div>
+  </div>
+</div>
+<div class="lightbox-overlay">
+  <div class="lightbox">
+    <div class="lightbox-header">
+      <div class="lightbox-title"></div>
+      <button class="lightbox-close" aria-label="Close">×</button>
+    </div>
+    <div class="lightbox-body">
+      <div class="lightbox-image-side">
+        <button class="lightbox-arrow prev" aria-label="Previous">←</button>
+        <img class="lightbox-image" src="" alt="" />
+        <button class="lightbox-arrow next" aria-label="Next">→</button>
+      </div>
+      <div class="lightbox-info-side">
+        <div class="lightbox-counter"></div>
+        <div class="lightbox-tag"></div>
+        <div class="lightbox-name"></div>
+        <div class="lightbox-tagline"></div>
+        <div class="lightbox-desc"></div>
+        <div class="lightbox-price-row">
+          <div class="lightbox-price"></div>
+          <div class="lightbox-size"></div>
+        </div>
+        <div class="lightbox-actions"></div>
+      </div>
+    </div>
+    <div class="lightbox-dots"></div>
+  </div>
+</div>
+
+<script src="data/products.js"></script>
+<script src="js/shared.js"></script>
 </body>
 </html>

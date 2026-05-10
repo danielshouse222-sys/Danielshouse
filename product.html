@@ -617,6 +617,11 @@
   </div>
 </section>
 
+<section class="best-for-section" id="best-for-section" style="display: none;">
+  <div class="best-for-eyebrow">Best For</div>
+  <div class="best-for-pills" id="best-for-pills"></div>
+</section>
+
 <section class="product-section" id="ingredients-section">
   <div class="section-header">
     <div class="section-eyebrow">What's Inside · Every Active</div>
@@ -641,12 +646,37 @@
   <div class="studies-grid" id="studies-grid"></div>
 </section>
 
+<section class="product-section" id="daniels-note-section" style="display: none;">
+  <div class="daniels-note">
+    <div class="daniels-note-inner">
+      <div class="daniels-note-mark">"</div>
+      <div class="daniels-note-eyebrow">Daniel's Notes · From the Founder</div>
+      <div class="daniels-note-text" id="daniels-note-text"></div>
+      <div class="daniels-note-attr">From the founder<strong>Daniel</strong></div>
+    </div>
+  </div>
+</section>
+
 <section class="product-section" id="fbt-section">
   <div class="section-header">
     <div class="section-eyebrow">Frequently Bought Together</div>
     <div class="section-title">The <em>Pairing</em> That Works</div>
   </div>
   <div class="fbt-grid" id="fbt-grid"></div>
+</section>
+
+<section class="product-section">
+  <div class="section-header">
+    <div class="section-eyebrow">From the House</div>
+    <div class="section-title">What <em>Customers</em> Say</div>
+  </div>
+  <div class="reviews-summary">
+    <span class="reviews-summary-stars">★★★★★</span>
+    <span class="reviews-summary-num" id="reviews-avg">4.8</span>
+    <span class="reviews-summary-count" id="reviews-count">based on 142 verified reviews</span>
+  </div>
+  <div class="reviews-grid" id="reviews-grid"></div>
+  <div class="reviews-cta">— More reviews on the way —</div>
 </section>
 
 <section class="product-section">
@@ -672,6 +702,17 @@
 </div>
 
 <footer>
+  <div class="footer-newsletter">
+    <div class="footer-newsletter-inner">
+      <div class="footer-newsletter-eyebrow">Letters from the House</div>
+      <div class="footer-newsletter-title">Get Daniel's actual <em>routine notes.</em></div>
+      <div class="footer-newsletter-blurb">First access to launches, ingredient deep-dives, and the rituals Daniel uses every week — sent twice a month, no spam.</div>
+      <form class="footer-newsletter-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent = '✓ Subscribed';">
+        <input type="email" placeholder="Your email" required />
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </div>
   <div class="footer-inner">
     <div>
       <div class="footer-brand">Daniel<span class="amp">'s</span> House</div>
@@ -703,6 +744,14 @@
         <li><a href="faq.html">30-Day Guarantee</a></li>
         <li><a href="faq.html">Contact</a></li>
       </ul>
+    </div>
+  </div>
+  <div class="footer-credit">
+    <div class="footer-credit-left">© 2025 Daniel's House. Premium wellness, built on real results.</div>
+    <div class="footer-credit-right">
+      <a href="faq.html">Privacy</a>
+      <a href="faq.html">Terms</a>
+      <a href="faq.html">Accessibility</a>
     </div>
   </div>
 </footer>
@@ -960,6 +1009,131 @@
       <div class="related-price">$${p.price.toFixed(2)}</div>
     </a>
   `).join('');
+
+  // Best For pills
+  if (product.bestFor && product.bestFor.length) {
+    const pillsEl = document.getElementById('best-for-pills');
+    const sectionEl = document.getElementById('best-for-section');
+    const labelMap = {
+      'daily-cleanse': 'Daily Cleanse',
+      'sensitive-skin': 'Sensitive Skin',
+      'normal-to-dry': 'Normal to Dry',
+      'oily-skin': 'Oily Skin',
+      'acne-prone': 'Acne-Prone',
+      'combination-skin': 'Combination Skin',
+      'large-pores': 'Large Pores',
+      'all-skin-types': 'All Skin Types',
+      'normal-skin': 'Normal Skin',
+      'daily-tone': 'Daily Toning',
+      'daily-moisture': 'Daily Moisture',
+      'brightening': 'Brightening',
+      'uneven-tone': 'Uneven Tone',
+      'dullness': 'Dullness',
+      'pore-refinement': 'Pore Refinement',
+      'hydration': 'Hydration',
+      'dryness': 'Dryness',
+      'plumping': 'Plumping',
+      'anti-aging': 'Anti-Aging',
+      'environmental-defense': 'Environmental Defense',
+      'fine-lines': 'Fine Lines',
+      'firmness': 'Firmness',
+      'cell-turnover': 'Cell Turnover',
+      "crow's-feet": "Crow's Feet",
+      'firming': 'Firming',
+      'dark-circles': 'Dark Circles',
+      'puffiness': 'Puffiness',
+      'retinol-companion': 'Retinol Companion',
+      'texture-refinement': 'Texture',
+      'glow': 'Glow',
+      'sealing': 'Sealing',
+      'detox': 'Detox',
+      'pore-clarity': 'Pore Clarity',
+      'exfoliation': 'Exfoliation',
+      'foundational-health': 'Foundational Health',
+      'immunity': 'Immunity',
+      'energy': 'Energy',
+      'antioxidant-support': 'Antioxidant Support',
+      'sleep': 'Sleep',
+      'stress-relief': 'Stress Relief',
+      'muscle-relaxation': 'Muscle Relaxation',
+      'evening-routine': 'Evening Routine',
+      'bone-health': 'Bone Health',
+      'mood': 'Mood',
+      'heart-health': 'Heart Health',
+      'brain-health': 'Brain Health',
+      'cognition': 'Cognition',
+      'joint-support': 'Joint Support',
+      'digestion': 'Digestion',
+      'gut-health': 'Gut Health',
+      'longevity': 'Longevity',
+      'cellular-energy': 'Cellular Energy',
+      'cognitive-support': 'Cognitive Support',
+      'cellular-function': 'Cellular Function',
+      'focus': 'Focus',
+      'adaptogenic-support': 'Adaptogenic Support',
+      'hormonal-balance': 'Hormonal Balance',
+      'recovery': 'Recovery',
+      'inflammation': 'Inflammation',
+      'mobility': 'Mobility',
+      'strength': 'Strength',
+      'muscle-growth': 'Muscle Growth',
+      'performance': 'Performance',
+      'workout-performance': 'Workout Performance',
+      'pump': 'Pump',
+      'circulation': 'Circulation',
+      'pre-workout': 'Pre-Workout',
+      'workout-recovery': 'Workout Recovery',
+      'nutrition': 'Nutrition',
+      'antioxidants': 'Antioxidants',
+      'metabolism': 'Metabolism',
+      'beauty': 'Beauty',
+      'hair-health': 'Hair Health',
+      'skin-from-within': 'Skin From Within',
+      'nails': 'Nails',
+      'hair-and-nails': 'Hair & Nails',
+      'memory': 'Memory',
+      'productivity': 'Productivity'
+    };
+    pillsEl.innerHTML = product.bestFor.map(tag =>
+      `<span class="best-for-pill">${labelMap[tag] || tag.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}</span>`
+    ).join('');
+    sectionEl.style.display = 'block';
+  }
+
+  // Daniel's Notes
+  if (product.daniels_note) {
+    document.getElementById('daniels-note-text').textContent = product.daniels_note;
+    document.getElementById('daniels-note-section').style.display = 'block';
+  }
+
+  // Customer Reviews
+  if (window.getReviewsForProduct) {
+    const reviews = window.getReviewsForProduct(product.slug);
+    const summary = window.getReviewSummary(product.slug);
+    document.getElementById('reviews-avg').textContent = summary.avg;
+    document.getElementById('reviews-count').textContent = `based on ${summary.count} verified reviews`;
+    // Update the rating in the hero too with the same summary numbers
+    document.getElementById('rating-num').textContent = summary.avg;
+    document.getElementById('rating-count').textContent = summary.count;
+
+    document.getElementById('reviews-grid').innerHTML = reviews.map(r => {
+      const starsStr = '★'.repeat(r.stars) + '☆'.repeat(5 - r.stars);
+      const dateStr = r.daysAgo === 1 ? '1 day ago' :
+                      r.daysAgo < 7 ? `${r.daysAgo} days ago` :
+                      r.daysAgo < 30 ? `${Math.floor(r.daysAgo / 7)} weeks ago` :
+                      `${Math.floor(r.daysAgo / 30)} months ago`;
+      return `
+        <div class="review-card">
+          <div class="review-stars">${starsStr}</div>
+          <div class="review-text">${r.body}</div>
+          <div class="review-meta">
+            <span class="review-name">${r.name}</span>
+            <span class="review-date">${dateStr}</span>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
 })();
 </script>
 </body>
