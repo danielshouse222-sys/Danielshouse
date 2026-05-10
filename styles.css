@@ -33,46 +33,36 @@ body {
 :root {
   --shipping-bar-height: 38px;
   --nav-height: 64px;
-  --nav-inset: 14px;
-  --header-total: 122px;
+  --header-total: 102px;
 }
 
 body { padding-top: var(--header-total); }
 
 nav {
-  background: rgba(250, 246, 240, 0.92);
-  -webkit-backdrop-filter: blur(20px) saturate(1.1);
-  backdrop-filter: blur(20px) saturate(1.1);
+  background: var(--cream);
+  border-bottom: 1px solid var(--rule);
   position: fixed;
-  top: calc(var(--shipping-bar-height) + var(--nav-inset));
-  left: var(--nav-inset);
-  right: var(--nav-inset);
+  top: var(--shipping-bar-height);
+  left: 0;
+  right: 0;
   z-index: 100;
   height: var(--nav-height);
   display: flex;
   align-items: center;
-  border-radius: 14px;
-  border: 1px solid rgba(184, 153, 104, 0.2);
-  box-shadow:
-    0 4px 20px rgba(31, 27, 23, 0.06),
-    0 1px 3px rgba(31, 27, 23, 0.04);
   transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
-/* Stronger shadow once user scrolls — clearer floating effect */
 nav.scrolled {
-  box-shadow:
-    0 10px 36px rgba(31, 27, 23, 0.1),
-    0 2px 8px rgba(31, 27, 23, 0.06);
-  border-color: rgba(184, 153, 104, 0.4);
+  box-shadow: 0 4px 24px rgba(31, 27, 23, 0.07);
+  border-bottom-color: var(--gold);
 }
 .nav-inner {
-  max-width: 1380px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 0 28px;
+  padding: 0 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 32px;
+  gap: 40px;
   width: 100%;
 }
 .logo {
@@ -121,9 +111,9 @@ nav.scrolled {
   .nav-links a { font-size: 10px; letter-spacing: 0.14em; }
 }
 @media (max-width: 760px) {
-  :root { --header-total: 130px; --nav-height: 72px; --nav-inset: 10px; }
+  :root { --header-total: 110px; --nav-height: 72px; }
   .nav-inner {
-    padding: 8px 14px;
+    padding: 8px 16px;
     gap: 8px;
     flex-wrap: wrap;
     justify-content: center;
