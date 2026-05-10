@@ -1022,76 +1022,59 @@
 }
 
 /* ═══ BUNDLE FOOTNOTE ═══ */
-/* A polished "save with the bundle" callout used at the end of each product section */
+/* Polished "save with the bundle" callout — name, pricing row, subscribe toggle, CTA */
 .bundle-footnote {
-  max-width: 880px;
-  margin: 56px auto 0;
+  max-width: 640px;
+  margin: 64px auto 0;
   padding: 0 40px;
 }
 .bundle-footnote-inner {
-  display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  gap: 36px;
-  align-items: center;
   background: var(--cream-warm);
   border: 1px solid var(--rule);
-  padding: 32px 36px;
+  padding: 36px 40px 32px;
   position: relative;
+  text-align: center;
 }
 .bundle-footnote-inner::before {
   content: '';
   position: absolute;
   top: 0;
-  bottom: 0;
   left: 0;
-  width: 3px;
-  background: var(--gold);
-}
-.bundle-footnote-tag {
-  font-size: 10px;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--gold);
-  font-weight: 500;
-  margin-bottom: 10px;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(to right, transparent 0%, var(--gold) 25%, var(--gold) 75%, transparent 100%);
 }
 .bundle-footnote-name {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(26px, 3vw, 34px);
+  font-size: clamp(28px, 3vw, 36px);
   font-weight: 400;
   line-height: 1.05;
-  margin-bottom: 10px;
+  margin-bottom: 18px;
   color: var(--ink);
 }
 .bundle-footnote-name em {
   font-style: italic;
   color: var(--sage);
 }
-.bundle-footnote-desc {
-  font-size: 13.5px;
-  line-height: 1.6;
-  color: var(--ink-soft);
-}
-.bundle-footnote-action {
-  text-align: right;
-  border-left: 1px solid var(--rule);
-  padding-left: 32px;
-}
 .bundle-footnote-pricing {
   display: flex;
   align-items: baseline;
-  justify-content: flex-end;
-  gap: 10px;
-  margin-bottom: 4px;
+  justify-content: center;
+  gap: 14px;
+  padding: 14px 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 22px;
+  flex-wrap: wrap;
 }
 .bundle-footnote-was {
-  font-size: 14px;
+  font-size: 16px;
   color: var(--ink-soft);
   text-decoration: line-through;
 }
 .bundle-footnote-now {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 32px;
+  font-size: 36px;
   font-weight: 500;
   color: var(--ink);
   line-height: 1;
@@ -1099,40 +1082,41 @@
 .bundle-footnote-savings {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
-  font-size: 14px;
+  font-size: 15px;
   color: var(--sage);
-  margin-bottom: 16px;
+  margin-left: 4px;
+}
+.bundle-footnote .bundle-subscribe-toggle {
+  max-width: 460px;
+  margin: 0 auto 16px;
 }
 .bundle-footnote-cta {
   display: inline-block;
-  padding: 12px 22px;
+  width: 100%;
+  max-width: 460px;
+  padding: 16px 26px;
   background: var(--ink);
   color: var(--cream);
   text-decoration: none;
   font-family: 'Poppins', sans-serif;
-  font-size: 11px;
+  font-size: 11.5px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   font-weight: 500;
   transition: background 0.3s;
+  border: none;
+  cursor: pointer;
+  text-align: center;
 }
 .bundle-footnote-cta:hover { background: var(--sage); }
 
 @media (max-width: 720px) {
   .bundle-footnote { padding: 0 20px; }
   .bundle-footnote-inner {
-    grid-template-columns: 1fr;
-    gap: 22px;
-    padding: 24px 22px 26px;
+    padding: 26px 22px 24px;
   }
-  .bundle-footnote-action {
-    text-align: left;
-    border-left: none;
-    border-top: 1px solid var(--rule);
-    padding-left: 0;
-    padding-top: 22px;
-  }
-  .bundle-footnote-pricing { justify-content: flex-start; }
+  .bundle-footnote-name { font-size: 26px; margin-bottom: 14px; }
+  .bundle-footnote-now { font-size: 30px; }
 }
 
 /* ═══ PRODUCT DETAIL — BEST FOR PILLS ═══ */
