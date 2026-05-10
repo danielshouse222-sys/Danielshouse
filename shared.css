@@ -13,6 +13,7 @@
 }
 
 /* ═══ FREE SHIPPING PROGRESS BAR ═══ */
+/* Fixed at the very top of the viewport — paired with the fixed nav below */
 .shipping-bar {
   background: var(--ink);
   color: var(--cream);
@@ -20,7 +21,15 @@
   text-align: center;
   font-size: 12px;
   letter-spacing: 0.05em;
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--shipping-bar-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99;
   overflow: hidden;
 }
 .shipping-bar-text { position: relative; z-index: 2; }
@@ -508,7 +517,8 @@
 .result-product-img,
 .search-result-img,
 .related-img,
-.concern-thumb {
+.concern-thumb,
+.concern-product-img {
   transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s ease;
   cursor: pointer;
   will-change: transform;
@@ -533,7 +543,8 @@
 
 /* Click affordance overlay icon on hoverable thumbs */
 .bundle-thumb::after,
-.concern-thumb::after {
+.concern-thumb::after,
+.concern-product-img::after {
   content: '⤢';
   position: absolute;
   top: 6px;
@@ -553,7 +564,8 @@
   z-index: 6;
 }
 .bundle-thumb:hover::after,
-.concern-thumb:hover::after { opacity: 0.92; }
+.concern-thumb:hover::after,
+.concern-product:hover .concern-product-img::after { opacity: 0.92; }
 
 /* ═══ SHARED LIGHTBOX / CAROUSEL ═══ */
 /* Reusable across bundles.html, shop.html, and any other page */
@@ -799,58 +811,481 @@
   .lightbox-arrow { width: 36px; height: 36px; }
 }
 
-/* ═══ BUNDLE SUBSCRIBE TOGGLE (compact) ═══ */
-/* Small two-button toggle: One-time / Subscribe — used on bundle cards */
+/* ═══ BUNDLE SUBSCRIBE TOGGLE ═══ */
+/* A refined two-button selector with a sliding gold indicator. */
+/* Used on bundle cards (curated, concern, build-your-own). */
 .bundle-subscribe-toggle {
-  display: flex;
-  border: 1px solid var(--rule);
-  margin-bottom: 12px;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   background: var(--cream-warm);
+  border: 1px solid var(--rule);
+  margin-bottom: 14px;
   font-family: 'Poppins', sans-serif;
+  overflow: hidden;
 }
-.bundle-subscribe-toggle .toggle-label {
-  font-size: 9.5px;
-  letter-spacing: 0.2em;
+
+/* Sliding gold indicator at the top */
+.bundle-subscribe-toggle::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 3px;
+  background: var(--gold);
+  transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+  z-index: 2;
+  pointer-events: none;
+}
+.bundle-subscribe-toggle.subscribe-mode::after {
+  transform: translateX(100%);
+}
+
+/* Vertical separator between the two options */
+.bundle-subscribe-toggle::before {
+  content: '';
+  position: absolute;
+  top: 12%;
+  bottom: 12%;
+  left: 50%;
+  width: 1px;
+  background: var(--rule);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.bundle-subscribe-toggle button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 16px 14px 14px;
+  text-align: center;
+  transition: background 0.35s ease;
+  position: relative;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+.bundle-subscribe-toggle button:hover {
+  background: rgba(184, 153, 104, 0.06);
+}
+.bundle-subscribe-toggle button.active {
+  background: var(--cream);
+}
+
+/* Radio mark + label inline */
+.bundle-subscribe-toggle .toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+}
+
+/* Refined radio mark */
+.bundle-subscribe-toggle .toggle-mark {
+  width: 14px;
+  height: 14px;
+  border: 1.5px solid var(--rule);
+  border-radius: 50%;
+  position: relative;
+  transition: border-color 0.3s;
+  flex-shrink: 0;
+}
+.bundle-subscribe-toggle button.active .toggle-mark {
+  border-color: var(--gold);
+}
+.bundle-subscribe-toggle button.active .toggle-mark::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 7px;
+  height: 7px;
+  background: var(--gold);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: dh-toggle-lock-in 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+@keyframes dh-toggle-lock-in {
+  0% { transform: translate(-50%, -50%) scale(0); }
+  60% { transform: translate(-50%, -50%) scale(1.35); }
+  100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+/* Option name in italic Cormorant — matches the brand voice */
+.bundle-subscribe-toggle .toggle-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  line-height: 1;
+  transition: color 0.35s;
+  white-space: nowrap;
+}
+.bundle-subscribe-toggle button.active .toggle-name {
+  color: var(--ink);
+}
+
+/* Tiny uppercase meta below */
+.bundle-subscribe-toggle .toggle-meta {
+  font-size: 9px;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--ink-soft);
   font-weight: 500;
-  padding: 11px 14px;
-  background: var(--cream);
-  border-right: 1px solid var(--rule);
+  opacity: 0.55;
+  transition: opacity 0.35s, color 0.35s;
   white-space: nowrap;
-  align-self: stretch;
-  display: flex;
-  align-items: center;
 }
-.bundle-subscribe-toggle button {
-  flex: 1;
-  padding: 11px 12px;
-  background: transparent;
-  border: none;
-  border-right: 1px solid var(--rule);
-  cursor: pointer;
-  font-family: 'Poppins', sans-serif;
+.bundle-subscribe-toggle button.active .toggle-meta {
+  opacity: 1;
+  color: var(--gold);
+}
+
+/* Mobile — slightly tighter padding */
+@media (max-width: 640px) {
+  .bundle-subscribe-toggle button { padding: 14px 8px 12px; }
+  .bundle-subscribe-toggle .toggle-name { font-size: 16px; }
+  .bundle-subscribe-toggle .toggle-meta { font-size: 8.5px; letter-spacing: 0.18em; }
+}
+
+/* ═══ BUNDLE FOOTNOTE ═══ */
+/* A polished "save with the bundle" callout used at the end of each product section */
+.bundle-footnote {
+  max-width: 880px;
+  margin: 56px auto 0;
+  padding: 0 40px;
+}
+.bundle-footnote-inner {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 36px;
+  align-items: center;
+  background: var(--cream-warm);
+  border: 1px solid var(--rule);
+  padding: 32px 36px;
+  position: relative;
+}
+.bundle-footnote-inner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 3px;
+  background: var(--gold);
+}
+.bundle-footnote-tag {
   font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+.bundle-footnote-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(26px, 3vw, 34px);
+  font-weight: 400;
+  line-height: 1.05;
+  margin-bottom: 10px;
+  color: var(--ink);
+}
+.bundle-footnote-name em {
+  font-style: italic;
+  color: var(--sage);
+}
+.bundle-footnote-desc {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+.bundle-footnote-action {
+  text-align: right;
+  border-left: 1px solid var(--rule);
+  padding-left: 32px;
+}
+.bundle-footnote-pricing {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+.bundle-footnote-was {
+  font-size: 14px;
+  color: var(--ink-soft);
+  text-decoration: line-through;
+}
+.bundle-footnote-now {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1;
+}
+.bundle-footnote-savings {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--sage);
+  margin-bottom: 16px;
+}
+.bundle-footnote-cta {
+  display: inline-block;
+  padding: 12px 22px;
+  background: var(--ink);
+  color: var(--cream);
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 500;
+  transition: background 0.3s;
+}
+.bundle-footnote-cta:hover { background: var(--sage); }
+
+@media (max-width: 720px) {
+  .bundle-footnote { padding: 0 20px; }
+  .bundle-footnote-inner {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    padding: 24px 22px 26px;
+  }
+  .bundle-footnote-action {
+    text-align: left;
+    border-left: none;
+    border-top: 1px solid var(--rule);
+    padding-left: 0;
+    padding-top: 22px;
+  }
+  .bundle-footnote-pricing { justify-content: flex-start; }
+}
+
+/* ═══ PRODUCT DETAIL — BEST FOR PILLS ═══ */
+.best-for-section {
+  max-width: 1200px;
+  margin: 60px auto 0;
+  padding: 0 40px;
+}
+.best-for-eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+  margin-bottom: 14px;
+  text-align: center;
+}
+.best-for-pills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+.best-for-pill {
+  font-size: 11px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   font-weight: 500;
-  color: var(--ink-soft);
-  transition: all 0.25s;
-  text-align: center;
-  line-height: 1.3;
+  padding: 9px 18px;
+  background: var(--cream-warm);
+  border: 1px solid var(--rule);
+  color: var(--ink);
+  transition: border-color 0.3s, color 0.3s, transform 0.3s;
 }
-.bundle-subscribe-toggle button:last-child { border-right: none; }
-.bundle-subscribe-toggle button:hover { color: var(--ink); background: rgba(184, 153, 104, 0.06); }
-.bundle-subscribe-toggle button.active {
+.best-for-pill:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  transform: translateY(-2px);
+}
+
+/* ═══ PRODUCT DETAIL — DANIEL'S NOTES ═══ */
+.daniels-note {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+.daniels-note-inner {
   background: var(--ink);
   color: var(--cream);
+  padding: 50px 56px;
+  position: relative;
+  border: 1px solid var(--gold);
 }
-.bundle-subscribe-toggle button .sub-meta {
-  display: block;
-  font-size: 8.5px;
-  letter-spacing: 0.12em;
-  font-weight: 400;
-  margin-top: 3px;
-  opacity: 0.75;
+.daniels-note-mark {
+  position: absolute;
+  top: 16px;
+  left: 32px;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 92px;
+  color: var(--gold);
+  line-height: 1;
+  opacity: 0.4;
+}
+.daniels-note-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+  margin-bottom: 14px;
+  position: relative;
+  z-index: 2;
+}
+.daniels-note-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(20px, 2.3vw, 26px);
+  line-height: 1.5;
+  color: var(--cream);
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 2;
+}
+.daniels-note-attr {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+}
+.daniels-note-attr::before {
+  content: '';
+  width: 28px;
+  height: 1px;
+  background: var(--gold);
+}
+.daniels-note-attr strong {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 19px;
+  color: var(--cream);
   text-transform: none;
+  letter-spacing: 0;
+  font-weight: 500;
+}
+
+@media (max-width: 720px) {
+  .daniels-note { padding: 0 20px; }
+  .daniels-note-inner { padding: 36px 28px; }
+  .daniels-note-mark { font-size: 60px; left: 18px; top: 8px; }
+}
+
+/* ═══ PRODUCT DETAIL — CUSTOMER REVIEWS ═══ */
+.reviews-summary {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px 36px;
+  text-align: center;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  font-family: 'Cormorant Garamond', serif;
+}
+.reviews-summary-stars {
+  color: var(--gold);
+  letter-spacing: 0.06em;
+  font-size: 22px;
+}
+.reviews-summary-num {
+  font-size: 28px;
+  font-weight: 500;
+  font-style: italic;
+  color: var(--ink);
+}
+.reviews-summary-count {
+  font-size: 14px;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+.reviews-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+.review-card {
+  background: var(--cream);
+  border: 1px solid var(--rule);
+  padding: 30px 26px;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.review-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-3px);
+}
+.review-stars {
+  color: var(--gold);
+  letter-spacing: 0.06em;
+  font-size: 14px;
+  margin-bottom: 14px;
+}
+.review-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: var(--ink);
+  margin-bottom: 22px;
+  flex: 1;
+}
+.review-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--rule);
+  padding-top: 14px;
+}
+.review-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 16px;
+  color: var(--ink);
+  font-weight: 500;
+}
+.review-name::before {
+  content: '✓';
+  color: var(--gold);
+  margin-right: 8px;
+  font-size: 11px;
+  font-style: normal;
+}
+.review-date {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+
+.reviews-cta {
+  text-align: center;
+  margin-top: 36px;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  font-style: italic;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+@media (max-width: 900px) {
+  .reviews-grid { grid-template-columns: 1fr; gap: 14px; }
 }

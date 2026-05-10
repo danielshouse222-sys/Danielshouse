@@ -332,6 +332,17 @@
     cart.render();
     cart.updateShippingBar();
 
+    // Sticky nav shadow — adds .scrolled class once user has moved past the shipping bar
+    const navEl = document.querySelector('nav');
+    if (navEl) {
+      const onScroll = () => {
+        if (window.scrollY > 8) navEl.classList.add('scrolled');
+        else navEl.classList.remove('scrolled');
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    }
+
     // Cart triggers
     document.querySelectorAll('.cart-trigger').forEach(el => el.addEventListener('click', openCart));
     document.querySelector('.cart-overlay')?.addEventListener('click', closeCart);

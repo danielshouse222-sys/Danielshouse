@@ -7,8 +7,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="css/shared.css">
+<link rel="stylesheet" href="styles.css?v=4">
+<link rel="stylesheet" href="css/shared.css?v=4">
 <style>
   body { background: var(--cream); color: var(--ink); font-family: 'Poppins', sans-serif; margin: 0; }
 
@@ -487,27 +487,27 @@
 </nav>
 
 <section class="shop-hero">
-  <div class="shop-eyebrow">Concern Bundles · 10% Off Each</div>
-  <h1 class="shop-title">Shop by <em>concern</em> or <em>goal.</em></h1>
-  <p class="shop-tagline">Skip the product names. Tell us what you want to fix or improve, and add the targeted bundle in one click.</p>
+  <div class="shop-eyebrow">15 Official Bundles · 10% Off Each</div>
+  <h1 class="shop-title">Shop by <em>concern</em> or <em>worry.</em></h1>
+  <p class="shop-tagline">Tell us what you want to fix — stress, breakouts, dull skin, low energy — and add the official bundle that targets it. One click, 10% off.</p>
   <p class="shop-note"><strong>Every concern is a bundle</strong> — pick one, get the curated set of products at <strong>10% off</strong>. Click any product to preview it before you commit.</p>
 </section>
 
 <!-- ═══ CONCERN DIRECTORY — Skin vs Wellness side by side ═══ -->
 <section class="directory-section">
   <div class="directory-eyebrow">Quick Index · 15 Concerns at a Glance</div>
-  <h2 class="directory-headline"><em>Skin</em> · vs · <em>Wellness</em></h2>
-  <p class="directory-sub">Two sides of the house. Six skin concerns on the left, nine wellness goals on the right. Tap any to jump to its bundle.</p>
+  <h2 class="directory-headline"><em>Skin</em> Concerns · <em>Wellness</em> Worries</h2>
+  <p class="directory-sub">Two sides of the house. Six skin concern bundles on the left, nine wellness worry bundles on the right. Tap any to jump to its bundle.</p>
 
   <div class="directory-grid">
     <div class="directory-col">
-      <div class="directory-col-title"><em>Skin</em> Concerns <span class="directory-col-count">· 6 bundles</span></div>
+      <div class="directory-col-title"><em>Skin</em> Concerns <span class="directory-col-count">· 6 official bundles</span></div>
       <p class="directory-col-blurb">What shows on the surface. Cleansers, treatments, serums, oils.</p>
       <ol class="directory-list" id="directory-skin"></ol>
     </div>
     <div class="directory-col">
-      <div class="directory-col-title"><em>Wellness</em> Goals <span class="directory-col-count">· 9 bundles</span></div>
-      <p class="directory-col-blurb">What runs underneath. Foundational supplements, longevity, performance.</p>
+      <div class="directory-col-title"><em>Wellness</em> Worries <span class="directory-col-count">· 9 official bundles</span></div>
+      <p class="directory-col-blurb">What you can't see but feel. Stress, sleep, energy, focus, gut, joints — bundled to fix.</p>
       <ol class="directory-list" id="directory-goal"></ol>
     </div>
   </div>
@@ -515,7 +515,7 @@
 
 <div class="shop-switch">
   <button class="shop-tab active" data-view="skin">Skin Concerns</button>
-  <button class="shop-tab" data-view="goal">Wellness Goals</button>
+  <button class="shop-tab" data-view="goal">Wellness Worries</button>
 </div>
 
 <div class="shop-content">
@@ -622,8 +622,8 @@
   </div>
 </div>
 
-<script src="data/products.js"></script>
-<script src="js/shared.js"></script>
+<script src="data/products.js?v=4"></script>
+<script src="js/shared.js?v=4"></script>
 <script>
 function renderConcernCard(bundle) {
   const pricing = window.getConcernBundlePricing(bundle.id);
@@ -631,8 +631,10 @@ function renderConcernCard(bundle) {
   const { products, fullPrice, discountedPrice, savings } = pricing;
   const colsClass = products.length === 2 ? 'cols-2' : products.length === 3 ? 'cols-3' : '';
   const productCount = products.length;
-  const firstWord = bundle.name.split(' ')[0];
-  const restName = bundle.name.substring(firstWord.length);
+  // Bundle names are "The X Bundle" — italicize the X (the meaningful word)
+  const nameMatch = bundle.name.match(/^The (.+) Bundle$/);
+  const meaningfulWord = nameMatch ? nameMatch[1] : bundle.name.split(' ')[0];
+  const formattedName = nameMatch ? `The <em>${meaningfulWord}</em> Bundle` : bundle.name;
 
   return `
     <div class="concern-card" data-bundle-id="${bundle.id}" data-product-slugs="${bundle.slugs.join(',')}" data-bundle-name="${bundle.name}">
@@ -640,7 +642,7 @@ function renderConcernCard(bundle) {
       <div class="concern-header">
         <div class="concern-icon">${bundle.icon}</div>
         <div>
-          <div class="concern-name"><em>${firstWord}</em>${restName}</div>
+          <div class="concern-name">${formattedName}</div>
           <div class="concern-blurb">${bundle.blurb}</div>
         </div>
       </div>
@@ -691,8 +693,24 @@ document.addEventListener('DOMContentLoaded', () => {
   const skinGrid = document.getElementById('skin-grid');
   const goalGrid = document.getElementById('goal-grid');
 
+  // Defensive: surface a clear error if the data didn't load (cache issue, missing file, etc.)
+  if (!window.CONCERN_BUNDLES || !window.CONCERN_BUNDLES.length || !window.getConcernBundlePricing) {
+    const errMsg = `
+      <div style="grid-column: 1 / -1; padding: 60px 32px; text-align: center; background: var(--cream-warm); border: 1px solid var(--gold);">
+        <div style="font-family: 'Cormorant Garamond', serif; font-size: 32px; font-style: italic; margin-bottom: 14px;">Bundles failed to load.</div>
+        <div style="color: var(--ink-soft); margin-bottom: 18px;">Try a hard refresh: <strong>Cmd/Ctrl + Shift + R</strong> — your browser may be showing a cached older version.</div>
+        <div style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold);">If this keeps happening, clear site data for this domain.</div>
+      </div>
+    `;
+    if (skinGrid) skinGrid.innerHTML = errMsg;
+    console.error('[shop.html] CONCERN_BUNDLES not loaded. Check that data/products.js loaded successfully.');
+    return;
+  }
+
   const skinBundles = window.CONCERN_BUNDLES.filter(b => b.tab === 'skin');
   const goalBundles = window.CONCERN_BUNDLES.filter(b => b.tab === 'goal');
+
+  console.log(`[shop.html] Rendering ${skinBundles.length} skin + ${goalBundles.length} wellness bundles.`);
 
   skinGrid.innerHTML = skinBundles.map(renderConcernCard).join('');
   goalGrid.innerHTML = goalBundles.map(renderConcernCard).join('');
@@ -703,14 +721,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!pricing) return '';
     const num = String(idx + 1).padStart(2, '0');
     const productCount = bundle.slugs.length;
-    const firstWord = bundle.name.split(' ')[0];
-    const restName = bundle.name.substring(firstWord.length);
+    const nameMatch = bundle.name.match(/^The (.+) Bundle$/);
+    const meaningfulWord = nameMatch ? nameMatch[1] : bundle.name.split(' ')[0];
+    const formattedName = nameMatch ? `The <em>${meaningfulWord}</em> Bundle` : bundle.name;
     return `
       <li>
         <button class="directory-link" data-bundle-id="${bundle.id}" data-tab="${bundle.tab}">
           <span class="directory-num">${num}</span>
           <span class="directory-name">
-            <span class="directory-name-text"><em>${firstWord}</em>${restName}</span>
+            <span class="directory-name-text">${formattedName}</span>
             <span class="directory-meta">${productCount} products · 10% off bundled</span>
           </span>
           <span class="directory-savings">Save $${pricing.savings.toFixed(0)} →</span>

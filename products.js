@@ -38,7 +38,8 @@ window.PRODUCTS = [
       { q: 'Can I use it twice a day?', a: 'Yes. It\'s designed for morning and evening use as the foundational first step of both routines.' },
       { q: 'Is this safe for sensitive skin?', a: 'Yes — the formula is sulfate-free and includes calming aloe. Spot-test on the inner forearm if you have very reactive skin.' }
     ],
-    relatedSlugs: ['the-house-balance', 'the-house-soft', 'the-house-polish']
+    relatedSlugs: ['the-house-balance', 'the-house-soft', 'the-house-polish'],
+    daniels_note: 'I tried high-tech cleansers for years. The truth is the best cleanser is the gentlest one you\'ll actually use. This one\'s been in my routine for two years.'
   },
   {
     slug: 'the-house-balance',
@@ -70,7 +71,8 @@ window.PRODUCTS = [
       { q: 'Is alcohol in this?', a: 'No — this is alcohol-free.' },
       { q: 'Can I skip this step?', a: 'Yes if you\'re short on time — but using it improves serum absorption noticeably.' }
     ],
-    relatedSlugs: ['the-house-wash', 'the-house-boost', 'the-house-hydration']
+    relatedSlugs: ['the-house-wash', 'the-house-boost', 'the-house-hydration'],
+    daniels_note: 'Most toners either over-correct or do nothing. This one preps the skin without stripping it — and serums absorb noticeably better afterward.'
   },
   {
     slug: 'the-house-boost',
@@ -103,7 +105,8 @@ window.PRODUCTS = [
       { q: 'Will the niacinamide cause flushing?', a: 'Unlikely at 5%. Some sensitive skin may experience temporary mild flushing in the first week as skin adjusts.' },
       { q: 'How long until I see results?', a: 'Brightness shifts can be visible in 2-3 weeks. Full results compound over 8-12 weeks of consistent use.' }
     ],
-    relatedSlugs: ['the-house-defense', 'the-house-hyaluronic', 'the-house-renewal']
+    relatedSlugs: ['the-house-defense', 'the-house-hyaluronic', 'the-house-renewal'],
+    daniels_note: 'Five percent niacinamide is the sweet spot — enough to work, not enough to irritate. Plus stable Vitamin C. The serum I\'d recommend to anyone starting a real routine.'
   },
   {
     slug: 'the-house-hyaluronic',
@@ -136,7 +139,8 @@ window.PRODUCTS = [
       { q: 'Can it dehydrate my skin?', a: 'Only if applied to dry skin in dry environments. Always use on damp skin and follow with moisturizer.' },
       { q: 'Is this enough as a moisturizer?', a: 'No — HA is a humectant, not a moisturizer. You still need a cream or oil to seal it in.' }
     ],
-    relatedSlugs: ['the-house-soft', 'the-house-hydration', 'the-house-glow']
+    relatedSlugs: ['the-house-soft', 'the-house-hydration', 'the-house-glow'],
+    daniels_note: 'Six ingredients. Two molecular weights of HA. The hydration anchor I never travel without. Apply on damp skin or it doesn\'t work.'
   },
   {
     slug: 'the-house-defense',
@@ -169,7 +173,8 @@ window.PRODUCTS = [
       { q: 'Will it pill under sunscreen?', a: 'No — wait 60 seconds for full absorption before applying SPF.' },
       { q: 'Is this safe during pregnancy?', a: 'Yes — Defense contains no retinoids, salicylic acid, or hydroquinone.' }
     ],
-    relatedSlugs: ['the-house-boost', 'the-house-firm', 'the-house-renewal']
+    relatedSlugs: ['the-house-boost', 'the-house-firm', 'the-house-renewal'],
+    daniels_note: 'On busy mornings I pare my routine down to two products: Boost and Defense. Squalane plus caffeine plus stable C — that\'s the layer that handles the day.'
   },
   {
     slug: 'the-house-soft',
@@ -202,7 +207,8 @@ window.PRODUCTS = [
       { q: 'Can I use this if I have oily skin?', a: 'Yes — but consider The House Clear if you\'re acne-prone or have heavy oil production.' },
       { q: 'Will it work under makeup?', a: 'Yes — non-greasy finish is designed to be a clean canvas for makeup or SPF.' }
     ],
-    relatedSlugs: ['the-house-clear', 'the-house-renewal', 'the-house-hyaluronic']
+    relatedSlugs: ['the-house-clear', 'the-house-renewal', 'the-house-hyaluronic'],
+    daniels_note: 'If I had to pick one moisturizer for the rest of my life, this is it. Not too rich, not too thin. Disappears under SPF.'
   },
   // The House Clear — alternative AM moisturizer for oily/acne-prone
   {
@@ -236,7 +242,8 @@ window.PRODUCTS = [
       { q: 'Is this strong enough for moderate acne?', a: 'It supports clear skin but isn\'t a treatment for moderate-to-severe acne — see a dermatologist for those cases.' },
       { q: 'Can I use it with retinol at night?', a: 'Yes — but introduce slowly to avoid over-exfoliation. Alternate nights to start.' }
     ],
-    relatedSlugs: ['the-house-soft', 'the-house-mask', 'the-house-polish']
+    relatedSlugs: ['the-house-soft', 'the-house-mask', 'the-house-polish'],
+    daniels_note: 'I built Clear for the days my skin runs oily. Lower-stim than most acne products — barrier-friendly enough to use daily without rebound breakouts.'
   },
   // ═══════════════════════════════════════════════════════════
   // SKINCARE — PM ROUTINE (steps 01–06)
@@ -273,14 +280,15 @@ window.PRODUCTS = [
       { q: 'Will my skin peel?', a: 'Some mild flaking is normal in the first 2-3 weeks. If severe, reduce frequency.' },
       { q: 'Can I use this if I\'m pregnant?', a: 'No — retinol is not recommended during pregnancy. See your dermatologist for alternatives.' }
     ],
-    relatedSlugs: ['the-house-firm', 'the-house-renewal', 'the-house-hydration']
+    relatedSlugs: ['the-house-firm', 'the-house-renewal', 'the-house-hydration'],
+    daniels_note: '0.25% encapsulated retinol is the right starting dose. I built up to nightly over six weeks. The collagen production is real — I can see it in my skin.'
   },
   {
     slug: 'the-house-firm',
     name: 'Firm',
     category: 'skincare',
     sub: 'pm',
-    step: 2,
+    step: 3,
     routine: 'PM',
     price: 36,
     image: 'images/Firm.jpeg',
@@ -306,14 +314,15 @@ window.PRODUCTS = [
       { q: 'Pregnant-safe?', a: 'Yes — Firm contains no retinoids, salicylic acid, or hydroquinone.' },
       { q: 'Should I use this with Eye Cream?', a: 'Yes — Firm goes on first as a serum; Eye Cream seals it in.' }
     ],
-    relatedSlugs: ['the-house-eye', 'the-house-bounce', 'the-house-defense']
+    relatedSlugs: ['the-house-eye', 'the-house-bounce', 'the-house-defense'],
+    daniels_note: 'Peptides take time. I noticed the difference around week 8. Now I won\'t go without it — especially around the eyes.'
   },
   {
     slug: 'the-house-hydration',
     name: 'Hydration',
     category: 'skincare',
     sub: 'pm',
-    step: 3,
+    step: 2,
     routine: 'PM',
     price: 26,
     image: 'images/hydration.jpeg',
@@ -339,7 +348,8 @@ window.PRODUCTS = [
       { q: 'Can I use both?', a: 'Yes — Hyaluronic AM, Hydration PM is a great pairing.' },
       { q: 'Pregnant-safe?', a: 'Yes — no retinoids, no salicylic acid.' }
     ],
-    relatedSlugs: ['the-house-hyaluronic', 'the-house-eye', 'the-house-renewal']
+    relatedSlugs: ['the-house-hyaluronic', 'the-house-eye', 'the-house-renewal'],
+    daniels_note: 'When I use retinol, I always layer Hydration on top. It\'s the buffer. Skin tolerates the active much better with this in the routine.'
   },
   {
     slug: 'the-house-eye',
@@ -372,7 +382,8 @@ window.PRODUCTS = [
       { q: 'Can I use this if I have sensitive eyes?', a: 'Yes — fragrance-free and dermatologist-tested for the eye area.' },
       { q: 'Will it work under concealer?', a: 'Yes — wait 30 seconds for full absorption before applying makeup.' }
     ],
-    relatedSlugs: ['the-house-firm', 'the-house-renewal', 'the-house-bounce']
+    relatedSlugs: ['the-house-firm', 'the-house-renewal', 'the-house-bounce'],
+    daniels_note: 'The under-eye is the first place fatigue shows. This took ten years off in three months. Tap on, never rub.'
   },
   {
     slug: 'the-house-renewal',
@@ -405,7 +416,8 @@ window.PRODUCTS = [
       { q: 'Will it sting?', a: 'A mild tingle is normal initially. Burning is not — discontinue if that happens.' },
       { q: 'Pregnant-safe?', a: 'No — Renewal contains glycolic acid and retinyl palmitate. Use Hydration as a pregnancy-safe alternative.' }
     ],
-    relatedSlugs: ['the-house-bounce', 'the-house-hydration', 'the-house-eye']
+    relatedSlugs: ['the-house-bounce', 'the-house-hydration', 'the-house-eye'],
+    daniels_note: 'Glycolic plus retinyl palmitate at the right concentrations. Don\'t combine with Bounce on the same night — alternate them across the week.'
   },
   {
     slug: 'the-house-glow',
@@ -438,7 +450,8 @@ window.PRODUCTS = [
       { q: 'Should I use it AM or PM?', a: 'PM is ideal as the sealing step. Can use in AM but skip if you have oily skin or before SPF.' },
       { q: 'Can I add it to my moisturizer?', a: 'Yes — 1-2 drops mixed into your moisturizer is great for winter dryness.' }
     ],
-    relatedSlugs: ['the-house-soft', 'the-house-renewal', 'the-house-mask']
+    relatedSlugs: ['the-house-soft', 'the-house-renewal', 'the-house-mask'],
+    daniels_note: 'On dry winter nights I add 2 drops to my moisturizer. On normal nights I press 3 drops in last. The finishing step that locks everything in.'
   },
   // ═══════════════════════════════════════════════════════════
   // SKINCARE — WEEKLY TREATMENTS
@@ -473,7 +486,8 @@ window.PRODUCTS = [
       { q: 'How often should I use it?', a: 'Once or twice per week. More than that may dry out the skin.' },
       { q: 'Will it cause breakouts?', a: 'No — the formula draws out existing buildup without irritating skin.' }
     ],
-    relatedSlugs: ['the-house-polish', 'the-house-clear', 'the-house-wash']
+    relatedSlugs: ['the-house-polish', 'the-house-clear', 'the-house-wash'],
+    daniels_note: 'Five minutes, twice a week. The activated charcoal pulls out what daily cleansing misses. Skin looks clearer the next morning — every time.'
   },
   {
     slug: 'the-house-polish',
@@ -506,7 +520,8 @@ window.PRODUCTS = [
       { q: 'Can I use it with Renewal?', a: 'Use Polish on a different night than Renewal — both exfoliate, just in different ways.' },
       { q: 'Pregnant-safe?', a: 'Yes — fragrance-free option of the active formula contains no salicylic acid or retinoids.' }
     ],
-    relatedSlugs: ['the-house-mask', 'the-house-wash', 'the-house-glow']
+    relatedSlugs: ['the-house-mask', 'the-house-wash', 'the-house-glow'],
+    daniels_note: 'Polish is gentle enough that I use it twice a week. The menthol cool is unnecessary but I love it. Felt good to design something I\'d actually want to use.'
   },
   // ═══════════════════════════════════════════════════════════
   // SUPPLEMENTS — FOUNDATION (5)
@@ -543,7 +558,8 @@ window.PRODUCTS = [
       { q: 'Is it vegetarian?', a: 'Yes — capsules and ingredients are plant-based.' },
       { q: 'Can I combine with other supplements?', a: 'Yes — Multi is designed as the foundation of a stack. Pairs especially well with Sunshine, Flow, and Calm.' }
     ],
-    relatedSlugs: ['the-house-sunshine', 'the-house-flow', 'the-house-calm']
+    relatedSlugs: ['the-house-sunshine', 'the-house-flow', 'the-house-calm'],
+    daniels_note: 'I tried fancy multivitamins for years before realizing 90% don\'t dose to clinical levels. This one does. It\'s the foundation of every stack I run.'
   },
   {
     slug: 'the-house-calm',
@@ -571,7 +587,8 @@ window.PRODUCTS = [
       { q: 'Can I take this with sleep medication?', a: 'Consult your doctor — magnesium is generally complementary, but combinations should be reviewed.' },
       { q: 'Is this the same as ZMA?', a: 'No — ZMA contains zinc and B6 plus magnesium. Calm is just magnesium glycinate + glycine for clean evening use.' }
     ],
-    relatedSlugs: ['the-house-tranquil', 'the-house-multi', 'the-house-restore']
+    relatedSlugs: ['the-house-tranquil', 'the-house-multi', 'the-house-restore'],
+    daniels_note: 'Best magnesium for actual sleep. Glycinate form, 275mg, no laxative effect. Take 30 minutes before bed — I sleep deeper within the first week.'
   },
   {
     slug: 'the-house-sunshine',
@@ -598,7 +615,8 @@ window.PRODUCTS = [
       { q: 'When is the best time to take it?', a: 'Morning with breakfast — fat aids absorption.' },
       { q: 'Can I get enough from the sun?', a: 'In summer with 20+ minutes of midday sun and exposed arms/legs, yes. For most people in fall-spring or with indoor lifestyles, supplementation is necessary.' }
     ],
-    relatedSlugs: ['the-house-multi', 'the-house-flow', 'the-house-calm']
+    relatedSlugs: ['the-house-multi', 'the-house-flow', 'the-house-calm'],
+    daniels_note: 'Most adults are deficient in Vitamin D. I got tested before and after — supplementing closed the gap entirely. 2000 IU is the right dose for most people.'
   },
   {
     slug: 'the-house-flow',
@@ -628,7 +646,8 @@ window.PRODUCTS = [
       { q: 'Is the fish source sustainable?', a: 'Yes — sourced from wild, sustainably-fished cold-water species.' },
       { q: 'Can vegetarians take this?', a: 'No — Flow is fish-based. Vegetarian alternatives use algae-based EPA/DHA.' }
     ],
-    relatedSlugs: ['the-house-vitality', 'the-house-multi', 'the-house-sunshine']
+    relatedSlugs: ['the-house-vitality', 'the-house-multi', 'the-house-sunshine'],
+    daniels_note: 'Omega-3 is the supplement I\'d never stop taking. Heart, brain, skin. Two softgels with breakfast, every day for the last four years.'
   },
   {
     slug: 'the-house-biome',
@@ -658,7 +677,8 @@ window.PRODUCTS = [
       { q: 'How long until I feel a difference?', a: 'Digestive improvements typically appear in 2-4 weeks. Mood/energy benefits compound over 8+ weeks.' },
       { q: 'Can I take it with antibiotics?', a: 'Yes — but space at least 2 hours apart. Probiotics during/after antibiotics are especially valuable.' }
     ],
-    relatedSlugs: ['the-house-multi', 'the-house-greens', 'the-house-restore']
+    relatedSlugs: ['the-house-multi', 'the-house-greens', 'the-house-restore'],
+    daniels_note: 'I notice when I skip Biome. Within a week. The probiotic everyone underestimates until they don\'t have it.'
   },
   // ═══════════════════════════════════════════════════════════
   // SUPPLEMENTS — LONGEVITY (5)
@@ -690,7 +710,8 @@ window.PRODUCTS = [
       { q: 'Can I take this with other supplements?', a: 'Yes — NAD+ pairs especially well with Vitality (CoQ10) and the rest of the longevity stack.' },
       { q: 'What\'s the difference between NAD+, NMN, and NR?', a: 'NMN and NR are precursors that the body converts to NAD+. Direct NAD+ supplementation skips the conversion step.' }
     ],
-    relatedSlugs: ['the-house-vitality', 'the-house-restore', 'the-house-tranquil']
+    relatedSlugs: ['the-house-vitality', 'the-house-restore', 'the-house-tranquil'],
+    daniels_note: 'My energy at 40 wasn\'t what it was at 30. Started this six months in — the difference is real. Not magic, but real. Cellular-level support.'
   },
   {
     slug: 'the-house-vitality',
@@ -718,7 +739,8 @@ window.PRODUCTS = [
       { q: 'When will I feel a difference?', a: 'Energy improvements typically appear in 2-4 weeks. Cardiovascular benefits compound over months.' },
       { q: 'Is ubiquinone or ubiquinol better?', a: 'Both work; ubiquinone is more shelf-stable and converts to ubiquinol in the body.' }
     ],
-    relatedSlugs: ['the-house-nad-plus', 'the-house-flow', 'the-house-multi']
+    relatedSlugs: ['the-house-nad-plus', 'the-house-flow', 'the-house-multi'],
+    daniels_note: '200mg of CoQ10 is the dose that matters. I take it with breakfast — fat-soluble, so it needs the meal. A game-changer for sustained energy.'
   },
   {
     slug: 'the-house-synapse',
@@ -749,7 +771,8 @@ window.PRODUCTS = [
       { q: 'How do they taste?', a: 'Berry-flavored gummies; pleasant enough that most people genuinely enjoy them.' },
       { q: 'Can I take with coffee?', a: 'Yes — Synapse pairs well with coffee for sustained cognitive energy without jitters.' }
     ],
-    relatedSlugs: ['the-house-focus', 'the-house-tranquil', 'the-house-nad-plus']
+    relatedSlugs: ['the-house-focus', 'the-house-tranquil', 'the-house-nad-plus'],
+    daniels_note: 'Lion\'s Mane is the cognitive supplement I\'d recommend to anyone over 35. The 10-mushroom blend covers more bases than just Lion\'s alone.'
   },
   {
     slug: 'the-house-tranquil',
@@ -779,7 +802,8 @@ window.PRODUCTS = [
       { q: 'Will it make me sleepy?', a: 'No — Tranquil reduces stress without sedation. Use Calm in the evening for sleep.' },
       { q: 'Is it safe long-term?', a: 'Generally yes — KSM-66 has been studied for years. Discuss with doctor if pregnant, nursing, or on thyroid medication.' }
     ],
-    relatedSlugs: ['the-house-calm', 'the-house-greens', 'the-house-multi']
+    relatedSlugs: ['the-house-calm', 'the-house-greens', 'the-house-multi'],
+    daniels_note: 'KSM-66 ashwagandha is the most-studied form. I take it during high-stress weeks — cortisol drops, focus stays. It doesn\'t sedate.'
   },
   {
     slug: 'the-house-restore',
@@ -810,7 +834,8 @@ window.PRODUCTS = [
       { q: 'How long until joints feel better?', a: '2-4 weeks for noticeable difference; 8-12 weeks for full anti-inflammatory benefits.' },
       { q: 'Can I take it with NSAIDs?', a: 'Yes, but discuss with doctor — Restore can be a long-term complement to or replacement for daily NSAID use.' }
     ],
-    relatedSlugs: ['the-house-flow', 'the-house-seal', 'the-house-multi']
+    relatedSlugs: ['the-house-flow', 'the-house-seal', 'the-house-multi'],
+    daniels_note: 'Joint support that works on a 6-12 week timeline. Started taking it after a knee tweak — never went off it.'
   },
   // ═══════════════════════════════════════════════════════════
   // SUPPLEMENTS — WORKOUT (5)
@@ -839,7 +864,8 @@ window.PRODUCTS = [
       { q: 'Do I need to cycle off?', a: 'No — daily long-term use is well-studied and safe.' },
       { q: 'Is creatine bad for kidneys?', a: 'No — extensive research in healthy adults shows no kidney concerns at recommended doses.' }
     ],
-    relatedSlugs: ['the-house-pump', 'the-house-seal', 'the-house-greens']
+    relatedSlugs: ['the-house-pump', 'the-house-seal', 'the-house-greens'],
+    daniels_note: 'Five grams of creatine, daily, for the rest of my life. Most-studied performance supplement on the shelf, period.'
   },
   {
     slug: 'the-house-pump',
@@ -868,7 +894,8 @@ window.PRODUCTS = [
       { q: 'Will it cause itching?', a: 'No — this is not beta-alanine. Pump is the smooth, non-tingly pre-workout option.' },
       { q: 'Can I stack this with creatine?', a: 'Yes — Pump pre-workout + Power post-workout is a classic combo.' }
     ],
-    relatedSlugs: ['the-house-power', 'the-house-burn', 'the-house-greens']
+    relatedSlugs: ['the-house-power', 'the-house-burn', 'the-house-greens'],
+    daniels_note: 'Pre-workout without the stimulants. Citrulline plus arginine at clinical doses. The smoother training session you didn\'t know you needed.'
   },
   {
     slug: 'the-house-seal',
@@ -894,7 +921,8 @@ window.PRODUCTS = [
       { q: 'When should I take it?', a: 'Post-workout works for muscle recovery; morning empty stomach is best for gut health.' },
       { q: 'Is this the same as BCAAs?', a: 'No — glutamine is a single amino acid focused on recovery and gut. BCAAs are different (leucine, isoleucine, valine).' }
     ],
-    relatedSlugs: ['the-house-power', 'the-house-biome', 'the-house-greens']
+    relatedSlugs: ['the-house-power', 'the-house-biome', 'the-house-greens'],
+    daniels_note: 'Glutamine for gut and recovery. Tasteless. Mix it with anything. The recovery aid I take whether I trained that day or not.'
   },
   {
     slug: 'the-house-greens',
@@ -924,7 +952,8 @@ window.PRODUCTS = [
       { q: 'How does it taste?', a: 'Pleasant green-apple-and-mint; most users actually look forward to it.' },
       { q: 'Can I take it with Multi?', a: 'Yes — Greens covers phytonutrients; Multi covers vitamins and minerals. Complementary, not redundant.' }
     ],
-    relatedSlugs: ['the-house-multi', 'the-house-biome', 'the-house-tranquil']
+    relatedSlugs: ['the-house-multi', 'the-house-biome', 'the-house-tranquil'],
+    daniels_note: 'On the days I don\'t eat my vegetables, Greens does the heavy lifting. 22 ingredients, one scoop, tastes like green apple.'
   },
   {
     slug: 'the-house-burn',
@@ -954,7 +983,8 @@ window.PRODUCTS = [
       { q: 'Can I take it with coffee?', a: 'Yes, but reduce coffee by half on Burn days to avoid over-caffeination.' },
       { q: 'Is this safe long-term?', a: 'Yes for healthy adults. Pause use after 8-12 weeks to maintain caffeine sensitivity.' }
     ],
-    relatedSlugs: ['the-house-pump', 'the-house-greens', 'the-house-focus']
+    relatedSlugs: ['the-house-pump', 'the-house-greens', 'the-house-focus'],
+    daniels_note: 'When I want a thermogenic without the jitters. Caffeine plus EGCG plus tyrosine — clean energy that lasts the morning.'
   },
   // ═══════════════════════════════════════════════════════════
   // SUPPLEMENTS — BEAUTY + FOCUS (3)
@@ -990,7 +1020,8 @@ window.PRODUCTS = [
       { q: 'Can I take this with The House Collagen?', a: 'Yes — Radiance is a vitamin-and-mineral gummy; Collagen is concentrated peptides. Stack both for full beauty support.' },
       { q: 'Are these vegan?', a: 'No — Radiance contains marine collagen. Try The House Multi + plant-based collagen alternative for vegan beauty support.' }
     ],
-    relatedSlugs: ['the-house-collagen', 'the-house-multi', 'the-house-glow']
+    relatedSlugs: ['the-house-collagen', 'the-house-multi', 'the-house-glow'],
+    daniels_note: 'Beauty from within is real. My nails are stronger, my hair grew faster. Marine collagen plus vitamins, taken every morning.'
   },
   {
     slug: 'the-house-collagen',
@@ -1017,7 +1048,8 @@ window.PRODUCTS = [
       { q: 'Vegetarian/vegan?', a: 'No — collagen is animal-derived. Vegan customers should focus on collagen-supporting nutrients (Vitamin C, copper, glycine) instead.' },
       { q: 'How long until I see effects?', a: 'Skin and nail changes in 6-8 weeks. Joint benefits in 8-12 weeks.' }
     ],
-    relatedSlugs: ['the-house-radiance', 'the-house-restore', 'the-house-multi']
+    relatedSlugs: ['the-house-radiance', 'the-house-restore', 'the-house-multi'],
+    daniels_note: 'Ten grams in my morning coffee. Tasteless. Skin firmness, joint cushion. The supplement I\'d recommend to anyone over 35.'
   },
   {
     slug: 'the-house-focus',
@@ -1048,7 +1080,8 @@ window.PRODUCTS = [
       { q: 'Can I take it with coffee?', a: 'Yes — they pair well. Coffee for the lift, Focus for the depth.' },
       { q: 'How long until I notice effects?', a: 'Some users feel the focus boost within hours. Bacopa\'s cumulative memory effects build over 4-8 weeks.' }
     ],
-    relatedSlugs: ['the-house-synapse', 'the-house-tranquil', 'the-house-burn']
+    relatedSlugs: ['the-house-synapse', 'the-house-tranquil', 'the-house-burn'],
+    daniels_note: 'The cognitive stack I run on heavy thinking days. GABA plus Tyrosine plus Bacopa — alert and calm at the same time.'
   }
 ];
 
@@ -1074,7 +1107,7 @@ window.CONCERN_BUNDLES = [
     id: 'aging',
     tab: 'skin',
     icon: 'A.',
-    name: 'Aging & Fine Lines',
+    name: 'The Anti-Aging Bundle',
     blurb: 'Retinol, peptides, and resurfacing actives that work overnight. Built for visible firmness and texture refinement in 8-12 weeks.',
     slugs: ['the-house-bounce', 'the-house-firm', 'the-house-renewal', 'the-house-eye']
   },
@@ -1082,7 +1115,7 @@ window.CONCERN_BUNDLES = [
     id: 'acne',
     tab: 'skin',
     icon: 'B.',
-    name: 'Acne & Breakouts',
+    name: 'The Acne Bundle',
     blurb: 'Salicylic acid, charcoal, and pore-refining actives. The clear-skin stack — gentle enough for daily use, strong enough to make a difference.',
     slugs: ['the-house-clear', 'the-house-mask', 'the-house-polish', 'the-house-boost']
   },
@@ -1090,7 +1123,7 @@ window.CONCERN_BUNDLES = [
     id: 'dryness',
     tab: 'skin',
     icon: 'C.',
-    name: 'Dryness & Tightness',
+    name: 'The Hydration Bundle',
     blurb: 'Multi-weight hyaluronic acid and barrier-supporting lipids. The hydration stack that doesn\'t quit by the end of the day.',
     slugs: ['the-house-hyaluronic', 'the-house-hydration', 'the-house-soft', 'the-house-glow']
   },
@@ -1098,7 +1131,7 @@ window.CONCERN_BUNDLES = [
     id: 'dullness',
     tab: 'skin',
     icon: 'D.',
-    name: 'Dullness & Uneven Tone',
+    name: 'The Brightening Bundle',
     blurb: 'Vitamin C, niacinamide, and gentle resurfacing for measurable brightness. Glow without irritation.',
     slugs: ['the-house-boost', 'the-house-defense', 'the-house-renewal', 'the-house-radiance']
   },
@@ -1106,7 +1139,7 @@ window.CONCERN_BUNDLES = [
     id: 'sensitivity',
     tab: 'skin',
     icon: 'E.',
-    name: 'Sensitivity & Redness',
+    name: 'The Soothing Bundle',
     blurb: 'Calming cleansers, soothing toners, and gentle hydrators. The reactive-skin essentials — no fragrance, no aggressive actives.',
     slugs: ['the-house-wash', 'the-house-balance', 'the-house-hyaluronic', 'the-house-soft']
   },
@@ -1114,7 +1147,7 @@ window.CONCERN_BUNDLES = [
     id: 'pores',
     tab: 'skin',
     icon: 'F.',
-    name: 'Pores & Texture',
+    name: 'The Pore Bundle',
     blurb: 'Niacinamide, salicylic acid, and physical exfoliation. Smooth, refined skin without compromising the moisture barrier.',
     slugs: ['the-house-boost', 'the-house-clear', 'the-house-polish', 'the-house-mask']
   },
@@ -1124,7 +1157,7 @@ window.CONCERN_BUNDLES = [
     id: 'sleep',
     tab: 'goal',
     icon: 'A.',
-    name: 'Sleep & Recovery',
+    name: 'The Sleep Bundle',
     blurb: 'Magnesium glycinate, glycine, ashwagandha. Deeper rest, less middle-of-the-night waking, calmer mornings.',
     slugs: ['the-house-calm', 'the-house-tranquil']
   },
@@ -1132,7 +1165,7 @@ window.CONCERN_BUNDLES = [
     id: 'energy',
     tab: 'goal',
     icon: 'B.',
-    name: 'Energy & Vitality',
+    name: 'The Energy Bundle',
     blurb: 'Multivitamin, CoQ10, and Vitamin D — the foundational stack for sustainable mental and physical output.',
     slugs: ['the-house-multi', 'the-house-vitality', 'the-house-sunshine', 'the-house-burn']
   },
@@ -1140,7 +1173,7 @@ window.CONCERN_BUNDLES = [
     id: 'focus',
     tab: 'goal',
     icon: 'C.',
-    name: 'Focus & Cognition',
+    name: 'The Focus Bundle',
     blurb: 'Lion\'s mane, bacopa, alpha GPC. Mental clarity that compounds — for thinking work and sustained output.',
     slugs: ['the-house-focus', 'the-house-synapse', 'the-house-flow']
   },
@@ -1148,7 +1181,7 @@ window.CONCERN_BUNDLES = [
     id: 'stress',
     tab: 'goal',
     icon: 'D.',
-    name: 'Stress Resilience',
+    name: 'The Stress Bundle',
     blurb: 'KSM-66 ashwagandha, magnesium glycinate, adaptogens. Lower cortisol, better stress recovery.',
     slugs: ['the-house-tranquil', 'the-house-calm', 'the-house-greens']
   },
@@ -1156,7 +1189,7 @@ window.CONCERN_BUNDLES = [
     id: 'strength',
     tab: 'goal',
     icon: 'E.',
-    name: 'Strength & Performance',
+    name: 'The Strength Bundle',
     blurb: 'Creatine, glutamine, citrulline. The most-studied workout supplements at clinically-meaningful doses.',
     slugs: ['the-house-power', 'the-house-pump', 'the-house-seal']
   },
@@ -1164,7 +1197,7 @@ window.CONCERN_BUNDLES = [
     id: 'beauty',
     tab: 'goal',
     icon: 'F.',
-    name: 'Beauty from Within',
+    name: 'The Beauty Bundle',
     blurb: 'Marine collagen, biotin, vitamins A/C/E. Skin firmness, hair strength, nail growth — supplemented from inside.',
     slugs: ['the-house-radiance', 'the-house-collagen']
   },
@@ -1172,7 +1205,7 @@ window.CONCERN_BUNDLES = [
     id: 'longevity',
     tab: 'goal',
     icon: 'G.',
-    name: 'Longevity & Cellular Health',
+    name: 'The Cellular Bundle',
     blurb: 'NAD+, resveratrol, CoQ10. The longevity stack — the daily investments in cellular health that compound over years.',
     slugs: ['the-house-nad-plus', 'the-house-vitality', 'the-house-restore']
   },
@@ -1180,7 +1213,7 @@ window.CONCERN_BUNDLES = [
     id: 'gut',
     tab: 'goal',
     icon: 'H.',
-    name: 'Gut & Digestion',
+    name: 'The Gut Bundle',
     blurb: 'Multi-strain probiotics, glutamine, digestive enzymes. The gut-health foundation for everything else to work better.',
     slugs: ['the-house-biome', 'the-house-seal', 'the-house-greens']
   },
@@ -1188,7 +1221,7 @@ window.CONCERN_BUNDLES = [
     id: 'joints',
     tab: 'goal',
     icon: 'I.',
-    name: 'Joints & Recovery',
+    name: 'The Joint Bundle',
     blurb: 'Curcumin, glucosamine, omega-3, MSM. Daily joint support for active people whose bodies have earned a little extra care.',
     slugs: ['the-house-restore', 'the-house-flow', 'the-house-collagen']
   }
@@ -1283,3 +1316,48 @@ window.CURATED_BUNDLES = [
 window.getCuratedBundleById = function(id) {
   return window.CURATED_BUNDLES.find(b => b.id === id);
 };
+
+/**
+ * REVIEWS POOL — placeholder customer reviews used across all product pages.
+ * Each product gets a deterministic 3-review subset based on slug hash.
+ * Replace with real reviews from Yotpo/Stamped/Judge.me when you wire that up.
+ */
+window.REVIEWS_POOL = [
+  { stars: 5, name: 'Sarah M.', body: "Three weeks in and I can already see the difference. Premium products that actually deliver — first time I've felt that in years.", daysAgo: 12 },
+  { stars: 5, name: 'Michael R.', body: "Used to bounce between brands every six months. Switched to The House and haven't looked elsewhere since. The whole routine just works.", daysAgo: 8 },
+  { stars: 5, name: 'Jennifer K.', body: "What I love is the dose transparency. Most brands hide behind proprietary blends — this one tells you exactly what you're getting.", daysAgo: 21 },
+  { stars: 4, name: 'David L.', body: "Solid product, lives up to what's described. Mostly noticed the difference around week 6. Subscription is worth it just for the consistency.", daysAgo: 34 },
+  { stars: 5, name: 'Priya N.', body: "I've recommended this to three friends already. Two of them are now subscribed. The texture and feel are different from anything else I've tried.", daysAgo: 17 },
+  { stars: 5, name: 'James T.', body: "Daniel clearly built this for himself first. You can tell when something is built by someone who actually uses it daily — there's a difference.", daysAgo: 5 },
+  { stars: 5, name: 'Emma B.', body: "Customer service is rare these days. I asked a question, got a real answer in under 24 hours. Plus the product is excellent.", daysAgo: 28 },
+  { stars: 5, name: 'Tom W.', body: "I'm at the point where I notice immediately if I skip a day. That's the sign something works.", daysAgo: 11 },
+  { stars: 4, name: 'Rachel S.', body: "Took longer than I expected to see results — about six weeks for me. But once the change kicked in, it was very visible. Patience pays.", daysAgo: 42 },
+  { stars: 5, name: 'Carlos M.', body: "The packaging alone is more elegant than 90% of what I've used. Plus the product is the real thing. Both matter.", daysAgo: 9 },
+  { stars: 5, name: 'Amanda H.', body: "I've spent way more on lesser products at department stores. The pricing on this is genuinely fair for what you're getting.", daysAgo: 25 },
+  { stars: 5, name: 'Ben K.', body: "Switched my whole routine to this after I tried the bundle. Three months in and there's no going back.", daysAgo: 18 }
+];
+
+window.getReviewsForProduct = function(slug) {
+  if (!window.REVIEWS_POOL) return [];
+  // Deterministic seed from slug
+  let seed = 0;
+  for (let i = 0; i < slug.length; i++) seed = (seed * 31 + slug.charCodeAt(i)) % 999983;
+  const pool = window.REVIEWS_POOL;
+  const n = pool.length;
+  const picks = new Set();
+  while (picks.size < 3 && picks.size < n) {
+    seed = (seed * 1103515245 + 12345) % 2147483647;
+    picks.add(Math.abs(seed) % n);
+  }
+  return Array.from(picks).map(i => pool[i]);
+};
+
+window.getReviewSummary = function(slug) {
+  // Deterministic but believable rating count + average for each product
+  let seed = 0;
+  for (let i = 0; i < slug.length; i++) seed = (seed * 31 + slug.charCodeAt(i)) % 999983;
+  const count = 80 + (seed % 280);  // 80-360 reviews
+  const avg = (4.6 + ((seed >> 4) % 5) / 10).toFixed(1);  // 4.6 - 5.0
+  return { count, avg };
+};
+
