@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Supplements — Daniel's House</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAF6F0;
+    --cream-warm: #F2EBDD;
+    --ink: #1F1B17;
+    --ink-soft: #4A433B;
+    --sage: #5D6E5C;
+    --gold: #B89968;
+    --tan: #E8E1D5;
+    --rule: #D4C9B6;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--cream); color: var(--ink); font-family: 'Poppins', sans-serif; font-weight: 300; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+  .announce { background: var(--ink); color: var(--cream); text-align: center; padding: 11px 20px; font-size: 12px; letter-spacing: 0.08em; font-weight: 300; }
+  .announce strong { color: var(--gold); font-weight: 500; }
+
+  nav { border-bottom: 1px solid var(--rule); padding: 24px 48px; background: var(--cream); position: sticky; top: 0; z-index: 100; }
+  .nav-inner { max-width: 1320px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+  .logo { font-family: 'Cormorant Garamond', serif; font-size: 30px; letter-spacing: 0.02em; color: var(--ink); text-decoration: none; font-weight: 500; }
+  .logo .amp { color: var(--gold); font-style: italic; }
+  .nav-links { list-style: none; display: flex; gap: 38px; }
+  .nav-links a { text-decoration: none; color: var(--ink); font-size: 13px; letter-spacing: 0.06em; font-weight: 400; transition: color 0.3s; position: relative; }
+  .nav-links a.active { color: var(--gold); }
+  .nav-links a.active::after { content: ""; position: absolute; bottom: -6px; left: 0; right: 0; height: 1px; background: var(--gold); }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cart { font-size: 13px; letter-spacing: 0.06em; }
+
+  .page-header { max-width: 920px; margin: 0 auto; padding: 100px 40px 70px; text-align: center; }
+  .page-header-eyebrow { font-size: 12px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 28px; font-weight: 500; }
+  .page-header h1 { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: clamp(48px, 6vw, 76px); line-height: 1.05; letter-spacing: -0.01em; margin-bottom: 32px; }
+  .page-header h1 em { font-style: italic; color: var(--sage); font-weight: 400; }
+  .page-header p { font-size: 16px; line-height: 1.75; color: var(--ink-soft); max-width: 640px; margin: 0 auto; }
+
+  .credibility { max-width: 1080px; margin: 0 auto 0; padding: 0 40px 50px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; border-bottom: 1px solid var(--rule); padding-bottom: 50px; text-align: center; }
+  .cred-item { display: flex; flex-direction: column; align-items: center; }
+  .cred-num { font-family: 'Cormorant Garamond', serif; font-size: 44px; font-weight: 500; color: var(--sage); line-height: 1; margin-bottom: 6px; }
+  .cred-num em { color: var(--gold); font-style: italic; }
+  .cred-label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft); font-weight: 500; }
+
+  .sec-header { max-width: 1080px; margin: 0 auto; padding: 80px 40px 0; text-align: center; }
+  .sec-eyebrow { font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; font-weight: 500; }
+  .sec-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(44px, 5vw, 56px); font-weight: 400; line-height: 1; margin-bottom: 14px; }
+  .sec-title em { font-style: italic; color: var(--sage); }
+
+  .split { display: grid; grid-template-columns: 1fr 1fr; margin: 50px auto 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); position: relative; }
+  .split::before { content: ""; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: var(--rule); z-index: 5; }
+  .ritual { padding: 60px 50px 70px; position: relative; background: var(--cream); }
+  .ritual-header { text-align: center; margin-bottom: 36px; padding-bottom: 24px; border-bottom: 1px solid var(--rule); }
+  .ritual-icon { font-size: 32px; margin-bottom: 12px; }
+  .ritual-title { font-family: 'Cormorant Garamond', serif; font-size: 44px; font-weight: 400; line-height: 0.95; margin-bottom: 8px; }
+  .ritual-title em { font-style: italic; color: var(--sage); }
+  .ritual-sub { font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); font-weight: 500; }
+
+  .row { display: grid; grid-template-columns: 90px 1fr 160px; gap: 24px; align-items: center; padding: 24px 0; border-bottom: 1px solid var(--rule); transition: padding-left 0.3s ease, background 0.3s ease; min-height: 158px; }
+  .row:hover { padding-left: 8px; background: rgba(184, 153, 104, 0.05); }
+  .row:last-child { border-bottom: none; }
+  .row-img { width: 90px; height: 90px; border: 1px solid var(--rule); background: linear-gradient(140deg, var(--tan) 0%, var(--cream) 60%, var(--tan) 100%); position: relative; overflow: hidden; flex-shrink: 0; }
+  .row-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .row-content { min-width: 0; }
+  .row-tag { font-size: 9.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 5px; font-weight: 500; }
+  .row-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; line-height: 1.15; font-weight: 500; margin-bottom: 5px; }
+  .row-name em { font-style: italic; color: var(--sage); }
+  .row-desc { font-size: 12.5px; line-height: 1.55; color: var(--ink-soft); max-width: 95%; }
+  
+  .row-shop { min-width: 150px; display: flex; flex-direction: column; gap: 6px; align-items: stretch; }
+  .row-price { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 500; color: var(--ink); line-height: 1; margin-bottom: 4px; }
+  .row-view-link { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); text-decoration: none; font-weight: 500; text-align: center; }
+  .row-add-cart { display: block; width: 100%; text-align: center; background: var(--ink); color: var(--cream); text-decoration: none; padding: 13px 12px; font-family: 'Poppins', sans-serif; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 500; border: none; cursor: pointer; transition: background 0.3s; }
+  .row-add-cart:hover { background: var(--sage); }
+  .row-shopify-hidden { display: none; }
+
+  .stack-list { max-width: 1080px; margin: 50px auto 0; padding: 0 40px; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+
+  .research { background: var(--cream-warm); padding: 100px 40px; border-top: 1px solid var(--rule); margin-top: 80px; }
+  .research-inner { max-width: 1080px; margin: 0 auto; }
+  .research-header { text-align: center; margin-bottom: 70px; }
+  .research-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(44px, 5vw, 64px); font-weight: 400; line-height: 1.05; margin-bottom: 14px; }
+  .research-title em { font-style: italic; color: var(--sage); }
+  
+  .study-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+  .study { background: var(--cream); padding: 32px 32px 28px; border: 1px solid var(--rule); position: relative; transition: border-color 0.3s, transform 0.4s; }
+  .study-marker { position: absolute; top: -12px; left: 24px; background: var(--gold); color: var(--cream); padding: 4px 14px; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500; }
+  .study-actor { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 500; margin-bottom: 4px; line-height: 1.15; margin-top: 12px; }
+
+  footer { background: var(--ink); color: var(--cream); padding: 80px 48px 30px; margin-top: 100px; }
+  .footer-inner { max-width: 1320px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 50px; }
+  .footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 500; margin-bottom: 14px; }
+  .footer-brand .amp { color: var(--gold); font-style: italic; }
+
+  @media (max-width: 1000px) {
+    .split { grid-template-columns: 1fr; }
+    .split::before { display: none; }
+    .row { grid-template-columns: 70px 1fr 140px; }
+  }
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .row { grid-template-columns: 70px 1fr; }
+    .row-shop { grid-column: 1 / -1; }
+  }
+</style>
+</head>
+<body>
+
+<div class="announce">Free shipping on orders over $60 · <strong>30-day satisfaction guarantee</strong></div>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Daniel<span class="amp">'s</span> House</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">Daniel's Story</a></li>
+      <li><a href="skincare.html">Skincare</a></li>
+      <li><a href="supplements.html" class="active">Supplements</a></li>
+      <li><a href="bundles.html">Bundles</a></li>
+    </ul>
+    <div class="nav-cart">Cart (0)</div>
+  </div>
+</nav>
+
+<section class="page">
+  <div class="page-header">
+    <div class="page-header-eyebrow">The Supplement Line · 18 Bottles · Built on Research</div>
+    <h1>Daniel's Daily Stack —<br><em>Now Available for Yours.</em></h1>
+    <p>Every supplement in the Daniel's House line earns its place by passing two tests: did Daniel take it long enough to feel a real difference, and does the science back the actives inside it?</p>
+  </div>
+
+  <div class="credibility">
+    <div class="cred-item"><div class="cred-num">18<em>.</em></div><div class="cred-label">Bottles in the line</div></div>
+    <div class="cred-item"><div class="cred-num">100<em>%</em></div><div class="cred-label">Made in North America</div></div>
+    <div class="cred-item"><div class="cred-num">25<em>+</em></div><div class="cred-label">Clinically-studied actives</div></div>
+    <div class="cred-item"><div class="cred-num">0</div><div class="cred-label">Artificial fillers</div></div>
+  </div>
+
+  <div class="sec-header">
+    <div class="sec-eyebrow">Foundation &amp; Longevity · Daily</div>
+    <div class="sec-title">The <em>Daily</em> Stack</div>
+  </div>
+
+  <div class="split">
+    <!-- Foundation Column -->
+    <div class="ritual">
+      <div class="ritual-header">
+        <div class="ritual-icon">☀️</div>
+        <div class="ritual-title">The <em>Foundation</em></div>
+        <div class="ritual-sub">Daily essentials · 5 Bottles</div>
+      </div>
+
+      <div class="row">
+        <div class="row-img"><img src="products/multi.jpeg" alt="Multi" loading="lazy"/></div>
+        <div class="row-content">
+          <div class="row-tag">Essential · Metabolic</div>
+          <div class="row-name">The House <em>Multi</em></div>
+          <div class="row-desc">Your daily nutritional foundation. Every essential vitamin and mineral, properly dosed.</div>
+        </div>
+        <div class="row-shop">
+          <div class="row-price">$32.90</div>
+          <a href="#" class="row-add-cart" data-shopify-id="10130033410368">Add to Cart →</a>
+          <div id="product-component-1778393192259" class="row-shopify-hidden"></div>
+        </div>
+      </div>
+      <!-- Additional rows would follow this structure -->
+    </div>
+
+    <!-- Longevity Column -->
+    <div class="ritual">
+      <div class="ritual-header">
+        <div class="ritual-icon">⧖</div>
+        <div class="ritual-title">The <em>Longevity</em></div>
+        <div class="ritual-sub">Age better · 5 Bottles</div>
+      </div>
+
+      <div class="row">
+        <div class="row-img"><img src="products/nadplus.jpeg" alt="NAD+" loading="lazy"/></div>
+        <div class="row-content">
+          <div class="row-tag">Metabolic · Vitality</div>
+          <div class="row-name">The House <em>NAD+</em></div>
+          <div class="row-desc">Cellular energy and DNA repair stack. Premium longevity science.</div>
+        </div>
+        <div class="row-shop">
+          <div class="row-price">$60.00</div>
+          <a href="#" class="row-add-cart" data-shopify-id="10129951392064">Add to Cart →</a>
+          <div id="product-component-1778393213679" class="row-shopify-hidden"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Daniel<span class="amp">'s</span> House</div>
+      <div class="footer-tag">Built on real results, not marketing.</div>
+    </div>
+  </div>
+  <div class="footer-base"><div>© Daniel's House — Premium Wellness</div></div>
+</footer>
+
+<script type="text/javascript">
+(function () {
+  var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+  function loadScript() {
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = scriptURL;
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(script);
+  }
+  loadScript();
+})();
+</script>
+
+</body>
+</html>
