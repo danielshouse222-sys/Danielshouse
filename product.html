@@ -646,6 +646,35 @@
   <div class="studies-grid" id="studies-grid"></div>
 </section>
 
+<section class="product-section" id="timeline-section" style="display: none;">
+  <div class="section-header">
+    <div class="section-eyebrow">Realistic Expectations</div>
+    <div class="section-title">What to <em>Expect</em>, Week by Week</div>
+  </div>
+  <div class="timeline-section">
+    <div class="timeline-grid" id="timeline-grid"></div>
+  </div>
+</section>
+
+<section class="product-section" id="protip-section" style="display: none;">
+  <div class="pro-tip-section">
+    <div class="pro-tip">
+      <div class="pro-tip-icon">!</div>
+      <div class="pro-tip-body">
+        <div class="pro-tip-eyebrow">Pro Tip · From Daniel</div>
+        <div class="pro-tip-text" id="pro-tip-text"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="product-section" id="freefrom-section" style="display: none;">
+  <div class="free-from-section">
+    <div class="free-from-eyebrow">The Daniel's House Promise</div>
+    <div class="free-from-row" id="free-from-row"></div>
+  </div>
+</section>
+
 <section class="product-section" id="daniels-note-section" style="display: none;">
   <div class="daniels-note">
     <div class="daniels-note-inner">
@@ -717,7 +746,12 @@
     <div>
       <div class="footer-brand">Daniel<span class="amp">'s</span> House</div>
       <div class="footer-tag">Your home for premium wellness — built on real results, not marketing.</div>
-      <div class="footer-attr">🌿 Vegan · Cruelty-Free · Made in North America<br>📧 daniel@danielshouse.com</div>
+      <div class="footer-attr">
+        <span>Vegan</span>
+        <span>Cruelty-Free</span>
+        <span>Made in NA</span>
+      </div>
+      <a href="mailto:daniel@danielshouse.com" class="footer-email">daniel@danielshouse.com</a>
     </div>
     <div class="footer-col">
       <h4>Shop</h4>
@@ -1104,6 +1138,32 @@
   if (product.daniels_note) {
     document.getElementById('daniels-note-text').textContent = product.daniels_note;
     document.getElementById('daniels-note-section').style.display = 'block';
+  }
+
+  // Results Timeline
+  if (product.resultsTimeline && product.resultsTimeline.length) {
+    const grid = document.getElementById('timeline-grid');
+    grid.innerHTML = product.resultsTimeline.map((entry, i) => `
+      <div class="timeline-item">
+        <div class="timeline-week">${entry.week}</div>
+        <div class="timeline-marker">${String(i + 1).padStart(2, '0')}.</div>
+        <div class="timeline-text">${entry.text}</div>
+      </div>
+    `).join('');
+    document.getElementById('timeline-section').style.display = 'block';
+  }
+
+  // Pro Tip
+  if (product.proTip) {
+    document.getElementById('pro-tip-text').textContent = product.proTip;
+    document.getElementById('protip-section').style.display = 'block';
+  }
+
+  // Free From / The Promise
+  if (product.freeFrom && product.freeFrom.length) {
+    document.getElementById('free-from-row').innerHTML =
+      product.freeFrom.map(b => `<span class="free-from-badge">${b}</span>`).join('');
+    document.getElementById('freefrom-section').style.display = 'block';
   }
 
   // Customer Reviews
