@@ -254,8 +254,11 @@
 
   // ═══ CART DRAWER ═══
   function openCart() {
-    document.querySelector('.cart-overlay')?.classList.add('open');
-    document.querySelector('.cart-drawer')?.classList.add('open');
+    const overlay = document.querySelector('.cart-overlay');
+    const drawer = document.querySelector('.cart-drawer');
+    if (!overlay || !drawer) return; // Drawer removed — no-op
+    overlay.classList.add('open');
+    drawer.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
   function closeCart() {
@@ -271,6 +274,7 @@
   let popupShown = false;
   function showPopup() {
     if (popupShown) return;
+    if (!document.querySelector('.popup-overlay')) return; // Popup removed — no-op
     if (sessionStorage.getItem(POPUP_DISMISSED_KEY)) return;
     popupShown = true;
     document.querySelector('.popup-overlay')?.classList.add('open');
@@ -527,4 +531,35 @@
     }
   };
   window.dhLightbox = lightbox;
+
+  // ═══ GLOBAL BUNDLE SUBSCRIBE TOGGLE + ADD-BUNDLE WIRING ═══
+  // Lets any page use .bundle-subscribe-toggle and [data-bundle-add] without
+  // duplicating wiring code. (Bundles.html has its own scoped version too.)
+  document.addEventListener('DOMContentLoaded', () => {
+    // Toggle: One-Time / Monthly active state
+    document.querySelectorAll('.bundle-subscribe-toggle').forEach(toggle => {
+      toggle.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          toggle.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          toggle.classList.toggle('subscribe-mode', btn.dataset.mode === 'subscribe');
+        });
+      });
+    });
+
+    // Add Bundle to Cart — reads bundle by id, checks subscribe state, adds to cart
+    document.querySelectorAll('[data-bundle-add]').forEach(btn => {
+      // Skip if bundles.html scoped handler already wired it (it gets to run first)
+      if (btn._dhBundleAddWired) return;
+      btn._dhBundleAddWired = true;
+      btn.addEventListener('click', () => {
+        const bundleId = btn.dataset.bundleAdd;
+        const bundle = window.getCuratedBundleById?.(bundleId);
+        if (!bundle) return;
+        const toggle = document.querySelector(`.bundle-subscribe-toggle[data-bundle-id="${bundleId}"]`);
+        const subscribe = toggle?.querySelector('button.active')?.dataset.mode === 'subscribe';
+        window.dhCart.addBundle(bundle.slugs, bundle.name, bundle.discount, subscribe);
+      });
+    });
+  });
 })();
