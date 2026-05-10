@@ -284,7 +284,7 @@
   .directory-section {
     max-width: 1280px;
     margin: 0 auto;
-    padding: 70px 40px 30px;
+    padding: 100px 40px 50px;
   }
   .directory-eyebrow {
     text-align: center;
@@ -465,7 +465,15 @@
 
 <div class="shipping-bar">
   <div class="shipping-bar-progress"></div>
-  <div class="shipping-bar-text">Free shipping on orders over <strong>$75</strong> · 30-day satisfaction guarantee</div>
+  <div class="shipping-bar-inner">
+    <div class="shipping-bar-text">Free shipping on orders over <strong>$75</strong></div>
+    <div class="shipping-bar-divider"></div>
+    <span class="shipping-bar-pill">30-Day Returns</span>
+    <div class="shipping-bar-divider"></div>
+    <span class="shipping-bar-pill">Vegan · Cruelty-Free</span>
+    <div class="shipping-bar-divider"></div>
+    <span class="shipping-bar-pill">Made in N.A.</span>
+  </div>
 </div>
 
 <nav>
@@ -493,11 +501,21 @@
   <p class="shop-note"><strong>Every concern is a bundle</strong> — pick one, get the curated set of products at <strong>10% off</strong>. Click any product to preview it before you commit.</p>
 </section>
 
-<!-- ═══ CONCERN DIRECTORY — Skin vs Wellness side by side ═══ -->
+<div class="shop-switch">
+  <button class="shop-tab active" data-view="skin">Skin Concerns</button>
+  <button class="shop-tab" data-view="goal">Wellness Worries</button>
+</div>
+
+<div class="shop-content">
+  <div class="concern-grid" id="skin-grid"></div>
+  <div class="concern-grid" id="goal-grid" style="display: none;"></div>
+</div>
+
+<!-- ═══ CONCERN DIRECTORY — Quick Index at end as reference ═══ -->
 <section class="directory-section">
-  <div class="directory-eyebrow">Quick Index · 15 Concerns at a Glance</div>
+  <div class="directory-eyebrow">Quick Index · The Full List</div>
   <h2 class="directory-headline"><em>Skin</em> Concerns · <em>Wellness</em> Worries</h2>
-  <p class="directory-sub">Two sides of the house. Six skin concern bundles on the left, nine wellness worry bundles on the right. Tap any to jump to its bundle.</p>
+  <p class="directory-sub">All 15 bundles at a glance. Tap any name to scroll back up to it.</p>
 
   <div class="directory-grid">
     <div class="directory-col">
@@ -512,16 +530,6 @@
     </div>
   </div>
 </section>
-
-<div class="shop-switch">
-  <button class="shop-tab active" data-view="skin">Skin Concerns</button>
-  <button class="shop-tab" data-view="goal">Wellness Worries</button>
-</div>
-
-<div class="shop-content">
-  <div class="concern-grid" id="skin-grid"></div>
-  <div class="concern-grid" id="goal-grid" style="display: none;"></div>
-</div>
 
 <footer>
   <div class="footer-newsletter">
