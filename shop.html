@@ -678,7 +678,7 @@ function renderConcernCard(bundle) {
             <span class="concern-price-was">$${fullPrice.toFixed(2)}</span>
             <span class="concern-price-now">$${discountedPrice.toFixed(2)}</span>
           </div>
-          <div class="concern-savings">Save $${savings.toFixed(2)} as a bundle</div>
+          <div class="concern-savings">Save ${savings.toFixed(2)} as a bundle</div>
         </div>
         <div class="concern-count">${productCount} products</div>
       </div>
@@ -745,7 +745,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <span class="directory-name-text">${formattedName}</span>
             <span class="directory-meta">${productCount} products · 10% off bundled</span>
           </span>
-          <span class="directory-savings">Save $${pricing.savings.toFixed(0)} →</span>
+          <span class="directory-savings">Save ${pricing.savings.toFixed(0)} →</span>
         </button>
       </li>
     `;
