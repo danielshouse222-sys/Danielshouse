@@ -13,12 +13,12 @@
 }
 
 /* ═══ FREE SHIPPING PROGRESS BAR ═══ */
-/* Fixed at the very top of the viewport — paired with the fixed nav below */
+/* Permanent top bar — fixed at viewport top. Carries the dynamic shipping
+   message plus three static brand-promise pills. */
 .shipping-bar {
   background: var(--ink);
   color: var(--cream);
-  padding: 10px 20px;
-  text-align: center;
+  padding: 0;
   font-size: 12px;
   letter-spacing: 0.05em;
   position: fixed;
@@ -26,11 +26,74 @@
   left: 0;
   right: 0;
   height: var(--shipping-bar-height);
+  z-index: 99;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(184, 153, 104, 0.18);
+}
+.shipping-bar-inner {
+  position: relative;
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 99;
-  overflow: hidden;
+  height: 100%;
+  gap: 22px;
+  padding: 0 20px;
+}
+.shipping-bar-text {
+  white-space: nowrap;
+  font-weight: 400;
+  position: relative;
+}
+.shipping-bar-text strong {
+  color: var(--gold);
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 14px;
+  font-weight: 500;
+}
+.shipping-bar-divider {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--gold);
+  opacity: 0.6;
+  flex-shrink: 0;
+}
+.shipping-bar-pill {
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cream);
+  opacity: 0.75;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: opacity 0.3s;
+}
+.shipping-bar-pill:hover { opacity: 1; }
+.shipping-bar-progress {
+  position: absolute;
+  inset: 0;
+  background: rgba(184, 153, 104, 0.18);
+  width: 0%;
+  transition: width 0.5s ease;
+  z-index: 1;
+}
+.shipping-bar.complete .shipping-bar-progress {
+  width: 100% !important;
+  background: rgba(93, 110, 92, 0.25);
+}
+
+/* Hide aux pills on small screens — keep the dynamic shipping message visible */
+@media (max-width: 920px) {
+  .shipping-bar-pill:nth-child(n+5),
+  .shipping-bar-divider:nth-child(n+5) { display: none; }
+}
+@media (max-width: 720px) {
+  .shipping-bar-inner { gap: 14px; }
+  .shipping-bar-pill,
+  .shipping-bar-divider { display: none !important; }
+  .shipping-bar-text { font-size: 11.5px; }
 }
 .shipping-bar-text { position: relative; z-index: 2; }
 .shipping-bar-text strong { color: var(--gold); font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 14px; }
