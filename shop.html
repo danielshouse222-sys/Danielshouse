@@ -125,27 +125,70 @@
     color: var(--ink-soft);
   }
 
-  /* Product thumbnails (the bundled items) */
-  .concern-thumbs {
+  /* Product list inside each concern card — name + price visible per product */
+  .concern-products {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
+    gap: 14px 12px;
     margin-bottom: 22px;
   }
-  .concern-thumbs.cols-3 { grid-template-columns: repeat(3, 1fr); }
-  .concern-thumbs.cols-2 { grid-template-columns: repeat(2, 1fr); max-width: 70%; }
-  .concern-thumb {
+  .concern-products.cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .concern-products.cols-2 { grid-template-columns: repeat(2, 1fr); max-width: 70%; }
+
+  .concern-product {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    text-decoration: none;
+    color: var(--ink);
+  }
+  .concern-product:hover { transform: translateY(-3px); }
+
+  .concern-product-img {
     aspect-ratio: 1/1;
     background: var(--cream-warm);
     border: 1px solid var(--rule);
     overflow: hidden;
+    margin-bottom: 10px;
     position: relative;
+    transition: border-color 0.3s, box-shadow 0.3s;
   }
-  .concern-thumb img {
+  .concern-product:hover .concern-product-img {
+    border-color: var(--gold);
+    box-shadow: 0 10px 28px rgba(31, 27, 23, 0.14);
+  }
+  .concern-product-img img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
+    transition: transform 0.4s ease;
+  }
+  .concern-product:hover .concern-product-img img { transform: scale(1.06); }
+
+  .concern-product-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .concern-product-name em { font-style: italic; color: var(--sage); }
+
+  .concern-product-tag {
+    font-size: 9.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    font-weight: 500;
+    line-height: 1.3;
+  }
+  .concern-product-tag .price {
+    color: var(--gold);
+    font-weight: 600;
   }
 
   /* Price + actions */
@@ -236,6 +279,186 @@
     .concern-pricing { flex-direction: column; align-items: flex-start; gap: 6px; }
     .concern-count { text-align: left; }
   }
+
+  /* ═══ CONCERN DIRECTORY (skin vs wellness side-by-side list) ═══ */
+  .directory-section {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 70px 40px 30px;
+  }
+  .directory-eyebrow {
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 14px;
+  }
+  .directory-headline {
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(30px, 4vw, 44px);
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+  .directory-headline em { font-style: italic; color: var(--sage); }
+  .directory-sub {
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: var(--ink-soft);
+    max-width: 560px;
+    margin: 0 auto 50px;
+    line-height: 1.5;
+  }
+
+  .directory-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    background: var(--cream-warm);
+    border: 1px solid var(--rule);
+    padding: 50px 56px 44px;
+    position: relative;
+  }
+  /* Vertical divider between the two columns */
+  .directory-grid::before {
+    content: '';
+    position: absolute;
+    top: 60px;
+    bottom: 50px;
+    left: 50%;
+    width: 1px;
+    background: var(--rule);
+  }
+  .directory-col-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: var(--ink);
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+  .directory-col-title em {
+    font-style: italic;
+    color: var(--sage);
+  }
+  .directory-col-count {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+  }
+  .directory-col-blurb {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ink-soft);
+    margin-bottom: 28px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .directory-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .directory-list li { margin: 0; }
+  .directory-link {
+    display: grid;
+    grid-template-columns: 38px 1fr auto;
+    gap: 16px;
+    align-items: center;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(212, 201, 182, 0.5);
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--ink);
+    transition: padding-left 0.3s ease, color 0.3s ease;
+    background: transparent;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    width: 100%;
+    text-align: left;
+    font-family: inherit;
+  }
+  .directory-list li:last-child .directory-link { border-bottom: none; }
+  .directory-link:hover {
+    padding-left: 8px;
+    color: var(--gold);
+  }
+  .directory-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--gold);
+    font-weight: 500;
+    line-height: 1;
+  }
+  .directory-name {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0;
+  }
+  .directory-name-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    font-weight: 500;
+    line-height: 1.15;
+    color: var(--ink);
+    transition: color 0.3s;
+  }
+  .directory-name-text em { font-style: italic; color: var(--sage); }
+  .directory-link:hover .directory-name-text { color: var(--gold); }
+  .directory-meta {
+    font-size: 9.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+  .directory-savings {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--sage);
+    text-align: right;
+    white-space: nowrap;
+    transition: transform 0.3s, color 0.3s;
+  }
+  .directory-link:hover .directory-savings {
+    transform: translateX(4px);
+    color: var(--gold);
+  }
+
+  /* Pulse highlight on a card when jumped-to from the directory */
+  .concern-card.flash-highlight {
+    animation: dh-card-flash 1.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  @keyframes dh-card-flash {
+    0%   { box-shadow: 0 0 0 0 rgba(184, 153, 104, 0); border-color: var(--rule); }
+    25%  { box-shadow: 0 0 0 6px rgba(184, 153, 104, 0.45); border-color: var(--gold); }
+    100% { box-shadow: 0 0 0 0 rgba(184, 153, 104, 0); border-color: var(--rule); }
+  }
+
+  @media (max-width: 880px) {
+    .directory-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      padding: 36px 28px 28px;
+    }
+    .directory-grid::before { display: none; }
+    .directory-link { grid-template-columns: 32px 1fr auto; gap: 12px; }
+    .directory-name-text { font-size: 17px; }
+  }
 </style>
 </head>
 <body>
@@ -268,6 +491,26 @@
   <h1 class="shop-title">Shop by <em>concern</em> or <em>goal.</em></h1>
   <p class="shop-tagline">Skip the product names. Tell us what you want to fix or improve, and add the targeted bundle in one click.</p>
   <p class="shop-note"><strong>Every concern is a bundle</strong> — pick one, get the curated set of products at <strong>10% off</strong>. Click any product to preview it before you commit.</p>
+</section>
+
+<!-- ═══ CONCERN DIRECTORY — Skin vs Wellness side by side ═══ -->
+<section class="directory-section">
+  <div class="directory-eyebrow">Quick Index · 15 Concerns at a Glance</div>
+  <h2 class="directory-headline"><em>Skin</em> · vs · <em>Wellness</em></h2>
+  <p class="directory-sub">Two sides of the house. Six skin concerns on the left, nine wellness goals on the right. Tap any to jump to its bundle.</p>
+
+  <div class="directory-grid">
+    <div class="directory-col">
+      <div class="directory-col-title"><em>Skin</em> Concerns <span class="directory-col-count">· 6 bundles</span></div>
+      <p class="directory-col-blurb">What shows on the surface. Cleansers, treatments, serums, oils.</p>
+      <ol class="directory-list" id="directory-skin"></ol>
+    </div>
+    <div class="directory-col">
+      <div class="directory-col-title"><em>Wellness</em> Goals <span class="directory-col-count">· 9 bundles</span></div>
+      <p class="directory-col-blurb">What runs underneath. Foundational supplements, longevity, performance.</p>
+      <ol class="directory-list" id="directory-goal"></ol>
+    </div>
+  </div>
 </section>
 
 <div class="shop-switch">
@@ -402,10 +645,14 @@ function renderConcernCard(bundle) {
         </div>
       </div>
 
-      <div class="concern-thumbs ${colsClass}">
+      <div class="concern-products ${colsClass}">
         ${products.map((p, i) => `
-          <div class="concern-thumb" data-idx="${i}" title="The House ${p.name}">
-            <img src="${p.image}" alt="${p.name}" loading="lazy"/>
+          <div class="concern-product" data-idx="${i}" title="The House ${p.name} — click to preview">
+            <div class="concern-product-img">
+              <img src="${p.image}" alt="${p.name}" loading="lazy"/>
+            </div>
+            <div class="concern-product-name">The House <em>${p.name}</em></div>
+            <div class="concern-product-tag">${p.tag.split('·')[0].trim()} · <span class="price">$${p.price.toFixed(0)}</span></div>
           </div>
         `).join('')}
       </div>
@@ -450,6 +697,56 @@ document.addEventListener('DOMContentLoaded', () => {
   skinGrid.innerHTML = skinBundles.map(renderConcernCard).join('');
   goalGrid.innerHTML = goalBundles.map(renderConcernCard).join('');
 
+  // ═══ Directory list (skin vs wellness) ═══
+  function renderDirectoryItem(bundle, idx) {
+    const pricing = window.getConcernBundlePricing(bundle.id);
+    if (!pricing) return '';
+    const num = String(idx + 1).padStart(2, '0');
+    const productCount = bundle.slugs.length;
+    const firstWord = bundle.name.split(' ')[0];
+    const restName = bundle.name.substring(firstWord.length);
+    return `
+      <li>
+        <button class="directory-link" data-bundle-id="${bundle.id}" data-tab="${bundle.tab}">
+          <span class="directory-num">${num}</span>
+          <span class="directory-name">
+            <span class="directory-name-text"><em>${firstWord}</em>${restName}</span>
+            <span class="directory-meta">${productCount} products · 10% off bundled</span>
+          </span>
+          <span class="directory-savings">Save $${pricing.savings.toFixed(0)} →</span>
+        </button>
+      </li>
+    `;
+  }
+  document.getElementById('directory-skin').innerHTML = skinBundles.map(renderDirectoryItem).join('');
+  document.getElementById('directory-goal').innerHTML = goalBundles.map(renderDirectoryItem).join('');
+
+  // Click handler: switch to correct tab, scroll to card, flash highlight
+  document.querySelectorAll('.directory-link').forEach(link => {
+    link.addEventListener('click', () => {
+      const bundleId = link.dataset.bundleId;
+      const targetTab = link.dataset.tab;
+
+      // Switch to the right tab if needed
+      const tabBtn = document.querySelector(`.shop-tab[data-view="${targetTab}"]`);
+      if (tabBtn && !tabBtn.classList.contains('active')) tabBtn.click();
+
+      // Scroll to and flash the matching card after a brief delay (let the tab switch finish)
+      setTimeout(() => {
+        const card = document.querySelector(`.concern-card[data-bundle-id="${bundleId}"]`);
+        if (!card) return;
+        const headerOffset = 110; // fixed header height with breathing room
+        const top = card.getBoundingClientRect().top + window.scrollY - headerOffset;
+        window.scrollTo({ top, behavior: 'smooth' });
+        card.classList.remove('flash-highlight');
+        // Reflow trick to retrigger the animation if clicked rapidly
+        void card.offsetWidth;
+        card.classList.add('flash-highlight');
+        setTimeout(() => card.classList.remove('flash-highlight'), 1500);
+      }, 80);
+    });
+  });
+
   // Wire up clicks on each card's products + buttons
   document.querySelectorAll('.concern-card').forEach(card => {
     const slugs = card.dataset.productSlugs.split(',');
@@ -469,8 +766,8 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    // Click any product thumbnail → open carousel at that index
-    card.querySelectorAll('.concern-thumb').forEach((thumb, i) => {
+    // Click any product → open carousel at that index
+    card.querySelectorAll('.concern-product').forEach((thumb, i) => {
       thumb.addEventListener('click', () => {
         window.dhLightbox.open(slugs, i, {
           title: `Browsing the <strong>${bundleName} Bundle</strong>`,
