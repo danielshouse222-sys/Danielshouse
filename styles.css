@@ -36,7 +36,16 @@ body {
   --header-total: 122px;
 }
 
-body { padding-top: 0; }
+body { padding-top: 0; overflow-x: hidden; }
+html { overflow-x: hidden; }
+
+/* The nav has inline .search-trigger and .cart-trigger text buttons that cause
+   horizontal overflow on mobile. Since we use floating cart + search buttons
+   instead, hide the nav text versions entirely. */
+.search-trigger,
+.cart-trigger {
+  display: none !important;
+}
 
 nav {
   background: var(--cream);
