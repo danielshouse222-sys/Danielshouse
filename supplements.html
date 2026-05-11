@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Supplements — Daniel's House</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="css/shared.css">
+<style>
+  :root {
+    --cream: #FAF6F0;
+    --cream-warm: #F2EBDD;
+    --ink: #1F1B17;
+    --ink-soft: #4A433B;
+    --sage: #5D6E5C;
+    --gold: #B89968;
+    --tan: #E8E1D5;
+    --rule: #D4C9B6;
+  }
+
+  .page-header { max-width: 920px; margin: 0 auto; padding: 100px 40px 70px; text-align: center; }
+  .page-header-eyebrow { font-size: 12px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 28px; font-weight: 500; }
+  .page-header h1 { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: clamp(48px, 6vw, 76px); line-height: 1.05; letter-spacing: -0.01em; margin-bottom: 32px; }
+  .page-header h1 em { font-style: italic; color: var(--sage); font-weight: 400; }
+  .page-header p { font-size: 16px; line-height: 1.75; color: var(--ink-soft); max-width: 640px; margin: 0 auto; }
+
+  .credibility { max-width: 1080px; margin: 0 auto 0; padding: 0 40px 50px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; border-bottom: 1px solid var(--rule); padding-bottom: 50px; text-align: center; }
+  .cred-item { display: flex; flex-direction: column; align-items: center; }
+  .cred-num { font-family: 'Cormorant Garamond', serif; font-size: 44px; font-weight: 500; color: var(--sage); line-height: 1; margin-bottom: 6px; }
+  .cred-num em { color: var(--gold); font-style: italic; }
+  .cred-label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft); font-weight: 500; }
+
+  .sec-header { max-width: 1080px; margin: 0 auto; padding: 80px 40px 0; text-align: center; }
+  .sec-header.tight { padding-bottom: 0; }
+  .sec-eyebrow { font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; font-weight: 500; }
+  .sec-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(44px, 5vw, 56px); font-weight: 400; line-height: 1; margin-bottom: 14px; }
+  .sec-title em { font-style: italic; color: var(--sage); }
+  .sec-blurb { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 17px; color: var(--ink-soft); max-width: 560px; margin: 0 auto; line-height: 1.55; }
+
+  .split { display: grid; grid-template-columns: 1fr 1fr; margin: 50px auto 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); position: relative; }
+  .split::before { content: ""; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: var(--rule); z-index: 5; }
+  .ritual { padding: 60px 50px 70px; position: relative; background: var(--cream); }
+  .ritual-header { text-align: center; margin-bottom: 36px; padding-bottom: 24px; border-bottom: 1px solid var(--rule); }
+  .ritual-icon { font-size: 32px; margin-bottom: 12px; }
+  .ritual-title { font-family: 'Cormorant Garamond', serif; font-size: 44px; font-weight: 400; line-height: 0.95; margin-bottom: 8px; }
+  .ritual-title em { font-style: italic; color: var(--sage); }
+  .ritual-sub { font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); font-weight: 500; }
+
+  .row { display: grid; grid-template-columns: 90px 1fr 160px; gap: 24px; align-items: center; padding: 24px 0; border-bottom: 1px solid var(--rule); transition: padding-left 0.3s ease, background 0.3s ease; min-height: 158px; }
+  .row:hover { padding-left: 8px; background: rgba(184, 153, 104, 0.05); }
+  .row:last-child { border-bottom: none; }
+  .row-img { width: 90px; height: 90px; border: 1px solid var(--rule); background: linear-gradient(140deg, var(--tan) 0%, var(--cream) 60%, var(--tan) 100%); position: relative; overflow: hidden; flex-shrink: 0; }
+  .row-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .row-img::after { content: ""; position: absolute; inset: 5px; border: 1px solid var(--gold); opacity: 0.3; pointer-events: none; }
+  .row-content { min-width: 0; }
+  .row-tag { font-size: 9.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 5px; font-weight: 500; }
+  .row-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; line-height: 1.15; font-weight: 500; margin-bottom: 5px; }
+  .row-name em { font-style: italic; color: var(--sage); }
+  .row-desc { font-size: 12.5px; line-height: 1.55; color: var(--ink-soft); max-width: 95%; }
+  .row-shop { min-width: 150px; display: flex; flex-direction: column; gap: 6px; align-items: stretch; }
+  .row-shop > div, .row-shop > a { width: 100%; }
+  .row-price { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 500; color: var(--ink); line-height: 1; margin-bottom: 4px; }
+  .row-view-link { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); text-decoration: none; transition: color 0.3s; font-weight: 500; text-align: center; }
+  .row-view-link:hover { color: var(--sage); }
+  .row-add-cart { display: block; width: 100%; text-align: center; background: var(--ink); color: var(--cream); text-decoration: none; padding: 13px 12px; font-family: 'Poppins', sans-serif; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 500; border: none; cursor: pointer; transition: background 0.3s; margin-top: auto; }
+  .row-add-cart:hover { background: var(--sage); color: var(--cream); }
+
+  .stack-list { max-width: 1080px; margin: 50px auto 0; padding: 0 40px; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+  .stack-list .row:last-child { border-bottom: none; }
+
+  .alt-banner { max-width: 720px; margin: 0 auto; padding: 50px 40px 0; }
+  .alt-banner-inner { background: var(--cream-warm); border: 1px solid var(--rule); border-left: 3px solid var(--gold); padding: 22px 28px; }
+  .alt-banner strong { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 500; color: var(--ink); display: block; margin-bottom: 4px; }
+  .alt-banner-text { font-size: 13px; line-height: 1.6; color: var(--ink-soft); }
+  .alt-banner a { color: var(--gold); text-decoration: underline; }
+
+  .research { background: var(--cream-warm); padding: 100px 40px; border-top: 1px solid var(--rule); margin-top: 80px; }
+  .research-inner { max-width: 1080px; margin: 0 auto; }
+  .research-header { text-align: center; margin-bottom: 70px; }
+  .research-eyebrow { font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; font-weight: 500; }
+  .research-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(44px, 5vw, 64px); font-weight: 400; line-height: 1.05; margin-bottom: 14px; }
+  .research-title em { font-style: italic; color: var(--sage); }
+  .research-blurb { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 17px; color: var(--ink-soft); max-width: 620px; margin: 0 auto; line-height: 1.55; }
+  .study-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+  .study { background: var(--cream); padding: 32px 32px 28px; border: 1px solid var(--rule); position: relative; transition: border-color 0.3s, transform 0.4s; }
+  .study:hover { border-color: var(--gold); transform: translateY(-3px); }
+  .study-marker { position: absolute; top: -12px; left: 24px; background: var(--gold); color: var(--cream); padding: 4px 14px; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500; }
+  .study-actor { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 500; margin-bottom: 4px; line-height: 1.15; margin-top: 12px; }
+  .study-actor em { font-style: italic; color: var(--sage); }
+  .study-finding { font-size: 13.5px; line-height: 1.65; color: var(--ink); margin-bottom: 14px; }
+  .study-finding strong { color: var(--sage); font-weight: 500; }
+  .study-source { font-size: 11px; letter-spacing: 0.06em; color: var(--ink-soft); padding-top: 12px; border-top: 1px solid var(--rule); font-style: italic; }
+  .study-products { font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-top: 6px; font-weight: 500; }
+  .research-disclaimer { max-width: 720px; margin: 60px auto 0; text-align: center; font-size: 12px; color: var(--ink-soft); line-height: 1.7; font-style: italic; padding: 20px; border-top: 1px solid var(--rule); }
+
+  .closing { text-align: center; padding: 100px 40px 80px; max-width: 720px; margin: 0 auto; }
+  .closing h2 { font-family: 'Cormorant Garamond', serif; font-size: 40px; font-weight: 400; margin-bottom: 16px; line-height: 1.15; }
+  .closing h2 em { font-style: italic; color: var(--sage); }
+  .closing p { color: var(--ink-soft); margin-bottom: 28px; font-size: 15px; }
+  .closing-btn { display: inline-block; padding: 16px 40px; background: var(--ink); color: var(--cream); text-decoration: none; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500; transition: background 0.3s; }
+  .closing-btn:hover { background: var(--sage); }
+
+  @media (max-width: 1000px) {
+    .credibility { grid-template-columns: 1fr 1fr; gap: 30px 20px; }
+    .split { grid-template-columns: 1fr; }
+    .split::before { display: none; }
+    .ritual { padding: 50px 30px; }
+    .row { grid-template-columns: 70px 1fr 140px; gap: 16px; min-height: 140px; }
+    .row-img { width: 70px; height: 70px; }
+    .study-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .row { grid-template-columns: 70px 1fr; gap: 14px; }
+    .row-shop { grid-column: 1 / -1; padding-top: 8px; }
+    .credibility { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="shipping-bar">
+  <div class="shipping-bar-progress"></div>
+  <div class="shipping-bar-inner">
+    <div class="shipping-bar-text">Free shipping on orders over <strong>$75</strong></div>
+    <div class="shipping-bar-divider"></div>
+    <span class="shipping-bar-pill">30-Day Returns</span>
+    <div class="shipping-bar-divider"></div>
+    <span class="shipping-bar-pill">Cruelty-Free · Non-GMO</span>
+    <div class="shipping-bar-divider"></div>
+    <span class="shipping-bar-pill">Made in N.A.</span>
+  </div>
+</div>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Daniel<span class="amp">'s</span> House</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">Daniel's Story</a></li>
+      <li><a href="skincare.html">Skincare</a></li>
+      <li><a href="supplements.html" class="active">Supplements</a></li>
+      <li><a href="ingredients.html">Ingredients</a></li>
+      <li><a href="bundles.html">Bundles</a></li>
+      <li><a href="shop.html">Shop By Concern</a></li>
+    </ul>
+    <div style="display: flex; gap: 4px;">
+      <button class="search-trigger" aria-label="Search">Search</button>
+      <button class="cart-trigger" aria-label="Open cart">Cart <span class="cart-trigger-count">0</span></button>
+    </div>
+  </div>
+</nav>
+<!-- Floating Search Button → Centered Modal Filter -->
+<div class="page-filter collapsed" data-filter-target=".row" data-filter-noun="supplements">
+  <button class="page-filter-toggle" type="button" aria-label="Open search and filters">
+    <span class="page-filter-toggle-icon">⌕</span>
+    <span class="page-filter-toggle-badge"></span>
+  </button>
+  <div class="page-filter-overlay"></div>
+  <div class="page-filter-panel">
+    <div class="page-filter-head">
+      <div class="page-filter-head-title">Search &amp; Filter</div>
+      <button class="page-filter-close" type="button" aria-label="Close">✕</button>
+    </div>
+    <div class="page-filter-bar">
+      <span class="page-filter-icon">⌕</span>
+      <input type="text" class="page-filter-input" placeholder="Search anything site-wide..." />
+      <button class="page-filter-clear" type="button" aria-label="Clear">✕</button>
+    </div>
+    <div class="page-filter-categories">
+      <div class="page-filter-category">
+        <div class="page-filter-category-label">Category</div>
+        <div class="page-filter-category-chips">
+          <button class="filter-chip" data-chip="skincare" data-group="category">Skincare</button>
+          <button class="filter-chip" data-chip="supplement" data-group="category">Supplements</button>
+          <button class="filter-chip" data-chip="bundle" data-group="category">Bundles</button>
+        </div>
+      </div>
+      <div class="page-filter-category">
+        <div class="page-filter-category-label">Effect</div>
+        <div class="page-filter-category-chips">
+          <button class="filter-chip" data-chip="hydrat" data-group="effect">Hydrating</button>
+          <button class="filter-chip" data-chip="brighten" data-group="effect">Brightening</button>
+          <button class="filter-chip" data-chip="firm" data-group="effect">Firming</button>
+          <button class="filter-chip" data-chip="exfoliat" data-group="effect">Exfoliating</button>
+          <button class="filter-chip" data-chip="protect" data-group="effect">Protecting</button>
+          <button class="filter-chip" data-chip="detox" data-group="effect">Detoxifying</button>
+          <button class="filter-chip" data-chip="calm" data-group="effect">Calming</button>
+          <button class="filter-chip" data-chip="energiz" data-group="effect">Energizing</button>
+        </div>
+      </div>
+      <div class="page-filter-category">
+        <div class="page-filter-category-label">Goal</div>
+        <div class="page-filter-category-chips">
+          <button class="filter-chip" data-chip="sleep" data-group="goal">Sleep</button>
+          <button class="filter-chip" data-chip="energy" data-group="goal">Energy</button>
+          <button class="filter-chip" data-chip="stress" data-group="goal">Stress</button>
+          <button class="filter-chip" data-chip="focus" data-group="goal">Focus</button>
+          <button class="filter-chip" data-chip="recovery" data-group="goal">Recovery</button>
+          <button class="filter-chip" data-chip="beauty" data-group="goal">Beauty</button>
+          <button class="filter-chip" data-chip="anti-aging" data-group="goal">Anti-Aging</button>
+          <button class="filter-chip" data-chip="hydration" data-group="goal">Hydration</button>
+          <button class="filter-chip" data-chip="immune" data-group="goal">Immunity</button>
+          <button class="filter-chip" data-chip="gut" data-group="goal">Gut Health</button>
+          <button class="filter-chip" data-chip="daily" data-group="goal">Daily</button>
+        </div>
+      </div>
+      <div class="page-filter-category">
+        <div class="page-filter-category-label">Key Ingredient</div>
+        <div class="page-filter-category-chips">
+          <button class="filter-chip" data-chip="vitamin c" data-group="key ingredient">Vitamin C</button>
+          <button class="filter-chip" data-chip="retinol" data-group="key ingredient">Retinol</button>
+          <button class="filter-chip" data-chip="hyaluronic" data-group="key ingredient">Hyaluronic</button>
+          <button class="filter-chip" data-chip="niacinamide" data-group="key ingredient">Niacinamide</button>
+          <button class="filter-chip" data-chip="peptide" data-group="key ingredient">Peptides</button>
+          <button class="filter-chip" data-chip="antioxidant" data-group="key ingredient">Antioxidants</button>
+          <button class="filter-chip" data-chip="magnesium" data-group="key ingredient">Magnesium</button>
+          <button class="filter-chip" data-chip="ashwagandha" data-group="key ingredient">Ashwagandha</button>
+          <button class="filter-chip" data-chip="nad" data-group="key ingredient">NAD+</button>
+          <button class="filter-chip" data-chip="collagen" data-group="key ingredient">Collagen</button>
+          <button class="filter-chip" data-chip="probiotic" data-group="key ingredient">Probiotic</button>
+          <button class="filter-chip" data-chip="vitamin d" data-group="key ingredient">Vitamin D</button>
+          <button class="filter-chip" data-chip="omega" data-group="key ingredient">Omega-3</button>
+          <button class="filter-chip" data-chip="creatine" data-group="key ingredient">Creatine</button>
+        </div>
+      </div>
+      <div class="page-filter-category">
+        <div class="page-filter-category-label">Type of Product</div>
+        <div class="page-filter-category-chips">
+          <button class="filter-chip" data-chip="cleanser" data-group="type of product">Cleanser</button>
+          <button class="filter-chip" data-chip="toner" data-group="type of product">Toner</button>
+          <button class="filter-chip" data-chip="serum" data-group="type of product">Serum</button>
+          <button class="filter-chip" data-chip="moisturizer" data-group="type of product">Moisturizer</button>
+          <button class="filter-chip" data-chip="eye" data-group="type of product">Eye Care</button>
+          <button class="filter-chip" data-chip="mask" data-group="type of product">Mask</button>
+          <button class="filter-chip" data-chip="oil" data-group="type of product">Oil</button>
+          <button class="filter-chip" data-chip="capsule" data-group="type of product">Capsule</button>
+          <button class="filter-chip" data-chip="powder" data-group="type of product">Powder</button>
+          <button class="filter-chip" data-chip="gummy" data-group="type of product">Gummy</button>
+          <button class="filter-chip" data-chip="tablet" data-group="type of product">Tablet</button>
+        </div>
+      </div>
+      <div class="page-filter-category">
+        <div class="page-filter-category-label">Dietary</div>
+        <div class="page-filter-category-chips">
+          <button class="filter-chip" data-chip="vegetarian" data-group="dietary">Vegetarian</button>
+          <button class="filter-chip" data-chip="halal" data-group="dietary">Halal</button>
+          <button class="filter-chip" data-chip="kosher" data-group="dietary">Kosher</button>
+          <button class="filter-chip" data-chip="gluten-free" data-group="dietary">Gluten-Free</button>
+          <button class="filter-chip" data-chip="lactose-free" data-group="dietary">Lactose-Free</button>
+          <button class="filter-chip" data-chip="sugar-free" data-group="dietary">Sugar-Free</button>
+          <button class="filter-chip" data-chip="soy-free" data-group="dietary">Soy-Free</button>
+          <button class="filter-chip" data-chip="nut-free" data-group="dietary">Nut-Free</button>
+          <button class="filter-chip" data-chip="corn-free" data-group="dietary">Corn-Free</button>
+          <button class="filter-chip" data-chip="non-gmo" data-group="dietary">Non-GMO</button>
+          <button class="filter-chip" data-chip="organic" data-group="dietary">Organic</button>
+          <button class="filter-chip" data-chip="all natural" data-group="dietary">All Natural</button>
+          <button class="filter-chip" data-chip="hormone-free" data-group="dietary">Hormone-Free</button>
+          <button class="filter-chip" data-chip="antibiotic-free" data-group="dietary">Antibiotic-Free</button>
+          <button class="filter-chip" data-chip="allergen-free" data-group="dietary">Allergen-Free</button>
+          <button class="filter-chip" data-chip="cruelty-free" data-group="dietary">Cruelty-Free</button>
+        </div>
+      </div>
+    </div>
+    <div class="page-filter-results"></div>
+    <div class="page-filter-foot">
+      <span class="page-filter-count"></span>
+      <button class="page-filter-clear-all" type="button">Clear all</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- Expanding Search Panel -->
+<div class="search-panel" id="search-panel">
+  <div class="search-panel-inner">
+    <div class="search-panel-bar">
+      <input type="text" class="search-panel-input" placeholder="Search products, ingredients, concerns..." />
+      <button class="search-panel-close" aria-label="Close search">✕</button>
+    </div>
+    <div class="search-panel-results" id="search-panel-results">
+      <div class="search-panel-hint">Type to search across all 33 products.</div>
+    </div>
+  </div>
+</div>
+
+<!-- CRED STRIP BANNER -->
+<div class="cred-strip">
+  <div class="cred-strip-inner">
+    <div class="cred-item"><span class="cred-dot"></span> Clinical Doses Only</div>
+    <div class="cred-item"><span class="cred-dot"></span> 100% Made in North America</div>
+    <div class="cred-item"><span class="cred-dot"></span> 3x Batch Tested</div>
+    <div class="cred-item"><span class="cred-dot"></span> Cruelty-Free · Non-GMO</div>
+    <div class="cred-item"><span class="cred-dot"></span> 30-Day Guarantee</div>
+  </div>
+</div>
+
+
+
+<section class="page">
+
+  <div class="page-header">
+    <div class="page-header-eyebrow">The Supplement Line · 18 Bottles · Built on Research</div>
+    <h1>Daniel's Daily Stack —<br><em>Now Available for Yours.</em></h1>
+    <p>Every supplement in the Daniel's House line earns its place by passing two tests: did Daniel take it long enough to feel a real difference, and does the science back the actives inside it? If yes to both, it's here. If not, it didn't make the cut.</p>
+  </div>
+
+  <div class="credibility">
+    <div class="cred-item"><div class="cred-num">18<em>.</em></div><div class="cred-label">Bottles in the line</div></div>
+
+  </div>
+  <div class="page-filter-results"></div>
+</div>
+</div>
+
+    <div class="cred-item"><div class="cred-num">100<em>%</em></div><div class="cred-label">Made in North America</div></div>
+    <div class="cred-item"><div class="cred-num">25<em>+</em></div><div class="cred-label">Clinically-studied actives</div></div>
+    <div class="cred-item"><div class="cred-num">0</div><div class="cred-label">Artificial fillers</div></div>
+  </div>
+
+  <!-- I. THE DAILY STACK (splitscreen) -->
+  <div class="sec-header tight">
+    <div class="sec-eyebrow">Foundation &amp; Longevity · Daily</div>
+    <div class="sec-title">The <em>Daily</em> Stack</div>
+    <div class="sec-blurb">Ten bottles. Two purposes. The foundational nutrition you need every day on the left — the longevity actives that pay off over years on the right.</div>
+  </div>
+
+  <div class="split">
+
+    <div class="ritual">
+      <div class="ritual-header">
+        <div class="ritual-icon">☀️</div>
+        <div class="ritual-title">The <em>Foundation</em></div>
+        <div class="ritual-sub">Daily essentials · 5 Bottles</div>
+      </div>
+
+      <div class="row">
+        <div class="row-img"><img src="products/Multi.jpeg" alt="The House Multi" loading="lazy"/></div>
+        <div class="row-content">
+          <div class="row-tag">Antioxidant · Immune · Metabolic</div>
+          <div class="row-name">The House <em>Multi</em></div>
+          <div class="row-desc">Your daily nutritional foundation. Every essential vitamin and mineral, plus an antioxidant fruit blend and immune-supporting botanicals — properly dosed in two morning capsules.</div>
+        </div>
+        <div class="row-shop">
+          <div class="row-price">$32.90</div>
+          <a href="product.html?slug=the-house-multi"class="row-view-link">View Details →</a>
+          <button class="row-add-cart" data-add-slug="the-house-multi">Add to Cart →</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="row-img"><img src="products/Calm.jpeg" alt="The House Calm" loading="lazy"/></div>
+        <div class="row-content">
+          <div class="row-tag">Relaxation · Muscle · Nerve</div>
+          <div class="row-name">The House <em>Calm</em></div>
+          <div class="row-desc">Sleep deeper. Stress less. 275mg of well-absorbed magnesium glycinate per serving — the form your nervous system can actually use without the laxative side effects.</div>
+        </div>
+        <div class="row-shop">
+          <div class="row-price">$26.90</div>
+          <a href="product.html?slug=the-house-calm"class="row-view-link">View Details →</a>
+          <button class="row-add-cart" data-add-slug="the-house-calm">Add to Cart →</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="row-img"><img src="products/Sunshine.jpeg" alt="The House Sunshine" loading="lazy"/></div>
+        <div class="row-content">
+          <div class="row-tag">Bones · Muscles · Immune</div>
+          <div class="row-name">The House <em>Sunshine</em></div>
+          <div class="row-desc">The vitamin your body craves. Fat-soluble D3 cholecalciferol in a clean softgel, properly dosed for bone density, immune balance, and the energy you forgot was missing.</div>
+        </div>
+        <div class="row-shop">
+          <div class="row-price">$19.90</div>
+          <a href="product.html?slug=the-house-sunshine"class="row-view-link">View Details →</a>
+          <button class="row-add-cart" data-add-slug="the-house-sunshine">Add to Cart →</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="row-img"><img src="products/Flow.jpeg" alt="The House Flow" loading="lazy"/></div>
+        <div class="row-content">
+          <div class="row-tag">Heart · Brain · Vision</div>
+          <div class="row-name">The House <em>Flow</em></div>
+          <div class="row-desc">Heart, brain, and joints — daily. 1000mg of fish oil concentrate with targeted EPA and DHA in a clean softgel. No fishy aftertaste, no burp-back.</div>
+        </div>
+        <div class="row-shop">
+          <div class="row-price">$24.90</div>
+          <a href="product.html?slug=the-house-flow"class="row-view-link">View Details →</a>
+          <button class="row-add-cart" data-add-slug="the-house-flow">Add to Cart →</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="row-img"><img src="products/Biome.jpeg" alt="The House Biome" loading="lazy"/></div>
+        <div class="row-content">
+          <div class="row-tag">Digestive · Metabolic · Immune</div>
+          <div class="row-name">The House <em>Biome</em></div>
+          <div class="row-desc">Balance starts within. Four-strain probiotic blend at 40 billion CFU with MAKTREK® Bi-Pass technology to survive stomach acid — for the gut you almost forgot about.</div>
+        </div>
+        <div class="row-shop">
+          <div class="row-price">$30.90</div>
+          <a href="product.html?slug=the-house-biome"class="row-view-link">View Details →</a>
+          <button class="row-add-cart" data-add-slug="the-house-biome">Add to Cart →</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="bundle-footnote">
+      <div class="bundle-footnote-inner">
+        <div class="bundle-footnote-name">The <em>Foundation</em> Bundle</div>
+        <div class="bundle-footnote-pricing">
+          <span class="bundle-footnote-was">$136</span>
+          <span class="bundle-footnote-now">$115</span>
+          <span class="bundle-footnote-savings">Save $20 · 15% off</span>
+        </div>
+        <div class="bundle-subscribe-toggle" data-bundle-id="foundation">
+          <button type="button" data-mode="once" class="active">
+            <div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">One-Time</span></div>
+            <span class="toggle-meta">Single delivery</span>
+          </button>
+          <button type="button" data-mode="subscribe">
+            <div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">Monthly</span></div>
+            <span class="toggle-meta">Cancel anytime</span>
+          </button>
+        </div>
+        <button class="bundle-footnote-cta" data-bundle-add="foundation">Add Bundle to Cart →</button>
+      </div>
+    </div>
+
+    <div class="ritual">
+      <div class="ritual-header">
+        <div class="ritual-icon">⧖</div>
+        <div class="ritual-title">The <em>Longevity</em></div>
+        <div class="ritual-sub">Age better, live longer · 5 Bottles</div>
+      </div>
+
+      <div class="row">
+        <div class="row-img"><img src="products/Nadplus.jpeg" alt="The House NAD+" loading="lazy"/></div>
+        <div class="row-content">
+          <div class="row-tag">Metabolic · Cognition · Vitality</div>
+          <div class="row-name">The House <em>NAD+</em></div>
+          <div class="row-desc">Cellular energy and DNA repair. 500mg NAD+ stacked with quercetin and 98% trans-resveratrol from Japanese knotweed — premium longevity science, properly dosed.</div>
+        </div>
+        <div class="row-shop">
+          <div class="row-price">$60.00</div>
+          <a href="product.html?slug=the-house-nad-plus"class="row-view-link">View Details →</a>
+          <button class="row-add-cart" data-add-slug="the-house-nad-plus">Add to Cart →</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="row-img"><img src="products/Vitality.jpeg" alt="The House Vitality" loading="lazy"/></div>
+        <div class="row-content">
+          <div class="row-tag">Energy · Antioxidant · Heart</div>
+          <div class="row-name">The House <em>Vitality</em></div>
+          <div class="row-desc">Fuel your cells from within. 200mg of CoQ10 ubiquinone per capsule for cellular energy production and heart health — the supplement your forties will thank you for.</div>
+        </div>
+        <div class="row-shop">
+          <div class="row-price">$28.90</div>
+          <a href="product.html?slug=the-house-vitality"class="row-view-link">View Details →</a>
+          <button class="row-add-cart" data-add-slug="the-house-vitality">Add to Cart →</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="row-img"><img src="products/Synapse.jpeg" alt="The House Synapse" loading="lazy"/></div>
+        <div class="row-content">
+          <div class="row-tag">Cognitive · Energy · Performance</div>
+          <div class="row-name">The House <em>Synapse</em></div>
+          <div class="row-desc">Focus, clarity, and adaptogenic power. Ten-mushroom extract complex — Lion's Mane, Reishi, Cordyceps, Chaga, Turkey Tail and more — in a daily gummy.</div>
+        </div>
+        <div class="row-shop">
+          <div class="row-price">$34.90</div>
+          <a href="product.html?slug=the-house-synapse"class="row-view-link">View Details →</a>
+          <button class="row-add-cart" data-add-slug="the-house-synapse">Add to Cart →</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="row-img"><img src="products/Tranquil.jpeg" alt="The House Tranquil" loading="lazy"/></div>
+        <div class="row-content">
+          <div class="row-tag">Relaxation · Vitality · Balance</div>
+          <div class="row-name">The House <em>Tranquil</em></div>
+          <div class="row-desc">Stress resilience meets hormonal balance. KSM-66® ashwagandha stacked with maca, ginseng, shatavari, and L-arginine — for stress that won't quit and energy that lasts.</div>
+        </div>
+        <div class="row-shop">
+          <div class="row-price">$29.50</div>
+          <a href="product.html?slug=the-house-tranquil"class="row-view-link">View Details →</a>
+          <button class="row-add-cart" data-add-slug="the-house-tranquil">Add to Cart →</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="row-img"><img src="products/Restore.jpeg" alt="The House Restore" loading="lazy"/></div>
+        <div class="row-content">
+          <div class="row-tag">Joints · Mobility · Recovery</div>
+          <div class="row-name">The House <em>Restore</em></div>
+          <div class="row-desc">Inflammation's natural opponent. Platinum turmeric complex with glucosamine, boswellia, chondroitin, MSM, and BioPerine® for absorption — the classic stack, properly built.</div>
+        </div>
+        <div class="row-shop">
+          <div class="row-price">$25.90</div>
+          <a href="product.html?slug=the-house-restore"class="row-view-link">View Details →</a>
+          <button class="row-add-cart" data-add-slug="the-house-restore">Add to Cart →</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="bundle-footnote">
+      <div class="bundle-footnote-inner">
+        <div class="bundle-footnote-name">The <em>Longevity</em> Bundle</div>
+        <div class="bundle-footnote-pricing">
+          <span class="bundle-footnote-was">$179</span>
+          <span class="bundle-footnote-now">$152</span>
+          <span class="bundle-footnote-savings">Save $27 · 15% off</span>
+        </div>
+        <div class="bundle-subscribe-toggle" data-bundle-id="longevity">
+          <button type="button" data-mode="once" class="active">
+            <div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">One-Time</span></div>
+            <span class="toggle-meta">Single delivery</span>
+          </button>
+          <button type="button" data-mode="subscribe">
+            <div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">Monthly</span></div>
+            <span class="toggle-meta">Cancel anytime</span>
+          </button>
+        </div>
+        <button class="bundle-footnote-cta" data-bundle-add="longevity">Add Bundle to Cart →</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- II. WORKOUT STACK -->
+  <div class="sec-header" style="padding-top: 100px;">
+    <div class="sec-eyebrow">Train Harder · Recover Faster</div>
+    <div class="sec-title">The <em>Workout</em> Stack</div>
+    <div class="sec-blurb">Five formulations for the days you put in real work. Strength, output, recovery, and the metabolic support to keep showing up.</div>
+  </div>
+
+  <div class="stack-list">
+    <div class="row">
+      <div class="row-img"><img src="products/Power.jpeg" alt="The House Power" loading="lazy"/></div>
+      <div class="row-content">
+        <div class="row-tag">Strength · Power · Recovery · Growth</div>
+        <div class="row-name">The House <em>Power</em></div>
+        <div class="row-desc">Strength, muscle, and performance. 5g of pharmaceutical-grade creatine monohydrate per scoop — the most-studied supplement on the shelf, no flavors, no nonsense.</div>
+      </div>
+      <div class="row-shop">
+          <div class="row-price">$33.90</div>
+          <a href="product.html?slug=the-house-power"class="row-view-link">View Details →</a>
+          <button class="row-add-cart" data-add-slug="the-house-power">Add to Cart →</button>
+        </div>
+    </div>
+
+    <div class="row">
+      <div class="row-img"><img src="products/Pump.jpeg" alt="The House Pump" loading="lazy"/></div>
+      <div class="row-content">
+        <div class="row-tag">Circulation · Muscle · Performance</div>
+        <div class="row-name">The House <em>Pump</em></div>
+        <div class="row-desc">Blood flow, vascularity, and output. L-Citrulline DL-Malate, L-Arginine HCl, and L-Arginine AKG for nitric oxide support — pre-workout, but smarter and stim-free.</div>
+      </div>
+      <div class="row-shop">
+          <div class="row-price">$39.99</div>
+          <a href="product.html?slug=the-house-pump"class="row-view-link">View Details →</a>
+          <button class="row-add-cart" data-add-slug="the-house-pump">Add to Cart →</button>
+        </div>
+    </div>
+
+    <div class="row">
+      <div class="row-img"><img src="products/Seal.jpeg" alt="The House Seal" loading="lazy"/></div>
+      <div class="row-content">
+        <div class="row-tag">Recovery · Gut Integrity · Immune</div>
+        <div class="row-name">The House <em>Seal</em></div>
+        <div class="row-desc">Gut repair meets muscle recovery. 3.15g of pure L-glutamine per scoop for gut lining support and post-training repair. Stir into water, get on with it.</div>
+      </div>
+      <div class="row-shop">
+          <div class="row-price">$29.90</div>
+          <a href="product.html?slug=the-house-seal"class="row-view-link">View Details →</a>
+          <button class="row-add-cart" data-add-slug="the-house-seal">Add to Cart →</button>
+        </div>
+    </div>
+
+    <div class="row">
+      <div class="row-img"><img src="products/Greens.jpeg" alt="The House Greens" loading="lazy"/></div>
+      <div class="row-content">
+        <div class="row-tag">Nutrient Dense · Antioxidant · Vitality</div>
+        <div class="row-name">The House <em>Greens</em></div>
+        <div class="row-desc">A full serving of vitality. 22-ingredient superfood blend — barley grass, spirulina, beet, acai, ashwagandha, ginseng, ginger and more — in one daily scoop.</div>
+      </div>
+      <div class="row-shop">
+          <div class="row-price">$35.90</div>
+          <a href="product.html?slug=the-house-greens"class="row-view-link">View Details →</a>
+          <button class="row-add-cart" data-add-slug="the-house-greens">Add to Cart →</button>
+        </div>
+    </div>
+
+    <div class="row">
+      <div class="row-img"><img src="products/Burn.jpeg" alt="The House Burn" loading="lazy"/></div>
+      <div class="row-content">
+        <div class="row-tag">Mood · Focus · Metabolism · Cardio</div>
+        <div class="row-name">The House <em>Burn</em></div>
+        <div class="row-desc">Heat up the engine. Thermogenic complex stacked with mood, focus, and cardiovascular support — for the days you need to dial up metabolism without sacrificing mental clarity.</div>
+      </div>
+      <div class="row-shop">
+          <div class="row-price">$33.90</div>
+          <a href="product.html?slug=the-house-burn"class="row-view-link">View Details →</a>
+          <button class="row-add-cart" data-add-slug="the-house-burn">Add to Cart →</button>
+        </div>
+    </div>
+  </div>
+
+  <!-- III. BEAUTY + FOCUS -->
+<div class="bundle-footnote">
+  <div class="bundle-footnote-inner">
+    <div class="bundle-footnote-name">The <em>Workout</em> Bundle</div>
+    <div class="bundle-footnote-pricing">
+      <span class="bundle-footnote-was">$174</span>
+      <span class="bundle-footnote-now">$148</span>
+      <span class="bundle-footnote-savings">Save $26 · 15% off</span>
+    </div>
+    <div class="bundle-subscribe-toggle" data-bundle-id="workout">
+      <button type="button" data-mode="once" class="active">
+        <div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">One-Time</span></div>
+        <span class="toggle-meta">Single delivery</span>
+      </button>
+      <button type="button" data-mode="subscribe">
+        <div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">Monthly</span></div>
+        <span class="toggle-meta">Cancel anytime</span>
+      </button>
+    </div>
+    <button class="bundle-footnote-cta" data-bundle-add="workout">Add Bundle to Cart →</button>
+  </div>
+</div>
+
+  <div class="sec-header" style="padding-top: 100px;">
+    <div class="sec-eyebrow">Glow From Within · Sharpen The Mind</div>
+    <div class="sec-title">The <em>Beauty</em> + Focus Stack</div>
+    <div class="sec-blurb">Three formulations for the way you show up. Hair, skin, nails, and a sharper edge — the supplements that handle the visible parts of feeling well.</div>
+  </div>
+
+  <div class="stack-list">
+    <div class="row">
+      <div class="row-img"><img src="products/Radiance.jpeg" alt="The House Radiance" loading="lazy"/></div>
+      <div class="row-content">
+        <div class="row-tag">Vibrant Hair · Radiant Skin · Strong Nails</div>
+        <div class="row-name">The House <em>Radiance</em></div>
+        <div class="row-desc">Beauty you can taste. Vitamins A/C/D/E with biotin, B-complex, zinc, iodine, folate, and marine collagen — in a passion-fruit gummy you'll actually take.</div>
+      </div>
+      <div class="row-shop">
+          <div class="row-price">$34.90</div>
+          <a href="product.html?slug=the-house-radiance"class="row-view-link">View Details →</a>
+          <button class="row-add-cart" data-add-slug="the-house-radiance">Add to Cart →</button>
+        </div>
+    </div>
+
+    <div class="row">
+      <div class="row-img"><img src="products/Collagen.jpeg" alt="The House Collagen" loading="lazy"/></div>
+      <div class="row-content">
+        <div class="row-tag">Skin · Hair · Nails · Joints</div>
+        <div class="row-name">The House <em>Collagen</em></div>
+        <div class="row-desc">Firm skin, strong joints, daily. 10g of grass-fed bovine hide collagen peptides per scoop, types I &amp; III. Unflavored, dissolves clean in coffee, cooking, anything.</div>
+      </div>
+      <div class="row-shop">
+          <div class="row-price">$33.90</div>
+          <a href="product.html?slug=the-house-collagen"class="row-view-link">View Details →</a>
+          <button class="row-add-cart" data-add-slug="the-house-collagen">Add to Cart →</button>
+        </div>
+    </div>
+
+    <div class="row">
+      <div class="row-img"><img src="products/Focus.jpeg" alt="The House Focus" loading="lazy"/></div>
+      <div class="row-content">
+        <div class="row-tag">Clarity · Memory · Performance</div>
+        <div class="row-name">The House <em>Focus</em></div>
+        <div class="row-desc">Clarity, memory, and mental edge. Nootropic blend of GABA, L-Tyrosine, Bacopa monnieri, Alpha GPC, and Huperzine A with B6 — for focus that doesn't fade by 3pm.</div>
+      </div>
+      <div class="row-shop">
+          <div class="row-price">$29.90</div>
+          <a href="product.html?slug=the-house-focus"class="row-view-link">View Details →</a>
+          <button class="row-add-cart" data-add-slug="the-house-focus">Add to Cart →</button>
+        </div>
+    </div>
+  </div>
+
+  <div class="bundle-footnote">
+  <div class="bundle-footnote-inner">
+    <div class="bundle-footnote-name">The <em>Glow</em> Bundle</div>
+    <div class="bundle-footnote-pricing">
+      <span class="bundle-footnote-was">$207</span>
+      <span class="bundle-footnote-now">$176</span>
+      <span class="bundle-footnote-savings">Save $31 · 15% off</span>
+    </div>
+    <div class="bundle-subscribe-toggle" data-bundle-id="glow">
+      <button type="button" data-mode="once" class="active">
+        <div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">One-Time</span></div>
+        <span class="toggle-meta">Single delivery</span>
+      </button>
+      <button type="button" data-mode="subscribe">
+        <div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">Monthly</span></div>
+        <span class="toggle-meta">Cancel anytime</span>
+      </button>
+    </div>
+    <button class="bundle-footnote-cta" data-bundle-add="glow">Add Bundle to Cart →</button>
+  </div>
+</div>
+
+
+  <!-- IV. RESEARCH -->
+  <section class="research">
+    <div class="research-inner">
+      <div class="research-header">
+        <div class="research-eyebrow">Built on Research · Not Marketing</div>
+        <div class="research-title">What the <em>Science</em> Says<br>About These Actives.</div>
+        <div class="research-blurb">Every active in the Daniel's House line has peer-reviewed evidence behind it. Here's a sample of what the most current research shows.</div>
+      </div>
+
+      <div class="study-grid">
+
+        <div class="study">
+          <div class="study-marker">Study 01</div>
+          <div class="study-actor"><em>Creatine</em> Monohydrate</div>
+          <div class="study-finding">A 2024 systematic review and meta-analysis of 16 randomized controlled trials confirmed that creatine monohydrate supplementation produces <strong>measurable benefits for memory, attention, and information processing speed</strong> — adding to decades of evidence for muscle and strength gains. The most-studied supplement on the shelf, with good reason.</div>
+          <div class="study-source">Source: Frontiers in Nutrition, 2024 — systematic review &amp; meta-analysis (Xu et al.).</div>
+          <div class="study-products">Found in: The House Power</div>
+        </div>
+
+        <div class="study">
+          <div class="study-marker">Study 02</div>
+          <div class="study-actor">KSM-66® <em>Ashwagandha</em></div>
+          <div class="study-finding">A 2025 systematic review and meta-analysis of 15 randomized controlled trials covering 873 patients found ashwagandha supplementation produces <strong>significant reductions in cortisol, stress, and anxiety</strong> versus placebo. KSM-66® is the most-studied standardized extract.</div>
+          <div class="study-source">Source: BJPsych Open, 2025 — systematic review &amp; meta-analysis (Bachour et al.).</div>
+          <div class="study-products">Found in: The House Tranquil · The House Greens</div>
+        </div>
+
+        <div class="study">
+          <div class="study-marker">Study 03</div>
+          <div class="study-actor"><em>Magnesium</em> Glycinate</div>
+          <div class="study-finding">Magnesium glycinate is the chelated form clinically associated with <strong>improved sleep quality, reduced stress markers, and better absorption</strong> than oxide or citrate. Around half of US adults fall short of the recommended daily intake — supplementation closes a real gap.</div>
+          <div class="study-source">Source: Reviewed in Nutrients (multiple), and the NIH Office of Dietary Supplements.</div>
+          <div class="study-products">Found in: The House Calm</div>
+        </div>
+
+        <div class="study">
+          <div class="study-marker">Study 04</div>
+          <div class="study-actor"><em>Vitamin D3</em> (Cholecalciferol)</div>
+          <div class="study-finding">Vitamin D3 supplementation has decades of clinical evidence supporting <strong>bone density, immune balance, and mood regulation</strong>. An estimated 35% of US adults are deficient — a gap that supplementation reliably closes when taken consistently with a fat source for absorption.</div>
+          <div class="study-source">Source: Reviewed in JAMA, The Lancet, and the NIH Office of Dietary Supplements.</div>
+          <div class="study-products">Found in: The House Sunshine · The House Multi · The House Radiance</div>
+        </div>
+
+        <div class="study">
+          <div class="study-marker">Study 05</div>
+          <div class="study-actor">Omega-3 <em>EPA</em> + DHA</div>
+          <div class="study-finding">Long-chain marine omega-3s (EPA and DHA) are among the most-studied supplements in nutrition science. Clinical trials consistently associate adequate intake with <strong>cardiovascular benefits, reduced inflammatory markers, and cognitive support</strong> — particularly when paired with a low-omega-6 diet.</div>
+          <div class="study-source">Source: Reviewed in Circulation, JAMA, and meta-analyses across 100,000+ participants.</div>
+          <div class="study-products">Found in: The House Flow</div>
+        </div>
+
+        <div class="study">
+          <div class="study-marker">Study 06</div>
+          <div class="study-actor"><em>NAD+</em> Precursors</div>
+          <div class="study-finding">NAD+ levels decline with age, and emerging clinical research suggests precursor supplementation can <strong>increase cellular NAD+ levels and support energy metabolism</strong>. Combined with antioxidants like resveratrol and quercetin, the stack targets cellular health at its most fundamental level.</div>
+          <div class="study-source">Source: Reviewed in Cell Metabolism (Imai &amp; Guarente) and ongoing trials at Harvard, Washington University.</div>
+          <div class="study-products">Found in: The House NAD+</div>
+        </div>
+
+      </div>
+
+      <div class="research-disclaimer">
+        Research summarized above examines individual supplement ingredients and active compounds in published clinical studies. Daniel's House products contain these actives at supplemental doses and are not intended to diagnose, treat, cure, or prevent any disease. These statements have not been evaluated by the Food and Drug Administration. Individual results vary. Consult a healthcare professional before starting any new supplement, especially if pregnant, nursing, taking medication, or under 18.
+      </div>
+    </div>
+  </section>
+
+  <div class="closing">
+    <h2>Or — let us <em>build the stack for you.</em></h2>
+    <p>The Complete Daily System bundles all ten Daily supplements in the order you'll take them. Foundation in the morning. Longevity with breakfast. One transformation. Boxed.</p>
+    <a href="bundles.html" class="closing-btn">Explore Bundles →</a>
+  </div>
+
+</section>
+
+<!-- ═══ OUR GUARANTEE — Return / refund policy summary ═══ -->
+<section class="guarantee-strip">
+  <div class="guarantee-strip-inner">
+    <div class="guarantee-strip-header">
+      <div class="guarantee-eyebrow">Our Guarantee</div>
+      <h2>Try the stack. <em>Love it or send it back.</em></h2>
+      <p>Supplements take time to work. We don't expect you to commit before you've actually felt the difference. Every order — single bottle, bundle, or subscription — is backed by the same 30-day promise.</p>
+    </div>
+    <div class="guarantee-grid">
+      <div class="guarantee-card">
+        <div class="guarantee-icon">30</div>
+        <div class="guarantee-title">30-Day Window</div>
+        <div class="guarantee-text">From the day your order arrives. Enough time to feel how your body responds.</div>
+      </div>
+      <div class="guarantee-card">
+        <div class="guarantee-icon">✓</div>
+        <div class="guarantee-title">Opened Is Fine</div>
+        <div class="guarantee-text">Take the supplements. Really try them. Don't feel a difference? Return what's left for a full refund.</div>
+      </div>
+      <div class="guarantee-card">
+        <div class="guarantee-icon">→</div>
+        <div class="guarantee-title">Free Return Shipping</div>
+        <div class="guarantee-text">We send the prepaid label both ways. Refund within 5 business days of receipt.</div>
+      </div>
+      <div class="guarantee-card">
+        <div class="guarantee-icon">⊘</div>
+        <div class="guarantee-title">Cancel Anytime</div>
+        <div class="guarantee-text">Subscriptions pause, skip, or stop with one click. No minimums, no fees.</div>
+      </div>
+    </div>
+    <a href="faq.html#returns" class="guarantee-link">Full policy details →</a>
+  </div>
+</section>
+
+<!-- INGREDIENTS GLOSSARY CTA -->
+<section class="ingredients-cta-strip">
+  <div class="ingredients-cta-inner">
+    <div class="ingredients-cta-eyebrow">Every Ingredient · Explained</div>
+    <h3 class="ingredients-cta-title">Want to know what's actually <em>in</em> these?</h3>
+    <p class="ingredients-cta-blurb">Every active in every product — what it does, why we chose the form we did, and the evidence behind it. Searchable, filterable, and cross-linked to the products that use it.</p>
+    <a href="ingredients.html" class="ingredients-cta-link">Browse the Ingredient Glossary →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-newsletter">
+    <div class="footer-newsletter-inner">
+      <div class="footer-newsletter-eyebrow">Letters from the House</div>
+      <div class="footer-newsletter-title">Get Daniel's actual <em>routine notes.</em></div>
+      <div class="footer-newsletter-blurb">First access to launches, ingredient deep-dives, and the rituals Daniel uses every week — sent twice a month, no spam.</div>
+      <form class="footer-newsletter-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent = '✓ Subscribed';">
+        <input type="email" placeholder="Your email" required />
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </div>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Daniel<span class="amp">'s</span> House</div>
+      <div class="footer-tag">Your home for premium wellness — built on real results, not marketing.</div>
+      <div class="footer-attr">
+        <span>Non-GMO</span>
+        <span>Cruelty-Free</span>
+        <span>Made in NA</span>
+      </div>
+      <a href="mailto:daniel@danielshouse.com" class="footer-email">daniel@danielshouse.com</a>
+    </div>
+    <div class="footer-col"><h4>Shop</h4><ul><li><a href="skincare.html">Skincare</a></li><li><a href="supplements.html">Supplements</a></li><li><a href="bundles.html">Bundles</a></li><li><a href="shop.html">Concern Bundles</a></li></ul></div>
+    <div class="footer-col"><h4>The House</h4><ul><li><a href="about.html">Daniel's Story</a></li><li><a href="ingredients.html">Ingredient Glossary</a></li><li><a href="quiz.html">Take the Quiz</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
+    <div class="footer-col"><h4>Help</h4><ul><li><a href="faq.html#shipping">Shipping</a></li><li><a href="faq.html#returns">Returns Policy →</a></li><li><a href="faq.html#returns">30-Day Guarantee</a></li><li><a href="faq.html">Contact</a></li></ul></div>
+  </div>
+  <div class="footer-credit">
+    <div class="footer-credit-left">© 2025 Daniel's House. Premium wellness, built on real results.</div>
+    <div class="footer-credit-right">
+      <a href="faq.html">Privacy</a>
+      <a href="faq.html">Terms</a>
+      <a href="faq.html">Accessibility</a>
+    </div>
+  </div>
+</footer>
+</div>
+
+<!-- Shared Lightbox / Product Carousel -->
+<div class="lightbox-overlay">
+  <div class="lightbox">
+    <div class="lightbox-header">
+      <div class="lightbox-title"></div>
+      <button class="lightbox-close" aria-label="Close">×</button>
+    </div>
+    <div class="lightbox-body">
+      <div class="lightbox-image-side">
+        <button class="lightbox-arrow prev" aria-label="Previous">←</button>
+        <img class="lightbox-image" src="" alt="" />
+        <button class="lightbox-arrow next" aria-label="Next">→</button>
+      </div>
+      <div class="lightbox-info-side">
+        <div class="lightbox-counter"></div>
+        <div class="lightbox-tag"></div>
+        <div class="lightbox-name"></div>
+        <div class="lightbox-tagline"></div>
+        <div class="lightbox-desc"></div>
+        <div class="lightbox-price-row">
+          <div class="lightbox-price"></div>
+          <div class="lightbox-size"></div>
+        </div>
+        <div class="lightbox-actions"></div>
+      </div>
+    </div>
+    <div class="lightbox-dots"></div>
+  </div>
+</div>
+
+<script src="data/products.js"></script>
+<script src="js/shared.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('[data-add-slug]').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.preventDefault();
+      const slug = btn.dataset.addSlug;
+      const product = window.getProductBySlug(slug);
+      if (product) window.dhCart.add(product, { subscribe: false });
+    });
+  });
+});
+</script>
+
+</body>
+</html>
