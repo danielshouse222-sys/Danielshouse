@@ -31,7 +31,7 @@ body {
    on every page, regardless of any parent's overflow rules. Body gets padding-top
    to compensate for the now out-of-flow header (--header-total). */
 :root {
-  --shipping-bar-height: 46px;
+  --shipping-bar-height: 20px;
   --nav-height: 76px;
   --header-total: 122px;
 }
