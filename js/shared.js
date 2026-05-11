@@ -284,48 +284,46 @@
     sessionStorage.setItem(POPUP_DISMISSED_KEY, '1');
   }
 
-  // ═══ SEARCH MODAL ═══
+  // ═══ EXPANDING SEARCH PANEL ═══
   function openSearch() {
-    const overlay = document.querySelector('.search-overlay');
-    if (!overlay) return;
-    overlay.classList.add('open');
-    document.body.style.overflow = 'hidden';
-    setTimeout(() => overlay.querySelector('.search-input')?.focus(), 100);
+    const panel = document.querySelector('.search-panel');
+    if (!panel) return;
+    panel.classList.add('open');
+    document.querySelector('.search-trigger')?.classList.add('active');
+    setTimeout(() => panel.querySelector('.search-panel-input')?.focus(), 100);
   }
   function closeSearch() {
-    document.querySelector('.search-overlay')?.classList.remove('open');
-    document.body.style.overflow = '';
+    document.querySelector('.search-panel')?.classList.remove('open');
+    document.querySelector('.search-trigger')?.classList.remove('active');
   }
   function performSearch(query) {
-    const results = document.querySelector('.search-results');
-    if (!results || !window.PRODUCTS) return;
+    const results = document.querySelector('.search-panel-results');
+    if (!results) return;
     const q = query.trim().toLowerCase();
     if (!q) {
-      results.innerHTML = '<div class="search-empty">Start typing to search products.</div>';
+      results.innerHTML = '<div class="search-panel-hint">Type to search across all 33 products.</div>';
+      return;
+    }
+    if (!window.PRODUCTS || !window.PRODUCTS.length) {
+      results.innerHTML = '<div class="search-panel-empty">Product data unavailable.</div>';
       return;
     }
     const matches = window.PRODUCTS.filter(p => {
-      const haystack = [
-        p.name, p.tag, p.tagline, p.description, p.category, p.sub,
-        ...(p.bestFor || []),
-        ...(p.ingredients || []).map(i => i.name).filter(Boolean)
-      ].join(' ').toLowerCase();
+      const haystack = [p.name, p.tag, p.tagline, p.description, ...(p.bestFor || []), ...(p.ingredients || []).map(i => i.name || '')].join(' ').toLowerCase();
       return haystack.includes(q);
     }).slice(0, 12);
-
-    if (matches.length === 0) {
-      results.innerHTML = `<div class="search-empty">No products match "${query}".</div>`;
+    if (!matches.length) {
+      results.innerHTML = `<div class="search-panel-empty">No matches for "${query}".</div>`;
       return;
     }
-
     results.innerHTML = matches.map(p => `
-      <a href="product.html?slug=${p.slug}" class="search-result">
-        <div class="search-result-img"><img src="${p.image}" alt="${p.name}" loading="lazy"/></div>
-        <div>
-          <div class="search-result-cat">${p.category === 'skincare' ? 'Skincare' : 'Supplement'} · ${p.tag}</div>
-          <div class="search-result-name">The House <em>${p.name}</em></div>
+      <a href="product.html?slug=${p.slug}" class="search-panel-result">
+        <img src="${p.image}" alt="${p.name}" loading="lazy"/>
+        <div class="search-panel-result-info">
+          <div class="search-panel-result-name">The House <em>${p.name}</em></div>
+          <div class="search-panel-result-tag">${(p.tag || '').split('·')[0].trim()}</div>
         </div>
-        <div class="search-result-price">$${p.price.toFixed(2)}</div>
+        <div class="search-panel-result-price">$${p.price.toFixed(0)}</div>
       </a>
     `).join('');
   }
@@ -379,13 +377,15 @@
 
     // Search
     document.querySelectorAll('.search-trigger').forEach(el => el.addEventListener('click', openSearch));
-    document.querySelector('.search-close')?.addEventListener('click', closeSearch);
-    const searchInput = document.querySelector('.search-input');
+    document.querySelector('.search-panel-close')?.addEventListener('click', closeSearch);
+    const searchInput = document.querySelector('.search-panel-input');
     if (searchInput) {
       searchInput.addEventListener('input', e => performSearch(e.target.value));
-      // Initial state
-      performSearch('');
     }
+    // Click outside the search panel content closes it
+    document.querySelector('.search-panel')?.addEventListener('click', e => {
+      if (e.target.classList.contains('search-panel')) closeSearch();
+    });
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape') {
         closeCart();
