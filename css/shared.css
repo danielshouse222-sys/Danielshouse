@@ -1661,3 +1661,287 @@
   border-color: var(--gold);
   color: var(--ink);
 }
+
+/* ═══ MOBILE LAYOUT — STACK & CENTER (skincare, supplements, bundles) ═══ */
+/* Every section centered, every grid collapsed, every padding even left/right */
+@media (max-width: 760px) {
+
+  /* ── 1. PAGE HEADERS (top section of each page) ── */
+  .page-header {
+    padding: 50px 20px 36px !important;
+    text-align: center !important;
+    max-width: 100% !important;
+  }
+  .page-header-eyebrow {
+    font-size: 10.5px !important;
+    letter-spacing: 0.2em !important;
+    line-height: 1.6 !important;
+    margin-bottom: 18px !important;
+  }
+  .page-header h1 {
+    font-size: clamp(34px, 9vw, 50px) !important;
+    line-height: 1.05 !important;
+    margin: 0 auto 18px !important;
+  }
+  .page-header p {
+    font-size: 15px !important;
+    line-height: 1.7 !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 auto !important;
+  }
+
+  /* ── 2. CREDIBILITY STRIP — 1 col on mobile, each stat full-width centered ── */
+  .credibility,
+  .cred-strip-inner {
+    grid-template-columns: 1fr !important;
+    gap: 0 !important;
+    padding: 30px 20px 40px !important;
+    text-align: center !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .cred-item,
+  .credibility > div,
+  .cred-strip-inner > div {
+    text-align: center !important;
+    min-width: 0 !important;
+    width: 100% !important;
+    padding: 18px 8px !important;
+    border-bottom: 1px solid var(--rule) !important;
+    box-sizing: border-box !important;
+  }
+  .cred-item:last-child,
+  .credibility > div:last-child,
+  .cred-strip-inner > div:last-child {
+    border-bottom: none !important;
+  }
+  .cred-num {
+    font-size: 50px !important;
+    line-height: 1 !important;
+    margin-bottom: 8px !important;
+  }
+  .cred-label {
+    font-size: 10.5px !important;
+    letter-spacing: 0.16em !important;
+    word-break: normal;
+    white-space: normal !important;
+    line-height: 1.4 !important;
+  }
+  /* cred-strip on home page (different structure) */
+  .cred-item .cred-dot {
+    display: inline-block;
+    margin-right: 8px;
+  }
+
+  /* ── 3. SECTION HEADERS (sec-header, ritual-header, builder-header) ── */
+  .sec-header,
+  .ritual-header,
+  .builder-header,
+  .research-header {
+    padding: 50px 20px 0 !important;
+    text-align: center !important;
+    max-width: 100% !important;
+  }
+  .sec-header h2,
+  .ritual-header h2,
+  .builder-header h2 {
+    font-size: clamp(28px, 7.5vw, 40px) !important;
+    line-height: 1.1 !important;
+    margin: 12px auto !important;
+  }
+  .sec-blurb,
+  .ritual-blurb {
+    font-size: 15px !important;
+    max-width: 100% !important;
+    margin: 14px auto 0 !important;
+    text-align: center !important;
+    padding: 0 !important;
+  }
+
+  /* ── 4. AM/PM RITUAL SPLIT on skincare ── */
+  .split {
+    grid-template-columns: 1fr !important;
+    margin: 28px 0 0 !important;
+    max-width: 100% !important;
+  }
+  .ritual {
+    padding: 28px 20px !important;
+    border-left: none !important;
+    border-bottom: 1px solid var(--rule);
+    text-align: center !important;
+  }
+  .ritual:last-child { border-bottom: none; }
+  .ritual-icon { margin: 0 auto 14px !important; }
+  .ritual-sub { text-align: center !important; }
+
+  /* ── 5. PRODUCT ROWS (supplements list + skincare list) ── */
+  .row {
+    grid-template-columns: 76px 1fr !important;
+    gap: 14px !important;
+    padding: 18px 16px !important;
+    align-items: center;
+  }
+  .row-img { width: 76px !important; height: 76px !important; }
+  .row-shop {
+    grid-column: 1 / -1 !important;
+    padding: 12px 0 0 !important;
+    display: flex !important;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: flex-start;
+  }
+  .stack-list,
+  .row-list {
+    max-width: 100% !important;
+    margin: 30px auto 0 !important;
+    padding: 0 16px !important;
+  }
+
+  /* ── 6. BUNDLE-FOOTNOTE SECTIONS (AM, PM, Glow on skincare; Daniels-Daily etc. on supplements) ── */
+  .bundle-footnote {
+    padding: 40px 20px !important;
+    text-align: center !important;
+  }
+  .bundle-footnote-inner {
+    text-align: center !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+  .bundle-footnote-name {
+    font-size: clamp(26px, 7vw, 36px) !important;
+    line-height: 1.15 !important;
+    margin: 0 auto 12px !important;
+  }
+  .bundle-footnote-pricing {
+    flex-wrap: wrap;
+    justify-content: center !important;
+    gap: 8px 12px;
+  }
+  .bundle-footnote-cta {
+    width: 100% !important;
+    max-width: 320px;
+    margin: 18px auto 0 !important;
+  }
+  .bundle-subscribe-toggle {
+    margin: 14px auto 0 !important;
+    justify-content: center !important;
+  }
+
+  /* ── 7. BUNDLES — HERO ULTIMATE ── */
+  .hero-section {
+    padding: 0 16px !important;
+    margin-top: 60px !important;
+    max-width: 100% !important;
+  }
+  .hero-bundle {
+    grid-template-columns: 1fr !important;
+  }
+  .hero-bundle-content,
+  .hero-bundle-visual {
+    padding: 32px 22px !important;
+    text-align: center !important;
+  }
+  .hero-product-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    max-width: 280px !important;
+    margin: 22px auto 0 !important;
+    gap: 6px !important;
+  }
+  .hero-bundle-title {
+    font-size: clamp(34px, 9vw, 50px) !important;
+    text-align: center !important;
+  }
+
+  /* ── 8. BUNDLES — CURATED CARDS ── */
+  .bundle-grid {
+    grid-template-columns: 1fr !important;
+    padding: 0 16px !important;
+    gap: 24px !important;
+    margin: 40px auto 0 !important;
+    max-width: 100% !important;
+  }
+  .bundle-card {
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .bundle-body {
+    padding: 26px 20px !important;
+    text-align: center !important;
+  }
+  .bundle-product-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    max-width: 240px !important;
+    margin: 18px auto !important;
+    gap: 6px !important;
+  }
+  .bundle-product-grid.cols-5,
+  .bundle-product-grid.cols-7,
+  .bundle-product-grid.cols-8 {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+
+  /* ── 9. BUILDER (BYO) SECTION ── */
+  .builder-section,
+  .builder-section-inner {
+    padding: 50px 16px !important;
+    text-align: center !important;
+    max-width: 100% !important;
+  }
+  .builder-tracker {
+    flex-direction: column;
+    gap: 14px;
+    text-align: center !important;
+    padding: 20px !important;
+  }
+  .builder-tabs {
+    justify-content: center !important;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .builder-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 14px !important;
+    margin-top: 24px !important;
+  }
+  .builder-summary {
+    padding: 30px 20px !important;
+    text-align: center !important;
+  }
+  .builder-summary-totals {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center !important;
+    align-items: center;
+  }
+  .builder-cta,
+  .builder-summary-cta {
+    width: 100% !important;
+    max-width: 320px;
+    margin: 16px auto 0 !important;
+  }
+
+  /* ── 10. RESEARCH / WEEKLY SECTIONS ── */
+  .research,
+  .research-inner,
+  .weekly-section,
+  .alt-banner {
+    padding: 50px 20px !important;
+    text-align: center !important;
+    max-width: 100% !important;
+  }
+  .weekly-card { text-align: center !important; }
+
+  /* ── 11. GENERAL SAFETY ── */
+  section, .section {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  /* Anything that was max-width: 1080/1200/1320 gets reset to fit viewport */
+  [class*="-inner"], [style*="max-width: 10"], [style*="max-width: 11"], [style*="max-width: 12"] {
+    max-width: 100% !important;
+  }
+}
+
