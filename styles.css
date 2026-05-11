@@ -27,22 +27,22 @@ body {
 }
 
 /* ═══ NAVIGATION ═══ */
-/* Both shipping-bar + nav are fixed at the top so the header is always visible
-   on every page, regardless of any parent's overflow rules. Body gets padding-top
-   to compensate for the now out-of-flow header (--header-total). */
+/* Headers (shipping bar, nav, coming-soon banner) are now in-flow.
+   They sit at the top of the page and scroll away naturally with content.
+   Floating buttons (cart, search) remain viewport-anchored. */
 :root {
-  --shipping-bar-height: 20px;
+  --shipping-bar-height: 10px;
   --nav-height: 76px;
   --header-total: 122px;
 }
 
-body { padding-top: var(--header-total); }
+body { padding-top: 0; }
 
 nav {
   background: var(--cream);
   border-bottom: 1px solid var(--rule);
-  position: fixed;
-  top: var(--shipping-bar-height);
+  position: relative;
+  top: auto;
   left: 0;
   right: 0;
   z-index: 100;

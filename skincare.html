@@ -7,6 +7,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="css/shared.css">
 <style>
   :root {
     --cream: #FAF6F0;
@@ -96,6 +98,182 @@
   .ritual.pm .row-view-link { color: var(--gold); }
   .ritual.pm .row-add-cart { background: var(--gold); color: var(--ink); }
   .ritual.pm .row-add-cart:hover { background: var(--cream); color: var(--ink); }
+
+  /* ═══ EXPANDABLE DETAILS PANEL — inline on each row ═══ */
+  .row-details {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease;
+    border-bottom: 1px solid transparent;
+  }
+  .ritual.am .row-details { border-color: transparent; }
+  .ritual.am .row-details.open { border-color: var(--rule); background: rgba(184, 153, 104, 0.04); }
+  .ritual.pm .row-details.open { border-color: rgba(184, 153, 104, 0.18); background: rgba(31, 27, 23, 0.5); }
+  .row-details.open { max-height: 1200px; }
+  .row-details-inner {
+    padding: 28px 24px 36px 114px; /* left-align with row content (img is 90px + 24px gap) */
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 44px;
+  }
+  .rd-label {
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .rd-label::before {
+    content: '';
+    width: 16px;
+    height: 1px;
+    background: var(--gold);
+  }
+  .rd-block { margin-bottom: 24px; }
+  .rd-block:last-child { margin-bottom: 0; }
+
+  /* Ingredient list */
+  .rd-ingredient {
+    padding: 10px 0;
+    border-bottom: 1px solid;
+    border-color: rgba(212, 201, 182, 0.5);
+  }
+  .ritual.pm .rd-ingredient { border-color: rgba(184, 153, 104, 0.12); }
+  .rd-ingredient:last-child { border-bottom: none; }
+  .rd-ing-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 500;
+    font-style: italic;
+    margin-bottom: 3px;
+  }
+  .ritual.am .rd-ing-name { color: var(--ink); }
+  .ritual.am .rd-ing-name em { color: var(--sage); font-style: italic; }
+  .ritual.pm .rd-ing-name { color: var(--cream); }
+  .ritual.pm .rd-ing-name em { color: var(--gold); font-style: italic; }
+  .rd-ing-role {
+    font-size: 9.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 4px;
+    font-weight: 500;
+  }
+  .rd-ing-desc {
+    font-size: 12px;
+    line-height: 1.55;
+    opacity: 0.72;
+  }
+
+  /* How to use */
+  .rd-howto {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 15px;
+    line-height: 1.55;
+    opacity: 0.85;
+  }
+
+  /* Best for tags */
+  .rd-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .rd-tag {
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    padding: 5px 11px;
+    border: 1px solid;
+    border-radius: 100px;
+    font-weight: 400;
+  }
+  .ritual.am .rd-tag { border-color: var(--rule); color: var(--ink-soft); background: var(--cream); }
+  .ritual.pm .rd-tag { border-color: rgba(184, 153, 104, 0.3); color: var(--cream); background: transparent; }
+
+  /* Pro tip */
+  .rd-protip {
+    border-left: 2px solid var(--gold);
+    padding: 4px 0 4px 14px;
+    margin-top: 6px;
+  }
+  .rd-protip-label {
+    font-size: 9.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  .rd-protip-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 14px;
+    line-height: 1.5;
+    opacity: 0.88;
+  }
+
+  /* Free-from badges */
+  .rd-freefrom {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 8px;
+  }
+  .rd-ff-badge {
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 4px 9px;
+    opacity: 0.55;
+    border: 1px solid;
+    font-weight: 500;
+  }
+  .ritual.am .rd-ff-badge { border-color: var(--rule); color: var(--ink-soft); }
+  .ritual.pm .rd-ff-badge { border-color: rgba(184, 153, 104, 0.2); color: var(--cream); }
+
+  /* Open full product link */
+  .rd-full-link {
+    display: inline-block;
+    margin-top: 20px;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px solid var(--gold);
+    padding-bottom: 4px;
+    font-weight: 500;
+    transition: color 0.3s, border-color 0.3s;
+  }
+  .rd-full-link:hover {
+    color: var(--sage);
+    border-color: var(--sage);
+  }
+  .ritual.pm .rd-full-link:hover {
+    color: var(--cream);
+    border-color: var(--cream);
+  }
+
+  /* The "View Details" link state when expanded */
+  .row-view-link.expanded { color: var(--sage); }
+  .ritual.pm .row-view-link.expanded { color: var(--cream); }
+
+  @media (max-width: 720px) {
+    .row-details-inner {
+      grid-template-columns: 1fr;
+      gap: 24px;
+      padding: 20px 14px 30px;
+    }
+    .rd-ing-name { font-size: 15px; }
+    .rd-ing-desc { font-size: 11.5px; }
+    .rd-howto { font-size: 13.5px; }
+    .rd-protip-text { font-size: 13px; }
+  }
 
   /* Alternate option banner — sits between splitscreen and weekly section */
   .alt-banner {
@@ -312,7 +490,7 @@
     <div class="shipping-bar-divider"></div>
     <span class="shipping-bar-pill">30-Day Returns</span>
     <div class="shipping-bar-divider"></div>
-    <span class="shipping-bar-pill">Vegan · Cruelty-Free</span>
+    <span class="shipping-bar-pill">Cruelty-Free · Fully Vegan</span>
     <div class="shipping-bar-divider"></div>
     <span class="shipping-bar-pill">Made in N.A.</span>
   </div>
@@ -428,7 +606,6 @@
       <div class="page-filter-category">
         <div class="page-filter-category-label">Dietary</div>
         <div class="page-filter-category-chips">
-          <button class="filter-chip" data-chip="vegan" data-group="dietary">Vegan</button>
           <button class="filter-chip" data-chip="vegetarian" data-group="dietary">Vegetarian</button>
           <button class="filter-chip" data-chip="halal" data-group="dietary">Halal</button>
           <button class="filter-chip" data-chip="kosher" data-group="dietary">Kosher</button>
@@ -476,7 +653,7 @@
     <div class="cred-item"><span class="cred-dot"></span> Clinical Doses Only</div>
     <div class="cred-item"><span class="cred-dot"></span> 100% Made in North America</div>
     <div class="cred-item"><span class="cred-dot"></span> 3x Batch Tested</div>
-    <div class="cred-item"><span class="cred-dot"></span> Vegan & Cruelty-Free</div>
+    <div class="cred-item"><span class="cred-dot"></span> Fully Vegan · Cruelty-Free</div>
     <div class="cred-item"><span class="cred-dot"></span> 30-Day Guarantee</div>
   </div>
 </div>
@@ -485,7 +662,7 @@
 
 <section class="page">
   <div class="page-header">
-    <div class="page-header-eyebrow">The Skincare Line · 15 Products · Two Rituals · Built on Research</div>
+    <div class="page-header-eyebrow">The Skincare Line · 15 Products · 100% Vegan · Built on Research</div>
     <h1>Daniel's Skin Transformation —<br><em>Now Available for Yours.</em></h1>
     <p>Every product in the Daniel's House skincare line earns its place by passing two tests: did Daniel see a real difference using it, and does the science back the actives inside it? If yes to both, it's here. If not, it didn't make the cut.</p>
   </div>
@@ -989,8 +1166,9 @@
       <div class="footer-brand">Daniel<span class="amp">'s</span> House</div>
       <div class="footer-tag">Your home for premium wellness — built on real results, not marketing.</div>
       <div class="footer-attr">
-        <span>Vegan</span>
+        <span>Non-GMO</span>
         <span>Cruelty-Free</span>
+        <span>Vegan</span>
         <span>Made in NA</span>
       </div>
       <a href="mailto:daniel@danielshouse.com" class="footer-email">daniel@danielshouse.com</a>
@@ -1051,6 +1229,116 @@ document.addEventListener('DOMContentLoaded', () => {
       const slug = btn.dataset.addSlug;
       const product = window.getProductBySlug(slug);
       if (product) window.dhCart.add(product, { subscribe: false });
+    });
+  });
+});
+
+// ═══ INLINE VIEW DETAILS EXPANSION ═══
+// Convert "View Details →" links into in-place expandable panels.
+// Pulls rich product data (ingredients, how-to-use, tips, etc.) and displays
+// it directly under each row so users don't have to navigate away.
+document.addEventListener('DOMContentLoaded', function() {
+  if (!window.PRODUCTS) return;
+
+  function renderDetailsPanel(product) {
+    const ingredientsHtml = product.ingredients?.length ? `
+      <div class="rd-block">
+        <div class="rd-label">Key Ingredients</div>
+        ${product.ingredients.slice(0, 6).map(ing => `
+          <div class="rd-ingredient">
+            ${ing.role ? `<div class="rd-ing-role">${ing.role}</div>` : ''}
+            <div class="rd-ing-name">${ing.name}</div>
+            ${ing.description ? `<div class="rd-ing-desc">${ing.description}</div>` : ''}
+          </div>
+        `).join('')}
+      </div>
+    ` : '';
+
+    const howToHtml = product.howToUse ? `
+      <div class="rd-block">
+        <div class="rd-label">How to Use</div>
+        <div class="rd-howto">${product.howToUse}</div>
+      </div>
+    ` : '';
+
+    const bestForHtml = product.bestFor?.length ? `
+      <div class="rd-block">
+        <div class="rd-label">Best For</div>
+        <div class="rd-tags">
+          ${product.bestFor.map(t =>
+            `<span class="rd-tag">${t.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}</span>`
+          ).join('')}
+        </div>
+      </div>
+    ` : '';
+
+    const proTipHtml = product.proTip ? `
+      <div class="rd-block">
+        <div class="rd-protip">
+          <div class="rd-protip-label">Daniel's Tip</div>
+          <div class="rd-protip-text">"${product.proTip}"</div>
+        </div>
+      </div>
+    ` : '';
+
+    const freeFromHtml = product.freeFrom?.length ? `
+      <div class="rd-block">
+        <div class="rd-label">Free From</div>
+        <div class="rd-freefrom">
+          ${product.freeFrom.map(f => `<span class="rd-ff-badge">${f}</span>`).join('')}
+        </div>
+      </div>
+    ` : '';
+
+    return `
+      <div class="row-details-inner">
+        <div class="rd-col-main">${ingredientsHtml}</div>
+        <div class="rd-col-side">
+          ${howToHtml}
+          ${bestForHtml}
+          ${proTipHtml}
+          ${freeFromHtml}
+          <a href="product.html?slug=${product.slug}" class="rd-full-link">Open full product page →</a>
+        </div>
+      </div>
+    `;
+  }
+
+  document.querySelectorAll('.row-view-link').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      const url = new URL(this.href);
+      const slug = url.searchParams.get('slug');
+      const product = window.PRODUCTS.find(p => p.slug === slug);
+      if (!product) {
+        // Fallback — navigate normally if data missing
+        window.location.href = this.href;
+        return;
+      }
+
+      const row = this.closest('.row');
+      let panel = row.nextElementSibling;
+      const hasPanel = panel && panel.classList.contains('row-details');
+
+      if (!hasPanel) {
+        // Inject the panel
+        panel = document.createElement('div');
+        panel.className = 'row-details';
+        panel.innerHTML = renderDetailsPanel(product);
+        row.parentNode.insertBefore(panel, row.nextSibling);
+        // Force reflow so the transition triggers
+        void panel.offsetHeight;
+        panel.classList.add('open');
+        link.classList.add('expanded');
+        link.innerHTML = 'Hide Details ↑';
+      } else {
+        // Toggle
+        const willOpen = !panel.classList.contains('open');
+        panel.classList.toggle('open');
+        link.classList.toggle('expanded', willOpen);
+        link.innerHTML = willOpen ? 'Hide Details ↑' : 'View Details →';
+      }
     });
   });
 });

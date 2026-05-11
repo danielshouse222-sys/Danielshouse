@@ -103,19 +103,6 @@
     border-color: var(--gold);
     box-shadow: 0 16px 40px rgba(31, 27, 23, 0.08);
   }
-  .concern-bundle-tag {
-    position: absolute;
-    top: -12px;
-    right: 24px;
-    background: var(--gold);
-    color: var(--cream);
-    padding: 5px 14px;
-    font-size: 10px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    font-weight: 500;
-    z-index: 4;
-  }
 
   .concern-header {
     display: flex;
@@ -490,7 +477,7 @@
     <div class="shipping-bar-divider"></div>
     <span class="shipping-bar-pill">30-Day Returns</span>
     <div class="shipping-bar-divider"></div>
-    <span class="shipping-bar-pill">Vegan · Cruelty-Free</span>
+    <span class="shipping-bar-pill">Cruelty-Free · Non-GMO</span>
     <div class="shipping-bar-divider"></div>
     <span class="shipping-bar-pill">Made in N.A.</span>
   </div>
@@ -606,7 +593,6 @@
       <div class="page-filter-category">
         <div class="page-filter-category-label">Dietary</div>
         <div class="page-filter-category-chips">
-          <button class="filter-chip" data-chip="vegan" data-group="dietary">Vegan</button>
           <button class="filter-chip" data-chip="vegetarian" data-group="dietary">Vegetarian</button>
           <button class="filter-chip" data-chip="halal" data-group="dietary">Halal</button>
           <button class="filter-chip" data-chip="kosher" data-group="dietary">Kosher</button>
@@ -704,7 +690,7 @@
       <div class="footer-brand">Daniel<span class="amp">'s</span> House</div>
       <div class="footer-tag">Your home for premium wellness — built on real results, not marketing.</div>
       <div class="footer-attr">
-        <span>Vegan</span>
+        <span>Non-GMO</span>
         <span>Cruelty-Free</span>
         <span>Made in NA</span>
       </div>
@@ -762,7 +748,6 @@ function renderConcernCard(bundle) {
   const pricing = window.getConcernBundlePricing(bundle.id);
   if (!pricing) return '';
   const { products, fullPrice, discountedPrice, savings } = pricing;
-  const discountPct = Math.round((1 - discountedPrice / fullPrice) * 100);
   const colsClass = products.length === 2 ? 'cols-2' : products.length === 3 ? 'cols-3' : '';
   const productCount = products.length;
   // Bundle names are "The X Bundle" — italicize the X (the meaningful word)
@@ -772,7 +757,6 @@ function renderConcernCard(bundle) {
 
   return `
     <div class="concern-card" data-bundle-id="${bundle.id}" data-product-slugs="${bundle.slugs.join(',')}" data-bundle-name="${bundle.name}">
-      <div class="concern-bundle-tag">Save ${discountPct}%</div>
       <div class="concern-header">
         <div class="concern-icon">${bundle.icon}</div>
         <div>
@@ -802,17 +786,6 @@ function renderConcernCard(bundle) {
           <div class="concern-savings">Save ${savings.toFixed(2)} as a bundle</div>
         </div>
         <div class="concern-count">${productCount} products</div>
-      </div>
-
-      <div class="bundle-subscribe-toggle" data-toggle>
-        <button type="button" data-mode="once" class="active">
-          <div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">One-Time</span></div>
-          <span class="toggle-meta">Single delivery</span>
-        </button>
-        <button type="button" data-mode="subscribe">
-          <div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">Monthly</span></div>
-          <span class="toggle-meta">Cancel anytime</span>
-        </button>
       </div>
 
       <div class="concern-actions">
@@ -864,7 +837,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <span class="directory-num">${num}</span>
           <span class="directory-name">
             <span class="directory-name-text">${formattedName}</span>
-            <span class="directory-meta">${productCount} products · ${Math.round((1 - pricing.discountedPrice / pricing.fullPrice) * 100)}% off bundled</span>
+            <span class="directory-meta">${productCount} products · bundled</span>
           </span>
           <span class="directory-savings">Save ${pricing.savings.toFixed(0)} →</span>
         </button>
@@ -909,17 +882,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Subscribe toggle
     const toggle = card.querySelector('[data-toggle]');
-    const isSubscribe = () => toggle.querySelector('button.active')?.dataset.mode === 'subscribe';
-    toggle.querySelectorAll('button').forEach(btn => {
-      btn.addEventListener('click', () => {
-        toggle.querySelectorAll('button').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        toggle.classList.toggle('subscribe-mode', btn.dataset.mode === 'subscribe');
-        // Update CTA label to reflect mode
-        const addBtn = card.querySelector('[data-action="add"]');
-        addBtn.textContent = btn.dataset.mode === 'subscribe' ? 'Subscribe to Bundle →' : 'Add Bundle to Cart →';
+    // Concern bundles are one-time purchases (no subscription) — keep handler defensive
+    const isSubscribe = () => false;
+    if (toggle) {
+      toggle.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          toggle.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+        });
       });
-    });
+    }
 
     // Click any product → open carousel at that index
     card.querySelectorAll('.concern-product').forEach((thumb, i) => {
