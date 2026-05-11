@@ -160,15 +160,34 @@
     color: var(--ink-soft);
   }
 
-  /* Mobile — dropdowns become full-width below the tabs row */
+  /* Mobile — dropdowns become full-width below the tabs row.
+     The per-tab positioning context (.ing-tab-group { position: relative })
+     is overridden to `static` so the dropdown's nearest positioned ancestor
+     becomes .ing-tabs (the full-width row container). This guarantees the
+     dropdown spans the viewport regardless of which tab opened it. */
   @media (max-width: 720px) {
+    .ing-tab-group { position: static; }
     .ing-tab-dropdown {
+      position: absolute;
+      top: 100%;
+      left: 12px;
+      right: 12px;
+      bottom: auto;
+      width: auto;
       min-width: 0;
-      width: calc(100vw - 24px);
-      max-width: calc(100vw - 24px);
-      left: 50%;
+      max-width: none;
+      margin-top: 4px;
       padding: 18px 18px;
+      /* Override desktop's translateX(-50%) — on mobile the dropdown is anchored
+         by left/right insets, not by centering. Keep a small slide-down. */
+      transform: translateY(-8px);
     }
+    .ing-tab-group.open .ing-tab-dropdown {
+      transform: translateY(0);
+    }
+    /* The arrow pointer doesn't make sense when the dropdown is decoupled
+       from a single tab's position — hide it on mobile. */
+    .ing-tab-dropdown::before { display: none; }
     .ing-tab { padding: 9px 16px; font-size: 10.5px; }
   }
 
