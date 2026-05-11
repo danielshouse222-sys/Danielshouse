@@ -732,4 +732,391 @@
       });
     });
   });
+
+  // ═══ PRE-LAUNCH COMING SOON BANNER ═══
+  // Inject a translucent red banner at the top of every page.
+  // Adjusts CSS variables so floating buttons and the shipping bar stack correctly below it.
+  document.addEventListener('DOMContentLoaded', function() {
+    if (document.querySelector('.coming-soon-banner')) return; // already injected
+
+    const banner = document.createElement('div');
+    banner.className = 'coming-soon-banner';
+    banner.setAttribute('role', 'alert');
+    banner.innerHTML = `
+      <div class="coming-soon-headline">Coming <em>Soon</em></div>
+      <div class="coming-soon-tagline">
+        Daniel's House launches soon
+        <span class="dot">·</span>
+        This is a preview
+      </div>
+    `;
+    document.body.prepend(banner);
+    document.documentElement.classList.add('coming-soon-active');
+
+    // Measure actual rendered height and update CSS variables so other fixed
+    // elements (shipping bar, floating buttons) move down to make room.
+    function syncHeights() {
+      const h = banner.getBoundingClientRect().height;
+      document.documentElement.style.setProperty('--coming-soon-height', h + 'px');
+      // Floating buttons (cart, search) anchor to --shipping-bar-height — bump that
+      // up to include the banner so they sit below everything at top.
+      const styles = getComputedStyle(document.documentElement);
+      const shipBarBase = parseFloat(styles.getPropertyValue('--shipping-bar-base') || '46');
+      document.documentElement.style.setProperty('--shipping-bar-height', (h + shipBarBase) + 'px');
+    }
+    // Preserve the original shipping bar height as a base value once
+    const styles = getComputedStyle(document.documentElement);
+    const currentSBH = parseFloat(styles.getPropertyValue('--shipping-bar-height') || '46');
+    if (!styles.getPropertyValue('--shipping-bar-base')) {
+      document.documentElement.style.setProperty('--shipping-bar-base', currentSBH + 'px');
+    }
+    syncHeights();
+    window.addEventListener('resize', syncHeights);
+  });
+
+  // ═══ FLOATING CART BUTTON + EXPANDING PAYMENT MODAL ═══
+  // Mirrors the floating search button pattern. Injected on every page via JS
+  // so we don't have to maintain HTML in 10 files.
+  document.addEventListener('DOMContentLoaded', function() {
+    // Don't inject if a cart-floating already exists
+    if (document.querySelector('.cart-floating')) return;
+    // Bail if the page doesn't have the search button either (probably an isolated page)
+    // ... actually inject anyway, the cart should be everywhere.
+
+    const FREE_SHIP = 65;
+    const TAX_RATE  = 0.0825;
+
+    const wrap = document.createElement('div');
+    wrap.className = 'cart-floating collapsed';
+    wrap.innerHTML = `
+      <button class="cart-floating-toggle" type="button" aria-label="Open cart and checkout">
+        <span class="cart-floating-toggle-icon"><span>🛒</span></span>
+        <span class="cart-floating-toggle-badge">0</span>
+      </button>
+      <div class="cart-floating-overlay"></div>
+      <div class="cart-floating-panel" role="dialog" aria-modal="true" aria-label="Checkout">
+        <div class="cf-head">
+          <div class="cf-head-title">Your <em>cart</em></div>
+          <button class="cf-close" type="button" aria-label="Close">✕</button>
+        </div>
+        <div class="cf-body">
+          <div class="cf-content"><!-- dynamic --></div>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(wrap);
+
+    const toggle = wrap.querySelector('.cart-floating-toggle');
+    const overlay = wrap.querySelector('.cart-floating-overlay');
+    const closeBtn = wrap.querySelector('.cf-close');
+    const badge = wrap.querySelector('.cart-floating-toggle-badge');
+    const content = wrap.querySelector('.cf-content');
+
+    function open() {
+      wrap.classList.add('expanded');
+      render();
+      document.body.style.overflow = 'hidden';
+    }
+    function close() {
+      wrap.classList.remove('expanded');
+      document.body.style.overflow = '';
+    }
+    toggle.addEventListener('click', () => wrap.classList.contains('expanded') ? close() : open());
+    overlay.addEventListener('click', close);
+    closeBtn.addEventListener('click', close);
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && wrap.classList.contains('expanded')) close();
+    });
+
+    // Sync badge with cart count
+    function syncBadge() {
+      const count = window.dhCart ? window.dhCart.count() : 0;
+      badge.textContent = count;
+      wrap.classList.toggle('has-items', count > 0);
+    }
+
+    // Hook into dhCart's persist/render to keep badge fresh
+    if (window.dhCart) {
+      const origPersist = window.dhCart.persist.bind(window.dhCart);
+      window.dhCart.persist = function() {
+        origPersist();
+        syncBadge();
+        if (wrap.classList.contains('expanded')) render();
+      };
+      syncBadge();
+    }
+
+    function priceOf(item) {
+      if (item.bundleName && item.bundleDiscount) return item.price * (1 - item.bundleDiscount);
+      if (item.subscribe) return item.price * 0.85;
+      return item.price;
+    }
+
+    function selectedShippingRate(subtotal) {
+      const sel = content.querySelector('.cf-ship-option.selected');
+      if (!sel) return subtotal >= FREE_SHIP ? 0 : 7.95;
+      const r = parseFloat(sel.dataset.rate);
+      if (r === 0) return 0;
+      return subtotal >= FREE_SHIP && sel.dataset.method === 'standard' ? 0 : r;
+    }
+
+    function render() {
+      const items = window.dhCart ? window.dhCart.items : [];
+
+      if (!items.length) {
+        content.innerHTML = `
+          <div class="cf-empty">
+            <div class="cf-empty-icon">— ◇ —</div>
+            <div class="cf-empty-text">Your cart is empty</div>
+            <a href="bundles.html">Browse Bundles →</a>
+          </div>
+        `;
+        return;
+      }
+
+      const subtotal = items.reduce((sum, it) => sum + priceOf(it) * it.qty, 0);
+      const fullPriceTotal = items.reduce((sum, it) => sum + it.price * it.qty, 0);
+      const savings = fullPriceTotal - subtotal;
+
+      content.innerHTML = `
+        <!-- Cart items -->
+        <div class="cf-section">
+          <div class="cf-section-label"><span class="step-num">1</span>Your order · ${items.reduce((s,i)=>s+i.qty,0)} item${items.reduce((s,i)=>s+i.qty,0)===1?'':'s'}</div>
+          <div class="cf-items">
+            ${items.map(it => {
+              const unit = priceOf(it);
+              const labels = [];
+              if (it.bundleName && it.bundleDiscount) labels.push(`<div class="cf-item-meta discount">${it.bundleName} · ${Math.round(it.bundleDiscount*100)}% off</div>`);
+              else if (it.subscribe) labels.push(`<div class="cf-item-meta discount">↻ Subscribe & Save 15%</div>`);
+              const bundleAttr = it.bundleName ? it.bundleName.replace(/"/g,'&quot;') : '';
+              return `
+                <div class="cf-item" data-slug="${it.slug}" data-subscribe="${it.subscribe}" data-bundle="${bundleAttr}">
+                  <div class="cf-item-img"><img src="${it.image}" alt="${it.name}"/></div>
+                  <div>
+                    <div class="cf-item-name">The House <em>${it.name}</em></div>
+                    <div class="cf-item-meta">$${unit.toFixed(2)} each</div>
+                    ${labels.join('')}
+                    <div class="cf-item-qty-row">
+                      <div class="cf-item-qty">
+                        <button data-action="dec" type="button">−</button>
+                        <span>${it.qty}</span>
+                        <button data-action="inc" type="button">+</button>
+                      </div>
+                      <button class="cf-item-remove" data-action="remove" type="button">Remove</button>
+                    </div>
+                  </div>
+                  <div class="cf-item-price">$${(unit * it.qty).toFixed(2)}</div>
+                </div>
+              `;
+            }).join('')}
+          </div>
+
+          <!-- Discount code -->
+          <div class="cf-discount-row">
+            <input type="text" class="cf-discount-input" placeholder="Discount code"/>
+            <button class="cf-discount-btn" type="button">Apply</button>
+          </div>
+
+          <!-- Totals -->
+          <div class="cf-totals">
+            <div class="cf-totals-row"><span>Subtotal</span><span class="cf-totals-value cf-subtotal">$${subtotal.toFixed(2)}</span></div>
+            ${savings > 0 ? `<div class="cf-totals-row savings"><span>Bundle / subscribe savings</span><span class="cf-totals-value">−$${savings.toFixed(2)}</span></div>` : ''}
+            <div class="cf-totals-row"><span>Shipping</span><span class="cf-totals-value cf-shipping-line">${subtotal >= FREE_SHIP ? '<em style="font-family:Cormorant Garamond,serif;font-style:italic;color:var(--gold)">Free</em>' : '$7.95'}</span></div>
+            <div class="cf-totals-row"><span>Estimated tax</span><span class="cf-totals-value cf-tax-line">$${(subtotal * TAX_RATE).toFixed(2)}</span></div>
+            <div class="cf-totals-row total"><span>Total</span><span class="cf-totals-value cf-grand-total">$${(subtotal + (subtotal >= FREE_SHIP ? 0 : 7.95) + subtotal * TAX_RATE).toFixed(2)}</span></div>
+          </div>
+        </div>
+
+        <!-- Express checkout -->
+        <div class="cf-section">
+          <div class="cf-section-label"><span class="step-num">2</span>Express checkout</div>
+          <div class="cf-express">
+            <button type="button" class="apple"> Pay</button>
+            <button type="button" class="gpay"><strong>G</strong><strong>o</strong><strong>o</strong><strong>g</strong>le Pay</button>
+          </div>
+          <div class="cf-divider">or pay with card</div>
+        </div>
+
+        <!-- Contact -->
+        <div class="cf-section">
+          <div class="cf-section-label"><span class="step-num">3</span>Contact</div>
+          <div class="cf-field">
+            <label class="cf-label">Email</label>
+            <input class="cf-input" type="email" placeholder="you@example.com" autocomplete="email"/>
+          </div>
+          <div class="cf-field">
+            <label class="cf-label">Phone (for shipping updates)</label>
+            <input class="cf-input" type="tel" placeholder="(555) 123-4567" autocomplete="tel"/>
+          </div>
+        </div>
+
+        <!-- Shipping -->
+        <div class="cf-section">
+          <div class="cf-section-label"><span class="step-num">4</span>Shipping address</div>
+          <div class="cf-field-row">
+            <div>
+              <label class="cf-label">First name</label>
+              <input class="cf-input" type="text" placeholder="Daniel" autocomplete="given-name"/>
+            </div>
+            <div>
+              <label class="cf-label">Last name</label>
+              <input class="cf-input" type="text" placeholder="" autocomplete="family-name"/>
+            </div>
+          </div>
+          <div class="cf-field">
+            <label class="cf-label">Street address</label>
+            <input class="cf-input" type="text" placeholder="123 Wellness Way" autocomplete="address-line1"/>
+          </div>
+          <div class="cf-field">
+            <label class="cf-label">Apt, suite, etc. (optional)</label>
+            <input class="cf-input" type="text" placeholder="" autocomplete="address-line2"/>
+          </div>
+          <div class="cf-field-row triple">
+            <div>
+              <label class="cf-label">City</label>
+              <input class="cf-input" type="text" autocomplete="address-level2"/>
+            </div>
+            <div>
+              <label class="cf-label">State</label>
+              <select class="cf-select" autocomplete="address-level1">
+                <option value="">—</option>
+                <option>AL</option><option>AK</option><option>AZ</option><option>AR</option>
+                <option>CA</option><option>CO</option><option>CT</option><option>DE</option>
+                <option>FL</option><option>GA</option><option>HI</option><option>ID</option>
+                <option>IL</option><option>IN</option><option>IA</option><option>KS</option>
+                <option>KY</option><option>LA</option><option>ME</option><option>MD</option>
+                <option>MA</option><option>MI</option><option>MN</option><option>MS</option>
+                <option>MO</option><option>MT</option><option>NE</option><option>NV</option>
+                <option>NH</option><option>NJ</option><option>NM</option><option>NY</option>
+                <option>NC</option><option>ND</option><option>OH</option><option>OK</option>
+                <option>OR</option><option>PA</option><option>RI</option><option>SC</option>
+                <option>SD</option><option>TN</option><option>TX</option><option>UT</option>
+                <option>VT</option><option>VA</option><option>WA</option><option>WV</option>
+                <option>WI</option><option>WY</option>
+              </select>
+            </div>
+            <div>
+              <label class="cf-label">ZIP</label>
+              <input class="cf-input" type="text" autocomplete="postal-code" maxlength="5"/>
+            </div>
+          </div>
+        </div>
+
+        <!-- Shipping method -->
+        <div class="cf-section">
+          <div class="cf-section-label"><span class="step-num">5</span>Shipping method</div>
+          <div class="cf-shipping-options">
+            <div class="cf-ship-option selected" data-method="standard" data-rate="7.95">
+              <div class="cf-ship-radio"></div>
+              <div class="cf-ship-name">
+                <strong>Standard (3–5 days)</strong>
+                <span>${subtotal >= FREE_SHIP ? "Free — you've unlocked free shipping" : `Free over $${FREE_SHIP}`}</span>
+              </div>
+              <div class="cf-ship-price">${subtotal >= FREE_SHIP ? 'Free' : '$7.95'}</div>
+            </div>
+            <div class="cf-ship-option" data-method="express" data-rate="18.95">
+              <div class="cf-ship-radio"></div>
+              <div class="cf-ship-name">
+                <strong>Express (1–2 days)</strong>
+                <span>FedEx / UPS priority</span>
+              </div>
+              <div class="cf-ship-price">$18.95</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Payment -->
+        <div class="cf-section">
+          <div class="cf-section-label">
+            <span class="step-num">6</span>Card details
+            <span class="cf-card-icons">
+              <span class="cf-card-icon">VISA</span>
+              <span class="cf-card-icon">MC</span>
+              <span class="cf-card-icon">AMEX</span>
+            </span>
+          </div>
+          <div class="cf-field">
+            <label class="cf-label">Card number</label>
+            <input class="cf-input" type="text" placeholder="1234 5678 9012 3456" inputmode="numeric" autocomplete="cc-number" maxlength="19"/>
+          </div>
+          <div class="cf-field-row">
+            <div>
+              <label class="cf-label">Expiry (MM / YY)</label>
+              <input class="cf-input" type="text" placeholder="12 / 28" autocomplete="cc-exp" maxlength="7"/>
+            </div>
+            <div>
+              <label class="cf-label">CVC</label>
+              <input class="cf-input" type="text" placeholder="123" inputmode="numeric" autocomplete="cc-csc" maxlength="4"/>
+            </div>
+          </div>
+          <div class="cf-field">
+            <label class="cf-label">Name on card</label>
+            <input class="cf-input" type="text" autocomplete="cc-name"/>
+          </div>
+        </div>
+
+        <button class="cf-place-order" type="button">Place order · $<span class="cf-final-total">${(subtotal + (subtotal >= FREE_SHIP ? 0 : 7.95) + subtotal * TAX_RATE).toFixed(2)}</span></button>
+        <div class="cf-trust-line"><span>●</span> Secure checkout · 256-bit encryption</div>
+      `;
+
+      // Wire up item controls
+      content.querySelectorAll('.cf-item').forEach(itemEl => {
+        const slug = itemEl.dataset.slug;
+        const subscribe = itemEl.dataset.subscribe === 'true';
+        const bundleName = itemEl.dataset.bundle || null;
+        itemEl.querySelector('[data-action="inc"]').addEventListener('click', () => window.dhCart.updateQty(slug, subscribe, bundleName, 1));
+        itemEl.querySelector('[data-action="dec"]').addEventListener('click', () => window.dhCart.updateQty(slug, subscribe, bundleName, -1));
+        itemEl.querySelector('[data-action="remove"]').addEventListener('click', () => window.dhCart.remove(slug, subscribe, bundleName));
+      });
+
+      // Shipping option toggle
+      content.querySelectorAll('.cf-ship-option').forEach(opt => {
+        opt.addEventListener('click', () => {
+          content.querySelectorAll('.cf-ship-option').forEach(o => o.classList.remove('selected'));
+          opt.classList.add('selected');
+          recalcTotals();
+        });
+      });
+
+      // Discount code (placeholder — visual feedback only)
+      const dcInput = content.querySelector('.cf-discount-input');
+      const dcBtn = content.querySelector('.cf-discount-btn');
+      dcBtn.addEventListener('click', () => {
+        if (!dcInput.value.trim()) return;
+        dcBtn.textContent = 'Invalid';
+        dcBtn.style.borderColor = 'var(--rose)';
+        dcBtn.style.color = 'var(--rose)';
+        setTimeout(() => {
+          dcBtn.textContent = 'Apply';
+          dcBtn.style.borderColor = '';
+          dcBtn.style.color = '';
+        }, 2000);
+      });
+
+      // Place order — visual confirmation
+      content.querySelector('.cf-place-order').addEventListener('click', e => {
+        const btn = e.currentTarget;
+        btn.textContent = 'Processing…';
+        btn.disabled = true;
+        setTimeout(() => {
+          btn.innerHTML = '✓ Order placed';
+          btn.style.background = 'var(--sage)';
+          btn.style.borderColor = 'var(--sage)';
+        }, 1200);
+      });
+
+      function recalcTotals() {
+        const ship = selectedShippingRate(subtotal);
+        const tax = subtotal * TAX_RATE;
+        const total = subtotal + ship + tax;
+        content.querySelector('.cf-shipping-line').innerHTML = ship === 0
+          ? '<em style="font-family:Cormorant Garamond,serif;font-style:italic;color:var(--gold)">Free</em>'
+          : '$' + ship.toFixed(2);
+        content.querySelector('.cf-tax-line').textContent = '$' + tax.toFixed(2);
+        content.querySelector('.cf-grand-total').textContent = '$' + total.toFixed(2);
+        content.querySelector('.cf-final-total').textContent = total.toFixed(2);
+      }
+    }
+  });
+
 })();
