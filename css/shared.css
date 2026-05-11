@@ -3029,10 +3029,10 @@ body.has-page-filter-modal {
 .bundle-card .bundle-body > .bundle-desc            { order: 4; }
 .bundle-card .bundle-body > .bundle-view-link       { order: 5; margin-top: 14px; }
 .bundle-card .bundle-body > .bundle-details         { order: 6; }
-.bundle-card .bundle-body > .bundle-subscribe-toggle{ order: 7; margin-top: 16px; }
-.bundle-card .bundle-body > .bundle-cta             { order: 8; margin-top: 12px; }
-.bundle-card .bundle-body > .bundle-included        { order: 9; margin-top: 24px; }
-.bundle-card .bundle-body > .bundle-savings         { order: 10; margin-top: 12px; }
+.bundle-card .bundle-body > .bundle-included        { order: 7; margin-top: 24px; }
+.bundle-card .bundle-body > .bundle-savings         { order: 8; margin-top: 16px; }
+.bundle-card .bundle-body > .bundle-subscribe-toggle{ order: 9; margin-top: 16px; }
+.bundle-card .bundle-body > .bundle-cta             { order: 10; margin-top: 14px; }
 
 /* ═══ BUNDLE DETAILS — VIEW DETAILS DROPDOWN ON BUNDLE CARDS ═══════════════
    Aesthetic: cream-warm panel with gold rule above, inline below description.
