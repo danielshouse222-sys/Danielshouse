@@ -3004,7 +3004,79 @@ body.has-page-filter-modal {
   transition: color 0.3s, border-color 0.3s;
 }
 .rd-full-link:hover { color: var(--sage); border-color: var(--sage); }
+
+/* Stronger CTA banner that lives at the bottom of the inline dropdown,
+   telling users the full product page has the deeper content — studies,
+   timeline, FAQs, Daniel's notes. Makes the navigation obvious. */
+.rd-full-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 22px 24px 8px 114px;
+  padding: 18px 22px;
+  background: var(--ink);
+  color: var(--cream);
+  text-decoration: none;
+  border: 1px solid var(--ink);
+  transition: background 0.3s, transform 0.2s ease, border-color 0.3s;
+}
+.rd-full-cta:hover {
+  background: var(--sage);
+  border-color: var(--sage);
+  transform: translateY(-1px);
+}
+.rd-full-cta-label {
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+.rd-full-cta-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--cream);
+  opacity: 0.92;
+}
+.rd-full-cta-arrow {
+  font-family: 'Poppins', sans-serif;
+  font-size: 22px;
+  color: var(--gold);
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+.rd-full-cta:hover .rd-full-cta-arrow { transform: translateX(4px); }
+
+/* In the dark PM ritual context, the CTA's background already matches — keep
+   the gold accent prominent so it still stands out against the dark backdrop. */
+.ritual.pm .rd-full-cta {
+  border-color: var(--gold);
+  background: rgba(31, 27, 23, 0.85);
+}
+.ritual.pm .rd-full-cta:hover {
+  background: var(--gold);
+}
+.ritual.pm .rd-full-cta:hover .rd-full-cta-label { color: var(--ink); }
+.ritual.pm .rd-full-cta:hover .rd-full-cta-sub   { color: var(--ink); }
+.ritual.pm .rd-full-cta:hover .rd-full-cta-arrow { color: var(--ink); }
+
 .row-view-link.expanded { color: var(--sage); }
+
+@media (max-width: 720px) {
+  .rd-full-cta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 18px 14px 6px;
+    padding: 16px 18px;
+  }
+  .rd-full-cta-arrow { align-self: flex-end; }
+}
 
 @media (max-width: 720px) {
   .row-details-inner {
