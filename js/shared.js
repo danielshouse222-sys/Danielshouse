@@ -157,14 +157,13 @@
           // Bundle pricing takes precedence
           if (item.bundleName && item.bundleDiscount) {
             price = item.price * (1 - item.bundleDiscount);
-            const pct = Math.round(item.bundleDiscount * 100);
-            labels += `<div class="cart-item-meta subscribe">${item.bundleName} · ${pct}% off</div>`;
+            labels += `<div class="cart-item-meta subscribe">${item.bundleName}</div>`;
             if (item.subscribe) {
               labels += `<div class="cart-item-meta subscribe">↻ Ships every 30 days</div>`;
             }
           } else if (item.subscribe) {
             price = item.price * (1 - SUBSCRIBE_DISCOUNT);
-            labels += `<div class="cart-item-meta subscribe">Subscribe & Save 15%</div>`;
+            labels += `<div class="cart-item-meta subscribe">↻ Subscribe &amp; Save</div>`;
           }
           const bundleAttr = item.bundleName ? item.bundleName.replace(/"/g, '&quot;') : '';
           return `
@@ -674,7 +673,7 @@
         const buttons = [
           `<button class="lightbox-btn primary" data-lb-action="add-product">Add to Cart →</button>`,
           this.bundleName
-            ? `<button class="lightbox-btn primary" style="background: var(--gold);" data-lb-action="add-bundle">${this.bundleSubscribe ? 'Subscribe to Bundle' : 'Add Bundle'} (${Math.round(this.bundleDiscount * 100)}% off) →</button>`
+            ? `<button class="lightbox-btn primary" style="background: var(--gold);" data-lb-action="add-bundle">${this.bundleSubscribe ? 'Subscribe to Bundle' : 'Add Bundle'} →</button>`
             : '',
           `<a class="lightbox-btn secondary" href="product.html?slug=${p.slug}">View Full Details</a>`
         ].filter(Boolean).join('');
@@ -886,8 +885,8 @@
             ${items.map(it => {
               const unit = priceOf(it);
               const labels = [];
-              if (it.bundleName && it.bundleDiscount) labels.push(`<div class="cf-item-meta discount">${it.bundleName} · ${Math.round(it.bundleDiscount*100)}% off</div>`);
-              else if (it.subscribe) labels.push(`<div class="cf-item-meta discount">↻ Subscribe & Save 15%</div>`);
+              if (it.bundleName && it.bundleDiscount) labels.push(`<div class="cf-item-meta discount">${it.bundleName}</div>`);
+              else if (it.subscribe) labels.push(`<div class="cf-item-meta discount">↻ Subscribe &amp; Save</div>`);
               const bundleAttr = it.bundleName ? it.bundleName.replace(/"/g,'&quot;') : '';
               return `
                 <div class="cf-item" data-slug="${it.slug}" data-subscribe="${it.subscribe}" data-bundle="${bundleAttr}">
