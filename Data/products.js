@@ -49,7 +49,7 @@ window.PRODUCTS = [
       { week: 'Week 8', text: 'Stronger, more resilient barrier — actives that used to sting now feel comfortable.' }
         ],
     proTip: 'Use lukewarm water, never hot. Hot water strips your barrier and triggers oil rebound.',
-    freeFrom: ['Paraben-Free', 'Sulfate-Free', 'Phthalate-Free', 'Fragrance-Free', 'Vegan', 'Cruelty-Free', 'Made in NA'],
+    freeFrom: ['Paraben-Free', 'Sulfate-Free', 'Phthalate-Free', 'Fragrance-Free', 'Cruelty-Free', 'Vegan', 'Made in NA', 'Non-GMO', 'Third-Party Tested'],
     daniels_note: 'I tried high-tech cleansers for years. The truth is the best cleanser is the gentlest one you\'ll actually use. This one\'s been in my routine for two years.'
   },
   {
@@ -93,7 +93,7 @@ window.PRODUCTS = [
       { week: 'Week 8', text: 'Pore appearance refined; skin tolerates makeup and SPF more cleanly.' }
         ],
     proTip: 'Spritz onto damp skin straight after cleansing — the moisture helps your serums penetrate deeper.',
-    freeFrom: ['Paraben-Free', 'Sulfate-Free', 'Phthalate-Free', 'Fragrance-Free', 'Vegan', 'Cruelty-Free', 'Made in NA'],
+    freeFrom: ['Paraben-Free', 'Sulfate-Free', 'Phthalate-Free', 'Fragrance-Free', 'Cruelty-Free', 'Vegan', 'Made in NA', 'Non-GMO', 'Third-Party Tested'],
     daniels_note: 'Most toners either over-correct or do nothing. This one preps the skin without stripping it — and serums absorb noticeably better afterward.'
   },
   {
@@ -138,7 +138,7 @@ window.PRODUCTS = [
       { week: 'Week 8', text: 'Hyperpigmentation visibly faded; even tone without makeup.' }
         ],
     proTip: 'Apply on dry, freshly cleansed skin before Hyaluronic. Vitamin C absorbs best at low pH.',
-    freeFrom: ['Paraben-Free', 'Sulfate-Free', 'Phthalate-Free', 'Fragrance-Free', 'Vegan', 'Cruelty-Free', 'Made in NA'],
+    freeFrom: ['Paraben-Free', 'Sulfate-Free', 'Phthalate-Free', 'Fragrance-Free', 'Cruelty-Free', 'Vegan', 'Made in NA', 'Non-GMO', 'Third-Party Tested'],
     daniels_note: 'Five percent niacinamide is the sweet spot — enough to work, not enough to irritate. Plus stable Vitamin C. The serum I\'d recommend to anyone starting a real routine.'
   },
   {
@@ -183,7 +183,7 @@ window.PRODUCTS = [
       { week: 'Week 8', text: 'Skin holds hydration through the day; fine dehydration lines no longer visible.' }
         ],
     proTip: 'Always apply on slightly damp skin. HA needs moisture to bind to — on dry skin it can actually pull moisture out.',
-    freeFrom: ['Paraben-Free', 'Sulfate-Free', 'Phthalate-Free', 'Fragrance-Free', 'Vegan', 'Cruelty-Free', 'Made in NA'],
+    freeFrom: ['Paraben-Free', 'Sulfate-Free', 'Phthalate-Free', 'Fragrance-Free', 'Cruelty-Free', 'Vegan', 'Made in NA', 'Non-GMO', 'Third-Party Tested'],
     daniels_note: 'Six ingredients. Two molecular weights of HA. The hydration anchor I never travel without. Apply on damp skin or it doesn\'t work.'
   },
   {
@@ -229,7 +229,7 @@ window.PRODUCTS = [
       { week: 'Week 8', text: 'Sun damage visibly evened; afternoon dullness gone.' }
         ],
     proTip: 'Apply before SPF every morning. The antioxidant layer amplifies your sunscreen\'s protection.',
-    freeFrom: ['Paraben-Free', 'Sulfate-Free', 'Phthalate-Free', 'Fragrance-Free', 'Vegan', 'Cruelty-Free', 'Made in NA'],
+    freeFrom: ['Paraben-Free', 'Sulfate-Free', 'Phthalate-Free', 'Fragrance-Free', 'Cruelty-Free', 'Vegan', 'Made in NA', 'Non-GMO', 'Third-Party Tested'],
     daniels_note: 'On busy mornings I pare my routine down to two products: Boost and Defense. Squalane plus caffeine plus stable C — that\'s the layer that handles the day.'
   },
   {
@@ -274,7 +274,7 @@ window.PRODUCTS = [
       { week: 'Week 8', text: 'Skin feels durably comfortable; no afternoon tightness even in dry climates.' }
         ],
     proTip: 'Wait 60 seconds after your serums before applying Soft. Lets the actives absorb fully before being sealed in.',
-    freeFrom: ['Paraben-Free', 'Sulfate-Free', 'Phthalate-Free', 'Fragrance-Free', 'Vegan', 'Cruelty-Free', 'Made in NA'],
+    freeFrom: ['Paraben-Free', 'Sulfate-Free', 'Phthalate-Free', 'Fragrance-Free', 'Cruelty-Free', 'Vegan', 'Made in NA', 'Non-GMO', 'Third-Party Tested'],
     daniels_note: 'If I had to pick one moisturizer for the rest of my life, this is it. Not too rich, not too thin. Disappears under SPF.'
   },
   // The House Clear — alternative AM moisturizer for oily/acne-prone
@@ -320,7 +320,7 @@ window.PRODUCTS = [
       { week: 'Week 8', text: 'Clearer skin overall; remaining marks fade with continued use plus daily SPF.' }
         ],
     proTip: 'Use 2-3x weekly max. Daily use can over-strip skin and trigger rebound oil and inflammation.',
-    freeFrom: ['Paraben-Free', 'Sulfate-Free', 'Phthalate-Free', 'Fragrance-Free', 'Vegan', 'Cruelty-Free', 'Made in NA'],
+    freeFrom: ['Paraben-Free', 'Sulfate-Free', 'Phthalate-Free', 'Fragrance-Free', 'Cruelty-Free', 'Vegan', 'Made in NA', 'Non-GMO', 'Third-Party Tested'],
     daniels_note: 'I built Clear for the days my skin runs oily. Lower-stim than most acne products — barrier-friendly enough to use daily without rebound breakouts.'
   },
   // ═══════════════════════════════════════════════════════════
@@ -369,7 +369,7 @@ window.PRODUCTS = [
       { week: 'Week 8', text: 'Skin visibly plumper; fine lines around eyes and mouth softened.' }
         ],
     proTip: 'Start with 2 nights per week, build to 3-4 by week 6, daily by week 12. Always SPF the next morning.',
-    freeFrom: ['Paraben-Free', 'Sulfate-Free', 'Phthalate-Free', 'Fragrance-Free', 'Vegan', 'Cruelty-Free', 'Made in NA'],
+    freeFrom: ['Paraben-Free', 'Sulfate-Free', 'Phthalate-Free', 'Fragrance-Free', 'Cruelty-Free', 'Vegan', 'Made in NA', 'Non-GMO', 'Third-Party Tested'],
     daniels_note: '0.25% encapsulated retinol is the right starting dose. I built up to nightly over six weeks. The collagen production is real — I can see it in my skin.'
   },
   {
@@ -414,7 +414,7 @@ window.PRODUCTS = [
       { week: 'Week 12', text: 'Noticeable firmness around jawline and cheek area; skin holds its shape better.' }
         ],
     proTip: 'Apply with your ring finger around the eye area — it\'s the weakest finger and applies the gentlest pressure for this thin skin.',
-    freeFrom: ['Paraben-Free', 'Sulfate-Free', 'Phthalate-Free', 'Fragrance-Free', 'Vegan', 'Cruelty-Free', 'Made in NA'],
+    freeFrom: ['Paraben-Free', 'Sulfate-Free', 'Phthalate-Free', 'Fragrance-Free', 'Cruelty-Free', 'Vegan', 'Made in NA', 'Non-GMO', 'Third-Party Tested'],
     daniels_note: 'Peptides take time. I noticed the difference around week 8. Now I won\'t go without it — especially around the eyes.'
   },
   {
@@ -459,7 +459,7 @@ window.PRODUCTS = [
       { week: 'Week 8', text: 'Skin holds plumpness deep into the next morning; retinol routine feels easier.' }
         ],
     proTip: 'Layer over Bounce to soften the retinol response. Skin tolerates actives much better with HA buffer.',
-    freeFrom: ['Paraben-Free', 'Sulfate-Free', 'Phthalate-Free', 'Fragrance-Free', 'Vegan', 'Cruelty-Free', 'Made in NA'],
+    freeFrom: ['Paraben-Free', 'Sulfate-Free', 'Phthalate-Free', 'Fragrance-Free', 'Cruelty-Free', 'Vegan', 'Made in NA', 'Non-GMO', 'Third-Party Tested'],
     daniels_note: 'When I use retinol, I always layer Hydration on top. It\'s the buffer. Skin tolerates the active much better with this in the routine.'
   },
   {
@@ -504,7 +504,7 @@ window.PRODUCTS = [
       { week: 'Week 8', text: 'Brighter overall eye area; fine lines softened; makeup sits cleaner.' }
         ],
     proTip: 'Tap, never rub. The under-eye is the thinnest skin on your face — friction creates more damage than product fixes.',
-    freeFrom: ['Paraben-Free', 'Sulfate-Free', 'Phthalate-Free', 'Fragrance-Free', 'Vegan', 'Cruelty-Free', 'Made in NA'],
+    freeFrom: ['Paraben-Free', 'Sulfate-Free', 'Phthalate-Free', 'Fragrance-Free', 'Cruelty-Free', 'Vegan', 'Made in NA', 'Non-GMO', 'Third-Party Tested'],
     daniels_note: 'The under-eye is the first place fatigue shows. This took ten years off in three months. Tap on, never rub.'
   },
   {
@@ -549,7 +549,7 @@ window.PRODUCTS = [
       { week: 'Week 12', text: 'Tone evened, fine lines softened, texture refined — your skin\'s new baseline.' }
         ],
     proTip: 'Never combine with Bounce on the same night. Alternate them across the week to avoid over-exfoliation.',
-    freeFrom: ['Paraben-Free', 'Sulfate-Free', 'Phthalate-Free', 'Fragrance-Free', 'Vegan', 'Cruelty-Free', 'Made in NA'],
+    freeFrom: ['Paraben-Free', 'Sulfate-Free', 'Phthalate-Free', 'Fragrance-Free', 'Cruelty-Free', 'Vegan', 'Made in NA', 'Non-GMO', 'Third-Party Tested'],
     daniels_note: 'Glycolic plus retinyl palmitate at the right concentrations. Don\'t combine with Bounce on the same night — alternate them across the week.'
   },
   {
@@ -594,7 +594,7 @@ window.PRODUCTS = [
       { week: 'Week 8', text: 'Skin holds a natural glow without highlighter; smoother texture day-to-day.' }
         ],
     proTip: '2 drops mixed into moisturizer for daily use, or 3 drops pressed in as the last step on dry winter nights.',
-    freeFrom: ['Paraben-Free', 'Sulfate-Free', 'Phthalate-Free', 'Fragrance-Free', 'Vegan', 'Cruelty-Free', 'Made in NA'],
+    freeFrom: ['Paraben-Free', 'Sulfate-Free', 'Phthalate-Free', 'Fragrance-Free', 'Cruelty-Free', 'Vegan', 'Made in NA', 'Non-GMO', 'Third-Party Tested'],
     daniels_note: 'On dry winter nights I add 2 drops to my moisturizer. On normal nights I press 3 drops in last. The finishing step that locks everything in.'
   },
   // ═══════════════════════════════════════════════════════════
@@ -641,7 +641,7 @@ window.PRODUCTS = [
       { week: 'Week 8', text: 'Visibly refined pores and lasting clarity; oily zones better balanced.' }
         ],
     proTip: 'Five minutes max. Longer doesn\'t deepen results — it just dries out your barrier and creates rebound oil.',
-    freeFrom: ['Paraben-Free', 'Sulfate-Free', 'Phthalate-Free', 'Fragrance-Free', 'Vegan', 'Cruelty-Free', 'Made in NA'],
+    freeFrom: ['Paraben-Free', 'Sulfate-Free', 'Phthalate-Free', 'Fragrance-Free', 'Cruelty-Free', 'Vegan', 'Made in NA', 'Non-GMO', 'Third-Party Tested'],
     daniels_note: 'Five minutes, twice a week. The activated charcoal pulls out what daily cleansing misses. Skin looks clearer the next morning — every time.'
   },
   {
@@ -686,7 +686,7 @@ window.PRODUCTS = [
       { week: 'Week 8', text: 'Routinely smooth, brighter complexion; actives absorb noticeably better.' }
         ],
     proTip: 'Apply to wet skin in gentle circular motions for 30-60 seconds. Rinse with cool water to close the pores afterward.',
-    freeFrom: ['Paraben-Free', 'Sulfate-Free', 'Phthalate-Free', 'Fragrance-Free', 'Vegan', 'Cruelty-Free', 'Made in NA'],
+    freeFrom: ['Paraben-Free', 'Sulfate-Free', 'Phthalate-Free', 'Fragrance-Free', 'Cruelty-Free', 'Vegan', 'Made in NA', 'Non-GMO', 'Third-Party Tested'],
     daniels_note: 'Polish is gentle enough that I use it twice a week. The menthol cool is unnecessary but I love it. Felt good to design something I\'d actually want to use.'
   },
   // ═══════════════════════════════════════════════════════════
@@ -731,7 +731,7 @@ window.PRODUCTS = [
       { week: 'Week 8+', text: 'Foundational baseline established; the floor under every other supplement.' }
     ],
     proTip: 'Take with breakfast — fat-soluble vitamins A, D, E, K all need a meal containing fat to absorb properly.',
-    freeFrom: ['Gluten-Free', 'Non-GMO', 'Vegan', '3rd-Party Tested', 'No Artificial Colors', 'No Fillers', 'Made in NA'],
+    freeFrom: ['Gluten-Free', 'Non-GMO', '3rd-Party Tested', 'No Artificial Colors', 'No Fillers', 'Made in NA', 'Third-Party Tested'],
     daniels_note: 'I tried fancy multivitamins for years before realizing 90% don\'t dose to clinical levels. This one does. It\'s the foundation of every stack I run.'
   },
   {
@@ -767,7 +767,7 @@ window.PRODUCTS = [
       { week: 'Week 4+', text: 'Morning clarity; cortisol pattern improving.' }
     ],
     proTip: 'Take 30-45 minutes before bed. Don\'t combine with heavy meals or alcohol — both blunt the magnesium effect.',
-    freeFrom: ['Gluten-Free', 'Vegetarian', 'Vegan', 'Lactose-Free', 'Allergen-Free', 'Hormone-Free', 'All Natural', 'Antibiotic-Free', 'Non-GMO', 'Corn-Free'],
+    freeFrom: ['Gluten-Free', 'Vegetarian', 'Lactose-Free', 'Allergen-Free', 'Hormone-Free', 'All Natural', 'Antibiotic-Free', 'Non-GMO', 'Corn-Free', 'Third-Party Tested'],
     daniels_note: 'Best magnesium for actual sleep. Glycinate form, 275mg, no laxative effect. Take 30 minutes before bed — I sleep deeper within the first week.'
   },
   {
@@ -802,7 +802,7 @@ window.PRODUCTS = [
       { week: 'Week 8+', text: 'Deficiency closed; sustained baseline.' }
     ],
     proTip: 'Take with a fat-containing meal — Vitamin D is fat-soluble. Avocado, eggs, fish oil, or just a normal lunch all work.',
-    freeFrom: ['Gluten-Free', 'Non-GMO', 'Vegan', '3rd-Party Tested', 'No Artificial Colors', 'No Fillers', 'Made in NA'],
+    freeFrom: ['Gluten-Free', 'Non-GMO', '3rd-Party Tested', 'No Artificial Colors', 'No Fillers', 'Made in NA', 'Third-Party Tested'],
     daniels_note: 'Most adults are deficient in Vitamin D. I got tested before and after — supplementing closed the gap entirely. 2000 IU is the right dose for most people.'
   },
   {
@@ -840,7 +840,7 @@ window.PRODUCTS = [
       { week: 'Week 12+', text: 'Skin clarity and joint comfort benefits.' }
     ],
     proTip: 'Take with your largest meal of the day. Omega-3 stays in the bloodstream 4-6 hours — one daily dose covers a full cycle.',
-    freeFrom: ['Gluten-Free', 'Non-GMO', 'Vegan', '3rd-Party Tested', 'No Artificial Colors', 'No Fillers', 'Made in NA'],
+    freeFrom: ['Gluten-Free', 'Non-GMO', '3rd-Party Tested', 'No Artificial Colors', 'No Fillers', 'Made in NA', 'Third-Party Tested'],
     daniels_note: 'Omega-3 is the supplement I\'d never stop taking. Heart, brain, skin. Two softgels with breakfast, every day for the last four years.'
   },
   {
@@ -878,7 +878,7 @@ window.PRODUCTS = [
       { week: 'Week 4+', text: 'New gut baseline; downstream benefits in mood and skin.' }
     ],
     proTip: 'Take on an empty stomach 20 minutes before breakfast. Keep refrigerated — heat reduces strain viability over time.',
-    freeFrom: ['Gluten-Free', 'Lactose-Free', 'Allergen-Free', 'Hormone-Free', 'All Natural', 'Corn-Free'],
+    freeFrom: ['Gluten-Free', 'Lactose-Free', 'Allergen-Free', 'Hormone-Free', 'All Natural', 'Corn-Free', 'Third-Party Tested'],
     daniels_note: 'I notice when I skip Biome. Within a week. The probiotic everyone underestimates until they don\'t have it.'
   },
   // ═══════════════════════════════════════════════════════════
@@ -919,7 +919,7 @@ window.PRODUCTS = [
       { week: 'Week 12+', text: 'Compound benefit; visible at the cellular level.' }
     ],
     proTip: 'Morning, with breakfast. NAD+ is stable on the shelf — no refrigeration needed, but consistency matters more than timing.',
-    freeFrom: ['Gluten-Free', 'Non-GMO', 'Vegan', '3rd-Party Tested', 'No Artificial Colors', 'No Fillers', 'Made in NA'],
+    freeFrom: ['Gluten-Free', 'Non-GMO', '3rd-Party Tested', 'No Artificial Colors', 'No Fillers', 'Made in NA', 'Third-Party Tested'],
     daniels_note: 'My energy at 40 wasn\'t what it was at 30. Started this six months in — the difference is real. Not magic, but real. Cellular-level support.'
   },
   {
@@ -955,7 +955,7 @@ window.PRODUCTS = [
       { week: 'Week 12+', text: 'Sustained cellular energy benefit.' }
     ],
     proTip: 'Take with breakfast or lunch — CoQ10 is fat-soluble and needs a meal to absorb properly. Avoid taking at night, can disrupt sleep.',
-    freeFrom: ['Gluten-Free', 'Non-GMO', 'Vegan', '3rd-Party Tested', 'No Artificial Colors', 'No Fillers', 'Made in NA'],
+    freeFrom: ['Gluten-Free', 'Non-GMO', '3rd-Party Tested', 'No Artificial Colors', 'No Fillers', 'Made in NA', 'Third-Party Tested'],
     daniels_note: '200mg of CoQ10 is the dose that matters. I take it with breakfast — fat-soluble, so it needs the meal. A game-changer for sustained energy.'
   },
   {
@@ -994,7 +994,7 @@ window.PRODUCTS = [
       { week: 'Week 8+', text: 'Memory and clarity baseline; the long game compounds.' }
     ],
     proTip: 'Morning with food. Lion\'s Mane builds slowly over 4-6 weeks — be patient. Stop and start often resets the benefit.',
-    freeFrom: ['Gluten-Free', 'Non-GMO', 'Vegan', '3rd-Party Tested', 'No Artificial Colors', 'No Fillers', 'Made in NA'],
+    freeFrom: ['Gluten-Free', 'Non-GMO', '3rd-Party Tested', 'No Artificial Colors', 'No Fillers', 'Made in NA', 'Third-Party Tested'],
     daniels_note: 'Lion\'s Mane is the cognitive supplement I\'d recommend to anyone over 35. The 10-mushroom blend covers more bases than just Lion\'s alone.'
   },
   {
@@ -1032,7 +1032,7 @@ window.PRODUCTS = [
       { week: 'Week 8+', text: 'Stress resilience baseline; sharper under pressure.' }
     ],
     proTip: '2 capsules in the evening to start; build to 3 if needed during high-stress weeks. Doesn\'t sedate — won\'t make you foggy.',
-    freeFrom: ['Gluten-Free', 'Non-GMO', 'Vegan', '3rd-Party Tested', 'No Artificial Colors', 'No Fillers', 'Made in NA'],
+    freeFrom: ['Gluten-Free', 'Non-GMO', '3rd-Party Tested', 'No Artificial Colors', 'No Fillers', 'Made in NA', 'Third-Party Tested'],
     daniels_note: 'KSM-66 ashwagandha is the most-studied form. I take it during high-stress weeks — cortisol drops, focus stays. It doesn\'t sedate.'
   },
   {
@@ -1071,7 +1071,7 @@ window.PRODUCTS = [
       { week: 'Week 12+', text: 'Sustained joint health; the compounded benefit.' }
     ],
     proTip: 'Take with food, twice daily. Effects compound over 8-12 weeks — quitting at week 6 will hide the real benefit.',
-    freeFrom: ['Gluten-Free', 'Non-GMO', 'Vegan', '3rd-Party Tested', 'No Artificial Colors', 'No Fillers', 'Made in NA'],
+    freeFrom: ['Gluten-Free', 'Non-GMO', '3rd-Party Tested', 'No Artificial Colors', 'No Fillers', 'Made in NA', 'Third-Party Tested'],
     daniels_note: 'Joint support that works on a 6-12 week timeline. Started taking it after a knee tweak — never went off it.'
   },
   // ═══════════════════════════════════════════════════════════
@@ -1108,7 +1108,7 @@ window.PRODUCTS = [
       { week: 'Week 8+', text: 'New strength baseline; sustained gains.' }
     ],
     proTip: '5g daily, any time of day. Loading phases are unnecessary — just be consistent. Muscle saturates over 3-4 weeks regardless.',
-    freeFrom: ['Gluten-Free', 'Non-GMO', 'Vegan', '3rd-Party Tested', 'No Artificial Colors', 'No Fillers', 'Made in NA'],
+    freeFrom: ['Gluten-Free', 'Non-GMO', '3rd-Party Tested', 'No Artificial Colors', 'No Fillers', 'Made in NA', 'Third-Party Tested'],
     daniels_note: 'Five grams of creatine, daily, for the rest of my life. Most-studied performance supplement on the shelf, period.'
   },
   {
@@ -1145,7 +1145,7 @@ window.PRODUCTS = [
       { week: 'Week 4+', text: 'Improved muscle volume from better blood flow during training.' }
     ],
     proTip: '30 minutes before training. Mix with water, drink immediately. Stimulant-free so safe for evening workouts.',
-    freeFrom: ['Gluten-Free', 'Non-GMO', 'Vegan', '3rd-Party Tested', 'No Artificial Colors', 'No Fillers', 'Made in NA'],
+    freeFrom: ['Gluten-Free', 'Non-GMO', '3rd-Party Tested', 'No Artificial Colors', 'No Fillers', 'Made in NA', 'Third-Party Tested'],
     daniels_note: 'Pre-workout without the stimulants. Citrulline plus arginine at clinical doses. The smoother training session you didn\'t know you needed.'
   },
   {
@@ -1179,7 +1179,7 @@ window.PRODUCTS = [
       { week: 'Week 4+', text: 'New digestive baseline; sustained recovery benefit.' }
     ],
     proTip: 'Pre-bed or post-workout. Glutamine doesn\'t compete with food — take it whenever fits your routine.',
-    freeFrom: ['Gluten-Free', 'Non-GMO', 'Vegan', '3rd-Party Tested', 'No Artificial Colors', 'No Fillers', 'Made in NA'],
+    freeFrom: ['Gluten-Free', 'Non-GMO', '3rd-Party Tested', 'No Artificial Colors', 'No Fillers', 'Made in NA', 'Third-Party Tested'],
     daniels_note: 'Glutamine for gut and recovery. Tasteless. Mix it with anything. The recovery aid I take whether I trained that day or not.'
   },
   {
@@ -1217,7 +1217,7 @@ window.PRODUCTS = [
       { week: 'Week 4+', text: 'New nutritional baseline; less reliant on perfect eating days.' }
     ],
     proTip: 'Mix with cold water in a shaker bottle — or blend into a smoothie. Hot water destroys some of the enzymes.',
-    freeFrom: ['Gluten-Free', 'Non-GMO', 'Vegan', '3rd-Party Tested', 'No Artificial Colors', 'No Fillers', 'Made in NA'],
+    freeFrom: ['Gluten-Free', 'Non-GMO', '3rd-Party Tested', 'No Artificial Colors', 'No Fillers', 'Made in NA', 'Third-Party Tested'],
     daniels_note: 'On the days I don\'t eat my vegetables, Greens does the heavy lifting. 22 ingredients, one scoop, tastes like green apple.'
   },
   {
@@ -1255,7 +1255,7 @@ window.PRODUCTS = [
       { week: 'Week 4+', text: 'Thermogenic baseline; sustained metabolic support.' }
     ],
     proTip: 'First thing AM, ideally on empty stomach. Take 2-3 hours before bed at the latest — caffeine half-life is real.',
-    freeFrom: ['Non-GMO'],
+    freeFrom: ['Non-GMO', 'Third-Party Tested'],
     daniels_note: 'When I want a thermogenic without the jitters. Caffeine plus EGCG plus tyrosine — clean energy that lasts the morning.'
   },
   // ═══════════════════════════════════════════════════════════
@@ -1299,7 +1299,7 @@ window.PRODUCTS = [
       { week: 'Week 12+', text: 'Full hair growth cycle complete; visible thickness change.' }
     ],
     proTip: 'Be patient. Hair and nails grow on a 12-week cycle — you need at least a full quarter to see what this product actually does.',
-    freeFrom: ['Gluten-Free', 'Non-GMO', 'Vegan', '3rd-Party Tested', 'No Artificial Colors', 'No Fillers', 'Made in NA'],
+    freeFrom: ['Gluten-Free', 'Non-GMO', '3rd-Party Tested', 'No Artificial Colors', 'No Fillers', 'Made in NA', 'Third-Party Tested'],
     daniels_note: 'Beauty from within is real. My nails are stronger, my hair grew faster. Marine collagen plus vitamins, taken every morning.'
   },
   {
@@ -1334,7 +1334,7 @@ window.PRODUCTS = [
       { week: 'Week 12+', text: 'Hair, nails, and skin compound benefit.' }
     ],
     proTip: '10g in your morning coffee. Tasteless, dissolves cleanly. Heat is fine — collagen peptides are stable up to 300°F.',
-    freeFrom: ['Gluten-Free', 'Lactose-Free', 'Corn-Free'],
+    freeFrom: ['Gluten-Free', 'Lactose-Free', 'Corn-Free', 'Third-Party Tested'],
     daniels_note: 'Ten grams in my morning coffee. Tasteless. Skin firmness, joint cushion. The supplement I\'d recommend to anyone over 35.'
   },
   {
@@ -1373,7 +1373,7 @@ window.PRODUCTS = [
       { week: 'Week 4+', text: 'Cognitive baseline; less need for caffeine to feel sharp.' }
     ],
     proTip: 'Take 30 minutes before deep work. Don\'t combine with caffeine — the GABA + caffeine combo creates a paradoxical fog.',
-    freeFrom: ['Gluten-Free', 'Non-GMO', 'Vegan', '3rd-Party Tested', 'No Artificial Colors', 'No Fillers', 'Made in NA'],
+    freeFrom: ['Gluten-Free', 'Non-GMO', '3rd-Party Tested', 'No Artificial Colors', 'No Fillers', 'Made in NA', 'Third-Party Tested'],
     daniels_note: 'The cognitive stack I run on heavy thinking days. GABA plus Tyrosine plus Bacopa — alert and calm at the same time.'
   }
 ];
