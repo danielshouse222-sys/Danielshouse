@@ -1325,7 +1325,39 @@
         intro: "Two treatments. One night a week, you mask. Another night, you polish. Never both — these aren't daily steps. They're the deeper resets that give the daily routine more to work with."
       },
       moms: {
-        intro: "Curated for the people who don't have time for a 12-step routine. The shortest path to visible results: clean barrier, deep hydration, retinol, antioxidants, omega-3s. The mom-test approved version."
+        intro: "The bundle for moms who want visible anti-aging results <em>and</em> take the long view on aging. Five skincare layers built around the highest-evidence topical actives — retinol overnight, antioxidants by day, peptides around the eyes — paired with five longevity-grade supplements that work the cellular layer: <em>NAD+ for mitochondrial energy, collagen building blocks, antioxidant support, and the sleep aid that turns nights into real repair time.</em>",
+        am: [
+          { name: "Wash",    note: "Gentle cleanser that doesn't strip mature skin's natural oils — the daily reset before the actives." },
+          { name: "Defense", note: "The daytime antioxidant heavy hitter. Stable vitamin C (tetrahexyldecyl ascorbate), hydrolyzed soy protein, squalane, and caffeine — protects existing collagen from breaking down throughout the day." },
+          { name: "Eye",     note: "Peptide cream firms and brightens the orbital area before moisturizer locks it in. Cucumber and aloe depuff." },
+          { name: "Soft",    note: "Multi-weight hyaluronic acid + aloe seals everything with deep hydration — a non-negotiable step for mature skin." }
+        ],
+        pm: [
+          { name: "Wash",    note: "Gentle cleanser removes the day without compromising the barrier." },
+          { name: "Bounce",  note: "The cornerstone. Retinol stimulates cell turnover and collagen production; hydrolyzed collagen plumps; hyaluronic acid hydrates. Three of the most clinically proven anti-aging actives in one bottle." },
+          { name: "Eye",     note: "Peptides do their best work overnight — same product, second application." },
+          { name: "Soft",    note: "Locks in the actives while skin does its repair work overnight." }
+        ],
+        supplements: [
+          { name: "Multi",    note: "Morning, with breakfast. Foundation nutrition — zinc, biotin, vitamins C, D, and B-complex. Skin renewal can't happen if any of these are running low at the cellular level." },
+          { name: "Collagen", note: "Morning, blend into coffee, smoothie, or warm water. Hydrolyzed peptides feed skin the building blocks for what Bounce and Eye are signaling for topically." },
+          { name: "NAD+",     note: "Morning, with food. The longevity hero — replenishes the cellular fuel that declines with age. Mitochondrial function powers cell renewal, including skin cell turnover. The most-studied longevity active there is." },
+          { name: "Vitality", note: "Morning or midday, with food. Energy + antioxidant blend with sirtuin activators. Compounds the anti-aging effect from the inside — supports the same cellular pathways NAD+ targets." },
+          { name: "Tranquil", note: "Evening, 30-60 minutes before bed. Sleep is the most underrated anti-aging tool — magnesium glycinate, L-theanine, and adaptogens deliver deep repair-quality sleep, which is when growth hormone, collagen synthesis, and cellular repair all peak." }
+        ],
+        whyItWorks: {
+          lead: "Visible aging comes down to four things: collagen loss, oxidative damage, slowed cell turnover, and declining cellular energy. This bundle attacks all four with the most clinically validated actives — minimal steps, maximum efficacy, working from the surface and from inside the cell.",
+          mechanisms: [
+            { problem: "Collagen loss",      solution: "Bounce's retinol + Eye's peptides topically · Collagen peptides + Multi internally" },
+            { problem: "Oxidative damage",   solution: "Defense + Bounce antioxidants topically · Multi + Vitality internally" },
+            { problem: "Slowed turnover",    solution: "Bounce nightly · NAD+ powers cellular energy for renewal · Multi feeds new cell production" },
+            { problem: "Cellular fatigue",   solution: "NAD+ replenishes mitochondrial fuel · Tranquil ensures deep repair-quality sleep when growth hormone peaks" }
+          ]
+        },
+        whoItsFor: {
+          yes: "You want noticeable smoothing, firming, and brightening in 6-12 weeks <em>and</em> you take the long view on aging — you understand what happens at the cellular level (mitochondrial energy, sleep quality, sirtuin activity) shows up on your face years later.",
+          no: "You want a 2-step set-it-and-forget-it routine without supplements — look at the AM Bundle instead. Or you're not yet ready to commit to a daily multi-supplement protocol."
+        }
       },
       arianas: {
         intro: "The bundle for someone who knows skincare alone won't give them what they're chasing. The promise is <em>inside-out glow</em>: six topical layers handling the surface, plus three supplements feeding the result internally. It's the sweet spot between a minimum effective routine and Daniel's full protocol — comprehensive without being maximalist.",
