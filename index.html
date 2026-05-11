@@ -556,63 +556,7 @@
     transition: gap 0.3s;
   }
   .founder-link:hover { gap: 20px; }
-
-  /* ═══ TESTIMONIALS ═══ */
-  .testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 26px;
-  }
-  .testimonial {
-    background: var(--cream);
-    border: 1px solid var(--rule);
-    padding: 36px 30px;
-    transition: border-color 0.3s, transform 0.3s;
-    position: relative;
-  }
-  .testimonial:hover { border-color: var(--gold); transform: translateY(-3px); }
-  .testimonial-stars {
-    color: var(--gold);
-    letter-spacing: 0.06em;
-    font-size: 14px;
-    margin-bottom: 18px;
-  }
-  .testimonial-text {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 17px;
-    line-height: 1.55;
-    color: var(--ink);
-    margin-bottom: 22px;
-  }
-  .testimonial-attr {
-    font-size: 11px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--gold);
-    font-weight: 500;
-    border-top: 1px solid var(--rule);
-    padding-top: 14px;
-  }
-  .testimonial-attr-name {
-    display: block;
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 17px;
-    color: var(--ink);
-    text-transform: none;
-    letter-spacing: 0;
-    margin-bottom: 4px;
-  }
-  .testimonial-product {
-    color: var(--ink-soft);
-    font-style: italic;
-    font-family: 'Cormorant Garamond', serif;
-    text-transform: none;
-    letter-spacing: 0.02em;
-    font-size: 12.5px;
-    font-weight: 400;
-  }
+  
 
   /* ═══ MOBILE ═══ */
   @media (max-width: 1000px) {
@@ -624,9 +568,36 @@
   }
   @media (max-width: 720px) {
     .cats { grid-template-columns: 1fr; }
-    .testimonials-grid { grid-template-columns: 1fr; }
     .hero-content { padding: 60px 30px; }
     .featured-stats { gap: 20px; flex-wrap: wrap; }
+  }
+
+  /* ═══ THE RESEARCH (study quote cards) ═══ */
+  .home-research { background: var(--cream-warm); padding: clamp(80px, 9vw, 110px) 40px; border-top: 1px solid var(--rule); }
+  .home-research-inner { max-width: 1200px; margin: 0 auto; }
+  .home-research-header { text-align: center; margin-bottom: 64px; }
+  .home-research-eyebrow { font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; font-weight: 500; }
+  .home-research-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(40px, 5vw, 56px); font-weight: 400; line-height: 1.05; margin-bottom: 16px; }
+  .home-research-title em { font-style: italic; color: var(--sage); }
+  .home-research-blurb { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 18px; color: var(--ink-soft); max-width: 620px; margin: 0 auto; line-height: 1.55; }
+  .study-grid-home { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .study-card-home { background: var(--cream); padding: 40px 32px 28px; border: 1px solid var(--rule); position: relative; transition: border-color 0.3s, transform 0.4s; display: flex; flex-direction: column; }
+  .study-card-home:hover { border-color: var(--gold); transform: translateY(-3px); }
+  .study-card-home::before { content: '"'; position: absolute; top: 8px; left: 22px; font-family: 'Cormorant Garamond', serif; font-size: 64px; color: var(--gold); line-height: 1; opacity: 0.4; }
+  .study-marker-home { display: inline-block; background: var(--gold); color: var(--cream); padding: 4px 14px; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500; align-self: flex-start; margin-bottom: 20px; }
+  .study-actor-home { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 500; line-height: 1.15; margin-bottom: 18px; }
+  .study-actor-home em { font-style: italic; color: var(--sage); }
+  .study-finding-home { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 18px; line-height: 1.55; color: var(--ink); margin-bottom: 22px; flex: 1; }
+  .study-finding-home strong { color: var(--sage); font-weight: 500; font-style: normal; }
+  .study-source-home { font-size: 11px; letter-spacing: 0.08em; color: var(--ink-soft); padding-top: 14px; border-top: 1px solid var(--rule); font-style: italic; }
+  .home-research-disclaimer { max-width: 720px; margin: 50px auto 0; text-align: center; font-size: 12px; color: var(--ink-soft); line-height: 1.7; font-style: italic; padding: 18px 20px 0; border-top: 1px solid var(--rule); }
+  @media (max-width: 1080px) {
+    .study-grid-home { grid-template-columns: repeat(2, 1fr); gap: 22px; }
+  }
+  @media (max-width: 720px) {
+    .study-grid-home { grid-template-columns: 1fr; gap: 18px; }
+    .home-research { padding: 70px 22px; }
+    .study-card-home { padding: 32px 24px 24px; }
   }
 </style>
 </head>
@@ -961,37 +932,61 @@
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
-<section class="sec" style="padding-top: 0;">
-  <div class="sec-header">
-    <div class="sec-eyebrow">From the House</div>
-    <h2 class="sec-title">What people are <em>saying.</em></h2>
-  </div>
+<!-- THE RESEARCH (replaces former testimonials) -->
+<section class="home-research">
+  <div class="home-research-inner">
+    <div class="home-research-header">
+      <div class="home-research-eyebrow">The Research</div>
+      <h2 class="home-research-title">What the <em>science</em> says.</h2>
+      <p class="home-research-blurb">Every active in the Daniel's House line is built on peer-reviewed clinical evidence. Here's what the most current research shows.</p>
+    </div>
 
-  <div class="testimonials-grid">
-    <div class="testimonial">
-      <div class="testimonial-stars">★★★★★</div>
-      <p class="testimonial-text">My skin texture changed in three weeks. I've tried every brand at every price point — these are the first products that actually delivered what they promised.</p>
-      <div class="testimonial-attr">
-        <span class="testimonial-attr-name">Sarah M.</span>
-        <span class="testimonial-product">on The House Bounce</span>
+    <div class="study-grid-home">
+      <div class="study-card-home">
+        <span class="study-marker-home">Study 01</span>
+        <div class="study-actor-home">KSM-66 <em>Ashwagandha</em></div>
+        <p class="study-finding-home">A 2025 systematic review and meta-analysis of 15 randomized controlled trials covering <strong>873 patients</strong> found ashwagandha supplementation produces <strong>significant reductions in cortisol, stress, and anxiety</strong> versus placebo.</p>
+        <div class="study-source-home">BJPsych Open, 2025 — Bachour et al.</div>
+      </div>
+
+      <div class="study-card-home">
+        <span class="study-marker-home">Study 02</span>
+        <div class="study-actor-home">Creatine <em>Monohydrate</em></div>
+        <p class="study-finding-home">A 2024 systematic review and meta-analysis of 16 randomized controlled trials confirmed creatine supplementation produces <strong>measurable benefits for memory, attention, and information processing speed</strong> — adding to decades of evidence for muscle and strength gains.</p>
+        <div class="study-source-home">Frontiers in Nutrition, 2024 — Xu et al.</div>
+      </div>
+
+      <div class="study-card-home">
+        <span class="study-marker-home">Study 03</span>
+        <div class="study-actor-home">Topical <em>Retinoids</em></div>
+        <p class="study-finding-home">Topical retinoids have <strong>multi-decade clinical evidence</strong> for reducing fine lines, improving skin texture, and stimulating collagen production — among the most-studied actives in dermatology.</p>
+        <div class="study-source-home">Reviewed in JAAD, 1986–present</div>
+      </div>
+
+      <div class="study-card-home">
+        <span class="study-marker-home">Study 04</span>
+        <div class="study-actor-home">Magnesium <em>Glycinate</em></div>
+        <p class="study-finding-home">Magnesium glycinate — the chelated, bioavailable form — is clinically associated with <strong>improved sleep quality, reduced stress markers, and better muscle recovery</strong>. Roughly <strong>50% of US adults are deficient</strong>, and the glycinate form absorbs without the GI side effects of cheaper forms.</p>
+        <div class="study-source-home">NIH ODS · Reviewed in Nutrients</div>
+      </div>
+
+      <div class="study-card-home">
+        <span class="study-marker-home">Study 05</span>
+        <div class="study-actor-home">Niacinamide + <em>Hyaluronic Acid</em></div>
+        <p class="study-finding-home">In a 2024 study of 44 women, daily niacinamide + hyaluronic acid serum <strong>significantly reduced wrinkle depth and improved skin elasticity</strong> within 8 weeks — the two ingredients create a measurable synergy on tone, texture, and barrier hydration.</p>
+        <div class="study-source-home">Nature Scientific Reports, 2024</div>
+      </div>
+
+      <div class="study-card-home">
+        <span class="study-marker-home">Study 06</span>
+        <div class="study-actor-home">Vitamin <em>D3</em></div>
+        <p class="study-finding-home">Vitamin D3 has <strong>decades of clinical evidence</strong> for bone density, immune balance, and mood regulation. An estimated <strong>35% of US adults are deficient</strong> — supplementation reliably closes the gap, particularly for those with limited sun exposure.</p>
+        <div class="study-source-home">Reviewed in JAMA, The Lancet, NIH ODS</div>
       </div>
     </div>
-    <div class="testimonial">
-      <div class="testimonial-stars">★★★★★</div>
-      <p class="testimonial-text">I'm 47 and the energy difference from the Multi + NAD+ stack is the closest thing to magic I've experienced. Two weeks in and I noticed. Six months in, I'm a different person.</p>
-      <div class="testimonial-attr">
-        <span class="testimonial-attr-name">Michael R.</span>
-        <span class="testimonial-product">on The Longevity Bundle</span>
-      </div>
-    </div>
-    <div class="testimonial">
-      <div class="testimonial-stars">★★★★★</div>
-      <p class="testimonial-text">The Calm changed my sleep. I've been on prescription sleep aids for years — this replaced them. I sleep through the night, wake up clear-headed, no grogginess.</p>
-      <div class="testimonial-attr">
-        <span class="testimonial-attr-name">Jennifer K.</span>
-        <span class="testimonial-product">on The House Calm</span>
-      </div>
+
+    <div class="home-research-disclaimer">
+      Studies referenced are peer-reviewed and conducted on the active ingredients used in Daniel's House products. Results in clinical settings may vary from individual outcomes. Statements have not been evaluated by the FDA; products are not intended to diagnose, treat, cure, or prevent any disease.
     </div>
   </div>
 </section>

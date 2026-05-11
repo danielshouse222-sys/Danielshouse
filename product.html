@@ -742,8 +742,7 @@
 
     <div class="product-rating">
       <span class="stars">★★★★★</span>
-      <span><strong id="rating-num">4.8</strong> · <span id="rating-count">142</span> reviews</span>
-    </div>
+      </div>
 
     <p class="product-desc" id="product-desc"></p>
 
@@ -834,20 +833,6 @@
     <div class="section-title">The <em>Pairing</em> That Works</div>
   </div>
   <div class="fbt-grid" id="fbt-grid"></div>
-</section>
-
-<section class="product-section">
-  <div class="section-header">
-    <div class="section-eyebrow">From the House</div>
-    <div class="section-title">What <em>Customers</em> Say</div>
-  </div>
-  <div class="reviews-summary">
-    <span class="reviews-summary-stars">★★★★★</span>
-    <span class="reviews-summary-num" id="reviews-avg">4.8</span>
-    <span class="reviews-summary-count" id="reviews-count">based on 142 verified reviews</span>
-  </div>
-  <div class="reviews-grid" id="reviews-grid"></div>
-  <div class="reviews-cta">— More reviews on the way —</div>
 </section>
 
 <section class="product-section">
@@ -1263,35 +1248,6 @@
     document.getElementById('free-from-row').innerHTML =
       product.freeFrom.map(b => `<span class="free-from-badge">${b}</span>`).join('');
     document.getElementById('freefrom-section').style.display = 'block';
-  }
-
-  // Customer Reviews
-  if (window.getReviewsForProduct) {
-    const reviews = window.getReviewsForProduct(product.slug);
-    const summary = window.getReviewSummary(product.slug);
-    document.getElementById('reviews-avg').textContent = summary.avg;
-    document.getElementById('reviews-count').textContent = `based on ${summary.count} verified reviews`;
-    // Update the rating in the hero too with the same summary numbers
-    document.getElementById('rating-num').textContent = summary.avg;
-    document.getElementById('rating-count').textContent = summary.count;
-
-    document.getElementById('reviews-grid').innerHTML = reviews.map(r => {
-      const starsStr = '★'.repeat(r.stars) + '☆'.repeat(5 - r.stars);
-      const dateStr = r.daysAgo === 1 ? '1 day ago' :
-                      r.daysAgo < 7 ? `${r.daysAgo} days ago` :
-                      r.daysAgo < 30 ? `${Math.floor(r.daysAgo / 7)} weeks ago` :
-                      `${Math.floor(r.daysAgo / 30)} months ago`;
-      return `
-        <div class="review-card">
-          <div class="review-stars">${starsStr}</div>
-          <div class="review-text">${r.body}</div>
-          <div class="review-meta">
-            <span class="review-name">${r.name}</span>
-            <span class="review-date">${dateStr}</span>
-          </div>
-        </div>
-      `;
-    }).join('');
   }
 })();
 </script>
