@@ -189,6 +189,104 @@
   .result-product-name em { font-style: italic; color: var(--sage); }
   .result-product-price { font-family: 'Cormorant Garamond', serif; font-size: 17px; color: var(--ink-soft); }
 
+  /* Quiz-generated bundle — pricing block, subscribe toggle, primary CTA */
+  .result-bundle {
+    max-width: 540px;
+    margin: 0 auto 36px;
+    text-align: center;
+  }
+  .result-bundle-divider {
+    height: 1px;
+    width: 80px;
+    background: var(--gold);
+    margin: 0 auto 26px;
+  }
+  .result-bundle-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+  .result-bundle-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 4vw, 36px);
+    font-weight: 400;
+    line-height: 1.05;
+    margin-bottom: 10px;
+  }
+  .result-bundle-title em { font-style: italic; color: var(--sage); }
+  .result-bundle-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--ink-soft);
+    margin-bottom: 24px;
+    line-height: 1.45;
+  }
+  .result-bundle-pricing {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 22px;
+  }
+  .rb-was {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    color: var(--ink-soft);
+    text-decoration: line-through;
+    opacity: 0.6;
+  }
+  .rb-now {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .rb-save {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    padding: 5px 12px;
+    border-radius: 100px;
+    font-weight: 500;
+  }
+  #result-bundle-toggle { margin-bottom: 18px; }
+  .result-bundle-cta {
+    display: inline-block;
+    width: 100%;
+    max-width: 440px;
+    padding: 16px 26px;
+    background: var(--ink);
+    color: var(--cream);
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: background 0.3s, transform 0.2s;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+  }
+  .result-bundle-cta:hover { background: var(--sage); transform: translateY(-1px); }
+  .result-bundle-cta.added {
+    background: var(--sage);
+    pointer-events: none;
+  }
+
+  @media (max-width: 720px) {
+    .result-bundle-pricing { gap: 10px; }
+    .rb-now { font-size: 28px; }
+    .rb-was { font-size: 19px; }
+  }
+
   .result-actions {
     display: flex;
     gap: 14px;
@@ -475,8 +573,35 @@
       <h2 class="result-title" id="result-title">Built for <em>you.</em></h2>
       <p class="result-blurb" id="result-blurb">Based on your answers, here's what we'd recommend.</p>
       <div class="result-products" id="result-products"></div>
+
+      <!-- Quiz-generated bundle: products as a discounted bundle with +10% subscribe option -->
+      <div class="result-bundle" id="result-bundle">
+        <div class="result-bundle-divider"></div>
+        <div class="result-bundle-eyebrow">Your Personal Bundle · 15% off as a Set</div>
+        <div class="result-bundle-title">Bundle them <em>together.</em></div>
+        <div class="result-bundle-sub">All three, at a price built for the set — plus an extra 10% off when you make it monthly.</div>
+
+        <div class="result-bundle-pricing" id="result-bundle-pricing">
+          <span class="rb-was" id="rb-was">$0</span>
+          <span class="rb-now" id="rb-now">$0</span>
+          <span class="rb-save" id="rb-save">Save $0</span>
+        </div>
+
+        <div class="bundle-subscribe-toggle" id="result-bundle-toggle" data-bundle-id="quiz-result">
+          <button type="button" data-mode="once" class="active">
+            <div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">One-Time</span></div>
+            <span class="toggle-meta">Single delivery</span>
+          </button>
+          <button type="button" data-mode="subscribe">
+            <div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">Monthly</span></div>
+            <span class="toggle-meta">Cancel anytime</span>
+          </button>
+        </div>
+
+        <button class="result-bundle-cta" id="result-bundle-cta">Add Your Bundle to Cart →</button>
+      </div>
+
       <div class="result-actions">
-        <a href="bundles.html" class="quiz-btn">View Recommended Bundle →</a>
         <button class="quiz-btn quiz-btn-back" onclick="window.location.reload()">Retake Quiz</button>
       </div>
     </div>
@@ -715,6 +840,56 @@ function showResult() {
       <div class="result-product-price">$${p.price.toFixed(2)}</div>
     </a>
   `).join('');
+
+  // ── Quiz-recommended bundle: 15% off as a set, +10% on top when subscribed ──
+  const QUIZ_BUNDLE_DISCOUNT = 0.15;
+  const SUB_BONUS = 0.10;
+  const fullPrice = products.reduce((s, p) => s + p.price, 0);
+
+  let subscribed = false;
+  const wasEl  = document.getElementById('rb-was');
+  const nowEl  = document.getElementById('rb-now');
+  const saveEl = document.getElementById('rb-save');
+
+  function refreshBundlePricing() {
+    const bundlePrice  = fullPrice * (1 - QUIZ_BUNDLE_DISCOUNT);
+    const finalPrice   = subscribed ? bundlePrice * (1 - SUB_BONUS) : bundlePrice;
+    const totalSavings = fullPrice - finalPrice;
+    wasEl.textContent  = `$${fullPrice.toFixed(2)}`;
+    nowEl.textContent  = `$${finalPrice.toFixed(2)}`;
+    saveEl.textContent = subscribed
+      ? `Save $${totalSavings.toFixed(2)} · bundle + subscribe`
+      : `Save $${totalSavings.toFixed(2)} as a bundle`;
+  }
+  refreshBundlePricing();
+
+  const toggle = document.getElementById('result-bundle-toggle');
+  toggle.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      toggle.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      subscribed = btn.dataset.mode === 'subscribe';
+      toggle.classList.toggle('subscribe-mode', subscribed);
+      refreshBundlePricing();
+    });
+  });
+
+  const cta = document.getElementById('result-bundle-cta');
+  cta.addEventListener('click', () => {
+    if (!window.dhCart || !window.dhCart.addBundle) return;
+    window.dhCart.addBundle(
+      recommendation.productSlugs,
+      'Your Personal Bundle',
+      QUIZ_BUNDLE_DISCOUNT,
+      subscribed
+    );
+    cta.textContent = '✓ Added to Cart';
+    cta.classList.add('added');
+    setTimeout(() => {
+      cta.textContent = 'Add Another → ';
+      cta.classList.remove('added');
+    }, 2400);
+  });
 }
 
 updateProgress();

@@ -852,6 +852,8 @@
           <div class="row-price">$32</div>
           <a href="product.html?slug=the-house-soft" class="row-view-link">View Details →</a>
           <button class="row-add-cart" data-add-slug="the-house-soft">Add to Cart →</button>
+    </div>
+      </div>
     
   <div class="bundle-footnote">
   <div class="bundle-footnote-inner">
@@ -874,8 +876,6 @@
     <button class="bundle-footnote-cta" data-bundle-add="am">Add Bundle to Cart →</button>
   </div>
 </div>
-    </div>
-      </div>
 
     </div>
 
@@ -975,6 +975,8 @@
           <div class="row-price">$36</div>
           <a href="product.html?slug=the-house-glow" class="row-view-link">View Details →</a>
           <button class="row-add-cart" data-add-slug="the-house-glow">Add to Cart →</button>
+    </div>
+      </div>
     
   <div class="bundle-footnote">
   <div class="bundle-footnote-inner">
@@ -997,8 +999,6 @@
     <button class="bundle-footnote-cta" data-bundle-add="pm">Add Bundle to Cart →</button>
   </div>
 </div>
-    </div>
-      </div>
     </div>
 
   </div>
@@ -1233,116 +1233,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// ═══ INLINE VIEW DETAILS EXPANSION ═══
-// Convert "View Details →" links into in-place expandable panels.
-// Pulls rich product data (ingredients, how-to-use, tips, etc.) and displays
-// it directly under each row so users don't have to navigate away.
-document.addEventListener('DOMContentLoaded', function() {
-  if (!window.PRODUCTS) return;
-
-  function renderDetailsPanel(product) {
-    const ingredientsHtml = product.ingredients?.length ? `
-      <div class="rd-block">
-        <div class="rd-label">Key Ingredients</div>
-        ${product.ingredients.slice(0, 6).map(ing => `
-          <div class="rd-ingredient">
-            ${ing.role ? `<div class="rd-ing-role">${ing.role}</div>` : ''}
-            <div class="rd-ing-name">${ing.name}</div>
-            ${ing.description ? `<div class="rd-ing-desc">${ing.description}</div>` : ''}
-          </div>
-        `).join('')}
-      </div>
-    ` : '';
-
-    const howToHtml = product.howToUse ? `
-      <div class="rd-block">
-        <div class="rd-label">How to Use</div>
-        <div class="rd-howto">${product.howToUse}</div>
-      </div>
-    ` : '';
-
-    const bestForHtml = product.bestFor?.length ? `
-      <div class="rd-block">
-        <div class="rd-label">Best For</div>
-        <div class="rd-tags">
-          ${product.bestFor.map(t =>
-            `<span class="rd-tag">${t.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}</span>`
-          ).join('')}
-        </div>
-      </div>
-    ` : '';
-
-    const proTipHtml = product.proTip ? `
-      <div class="rd-block">
-        <div class="rd-protip">
-          <div class="rd-protip-label">Daniel's Tip</div>
-          <div class="rd-protip-text">"${product.proTip}"</div>
-        </div>
-      </div>
-    ` : '';
-
-    const freeFromHtml = product.freeFrom?.length ? `
-      <div class="rd-block">
-        <div class="rd-label">Free From</div>
-        <div class="rd-freefrom">
-          ${product.freeFrom.map(f => `<span class="rd-ff-badge">${f}</span>`).join('')}
-        </div>
-      </div>
-    ` : '';
-
-    return `
-      <div class="row-details-inner">
-        <div class="rd-col-main">${ingredientsHtml}</div>
-        <div class="rd-col-side">
-          ${howToHtml}
-          ${bestForHtml}
-          ${proTipHtml}
-          ${freeFromHtml}
-          <a href="product.html?slug=${product.slug}" class="rd-full-link">Open full product page →</a>
-        </div>
-      </div>
-    `;
-  }
-
-  document.querySelectorAll('.row-view-link').forEach(link => {
-    link.dataset.dhDropdownBound = '1'; // tell shared.js dropdown to skip
-    link.addEventListener('click', function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      const url = new URL(this.href);
-      const slug = url.searchParams.get('slug');
-      const product = window.PRODUCTS.find(p => p.slug === slug);
-      if (!product) {
-        // Fallback — navigate normally if data missing
-        window.location.href = this.href;
-        return;
-      }
-
-      const row = this.closest('.row');
-      let panel = row.nextElementSibling;
-      const hasPanel = panel && panel.classList.contains('row-details');
-
-      if (!hasPanel) {
-        // Inject the panel
-        panel = document.createElement('div');
-        panel.className = 'row-details';
-        panel.innerHTML = renderDetailsPanel(product);
-        row.parentNode.insertBefore(panel, row.nextSibling);
-        // Force reflow so the transition triggers
-        void panel.offsetHeight;
-        panel.classList.add('open');
-        link.classList.add('expanded');
-        link.innerHTML = 'Hide Details ↑';
-      } else {
-        // Toggle
-        const willOpen = !panel.classList.contains('open');
-        panel.classList.toggle('open');
-        link.classList.toggle('expanded', willOpen);
-        link.innerHTML = willOpen ? 'Hide Details ↑' : 'View Details →';
-      }
-    });
-  });
-});
 </script>
 
 </body>
