@@ -1303,7 +1303,7 @@
       glow: "The brightness stack — inside and out. Vitamin C and niacinamide topically, collagen and antioxidants internally, oil to seal. Built to compound: each product reinforces what the others are doing.",
       weekly: "Two treatments. One night a week, you mask. Another night, you polish. Never both — these aren't daily steps. They're the deeper resets that give the daily routine more to work with.",
       moms: "Curated for the people who don't have time for a 12-step routine. The shortest path to visible results: clean barrier, deep hydration, retinol, antioxidants, omega-3s. The mom-test approved version.",
-      arianas: "Maximum hydration and barrier support. Built for skin that wants softness, plumpness, and that lit-from-within finish. Inside-out approach: topical hyaluronic + collagen + omega-3s for the full effect."
+      arianas: "A complete inside-out routine for visible glow. Six skincare layers — cleanse, brighten, defend, renew, and protect the eyes — paired with the supplements that compound the result internally: a daily multi, antioxidant beauty support, and collagen. Built for week-over-week results."
     };
 
     function dollar(n) {
