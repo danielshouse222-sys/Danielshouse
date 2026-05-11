@@ -269,6 +269,38 @@
   }
   .step-badge em { color: var(--gold); font-style: italic; font-weight: 500; margin-right: 4px; }
 
+  /* ═══ HOW TO LAYER — principles section ═══ */
+  .layer-guide { background: var(--cream-warm); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: 64px 40px; margin: 60px 0 0; }
+  .layer-guide-inner { max-width: 1080px; margin: 0 auto; }
+  .layer-guide-header { text-align: center; margin-bottom: 44px; }
+  .layer-guide-eyebrow { font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 14px; }
+  .layer-guide-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(34px, 4vw, 46px); font-weight: 400; line-height: 1.1; margin-bottom: 14px; }
+  .layer-guide-title em { font-style: italic; color: var(--sage); }
+  .layer-guide-blurb { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 17px; color: var(--ink-soft); max-width: 560px; margin: 0 auto; line-height: 1.55; }
+  .layer-rules { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 36px; }
+  .layer-rule { background: var(--cream); border: 1px solid var(--rule); padding: 28px 24px; text-align: left; transition: border-color 0.3s, transform 0.4s; }
+  .layer-rule:hover { border-color: var(--gold); transform: translateY(-2px); }
+  .layer-rule-num { font-size: 11px; letter-spacing: 0.3em; color: var(--gold); font-weight: 600; margin-bottom: 12px; }
+  .layer-rule-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; line-height: 1.2; margin-bottom: 10px; font-weight: 500; }
+  .layer-rule-title em { font-style: italic; color: var(--sage); }
+  .layer-rule-body { font-size: 13.5px; line-height: 1.6; color: var(--ink-soft); }
+  .layer-quickref { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; padding-top: 30px; border-top: 1px solid var(--rule); }
+  .layer-col { background: var(--cream); padding: 22px 24px; border-left: 3px solid var(--gold); }
+  .layer-col-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; line-height: 1.1; margin-bottom: 14px; font-weight: 500; display: flex; align-items: center; gap: 8px; }
+  .layer-col-title em { font-style: italic; color: var(--sage); }
+  .layer-col-icon { font-size: 18px; }
+  .layer-col ol { list-style: none; padding: 0; margin: 0; counter-reset: step; }
+  .layer-col li { counter-increment: step; padding: 6px 0 6px 28px; position: relative; font-size: 14px; line-height: 1.5; color: var(--ink); border-bottom: 1px dashed var(--rule); }
+  .layer-col li:last-child { border-bottom: none; }
+  .layer-col li::before { content: counter(step, decimal-leading-zero) "."; position: absolute; left: 0; top: 6px; font-size: 11px; letter-spacing: 0.1em; color: var(--gold); font-weight: 600; }
+  .layer-col li em { font-style: italic; color: var(--sage); font-weight: 500; }
+  .layer-col li small { display: block; font-size: 11.5px; color: var(--ink-soft); margin-top: 2px; }
+  @media (max-width: 760px) {
+    .layer-guide { padding: 50px 20px; margin-top: 40px; }
+    .layer-rules { grid-template-columns: 1fr; gap: 14px; margin-bottom: 28px; }
+    .layer-quickref { grid-template-columns: 1fr; gap: 14px; }
+  }
+
 </style>
 </head>
 <body>
@@ -484,6 +516,60 @@
     </div>
   </div>
 
+  <!-- HOW TO LAYER -->
+  <section class="layer-guide">
+    <div class="layer-guide-inner">
+      <div class="layer-guide-header">
+        <div class="layer-guide-eyebrow">How to Layer</div>
+        <h2 class="layer-guide-title">The order, <em>simplified</em>.</h2>
+        <p class="layer-guide-blurb">Thinnest to thickest. Water before oil. Treat at night, protect in the morning. Three rules cover almost everything.</p>
+      </div>
+
+      <div class="layer-rules">
+        <div class="layer-rule">
+          <div class="layer-rule-num">Rule 01</div>
+          <div class="layer-rule-title"><em>Thinnest</em> to thickest.</div>
+          <div class="layer-rule-body">Water-based serums first. Hydrators next. Creams. Oils. Sunscreen last in the morning. Each layer can pass through the one before it — never the other way.</div>
+        </div>
+        <div class="layer-rule">
+          <div class="layer-rule-num">Rule 02</div>
+          <div class="layer-rule-title"><em>Actives</em> at night.</div>
+          <div class="layer-rule-body">Retinol, glycolic, exfoliants — at night, on clean skin. Antioxidants like Vitamin C — in the morning, where they neutralize the day's free radicals.</div>
+        </div>
+        <div class="layer-rule">
+          <div class="layer-rule-num">Rule 03</div>
+          <div class="layer-rule-title">Don't <em>stack</em> actives.</div>
+          <div class="layer-rule-body">Retinol and AHAs the same night is too much for most skin. Alternate them — Renewal one night, Bounce or a peptide serum the next. Your barrier will thank you.</div>
+        </div>
+      </div>
+
+      <div class="layer-quickref">
+        <div class="layer-col">
+          <div class="layer-col-title"><span class="layer-col-icon">🌅</span>The <em>Morning</em></div>
+          <ol>
+            <li><em>Wash</em><small>Cleanse</small></li>
+            <li><em>Balance</em><small>Tone, prep the skin</small></li>
+            <li><em>Boost</em><small>Vitamin C antioxidant serum</small></li>
+            <li><em>Hyaluronic</em><small>On damp skin — pulls in moisture</small></li>
+            <li><em>Defense</em><small>Heavier antioxidant serum</small></li>
+            <li><em>Soft</em><small>Daily moisturizer, seal it in</small></li>
+          </ol>
+        </div>
+        <div class="layer-col">
+          <div class="layer-col-title"><span class="layer-col-icon">🌙</span>The <em>Evening</em></div>
+          <ol>
+            <li><em>Renewal</em><small>Resurface (glycolic + retinyl) — alternate w/ Bounce</small></li>
+            <li><em>Bounce</em><small>Collagen + retinol + HA combo serum</small></li>
+            <li><em>Firm</em><small>Peptide treatment</small></li>
+            <li><em>Hydration</em><small>Hydrating cream</small></li>
+            <li><em>Eye</em><small>Peptide eye cream</small></li>
+            <li><em>Glow</em><small>Six-oil seal — locks the routine in</small></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- DAILY ROUTINE -->
   <div class="weekly" style="padding-bottom: 0; border-bottom: none;">
     <div class="weekly-eyebrow">Morning &amp; Evening · Daily</div>
@@ -627,6 +713,21 @@
 
       <div class="row">
         <div class="step-badge"><em>Step</em> 01</div>
+        <div class="row-img"><img src="images/renewal.jpeg" alt="The House Renewal" /></div>
+        <div class="row-content">
+          <div class="row-tag">Resurface · Renew · Smooth</div>
+          <div class="row-name">The House <em>Renewal</em></div>
+          <div class="row-desc">Glycolic acid resurfaces while retinyl palmitate supports collagen overnight. Squalane and panthenol keep you from waking up tight.</div>
+        </div>
+        <div class="row-shop">
+          <div class="row-price">$44</div>
+          <a href="product.html?slug=the-house-renewal" class="row-view-link">View Details →</a>
+          <button class="row-add-cart" data-add-slug="the-house-renewal">Add to Cart →</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="step-badge"><em>Step</em> 02</div>
         <div class="row-img"><img src="images/bounce.jpeg" alt="The House Bounce" /></div>
         <div class="row-content">
           <div class="row-tag">Firm · Renew · Plump</div>
@@ -637,21 +738,6 @@
           <div class="row-price">$42</div>
           <a href="product.html?slug=the-house-bounce" class="row-view-link">View Details →</a>
           <button class="row-add-cart" data-add-slug="the-house-bounce">Add to Cart →</button>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="step-badge"><em>Step</em> 02</div>
-        <div class="row-img"><img src="images/hydration.jpeg" alt="The House Hydration" /></div>
-        <div class="row-content">
-          <div class="row-tag">Hydrate · Moisture Lock · Antioxidant</div>
-          <div class="row-name">The House <em>Hydration</em></div>
-          <div class="row-desc">Glycerin mimics the skin's own moisture process; cassia obtusifolia adds antioxidant defense. Three actives, all pulling weight.</div>
-        </div>
-        <div class="row-shop">
-          <div class="row-price">$26</div>
-          <a href="product.html?slug=the-house-hydration" class="row-view-link">View Details →</a>
-          <button class="row-add-cart" data-add-slug="the-house-hydration">Add to Cart →</button>
         </div>
       </div>
 
@@ -672,6 +758,21 @@
 
       <div class="row">
         <div class="step-badge"><em>Step</em> 04</div>
+        <div class="row-img"><img src="images/hydration.jpeg" alt="The House Hydration" /></div>
+        <div class="row-content">
+          <div class="row-tag">Hydrate · Moisture Lock · Antioxidant</div>
+          <div class="row-name">The House <em>Hydration</em></div>
+          <div class="row-desc">Glycerin mimics the skin's own moisture process; cassia obtusifolia adds antioxidant defense. Three actives, all pulling weight.</div>
+        </div>
+        <div class="row-shop">
+          <div class="row-price">$26</div>
+          <a href="product.html?slug=the-house-hydration" class="row-view-link">View Details →</a>
+          <button class="row-add-cart" data-add-slug="the-house-hydration">Add to Cart →</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="step-badge"><em>Step</em> 05</div>
         <div class="row-img"><img src="images/eye.jpeg" alt="The House Eye" /></div>
         <div class="row-content">
           <div class="row-tag">Depuff · Brighten · Firm</div>
@@ -685,22 +786,7 @@
         </div>
       </div>
 
-      <div class="row">
-        <div class="step-badge"><em>Step</em> 05</div>
-        <div class="row-img"><img src="images/renewal.jpeg" alt="The House Renewal" /></div>
-        <div class="row-content">
-          <div class="row-tag">Resurface · Renew · Smooth</div>
-          <div class="row-name">The House <em>Renewal</em></div>
-          <div class="row-desc">Glycolic acid resurfaces while retinyl palmitate supports collagen overnight. Squalane and panthenol keep you from waking up tight.</div>
-        </div>
-        <div class="row-shop">
-          <div class="row-price">$44</div>
-          <a href="product.html?slug=the-house-renewal" class="row-view-link">View Details →</a>
-          <button class="row-add-cart" data-add-slug="the-house-renewal">Add to Cart →</button>
-        </div>
-      </div>
-
-      <div class="row">
+<div class="row">
         <div class="step-badge"><em>Step</em> 06</div>
         <div class="row-img"><img src="images/glow.jpeg" alt="The House Glow" /></div>
         <div class="row-content">
