@@ -1535,6 +1535,29 @@
           no: "You're 25 and the daily multi is enough for now. Or you have specific health conditions — talk to a doctor before stacking NAD+, resveratrol, and the rest."
         }
       },
+      foundation: {
+        intro: "The five supplements that cover the nutritional floor. <em>Without these, every other supplement underperforms.</em> With them, your skin, sleep, energy, and digestion all have what they need to do their jobs. The cheapest insurance you'll buy for your future health — and the daily baseline you build everything else on top of.",
+        supplements: [
+          { name: "Multi",    note: "Morning, with breakfast. The nutrient floor — covers vitamin and mineral gaps that quietly show up in skin, energy, and immunity when ignored." },
+          { name: "Sunshine", note: "Morning, with food. Vitamin D3 cholecalciferol — bone density, immune balance, hormone production. Most people are deficient and don't know it." },
+          { name: "Flow",     note: "With a meal. 1000mg omega-3 concentrate. Feeds the skin barrier, brain, joints, and cardiovascular system in parallel — multi-system insurance." },
+          { name: "Biome",    note: "Morning, on an empty stomach. Four-strain probiotic at 40 billion CFU. The gut-skin axis is real — clear skin follows a calm gut." },
+          { name: "Calm",     note: "Anytime, with water (evening preferred). 275mg magnesium glycinate — calms the nervous system, supports recovery, the form your body actually absorbs." }
+        ],
+        whyItWorks: {
+          lead: "Most people are quietly deficient in one or more of these five compounds without realizing it. Each addresses a foundational system: nutrition (Multi), hormone/immunity (Sunshine), inflammation (Flow), gut/skin axis (Biome), and stress/recovery (Calm). Cover the floor properly, and every other intervention — supplements, skincare, training — works better.",
+          mechanisms: [
+            { problem: "Nutrient gaps",         solution: "Multi covers vitamins, minerals, antioxidants the modern diet often misses" },
+            { problem: "Hormone/immunity dips", solution: "Sunshine restores vitamin D — vital for both, frequently deficient indoors" },
+            { problem: "Chronic inflammation",  solution: "Flow's omega-3s rebalance the inflammatory pathway from the inside out" },
+            { problem: "Gut + skin imbalance",  solution: "Biome supports the gut-skin axis that drives clear skin and digestion" }
+          ]
+        },
+        whoItsFor: {
+          yes: "You take your health seriously but haven't built a foundational supplement routine yet — or you're inconsistent with food and want to make sure your nutritional floor is covered. This is the non-negotiable starting point.",
+          no: "You already eat a perfectly varied whole-food diet, get 20+ minutes of daily sun, sleep 8 hours, and have ideal labs. (Almost nobody actually does — but if you genuinely do, you don't need this.)"
+        }
+      },
       glow: {
         intro: "The brightness stack — <em>inside and out.</em> Vitamin C and niacinamide topically for tone correction, antioxidants and collagen internally for the compound effect, oil to seal, weekly mask for the deeper reset. Built to compound: each product reinforces what the others are doing.",
         am: [
