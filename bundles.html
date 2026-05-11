@@ -249,10 +249,13 @@
   .tracker-count { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 500; color: var(--ink); margin-bottom: 10px; line-height: 1; }
   .tracker-count em { font-style: italic; color: var(--sage); }
 
-  /* Bar + marker pins — three checkpoints at 33/66/100 % */
-  .tracker-bar-wrap { position: relative; padding: 14px 0 8px; }
-  .tracker-bar { height: 4px; background: var(--tan); border-radius: 2px; overflow: hidden; }
-  .tracker-fill { height: 100%; background: var(--gold); width: 0%; transition: width 0.5s ease; }
+  /* Bar + marker pins — three checkpoints at 33/66/100 % of the bar.
+     Bar is inset 11px on each side via wrap's horizontal padding, so the 9-marker
+     (centered on the bar's right edge with translate -50%) lands cleanly inside
+     the card, not overflowing past the right border. */
+  .tracker-bar-wrap { position: relative; padding: 14px 11px 22px; }
+  .tracker-bar { position: relative; height: 4px; background: var(--tan); border-radius: 2px; }
+  .tracker-fill { height: 100%; background: var(--gold); width: 0%; transition: width 0.5s ease; border-radius: 2px; }
   .tracker-marker {
     position: absolute;
     top: 50%;
@@ -1142,10 +1145,12 @@
         <div class="tracker-progress">
           <div class="tracker-count"><span id="selectedCount">0</span> selected</div>
           <div class="tracker-bar-wrap">
-            <div class="tracker-bar"><div class="tracker-fill"></div></div>
-            <div class="tracker-marker" data-threshold="3" style="left:33.33%"><span class="marker-dot">3</span><span class="marker-label">10%</span></div>
-            <div class="tracker-marker" data-threshold="6" style="left:66.66%"><span class="marker-dot">6</span><span class="marker-label">12%</span></div>
-            <div class="tracker-marker" data-threshold="9" style="left:100%"><span class="marker-dot">9</span><span class="marker-label">15%</span></div>
+            <div class="tracker-bar">
+              <div class="tracker-fill"></div>
+              <div class="tracker-marker" data-threshold="3" style="left:33.33%"><span class="marker-dot">3</span><span class="marker-label">10%</span></div>
+              <div class="tracker-marker" data-threshold="6" style="left:66.66%"><span class="marker-dot">6</span><span class="marker-label">12%</span></div>
+              <div class="tracker-marker" data-threshold="9" style="left:100%"><span class="marker-dot">9</span><span class="marker-label">15%</span></div>
+            </div>
           </div>
           <div class="tracker-next" id="trackerNext">Pick 3 to start saving</div>
         </div>
@@ -1194,16 +1199,6 @@
         <div class="bundle-subscribe-toggle" data-bundle-id="byo"><button type="button" data-mode="once" class="active"><div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">One-Time</span></div><span class="toggle-meta">Single delivery</span></button><button type="button" data-mode="subscribe"><div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">Monthly</span></div><span class="toggle-meta">Cancel anytime</span></button></div>
         <button class="byo-popup-cta" id="byoAddBundle">Add Custom Bundle to Cart →</button>
       </div>
-    </div>
-  </div>
-
-  <!-- CLOSING -->
-  <div class="closing">
-    <h2>Or build <em>your own</em> stack.</h2>
-    <p>Every bundle here is a starting point — but the line was built so you can mix and match. Start with one ritual, add what you actually need, swap out what doesn't fit. The point is the routine, not the box.</p>
-    <div class="closing-btns">
-      <a href="skincare.html" class="closing-btn primary">Shop Skincare →</a>
-      <a href="supplements.html" class="closing-btn secondary">Shop Supplements →</a>
     </div>
   </div>
 
@@ -1266,35 +1261,9 @@
       </div>
       <a href="mailto:daniel@danielshouse.com" class="footer-email">daniel@danielshouse.com</a>
     </div>
-    <div class="footer-col">
-      <h4>Shop</h4>
-      <ul>
-        <li><a href="skincare.html">Skincare</a></li>
-        <li><a href="supplements.html">Supplements</a></li>
-        <li><a href="ingredients.html">Ingredients</a></li>
-        <li><a href="bundles.html">Bundles</a></li>
-        <li><a href="bundles.html">Bundles</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>The House</h4>
-      <ul>
-        <li><a href="about.html">Daniel's Story</a></li>
-        <li><a href="about.html">Daniel's Story</a></li>
-        <li><a href="ingredients.html">Ingredient Glossary</a></li>
-        <li><a href="faq.html">Contact</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Help</h4>
-      <ul>
-        <li><a href="faq.html#shipping">Shipping</a></li>
-        <li><a href="faq.html#returns">Returns Policy →</a></li>
-        <li><a href="faq.html#returns">30-Day Guarantee</a></li>
-        <li><a href="faq.html">FAQ</a></li>
-        <li><a href="faq.html">Track Order</a></li>
-      </ul>
-    </div>
+    <div class="footer-col"><h4>Shop</h4><ul><li><a href="skincare.html">Skincare</a></li><li><a href="supplements.html">Supplements</a></li><li><a href="bundles.html">Bundles</a></li><li><a href="shop.html">Concern Bundles</a></li></ul></div>
+    <div class="footer-col"><h4>The House</h4><ul><li><a href="about.html">Daniel's Story</a></li><li><a href="ingredients.html">Ingredient Glossary</a></li><li><a href="quiz.html">Take the Quiz</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
+    <div class="footer-col"><h4>Help</h4><ul><li><a href="faq.html#shipping">Shipping</a></li><li><a href="faq.html#returns">Returns Policy →</a></li><li><a href="faq.html#returns">30-Day Guarantee</a></li><li><a href="faq.html">Contact</a></li></ul></div>
   </div>
   <div class="footer-credit">
     <div class="footer-credit-left">© 2025 Daniel's House. Premium wellness, built on real results.</div>

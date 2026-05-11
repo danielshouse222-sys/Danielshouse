@@ -30,7 +30,9 @@
     padding: 40px 20px 20px;
     flex-wrap: wrap;
     background: var(--cream-warm);
+    position: relative;
   }
+  .ing-tab-group { position: relative; }
   .ing-tab {
     background: transparent;
     border: 1px solid var(--rule);
@@ -41,12 +43,133 @@
     text-transform: uppercase;
     font-weight: 500;
     transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+    color: var(--ink);
   }
   .ing-tab:hover { background: var(--cream); }
   .ing-tab.active {
     background: var(--ink);
     color: var(--cream);
     border-color: var(--ink);
+  }
+  .ing-tab-chevron {
+    font-size: 9px;
+    transform: translateY(-1px);
+    transition: transform 0.3s ease;
+    opacity: 0.7;
+  }
+  .ing-tab-group.open .ing-tab-chevron { transform: rotate(180deg) translateY(1px); }
+  /* Active-dot shows when this tab has a sub-filter set */
+  .ing-tab-active-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 100%;
+    background: var(--gold);
+    margin-left: -2px;
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+  .ing-tab.has-subfilter .ing-tab-active-dot { opacity: 1; }
+
+  /* Dropdown panel — opens below each tab */
+  .ing-tab-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%) translateY(-8px);
+    min-width: 280px;
+    max-width: 460px;
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    box-shadow: 0 12px 32px rgba(31, 27, 23, 0.12);
+    padding: 22px 24px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    z-index: 40;
+    text-align: left;
+  }
+  .ing-tab-group.open .ing-tab-dropdown {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateX(-50%) translateY(0);
+  }
+  .ing-tab-dropdown::before {
+    /* Small arrow pointer at the top */
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 11px; height: 11px;
+    background: var(--cream);
+    border-left: 1px solid var(--rule);
+    border-top: 1px solid var(--rule);
+  }
+  .ing-dropdown-section { margin-bottom: 18px; }
+  .ing-dropdown-section:last-child { margin-bottom: 0; }
+  .ing-dropdown-label {
+    font-family: 'Poppins', sans-serif;
+    font-size: 9.5px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    font-weight: 600;
+    margin-bottom: 10px;
+    opacity: 0.7;
+  }
+  .ing-dropdown-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .ing-subfilter {
+    background: var(--cream-warm);
+    border: 1px solid var(--rule);
+    padding: 7px 12px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--ink-soft);
+    transition: all 0.25s;
+    border-radius: 100px;
+  }
+  .ing-subfilter:hover {
+    border-color: var(--gold);
+    color: var(--ink);
+  }
+  .ing-subfilter.active {
+    background: var(--ink);
+    color: var(--cream);
+    border-color: var(--ink);
+  }
+  .ing-empty {
+    grid-column: 1 / -1;
+    padding: 60px 20px;
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--ink-soft);
+  }
+
+  /* Mobile — dropdowns become full-width below the tabs row */
+  @media (max-width: 720px) {
+    .ing-tab-dropdown {
+      min-width: 0;
+      width: calc(100vw - 24px);
+      max-width: calc(100vw - 24px);
+      left: 50%;
+      padding: 18px 18px;
+    }
+    .ing-tab { padding: 9px 16px; font-size: 10.5px; }
   }
 
   .ing-content {
@@ -311,11 +434,31 @@
   <p class="ing-tagline">Every key active in the house, explained — with what it does, evidence level, and which products use it.</p>
 </section>
 
-<div class="ing-tabs">
-  <button class="ing-tab active" data-cat="all">All Ingredients</button>
-  <button class="ing-tab" data-cat="skincare">Skincare</button>
-  <button class="ing-tab" data-cat="supplement">Supplements</button>
-  <button class="ing-tab" data-cat="strong">Strong Evidence</button>
+<div class="ing-tabs" id="ingTabs">
+  <div class="ing-tab-group" data-cat="all">
+    <button class="ing-tab active" data-cat="all" aria-haspopup="true" aria-expanded="false">
+      All Ingredients <span class="ing-tab-chevron">▾</span><span class="ing-tab-active-dot"></span>
+    </button>
+    <div class="ing-tab-dropdown" data-for="all"></div>
+  </div>
+  <div class="ing-tab-group" data-cat="skincare">
+    <button class="ing-tab" data-cat="skincare" aria-haspopup="true" aria-expanded="false">
+      Skincare <span class="ing-tab-chevron">▾</span><span class="ing-tab-active-dot"></span>
+    </button>
+    <div class="ing-tab-dropdown" data-for="skincare"></div>
+  </div>
+  <div class="ing-tab-group" data-cat="supplement">
+    <button class="ing-tab" data-cat="supplement" aria-haspopup="true" aria-expanded="false">
+      Supplements <span class="ing-tab-chevron">▾</span><span class="ing-tab-active-dot"></span>
+    </button>
+    <div class="ing-tab-dropdown" data-for="supplement"></div>
+  </div>
+  <div class="ing-tab-group" data-cat="strong">
+    <button class="ing-tab" data-cat="strong" aria-haspopup="true" aria-expanded="false">
+      Strong Evidence <span class="ing-tab-chevron">▾</span><span class="ing-tab-active-dot"></span>
+    </button>
+    <div class="ing-tab-dropdown" data-for="strong"></div>
+  </div>
 </div>
 
 <div class="ing-content">
@@ -345,7 +488,7 @@
       </div>
       <a href="mailto:daniel@danielshouse.com" class="footer-email">daniel@danielshouse.com</a>
     </div>
-    <div class="footer-col"><h4>Shop</h4><ul><li><a href="skincare.html">Skincare</a></li><li><a href="supplements.html">Supplements</a></li><li><a href="bundles.html">Bundles</a></li><li><a href="shop.html">Shop by Concern</a></li></ul></div>
+    <div class="footer-col"><h4>Shop</h4><ul><li><a href="skincare.html">Skincare</a></li><li><a href="supplements.html">Supplements</a></li><li><a href="bundles.html">Bundles</a></li><li><a href="shop.html">Concern Bundles</a></li></ul></div>
     <div class="footer-col"><h4>The House</h4><ul><li><a href="about.html">Daniel's Story</a></li><li><a href="ingredients.html">Ingredient Glossary</a></li><li><a href="quiz.html">Take the Quiz</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
     <div class="footer-col"><h4>Help</h4><ul><li><a href="faq.html#shipping">Shipping</a></li><li><a href="faq.html#returns">Returns Policy →</a></li><li><a href="faq.html#returns">30-Day Guarantee</a></li><li><a href="faq.html">Contact</a></li></ul></div>
   </div>
@@ -395,44 +538,77 @@
 <script>
 const INGREDIENTS = [
   // SKINCARE
-  { name: 'Niacinamide', alt: 'Vitamin B3', cat: 'skincare', evidence: 'strong', body: 'Refines pore appearance, evens skin tone, strengthens the moisture barrier. One of the most-studied actives in dermatology — clinical evidence dating back decades. Most-effective at 2-5% concentrations.', products: ['the-house-boost', 'the-house-defense', 'the-house-soft'] },
-  { name: 'Retinol', alt: 'Vitamin A', cat: 'skincare', evidence: 'strong', body: 'The gold-standard anti-aging ingredient. Stimulates cell turnover, supports collagen production, reduces fine lines and texture irregularities. Multi-decade clinical evidence — the most-prescribed dermatology active worldwide.', products: ['the-house-bounce'] },
-  { name: 'Hyaluronic Acid', alt: 'Sodium hyaluronate', cat: 'skincare', evidence: 'strong', body: 'A humectant that holds up to 1,000x its weight in water. Multi-weight formulations work at multiple skin depths — surface plumping plus deep hydration. Plumps fine lines and improves elasticity.', products: ['the-house-hyaluronic', 'the-house-hydration', 'the-house-soft'] },
-  { name: 'Vitamin C', alt: 'Ascorbic acid, ascorbyl phosphate', cat: 'skincare', evidence: 'strong', body: 'Brightens dull skin, supports collagen synthesis, neutralizes free radicals from environmental damage. Stable forms (ascorbyl phosphate, tetrahexyldecyl ascorbate) avoid the oxidation issues of L-ascorbic acid.', products: ['the-house-boost', 'the-house-defense'] },
-  { name: 'Glycolic Acid', alt: 'AHA', cat: 'skincare', evidence: 'strong', body: 'Alpha hydroxy acid that resurfaces dead skin cells, reveals smoother texture, and supports cell turnover. Effective at 5-10% concentrations for nightly use; deeper professional peels go higher.', products: ['the-house-renewal'] },
-  { name: 'Salicylic Acid', alt: 'BHA', cat: 'skincare', evidence: 'strong', body: 'Beta hydroxy acid; oil-soluble so it penetrates pores. Dissolves the cellular and oil debris that causes blackheads and acne. The single most-validated topical for acne-prone skin.', products: ['the-house-clear'] },
-  { name: 'Peptides', alt: 'Matrixyl, Argireline', cat: 'skincare', evidence: 'moderate', body: 'Short chains of amino acids that signal collagen production and relax expression lines. Matrixyl 3000 stimulates collagen; Argireline reduces dynamic wrinkle formation. Visible results compound over 8-12 weeks.', products: ['the-house-firm'] },
-  { name: 'Squalane', alt: 'Plant-derived squalane', cat: 'skincare', evidence: 'moderate', body: 'Plant-derived oil that mimics the skin\'s natural sebum. Deeply moisturizing without greasiness; non-comedogenic. The cushioning agent that pairs especially well with retinol products.', products: ['the-house-bounce', 'the-house-defense', 'the-house-renewal'] },
-  { name: 'Caffeine', alt: 'Trimethylxanthine', cat: 'skincare', evidence: 'moderate', body: 'Topical caffeine reduces puffiness, brightens, supports microcirculation in the eye area. Vasoconstrictive properties measurably reduce dark circle appearance.', products: ['the-house-defense', 'the-house-eye'] },
-  { name: 'Witch Hazel', alt: 'Hamamelis', cat: 'skincare', evidence: 'moderate', body: 'Naturally derived plant astringent. Balances oil without harsh stripping. Tannins provide soothing and clarifying action — much gentler than alcohol-based toners.', products: ['the-house-balance', 'the-house-clear'] },
+  { name: 'Niacinamide', alt: 'Vitamin B3', cat: 'skincare', evidence: 'strong', tags: ['brightening','protecting','calming'], body: 'Refines pore appearance, evens skin tone, strengthens the moisture barrier. One of the most-studied actives in dermatology — clinical evidence dating back decades. Most-effective at 2-5% concentrations.', products: ['the-house-boost', 'the-house-defense', 'the-house-soft'] },
+  { name: 'Retinol', alt: 'Vitamin A', cat: 'skincare', evidence: 'strong', tags: ['anti-aging','firming'], body: 'The gold-standard anti-aging ingredient. Stimulates cell turnover, supports collagen production, reduces fine lines and texture irregularities. Multi-decade clinical evidence — the most-prescribed dermatology active worldwide.', products: ['the-house-bounce'] },
+  { name: 'Hyaluronic Acid', alt: 'Sodium hyaluronate', cat: 'skincare', evidence: 'strong', tags: ['hydrating'], body: 'A humectant that holds up to 1,000x its weight in water. Multi-weight formulations work at multiple skin depths — surface plumping plus deep hydration. Plumps fine lines and improves elasticity.', products: ['the-house-hyaluronic', 'the-house-hydration', 'the-house-soft'] },
+  { name: 'Vitamin C', alt: 'Ascorbic acid, ascorbyl phosphate', cat: 'skincare', evidence: 'strong', tags: ['brightening','protecting'], body: 'Brightens dull skin, supports collagen synthesis, neutralizes free radicals from environmental damage. Stable forms (ascorbyl phosphate, tetrahexyldecyl ascorbate) avoid the oxidation issues of L-ascorbic acid.', products: ['the-house-boost', 'the-house-defense'] },
+  { name: 'Glycolic Acid', alt: 'AHA', cat: 'skincare', evidence: 'strong', tags: ['exfoliating','brightening'], body: 'Alpha hydroxy acid that resurfaces dead skin cells, reveals smoother texture, and supports cell turnover. Effective at 5-10% concentrations for nightly use; deeper professional peels go higher.', products: ['the-house-renewal'] },
+  { name: 'Salicylic Acid', alt: 'BHA', cat: 'skincare', evidence: 'strong', tags: ['exfoliating','clarifying'], body: 'Beta hydroxy acid; oil-soluble so it penetrates pores. Dissolves the cellular and oil debris that causes blackheads and acne. The single most-validated topical for acne-prone skin.', products: ['the-house-clear'] },
+  { name: 'Peptides', alt: 'Matrixyl, Argireline', cat: 'skincare', evidence: 'moderate', tags: ['firming','anti-aging'], body: 'Short chains of amino acids that signal collagen production and relax expression lines. Matrixyl 3000 stimulates collagen; Argireline reduces dynamic wrinkle formation. Visible results compound over 8-12 weeks.', products: ['the-house-firm'] },
+  { name: 'Squalane', alt: 'Plant-derived squalane', cat: 'skincare', evidence: 'moderate', tags: ['hydrating','calming'], body: 'Plant-derived oil that mimics the skin\'s natural sebum. Deeply moisturizing without greasiness; non-comedogenic. The cushioning agent that pairs especially well with retinol products.', products: ['the-house-bounce', 'the-house-defense', 'the-house-renewal'] },
+  { name: 'Caffeine', alt: 'Trimethylxanthine', cat: 'skincare', evidence: 'moderate', tags: ['energizing','brightening'], body: 'Topical caffeine reduces puffiness, brightens, supports microcirculation in the eye area. Vasoconstrictive properties measurably reduce dark circle appearance.', products: ['the-house-defense', 'the-house-eye'] },
+  { name: 'Witch Hazel', alt: 'Hamamelis', cat: 'skincare', evidence: 'moderate', tags: ['calming','clarifying'], body: 'Naturally derived plant astringent. Balances oil without harsh stripping. Tannins provide soothing and clarifying action — much gentler than alcohol-based toners.', products: ['the-house-balance', 'the-house-clear'] },
 
   // SUPPLEMENTS — STRONG EVIDENCE
-  { name: 'Magnesium Glycinate', alt: 'Magnesium chelate', cat: 'supplement', evidence: 'strong', body: 'Chelated magnesium with superior bioavailability and zero laxative effect. Supports sleep quality, muscle relaxation, and nervous system function. The form your nervous system can actually use.', products: ['the-house-calm'] },
-  { name: 'Vitamin D3', alt: 'Cholecalciferol', cat: 'supplement', evidence: 'strong', body: 'The active form of Vitamin D. Decades of evidence for bone density, immune balance, mood regulation, and hormone support. An estimated 35% of US adults are deficient — supplementation reliably closes the gap.', products: ['the-house-sunshine', 'the-house-multi'] },
-  { name: 'Omega-3 (EPA + DHA)', alt: 'Fish oil', cat: 'supplement', evidence: 'strong', body: 'Long-chain marine omega-3s — among the most-studied supplements in nutrition science. Cardiovascular benefits, reduced inflammatory markers, cognitive support. EPA targets inflammation; DHA targets brain and vision.', products: ['the-house-flow'] },
-  { name: 'Creatine Monohydrate', alt: 'Creapure®', cat: 'supplement', evidence: 'strong', body: 'The most-studied performance supplement on the shelf. Hundreds of trials confirm benefits for muscle strength, recovery, and increasingly, cognitive function. Pharmaceutical-grade Creapure is the gold standard form.', products: ['the-house-power'] },
-  { name: 'KSM-66 Ashwagandha', alt: 'Withania somnifera', cat: 'supplement', evidence: 'strong', body: 'The most-studied standardized ashwagandha extract — 24+ randomized controlled trials. Reduces cortisol, supports stress resilience, improves sleep markers. Adaptogenic without sedation.', products: ['the-house-tranquil'] },
-  { name: 'Curcumin (95%)', alt: 'Turmeric extract', cat: 'supplement', evidence: 'strong', body: 'Most-studied anti-inflammatory natural compound. Reduces joint inflammation, supports recovery. BioPerine (black pepper extract) increases absorption up to 2,000x.', products: ['the-house-restore'] },
-  { name: 'CoQ10', alt: 'Coenzyme Q10, Ubiquinone', cat: 'supplement', evidence: 'strong', body: 'Critical for cellular energy (ATP) production. Especially relevant for adults over 40 and people on statins (which deplete CoQ10). Cardiovascular and cellular energy support backed by extensive research.', products: ['the-house-vitality'] },
-  { name: 'Probiotic Strains', alt: 'L. acidophilus, B. lactis, etc.', cat: 'supplement', evidence: 'strong', body: 'Multi-strain probiotic blends support gut diversity, digestive health, immune function, and the gut-brain axis. MAKTREK Bi-Pass technology ensures probiotics survive stomach acid for delivery to the gut.', products: ['the-house-biome'] },
+  { name: 'Magnesium Glycinate', alt: 'Magnesium chelate', cat: 'supplement', evidence: 'strong', tags: ['sleep','stress','recovery'], body: 'Chelated magnesium with superior bioavailability and zero laxative effect. Supports sleep quality, muscle relaxation, and nervous system function. The form your nervous system can actually use.', products: ['the-house-calm'] },
+  { name: 'Vitamin D3', alt: 'Cholecalciferol', cat: 'supplement', evidence: 'strong', tags: ['immunity','daily'], body: 'The active form of Vitamin D. Decades of evidence for bone density, immune balance, mood regulation, and hormone support. An estimated 35% of US adults are deficient — supplementation reliably closes the gap.', products: ['the-house-sunshine', 'the-house-multi'] },
+  { name: 'Omega-3 (EPA + DHA)', alt: 'Fish oil', cat: 'supplement', evidence: 'strong', tags: ['daily','anti-aging'], body: 'Long-chain marine omega-3s — among the most-studied supplements in nutrition science. Cardiovascular benefits, reduced inflammatory markers, cognitive support. EPA targets inflammation; DHA targets brain and vision.', products: ['the-house-flow'] },
+  { name: 'Creatine Monohydrate', alt: 'Creapure®', cat: 'supplement', evidence: 'strong', tags: ['recovery','focus'], body: 'The most-studied performance supplement on the shelf. Hundreds of trials confirm benefits for muscle strength, recovery, and increasingly, cognitive function. Pharmaceutical-grade Creapure is the gold standard form.', products: ['the-house-power'] },
+  { name: 'KSM-66 Ashwagandha', alt: 'Withania somnifera', cat: 'supplement', evidence: 'strong', tags: ['stress','sleep'], body: 'The most-studied standardized ashwagandha extract — 24+ randomized controlled trials. Reduces cortisol, supports stress resilience, improves sleep markers. Adaptogenic without sedation.', products: ['the-house-tranquil'] },
+  { name: 'Curcumin (95%)', alt: 'Turmeric extract', cat: 'supplement', evidence: 'strong', tags: ['recovery','anti-aging'], body: 'Most-studied anti-inflammatory natural compound. Reduces joint inflammation, supports recovery. BioPerine (black pepper extract) increases absorption up to 2,000x.', products: ['the-house-restore'] },
+  { name: 'CoQ10', alt: 'Coenzyme Q10, Ubiquinone', cat: 'supplement', evidence: 'strong', tags: ['energy','anti-aging'], body: 'Critical for cellular energy (ATP) production. Especially relevant for adults over 40 and people on statins (which deplete CoQ10). Cardiovascular and cellular energy support backed by extensive research.', products: ['the-house-vitality'] },
+  { name: 'Probiotic Strains', alt: 'L. acidophilus, B. lactis, etc.', cat: 'supplement', evidence: 'strong', tags: ['gut','immunity','daily'], body: 'Multi-strain probiotic blends support gut diversity, digestive health, immune function, and the gut-brain axis. MAKTREK Bi-Pass technology ensures probiotics survive stomach acid for delivery to the gut.', products: ['the-house-biome'] },
 
   // SUPPLEMENTS — MODERATE / EMERGING
-  { name: 'NAD+', alt: 'Nicotinamide adenine dinucleotide', cat: 'supplement', evidence: 'emerging', body: 'Critical coenzyme for cellular energy and DNA repair; declines with age. Emerging clinical research supports NAD+ precursor supplementation for cellular health markers. Exciting frontier of longevity science.', products: ['the-house-nad-plus'] },
-  { name: 'Resveratrol', alt: 'Trans-resveratrol', cat: 'supplement', evidence: 'moderate', body: 'Polyphenol from Japanese knotweed (richer source than red wine). Activates longevity pathways (sirtuins) in research models. Synergistic with quercetin for absorption.', products: ['the-house-nad-plus'] },
-  { name: 'Lion\'s Mane', alt: 'Hericium erinaceus', cat: 'supplement', evidence: 'moderate', body: 'Functional mushroom; supports nerve growth factor production and cognitive function. Multiple clinical trials show measurable cognitive enhancement, particularly memory consolidation.', products: ['the-house-synapse'] },
-  { name: 'L-Citrulline', alt: 'L-Citrulline DL-Malate', cat: 'supplement', evidence: 'strong', body: 'Boosts nitric oxide production for improved blood flow and exercise performance. The smoother, longer-lasting alternative to L-arginine for pre-workout pump.', products: ['the-house-pump'] },
-  { name: 'L-Glutamine', alt: 'L-Glutamine free-form', cat: 'supplement', evidence: 'moderate', body: 'Most abundant amino acid in the body. Supports gut barrier integrity, exercise recovery, and immune function. Particularly valuable for athletes and those with high physical or stress demands.', products: ['the-house-seal'] },
-  { name: 'Bacopa Monnieri', alt: 'Brahmi', cat: 'supplement', evidence: 'moderate', body: 'Adaptogen with measurable cognitive benefits — particularly memory consolidation and information processing speed. Effects compound over 4-8 weeks of consistent use.', products: ['the-house-focus'] },
-  { name: 'Marine Collagen', alt: 'Hydrolyzed marine peptides', cat: 'supplement', evidence: 'strong', body: 'Hydrolyzed collagen peptides demonstrate measurable improvements in skin elasticity, hydration, and dermal density across multiple double-blind clinical trials.', products: ['the-house-radiance'] },
-  { name: 'Bovine Collagen', alt: 'Type I & III peptides', cat: 'supplement', evidence: 'strong', body: 'Grass-fed bovine hide collagen peptides, types I and III. Supports skin firmness, joint health, hair strength, and nail growth. Dissolves cleanly in any liquid, hot or cold.', products: ['the-house-collagen'] },
-  { name: 'Biotin', alt: 'Vitamin B7', cat: 'supplement', evidence: 'moderate', body: 'B-vitamin essential for hair, skin, and nail metabolism. Most-recognized "beauty B." Supplementation helps when dietary intake is insufficient or absorption is impaired.', products: ['the-house-radiance'] },
-  { name: 'Caffeine + EGCG', alt: 'Green tea + caffeine', cat: 'supplement', evidence: 'moderate', body: 'Caffeine paired with green tea catechins demonstrates measurable thermogenic effects. The clean-energy combo for sustained mental and physical output.', products: ['the-house-burn'] },
-  { name: 'Glucosamine + Chondroitin', alt: 'Joint complex', cat: 'supplement', evidence: 'moderate', body: 'Building blocks of cartilage. Supports joint cushioning and repair. Most effective when combined and taken consistently for 8-12 weeks.', products: ['the-house-restore'] },
-  { name: 'Alpha GPC', alt: 'L-Alpha glycerylphosphorylcholine', cat: 'supplement', evidence: 'moderate', body: 'Choline source that crosses the blood-brain barrier. Supports acetylcholine production for focus and cognitive function. Faster-acting than other choline forms.', products: ['the-house-focus'] },
+  { name: 'NAD+', alt: 'Nicotinamide adenine dinucleotide', cat: 'supplement', evidence: 'emerging', tags: ['anti-aging','energy'], body: 'Critical coenzyme for cellular energy and DNA repair; declines with age. Emerging clinical research supports NAD+ precursor supplementation for cellular health markers. Exciting frontier of longevity science.', products: ['the-house-nad-plus'] },
+  { name: 'Resveratrol', alt: 'Trans-resveratrol', cat: 'supplement', evidence: 'moderate', tags: ['anti-aging','daily'], body: 'Polyphenol from Japanese knotweed (richer source than red wine). Activates longevity pathways (sirtuins) in research models. Synergistic with quercetin for absorption.', products: ['the-house-nad-plus'] },
+  { name: 'Lion\'s Mane', alt: 'Hericium erinaceus', cat: 'supplement', evidence: 'moderate', tags: ['focus','anti-aging'], body: 'Functional mushroom; supports nerve growth factor production and cognitive function. Multiple clinical trials show measurable cognitive enhancement, particularly memory consolidation.', products: ['the-house-synapse'] },
+  { name: 'L-Citrulline', alt: 'L-Citrulline DL-Malate', cat: 'supplement', evidence: 'strong', tags: ['energy','recovery'], body: 'Boosts nitric oxide production for improved blood flow and exercise performance. The smoother, longer-lasting alternative to L-arginine for pre-workout pump.', products: ['the-house-pump'] },
+  { name: 'L-Glutamine', alt: 'L-Glutamine free-form', cat: 'supplement', evidence: 'moderate', tags: ['recovery','gut'], body: 'Most abundant amino acid in the body. Supports gut barrier integrity, exercise recovery, and immune function. Particularly valuable for athletes and those with high physical or stress demands.', products: ['the-house-seal'] },
+  { name: 'Bacopa Monnieri', alt: 'Brahmi', cat: 'supplement', evidence: 'moderate', tags: ['focus'], body: 'Adaptogen with measurable cognitive benefits — particularly memory consolidation and information processing speed. Effects compound over 4-8 weeks of consistent use.', products: ['the-house-focus'] },
+  { name: 'Marine Collagen', alt: 'Hydrolyzed marine peptides', cat: 'supplement', evidence: 'strong', tags: ['beauty','anti-aging'], body: 'Hydrolyzed collagen peptides demonstrate measurable improvements in skin elasticity, hydration, and dermal density across multiple double-blind clinical trials.', products: ['the-house-radiance'] },
+  { name: 'Bovine Collagen', alt: 'Type I & III peptides', cat: 'supplement', evidence: 'strong', tags: ['beauty','anti-aging','recovery'], body: 'Grass-fed bovine hide collagen peptides, types I and III. Supports skin firmness, joint health, hair strength, and nail growth. Dissolves cleanly in any liquid, hot or cold.', products: ['the-house-collagen'] },
+  { name: 'Biotin', alt: 'Vitamin B7', cat: 'supplement', evidence: 'moderate', tags: ['beauty','daily'], body: 'B-vitamin essential for hair, skin, and nail metabolism. Most-recognized "beauty B." Supplementation helps when dietary intake is insufficient or absorption is impaired.', products: ['the-house-radiance'] },
+  { name: 'Caffeine + EGCG', alt: 'Green tea + caffeine', cat: 'supplement', evidence: 'moderate', tags: ['energy','focus'], body: 'Caffeine paired with green tea catechins demonstrates measurable thermogenic effects. The clean-energy combo for sustained mental and physical output.', products: ['the-house-burn'] },
+  { name: 'Glucosamine + Chondroitin', alt: 'Joint complex', cat: 'supplement', evidence: 'moderate', tags: ['recovery'], body: 'Building blocks of cartilage. Supports joint cushioning and repair. Most effective when combined and taken consistently for 8-12 weeks.', products: ['the-house-restore'] },
+  { name: 'Alpha GPC', alt: 'L-Alpha glycerylphosphorylcholine', cat: 'supplement', evidence: 'moderate', tags: ['focus'], body: 'Choline source that crosses the blood-brain barrier. Supports acetylcholine production for focus and cognitive function. Faster-acting than other choline forms.', products: ['the-house-focus'] },
 ];
+
+// Tag taxonomy — used to build the per-tab dropdown sub-filters
+const TAG_TAXONOMY = {
+  effect: [
+    { value: 'hydrating',  label: 'Hydrating' },
+    { value: 'brightening',label: 'Brightening' },
+    { value: 'firming',    label: 'Firming' },
+    { value: 'exfoliating',label: 'Exfoliating' },
+    { value: 'protecting', label: 'Protecting' },
+    { value: 'calming',    label: 'Calming' },
+    { value: 'clarifying', label: 'Clarifying' },
+    { value: 'energizing', label: 'Energizing' },
+    { value: 'anti-aging', label: 'Anti-Aging' },
+  ],
+  goal: [
+    { value: 'sleep',      label: 'Sleep' },
+    { value: 'energy',     label: 'Energy' },
+    { value: 'stress',     label: 'Stress' },
+    { value: 'focus',      label: 'Focus' },
+    { value: 'recovery',   label: 'Recovery' },
+    { value: 'beauty',     label: 'Beauty' },
+    { value: 'anti-aging', label: 'Anti-Aging' },
+    { value: 'immunity',   label: 'Immunity' },
+    { value: 'gut',        label: 'Gut Health' },
+    { value: 'daily',      label: 'Daily' },
+  ]
+};
 
 const grid = document.getElementById('ing-grid');
 const tabs = document.querySelectorAll('.ing-tab');
+const tabsRoot = document.getElementById('ingTabs');
+
+// ── Filter state (two-axis: main category + optional sub-tag) ────────────
+const state = { cat: 'all', tag: '' };
+// Per-category sub-tag memory — so toggling tabs preserves chosen sub-filters
+const tagByCat = { all: '', skincare: '', supplement: '', strong: '' };
 
 function getProductLink(slug) {
   const p = window.getProductBySlug ? window.getProductBySlug(slug) : null;
@@ -440,11 +616,22 @@ function getProductLink(slug) {
   return `<a href="product.html?slug=${slug}">${p.name}</a>`;
 }
 
-function renderIngredients(filter) {
-  const filtered = filter === 'all' ? INGREDIENTS :
-    filter === 'strong' ? INGREDIENTS.filter(i => i.evidence === 'strong') :
-    INGREDIENTS.filter(i => i.cat === filter);
+function matchesMain(i, cat) {
+  if (cat === 'all') return true;
+  if (cat === 'strong') return i.evidence === 'strong';
+  return i.cat === cat;
+}
+function matchesTag(i, tag) {
+  if (!tag) return true;
+  return (i.tags || []).includes(tag);
+}
 
+function renderIngredients() {
+  const filtered = INGREDIENTS.filter(i => matchesMain(i, state.cat) && matchesTag(i, state.tag));
+  if (filtered.length === 0) {
+    grid.innerHTML = '<div class="ing-empty">No ingredients match this filter. Try a different sub-filter.</div>';
+    return;
+  }
   grid.innerHTML = filtered.map(i => `
     <div class="ing-card">
       <div class="ing-card-tag">${i.cat === 'skincare' ? 'Skincare' : 'Supplement'}</div>
@@ -460,16 +647,120 @@ function renderIngredients(filter) {
   `).join('');
 }
 
+// ── Build dropdown content for each tab ─────────────────────────────────
+// Each tab gets the sub-filters relevant to its scope. Effect chips for
+// skincare, Goal chips for supplements, both for all/strong.
+function buildDropdownSections(cat) {
+  // Determine which ingredients are in this scope, then only show sub-filters
+  // that actually have at least one matching ingredient.
+  const scope = INGREDIENTS.filter(i => matchesMain(i, cat));
+  const usedTags = new Set();
+  scope.forEach(i => (i.tags || []).forEach(t => usedTags.add(t)));
+
+  const sections = [];
+  if (cat === 'skincare') {
+    sections.push({ label: 'Effect', tags: TAG_TAXONOMY.effect.filter(t => usedTags.has(t.value)) });
+  } else if (cat === 'supplement') {
+    sections.push({ label: 'Goal', tags: TAG_TAXONOMY.goal.filter(t => usedTags.has(t.value)) });
+  } else {
+    // all / strong — show both groups
+    sections.push({ label: 'Effect', tags: TAG_TAXONOMY.effect.filter(t => usedTags.has(t.value)) });
+    sections.push({ label: 'Goal',   tags: TAG_TAXONOMY.goal.filter(t => usedTags.has(t.value)) });
+  }
+  return sections;
+}
+
+function renderDropdowns() {
+  document.querySelectorAll('.ing-tab-dropdown').forEach(dd => {
+    const cat = dd.dataset.for;
+    const sections = buildDropdownSections(cat);
+    dd.innerHTML = sections.map(sec => `
+      <div class="ing-dropdown-section">
+        <div class="ing-dropdown-label">${sec.label}</div>
+        <div class="ing-dropdown-chips">
+          <button class="ing-subfilter ${tagByCat[cat] === '' ? 'active' : ''}" data-tag="">All</button>
+          ${sec.tags.map(t => `<button class="ing-subfilter ${tagByCat[cat] === t.value ? 'active' : ''}" data-tag="${t.value}">${t.label}</button>`).join('')}
+        </div>
+      </div>
+    `).join('');
+  });
+}
+
+// ── Open/close dropdowns ────────────────────────────────────────────────
+function closeAllDropdowns() {
+  document.querySelectorAll('.ing-tab-group.open').forEach(g => {
+    g.classList.remove('open');
+    g.querySelector('.ing-tab')?.setAttribute('aria-expanded', 'false');
+  });
+}
+function openDropdown(group) {
+  closeAllDropdowns();
+  group.classList.add('open');
+  group.querySelector('.ing-tab')?.setAttribute('aria-expanded', 'true');
+}
+
+// ── Main click handlers ─────────────────────────────────────────────────
 tabs.forEach(tab => {
-  tab.addEventListener('click', () => {
+  tab.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const cat = tab.dataset.cat;
+    const group = tab.closest('.ing-tab-group');
+    const wasOpen = group.classList.contains('open');
+
+    // Apply category change (and restore that cat's remembered sub-filter)
     tabs.forEach(t => t.classList.remove('active'));
     tab.classList.add('active');
-    renderIngredients(tab.dataset.cat);
+    state.cat = cat;
+    state.tag = tagByCat[cat] || '';
+    renderDropdowns(); // refresh dropdown contents to reflect new scope
+    renderIngredients();
+
+    // Toggle the dropdown for this tab
+    if (wasOpen) {
+      closeAllDropdowns();
+    } else {
+      openDropdown(group);
+    }
   });
 });
 
-// Wait for products.js to load before rendering
-document.addEventListener('DOMContentLoaded', () => renderIngredients('all'));
+// Sub-filter chip clicks (event-delegated since dropdowns re-render)
+tabsRoot.addEventListener('click', (e) => {
+  const chip = e.target.closest('.ing-subfilter');
+  if (!chip) return;
+  e.stopPropagation();
+  const group = chip.closest('.ing-tab-group');
+  const cat = group.dataset.cat;
+  const tag = chip.dataset.tag;
+
+  // Update sub-filter state for this category, mark chip active
+  tagByCat[cat] = tag;
+  state.tag = tag;
+  group.querySelectorAll('.ing-subfilter').forEach(c => c.classList.remove('active'));
+  chip.classList.add('active');
+
+  // Mark/clear the active-dot indicator on the tab
+  group.querySelector('.ing-tab').classList.toggle('has-subfilter', !!tag);
+
+  renderIngredients();
+  closeAllDropdowns();
+});
+
+// Click outside the tabs row closes any open dropdown
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('#ingTabs')) closeAllDropdowns();
+});
+// ESC closes too
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeAllDropdowns();
+});
+
+// Initial render
+renderDropdowns();
+renderIngredients();
+
+// Re-render after products.js loads (so product-name links resolve)
+document.addEventListener('DOMContentLoaded', () => renderIngredients());
 </script>
 </body>
 </html>
