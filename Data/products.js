@@ -1564,20 +1564,22 @@ window.CURATED_BUNDLES = [
     name: 'The Ultimate Bundle',
     discount: 0.25,
     slugs: [
-      // 10 daily supplements
-      'the-house-multi','the-house-calm','the-house-sunshine','the-house-flow','the-house-biome',
-      'the-house-nad-plus','the-house-vitality','the-house-synapse','the-house-tranquil','the-house-restore',
-      // 6 AM skincare
+      // 6 AM skincare (in routine order: cleanse → tone → serums → moisturize)
       'the-house-wash','the-house-balance','the-house-boost','the-house-hyaluronic','the-house-defense','the-house-soft',
-      // 6 PM skincare
-      'the-house-bounce','the-house-firm','the-house-hydration','the-house-eye','the-house-renewal','the-house-glow'
+      // 6 PM skincare (treatments first, then serums, eye, oil)
+      'the-house-bounce','the-house-renewal','the-house-firm','the-house-hydration','the-house-eye','the-house-glow',
+      // 9 morning/daily supplements (foundation → longevity)
+      'the-house-multi','the-house-sunshine','the-house-flow','the-house-biome','the-house-calm',
+      'the-house-nad-plus','the-house-vitality','the-house-synapse','the-house-restore',
+      // 1 evening supplement
+      'the-house-tranquil'
     ]
   },
   {
     id: 'daniels-daily',
     name: "Daniel's Daily Bundle",
     discount: 0.18,
-    slugs: ['the-house-multi','the-house-calm','the-house-sunshine','the-house-flow','the-house-biome','the-house-nad-plus','the-house-vitality','the-house-synapse','the-house-tranquil','the-house-restore']
+    slugs: ['the-house-multi','the-house-sunshine','the-house-flow','the-house-biome','the-house-calm','the-house-nad-plus','the-house-vitality','the-house-synapse','the-house-restore','the-house-tranquil']
   },
   {
     id: 'am',
@@ -1589,19 +1591,19 @@ window.CURATED_BUNDLES = [
     id: 'pm',
     name: 'The PM Bundle',
     discount: 0.15,
-    slugs: ['the-house-bounce','the-house-firm','the-house-hydration','the-house-eye','the-house-renewal','the-house-glow']
+    slugs: ['the-house-bounce','the-house-renewal','the-house-firm','the-house-hydration','the-house-eye','the-house-glow']
   },
   {
     id: 'workout',
     name: 'The Workout Bundle',
     discount: 0.15,
-    slugs: ['the-house-power','the-house-pump','the-house-seal','the-house-greens','the-house-burn']
+    slugs: ['the-house-greens','the-house-burn','the-house-power','the-house-pump','the-house-seal']
   },
   {
     id: 'longevity',
     name: 'The Longevity Bundle',
     discount: 0.15,
-    slugs: ['the-house-nad-plus','the-house-vitality','the-house-synapse','the-house-tranquil','the-house-restore']
+    slugs: ['the-house-nad-plus','the-house-vitality','the-house-synapse','the-house-restore','the-house-tranquil']
   },
   {
     id: 'glow',
@@ -1625,7 +1627,7 @@ window.CURATED_BUNDLES = [
     id: 'arianas',
     name: "The Ariana's Bundle",
     discount: 0.15,
-    slugs: ['the-house-multi','the-house-radiance','the-house-collagen','the-house-wash','the-house-boost','the-house-defense','the-house-renewal','the-house-eye','the-house-soft']
+    slugs: ['the-house-wash','the-house-boost','the-house-defense','the-house-renewal','the-house-eye','the-house-soft','the-house-multi','the-house-radiance','the-house-collagen']
   }
 ];
 
