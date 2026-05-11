@@ -805,6 +805,29 @@
       refreshBundleDisplay(container, activeBtn?.dataset.mode || 'once');
     });
 
+    // ─ Trust badge: drop a 30-day guarantee reassurance under every bundle purchase CTA ─
+    // Runs site-wide so newly-added bundles automatically inherit it.
+    // Skips the BYO tracker preview CTA (`.builder-cta`) since that's not a purchase action.
+    function injectTrust(btn) {
+      if (!btn || btn.nextElementSibling?.classList.contains('bundle-trust')) return;
+      const trust = document.createElement('div');
+      trust.className = 'bundle-trust';
+      trust.innerHTML = '<span class="bundle-trust-icon">⏱</span><span>30-day money-back guarantee · Free returns · Even on opened products</span>';
+      btn.parentNode.insertBefore(trust, btn.nextSibling);
+    }
+    const trustSelectors = ['.bundle-cta', '.bundle-footnote-cta', '.hero-cta'];
+    trustSelectors.forEach(sel => {
+      document.querySelectorAll(sel).forEach(btn => {
+        if (!btn.matches('[data-bundle-add]')) return;
+        injectTrust(btn);
+      });
+    });
+    // BYO popup CTA — wired dynamically (no data-bundle-add), so attach by ID
+    injectTrust(document.getElementById('byoAddBundle'));
+    // Single product page — Add to Cart on product.html. Target by ID, not class,
+    // since other elements on product.html (e.g. "Browse Bundles") reuse the class.
+    injectTrust(document.getElementById('add-to-cart'));
+
     // Add Bundle to Cart — reads bundle by id, checks subscribe state, adds to cart
     document.querySelectorAll('[data-bundle-add]').forEach(btn => {
       // Skip if bundles.html scoped handler already wired it (it gets to run first)
