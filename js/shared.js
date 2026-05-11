@@ -1154,4 +1154,246 @@
     }
   });
 
+  // ═══ SITE-WIDE INLINE "VIEW DETAILS" DROPDOWN ═══
+  // Converts every .row-view-link into an in-place expandable panel showing
+  // ingredients, how to use, best-for tags, Daniel's tip, free-from badges,
+  // and a fallback "Open full product page" link. Originally lived only on
+  // skincare.html; now lives here so supplements + any other page with the
+  // same .row + .row-view-link structure gets it for free.
+  document.addEventListener('DOMContentLoaded', function() {
+    if (!window.PRODUCTS) return;
+
+    function renderDetailsPanel(product) {
+      const ingredientsHtml = product.ingredients?.length ? `
+        <div class="rd-block">
+          <div class="rd-label">Key Ingredients</div>
+          ${product.ingredients.slice(0, 6).map(ing => `
+            <div class="rd-ingredient">
+              ${ing.role ? `<div class="rd-ing-role">${ing.role}</div>` : ''}
+              <div class="rd-ing-name">${ing.name}</div>
+              ${ing.description ? `<div class="rd-ing-desc">${ing.description}</div>` : ''}
+            </div>
+          `).join('')}
+        </div>
+      ` : '';
+
+      const howToHtml = product.howToUse ? `
+        <div class="rd-block">
+          <div class="rd-label">How to Use</div>
+          <div class="rd-howto">${product.howToUse}</div>
+        </div>
+      ` : '';
+
+      const bestForHtml = product.bestFor?.length ? `
+        <div class="rd-block">
+          <div class="rd-label">Best For</div>
+          <div class="rd-tags">
+            ${product.bestFor.map(t =>
+              `<span class="rd-tag">${t.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}</span>`
+            ).join('')}
+          </div>
+        </div>
+      ` : '';
+
+      const proTipHtml = product.proTip ? `
+        <div class="rd-block">
+          <div class="rd-protip">
+            <div class="rd-protip-label">Daniel's Tip</div>
+            <div class="rd-protip-text">"${product.proTip}"</div>
+          </div>
+        </div>
+      ` : '';
+
+      const freeFromHtml = product.freeFrom?.length ? `
+        <div class="rd-block">
+          <div class="rd-label">Free From</div>
+          <div class="rd-freefrom">
+            ${product.freeFrom.map(f => `<span class="rd-ff-badge">${f}</span>`).join('')}
+          </div>
+        </div>
+      ` : '';
+
+      return `
+        <div class="row-details-inner">
+          <div class="rd-col-main">${ingredientsHtml}</div>
+          <div class="rd-col-side">
+            ${howToHtml}
+            ${bestForHtml}
+            ${proTipHtml}
+            ${freeFromHtml}
+            <a href="product.html?slug=${product.slug}" class="rd-full-link">Open full product page →</a>
+          </div>
+        </div>
+      `;
+    }
+
+    document.querySelectorAll('.row-view-link').forEach(link => {
+      // Skip if this link has already been wired up by a page-local script
+      // (skincare.html still has the inline handler — avoid double-binding)
+      if (link.dataset.dhDropdownBound === '1') return;
+      link.dataset.dhDropdownBound = '1';
+
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        let slug = null;
+        try {
+          const url = new URL(this.href);
+          slug = url.searchParams.get('slug');
+        } catch (_) { /* relative href edge case */ }
+        const product = slug ? window.PRODUCTS.find(p => p.slug === slug) : null;
+        if (!product) {
+          // Fallback — navigate normally if data missing
+          window.location.href = this.href;
+          return;
+        }
+
+        const row = this.closest('.row');
+        if (!row) {
+          window.location.href = this.href;
+          return;
+        }
+        let panel = row.nextElementSibling;
+        const hasPanel = panel && panel.classList && panel.classList.contains('row-details');
+
+        if (!hasPanel) {
+          panel = document.createElement('div');
+          panel.className = 'row-details';
+          panel.innerHTML = renderDetailsPanel(product);
+          row.parentNode.insertBefore(panel, row.nextSibling);
+          void panel.offsetHeight; // force reflow so transition triggers
+          panel.classList.add('open');
+          link.classList.add('expanded');
+          link.innerHTML = 'Hide Details ↑';
+        } else {
+          const willOpen = !panel.classList.contains('open');
+          panel.classList.toggle('open');
+          link.classList.toggle('expanded', willOpen);
+          link.innerHTML = willOpen ? 'Hide Details ↑' : 'View Details →';
+        }
+      });
+    });
+  });
+
+  // ═══ BUNDLE CARD DROPDOWN — INLINE EXPANDABLE DETAILS ═══════════════════
+  // For each .bundle-card on bundles.html, injects a "View Details ↓" link
+  // and an expandable panel that reveals:
+  //   • A bundle-level intro paragraph ("what makes this stack work")
+  //   • Three benefit-tag pills (Built to layer / Tested together / Saves $X)
+  //   • A grid of clickable product mini-cards (each links to product.html)
+  // Mixes option-2 (bundle-level story) + option-1 (per-product mini-cards).
+  document.addEventListener('DOMContentLoaded', function() {
+    if (!window.PRODUCTS || !window.CURATED_BUNDLES) return;
+
+    // Bundle-level "why this stack works" intros — keyed by bundle id.
+    // Kept here (not in products.js) so they're easy to tune editorially.
+    const BUNDLE_INTROS = {
+      ultimate: "Daniel's complete protocol — inside and out. Every product he uses every day, layered in the order they work best. Skincare and supplements aren't separate problems; they're one system. This is that system.",
+      'daniels-daily': "The supplement half of Daniel's daily routine. Five Foundation essentials cover the basics; five Longevity actives reach further — NAD+, creatine, cellular repair. For people who've already dialed in their skincare.",
+      am: "Six steps to start the day with a complete barrier and visible glow. Cleanse, tone, brighten with vitamin C, hydrate with hyaluronic acid, defend with antioxidants, moisturize. Each product layers cleanly into the next.",
+      pm: "Six steps to wake up better skin. Retinol resurfaces, peptides firm, hyaluronic acid plumps, glycolic renews, oil seals. The repair work happens while you sleep — this is what gives it material to work with.",
+      workout: "Built around the gym window. Creatine and protein for performance, electrolytes for recovery, magnesium for sleep that night, ashwagandha to manage cortisol. A complete pre/intra/post stack.",
+      longevity: "The actives most associated with healthy aging at clinical doses. NAD+ for cellular energy, resveratrol for sirtuin activation, CoQ10 for mitochondrial function, omega-3s, vitamin D3. The longevity literature in capsule form.",
+      glow: "The brightness stack — inside and out. Vitamin C and niacinamide topically, collagen and antioxidants internally, oil to seal. Built to compound: each product reinforces what the others are doing.",
+      weekly: "Two treatments. One night a week, you mask. Another night, you polish. Never both — these aren't daily steps. They're the deeper resets that give the daily routine more to work with.",
+      moms: "Curated for the people who don't have time for a 12-step routine. The shortest path to visible results: clean barrier, deep hydration, retinol, antioxidants, omega-3s. The mom-test approved version.",
+      arianas: "Maximum hydration and barrier support. Built for skin that wants softness, plumpness, and that lit-from-within finish. Inside-out approach: topical hyaluronic + collagen + omega-3s for the full effect."
+    };
+
+    function dollar(n) {
+      const v = Math.round(n);
+      return '$' + v;
+    }
+
+    function renderBundlePanel(bundle, products) {
+      const intro = BUNDLE_INTROS[bundle.id] || `${products.length} products, curated to work together. ${(bundle.discount * 100).toFixed(0)}% off when bought as a bundle.`;
+      const fullPrice = products.reduce((s, p) => s + p.price, 0);
+      const savings = fullPrice * bundle.discount;
+      const subSavings = (fullPrice * (1 - bundle.discount)) * 0.10;
+
+      const productCardsHtml = products.map(p => {
+        const tag = (p.tag || p.eyebrow || '').split('·')[0].trim();
+        const img = p.image || `images/${(p.slug || '').replace('the-house-', '')}.jpeg`;
+        return `
+          <a href="product.html?slug=${p.slug}" class="bd-product">
+            <div class="bd-product-img"><img src="${img}" alt="${p.name}" loading="lazy"/></div>
+            <div class="bd-product-body">
+              <div class="bd-product-name">${p.name}</div>
+              <div class="bd-product-meta">${tag ? tag + ' · ' : ''}<span class="bd-product-price">${dollar(p.price)}</span></div>
+            </div>
+          </a>
+        `;
+      }).join('');
+
+      return `
+        <div class="bd-inner">
+          <div class="bd-block">
+            <div class="bd-label">What makes this work</div>
+            <div class="bd-intro">${intro}</div>
+            <div class="bd-tags">
+              <span class="bd-tag">Built to layer</span>
+              <span class="bd-tag">Tested together</span>
+              <span class="bd-tag">Save ${dollar(savings)} as a bundle</span>
+              <span class="bd-tag">+${dollar(subSavings)} off subscribed</span>
+            </div>
+          </div>
+          <div class="bd-block">
+            <div class="bd-label">Inside this bundle</div>
+            <div class="bd-products">
+              ${productCardsHtml}
+            </div>
+            <a href="bundles.html" class="bd-full-link">Browse all bundles →</a>
+          </div>
+        </div>
+      `;
+    }
+
+    document.querySelectorAll('.bundle-card').forEach(card => {
+      // Find the bundle id from the Add-to-cart button in this card
+      const addBtn = card.querySelector('[data-bundle-add]');
+      if (!addBtn) return;
+      const bundleId = addBtn.dataset.bundleAdd;
+      const bundle = window.CURATED_BUNDLES.find(b => b.id === bundleId);
+      if (!bundle) return;
+      const products = bundle.slugs
+        .map(s => window.PRODUCTS.find(p => p.slug === s))
+        .filter(Boolean);
+      if (!products.length) return;
+
+      // Find description element — link sits right after it via CSS order
+      const body = card.querySelector('.bundle-body');
+      if (!body) return;
+
+      // Build the toggle link
+      const link = document.createElement('button');
+      link.type = 'button';
+      link.className = 'bundle-view-link';
+      link.innerHTML = 'View Details <span class="bvl-arrow">↓</span>';
+
+      // Build the panel container (kept hidden until expanded)
+      const panel = document.createElement('div');
+      panel.className = 'bundle-details';
+      panel.setAttribute('aria-hidden', 'true');
+
+      body.appendChild(link);
+      body.appendChild(panel);
+
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const willOpen = !panel.classList.contains('open');
+        if (willOpen && !panel.innerHTML) {
+          panel.innerHTML = renderBundlePanel(bundle, products);
+        }
+        void panel.offsetHeight; // force reflow before transitioning
+        panel.classList.toggle('open', willOpen);
+        link.classList.toggle('expanded', willOpen);
+        link.innerHTML = willOpen
+          ? 'Hide Details <span class="bvl-arrow">↑</span>'
+          : 'View Details <span class="bvl-arrow">↓</span>';
+        panel.setAttribute('aria-hidden', String(!willOpen));
+      });
+    });
+  });
+
 })();
