@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ingredient — Daniel's House</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/shared.css">
+
+<style>
+  /* ─── Ingredient detail page ─── */
+  body { background: var(--cream); }
+
+  .ing-detail-page {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 60px 40px 100px;
+  }
+  .ing-back-link {
+    display: inline-block;
+    margin-bottom: 32px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .ing-back-link:hover { color: var(--gold); }
+
+  /* Hero */
+  .ing-hero {
+    text-align: center;
+    padding-bottom: 50px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 60px;
+  }
+  .ing-hero-eyebrow {
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 18px;
+  }
+  .ing-hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(46px, 6vw, 64px);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--sage);
+    line-height: 1.05;
+    margin: 0 0 12px;
+  }
+  .ing-hero-alt {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    color: var(--ink-soft);
+    font-style: italic;
+    margin-bottom: 22px;
+  }
+  .ing-hero-evidence {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 100px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 28px;
+  }
+  .ing-hero-evidence.strong   { background: var(--sage); color: var(--cream); }
+  .ing-hero-evidence.moderate { background: var(--gold); color: var(--cream); }
+  .ing-hero-evidence.emerging { background: var(--cream-warm); color: var(--ink-soft); border: 1px solid var(--rule); }
+  .ing-hero-body {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 19px;
+    color: var(--ink);
+    line-height: 1.6;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+  .ing-hero-tags {
+    margin-top: 22px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+  .ing-hero-tag {
+    font-family: 'Poppins', sans-serif;
+    font-size: 9.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    padding: 6px 12px;
+    background: var(--cream-warm);
+    border: 1px solid var(--rule);
+    border-radius: 100px;
+    font-weight: 500;
+  }
+
+  /* Section pattern */
+  .ing-section { margin-bottom: 70px; }
+  .ing-section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--ink);
+    margin: 0 0 10px;
+    line-height: 1.15;
+  }
+  .ing-section-title em { font-style: italic; color: var(--sage); }
+  .ing-section-blurb {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 15.5px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+    margin: 0 0 32px;
+    max-width: 620px;
+  }
+
+  /* Products */
+  .ing-product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+  }
+  .ing-product-card {
+    display: flex;
+    gap: 14px;
+    padding: 16px;
+    background: var(--cream-warm);
+    border: 1px solid var(--rule);
+    text-decoration: none;
+    color: var(--ink);
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .ing-product-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-2px);
+  }
+  .ing-product-card img {
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+  .ing-product-card-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+  }
+  .ing-product-card-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.15;
+    margin-bottom: 4px;
+  }
+  .ing-product-card-name em { font-style: italic; color: var(--sage); }
+  .ing-product-card-price {
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    color: var(--ink-soft);
+    letter-spacing: 0.04em;
+  }
+
+  /* Studies */
+  .study-card {
+    background: var(--cream-warm);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--gold);
+    padding: 28px 28px 24px;
+    margin-bottom: 18px;
+    transition: border-color 0.3s;
+  }
+  .study-card:hover { border-color: var(--gold); }
+  .study-type {
+    display: inline-block;
+    font-family: 'Poppins', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .study-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 21px;
+    font-weight: 500;
+    line-height: 1.3;
+    color: var(--ink);
+    margin: 0 0 10px;
+  }
+  .study-meta {
+    font-family: 'Poppins', sans-serif;
+    font-size: 11.5px;
+    color: var(--ink-soft);
+    margin-bottom: 14px;
+    line-height: 1.5;
+  }
+  .study-meta .study-journal { font-style: italic; }
+  .study-finding {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink);
+    margin: 0 0 16px;
+  }
+  .study-link {
+    display: inline-block;
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(184, 153, 104, 0.4);
+    padding-bottom: 2px;
+    transition: border-color 0.3s, color 0.3s;
+  }
+  .study-link:hover {
+    border-color: var(--gold);
+    color: var(--ink);
+  }
+  .study-disclaimer {
+    margin-top: 28px;
+    padding: 18px 22px;
+    background: var(--cream-warm);
+    border: 1px dashed var(--rule);
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+
+  /* Related */
+  .ing-related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+  }
+  .ing-related-card {
+    background: var(--cream-warm);
+    border: 1px solid var(--rule);
+    padding: 18px 20px;
+    text-decoration: none;
+    transition: border-color 0.3s, transform 0.3s;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .ing-related-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-2px);
+  }
+  .ing-related-cat {
+    font-family: 'Poppins', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+  }
+  .ing-related-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    font-weight: 500;
+    line-height: 1.1;
+    color: var(--ink);
+  }
+  .ing-related-name em { font-style: italic; color: var(--sage); }
+  .ing-related-alt {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+
+  /* Mobile */
+  @media (max-width: 720px) {
+    .ing-detail-page { padding: 40px 22px 70px; }
+    .ing-hero { padding-bottom: 36px; margin-bottom: 44px; }
+    .ing-section { margin-bottom: 50px; }
+    .ing-section-title { font-size: 26px; }
+    .study-card { padding: 22px 20px 20px; }
+    .study-title { font-size: 19px; }
+    .ing-product-grid, .ing-related-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Top strip -->
+<div class="top-strip">
+  <span>Free shipping on orders over <strong>$75</strong></span>
+  <span class="dot"></span>
+  <span>30-Day Returns</span>
+  <span class="dot"></span>
+  <span>Cruelty-Free · Non-GMO</span>
+  <span class="dot"></span>
+  <span>Made in N.A.</span>
+</div>
+
+<!-- Nav -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Daniel<span class="amp">'s</span> House</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">Daniel's Story</a></li>
+      <li><a href="skincare.html">Skincare</a></li>
+      <li><a href="supplements.html">Supplements</a></li>
+      <li><a href="ingredients.html" class="active">Ingredients</a></li>
+      <li><a href="bundles.html">Bundles</a></li>
+      <li><a href="shop.html">Shop By Concern</a></li>
+    </ul>
+    <div style="display: flex; gap: 4px;">
+      <button class="search-trigger" aria-label="Search">Search</button>
+      <button class="cart-trigger" aria-label="Open cart">Cart <span class="cart-trigger-count">0</span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- Main content (rendered by JS) -->
+<main class="ing-detail-page" id="ing-detail-main">
+  <a href="ingredients.html" class="ing-back-link">← Back to the Glossary</a>
+  <div id="ing-detail-content"></div>
+</main>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-newsletter">
+    <div class="footer-newsletter-inner">
+      <div class="footer-newsletter-eyebrow">Letters from the House</div>
+      <div class="footer-newsletter-title">Get Daniel's actual <em>routine notes.</em></div>
+      <div class="footer-newsletter-blurb">First access to launches, ingredient deep-dives, and the rituals Daniel uses every week — sent twice a month, no spam.</div>
+      <form class="footer-newsletter-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent = '✓ Subscribed';">
+        <input type="email" placeholder="Your email" required />
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </div>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Daniel<span class="amp">'s</span> House</div>
+      <div class="footer-tag">Your home for premium wellness — built on real results, not marketing.</div>
+      <div class="footer-attr">
+        <span>Non-GMO</span>
+        <span>Cruelty-Free</span>
+        <span>Made in NA</span>
+      </div>
+      <a href="mailto:daniel@danielshouse.com" class="footer-email">daniel@danielshouse.com</a>
+    </div>
+    <div class="footer-col"><h4>Shop</h4><ul><li><a href="skincare.html">Skincare</a></li><li><a href="supplements.html">Supplements</a></li><li><a href="bundles.html">Bundles</a></li><li><a href="shop.html">Concern Bundles</a></li></ul></div>
+    <div class="footer-col"><h4>The House</h4><ul><li><a href="about.html">Daniel's Story</a></li><li><a href="ingredients.html">Ingredient Glossary</a></li><li><a href="quiz.html">Take the Quiz</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
+    <div class="footer-col"><h4>Help</h4><ul><li><a href="faq.html#shipping">Shipping</a></li><li><a href="faq.html#returns">Returns Policy →</a></li><li><a href="faq.html#returns">30-Day Guarantee</a></li><li><a href="faq.html">Contact</a></li></ul></div>
+  </div>
+  <div class="footer-credit">
+    <div class="footer-credit-left">© 2025 Daniel's House. Premium wellness, built on real results.</div>
+    <div class="footer-credit-right">
+      <a href="faq.html">Privacy</a>
+      <a href="faq.html">Terms</a>
+      <a href="faq.html">Accessibility</a>
+    </div>
+  </div>
+</footer>
+
+<script src="data/products.js"></script>
+<script src="data/ingredients.js"></script>
+<script src="js/shared.js"></script>
+<script>
+(function() {
+  // Read slug from URL
+  const params = new URLSearchParams(window.location.search);
+  const slug = params.get('slug');
+  const container = document.getElementById('ing-detail-content');
+
+  if (!slug) {
+    container.innerHTML = `
+      <div style="text-align: center; padding: 80px 20px;">
+        <h1 style="font-family: 'Cormorant Garamond', serif; font-size: 36px;">No ingredient specified.</h1>
+        <p style="margin-top: 12px;"><a href="ingredients.html" style="color: var(--gold);">Browse the full glossary →</a></p>
+      </div>`;
+    return;
+  }
+
+  const ing = window.getIngredientBySlug ? window.getIngredientBySlug(slug) : null;
+  if (!ing) {
+    container.innerHTML = `
+      <div style="text-align: center; padding: 80px 20px;">
+        <h1 style="font-family: 'Cormorant Garamond', serif; font-size: 36px;">Ingredient not found.</h1>
+        <p style="margin-top: 12px;">We couldn't find an entry for "${slug}". <a href="ingredients.html" style="color: var(--gold);">Browse the glossary →</a></p>
+      </div>`;
+    return;
+  }
+
+  // Update document title
+  document.title = `${ing.name} — Ingredient Glossary — Daniel's House`;
+
+  // Build the eyebrow text
+  const evidenceLabel = ing.evidence === 'strong' ? 'Strong Evidence'
+                      : ing.evidence === 'moderate' ? 'Moderate Evidence' : 'Emerging Research';
+  const catLabel = ing.cat === 'skincare' ? 'Skincare' : 'Supplement';
+
+  // Render tags from the taxonomy
+  function renderTagPills(tags) {
+    if (!tags || tags.length === 0) return '';
+    // Capitalize + look up display label from the taxonomy
+    const allTags = [...(window.TAG_TAXONOMY?.effect || []), ...(window.TAG_TAXONOMY?.goal || [])];
+    return tags.map(t => {
+      const def = allTags.find(x => x.value === t);
+      const label = def ? def.label : t.charAt(0).toUpperCase() + t.slice(1);
+      return `<span class="ing-hero-tag">${label}</span>`;
+    }).join('');
+  }
+
+  // Find products that contain this ingredient
+  function renderProducts(slugs) {
+    const productMap = window.getProductBySlug;
+    if (!productMap || !slugs || slugs.length === 0) {
+      return '<p style="color: var(--ink-soft); font-style: italic;">No products listed.</p>';
+    }
+    return slugs.map(s => {
+      const p = productMap(s);
+      if (!p) return '';
+      return `
+        <a href="product.html?slug=${s}" class="ing-product-card">
+          <img src="${p.img}" alt="The House ${p.name}" loading="lazy" />
+          <div class="ing-product-card-text">
+            <div class="ing-product-card-name">The House <em>${p.name}</em></div>
+            <div class="ing-product-card-price">$${p.price.toFixed(2)}</div>
+          </div>
+        </a>`;
+    }).join('');
+  }
+
+  // Render study cards
+  function renderStudies(studies) {
+    if (!studies || studies.length === 0) {
+      return '<p style="color: var(--ink-soft); font-style: italic;">Studies pending publication.</p>';
+    }
+    return studies.map(s => {
+      // Build Google Scholar search URL from study title + first author
+      const firstAuthor = (s.authors || '').split(',')[0].trim();
+      const searchQuery = encodeURIComponent(`${s.title} ${firstAuthor}`);
+      const url = `https://scholar.google.com/scholar?q=${searchQuery}`;
+      return `
+        <article class="study-card">
+          <div class="study-type">${s.type}</div>
+          <h3 class="study-title">${s.title}</h3>
+          <div class="study-meta">${s.authors} · <span class="study-journal">${s.journal}</span> · ${s.year}</div>
+          <p class="study-finding">${s.finding}</p>
+          <a class="study-link" href="${url}" target="_blank" rel="noopener noreferrer">View on Google Scholar →</a>
+        </article>`;
+    }).join('');
+  }
+
+  // Render related ingredients
+  function renderRelated(ingredient) {
+    const related = window.getRelatedIngredients ? window.getRelatedIngredients(ingredient, 4) : [];
+    if (related.length === 0) return '';
+    return `
+      <section class="ing-section">
+        <h2 class="ing-section-title">Related <em>ingredients</em>.</h2>
+        <p class="ing-section-blurb">Other actives in the House line that share a benefit — sometimes paired in the same product, sometimes used in parallel.</p>
+        <div class="ing-related-grid">
+          ${related.map(r => `
+            <a href="ingredient.html?slug=${r.slug}" class="ing-related-card">
+              <div class="ing-related-cat">${r.cat === 'skincare' ? 'Skincare' : 'Supplement'}</div>
+              <div class="ing-related-name"><em>${r.name}</em></div>
+              <div class="ing-related-alt">${r.alt}</div>
+            </a>
+          `).join('')}
+        </div>
+      </section>`;
+  }
+
+  // Assemble the full page content
+  container.innerHTML = `
+    <section class="ing-hero">
+      <div class="ing-hero-eyebrow">${catLabel} · ${evidenceLabel}</div>
+      <h1 class="ing-hero-title">${ing.name}</h1>
+      ${ing.alt ? `<div class="ing-hero-alt">Also known as ${ing.alt}</div>` : ''}
+      <div class="ing-hero-evidence ${ing.evidence}">${
+        ing.evidence === 'strong' ? '✓ Strong Evidence'
+        : ing.evidence === 'moderate' ? 'Moderate Evidence' : 'Emerging Research'
+      }</div>
+      <p class="ing-hero-body">${ing.body}</p>
+      ${ing.tags && ing.tags.length ? `<div class="ing-hero-tags">${renderTagPills(ing.tags)}</div>` : ''}
+    </section>
+
+    <section class="ing-section">
+      <h2 class="ing-section-title">Found in these <em>products</em>.</h2>
+      <p class="ing-section-blurb">The House products that use ${ing.name} as one of their active ingredients.</p>
+      <div class="ing-product-grid">
+        ${renderProducts(ing.products)}
+      </div>
+    </section>
+
+    <section class="ing-section">
+      <h2 class="ing-section-title">The <em>science</em>.</h2>
+      <p class="ing-section-blurb">A selection of peer-reviewed research on ${ing.name} from the published literature. Each study links to Google Scholar where you can read the full paper or related work.</p>
+      ${renderStudies(ing.studies)}
+      <p class="study-disclaimer">
+        Studies above represent a curated selection of the published research on this ingredient — not the full body of literature.
+        We choose studies that reflect the strongest evidence and most relevant clinical findings. Daniel's House products contain
+        these ingredients at supplemental or topical doses and are not intended to diagnose, treat, cure, or prevent any disease.
+        Statements have not been evaluated by the Food and Drug Administration.
+      </p>
+    </section>
+
+    ${renderRelated(ing)}
+  `;
+
+  // TAG_TAXONOMY is loaded as a global from data/ingredients.js — make accessible via window
+  if (typeof TAG_TAXONOMY !== 'undefined') {
+    window.TAG_TAXONOMY = TAG_TAXONOMY;
+    // Re-render tags now that taxonomy is bound (the first render may have been before window-binding)
+    const tagsEl = document.querySelector('.ing-hero-tags');
+    if (tagsEl && ing.tags) tagsEl.innerHTML = renderTagPills(ing.tags);
+  }
+})();
+</script>
+
+</body>
+</html>
