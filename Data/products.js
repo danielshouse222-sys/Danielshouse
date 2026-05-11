@@ -1619,7 +1619,7 @@ window.CURATED_BUNDLES = [
     id: 'moms',
     name: "The Mom's Bundle",
     discount: 0.15,
-    slugs: ['the-house-calm','the-house-tranquil','the-house-multi','the-house-collagen','the-house-radiance','the-house-eye','the-house-renewal']
+    slugs: ['the-house-wash','the-house-defense','the-house-bounce','the-house-eye','the-house-soft','the-house-multi','the-house-collagen','the-house-nad-plus','the-house-vitality','the-house-tranquil']
   },
   {
     id: 'arianas',
