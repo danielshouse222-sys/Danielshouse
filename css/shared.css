@@ -61,14 +61,11 @@
   background: var(--ink);
   color: var(--cream);
   padding: 0;
-  font-size: 5.5px;
+  font-size: 6px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   font-weight: 500;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  position: relative;
   height: var(--shipping-bar-height);
   z-index: 99;
   overflow: hidden;
@@ -97,7 +94,7 @@
 .shipping-bar-text strong {
   color: var(--gold);
   font-weight: 600;
-  font-size: 5.5px;
+  font-size: 6.5px;
   letter-spacing: 0.10em;
 }
 .shipping-bar-divider {
@@ -129,22 +126,22 @@
   background: rgba(93, 110, 92, 0.25);
 }
 
-/* Responsive — hide pills progressively at narrower viewports */
+/* Responsive — hide pills on all sizes at this height, slim text */
 @media (max-width: 980px) {
-  .shipping-bar-inner { gap: 5px; padding: 0 6px; }
-  .shipping-bar { font-size: 5px; letter-spacing: 0.10em; }
-  .shipping-bar-pill:nth-of-type(3),
-  .shipping-bar-divider:nth-of-type(3) { display: none; }
+  .shipping-bar-inner { gap: 6px; padding: 0 6px; }
+  .shipping-bar { font-size: 6px; letter-spacing: 0.10em; }
+  .shipping-bar-pill,
+  .shipping-bar-divider { display: none !important; }
 }
 @media (max-width: 720px) {
   .shipping-bar-inner { gap: 4px; padding: 0 5px; }
   .shipping-bar-pill,
   .shipping-bar-divider { display: none !important; }
-  .shipping-bar { font-size: 5px; letter-spacing: 0.08em; }
-  .shipping-bar-text strong { font-size: 5px; }
+  .shipping-bar { font-size: 5.5px; letter-spacing: 0.08em; }
+  .shipping-bar-text strong { font-size: 6px; }
 }
 .shipping-bar-text { position: relative; z-index: 2; }
-.shipping-bar-text strong { color: var(--gold); font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 6px; }
+.shipping-bar-text strong { color: var(--gold); font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 7px; }
 .shipping-bar-progress {
   position: absolute;
   inset: 0;
@@ -514,7 +511,7 @@
 /* ═══ PAGE FILTER (floating button → centered modal with dimmed backdrop) ═══ */
 .page-filter {
   position: fixed !important;
-  top: calc(var(--shipping-bar-height) + 14px) !important;
+  top: 14px !important;
   right: 16px !important;
   left: auto !important;
   bottom: auto !important;
@@ -2192,10 +2189,7 @@ body.has-page-filter-modal {
    Injected on every page via shared.js.
    ═══════════════════════════════════════════════════════════ */
 .coming-soon-banner {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  position: relative;
   z-index: 1090;
   background: rgba(178, 34, 34, 0.88);
   backdrop-filter: blur(6px);
@@ -2276,9 +2270,9 @@ body.has-page-filter-modal {
    ═══════════════════════════════════════════════════════════ */
 .cart-floating {
   position: fixed !important;
-  /* Stacked directly below the search button: search top (--sbh + 14px) + search height (50px) + 10px gap */
-  top: calc(var(--shipping-bar-height) + 74px) !important;
-  right: 16px !important; /* same right offset as search button — vertically aligned */
+  /* Stacked directly below search button: search top (14px) + search height (50px) + 10px gap = 74px */
+  top: 74px !important;
+  right: 16px !important; /* aligned with search button */
   left: auto !important;
   bottom: auto !important;
   margin: 0 !important;
@@ -2839,10 +2833,14 @@ body.has-page-filter-modal {
 
 /* Mobile tweaks */
 @media (max-width: 600px) {
+  .page-filter {
+    top: 12px !important;
+    right: 12px !important;
+  }
   .cart-floating {
-    /* Mobile: search top (--sbh + 10px) + search height (44px) + 8px gap = +62px */
-    top: calc(var(--shipping-bar-height) + 62px) !important;
-    right: 12px !important; /* matches mobile search button */
+    /* Mobile: search top (12px) + search height (44px) + 8px gap = 64px */
+    top: 64px !important;
+    right: 12px !important;
   }
   .cart-floating-toggle { width: 44px; height: 44px; font-size: 17px; }
   .cart-floating-panel {
