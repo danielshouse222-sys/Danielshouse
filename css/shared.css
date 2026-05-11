@@ -3283,6 +3283,48 @@ body.has-page-filter-modal {
 }
 .bd-full-link:hover { color: var(--sage); border-color: var(--sage); }
 
+/* Credibility row variants */
+.credibility.credibility-single {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto;
+  padding: 32px 20px 40px;
+  max-width: 1200px;
+}
+.credibility.credibility-single .cred-item {
+  text-align: center;
+  padding: 0;
+  border: none;
+}
+.credibility.credibility-quad {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
+  text-align: center;
+  margin: 0 auto;
+  padding: 36px 20px 44px;
+  max-width: 1200px;
+  gap: 20px;
+}
+.credibility.credibility-quad .cred-item {
+  text-align: center;
+  padding: 8px 4px;
+  border: none;
+  border-right: 1px solid var(--rule);
+}
+.credibility.credibility-quad .cred-item:last-child { border-right: none; }
+@media (max-width: 720px) {
+  .credibility.credibility-quad {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 24px 16px 28px;
+    gap: 16px;
+  }
+  .credibility.credibility-quad .cred-item { border-right: none; border-bottom: 1px solid var(--rule); padding-bottom: 12px; }
+  .credibility.credibility-quad .cred-item:nth-last-child(-n+2) { border-bottom: none; padding-bottom: 0; }
+}
+
 /* ── Rich bundle-detail sections (routines / mechanism / audience) ───────── */
 
 /* Routine step list (AM/PM/Supplements) */
