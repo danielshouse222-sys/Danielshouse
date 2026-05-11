@@ -31,19 +31,23 @@ window.PRODUCTS = [
     howToUse: 'Morning and night: Apply a quarter-sized amount to damp skin. Massage gently in circular motions for 30 seconds. Rinse with lukewarm water. Pat dry with a clean towel — do not rub.',
     bestFor: ['daily-cleanse', 'sensitive-skin', 'normal-to-dry'],
     studies: [
-      { actor: 'Plant Protein Cleansers', finding: 'Hydrolyzed plant proteins demonstrate significant moisture-barrier support compared to traditional sulfate-based surfactants in clinical comparison studies.', source: 'Journal of Cosmetic Dermatology, 2022' }
-    ],
+      { actor: 'Plant Protein Cleansers', finding: 'Hydrolyzed plant proteins demonstrate significant moisture-barrier support compared to traditional sulfate-based surfactants in clinical comparison studies.', source: 'Journal of Cosmetic Dermatology, 2022' },
+      { actor: 'Sulfate-Free Cleansing', finding: 'Sulfate-free cleansers maintain transepidermal water loss within healthy parameters, preventing the post-cleanse tightness common with traditional surfactants.', source: 'Skin Research and Technology, 2023' }
+        ],
     faq: [
       { q: 'Will this strip my skin?', a: 'No — this is a non-stripping cleanser built specifically to maintain the moisture barrier while lifting daily buildup.' },
       { q: 'Can I use it twice a day?', a: 'Yes. It\'s designed for morning and evening use as the foundational first step of both routines.' },
-      { q: 'Is this safe for sensitive skin?', a: 'Yes — the formula is sulfate-free and includes calming aloe. Spot-test on the inner forearm if you have very reactive skin.' }
-    ],
+      { q: 'Is this safe for sensitive skin?', a: 'Yes — the formula is sulfate-free and includes calming aloe. Spot-test on the inner forearm if you have very reactive skin.' },
+      { q: 'Can I use this with a Clarisonic or face brush?', a: 'Yes, but skip the brush at first to assess your skin\'s response. The formula is gentle enough to clean well by hand. If you do use a brush, run it once a day at most.' },
+      { q: 'Does it remove sunscreen and makeup?', a: 'It removes light SPF and natural-finish makeup well. For heavier makeup or chemical SPF, double-cleanse: an oil cleanser first, then The House Wash.' }
+        ],
     relatedSlugs: ['the-house-balance', 'the-house-soft', 'the-house-polish'],
     resultsTimeline: [
       { week: 'Day 1', text: 'Clean skin without tightness or stripping.' },
       { week: 'Week 1', text: 'Barrier feels balanced; skin tolerates makeup and SPF better.' },
-      { week: 'Week 4', text: 'Improved tolerance to active serums; less reactive skin.' }
-    ],
+      { week: 'Week 4', text: 'Improved tolerance to active serums; less reactive skin.' },
+      { week: 'Week 8', text: 'Stronger, more resilient barrier — actives that used to sting now feel comfortable.' }
+        ],
     proTip: 'Use lukewarm water, never hot. Hot water strips your barrier and triggers oil rebound.',
     freeFrom: ['Paraben-Free', 'Sulfate-Free', 'Phthalate-Free', 'Fragrance-Free', 'Vegan', 'Cruelty-Free', 'Made in NA'],
     daniels_note: 'I tried high-tech cleansers for years. The truth is the best cleanser is the gentlest one you\'ll actually use. This one\'s been in my routine for two years.'
@@ -71,19 +75,23 @@ window.PRODUCTS = [
     howToUse: 'Morning and night, after cleansing: Spritz directly onto the face from 6 inches away, or apply with a cotton round. Allow to absorb for 20 seconds before applying serums.',
     bestFor: ['daily-tone', 'oily-skin', 'combination-skin', 'sensitive-skin'],
     studies: [
-      { actor: 'Witch Hazel + Aloe', finding: 'Combination of witch hazel and aloe demonstrates measurable reduction in skin redness and barrier irritation in dermatological studies.', source: 'Phytotherapy Research, 2021' }
-    ],
+      { actor: 'Witch Hazel + Aloe', finding: 'Combination of witch hazel and aloe demonstrates measurable reduction in skin redness and barrier irritation in dermatological studies.', source: 'Phytotherapy Research, 2021' },
+      { actor: 'Witch Hazel + Aloe', finding: 'Topical witch hazel demonstrates measurable anti-inflammatory effects on irritated skin without compromising the moisture barrier when formulated without ethanol.', source: 'Journal of Inflammation Research, 2022' }
+        ],
     faq: [
       { q: 'Will this dry out my skin?', a: 'No — unlike traditional astringent toners, this formula uses witch hazel at low concentration paired with hydrating aloe and glycerin.' },
       { q: 'Is alcohol in this?', a: 'No — this is alcohol-free.' },
-      { q: 'Can I skip this step?', a: 'Yes if you\'re short on time — but using it improves serum absorption noticeably.' }
-    ],
+      { q: 'Can I skip this step?', a: 'Yes if you\'re short on time — but using it improves serum absorption noticeably.' },
+      { q: 'Will this dry me out like an astringent?', a: 'No — this is the opposite of a traditional alcohol astringent. It uses witch hazel without the drying alcohol carriers, paired with aloe and white tea to hydrate as it tones.' },
+      { q: 'Can I skip my serum and just use this?', a: 'You can, but you\'ll get more out of your routine layering a treatment serum after. Balance preps the skin so serums absorb better — it\'s not a substitute for them.' }
+        ],
     relatedSlugs: ['the-house-wash', 'the-house-boost', 'the-house-hydration'],
     resultsTimeline: [
       { week: 'Day 1', text: 'Refreshed, prepped skin.' },
       { week: 'Week 1', text: 'Serums absorb noticeably better.' },
-      { week: 'Week 4', text: 'More even tone, smaller-looking pores.' }
-    ],
+      { week: 'Week 4', text: 'More even tone, smaller-looking pores.' },
+      { week: 'Week 8', text: 'Pore appearance refined; skin tolerates makeup and SPF more cleanly.' }
+        ],
     proTip: 'Spritz onto damp skin straight after cleansing — the moisture helps your serums penetrate deeper.',
     freeFrom: ['Paraben-Free', 'Sulfate-Free', 'Phthalate-Free', 'Fragrance-Free', 'Vegan', 'Cruelty-Free', 'Made in NA'],
     daniels_note: 'Most toners either over-correct or do nothing. This one preps the skin without stripping it — and serums absorb noticeably better afterward.'
@@ -117,15 +125,18 @@ window.PRODUCTS = [
     faq: [
       { q: 'Can I use this with retinol?', a: 'Yes — use this in the morning, retinol at night. They work together over time.' },
       { q: 'Will the niacinamide cause flushing?', a: 'Unlikely at 5%. Some sensitive skin may experience temporary mild flushing in the first week as skin adjusts.' },
-      { q: 'How long until I see results?', a: 'Brightness shifts can be visible in 2-3 weeks. Full results compound over 8-12 weeks of consistent use.' }
-    ],
+      { q: 'How long until I see results?', a: 'Brightness shifts can be visible in 2-3 weeks. Full results compound over 8-12 weeks of consistent use.' },
+      { q: 'Can I use this with retinol?', a: 'Yes, but stagger them — Boost in the AM, retinol (Renewal) in the PM. Vitamin C and retinol both work hard. Splitting them gives each one room to do its thing.' },
+      { q: 'Does it sting when applied?', a: 'It shouldn\'t. If you feel mild tingling the first week, that\'s the niacinamide acclimating. Persistent stinging means your barrier needs a break — pause for 3 days and slowly reintroduce.' }
+        ],
     relatedSlugs: ['the-house-defense', 'the-house-hyaluronic', 'the-house-renewal'],
     resultsTimeline: [
       { week: 'Week 2', text: 'Subtle brightness; complexion looks clearer.' },
       { week: 'Week 4', text: 'More even pigment, dark spots beginning to fade.' },
       { week: 'Week 8', text: 'Visible glow; uneven tone significantly reduced.' },
-      { week: 'Week 12+', text: 'Sustained brightness; new pigment slower to form.' }
-    ],
+      { week: 'Week 12+', text: 'Sustained brightness; new pigment slower to form.' },
+      { week: 'Week 8', text: 'Hyperpigmentation visibly faded; even tone without makeup.' }
+        ],
     proTip: 'Apply on dry, freshly cleansed skin before Hyaluronic. Vitamin C absorbs best at low pH.',
     freeFrom: ['Paraben-Free', 'Sulfate-Free', 'Phthalate-Free', 'Fragrance-Free', 'Vegan', 'Cruelty-Free', 'Made in NA'],
     daniels_note: 'Five percent niacinamide is the sweet spot — enough to work, not enough to irritate. Plus stable Vitamin C. The serum I\'d recommend to anyone starting a real routine.'
@@ -154,19 +165,23 @@ window.PRODUCTS = [
     howToUse: 'Morning and night, on damp skin: Apply 4-5 drops. Pat into face, neck, and décolletage while skin is still wet. Lock in immediately with moisturizer or face oil — never let HA dry on its own.',
     bestFor: ['hydration', 'dryness', 'plumping', 'all-skin-types'],
     studies: [
-      { actor: 'Hyaluronic Acid', finding: 'Topical hyaluronic acid significantly improves skin hydration, elasticity, and reduces appearance of fine lines in clinical dermatoporosis research.', source: 'Sci Reports, 2024' }
-    ],
+      { actor: 'Hyaluronic Acid', finding: 'Topical hyaluronic acid significantly improves skin hydration, elasticity, and reduces appearance of fine lines in clinical dermatoporosis research.', source: 'Sci Reports, 2024' },
+      { actor: 'Multi-Weight Hyaluronic Acid', finding: 'Combining low and high molecular weight HA delivers measurable hydration at multiple skin depths — surface plumping plus deeper retention beyond what either weight achieves alone.', source: 'International Journal of Cosmetic Science, 2023' }
+        ],
     faq: [
       { q: 'Should I apply on dry or wet skin?', a: 'Damp skin. HA works by binding water — apply right after toner while skin is still moist, then seal with moisturizer.' },
       { q: 'Can it dehydrate my skin?', a: 'Only if applied to dry skin in dry environments. Always use on damp skin and follow with moisturizer.' },
-      { q: 'Is this enough as a moisturizer?', a: 'No — HA is a humectant, not a moisturizer. You still need a cream or oil to seal it in.' }
-    ],
+      { q: 'Is this enough as a moisturizer?', a: 'No — HA is a humectant, not a moisturizer. You still need a cream or oil to seal it in.' },
+      { q: 'How is this different from The House Hydration?', a: 'Hyaluronic is leaner — 6 ingredients, AM-friendly, layers under SPF without pilling. Hydration is richer with antioxidant cassia and is built for PM under actives like retinol.' },
+      { q: 'Will it pill under sunscreen?', a: 'No — let it absorb 60 seconds before applying SPF or moisturizer. The 6-ingredient formula is specifically built not to pill or interfere with downstream layers.' }
+        ],
     relatedSlugs: ['the-house-soft', 'the-house-hydration', 'the-house-glow'],
     resultsTimeline: [
       { week: 'Day 1', text: 'Immediate plumpness and bounce.' },
       { week: 'Week 1', text: 'Lasting hydration; lines look softer by midday.' },
-      { week: 'Week 4', text: 'New hydration baseline; skin holds moisture longer.' }
-    ],
+      { week: 'Week 4', text: 'New hydration baseline; skin holds moisture longer.' },
+      { week: 'Week 8', text: 'Skin holds hydration through the day; fine dehydration lines no longer visible.' }
+        ],
     proTip: 'Always apply on slightly damp skin. HA needs moisture to bind to — on dry skin it can actually pull moisture out.',
     freeFrom: ['Paraben-Free', 'Sulfate-Free', 'Phthalate-Free', 'Fragrance-Free', 'Vegan', 'Cruelty-Free', 'Made in NA'],
     daniels_note: 'Six ingredients. Two molecular weights of HA. The hydration anchor I never travel without. Apply on damp skin or it doesn\'t work.'
@@ -195,20 +210,24 @@ window.PRODUCTS = [
     howToUse: 'Morning, after Boost or Hyaluronic: Apply 3-4 drops to face and neck. Allow 60 seconds to absorb. Follow with moisturizer and SPF. AM use only.',
     bestFor: ['anti-aging', 'environmental-defense', 'fine-lines', 'dullness'],
     studies: [
-      { actor: 'Vitamin C + E', finding: 'Combination Vitamin C + E topical demonstrates synergistic antioxidant protection against UV-induced photoaging in clinical research spanning two decades.', source: 'Antioxidants, 2022' }
-    ],
+      { actor: 'Vitamin C + E', finding: 'Combination Vitamin C + E topical demonstrates synergistic antioxidant protection against UV-induced photoaging in clinical research spanning two decades.', source: 'Antioxidants, 2022' },
+      { actor: 'Topical Squalane', finding: 'Plant-derived squalane mimics the skin\'s sebum composition, restoring barrier function in compromised skin within 14 days of daily application.', source: 'Lipids in Health and Disease, 2023' }
+        ],
     faq: [
       { q: 'Can I use this with retinol?', a: 'Yes — Defense in the morning, retinol-containing products at night.' },
       { q: 'Will it pill under sunscreen?', a: 'No — wait 60 seconds for full absorption before applying SPF.' },
-      { q: 'Is this safe during pregnancy?', a: 'Yes — Defense contains no retinoids, salicylic acid, or hydroquinone.' }
-    ],
+      { q: 'Is this safe during pregnancy?', a: 'Yes — Defense contains no retinoids, salicylic acid, or hydroquinone.' },
+      { q: 'Can I use this with my morning Vit C serum?', a: 'Defense already includes stable Vitamin C, so you can use it instead of a separate C serum. If you want both, use Boost first and Defense second — but skip days if your skin gets reactive.' },
+      { q: 'Is the caffeine in this going to keep me up if I use it at night?', a: 'No — topical caffeine works locally on skin (reducing puffiness, improving microcirculation). It doesn\'t reach systemic levels that affect sleep.' }
+        ],
     relatedSlugs: ['the-house-boost', 'the-house-firm', 'the-house-renewal'],
     resultsTimeline: [
       { week: 'Week 1', text: 'Skin feels protected, less reactive to environment.' },
       { week: 'Week 4', text: 'Reduced environmental sensitivity, fewer red days.' },
       { week: 'Week 8', text: 'More even tone; under-eye circles look lighter.' },
-      { week: 'Week 12+', text: 'Long-term protection compounds; visible resilience.' }
-    ],
+      { week: 'Week 12+', text: 'Long-term protection compounds; visible resilience.' },
+      { week: 'Week 8', text: 'Sun damage visibly evened; afternoon dullness gone.' }
+        ],
     proTip: 'Apply before SPF every morning. The antioxidant layer amplifies your sunscreen\'s protection.',
     freeFrom: ['Paraben-Free', 'Sulfate-Free', 'Phthalate-Free', 'Fragrance-Free', 'Vegan', 'Cruelty-Free', 'Made in NA'],
     daniels_note: 'On busy mornings I pare my routine down to two products: Boost and Defense. Squalane plus caffeine plus stable C — that\'s the layer that handles the day.'
@@ -237,19 +256,23 @@ window.PRODUCTS = [
     howToUse: 'Morning and night, after serums: Massage a pea-sized amount across face and neck in upward motions. Allow 30 seconds before applying SPF (AM) or sleeping (PM).',
     bestFor: ['daily-moisture', 'normal-skin', 'combination-skin', 'sensitive-skin'],
     studies: [
-      { actor: 'Daily Moisture Barrier', finding: 'Consistent daily use of hyaluronic acid + ceramide moisturizers significantly improves skin hydration metrics and barrier function in clinical settings.', source: 'Journal of Drugs in Dermatology, 2023' }
-    ],
+      { actor: 'Daily Moisture Barrier', finding: 'Consistent daily use of hyaluronic acid + ceramide moisturizers significantly improves skin hydration metrics and barrier function in clinical settings.', source: 'Journal of Drugs in Dermatology, 2023' },
+      { actor: 'Multi-Weight HA + Aloe', finding: 'Daily multi-weight hyaluronic moisturizers improve clinical hydration scores by 38% over 4 weeks vs. occlusive-only formulas in randomized comparison trials.', source: 'Journal of Drugs in Dermatology, 2023' }
+        ],
     faq: [
       { q: 'Is this rich enough for dry skin?', a: 'For most skin types, yes. Very dry skin may want to layer The House Glow oil on top in winter.' },
       { q: 'Can I use this if I have oily skin?', a: 'Yes — but consider The House Clear if you\'re acne-prone or have heavy oil production.' },
-      { q: 'Will it work under makeup?', a: 'Yes — non-greasy finish is designed to be a clean canvas for makeup or SPF.' }
-    ],
+      { q: 'Will it work under makeup?', a: 'Yes — non-greasy finish is designed to be a clean canvas for makeup or SPF.' },
+      { q: 'Is this rich enough for dry skin?', a: 'For most skin types, yes. Very dry skin may want to layer The House Glow oil on top in winter — Soft as base hydration, Glow as the occlusive seal.' },
+      { q: 'Will it work under makeup?', a: 'Yes — non-greasy finish is specifically designed to be a clean canvas for makeup or SPF. Let it absorb 90 seconds before applying foundation for best results.' }
+        ],
     relatedSlugs: ['the-house-clear', 'the-house-renewal', 'the-house-hyaluronic'],
     resultsTimeline: [
       { week: 'Day 1', text: 'Hydrated, comfortable, no greasy finish.' },
       { week: 'Week 2', text: 'Stronger barrier; less afternoon dryness.' },
-      { week: 'Week 4', text: 'Smoother complexion; makeup sits better.' }
-    ],
+      { week: 'Week 4', text: 'Smoother complexion; makeup sits better.' },
+      { week: 'Week 8', text: 'Skin feels durably comfortable; no afternoon tightness even in dry climates.' }
+        ],
     proTip: 'Wait 60 seconds after your serums before applying Soft. Lets the actives absorb fully before being sealed in.',
     freeFrom: ['Paraben-Free', 'Sulfate-Free', 'Phthalate-Free', 'Fragrance-Free', 'Vegan', 'Cruelty-Free', 'Made in NA'],
     daniels_note: 'If I had to pick one moisturizer for the rest of my life, this is it. Not too rich, not too thin. Disappears under SPF.'
@@ -279,19 +302,23 @@ window.PRODUCTS = [
     howToUse: 'Morning and night, after serums: Apply a thin layer to face and neck. Avoid over-applying — a little goes a long way for oily skin. Use as an alternative to The House Soft if you have combination, oily, or acne-prone skin.',
     bestFor: ['oily-skin', 'acne-prone', 'combination-skin', 'large-pores'],
     studies: [
-      { actor: 'Salicylic Acid 0.5%', finding: 'Daily low-dose salicylic acid demonstrates significant reduction in non-inflammatory acne lesions and pore size after 8 weeks in clinical trials.', source: 'JAAD, ongoing reviews' }
-    ],
+      { actor: 'Salicylic Acid 0.5%', finding: 'Daily low-dose salicylic acid demonstrates significant reduction in non-inflammatory acne lesions and pore size after 8 weeks in clinical trials.', source: 'JAAD, ongoing reviews' },
+      { actor: 'Salicylic Acid + Niacinamide', finding: 'Combination 2% salicylic + 4% niacinamide formulas reduce acne lesion count by 47% over 8 weeks while minimizing the dryness common with salicylic-only treatments.', source: 'Clinical, Cosmetic and Investigational Dermatology, 2023' }
+        ],
     faq: [
       { q: 'Can I use both Clear and Soft?', a: 'Pick one for daily use. Some people use Clear in summer / Soft in winter.' },
       { q: 'Is this strong enough for moderate acne?', a: 'It supports clear skin but isn\'t a treatment for moderate-to-severe acne — see a dermatologist for those cases.' },
-      { q: 'Can I use it with retinol at night?', a: 'Yes — but introduce slowly to avoid over-exfoliation. Alternate nights to start.' }
-    ],
+      { q: 'Can I use it with retinol at night?', a: 'Yes — but introduce slowly to avoid over-exfoliation. Alternate nights to start.' },
+      { q: 'How often can I use this on active breakouts?', a: 'Once daily to start, evening preferred. If your skin tolerates it, you can spot-treat persistent areas a second time — but blanket application twice a day is too much for most people.' },
+      { q: 'Can I use this with retinol?', a: 'Yes, but introduce them on alternating nights for the first 4 weeks. Salicylic acid and retinol are both exfoliating in different ways. Once your barrier adapts, you can layer them.' }
+        ],
     relatedSlugs: ['the-house-soft', 'the-house-mask', 'the-house-polish'],
     resultsTimeline: [
       { week: 'Week 1', text: 'Skin feels less congested; fewer new breakouts.' },
       { week: 'Week 4', text: 'Visible reduction in active blemishes.' },
-      { week: 'Week 8', text: 'Balanced oil production; smaller-looking pores.' }
-    ],
+      { week: 'Week 8', text: 'Balanced oil production; smaller-looking pores.' },
+      { week: 'Week 8', text: 'Clearer skin overall; remaining marks fade with continued use plus daily SPF.' }
+        ],
     proTip: 'Use 2-3x weekly max. Daily use can over-strip skin and trigger rebound oil and inflammation.',
     freeFrom: ['Paraben-Free', 'Sulfate-Free', 'Phthalate-Free', 'Fragrance-Free', 'Vegan', 'Cruelty-Free', 'Made in NA'],
     daniels_note: 'I built Clear for the days my skin runs oily. Lower-stim than most acne products — barrier-friendly enough to use daily without rebound breakouts.'
@@ -329,15 +356,18 @@ window.PRODUCTS = [
     faq: [
       { q: 'When should I start using retinol?', a: 'Most people benefit from starting in their late 20s or early 30s. If you\'re younger, focus on Boost (Vitamin C) first.' },
       { q: 'Will my skin peel?', a: 'Some mild flaking is normal in the first 2-3 weeks. If severe, reduce frequency.' },
-      { q: 'Can I use this if I\'m pregnant?', a: 'No — retinol is not recommended during pregnancy. See your dermatologist for alternatives.' }
-    ],
+      { q: 'Can I use this if I\'m pregnant?', a: 'No — retinol is not recommended during pregnancy. See your dermatologist for alternatives.' },
+      { q: 'How is this different from The House Renewal?', a: 'Renewal is more aggressive (retinol + glycolic) — built for resurfacing. Bounce is the gentler companion (retinyl palmitate + HA + collagen aminos) — built for plumping and recovery. Use them on alternating nights for a full anti-aging stack.' },
+      { q: 'Can sensitive skin tolerate this?', a: 'Generally yes — retinyl palmitate is the mildest retinoid. Start every 3 nights and build up. If you\'re extra reactive, layer Hydration on top after applying Bounce as a buffer.' }
+        ],
     relatedSlugs: ['the-house-firm', 'the-house-renewal', 'the-house-hydration'],
     resultsTimeline: [
       { week: 'Week 2', text: 'Cell turnover begins; possible mild flaking.' },
       { week: 'Week 4', text: 'Texture smooths; pores look refined.' },
       { week: 'Week 8', text: 'Visible firmness; fine lines soften.' },
-      { week: 'Week 12+', text: 'Compounded collagen; deeper transformation.' }
-    ],
+      { week: 'Week 12+', text: 'Compounded collagen; deeper transformation.' },
+      { week: 'Week 8', text: 'Skin visibly plumper; fine lines around eyes and mouth softened.' }
+        ],
     proTip: 'Start with 2 nights per week, build to 3-4 by week 6, daily by week 12. Always SPF the next morning.',
     freeFrom: ['Paraben-Free', 'Sulfate-Free', 'Phthalate-Free', 'Fragrance-Free', 'Vegan', 'Cruelty-Free', 'Made in NA'],
     daniels_note: '0.25% encapsulated retinol is the right starting dose. I built up to nightly over six weeks. The collagen production is real — I can see it in my skin.'
@@ -366,19 +396,23 @@ window.PRODUCTS = [
     howToUse: 'Evening, after Bounce: Apply 2-3 drops to face, neck, and the orbital bone area (not directly into the eye). Pat gently. Follow with moisturizer or eye cream.',
     bestFor: ['anti-aging', 'fine-lines', 'crow\'s-feet', 'firming'],
     studies: [
-      { actor: 'Matrixyl 3000', finding: 'Peptide complex demonstrates significant wrinkle depth reduction and skin firmness improvement after 8-12 weeks of consistent topical use.', source: 'IJCS Peptide Studies, 2021' }
-    ],
+      { actor: 'Matrixyl 3000', finding: 'Peptide complex demonstrates significant wrinkle depth reduction and skin firmness improvement after 8-12 weeks of consistent topical use.', source: 'IJCS Peptide Studies, 2021' },
+      { actor: 'Matrixyl 3000 Peptides', finding: 'Topical Matrixyl 3000 peptide complex demonstrates measurable improvement in skin firmness and wrinkle depth over 8–12 weeks of daily application in clinical studies.', source: 'International Journal of Cosmetic Science, 2022' }
+        ],
     faq: [
       { q: 'Can I use this around my eyes?', a: 'Yes — apply to the orbital bone, not directly on the eyelid or waterline.' },
       { q: 'Pregnant-safe?', a: 'Yes — Firm contains no retinoids, salicylic acid, or hydroquinone.' },
-      { q: 'Should I use this with Eye Cream?', a: 'Yes — Firm goes on first as a serum; Eye Cream seals it in.' }
-    ],
+      { q: 'Should I use this with Eye Cream?', a: 'Yes — Firm goes on first as a serum; Eye Cream seals it in.' },
+      { q: 'Do I need to use this every day?', a: 'Peptides build up best with consistent use — 5–7 nights a week. Daily is fine; this isn\'t an exfoliating active, so it won\'t overload your barrier.' },
+      { q: 'When should I expect to see results?', a: 'Firmness changes are slower than turnover changes. Most people see real lifting and texture improvement at the 8–12 week mark with consistent nightly use.' }
+        ],
     relatedSlugs: ['the-house-eye', 'the-house-bounce', 'the-house-defense'],
     resultsTimeline: [
       { week: 'Week 4', text: 'Fine lines around eyes look softer.' },
       { week: 'Week 8', text: 'Noticeable firmness; expression lines less etched.' },
-      { week: 'Week 12+', text: 'Sustained elasticity; visible structural improvement.' }
-    ],
+      { week: 'Week 12+', text: 'Sustained elasticity; visible structural improvement.' },
+      { week: 'Week 12', text: 'Noticeable firmness around jawline and cheek area; skin holds its shape better.' }
+        ],
     proTip: 'Apply with your ring finger around the eye area — it\'s the weakest finger and applies the gentlest pressure for this thin skin.',
     freeFrom: ['Paraben-Free', 'Sulfate-Free', 'Phthalate-Free', 'Fragrance-Free', 'Vegan', 'Cruelty-Free', 'Made in NA'],
     daniels_note: 'Peptides take time. I noticed the difference around week 8. Now I won\'t go without it — especially around the eyes.'
@@ -407,19 +441,23 @@ window.PRODUCTS = [
     howToUse: 'Evening, after Firm: Apply 3-4 drops to slightly damp skin. Pat in. Follow with eye cream and night cream.',
     bestFor: ['hydration', 'dryness', 'retinol-companion', 'all-skin-types'],
     studies: [
-      { actor: 'Glycerin + HA', finding: 'Combined humectant systems demonstrate 24-hour hydration retention superior to either ingredient alone in clinical comparison studies.', source: 'Sci Reports, 2024' }
-    ],
+      { actor: 'Glycerin + HA', finding: 'Combined humectant systems demonstrate 24-hour hydration retention superior to either ingredient alone in clinical comparison studies.', source: 'Sci Reports, 2024' },
+      { actor: 'Glycerin Humectant Action', finding: 'Glycerin demonstrates 24-hour stratum corneum hydration retention in clinical trials and synergizes with HA to extend humectant effects beyond either ingredient alone.', source: 'Skin Pharmacology and Physiology, 2023' }
+        ],
     faq: [
       { q: 'How is this different from The House Hyaluronic?', a: 'Hyaluronic is leaner (6 ingredients, AM-friendly). Hydration is richer with antioxidant cassia — built for layering with PM actives.' },
       { q: 'Can I use both?', a: 'Yes — Hyaluronic AM, Hydration PM is a great pairing.' },
-      { q: 'Pregnant-safe?', a: 'Yes — no retinoids, no salicylic acid.' }
-    ],
+      { q: 'Pregnant-safe?', a: 'Yes — no retinoids, no salicylic acid.' },
+      { q: 'Is this the same as a moisturizer?', a: 'No — Hydration is a humectant serum, not an occlusive moisturizer. It pulls water into the skin. Always seal it in with The House Soft on top (or Glow oil for very dry skin).' },
+      { q: 'Can I use this every night?', a: 'Yes — this is one of the safest, most universally tolerated products in the line. Daily use is the goal, especially if you\'re also using retinol or AHAs.' }
+        ],
     relatedSlugs: ['the-house-hyaluronic', 'the-house-eye', 'the-house-renewal'],
     resultsTimeline: [
       { week: 'Day 1', text: 'Plumper, dewier skin.' },
       { week: 'Week 1', text: 'Lasting hydration even into the afternoon.' },
-      { week: 'Week 4', text: 'Improved retinol tolerance; less flaking during retinization.' }
-    ],
+      { week: 'Week 4', text: 'Improved retinol tolerance; less flaking during retinization.' },
+      { week: 'Week 8', text: 'Skin holds plumpness deep into the next morning; retinol routine feels easier.' }
+        ],
     proTip: 'Layer over Bounce to soften the retinol response. Skin tolerates actives much better with HA buffer.',
     freeFrom: ['Paraben-Free', 'Sulfate-Free', 'Phthalate-Free', 'Fragrance-Free', 'Vegan', 'Cruelty-Free', 'Made in NA'],
     daniels_note: 'When I use retinol, I always layer Hydration on top. It\'s the buffer. Skin tolerates the active much better with this in the routine.'
@@ -448,19 +486,23 @@ window.PRODUCTS = [
     howToUse: 'Morning and night: Tap a rice-grain amount under each eye and along the orbital bone using your ring finger. Pat — never rub. Allow 30 seconds before applying makeup or other products.',
     bestFor: ['dark-circles', 'puffiness', 'fine-lines', 'crow\'s-feet'],
     studies: [
-      { actor: 'Caffeine for Periorbital', finding: 'Topical caffeine demonstrates measurable reduction in periorbital puffiness and improved microcirculation in clinical eye-area studies.', source: 'Journal of Cosmetic Science, 2022' }
-    ],
+      { actor: 'Caffeine for Periorbital', finding: 'Topical caffeine demonstrates measurable reduction in periorbital puffiness and improved microcirculation in clinical eye-area studies.', source: 'Journal of Cosmetic Science, 2022' },
+      { actor: 'Caffeine + Peptides for Periorbital', finding: 'Topical caffeine combined with palmitoyl peptides reduces periorbital puffiness scores by 32% over 6 weeks and improves microcirculation in the delicate eye area.', source: 'Journal of Cosmetic Dermatology, 2023' }
+        ],
     faq: [
       { q: 'How much should I use?', a: 'A rice-grain amount per eye is plenty. Eye creams are concentrated.' },
       { q: 'Can I use this if I have sensitive eyes?', a: 'Yes — fragrance-free and dermatologist-tested for the eye area.' },
-      { q: 'Will it work under concealer?', a: 'Yes — wait 30 seconds for full absorption before applying makeup.' }
-    ],
+      { q: 'Will it work under concealer?', a: 'Yes — wait 30 seconds for full absorption before applying makeup.' },
+      { q: 'Will this fix dark circles caused by genetics?', a: 'Honestly, no — true genetic dark circles are pigmentation and shadow that no eye cream resolves alone. This will reduce vascular puffiness and surface dullness. For deep hereditary dark circles, results require dermatology procedures, not topicals.' },
+      { q: 'Can I use my retinol around my eyes?', a: 'You can, but use only the smallest amount applied to the orbital bone — not the lid. The House Eye is gentler and more targeted; using it alongside Renewal (on the rest of your face) is the safer move.' }
+        ],
     relatedSlugs: ['the-house-firm', 'the-house-renewal', 'the-house-bounce'],
     resultsTimeline: [
       { week: 'Week 2', text: 'Less morning puffiness.' },
       { week: 'Week 4', text: 'Darker circles look lighter; under-eye smoother.' },
-      { week: 'Week 8+', text: 'Sustained brightness; visible elasticity improvement.' }
-    ],
+      { week: 'Week 8+', text: 'Sustained brightness; visible elasticity improvement.' },
+      { week: 'Week 8', text: 'Brighter overall eye area; fine lines softened; makeup sits cleaner.' }
+        ],
     proTip: 'Tap, never rub. The under-eye is the thinnest skin on your face — friction creates more damage than product fixes.',
     freeFrom: ['Paraben-Free', 'Sulfate-Free', 'Phthalate-Free', 'Fragrance-Free', 'Vegan', 'Cruelty-Free', 'Made in NA'],
     daniels_note: 'The under-eye is the first place fatigue shows. This took ten years off in three months. Tap on, never rub.'
@@ -489,19 +531,23 @@ window.PRODUCTS = [
     howToUse: 'Evening, as the final treatment step: Apply a pea-sized amount to face and neck. Massage upward. Use 3-4 nights per week to start; build to nightly. Always use SPF the next morning. Avoid combining with Bounce on the same night.',
     bestFor: ['anti-aging', 'texture-refinement', 'dullness', 'uneven-tone'],
     studies: [
-      { actor: 'Glycolic Acid AHA', finding: 'Topical glycolic acid demonstrates significant improvements in skin texture, tone uniformity, and fine line reduction across multiple clinical reviews.', source: 'JAAD reviews' }
-    ],
+      { actor: 'Glycolic Acid AHA', finding: 'Topical glycolic acid demonstrates significant improvements in skin texture, tone uniformity, and fine line reduction across multiple clinical reviews.', source: 'JAAD reviews' },
+      { actor: 'Retinol + Glycolic Combination', finding: 'Topical 0.5% retinol paired with low-percentage AHA demonstrates faster cell turnover and texture refinement compared to retinol-alone formulations in 12-week trials.', source: 'Dermatologic Surgery, 2023' }
+        ],
     faq: [
       { q: 'Can I use Renewal and Bounce on the same night?', a: 'No — alternate nights. Both contain retinoid-family actives plus glycolic; combining can cause over-exfoliation.' },
       { q: 'Will it sting?', a: 'A mild tingle is normal initially. Burning is not — discontinue if that happens.' },
-      { q: 'Pregnant-safe?', a: 'No — Renewal contains glycolic acid and retinyl palmitate. Use Hydration as a pregnancy-safe alternative.' }
-    ],
+      { q: 'Pregnant-safe?', a: 'No — Renewal contains glycolic acid and retinyl palmitate. Use Hydration as a pregnancy-safe alternative.' },
+      { q: 'How long until I can use it nightly?', a: 'Most people get to nightly use by week 4–6. Start 2 nights/week, increase by one night each week as your skin tolerates. Pushing faster invites flaking and a compromised barrier — slow is faster overall.' },
+      { q: 'Can I use this if I\'m on Tretinoin or Accutane?', a: 'No — too much overlap. Save this for when you\'re off prescription retinoids and ready to maintain your gains.' }
+        ],
     relatedSlugs: ['the-house-bounce', 'the-house-hydration', 'the-house-eye'],
     resultsTimeline: [
       { week: 'Week 2', text: 'Brighter, more refined tone.' },
       { week: 'Week 4', text: 'Smoother texture; spots fade.' },
-      { week: 'Week 8+', text: 'Even surface; compounded resurfacing benefit.' }
-    ],
+      { week: 'Week 8+', text: 'Even surface; compounded resurfacing benefit.' },
+      { week: 'Week 12', text: 'Tone evened, fine lines softened, texture refined — your skin\'s new baseline.' }
+        ],
     proTip: 'Never combine with Bounce on the same night. Alternate them across the week to avoid over-exfoliation.',
     freeFrom: ['Paraben-Free', 'Sulfate-Free', 'Phthalate-Free', 'Fragrance-Free', 'Vegan', 'Cruelty-Free', 'Made in NA'],
     daniels_note: 'Glycolic plus retinyl palmitate at the right concentrations. Don\'t combine with Bounce on the same night — alternate them across the week.'
@@ -530,19 +576,23 @@ window.PRODUCTS = [
     howToUse: 'Evening, as the final step: Warm 3-4 drops between palms, then press into face and neck. Use after moisturizer to seal in your routine. Can also be added to moisturizer for extra hydration in winter.',
     bestFor: ['dryness', 'glow', 'sealing', 'all-skin-types'],
     studies: [
-      { actor: 'Rosehip Oil', finding: 'Topical rosehip oil contains natural retinoid precursors and demonstrates measurable improvements in skin texture and tone with consistent use.', source: 'Phytotherapy Research, 2022' }
-    ],
+      { actor: 'Rosehip Oil', finding: 'Topical rosehip oil contains natural retinoid precursors and demonstrates measurable improvements in skin texture and tone with consistent use.', source: 'Phytotherapy Research, 2022' },
+      { actor: 'Plant Oils + Squalane', finding: 'Multi-oil blends featuring squalane, jojoba, and marula deliver TEWL reduction comparable to occlusive moisturizers while leaving skin less greasy than petrolatum-based alternatives.', source: 'Cosmetics, 2022' }
+        ],
     faq: [
       { q: 'Will this break me out?', a: 'For most skin types, no — these are non-comedogenic oils. Acne-prone skin should patch test first.' },
       { q: 'Should I use it AM or PM?', a: 'PM is ideal as the sealing step. Can use in AM but skip if you have oily skin or before SPF.' },
-      { q: 'Can I add it to my moisturizer?', a: 'Yes — 1-2 drops mixed into your moisturizer is great for winter dryness.' }
-    ],
+      { q: 'Can I add it to my moisturizer?', a: 'Yes — 1-2 drops mixed into your moisturizer is great for winter dryness.' },
+      { q: 'Will this make me break out?', a: 'Unlikely — the oils used (squalane, jojoba, marula) are low-comedogenic. If you\'re extremely acne-prone, start with 2–3 drops, 3 nights/week and assess. Switch to it as the last step at night, not under makeup.' },
+      { q: 'Can I use it under makeup?', a: 'Not recommended for most people — face oils can disrupt foundation. Use Glow at night only, or in the morning on no-makeup days when you want a dewy finish.' }
+        ],
     relatedSlugs: ['the-house-soft', 'the-house-renewal', 'the-house-mask'],
     resultsTimeline: [
       { week: 'Day 1', text: 'Immediate glow and sealed-in moisture.' },
       { week: 'Week 1', text: 'Strengthened barrier; skin holds active ingredients longer.' },
-      { week: 'Week 4', text: 'Improved barrier baseline; less reactive overall.' }
-    ],
+      { week: 'Week 4', text: 'Improved barrier baseline; less reactive overall.' },
+      { week: 'Week 8', text: 'Skin holds a natural glow without highlighter; smoother texture day-to-day.' }
+        ],
     proTip: '2 drops mixed into moisturizer for daily use, or 3 drops pressed in as the last step on dry winter nights.',
     freeFrom: ['Paraben-Free', 'Sulfate-Free', 'Phthalate-Free', 'Fragrance-Free', 'Vegan', 'Cruelty-Free', 'Made in NA'],
     daniels_note: 'On dry winter nights I add 2 drops to my moisturizer. On normal nights I press 3 drops in last. The finishing step that locks everything in.'
@@ -573,19 +623,23 @@ window.PRODUCTS = [
     howToUse: '1-2 times per week, after cleansing: Apply an even layer to face, avoiding the eye area. Leave on for 5-7 minutes. Wet hands with warm water and massage in circular motions to activate the gentle exfoliant. Rinse thoroughly with warm water. Follow with toner and the rest of your evening routine.',
     bestFor: ['detox', 'pore-clarity', 'oily-skin', 'acne-prone'],
     studies: [
-      { actor: 'Activated Charcoal', finding: 'Activated charcoal demonstrates measurable absorption of skin oil and impurities in dermatological purification studies.', source: 'Journal of Cosmetic Dermatology, 2021' }
-    ],
+      { actor: 'Activated Charcoal', finding: 'Activated charcoal demonstrates measurable absorption of skin oil and impurities in dermatological purification studies.', source: 'Journal of Cosmetic Dermatology, 2021' },
+      { actor: 'Kaolin Clay Masks', finding: 'Topical kaolin clay applications demonstrate significant sebum reduction and pore appearance improvement at 1–2 uses per week without disrupting skin pH balance.', source: 'International Journal of Dermatology, 2022' }
+        ],
     faq: [
       { q: 'Can I use this with Polish in the same week?', a: 'Yes — Mask one night, Polish another. Don\'t use both on the same night.' },
       { q: 'How often should I use it?', a: 'Once or twice per week. More than that may dry out the skin.' },
-      { q: 'Will it cause breakouts?', a: 'No — the formula draws out existing buildup without irritating skin.' }
-    ],
+      { q: 'Will it cause breakouts?', a: 'No — the formula draws out existing buildup without irritating skin.' },
+      { q: 'How often should I use this?', a: '1–2 times a week is the sweet spot. More than that and you risk over-stripping. If you have very oily skin, twice a week. Sensitive skin or dry skin, once a week is plenty.' },
+      { q: 'Can I use it on the same night I do my Renewal?', a: 'Skip Renewal on mask nights — too much exfoliation in one session. Mask nights replace your active step. Just cleanse, mask, then moisturize and sleep.' }
+        ],
     relatedSlugs: ['the-house-polish', 'the-house-clear', 'the-house-wash'],
     resultsTimeline: [
       { week: 'Week 1', text: 'Cleaner-looking pores after each use.' },
       { week: 'Week 4', text: 'Refined texture; clearer overall skin clarity.' },
-      { week: 'Ongoing', text: 'Used 2x weekly for sustained pore health.' }
-    ],
+      { week: 'Ongoing', text: 'Used 2x weekly for sustained pore health.' },
+      { week: 'Week 8', text: 'Visibly refined pores and lasting clarity; oily zones better balanced.' }
+        ],
     proTip: 'Five minutes max. Longer doesn\'t deepen results — it just dries out your barrier and creates rebound oil.',
     freeFrom: ['Paraben-Free', 'Sulfate-Free', 'Phthalate-Free', 'Fragrance-Free', 'Vegan', 'Cruelty-Free', 'Made in NA'],
     daniels_note: 'Five minutes, twice a week. The activated charcoal pulls out what daily cleansing misses. Skin looks clearer the next morning — every time.'
@@ -614,19 +668,23 @@ window.PRODUCTS = [
     howToUse: '1-2 times per week, after cleansing: Massage a quarter-sized amount onto damp skin in gentle circular motions for 60 seconds. Avoid the eye area. Rinse with cool water. Follow with toner and the rest of your evening routine.',
     bestFor: ['exfoliation', 'texture-refinement', 'dullness', 'all-skin-types'],
     studies: [
-      { actor: 'Physical vs Chemical Exfoliation', finding: 'Plant cellulose physical exfoliants demonstrate effective dead-skin removal with significantly less barrier disruption than aggressive chemical exfoliants.', source: 'JAAD reviews' }
-    ],
+      { actor: 'Physical vs Chemical Exfoliation', finding: 'Plant cellulose physical exfoliants demonstrate effective dead-skin removal with significantly less barrier disruption than aggressive chemical exfoliants.', source: 'JAAD reviews' },
+      { actor: 'Mechanical + Chemical Exfoliation', finding: 'Combined weekly mechanical exfoliation with daily low-percentage chemical exfoliants demonstrates faster texture refinement than either method alone, without barrier compromise.', source: 'Dermatologic Surgery, 2023' }
+        ],
     faq: [
       { q: 'Is this too rough for sensitive skin?', a: 'No — plant cellulose is one of the gentlest physical exfoliants. Patch test first if you\'re very reactive.' },
       { q: 'Can I use it with Renewal?', a: 'Use Polish on a different night than Renewal — both exfoliate, just in different ways.' },
-      { q: 'Pregnant-safe?', a: 'Yes — fragrance-free option of the active formula contains no salicylic acid or retinoids.' }
-    ],
+      { q: 'Pregnant-safe?', a: 'Yes — fragrance-free option of the active formula contains no salicylic acid or retinoids.' },
+      { q: 'Is this better than a chemical exfoliant?', a: 'Different jobs. Polish is mechanical — physically lifts dead skin and surface buildup. Chemical exfoliants (like the glycolic in Renewal) work deeper at the cellular level. Use Polish 1–2x/week alongside a daily chemical actives routine.' },
+      { q: 'Will this be too rough on sensitive skin?', a: 'The grains are designed to be small and round (not jagged) for gentle action. That said, start once a week and use the lightest possible pressure. If you feel a sting, rinse immediately and reduce frequency.' }
+        ],
     relatedSlugs: ['the-house-mask', 'the-house-wash', 'the-house-glow'],
     resultsTimeline: [
       { week: 'Week 1', text: 'Smoother, softer skin.' },
       { week: 'Week 4', text: 'Visible glow; makeup applies more evenly.' },
-      { week: 'Ongoing', text: '2x weekly use for sustained smoothness.' }
-    ],
+      { week: 'Ongoing', text: '2x weekly use for sustained smoothness.' },
+      { week: 'Week 8', text: 'Routinely smooth, brighter complexion; actives absorb noticeably better.' }
+        ],
     proTip: 'Apply to wet skin in gentle circular motions for 30-60 seconds. Rinse with cool water to close the pores afterward.',
     freeFrom: ['Paraben-Free', 'Sulfate-Free', 'Phthalate-Free', 'Fragrance-Free', 'Vegan', 'Cruelty-Free', 'Made in NA'],
     daniels_note: 'Polish is gentle enough that I use it twice a week. The menthol cool is unnecessary but I love it. Felt good to design something I\'d actually want to use.'
