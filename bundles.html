@@ -36,6 +36,80 @@
   .cred-num em { color: var(--gold); font-style: italic; }
   .cred-label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft); font-weight: 500; }
 
+  /* Returns-policy tooltip — sits next to the "Day satisfaction guarantee" label.
+     Hover or tap the ? to reveal a one-sentence policy summary with a Full policy link. */
+  .cred-item-tooltip .cred-label { position: relative; display: inline-flex; align-items: center; gap: 6px; }
+  .cred-tip-trigger {
+    width: 16px; height: 16px;
+    padding: 0; border: 1px solid var(--gold);
+    border-radius: 100%;
+    background: transparent;
+    color: var(--gold);
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1;
+    cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center;
+    transition: background 0.25s, color 0.25s;
+    letter-spacing: 0;
+  }
+  .cred-tip-trigger:hover, .cred-tip-trigger:focus {
+    background: var(--gold);
+    color: var(--cream);
+    outline: none;
+  }
+  .cred-tip-bubble {
+    position: absolute;
+    bottom: calc(100% + 14px);
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+    width: 280px;
+    padding: 14px 16px;
+    background: var(--ink);
+    color: var(--cream);
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 13.5px;
+    line-height: 1.45;
+    text-transform: none;
+    letter-spacing: 0;
+    text-align: left;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    z-index: 50;
+    box-shadow: 0 8px 24px rgba(31, 27, 23, 0.25);
+  }
+  .cred-tip-bubble::after {
+    /* Arrow pointer */
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 12px; height: 12px;
+    background: var(--ink);
+  }
+  .cred-tip-bubble a {
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(184, 153, 104, 0.4);
+    transition: border-color 0.25s;
+  }
+  .cred-tip-bubble a:hover { border-color: var(--gold); }
+  .cred-item-tooltip:hover .cred-tip-bubble,
+  .cred-item-tooltip:focus-within .cred-tip-bubble {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: all;
+  }
+  @media (max-width: 640px) {
+    .cred-tip-bubble { width: 240px; font-size: 12.5px; padding: 12px 14px; }
+  }
+
   /* Hero bundle */
   .hero-section { max-width: 1200px; margin: 80px auto 0; padding: 0 40px; }
   .hero-eyebrow { text-align: center; font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; font-weight: 500; }
@@ -717,7 +791,16 @@
   <div class="credibility credibility-quad">
     <div class="cred-item"><div class="cred-num">9<em>.</em></div><div class="cred-label">Curated bundles</div></div>
     <div class="cred-item"><div class="cred-num">$179</div><div class="cred-label">Max bundle savings</div></div>
-    <div class="cred-item"><div class="cred-num">30<em>.</em></div><div class="cred-label">Day satisfaction guarantee</div></div>
+    <div class="cred-item cred-item-tooltip">
+      <div class="cred-num">30<em>.</em></div>
+      <div class="cred-label">
+        Day satisfaction guarantee
+        <button class="cred-tip-trigger" type="button" aria-label="Returns policy details" tabindex="0">?</button>
+        <div class="cred-tip-bubble" role="tooltip">
+          Try anything for 30 days. If it doesn't work for you — open bottle or not — we'll refund it. Free return shipping. <a href="faq.html#returns">Full policy →</a>
+        </div>
+      </div>
+    </div>
     <div class="cred-item"><div class="cred-num">Free</div><div class="cred-label">Shipping over $75</div></div>
   </div>
   <div class="page-filter-results"></div>
@@ -1126,6 +1209,40 @@
 
 </section>
 
+<!-- ═══ OUR GUARANTEE — Return / refund policy summary ═══ -->
+<section class="guarantee-strip">
+  <div class="guarantee-strip-inner">
+    <div class="guarantee-strip-header">
+      <div class="guarantee-eyebrow">Our Guarantee</div>
+      <h2>Try the routine. <em>Love it or send it back.</em></h2>
+      <p>Skincare and supplements are personal. We don't expect you to commit before you've actually used them. Every order — single product, bundle, or subscription — is backed by the same 30-day promise.</p>
+    </div>
+    <div class="guarantee-grid">
+      <div class="guarantee-card">
+        <div class="guarantee-icon">30</div>
+        <div class="guarantee-title">30-Day Window</div>
+        <div class="guarantee-text">From the day your order arrives. Plenty of time to see if it works.</div>
+      </div>
+      <div class="guarantee-card">
+        <div class="guarantee-icon">✓</div>
+        <div class="guarantee-title">Opened Is Fine</div>
+        <div class="guarantee-text">Use the product. Really try it. Don't love it? Return what's left for a full refund.</div>
+      </div>
+      <div class="guarantee-card">
+        <div class="guarantee-icon">→</div>
+        <div class="guarantee-title">Free Return Shipping</div>
+        <div class="guarantee-text">We send the prepaid label both ways. Refund within 5 business days of receipt.</div>
+      </div>
+      <div class="guarantee-card">
+        <div class="guarantee-icon">⊘</div>
+        <div class="guarantee-title">Cancel Anytime</div>
+        <div class="guarantee-text">Subscriptions pause, skip, or stop with one click. No minimums, no fees.</div>
+      </div>
+    </div>
+    <a href="faq.html#returns" class="guarantee-link">Full policy details →</a>
+  </div>
+</section>
+
 <footer>
   <div class="footer-newsletter">
     <div class="footer-newsletter-inner">
@@ -1170,8 +1287,9 @@
     <div class="footer-col">
       <h4>Help</h4>
       <ul>
-        <li><a href="faq.html">Shipping &amp; Returns</a></li>
-        <li><a href="faq.html">30-Day Guarantee</a></li>
+        <li><a href="faq.html#shipping">Shipping</a></li>
+        <li><a href="faq.html#returns">Returns Policy →</a></li>
+        <li><a href="faq.html#returns">30-Day Guarantee</a></li>
         <li><a href="faq.html">FAQ</a></li>
         <li><a href="faq.html">Track Order</a></li>
       </ul>
