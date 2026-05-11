@@ -1334,12 +1334,14 @@ window.getProductsByConcern = function(concern) {
 /**
  * CONCERN BUNDLES — Shop By Concern bundles
  * Each is a curated set of products targeting a specific skin concern
- * or wellness goal. All come with 10% off the sum of individual prices.
+ * or wellness goal. Each bundle has its own discount (5-8%) based on
+ * total bundle price — see the `discount` field on each bundle.
  */
 window.CONCERN_BUNDLES = [
   // ═══ SKIN CONCERNS ═══
   {
     id: 'aging',
+    discount: 0.08,
     tab: 'skin',
     icon: 'A.',
     name: 'The Anti-Aging Bundle',
@@ -1348,6 +1350,7 @@ window.CONCERN_BUNDLES = [
   },
   {
     id: 'acne',
+    discount: 0.07,
     tab: 'skin',
     icon: 'B.',
     name: 'The Acne Bundle',
@@ -1356,6 +1359,7 @@ window.CONCERN_BUNDLES = [
   },
   {
     id: 'dryness',
+    discount: 0.07,
     tab: 'skin',
     icon: 'C.',
     name: 'The Hydration Bundle',
@@ -1364,6 +1368,7 @@ window.CONCERN_BUNDLES = [
   },
   {
     id: 'dullness',
+    discount: 0.08,
     tab: 'skin',
     icon: 'D.',
     name: 'The Brightening Bundle',
@@ -1372,6 +1377,7 @@ window.CONCERN_BUNDLES = [
   },
   {
     id: 'sensitivity',
+    discount: 0.07,
     tab: 'skin',
     icon: 'E.',
     name: 'The Soothing Bundle',
@@ -1380,6 +1386,7 @@ window.CONCERN_BUNDLES = [
   },
   {
     id: 'pores',
+    discount: 0.07,
     tab: 'skin',
     icon: 'F.',
     name: 'The Pore Bundle',
@@ -1390,6 +1397,7 @@ window.CONCERN_BUNDLES = [
   // ═══ WELLNESS GOALS ═══
   {
     id: 'sleep',
+    discount: 0.05,
     tab: 'goal',
     icon: 'A.',
     name: 'The Sleep Bundle',
@@ -1398,6 +1406,7 @@ window.CONCERN_BUNDLES = [
   },
   {
     id: 'energy',
+    discount: 0.07,
     tab: 'goal',
     icon: 'B.',
     name: 'The Energy Bundle',
@@ -1406,6 +1415,7 @@ window.CONCERN_BUNDLES = [
   },
   {
     id: 'focus',
+    discount: 0.06,
     tab: 'goal',
     icon: 'C.',
     name: 'The Focus Bundle',
@@ -1414,6 +1424,7 @@ window.CONCERN_BUNDLES = [
   },
   {
     id: 'stress',
+    discount: 0.06,
     tab: 'goal',
     icon: 'D.',
     name: 'The Stress Bundle',
@@ -1422,6 +1433,7 @@ window.CONCERN_BUNDLES = [
   },
   {
     id: 'strength',
+    discount: 0.07,
     tab: 'goal',
     icon: 'E.',
     name: 'The Strength Bundle',
@@ -1430,6 +1442,7 @@ window.CONCERN_BUNDLES = [
   },
   {
     id: 'beauty',
+    discount: 0.06,
     tab: 'goal',
     icon: 'F.',
     name: 'The Glow Bundle',
@@ -1438,6 +1451,7 @@ window.CONCERN_BUNDLES = [
   },
   {
     id: 'longevity',
+    discount: 0.07,
     tab: 'goal',
     icon: 'G.',
     name: 'The Cellular Bundle',
@@ -1446,6 +1460,7 @@ window.CONCERN_BUNDLES = [
   },
   {
     id: 'gut',
+    discount: 0.06,
     tab: 'goal',
     icon: 'H.',
     name: 'The Gut Bundle',
@@ -1454,6 +1469,7 @@ window.CONCERN_BUNDLES = [
   },
   {
     id: 'joints',
+    discount: 0.06,
     tab: 'goal',
     icon: 'I.',
     name: 'The Joint Bundle',
@@ -1468,7 +1484,8 @@ window.getConcernBundlePricing = function(bundleId) {
   if (!bundle) return null;
   const products = bundle.slugs.map(s => window.getProductBySlug(s)).filter(Boolean);
   const fullPrice = products.reduce((sum, p) => sum + p.price, 0);
-  const discountedPrice = fullPrice * 0.9; // 10% off
+  const discountPct = typeof bundle.discount === 'number' ? bundle.discount : 0.07;
+  const discountedPrice = fullPrice * (1 - discountPct);
   return {
     bundle,
     products,
