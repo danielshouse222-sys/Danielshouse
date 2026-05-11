@@ -1426,7 +1426,7 @@ body.has-page-filter-modal {
   background: transparent;
   border: none;
   cursor: pointer;
-  padding: 16px 14px 14px;
+  padding: 16px 12px 14px;
   text-align: center;
   transition: background 0.35s ease;
   position: relative;
@@ -1435,7 +1435,8 @@ body.has-page-filter-modal {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 4px;
+  gap: 6px;
+  min-width: 0; /* allow children to shrink within grid column */
 }
 .bundle-subscribe-toggle button:hover {
   background: rgba(184, 153, 104, 0.06);
@@ -1450,6 +1451,8 @@ body.has-page-filter-modal {
   align-items: center;
   justify-content: center;
   gap: 9px;
+  flex-wrap: wrap; /* if needed, badge can wrap to a new line on tiny screens */
+  row-gap: 6px;
 }
 
 /* Refined radio mark */
@@ -1498,27 +1501,66 @@ body.has-page-filter-modal {
   color: var(--ink);
 }
 
-/* Tiny uppercase meta below */
+/* "+10% OFF" gold pill badge — injected only on the Monthly button via CSS,
+   so the HTML for the toggle stays simple. Sits inline next to the label. */
+.bundle-subscribe-toggle button[data-mode="subscribe"] .toggle-row::after {
+  content: '+10% OFF';
+  display: inline-flex;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.16em;
+  font-weight: 600;
+  padding: 3px 7px 2px;
+  border-radius: 100px;
+  background: var(--cream-warm);
+  color: var(--gold);
+  border: 1px solid rgba(184, 153, 104, 0.4);
+  line-height: 1;
+  transition: background 0.35s, color 0.35s, border-color 0.35s, transform 0.35s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.bundle-subscribe-toggle button[data-mode="subscribe"].active .toggle-row::after {
+  background: var(--gold);
+  color: var(--cream);
+  border-color: var(--gold);
+  transform: scale(1.04);
+}
+
+/* Tiny uppercase meta below — now just "Cancel anytime" / "Single delivery",
+   so it fits comfortably with no overflow risk. */
 .bundle-subscribe-toggle .toggle-meta {
   font-size: 9px;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--ink-soft);
   font-weight: 500;
   opacity: 0.55;
   transition: opacity 0.35s, color 0.35s;
-  white-space: nowrap;
+  line-height: 1.2;
 }
 .bundle-subscribe-toggle button.active .toggle-meta {
   opacity: 1;
   color: var(--gold);
 }
 
-/* Mobile — slightly tighter padding */
+/* Mobile — slightly tighter padding, smaller pill */
 @media (max-width: 640px) {
-  .bundle-subscribe-toggle button { padding: 14px 8px 12px; }
+  .bundle-subscribe-toggle button { padding: 14px 8px 12px; gap: 5px; }
   .bundle-subscribe-toggle .toggle-name { font-size: 16px; }
+  .bundle-subscribe-toggle .toggle-row { gap: 7px; }
+  .bundle-subscribe-toggle button[data-mode="subscribe"] .toggle-row::after {
+    font-size: 7.5px;
+    letter-spacing: 0.14em;
+    padding: 2.5px 6px 1.5px;
+  }
   .bundle-subscribe-toggle .toggle-meta { font-size: 8.5px; letter-spacing: 0.18em; }
+}
+
+/* Very small phones — let the badge wrap below the label if needed */
+@media (max-width: 360px) {
+  .bundle-subscribe-toggle .toggle-row { flex-direction: column; gap: 4px; }
 }
 
 /* ═══ BUNDLE FOOTNOTE ═══ */
