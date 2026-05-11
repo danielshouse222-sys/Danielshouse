@@ -6,6 +6,7 @@
 (function() {
   const FREE_SHIPPING_THRESHOLD = 75;
   const SUBSCRIBE_DISCOUNT = 0.15;
+  const BUNDLE_SUBSCRIBE_BONUS = 0.10; // extra 10% on top of bundle discount when subscribed
   const BUNDLE_DISCOUNT_DEFAULT = 0.10;
 
   // ═══ CART STATE ═══
@@ -102,9 +103,10 @@
     subtotal() {
       return this.items.reduce((sum, i) => {
         let price = i.price;
-        // Bundle pricing takes precedence — subscribe does not add an extra 15% on top of bundle discount
+        // Bundle pricing — stacks an extra 10% off when subscribed
         if (i.bundleName && i.bundleDiscount) {
           price = i.price * (1 - i.bundleDiscount);
+          if (i.subscribe) price *= (1 - BUNDLE_SUBSCRIBE_BONUS);
         } else if (i.subscribe) {
           price = i.price * (1 - SUBSCRIBE_DISCOUNT);
         }
@@ -157,9 +159,10 @@
           // Bundle pricing takes precedence
           if (item.bundleName && item.bundleDiscount) {
             price = item.price * (1 - item.bundleDiscount);
+            if (item.subscribe) price *= (1 - BUNDLE_SUBSCRIBE_BONUS);
             labels += `<div class="cart-item-meta subscribe">${item.bundleName}</div>`;
             if (item.subscribe) {
-              labels += `<div class="cart-item-meta subscribe">↻ Ships every 30 days</div>`;
+              labels += `<div class="cart-item-meta subscribe">↻ Bundle Subscription · Ships every 30 days</div>`;
             }
           } else if (item.subscribe) {
             price = item.price * (1 - SUBSCRIBE_DISCOUNT);
@@ -459,7 +462,7 @@
             ...(p.ingredients || []).map(i => i.name).filter(Boolean)
           ].join(' ').toLowerCase();
           const textMatch = !q || haystack.includes(q);
-          const chipMatch = groups.every(chips => chips.some(c => haystack.includes(c)));
+          const chipMatch = groups.every(chips => chips.every(c => haystack.includes(c)));
           return textMatch && chipMatch;
         }).slice(0, 12);
         if (matches.length === 0) {
@@ -498,7 +501,7 @@
         items.forEach(item => {
           const text = (item.textContent || '').toLowerCase();
           const textMatch = !q || text.includes(q);
-          const chipMatch = groups.every(chips => chips.some(c => text.includes(c)));
+          const chipMatch = groups.every(chips => chips.every(c => text.includes(c)));
           const match = textMatch && chipMatch;
           item.style.display = match ? '' : 'none';
           if (match) visible++;
@@ -846,7 +849,11 @@
     }
 
     function priceOf(item) {
-      if (item.bundleName && item.bundleDiscount) return item.price * (1 - item.bundleDiscount);
+      if (item.bundleName && item.bundleDiscount) {
+        let p = item.price * (1 - item.bundleDiscount);
+        if (item.subscribe) p *= (1 - 0.10); // bundle subscription bonus
+        return p;
+      }
       if (item.subscribe) return item.price * 0.85;
       return item.price;
     }
@@ -885,7 +892,10 @@
             ${items.map(it => {
               const unit = priceOf(it);
               const labels = [];
-              if (it.bundleName && it.bundleDiscount) labels.push(`<div class="cf-item-meta discount">${it.bundleName}</div>`);
+              if (it.bundleName && it.bundleDiscount) {
+                labels.push(`<div class="cf-item-meta discount">${it.bundleName}</div>`);
+                if (it.subscribe) labels.push(`<div class="cf-item-meta discount">↻ Bundle Subscription</div>`);
+              }
               else if (it.subscribe) labels.push(`<div class="cf-item-meta discount">↻ Subscribe &amp; Save</div>`);
               const bundleAttr = it.bundleName ? it.bundleName.replace(/"/g,'&quot;') : '';
               return `
