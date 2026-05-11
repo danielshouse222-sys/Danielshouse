@@ -1221,9 +1221,15 @@
             ${bestForHtml}
             ${proTipHtml}
             ${freeFromHtml}
-            <a href="product.html?slug=${product.slug}" class="rd-full-link">Open full product page →</a>
           </div>
         </div>
+        <a href="product.html?slug=${product.slug}" class="rd-full-cta">
+          <div class="rd-full-cta-text">
+            <div class="rd-full-cta-label">See the full breakdown</div>
+            <div class="rd-full-cta-sub">Studies, week-by-week timeline, FAQs, and Daniel's notes</div>
+          </div>
+          <div class="rd-full-cta-arrow">→</div>
+        </a>
       `;
     }
 
