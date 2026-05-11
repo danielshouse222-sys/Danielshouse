@@ -2244,14 +2244,10 @@ body.has-page-filter-modal {
   margin: 0 6px;
 }
 
-/* Push the shipping bar (and everything else) down to make room */
-.coming-soon-active .shipping-bar {
-  top: var(--coming-soon-height, 78px) !important;
-}
-.coming-soon-active .nav-pinned,
-.coming-soon-active nav {
-  margin-top: var(--coming-soon-height, 78px);
-}
+/* Note: previously had .coming-soon-active rules that bumped .shipping-bar top
+   and added margin-top to nav. With headers now non-sticky (position: relative)
+   those rules created phantom whitespace and have been removed. The Coming Soon
+   banner sits naturally in the document flow above the shipping bar. */
 
 @media (max-width: 600px) {
   .coming-soon-banner {
