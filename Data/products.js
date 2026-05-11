@@ -1625,7 +1625,7 @@ window.CURATED_BUNDLES = [
     id: 'arianas',
     name: "The Ariana's Bundle",
     discount: 0.15,
-    slugs: ['the-house-wash','the-house-boost','the-house-hyaluronic','the-house-soft','the-house-polish','the-house-multi','the-house-radiance','the-house-collagen']
+    slugs: ['the-house-multi','the-house-radiance','the-house-collagen','the-house-wash','the-house-boost','the-house-defense','the-house-renewal','the-house-eye','the-house-soft']
   }
 ];
 
