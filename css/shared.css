@@ -12,6 +12,48 @@
   --rule: #D4C9B6;
 }
 
+/* ═══ CRED STRIP BANNER ═══ */
+/* Dark horizontal banner with brand-promise trust signals — used near the
+   top of every product/collection page for instant credibility. */
+.cred-strip {
+  background: var(--ink);
+  color: var(--cream);
+  padding: 22px 40px;
+  text-align: center;
+  overflow: hidden;
+}
+.cred-strip-inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  flex-wrap: wrap;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.cred-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.cred-item .cred-dot {
+  width: 5px;
+  height: 5px;
+  background: var(--gold);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+@media (max-width: 720px) {
+  .cred-strip { padding: 18px 20px; }
+  .cred-strip-inner { gap: 18px 26px; }
+  .cred-item { font-size: 10px; letter-spacing: 0.14em; gap: 7px; }
+}
+
 /* ═══ FREE SHIPPING / TOP BAR ═══ */
 /* Permanent top bar — fixed at viewport top. Unified uppercase typography
    across all segments for a clean, editorial look. */
