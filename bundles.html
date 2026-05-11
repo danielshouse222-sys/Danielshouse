@@ -278,37 +278,238 @@
   .builder-card-name em { font-style: italic; color: var(--sage); }
   .builder-card-price { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 500; color: var(--ink); }
 
-  .builder-summary { display: none; margin-top: 50px; padding: 40px 36px 36px; background: var(--ink); color: var(--cream); border: 1px solid var(--gold); }
-  .builder-summary.visible { display: block; }
-  .builder-summary h3 { font-family: 'Cormorant Garamond', serif; font-size: 38px; font-weight: 400; margin-bottom: 4px; line-height: 1.05; }
-  .builder-summary h3 em { font-style: italic; color: var(--gold); }
-  .builder-summary-sub { font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 28px; font-weight: 500; }
-  .builder-summary-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 28px; }
-  .summary-item { display: flex; gap: 12px; align-items: center; padding: 12px; border: 1px solid rgba(184, 153, 104, 0.3); text-decoration: none; color: var(--cream); transition: border-color 0.3s, background 0.3s; }
-  .summary-item:hover { border-color: var(--gold); background: rgba(184, 153, 104, 0.08); }
-  .summary-item img { width: 52px; height: 52px; object-fit: cover; flex-shrink: 0; }
-  .summary-item-text { flex: 1; min-width: 0; }
-  .summary-item-name { font-family: 'Cormorant Garamond', serif; font-size: 15px; font-weight: 500; line-height: 1.15; }
-  .summary-item-name em { font-style: italic; color: var(--gold); }
-  .summary-item-price { font-size: 12px; color: rgba(250, 246, 240, 0.7); margin-top: 2px; }
-  .builder-summary-totals { display: grid; grid-template-columns: 1fr auto; gap: 8px 24px; padding: 20px 0; border-top: 1px solid rgba(184, 153, 104, 0.3); border-bottom: 1px solid rgba(184, 153, 104, 0.3); margin-bottom: 24px; font-size: 14px; align-items: baseline; }
-  .builder-summary-totals .total-final-label { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 18px; padding-top: 10px; }
-  .builder-summary-totals .total-final { font-family: 'Cormorant Garamond', serif; font-size: 30px; color: var(--gold); font-style: italic; padding-top: 10px; }
-  .builder-summary-code { background: rgba(184, 153, 104, 0.1); padding: 18px 22px; border: 1px dashed var(--gold); margin-bottom: 24px; text-align: center; font-size: 13px; color: rgba(250, 246, 240, 0.85); }
-  .builder-summary-code strong { font-family: 'Cormorant Garamond', serif; font-size: 24px; color: var(--gold); font-style: italic; letter-spacing: 0.05em; display: inline-block; padding: 0 6px; }
-  .builder-summary-cta { display: inline-block; padding: 16px 36px; background: var(--gold); color: var(--ink); text-decoration: none; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500; transition: background 0.3s; font-family: 'Poppins', sans-serif; }
-  .builder-summary-cta:hover { background: var(--cream); }
+  /* ═══ BYO BUNDLE POPUP ═══
+     Replaces the old inline summary — opens as a modal overlay when the user
+     clicks "See Your Bundle →". Same backdrop pattern as the cart drawer. */
+  .byo-popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(31, 27, 23, 0.55);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    z-index: 998;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    overflow-y: auto;
+  }
+  .byo-popup-overlay.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .byo-popup {
+    background: var(--ink);
+    color: var(--cream);
+    border: 1px solid var(--gold);
+    max-width: 580px;
+    width: 100%;
+    max-height: calc(100vh - 80px);
+    padding: 44px 40px 36px;
+    position: relative;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+    overflow-y: auto;
+  }
+  .byo-popup-overlay.open .byo-popup {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  .byo-popup-close {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    width: 36px;
+    height: 36px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--cream);
+    font-size: 28px;
+    line-height: 1;
+    padding: 0;
+    opacity: 0.6;
+    transition: opacity 0.25s, color 0.25s;
+    font-family: 'Poppins', sans-serif;
+    z-index: 2;
+  }
+  .byo-popup-close:hover { opacity: 1; color: var(--gold); }
+
+  .byo-popup-header { text-align: center; margin-bottom: 26px; }
+  .byo-popup-eyebrow {
+    font-family: 'Poppins', sans-serif;
+    font-size: 10.5px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  .byo-popup-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 38px;
+    font-weight: 400;
+    line-height: 1.05;
+    margin: 0 0 8px;
+    color: var(--cream);
+  }
+  .byo-popup-title em { font-style: italic; color: var(--gold); }
+  .byo-popup-sub {
+    font-family: 'Poppins', sans-serif;
+    font-size: 10.5px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  .byo-popup-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+  .byo-popup-list .summary-item {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid rgba(184, 153, 104, 0.3);
+    text-decoration: none;
+    color: var(--cream);
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .byo-popup-list .summary-item:hover {
+    border-color: var(--gold);
+    background: rgba(184, 153, 104, 0.08);
+  }
+  .byo-popup-list .summary-item img {
+    width: 46px;
+    height: 46px;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+  .byo-popup-list .summary-item-text { flex: 1; min-width: 0; }
+  .byo-popup-list .summary-item-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.15;
+  }
+  .byo-popup-list .summary-item-name em { font-style: italic; color: var(--gold); }
+  .byo-popup-list .summary-item-price {
+    font-size: 11px;
+    color: rgba(250, 246, 240, 0.7);
+    margin-top: 2px;
+  }
+
+  .byo-popup-totals {
+    padding: 18px 0;
+    border-top: 1px solid rgba(184, 153, 104, 0.3);
+    border-bottom: 1px solid rgba(184, 153, 104, 0.3);
+    margin-bottom: 20px;
+  }
+  .byo-popup-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 13px;
+    color: rgba(250, 246, 240, 0.85);
+    padding: 5px 0;
+  }
+  .byo-popup-line span:last-child {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--cream);
+  }
+  .byo-popup-line-final {
+    padding-top: 12px;
+    border-top: 1px solid rgba(184, 153, 104, 0.25);
+    margin-top: 6px;
+  }
+  .byo-popup-line-final span:first-child {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: var(--cream);
+  }
+  .byo-popup-line-final span:last-child {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 30px;
+    color: var(--gold);
+  }
+
+  .byo-popup-code {
+    background: rgba(184, 153, 104, 0.1);
+    padding: 14px 18px;
+    border: 1px dashed var(--gold);
+    margin-bottom: 22px;
+    text-align: center;
+    font-size: 12px;
+    color: rgba(250, 246, 240, 0.85);
+  }
+  .byo-popup-code strong {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    color: var(--gold);
+    font-style: italic;
+    letter-spacing: 0.05em;
+    display: inline-block;
+    padding: 0 6px;
+    font-weight: 600;
+  }
+
+  .byo-popup-purchase {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .byo-popup-purchase .bundle-subscribe-toggle { max-width: none; margin: 0; }
+  .byo-popup-cta {
+    display: block;
+    width: 100%;
+    padding: 18px 28px;
+    background: var(--gold);
+    color: var(--ink);
+    border: none;
+    cursor: pointer;
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 600;
+    transition: background 0.3s, color 0.3s;
+    font-family: 'Poppins', sans-serif;
+  }
+  .byo-popup-cta:hover { background: var(--cream); color: var(--ink); }
 
   @media (max-width: 1000px) {
     .builder-grid { grid-template-columns: repeat(3, 1fr); }
     .builder-tracker { grid-template-columns: 1fr; gap: 18px; padding: 20px; }
-    .builder-summary-list { grid-template-columns: repeat(2, 1fr); }
-    .builder-summary { padding: 30px 24px; }
   }
   @media (max-width: 640px) {
     .builder-grid { grid-template-columns: repeat(2, 1fr); }
-    .builder-summary-list { grid-template-columns: 1fr; }
     .builder-section { padding: 70px 20px; }
+    .byo-popup-overlay { padding: 0; align-items: flex-end; }
+    .byo-popup {
+      max-width: 100vw;
+      width: 100vw;
+      max-height: 92vh;
+      padding: 38px 22px 28px;
+      border-left: none;
+      border-right: none;
+      border-bottom: none;
+      transform: translateY(100%);
+    }
+    .byo-popup-overlay.open .byo-popup { transform: translateY(0); }
+    .byo-popup-title { font-size: 30px; }
+    .byo-popup-list { grid-template-columns: 1fr; }
   }
 
 
@@ -880,24 +1081,38 @@
       </div>
 
       <div class="builder-grid" id="builderGrid"></div>
-
-      <div class="builder-summary" id="builderSummary">
-        <h3>Your <em>Custom</em> Bundle</h3>
-        <div class="builder-summary-sub" id="summarySub">Pick products to see your discount</div>
-        <div class="builder-summary-list" id="summaryList"></div>
-        <div class="builder-summary-totals">
-          <span>Subtotal</span><span id="summarySubtotal">$0.00</span>
-          <span id="summarySavingsLabel">Save —</span><span id="summarySavings">$0.00</span>
-          <span class="total-final-label">Bundle Total</span><span id="summaryTotal" class="total-final">$0.00</span>
-        </div>
-        <div class="builder-summary-code">
-          Use code <strong id="summaryCode">MIX</strong> at checkout, or click below to add directly with discount applied.
-        </div>
-        <div class="bundle-subscribe-toggle" data-bundle-id="byo" style="margin: 18px 0; max-width: 480px;"><button type="button" data-mode="once" class="active"><div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">One-Time</span></div><span class="toggle-meta">Single delivery</span></button><button type="button" data-mode="subscribe"><div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">Monthly</span></div><span class="toggle-meta">Cancel anytime</span></button></div>
-        <button class="builder-summary-cta" id="byoAddBundle" style="border: none; cursor: pointer; font-family: 'Poppins', sans-serif;">Add Custom Bundle to Cart →</button>
-      </div>
     </div>
   </section>
+
+  <!-- ═══ BYO BUNDLE POPUP (opens from "See Your Bundle →" CTA) ═══ -->
+  <div class="byo-popup-overlay" id="byoPopupOverlay" aria-hidden="true">
+    <div class="byo-popup" role="dialog" aria-modal="true" aria-labelledby="byoPopupTitle">
+      <button class="byo-popup-close" id="byoPopupClose" aria-label="Close bundle preview">×</button>
+
+      <div class="byo-popup-header">
+        <div class="byo-popup-eyebrow">Your Custom Bundle</div>
+        <h3 class="byo-popup-title" id="byoPopupTitle">Built by <em>you.</em></h3>
+        <div class="byo-popup-sub" id="summarySub">Pick products to see your discount</div>
+      </div>
+
+      <div class="byo-popup-list" id="summaryList"></div>
+
+      <div class="byo-popup-totals">
+        <div class="byo-popup-line"><span>Subtotal</span><span id="summarySubtotal">$0.00</span></div>
+        <div class="byo-popup-line"><span id="summarySavingsLabel">Save —</span><span id="summarySavings">$0.00</span></div>
+        <div class="byo-popup-line byo-popup-line-final"><span>Bundle Total</span><span id="summaryTotal">$0.00</span></div>
+      </div>
+
+      <div class="byo-popup-code">
+        Use code <strong id="summaryCode">MIX</strong> at checkout, or click below to add directly with discount applied.
+      </div>
+
+      <div class="byo-popup-purchase">
+        <div class="bundle-subscribe-toggle" data-bundle-id="byo"><button type="button" data-mode="once" class="active"><div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">One-Time</span></div><span class="toggle-meta">Single delivery</span></button><button type="button" data-mode="subscribe"><div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">Monthly</span></div><span class="toggle-meta">Cancel anytime</span></button></div>
+        <button class="byo-popup-cta" id="byoAddBundle">Add Custom Bundle to Cart →</button>
+      </div>
+    </div>
+  </div>
 
   <!-- CLOSING -->
   <div class="closing">
@@ -1141,8 +1356,6 @@
 
     if (eligible) {
       updateSummary(selected, subtotal, savings, total, tier);
-    } else {
-      document.getElementById('builderSummary').classList.remove('visible');
     }
   }
 
@@ -1164,12 +1377,38 @@
     document.getElementById('summaryCode').textContent = tier.code;
   }
 
+  // ── BYO Popup open/close ─────────────────────────────────────────────
+  const popupOverlay = document.getElementById('byoPopupOverlay');
+  const popupCloseBtn = document.getElementById('byoPopupClose');
+
+  function openBYOPopup() {
+    if (!popupOverlay) return;
+    popupOverlay.classList.add('open');
+    popupOverlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeBYOPopup() {
+    if (!popupOverlay) return;
+    popupOverlay.classList.remove('open');
+    popupOverlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+  window.dhOpenBYOPopup = openBYOPopup;
+
+  // CTA: open the popup if any tier is reached
   document.getElementById('builderCTA').addEventListener('click', () => {
-    if (state.size >= MIN) {
-      const summary = document.getElementById('builderSummary');
-      summary.classList.add('visible');
-      summary.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (state.size >= MIN_TIER) {
+      openBYOPopup();
     }
+  });
+
+  // Close: X button, backdrop click, ESC key
+  popupCloseBtn?.addEventListener('click', closeBYOPopup);
+  popupOverlay?.addEventListener('click', (e) => {
+    if (e.target === popupOverlay) closeBYOPopup();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && popupOverlay?.classList.contains('open')) closeBYOPopup();
   });
 
   document.querySelectorAll('.builder-tabs .tab').forEach(tab => {
@@ -1372,6 +1611,12 @@
         const toggle = document.querySelector('.bundle-subscribe-toggle[data-bundle-id="byo"]');
         const subscribe = toggle?.querySelector('button.active')?.dataset.mode === 'subscribe';
         window.dhCart.addBundle(selectedSlugs, 'Build Your Own Bundle', tier.pct, subscribe);
+
+        // Close the popup so the user sees their cart confirmation
+        if (typeof window.dhOpenBYOPopup === 'function') {
+          document.getElementById('byoPopupOverlay')?.classList.remove('open');
+          document.body.style.overflow = '';
+        }
       });
     }
   });
