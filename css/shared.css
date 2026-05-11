@@ -2180,18 +2180,7 @@ body.has-page-filter-modal {
     gap: 14px !important;
     margin-top: 24px !important;
   }
-  .builder-summary {
-    padding: 30px 20px !important;
-    text-align: center !important;
-  }
-  .builder-summary-totals {
-    flex-direction: column;
-    gap: 8px;
-    text-align: center !important;
-    align-items: center;
-  }
-  .builder-cta,
-  .builder-summary-cta {
+  .builder-cta {
     width: 100% !important;
     max-width: 320px;
     margin: 16px auto 0 !important;
