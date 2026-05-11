@@ -386,6 +386,176 @@
     document.querySelector('.search-panel')?.addEventListener('click', e => {
       if (e.target.classList.contains('search-panel')) closeSearch();
     });
+
+    // ═══ PAGE FILTER (floating button → centered modal with backdrop) ═══
+    document.querySelectorAll('.page-filter').forEach(filterEl => {
+      const input = filterEl.querySelector('.page-filter-input');
+      const count = filterEl.querySelector('.page-filter-count');
+      const clearBtn = filterEl.querySelector('.page-filter-clear');
+      const clearAllBtn = filterEl.querySelector('.page-filter-clear-all');
+      const toggleBtn = filterEl.querySelector('.page-filter-toggle');
+      const toggleBadge = filterEl.querySelector('.page-filter-toggle-badge');
+      const closeBtn = filterEl.querySelector('.page-filter-close');
+      const overlay = filterEl.querySelector('.page-filter-overlay');
+      const resultsEl = filterEl.querySelector('.page-filter-results');
+      const targetSel = filterEl.dataset.filterTarget;
+      const noun = filterEl.dataset.filterNoun || 'items';
+      if (!input) return;
+      const items = targetSel ? Array.from(document.querySelectorAll(targetSel)) : [];
+      const total = items.length;
+
+      // Inject each filterable item's freeFrom tags as hidden text so the textContent-based
+      // filter logic catches dietary chips like "Vegan", "Gluten-Free", etc.
+      items.forEach(item => {
+        if (item.querySelector('.filter-tags-hidden')) return;
+        const slug = item.dataset.addSlug
+          || item.querySelector('[data-add-slug]')?.dataset.addSlug
+          || item.querySelector('[data-slug]')?.dataset.slug;
+        if (!slug || !window.PRODUCTS) return;
+        const product = window.PRODUCTS.find(p => p.slug === slug);
+        if (!product || !product.freeFrom || !product.freeFrom.length) return;
+        const tagSpan = document.createElement('span');
+        tagSpan.className = 'filter-tags-hidden';
+        tagSpan.setAttribute('aria-hidden', 'true');
+        tagSpan.style.cssText = 'position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;';
+        tagSpan.textContent = product.freeFrom.join(' ');
+        item.appendChild(tagSpan);
+      });
+
+      function expandFilter() {
+        filterEl.classList.add('expanded');
+        filterEl.classList.remove('collapsed');
+        document.body.classList.add('has-page-filter-modal');
+        setTimeout(() => input.focus(), 120);
+      }
+      function collapseFilter() {
+        filterEl.classList.remove('expanded');
+        filterEl.classList.add('collapsed');
+        document.body.classList.remove('has-page-filter-modal');
+      }
+      function toggleFilter() {
+        if (filterEl.classList.contains('expanded')) collapseFilter();
+        else expandFilter();
+      }
+
+      function renderSiteWideResults(q, activeChips) {
+        if (!resultsEl) return;
+        const showResults = q.length > 0 || activeChips.length > 0;
+        if (!showResults || !window.PRODUCTS || !window.PRODUCTS.length) {
+          resultsEl.classList.remove('show');
+          resultsEl.innerHTML = '';
+          return;
+        }
+        // Group active chips by their group
+        const groupChips = {};
+        filterEl.querySelectorAll('.filter-chip.active').forEach(chip => {
+          const g = chip.dataset.group || '_';
+          (groupChips[g] = groupChips[g] || []).push(chip.dataset.chip.toLowerCase());
+        });
+        const groups = Object.values(groupChips);
+        const matches = window.PRODUCTS.filter(p => {
+          const haystack = [
+            p.name, p.tag, p.tagline, p.description, p.category, p.sub,
+            ...(p.bestFor || []),
+            ...(p.ingredients || []).map(i => i.name).filter(Boolean)
+          ].join(' ').toLowerCase();
+          const textMatch = !q || haystack.includes(q);
+          const chipMatch = groups.every(chips => chips.some(c => haystack.includes(c)));
+          return textMatch && chipMatch;
+        }).slice(0, 12);
+        if (matches.length === 0) {
+          resultsEl.innerHTML = `<div class="page-filter-empty">No products match.</div>`;
+        } else {
+          resultsEl.innerHTML = `
+            <div class="page-filter-results-title">Site-wide · ${matches.length} ${matches.length === 1 ? 'product' : 'products'}</div>
+            <div class="page-filter-results-list">
+              ${matches.map(p => `
+                <a href="product.html?slug=${p.slug}" class="page-filter-result">
+                  <img src="${p.image}" alt="${p.name}" loading="lazy"/>
+                  <div class="page-filter-result-info">
+                    <div class="page-filter-result-name">The House <em>${p.name}</em></div>
+                    <div class="page-filter-result-meta">${p.category === 'skincare' ? 'Skincare' : 'Supplement'}</div>
+                  </div>
+                  <div class="page-filter-result-price">$${p.price.toFixed(0)}</div>
+                </a>
+              `).join('')}
+            </div>`;
+        }
+        resultsEl.classList.add('show');
+      }
+
+      function runFilter() {
+        const q = input.value.trim().toLowerCase();
+        const activeChips = Array.from(filterEl.querySelectorAll('.filter-chip.active'));
+        const groupChips = {};
+        activeChips.forEach(chip => {
+          const g = chip.dataset.group || '_';
+          (groupChips[g] = groupChips[g] || []).push(chip.dataset.chip.toLowerCase());
+        });
+        const groups = Object.values(groupChips);
+
+        // Filter current page items (if any)
+        let visible = 0;
+        items.forEach(item => {
+          const text = (item.textContent || '').toLowerCase();
+          const textMatch = !q || text.includes(q);
+          const chipMatch = groups.every(chips => chips.some(c => text.includes(c)));
+          const match = textMatch && chipMatch;
+          item.style.display = match ? '' : 'none';
+          if (match) visible++;
+        });
+        if (count) {
+          count.textContent = total > 0 ? `${visible} of ${total} ${noun} on this page` : '';
+        }
+
+        const activeCount = activeChips.length;
+        const hasAny = q.length > 0 || activeCount > 0;
+        filterEl.classList.toggle('has-query', q.length > 0);
+        filterEl.classList.toggle('has-active', hasAny);
+        if (toggleBadge) toggleBadge.textContent = activeCount > 0 ? activeCount : (q ? '·' : '');
+
+        renderSiteWideResults(q, activeChips);
+      }
+
+      // Toggle button (open/close modal)
+      if (toggleBtn) toggleBtn.addEventListener('click', e => {
+        e.stopPropagation();
+        toggleFilter();
+      });
+      // Close button inside panel
+      if (closeBtn) closeBtn.addEventListener('click', collapseFilter);
+      // Overlay click closes
+      if (overlay) overlay.addEventListener('click', collapseFilter);
+      // ESC closes
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && filterEl.classList.contains('expanded')) collapseFilter();
+      });
+
+      // Input typing
+      input.addEventListener('input', runFilter);
+      // Clear text
+      if (clearBtn) clearBtn.addEventListener('click', () => {
+        input.value = '';
+        runFilter();
+        input.focus();
+      });
+      // Clear all
+      if (clearAllBtn) clearAllBtn.addEventListener('click', () => {
+        input.value = '';
+        filterEl.querySelectorAll('.filter-chip.active').forEach(c => c.classList.remove('active'));
+        runFilter();
+      });
+      // Chip toggles
+      filterEl.querySelectorAll('.filter-chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+          chip.classList.toggle('active');
+          runFilter();
+        });
+      });
+
+      runFilter();
+    });
+
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape') {
         closeCart();
