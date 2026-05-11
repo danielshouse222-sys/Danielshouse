@@ -998,7 +998,7 @@
   document.getElementById('rating-count').textContent = ratingCount;
 
   // Pricing & subscribe options
-  const subscribePrice = +(product.price * 0.85).toFixed(2);
+  const subscribePrice = +(product.price * 0.90).toFixed(2);
   const optionsEl = document.getElementById('purchase-options');
   optionsEl.innerHTML = `
     <div class="purchase-option" data-mode="once">
@@ -1012,7 +1012,7 @@
     <div class="purchase-option selected" data-mode="subscribe">
       <div class="purchase-radio"></div>
       <div>
-        <div class="purchase-label-main">Subscribe & Save <span class="purchase-savings-tag">Save 15%</span></div>
+        <div class="purchase-label-main">Subscribe &amp; Save <span class="purchase-savings-tag">Save 10%</span></div>
         <div class="purchase-label-sub">Delivered every 30 days · cancel anytime</div>
       </div>
       <div class="purchase-price">
