@@ -245,6 +245,20 @@
     flex-shrink: 0;
   }
 
+  /* Subscribe toggle on concern cards — same toggle as bundle cards but tighter spacing */
+  .concern-subscribe-toggle {
+    margin-bottom: 12px;
+  }
+  .concern-subscribe-toggle button {
+    padding: 10px 12px;
+  }
+  .concern-subscribe-toggle .toggle-name {
+    font-size: 11px;
+  }
+  .concern-subscribe-toggle .toggle-meta {
+    font-size: 9.5px;
+  }
+
   .concern-actions {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -788,6 +802,17 @@ function renderConcernCard(bundle) {
         <div class="concern-count">${productCount} products</div>
       </div>
 
+      <div class="bundle-subscribe-toggle concern-subscribe-toggle" data-bundle-id="${bundle.id}" data-toggle>
+        <button type="button" data-mode="once" class="active">
+          <div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">One-Time</span></div>
+          <span class="toggle-meta">Single delivery</span>
+        </button>
+        <button type="button" data-mode="subscribe">
+          <div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">Monthly</span></div>
+          <span class="toggle-meta">+10% off · Cancel anytime</span>
+        </button>
+      </div>
+
       <div class="concern-actions">
         <button class="concern-btn secondary" data-action="preview">Preview Bundle →</button>
         <button class="concern-btn primary" data-action="add">Add Bundle to Cart →</button>
@@ -879,16 +904,38 @@ document.addEventListener('DOMContentLoaded', () => {
     const bundleName = card.dataset.bundleName;
     const bundle = window.CONCERN_BUNDLES.find(b => b.id === card.dataset.bundleId);
     const bundleDiscount = (bundle && typeof bundle.discount === 'number') ? bundle.discount : 0.07;
+    const SUB_BONUS = 0.10;
 
-    // Subscribe toggle
+    // Subscribe toggle — now actually drives the +10% subscription bonus
     const toggle = card.querySelector('[data-toggle]');
-    // Concern bundles are one-time purchases (no subscription) — keep handler defensive
-    const isSubscribe = () => false;
+    let subscribed = false;
+    const isSubscribe = () => subscribed;
+
+    // Live-update the pricing label as the toggle changes
+    const priceNowEl = card.querySelector('.concern-price-now');
+    const savingsEl = card.querySelector('.concern-savings');
+    const wasEl = card.querySelector('.concern-price-was');
+    const fullPrice = wasEl ? parseFloat(wasEl.textContent.replace('$', '')) : 0;
+
+    function refreshPricing() {
+      const baseDiscounted = fullPrice * (1 - bundleDiscount);
+      const finalPrice = subscribed ? baseDiscounted * (1 - SUB_BONUS) : baseDiscounted;
+      const totalSavings = fullPrice - finalPrice;
+      if (priceNowEl) priceNowEl.textContent = `$${finalPrice.toFixed(2)}`;
+      if (savingsEl) {
+        savingsEl.textContent = subscribed
+          ? `Save $${totalSavings.toFixed(2)} (bundle + subscribe)`
+          : `Save $${totalSavings.toFixed(2)} as a bundle`;
+      }
+    }
+
     if (toggle) {
       toggle.querySelectorAll('button').forEach(btn => {
         btn.addEventListener('click', () => {
           toggle.querySelectorAll('button').forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
+          subscribed = btn.dataset.mode === 'subscribe';
+          refreshPricing();
         });
       });
     }
