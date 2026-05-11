@@ -135,12 +135,122 @@
   .builder-header h2 em { font-style: italic; color: var(--sage); }
   .builder-header p { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 17px; color: var(--ink-soft); line-height: 1.55; }
 
+  /* Tier chips beneath the header — pill row showing the 3 savings tiers */
+  .builder-tiers { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 24px; }
+  .tier-chip {
+    font-family: 'Poppins', sans-serif;
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    font-weight: 500;
+    padding: 9px 18px;
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    border-radius: 100px;
+    transition: all 0.35s ease;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+  .tier-chip em {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 600;
+    color: var(--gold);
+    font-size: 14px;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+  .tier-chip.active {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--cream);
+    transform: scale(1.05);
+  }
+  .tier-chip.active em { color: var(--gold); }
+
   .builder-tracker { background: var(--cream); border: 1px solid var(--rule); border-left: 3px solid var(--gold); padding: 22px 28px; margin-bottom: 36px; display: grid; grid-template-columns: 1fr 1fr auto; gap: 32px; align-items: center; position: sticky; top: 70px; z-index: 30; box-shadow: 0 2px 12px rgba(31, 27, 23, 0.04); }
   .tracker-progress { min-width: 0; }
-  .tracker-count { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 500; color: var(--ink); margin-bottom: 8px; line-height: 1; }
+  .tracker-count { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 500; color: var(--ink); margin-bottom: 10px; line-height: 1; }
   .tracker-count em { font-style: italic; color: var(--sage); }
+
+  /* Bar + marker pins — three checkpoints at 33/66/100 % */
+  .tracker-bar-wrap { position: relative; padding: 14px 0 8px; }
   .tracker-bar { height: 4px; background: var(--tan); border-radius: 2px; overflow: hidden; }
-  .tracker-fill { height: 100%; background: var(--gold); width: 0%; transition: width 0.4s ease; }
+  .tracker-fill { height: 100%; background: var(--gold); width: 0%; transition: width 0.5s ease; }
+  .tracker-marker {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    pointer-events: none;
+    transition: all 0.4s ease;
+  }
+  .tracker-marker .marker-dot {
+    width: 22px;
+    height: 22px;
+    background: var(--cream);
+    border: 2px solid var(--rule);
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    line-height: 1;
+    transition: all 0.4s ease;
+    box-shadow: 0 1px 3px rgba(31, 27, 23, 0.06);
+  }
+  .tracker-marker .marker-label {
+    position: absolute;
+    top: 26px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 8.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    opacity: 0.6;
+    white-space: nowrap;
+    transition: all 0.35s ease;
+  }
+  .tracker-marker.reached .marker-dot {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--cream);
+    transform: scale(1.08);
+  }
+  .tracker-marker.reached .marker-label {
+    color: var(--gold);
+    opacity: 1;
+    font-weight: 600;
+  }
+  .tracker-next {
+    margin-top: 22px;
+    text-align: left;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.45;
+  }
+  .tracker-next strong {
+    font-weight: 600;
+    color: var(--gold);
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin: 0 2px;
+  }
+
   .tracker-prices { display: grid; gap: 4px; min-width: 0; font-size: 12.5px; color: var(--ink-soft); }
   .tracker-line { display: flex; justify-content: space-between; gap: 16px; }
   .tracker-line span:last-child { font-family: 'Cormorant Garamond', serif; font-size: 15px; font-weight: 500; color: var(--ink); }
@@ -735,21 +845,32 @@
     <div class="builder-section-inner">
       <div class="builder-header">
         <div class="builder-eyebrow">Build Your Own · Skincare + Supplements</div>
-        <h2>Mix Six. Save <em>15%</em>.</h2>
-        <p>Pick any six products from skincare or supplements — the bundle saves you 15% no matter which combination you choose. Build the routine that fits the way you actually live.</p>
+        <h2>Pick more. <em>Save more.</em></h2>
+        <p>The more you mix, the more you save. Three tiers — pick 3 to start, build up to 9 for the full bundle discount. Subscribe to stack an extra 10% off on top.</p>
+        <div class="builder-tiers">
+          <div class="tier-chip" data-tier="3">Mix 3 · <em>save 10%</em></div>
+          <div class="tier-chip" data-tier="6">Mix 6 · <em>save 12%</em></div>
+          <div class="tier-chip" data-tier="9">Mix 9 · <em>save 15%</em></div>
+        </div>
       </div>
 
       <div class="builder-tracker" id="builderTracker">
         <div class="tracker-progress">
-          <div class="tracker-count"><span id="selectedCount">0</span> of <em>6</em> selected</div>
-          <div class="tracker-bar"><div class="tracker-fill"></div></div>
+          <div class="tracker-count"><span id="selectedCount">0</span> selected</div>
+          <div class="tracker-bar-wrap">
+            <div class="tracker-bar"><div class="tracker-fill"></div></div>
+            <div class="tracker-marker" data-threshold="3" style="left:33.33%"><span class="marker-dot">3</span><span class="marker-label">10%</span></div>
+            <div class="tracker-marker" data-threshold="6" style="left:66.66%"><span class="marker-dot">6</span><span class="marker-label">12%</span></div>
+            <div class="tracker-marker" data-threshold="9" style="left:100%"><span class="marker-dot">9</span><span class="marker-label">15%</span></div>
+          </div>
+          <div class="tracker-next" id="trackerNext">Pick 3 to start saving</div>
         </div>
         <div class="tracker-prices">
           <div class="tracker-line"><span>Subtotal</span><span id="subtotal">$0.00</span></div>
-          <div class="tracker-line"><span class="savings-label">Save 15%</span><span id="savings">—</span></div>
+          <div class="tracker-line"><span class="savings-label" id="savingsLabel">Save —</span><span id="savings">—</span></div>
           <div class="tracker-line tracker-final"><span>Bundle Total</span><span id="total">$0.00</span></div>
         </div>
-        <button class="builder-cta" id="builderCTA" disabled>Pick 6 to Save 15%</button>
+        <button class="builder-cta" id="builderCTA" disabled>Pick 3 to Start Saving</button>
       </div>
 
       <div class="builder-tabs">
@@ -762,15 +883,15 @@
 
       <div class="builder-summary" id="builderSummary">
         <h3>Your <em>Custom</em> Bundle</h3>
-        <div class="builder-summary-sub">Six Products · 15% Off</div>
+        <div class="builder-summary-sub" id="summarySub">Pick products to see your discount</div>
         <div class="builder-summary-list" id="summaryList"></div>
         <div class="builder-summary-totals">
           <span>Subtotal</span><span id="summarySubtotal">$0.00</span>
-          <span>Save 15%</span><span id="summarySavings">$0.00</span>
+          <span id="summarySavingsLabel">Save —</span><span id="summarySavings">$0.00</span>
           <span class="total-final-label">Bundle Total</span><span id="summaryTotal" class="total-final">$0.00</span>
         </div>
         <div class="builder-summary-code">
-          Use code <strong>BUILD6</strong> at checkout, or click below to add directly with discount applied.
+          Use code <strong id="summaryCode">MIX</strong> at checkout, or click below to add directly with discount applied.
         </div>
         <div class="bundle-subscribe-toggle" data-bundle-id="byo" style="margin: 18px 0; max-width: 480px;"><button type="button" data-mode="once" class="active"><div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">One-Time</span></div><span class="toggle-meta">Single delivery</span></button><button type="button" data-mode="subscribe"><div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">Monthly</span></div><span class="toggle-meta">Cancel anytime</span></button></div>
         <button class="builder-summary-cta" id="byoAddBundle" style="border: none; cursor: pointer; font-family: 'Poppins', sans-serif;">Add Custom Bundle to Cart →</button>
@@ -890,8 +1011,27 @@
     { name: 'Focus', price: 29.90, img: 'products/Focus.jpeg', category: 'supplement', handle: 'the-house-focus' }
   ];
   const SHOPIFY = 'https://rvttkx-99.myshopify.com';
-  const MIN = 6;
-  const DISCOUNT = 0.15;
+  // ── TIERED MIX DISCOUNT ──────────────────────────────────────────────────
+  // Pick more, save more. Tiers are sorted from highest to lowest so getTier
+  // can short-circuit on the first match. MIN_TIER is the entry threshold.
+  const TIERS = [
+    { min: 9, pct: 0.15, label: '15%', code: 'MIX9' },
+    { min: 6, pct: 0.12, label: '12%', code: 'MIX6' },
+    { min: 3, pct: 0.10, label: '10%', code: 'MIX3' }
+  ];
+  const MIN_TIER = TIERS[TIERS.length - 1].min; // 3
+  const MAX_DISPLAY = TIERS[0].min; // 9 — used for the progress bar denominator
+
+  function getTier(count) {
+    return TIERS.find(t => count >= t.min) || null;
+  }
+  function nextTier(count) {
+    for (let i = TIERS.length - 1; i >= 0; i--) {
+      if (count < TIERS[i].min) return TIERS[i];
+    }
+    return null;
+  }
+
   const grid = document.getElementById('builderGrid');
   const state = new Set();
 
@@ -928,47 +1068,85 @@
     const selected = products.filter(p => state.has(p.handle));
     const count = selected.length;
     const subtotal = selected.reduce((s, p) => s + p.price, 0);
-    const eligible = count >= MIN;
-    // Detect if BYO subscribe toggle is set to Monthly
+
+    const tier = getTier(count);          // current tier (or null if below MIN_TIER)
+    const next = nextTier(count);          // next tier to unlock (or null at max)
+    const eligible = !!tier;
+
+    // Check BYO subscribe toggle
     const byoToggle = document.querySelector('.bundle-subscribe-toggle[data-bundle-id="byo"]');
     const subscribed = byoToggle?.querySelector('button.active')?.dataset.mode === 'subscribe';
-    let savings = eligible ? subtotal * DISCOUNT : 0;
+
+    let savings = eligible ? subtotal * tier.pct : 0;
     let total = subtotal - savings;
     if (eligible && subscribed) {
-      const subBonus = total * 0.10; // stack +10% bundle subscription
+      const subBonus = total * 0.10; // stack +10% bundle subscribe
       total -= subBonus;
       savings += subBonus;
     }
 
+    // ─ Header / count ─
     document.getElementById('selectedCount').textContent = count;
     document.getElementById('subtotal').textContent = '$' + subtotal.toFixed(2);
     document.getElementById('savings').textContent = eligible ? '−$' + savings.toFixed(2) : '—';
     document.getElementById('total').textContent = '$' + total.toFixed(2);
-    document.querySelector('.tracker-fill').style.width = Math.min(count / MIN * 100, 100) + '%';
 
-    // Update the savings label
-    const savingsLabelEl = document.querySelector('.tracker-line .savings-label');
-    if (savingsLabelEl) {
-      savingsLabelEl.textContent = subscribed && eligible ? 'Save 15% + 10% sub' : 'Save 15%';
+    // ─ Progress bar (denominator = 9, the max tier) ─
+    const fillPct = Math.min(count / MAX_DISPLAY * 100, 100);
+    document.querySelector('.tracker-fill').style.width = fillPct + '%';
+
+    // ─ Tier markers — light up when their threshold is crossed ─
+    document.querySelectorAll('.tracker-marker').forEach(m => {
+      const threshold = parseInt(m.dataset.threshold, 10);
+      m.classList.toggle('reached', count >= threshold);
+    });
+
+    // ─ Tier chips in the header — highlight current tier ─
+    document.querySelectorAll('.tier-chip').forEach(chip => {
+      const t = parseInt(chip.dataset.tier, 10);
+      chip.classList.toggle('active', tier && t === tier.min);
+    });
+
+    // ─ Next-tier teaser ─
+    const nextEl = document.getElementById('trackerNext');
+    if (count === 0) {
+      nextEl.textContent = 'Pick 3 to start saving';
+    } else if (!eligible) {
+      nextEl.innerHTML = `Add <strong>${MIN_TIER - count} more</strong> to save <strong>10%</strong>`;
+    } else if (next) {
+      nextEl.innerHTML = `Saving <strong>${tier.label}</strong> · Add <strong>${next.min - count} more</strong> for <strong>${next.label} off</strong>`;
+    } else {
+      nextEl.innerHTML = `<strong>Maximum tier unlocked — saving ${tier.label}${subscribed ? ' + 10% subscribe' : ''}</strong>`;
     }
 
+    // ─ Savings label in tracker prices ─
+    const savingsLabelEl = document.getElementById('savingsLabel');
+    if (savingsLabelEl) {
+      if (eligible) {
+        savingsLabelEl.textContent = subscribed ? `Save ${tier.label} + 10% sub` : `Save ${tier.label}`;
+      } else {
+        savingsLabelEl.textContent = 'Save —';
+      }
+    }
+
+    // ─ CTA button ─
     const cta = document.getElementById('builderCTA');
     if (eligible) {
       cta.disabled = false;
       cta.textContent = 'See Your Bundle →';
     } else {
       cta.disabled = true;
-      cta.textContent = 'Pick ' + (MIN - count) + ' More to Save 15%';
+      cta.textContent = `Pick ${MIN_TIER - count} More to Start Saving`;
     }
 
     if (eligible) {
-      updateSummary(selected, subtotal, savings, total);
+      updateSummary(selected, subtotal, savings, total, tier);
     } else {
       document.getElementById('builderSummary').classList.remove('visible');
     }
   }
 
-  function updateSummary(selected, subtotal, savings, total) {
+  function updateSummary(selected, subtotal, savings, total, tier) {
     document.getElementById('summaryList').innerHTML = selected.map(p => `
       <a href="${SHOPIFY}/products/${p.handle}" target="_blank" rel="noopener" class="summary-item">
         <img src="${p.img}" alt="${p.name}" />
@@ -978,9 +1156,12 @@
         </div>
       </a>
     `).join('');
+    document.getElementById('summarySub').textContent = `${selected.length} Products · ${tier.label} Off`;
     document.getElementById('summarySubtotal').textContent = '$' + subtotal.toFixed(2);
+    document.getElementById('summarySavingsLabel').textContent = `Save ${tier.label}`;
     document.getElementById('summarySavings').textContent = '−$' + savings.toFixed(2);
     document.getElementById('summaryTotal').textContent = '$' + total.toFixed(2);
+    document.getElementById('summaryCode').textContent = tier.code;
   }
 
   document.getElementById('builderCTA').addEventListener('click', () => {
@@ -1168,25 +1349,29 @@
       });
     });
 
-    // Wire BYO add-to-cart
+    // Wire BYO add-to-cart — uses the tier-based discount computed from current count
     const byoBtn = document.getElementById('byoAddBundle');
     if (byoBtn) {
       byoBtn.addEventListener('click', () => {
-        // Read the current selection from the BYO picker state
-        // The picker stores selected slugs in a global window state (via the IIFE state.size and state.selected)
-        // We need to read from the DOM directly: builder-card.selected items
         const selectedSlugs = [];
         document.querySelectorAll('.builder-card.selected').forEach(card => {
           const handle = card.dataset.handle;
           if (handle) selectedSlugs.push(handle);
         });
-        if (selectedSlugs.length < 6) {
-          alert('Please select at least 6 products to build your bundle.');
+        // Match the tier logic from the IIFE above
+        const tiers = [
+          { min: 9, pct: 0.15 },
+          { min: 6, pct: 0.12 },
+          { min: 3, pct: 0.10 }
+        ];
+        const tier = tiers.find(t => selectedSlugs.length >= t.min);
+        if (!tier) {
+          alert('Please select at least 3 products to build your bundle.');
           return;
         }
         const toggle = document.querySelector('.bundle-subscribe-toggle[data-bundle-id="byo"]');
         const subscribe = toggle?.querySelector('button.active')?.dataset.mode === 'subscribe';
-        window.dhCart.addBundle(selectedSlugs, 'Build Your Own Bundle', 0.15, subscribe);
+        window.dhCart.addBundle(selectedSlugs, 'Build Your Own Bundle', tier.pct, subscribe);
       });
     }
   });
