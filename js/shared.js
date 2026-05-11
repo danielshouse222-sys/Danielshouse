@@ -724,6 +724,65 @@
   // ═══ GLOBAL BUNDLE SUBSCRIBE TOGGLE + ADD-BUNDLE WIRING ═══
   // Lets any page use .bundle-subscribe-toggle and [data-bundle-add] without
   // duplicating wiring code. (Bundles.html has its own scoped version too.)
+
+  /* Computes pricing for a bundle id — used by banner decoration and reactive price updates. */
+  function getBundlePricing(bundleId) {
+    const bundle = window.getCuratedBundleById?.(bundleId);
+    if (!bundle) return null;
+    const products = bundle.slugs
+      .map(s => window.getProductBySlug?.(s))
+      .filter(Boolean);
+    if (!products.length) return null;
+    const fullPrice    = products.reduce((s, p) => s + p.price, 0);
+    const oneTimePrice = fullPrice * (1 - bundle.discount);
+    const monthlyPrice = oneTimePrice * 0.90; // +10% subscribe stack
+    const oncePct      = bundle.discount * 100;
+    const monthlyPct   = (1 - monthlyPrice / fullPrice) * 100;
+    return { bundle, products, fullPrice, oneTimePrice, monthlyPrice, oncePct, monthlyPct };
+  }
+
+  function fmtPct(n) {
+    // 15 → "15", 23.5 → "23.5", 32.5 → "32.5"
+    const rounded = Math.round(n * 10) / 10;
+    return rounded % 1 === 0 ? rounded.toFixed(0) : rounded.toFixed(1);
+  }
+
+  /* Updates the price/savings display on the card to reflect the current toggle mode. */
+  function refreshBundleDisplay(container, mode) {
+    const toggle = container.querySelector('.bundle-subscribe-toggle');
+    if (!toggle) return;
+    const bundleId = toggle.dataset.bundleId;
+    const p = getBundlePricing(bundleId);
+    if (!p) return;
+
+    const currentPrice = mode === 'subscribe' ? p.monthlyPrice : p.oneTimePrice;
+    const savings      = p.fullPrice - currentPrice;
+    const pct          = mode === 'subscribe' ? p.monthlyPct : p.oncePct;
+    const roundedWas   = Math.round(p.fullPrice);
+    const roundedNow   = Math.round(currentPrice);
+    const roundedSave  = Math.round(savings);
+
+    // .bundle-card style pricing (bundles.html main cards)
+    const bSave  = container.querySelector('.bundle-save');
+    const bLabel = container.querySelector('.bundle-save-label');
+    if (bSave)  bSave.textContent  = `Save $${roundedSave}`;
+    if (bLabel) bLabel.textContent = `$${roundedWas} → $${roundedNow}`;
+
+    // .bundle-footnote style pricing (inline mini-bundles on skincare/supplements)
+    const fnWas     = container.querySelector('.bundle-footnote-was');
+    const fnNow     = container.querySelector('.bundle-footnote-now');
+    const fnSavings = container.querySelector('.bundle-footnote-savings');
+    if (fnWas)     fnWas.textContent     = `$${roundedWas}`;
+    if (fnNow)     fnNow.textContent     = `$${roundedNow}`;
+    if (fnSavings) fnSavings.textContent = `Save $${roundedSave} · ${fmtPct(pct)}% off`;
+
+    // .hero-bundle style pricing (Ultimate on bundles.html)
+    const hSave  = container.querySelector('.hero-savings-amount');
+    const hLabel = container.querySelector('.hero-savings-label');
+    if (hSave)  hSave.textContent  = `Save $${roundedSave}`;
+    if (hLabel) hLabel.textContent = `$${roundedWas} → $${roundedNow} · ${fmtPct(pct)}% off`;
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
     // Toggle: One-Time / Monthly active state
     document.querySelectorAll('.bundle-subscribe-toggle').forEach(toggle => {
@@ -732,8 +791,18 @@
           toggle.querySelectorAll('button').forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
           toggle.classList.toggle('subscribe-mode', btn.dataset.mode === 'subscribe');
+
+          // Trigger reactive pricing refresh on the parent bundle container
+          const container = toggle.closest('.bundle-card, .bundle-footnote, .hero-bundle');
+          if (container) refreshBundleDisplay(container, btn.dataset.mode);
         });
       });
+    });
+
+    // Apply initial pricing pass to every bundle container
+    document.querySelectorAll('.bundle-card, .bundle-footnote, .hero-bundle').forEach(container => {
+      const activeBtn = container.querySelector('.bundle-subscribe-toggle button.active');
+      refreshBundleDisplay(container, activeBtn?.dataset.mode || 'once');
     });
 
     // Add Bundle to Cart — reads bundle by id, checks subscribe state, adds to cart
@@ -1301,28 +1370,216 @@
     // Bundles that only define `intro` render the basic panel (backward compat).
     const BUNDLE_DETAILS = {
       ultimate: {
-        intro: "Daniel's complete protocol — inside and out. Every product he uses every day, layered in the order they work best. Skincare and supplements aren't separate problems; they're one system. This is that system."
+        intro: "Daniel's complete protocol — inside and out. Every product he uses every day, layered in the order they work best. <em>Skincare and supplements aren't separate problems; they're one system.</em> Twenty-two bottles, twelve daily steps, ten daily supplements, one box. The biggest discount on the site because this is what the line was built to do.",
+        am: [
+          { name: "Wash",       note: "The protein-based cleanser that resets the skin without stripping it." },
+          { name: "Balance",    note: "Witch hazel, aloe, and white tea prep the skin to receive actives — not a five-alarm astringent." },
+          { name: "Boost",      note: "Vitamin C, niacinamide, and panthenol. The triple-vitamin serum that brightens and evens tone." },
+          { name: "Hyaluronic", note: "Multi-weight hyaluronic acid pulls moisture deep; glycerin keeps it there." },
+          { name: "Defense",    note: "The antioxidant heavy hitter. Stable vit C, soy protein, squalane, caffeine — protection layer for the day." },
+          { name: "Soft",       note: "Multi-weight HA + aloe seals the AM stack with hydration." }
+        ],
+        pm: [
+          { name: "Bounce",    note: "The PM cornerstone. Retinol, hydrolyzed collagen, and HA in one elegant step." },
+          { name: "Renewal",   note: "2-3 nights/week only. Glycolic acid resurfaces overnight; retinyl palmitate supports collagen." },
+          { name: "Firm",      note: "Peptides, cucumber, and chrysin for fine lines — concentrated where Bounce leaves off." },
+          { name: "Hydration", note: "Glycerin mimics the skin's own moisture pathway; cassia obtusifolia adds antioxidant defense." },
+          { name: "Eye",       note: "Peptide cream targets the orbital area both AM and PM." },
+          { name: "Glow",      note: "The finishing oil. Rosehip, hemp, and grape seed in a six-oil blend — locks in the routine." }
+        ],
+        supplements: [
+          { name: "Multi",     note: "Foundation nutrition, with breakfast." },
+          { name: "Sunshine",  note: "Vitamin D3 + K2, with breakfast for fat absorption." },
+          { name: "Flow",      note: "Omega-3s. Skin barrier, brain, cardiovascular — with a meal." },
+          { name: "Biome",     note: "Probiotic + prebiotic. Gut health → skin health." },
+          { name: "Calm",      note: "Magnesium glycinate — anytime, calms the nervous system." },
+          { name: "NAD+",      note: "The longevity hero. Mitochondrial fuel that declines with age — morning, with food." },
+          { name: "Vitality",  note: "Sirtuin activators + CoQ10. Morning or midday." },
+          { name: "Synapse",   note: "Cognitive support. Morning, on an empty stomach for sharpest focus." },
+          { name: "Restore",   note: "Joint mobility + recovery. Anytime, daily." },
+          { name: "Tranquil",  note: "Sleep stack — magnesium, L-theanine, adaptogens. 30-60 min before bed." }
+        ],
+        whyItWorks: {
+          lead: "Every other bundle is a slice of this one. The Ultimate is the protocol Daniel actually runs — and the only configuration where the science compounds across all four dimensions of aging simultaneously: surface, structural, systemic, and cellular.",
+          mechanisms: [
+            { problem: "Surface (texture/tone)", solution: "12-step skincare ritual — cleanse, treat, hydrate, protect, repair" },
+            { problem: "Structural (collagen)",  solution: "Retinol + peptides topically · Collagen peptides internally" },
+            { problem: "Systemic (whole body)",  solution: "Multi, Sunshine, Flow, Biome — the foundation that everything depends on" },
+            { problem: "Cellular (longevity)",   solution: "NAD+, Vitality, Synapse, Tranquil, Restore — the actives the longevity literature points to" }
+          ]
+        },
+        whoItsFor: {
+          yes: "You're committed to a real routine. You believe results compound when topical and internal work together. You want the discount that comes with one decision instead of twenty-two — and you're not interested in piecing this together over months.",
+          no: "You're new to skincare and supplements and want to test the waters first. Start with AM Bundle or Daniel's Daily and scale up. The Ultimate is for people who already know they want the full protocol."
+        }
       },
       'daniels-daily': {
-        intro: "The supplement half of Daniel's daily routine. Five Foundation essentials cover the basics; five Longevity actives reach further — NAD+, creatine, cellular repair. For people who've already dialed in their skincare."
+        intro: "The supplement half of Daniel's daily routine — <em>without</em> the skincare. Five Foundation essentials cover the floor (multi, magnesium, vitamin D, omega-3s, probiotic); five Longevity actives reach further (NAD+, sirtuin support, cognitive, sleep, joint mobility). For people who've already dialed in their topical routine and want the inside half done right.",
+        supplements: [
+          { name: "Multi",     note: "Morning, with breakfast. The nutrient floor — covers gaps that show up in skin, energy, and immunity when ignored." },
+          { name: "Sunshine",  note: "Morning, with food. Vitamin D3 + K2 — bone density, immunity, hormone production." },
+          { name: "Flow",      note: "With a meal. Omega-3s feed skin barrier, brain, and cardiovascular system simultaneously." },
+          { name: "Biome",     note: "Morning, on an empty stomach. Probiotic + prebiotic — gut health translates directly to skin health." },
+          { name: "Calm",      note: "Anytime, with water. Magnesium glycinate calms the nervous system and supports muscle recovery." },
+          { name: "NAD+",      note: "Morning, with food. The longevity hero — replenishes mitochondrial fuel that declines with age." },
+          { name: "Vitality",  note: "Morning or midday. Sirtuin activators + CoQ10 — compounds with NAD+ on the same cellular pathway." },
+          { name: "Synapse",   note: "Morning, on an empty stomach. Cognitive support — focus, memory, mental clarity throughout the day." },
+          { name: "Restore",   note: "Anytime, daily. Joint mobility + recovery — the supplement that lets you train at 50 like you did at 30." },
+          { name: "Tranquil",  note: "Evening, 30-60 min before bed. Sleep stack — when growth hormone and cellular repair peak." }
+        ],
+        whyItWorks: {
+          lead: "Most supplement stacks treat each pill as an isolated job. This one is built around two layers that <em>compound</em>: the Foundation ensures nothing's running low, the Longevity stack targets the cellular machinery that ages.",
+          mechanisms: [
+            { problem: "Daily deficits",       solution: "Multi, Sunshine, Flow, Biome, Calm cover the nutritional floor" },
+            { problem: "Mitochondrial decline", solution: "NAD+ + Vitality replenish cellular energy production" },
+            { problem: "Cognitive fog",         solution: "Synapse + Flow support brain function morning to night" },
+            { problem: "Recovery + sleep",      solution: "Tranquil for sleep quality · Restore for joints and movement" }
+          ]
+        },
+        whoItsFor: {
+          yes: "You already have a skincare routine you trust and want a complete supplement stack you don't have to think about. You take the long view on aging — what happens at the cellular level shows up in the mirror years later.",
+          no: "You're new to supplements and don't want to commit to ten bottles. Start with the Multi alone and add as you learn what works for your body."
+        }
       },
       am: {
-        intro: "Six steps to start the day with a complete barrier and visible glow. Cleanse, tone, brighten with vitamin C, hydrate with hyaluronic acid, defend with antioxidants, moisturize. Each product layers cleanly into the next."
+        intro: "Six steps to start the day with a complete barrier and visible glow. <em>Cleanse, tone, brighten, hydrate, defend, moisturize.</em> Each product layers cleanly into the next — no balling, no pilling, no waiting between steps. Ten minutes the first week, four minutes once you have the order down.",
+        am: [
+          { name: "Wash",       note: "The protein-based cleanser. Resets the skin without stripping it — sets the canvas for everything that follows." },
+          { name: "Balance",    note: "Witch hazel, aloe, white tea, and cucumber prep the skin to receive actives. Not a five-alarm astringent." },
+          { name: "Boost",      note: "Vitamin C (stable derivative), niacinamide, and panthenol. The triple-vitamin serum — brightens, evens tone, strengthens the barrier." },
+          { name: "Hyaluronic", note: "Multi-weight hyaluronic acid pulls moisture into deeper layers. Glycerin keeps it there. Six ingredients total — pure, layerable hydration." },
+          { name: "Defense",    note: "The antioxidant heavy hitter. Stable vit C, hydrolyzed soy protein, squalane, caffeine — protects collagen from environmental damage." },
+          { name: "Soft",       note: "Multi-weight HA + aloe + a silky non-greasy finish. The moisturizer that doesn't make you choose between hydration and texture." }
+        ],
+        whyItWorks: {
+          lead: "Morning skincare has two jobs: protect what you have, and start visible results. This bundle delivers both with the highest-evidence daytime actives — antioxidants for protection, niacinamide and vitamin C for results.",
+          mechanisms: [
+            { problem: "Environmental damage", solution: "Boost + Defense layer two complementary antioxidants for full-spectrum protection" },
+            { problem: "Dullness/uneven tone", solution: "Vitamin C derivatives + niacinamide brighten over 4-6 weeks" },
+            { problem: "Dehydration",          solution: "Hyaluronic + Soft create a deep hydration layer that lasts through the day" },
+            { problem: "Barrier weakness",     solution: "Wash + Balance + panthenol in Boost support and don't disrupt the barrier" }
+          ]
+        },
+        whoItsFor: {
+          yes: "You want a complete morning routine that takes under five minutes once you have it dialed. You believe in protection-first skincare and want visible brightness without a 12-step Korean routine.",
+          no: "You only have time for a 2-step routine (just Wash + Soft works as a minimum). Or you want PM repair work too — the PM Bundle is the natural complement."
+        }
       },
       pm: {
-        intro: "Six steps to wake up better skin. Retinol resurfaces, peptides firm, hyaluronic acid plumps, glycolic renews, oil seals. The repair work happens while you sleep — this is what gives it material to work with."
+        intro: "Six steps to wake up better skin. <em>Retinol resurfaces, peptides firm, hyaluronic plumps, glycolic renews, oil seals.</em> The repair work happens while you sleep — this is what gives it material to work with. PM is where visible anti-aging actually compounds.",
+        pm: [
+          { name: "Bounce",    note: "The PM cornerstone. Retinol stimulates cell turnover and collagen production; hydrolyzed collagen plumps; HA hydrates. Three of the most clinically proven anti-aging actives in one bottle." },
+          { name: "Renewal",   note: "2-3 nights/week only. Glycolic acid resurfaces overnight; retinyl palmitate supports collagen; squalane keeps you from waking up tight." },
+          { name: "Firm",      note: "Peptides, cucumber, chrysin in an oil-free formula. Targets fine lines and the orbital area — concentrated where Bounce leaves off." },
+          { name: "Hydration", note: "Glycerin mimics the skin's own moisture process; cassia obtusifolia adds antioxidant defense. Layers cleanly with the actives above and below." },
+          { name: "Eye",       note: "Peptide cream with cucumber, aloe, safflower oil. Peptides do their best work overnight." },
+          { name: "Glow",      note: "Rosehip, hemp seed, grape seed in a six-oil blend. The finishing layer that locks in everything underneath." }
+        ],
+        whyItWorks: {
+          lead: "Sleep is when skin does its repair work — cell turnover peaks, growth hormone releases, collagen synthesis fires. This bundle gives that process the actives it needs: retinol for turnover, peptides for collagen signaling, hyaluronic for hydration, oil to seal.",
+          mechanisms: [
+            { problem: "Slowed cell turnover", solution: "Bounce's retinol + Renewal's glycolic acid (alternating nights) accelerate renewal" },
+            { problem: "Collagen breakdown",   solution: "Peptides in Firm + Eye signal for fibroblast activity overnight" },
+            { problem: "Loss of plumpness",    solution: "Hyaluronic acid in Bounce + Hydration restores volume" },
+            { problem: "Barrier weakness",     solution: "Glow's six-oil blend seals everything and supports the lipid layer" }
+          ]
+        },
+        whoItsFor: {
+          yes: "You want visible anti-aging results and you understand PM is where they happen. You're willing to do a 5-minute evening routine (after the first two weeks it feels automatic).",
+          no: "You already use a single PM product you love and don't want a stack. Or you're new to retinol — start with Bounce alone and add the others as your skin builds tolerance."
+        }
       },
       workout: {
-        intro: "Built around the gym window. Creatine and protein for performance, electrolytes for recovery, magnesium for sleep that night, ashwagandha to manage cortisol. A complete pre/intra/post stack."
+        intro: "Built around the gym window. <em>Creatine and protein for performance, electrolytes for recovery, magnesium for sleep, ashwagandha to manage cortisol.</em> A complete pre/intra/post stack — five supplements that do the work training alone can't.",
+        supplements: [
+          { name: "Greens",  note: "Morning or anytime, daily. Greens powder + adaptogens — nutrient density that food often misses." },
+          { name: "Burn",    note: "Morning, with food. Thermogenic blend for those running a cut — focus, metabolism, mood." },
+          { name: "Power",   note: "Pre-workout, 30-45 min before training. Creatine monohydrate at clinical dose — strength, output, lean mass." },
+          { name: "Pump",    note: "Pre-workout, 20-30 min before. Citrulline + beetroot + caffeine — circulation, focus, the pump itself." },
+          { name: "Seal",    note: "Post-workout, within 60 min. Whey isolate + glutamine + colostrum — protein synthesis and gut recovery." }
+        ],
+        whyItWorks: {
+          lead: "Training is the stimulus. Nutrition + recovery are what actually drive adaptation. This stack covers the windows where supplementation has the most evidence: pre-workout for performance, post-workout for recovery, daily greens for nutrient density.",
+          mechanisms: [
+            { problem: "Strength + power plateau", solution: "Power (creatine) at clinical 5g dose, the most-studied performance supplement there is" },
+            { problem: "Workout intensity",        solution: "Pump pre-training for circulation, focus, and the mind-muscle connection" },
+            { problem: "Recovery + soreness",      solution: "Seal post-workout for protein synthesis and faster turnaround" },
+            { problem: "Nutrient gaps",            solution: "Greens fills micronutrients that whole food often misses — especially on cutting phases" }
+          ]
+        },
+        whoItsFor: {
+          yes: "You train 3-5x/week and want the supplement stack that actually moves performance. You understand the role of each compound and won't waste the doses by being inconsistent.",
+          no: "You train casually (1-2x/week) — Power alone is enough. Or you want a fat-loss focused stack — Burn is the relevant single product."
+        }
       },
       longevity: {
-        intro: "The actives most associated with healthy aging at clinical doses. NAD+ for cellular energy, resveratrol for sirtuin activation, CoQ10 for mitochondrial function, omega-3s, vitamin D3. The longevity literature in capsule form."
+        intro: "The actives most associated with healthy aging at clinical doses. <em>NAD+ for cellular energy, sirtuin activators, cognitive support, sleep, joint mobility.</em> The longevity literature in capsule form — five bottles that target what happens to your cells, your brain, your sleep, and your joints as the decades stack up.",
+        supplements: [
+          { name: "NAD+",      note: "Morning, with food. Replenishes mitochondrial fuel that declines with age. The most-cited longevity active in peer-reviewed research." },
+          { name: "Vitality",  note: "Morning or midday. Sirtuin activators (resveratrol) + CoQ10. Supports the same cellular pathway NAD+ powers." },
+          { name: "Synapse",   note: "Morning, on an empty stomach. Cognitive support — focus, memory, neuroplasticity. Brain longevity is its own pillar." },
+          { name: "Restore",   note: "Anytime, daily. Joint mobility, collagen support, anti-inflammatory blend. The supplement that lets you stay active for decades." },
+          { name: "Tranquil",  note: "Evening, 30-60 min before bed. Sleep is when growth hormone, glymphatic clearing, and cellular repair all peak. Quality matters more than duration." }
+        ],
+        whyItWorks: {
+          lead: "Aging isn't one process — it's at least four: declining mitochondrial function, sirtuin/autophagy slowdown, cognitive decline, and the accumulated wear from poor sleep and inflammation. This bundle targets all four simultaneously with the actives most consistently cited in the longevity literature.",
+          mechanisms: [
+            { problem: "Mitochondrial decline", solution: "NAD+ + Vitality replenish and support cellular energy production" },
+            { problem: "Cognitive slowdown",    solution: "Synapse delivers nootropics + neuroprotective compounds at clinical doses" },
+            { problem: "Poor sleep quality",    solution: "Tranquil — sleep is when all repair systems do their best work" },
+            { problem: "Joint + mobility loss", solution: "Restore — anti-inflammatory + collagen support for staying active" }
+          ]
+        },
+        whoItsFor: {
+          yes: "You're 35+ and take the long view. You understand that prevention now means a different decade thirty years from now. You want a complete cellular-aging stack without piecing it together yourself.",
+          no: "You're 25 and the daily multi is enough for now. Or you have specific health conditions — talk to a doctor before stacking NAD+, resveratrol, and the rest."
+        }
       },
       glow: {
-        intro: "The brightness stack — inside and out. Vitamin C and niacinamide topically, collagen and antioxidants internally, oil to seal. Built to compound: each product reinforces what the others are doing."
+        intro: "The brightness stack — <em>inside and out.</em> Vitamin C and niacinamide topically for tone correction, antioxidants and collagen internally for the compound effect, oil to seal, weekly mask for the deeper reset. Built to compound: each product reinforces what the others are doing.",
+        am: [
+          { name: "Boost",   note: "Morning. Vitamin C, niacinamide, panthenol — brightens dullness and evens tone over 4-6 weeks." },
+          { name: "Defense", note: "Morning, after Boost. Antioxidant heavy hitter that protects the brightening work from being undone by UV and pollution." }
+        ],
+        pm: [
+          { name: "Glow",   note: "Evening, as the final step. Six-oil blend — rosehip is the brightness ingredient (high in vitamin A precursors)." },
+          { name: "Mask",   note: "1-2 nights/week. Charcoal + clay detox that reveals brighter skin underneath. Skip on nights you use Glow." }
+        ],
+        supplements: [
+          { name: "Radiance", note: "Morning, with food. Beauty-targeted antioxidants — compounds with topical Boost + Defense for amplified brightening." },
+          { name: "Collagen", note: "Morning, in coffee/smoothie. Hydrolyzed peptides feed skin the structural building blocks for sustained luminosity." }
+        ],
+        whyItWorks: {
+          lead: "Dullness isn't one problem — it's three layered ones: melanin distribution (uneven tone), oxidative damage (sallow look), and surface texture (light scatters poorly). This bundle attacks all three from inside and out.",
+          mechanisms: [
+            { problem: "Uneven melanin",     solution: "Boost's niacinamide regulates melanin transfer · Radiance's antioxidants support the process internally" },
+            { problem: "Oxidative damage",   solution: "Defense + Boost topically · Radiance + Collagen internally" },
+            { problem: "Surface texture",    solution: "Mask 1-2x/week resurfaces · Glow oil locks light-reflecting moisture" }
+          ]
+        },
+        whoItsFor: {
+          yes: "You want brighter skin in a measurable way — not just 'feels nicer.' You understand brightness is a compound effect (topical + internal + weekly treatment), not a single product result.",
+          no: "Your main concern is anti-aging fine lines (look at the PM Bundle or Mom's Bundle instead). Or you have very dry skin — Defense and Glow may feel rich; start with Boost + Radiance alone."
+        }
       },
       weekly: {
-        intro: "Two treatments. One night a week, you mask. Another night, you polish. Never both — these aren't daily steps. They're the deeper resets that give the daily routine more to work with."
+        intro: "Two treatments. <em>One night a week, you mask. Another night, you polish.</em> Never both — these aren't daily steps. They're the deeper resets that give the daily routine more to work with. The clinical-grade weekly intervention the rest of the line is built around.",
+        pm: [
+          { name: "Mask",   note: "1 night/week. Charcoal + sodium bicarbonate + kaolin clay — activated by warm water for a spa-night detox. Five minutes, then gentle massage off." },
+          { name: "Polish", note: "1 night/week (different night from Mask). Plant-cellulose physical exfoliant with a clean menthol cool. Removes dead surface layer so daily actives can actually do their job." }
+        ],
+        whyItWorks: {
+          lead: "Daily skincare maintains. Weekly treatments reset. The skin barrier accumulates dead cells, pore congestion, and trapped sebum over the course of a week — the daily routine doesn't address that. These two products do, without disrupting the barrier.",
+          mechanisms: [
+            { problem: "Pore congestion",      solution: "Mask's charcoal + clay pull oil and impurities from deep in the pore" },
+            { problem: "Dead cell buildup",    solution: "Polish's cellulose particles physically remove the dull surface layer" },
+            { problem: "Stalled daily results", solution: "Both treatments clear the runway so daily actives can actually penetrate and work" }
+          ]
+        },
+        whoItsFor: {
+          yes: "You have a daily routine you trust and feel like results have plateaued. Or you live in a city / wear makeup / work out and your skin needs the deeper weekly reset.",
+          no: "You have very sensitive or actively irritated skin. Both treatments are gentle, but introduce them one at a time and skip if your barrier is compromised."
+        }
       },
       moms: {
         intro: "The bundle for moms who want visible anti-aging results <em>and</em> take the long view on aging. Five skincare layers built around the highest-evidence topical actives — retinol overnight, antioxidants by day, peptides around the eyes — paired with five longevity-grade supplements that work the cellular layer: <em>NAD+ for mitochondrial energy, collagen building blocks, antioxidant support, and the sleep aid that turns nights into real repair time.</em>",
