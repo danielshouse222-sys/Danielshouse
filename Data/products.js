@@ -709,7 +709,7 @@ window.PRODUCTS = [
       { week: 'Week 4+', text: 'Morning clarity; cortisol pattern improving.' }
     ],
     proTip: 'Take 30-45 minutes before bed. Don\'t combine with heavy meals or alcohol — both blunt the magnesium effect.',
-    freeFrom: ['Gluten-Free', 'Non-GMO', 'Vegan', '3rd-Party Tested', 'No Artificial Colors', 'No Fillers', 'Made in NA'],
+    freeFrom: ['Gluten-Free', 'Vegetarian', 'Vegan', 'Lactose-Free', 'Allergen-Free', 'Hormone-Free', 'All Natural', 'Antibiotic-Free', 'Non-GMO', 'Corn-Free'],
     daniels_note: 'Best magnesium for actual sleep. Glycinate form, 275mg, no laxative effect. Take 30 minutes before bed — I sleep deeper within the first week.'
   },
   {
@@ -820,7 +820,7 @@ window.PRODUCTS = [
       { week: 'Week 4+', text: 'New gut baseline; downstream benefits in mood and skin.' }
     ],
     proTip: 'Take on an empty stomach 20 minutes before breakfast. Keep refrigerated — heat reduces strain viability over time.',
-    freeFrom: ['Gluten-Free', 'Non-GMO', 'Vegan', '3rd-Party Tested', 'No Artificial Colors', 'No Fillers', 'Made in NA'],
+    freeFrom: ['Gluten-Free', 'Lactose-Free', 'Allergen-Free', 'Hormone-Free', 'All Natural', 'Corn-Free'],
     daniels_note: 'I notice when I skip Biome. Within a week. The probiotic everyone underestimates until they don\'t have it.'
   },
   // ═══════════════════════════════════════════════════════════
@@ -1197,7 +1197,7 @@ window.PRODUCTS = [
       { week: 'Week 4+', text: 'Thermogenic baseline; sustained metabolic support.' }
     ],
     proTip: 'First thing AM, ideally on empty stomach. Take 2-3 hours before bed at the latest — caffeine half-life is real.',
-    freeFrom: ['Gluten-Free', 'Non-GMO', 'Vegan', '3rd-Party Tested', 'No Artificial Colors', 'No Fillers', 'Made in NA'],
+    freeFrom: ['Non-GMO'],
     daniels_note: 'When I want a thermogenic without the jitters. Caffeine plus EGCG plus tyrosine — clean energy that lasts the morning.'
   },
   // ═══════════════════════════════════════════════════════════
@@ -1276,7 +1276,7 @@ window.PRODUCTS = [
       { week: 'Week 12+', text: 'Hair, nails, and skin compound benefit.' }
     ],
     proTip: '10g in your morning coffee. Tasteless, dissolves cleanly. Heat is fine — collagen peptides are stable up to 300°F.',
-    freeFrom: ['Gluten-Free', 'Non-GMO', 'Vegan', '3rd-Party Tested', 'No Artificial Colors', 'No Fillers', 'Made in NA'],
+    freeFrom: ['Gluten-Free', 'Lactose-Free', 'Corn-Free'],
     daniels_note: 'Ten grams in my morning coffee. Tasteless. Skin firmness, joint cushion. The supplement I\'d recommend to anyone over 35.'
   },
   {
@@ -1432,7 +1432,7 @@ window.CONCERN_BUNDLES = [
     id: 'beauty',
     tab: 'goal',
     icon: 'F.',
-    name: 'The Beauty Bundle',
+    name: 'The Glow Bundle',
     blurb: 'Marine collagen, biotin, vitamins A/C/E. Skin firmness, hair strength, nail growth — supplemented from inside.',
     slugs: ['the-house-radiance', 'the-house-collagen']
   },
@@ -1533,6 +1533,12 @@ window.CURATED_BUNDLES = [
     name: 'The Glow Bundle',
     discount: 0.15,
     slugs: ['the-house-boost','the-house-defense','the-house-glow','the-house-mask','the-house-radiance','the-house-collagen']
+  },
+  {
+    id: 'weekly',
+    name: 'The Reset Bundle',
+    discount: 0.15,
+    slugs: ['the-house-mask','the-house-polish']
   },
   {
     id: 'moms',
