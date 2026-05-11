@@ -5,7 +5,7 @@
  */
 (function() {
   const FREE_SHIPPING_THRESHOLD = 75;
-  const SUBSCRIBE_DISCOUNT = 0.15;
+  const SUBSCRIBE_DISCOUNT = 0.10; // all subscribe options apply 10% off
   const BUNDLE_SUBSCRIBE_BONUS = 0.10; // extra 10% on top of bundle discount when subscribed
   const BUNDLE_DISCOUNT_DEFAULT = 0.10;
 
@@ -880,7 +880,7 @@
         if (item.subscribe) p *= (1 - 0.10); // bundle subscription bonus
         return p;
       }
-      if (item.subscribe) return item.price * 0.85;
+      if (item.subscribe) return item.price * (1 - SUBSCRIBE_DISCOUNT);
       return item.price;
     }
 
