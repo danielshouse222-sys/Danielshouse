@@ -151,6 +151,127 @@
     </div>
   </div>
 </nav>
+<!-- Floating Search Button → Centered Modal Filter -->
+<div class="page-filter collapsed" data-filter-target=".row" data-filter-noun="supplements">
+  <button class="page-filter-toggle" type="button" aria-label="Open search and filters">
+    <span class="page-filter-toggle-icon">⌕</span>
+    <span class="page-filter-toggle-badge"></span>
+  </button>
+  <div class="page-filter-overlay"></div>
+  <div class="page-filter-panel">
+    <div class="page-filter-head">
+      <div class="page-filter-head-title">Search &amp; Filter</div>
+      <button class="page-filter-close" type="button" aria-label="Close">✕</button>
+    </div>
+    <div class="page-filter-bar">
+      <span class="page-filter-icon">⌕</span>
+      <input type="text" class="page-filter-input" placeholder="Search anything site-wide..." />
+      <button class="page-filter-clear" type="button" aria-label="Clear">✕</button>
+    </div>
+    <div class="page-filter-categories">
+      <div class="page-filter-category">
+        <div class="page-filter-category-label">Category</div>
+        <div class="page-filter-category-chips">
+          <button class="filter-chip" data-chip="skincare" data-group="category">Skincare</button>
+          <button class="filter-chip" data-chip="supplement" data-group="category">Supplements</button>
+          <button class="filter-chip" data-chip="bundle" data-group="category">Bundles</button>
+        </div>
+      </div>
+      <div class="page-filter-category">
+        <div class="page-filter-category-label">Effect</div>
+        <div class="page-filter-category-chips">
+          <button class="filter-chip" data-chip="hydrat" data-group="effect">Hydrating</button>
+          <button class="filter-chip" data-chip="brighten" data-group="effect">Brightening</button>
+          <button class="filter-chip" data-chip="firm" data-group="effect">Firming</button>
+          <button class="filter-chip" data-chip="exfoliat" data-group="effect">Exfoliating</button>
+          <button class="filter-chip" data-chip="protect" data-group="effect">Protecting</button>
+          <button class="filter-chip" data-chip="detox" data-group="effect">Detoxifying</button>
+          <button class="filter-chip" data-chip="calm" data-group="effect">Calming</button>
+          <button class="filter-chip" data-chip="energiz" data-group="effect">Energizing</button>
+        </div>
+      </div>
+      <div class="page-filter-category">
+        <div class="page-filter-category-label">Goal</div>
+        <div class="page-filter-category-chips">
+          <button class="filter-chip" data-chip="sleep" data-group="goal">Sleep</button>
+          <button class="filter-chip" data-chip="energy" data-group="goal">Energy</button>
+          <button class="filter-chip" data-chip="stress" data-group="goal">Stress</button>
+          <button class="filter-chip" data-chip="focus" data-group="goal">Focus</button>
+          <button class="filter-chip" data-chip="recovery" data-group="goal">Recovery</button>
+          <button class="filter-chip" data-chip="beauty" data-group="goal">Beauty</button>
+          <button class="filter-chip" data-chip="anti-aging" data-group="goal">Anti-Aging</button>
+          <button class="filter-chip" data-chip="hydration" data-group="goal">Hydration</button>
+          <button class="filter-chip" data-chip="immune" data-group="goal">Immunity</button>
+          <button class="filter-chip" data-chip="gut" data-group="goal">Gut Health</button>
+          <button class="filter-chip" data-chip="daily" data-group="goal">Daily</button>
+        </div>
+      </div>
+      <div class="page-filter-category">
+        <div class="page-filter-category-label">Key Ingredient</div>
+        <div class="page-filter-category-chips">
+          <button class="filter-chip" data-chip="vitamin c" data-group="key ingredient">Vitamin C</button>
+          <button class="filter-chip" data-chip="retinol" data-group="key ingredient">Retinol</button>
+          <button class="filter-chip" data-chip="hyaluronic" data-group="key ingredient">Hyaluronic</button>
+          <button class="filter-chip" data-chip="niacinamide" data-group="key ingredient">Niacinamide</button>
+          <button class="filter-chip" data-chip="peptide" data-group="key ingredient">Peptides</button>
+          <button class="filter-chip" data-chip="antioxidant" data-group="key ingredient">Antioxidants</button>
+          <button class="filter-chip" data-chip="magnesium" data-group="key ingredient">Magnesium</button>
+          <button class="filter-chip" data-chip="ashwagandha" data-group="key ingredient">Ashwagandha</button>
+          <button class="filter-chip" data-chip="nad" data-group="key ingredient">NAD+</button>
+          <button class="filter-chip" data-chip="collagen" data-group="key ingredient">Collagen</button>
+          <button class="filter-chip" data-chip="probiotic" data-group="key ingredient">Probiotic</button>
+          <button class="filter-chip" data-chip="vitamin d" data-group="key ingredient">Vitamin D</button>
+          <button class="filter-chip" data-chip="omega" data-group="key ingredient">Omega-3</button>
+          <button class="filter-chip" data-chip="creatine" data-group="key ingredient">Creatine</button>
+        </div>
+      </div>
+      <div class="page-filter-category">
+        <div class="page-filter-category-label">Type of Product</div>
+        <div class="page-filter-category-chips">
+          <button class="filter-chip" data-chip="cleanser" data-group="type of product">Cleanser</button>
+          <button class="filter-chip" data-chip="toner" data-group="type of product">Toner</button>
+          <button class="filter-chip" data-chip="serum" data-group="type of product">Serum</button>
+          <button class="filter-chip" data-chip="moisturizer" data-group="type of product">Moisturizer</button>
+          <button class="filter-chip" data-chip="eye" data-group="type of product">Eye Care</button>
+          <button class="filter-chip" data-chip="mask" data-group="type of product">Mask</button>
+          <button class="filter-chip" data-chip="oil" data-group="type of product">Oil</button>
+          <button class="filter-chip" data-chip="capsule" data-group="type of product">Capsule</button>
+          <button class="filter-chip" data-chip="powder" data-group="type of product">Powder</button>
+          <button class="filter-chip" data-chip="gummy" data-group="type of product">Gummy</button>
+          <button class="filter-chip" data-chip="tablet" data-group="type of product">Tablet</button>
+        </div>
+      </div>
+      <div class="page-filter-category">
+        <div class="page-filter-category-label">Dietary</div>
+        <div class="page-filter-category-chips">
+          <button class="filter-chip" data-chip="vegan" data-group="dietary">Vegan</button>
+          <button class="filter-chip" data-chip="vegetarian" data-group="dietary">Vegetarian</button>
+          <button class="filter-chip" data-chip="halal" data-group="dietary">Halal</button>
+          <button class="filter-chip" data-chip="kosher" data-group="dietary">Kosher</button>
+          <button class="filter-chip" data-chip="gluten-free" data-group="dietary">Gluten-Free</button>
+          <button class="filter-chip" data-chip="lactose-free" data-group="dietary">Lactose-Free</button>
+          <button class="filter-chip" data-chip="sugar-free" data-group="dietary">Sugar-Free</button>
+          <button class="filter-chip" data-chip="soy-free" data-group="dietary">Soy-Free</button>
+          <button class="filter-chip" data-chip="nut-free" data-group="dietary">Nut-Free</button>
+          <button class="filter-chip" data-chip="corn-free" data-group="dietary">Corn-Free</button>
+          <button class="filter-chip" data-chip="non-gmo" data-group="dietary">Non-GMO</button>
+          <button class="filter-chip" data-chip="organic" data-group="dietary">Organic</button>
+          <button class="filter-chip" data-chip="all natural" data-group="dietary">All Natural</button>
+          <button class="filter-chip" data-chip="hormone-free" data-group="dietary">Hormone-Free</button>
+          <button class="filter-chip" data-chip="antibiotic-free" data-group="dietary">Antibiotic-Free</button>
+          <button class="filter-chip" data-chip="allergen-free" data-group="dietary">Allergen-Free</button>
+          <button class="filter-chip" data-chip="cruelty-free" data-group="dietary">Cruelty-Free</button>
+        </div>
+      </div>
+    </div>
+    <div class="page-filter-results"></div>
+    <div class="page-filter-foot">
+      <span class="page-filter-count"></span>
+      <button class="page-filter-clear-all" type="button">Clear all</button>
+    </div>
+  </div>
+</div>
+
 
 <!-- Expanding Search Panel -->
 <div class="search-panel" id="search-panel">
@@ -188,6 +309,12 @@
 
   <div class="credibility">
     <div class="cred-item"><div class="cred-num">18<em>.</em></div><div class="cred-label">Bottles in the line</div></div>
+
+  </div>
+  <div class="page-filter-results"></div>
+</div>
+</div>
+
     <div class="cred-item"><div class="cred-num">100<em>%</em></div><div class="cred-label">Made in North America</div></div>
     <div class="cred-item"><div class="cred-num">25<em>+</em></div><div class="cred-label">Clinically-studied actives</div></div>
     <div class="cred-item"><div class="cred-num">0</div><div class="cred-label">Artificial fillers</div></div>
