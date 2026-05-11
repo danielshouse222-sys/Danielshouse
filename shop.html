@@ -30,6 +30,24 @@
     font-style: italic;
   }
   .shop-note strong { color: var(--gold); font-style: normal; font-weight: 500; }
+  .shop-shipping-note {
+    font-size: 11px;
+    letter-spacing: 0.03em;
+    color: var(--ink-soft);
+    max-width: 620px;
+    margin: 18px auto 0;
+    line-height: 1.55;
+    padding: 12px 18px;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    background: rgba(184, 153, 104, 0.04);
+  }
+  .shop-shipping-note .shipping-dot {
+    color: var(--gold);
+    font-size: 9px;
+    margin-right: 6px;
+    vertical-align: 2px;
+  }
 
   /* Tab switcher */
   .shop-switch {
@@ -632,10 +650,11 @@
 
 
 <section class="shop-hero">
-  <div class="shop-eyebrow">15 Official Bundles · 10% Off Each</div>
+  <div class="shop-eyebrow">15 Official Bundles · Save on Every Concern</div>
   <h1 class="shop-title">Shop by <em>concern</em> or <em>worry.</em></h1>
-  <p class="shop-tagline">Tell us what you want to fix — stress, breakouts, dull skin, low energy — and add the official bundle that targets it. One click, 10% off.</p>
-  <p class="shop-note"><strong>Every concern is a bundle</strong> — pick one, get the curated set of products at <strong>10% off</strong>. Click any product to preview it before you commit.</p>
+  <p class="shop-tagline">Tell us what you want to fix — stress, breakouts, dull skin, low energy — and add the official bundle that targets it. One click, instant savings.</p>
+  <p class="shop-note"><strong>Every concern is a bundle</strong> — pick one, get the curated set of products bundled at a discount. Click any product to preview it before you commit.</p>
+  <p class="shop-shipping-note"><span class="shipping-dot">●</span> Ships in 1–2 packages, arrives within 3–5 days. Your skincare and supplements come from specialist partners — most bundles arrive in a single shipment, mixed bundles a day or two apart.</p>
 </section>
 
 <div class="shop-switch">
@@ -743,6 +762,7 @@ function renderConcernCard(bundle) {
   const pricing = window.getConcernBundlePricing(bundle.id);
   if (!pricing) return '';
   const { products, fullPrice, discountedPrice, savings } = pricing;
+  const discountPct = Math.round((1 - discountedPrice / fullPrice) * 100);
   const colsClass = products.length === 2 ? 'cols-2' : products.length === 3 ? 'cols-3' : '';
   const productCount = products.length;
   // Bundle names are "The X Bundle" — italicize the X (the meaningful word)
@@ -752,7 +772,7 @@ function renderConcernCard(bundle) {
 
   return `
     <div class="concern-card" data-bundle-id="${bundle.id}" data-product-slugs="${bundle.slugs.join(',')}" data-bundle-name="${bundle.name}">
-      <div class="concern-bundle-tag">Save 10%</div>
+      <div class="concern-bundle-tag">Save ${discountPct}%</div>
       <div class="concern-header">
         <div class="concern-icon">${bundle.icon}</div>
         <div>
@@ -844,7 +864,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <span class="directory-num">${num}</span>
           <span class="directory-name">
             <span class="directory-name-text">${formattedName}</span>
-            <span class="directory-meta">${productCount} products · 10% off bundled</span>
+            <span class="directory-meta">${productCount} products · ${Math.round((1 - pricing.discountedPrice / pricing.fullPrice) * 100)}% off bundled</span>
           </span>
           <span class="directory-savings">Save ${pricing.savings.toFixed(0)} →</span>
         </button>
@@ -884,6 +904,8 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.concern-card').forEach(card => {
     const slugs = card.dataset.productSlugs.split(',');
     const bundleName = card.dataset.bundleName;
+    const bundle = window.CONCERN_BUNDLES.find(b => b.id === card.dataset.bundleId);
+    const bundleDiscount = (bundle && typeof bundle.discount === 'number') ? bundle.discount : 0.07;
 
     // Subscribe toggle
     const toggle = card.querySelector('[data-toggle]');
@@ -906,7 +928,7 @@ document.addEventListener('DOMContentLoaded', () => {
           title: `Browsing the <strong>${bundleName} Bundle</strong>`,
           bundleName: bundleName + ' Bundle',
           bundleSlugs: slugs,
-          bundleDiscount: 0.10,
+          bundleDiscount: bundleDiscount,
           bundleSubscribe: isSubscribe()
         });
       });
@@ -918,14 +940,14 @@ document.addEventListener('DOMContentLoaded', () => {
         title: `Browsing the <strong>${bundleName} Bundle</strong>`,
         bundleName: bundleName + ' Bundle',
         bundleSlugs: slugs,
-        bundleDiscount: 0.10,
+        bundleDiscount: bundleDiscount,
         bundleSubscribe: isSubscribe()
       });
     });
 
-    // Add Bundle → add all to cart at 10% off, with current subscribe state
+    // Add Bundle → add all to cart at this bundle's discount, with current subscribe state
     card.querySelector('[data-action="add"]').addEventListener('click', () => {
-      window.dhCart.addBundle(slugs, bundleName + ' Bundle', 0.10, isSubscribe());
+      window.dhCart.addBundle(slugs, bundleName + ' Bundle', bundleDiscount, isSubscribe());
     });
   });
 
