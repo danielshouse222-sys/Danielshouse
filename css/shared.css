@@ -506,7 +506,7 @@
 }
 .search-trigger.active { color: var(--gold); }
 
-/* ═══ PAGE FILTER (floating button → centered modal with dimmed backdrop) ═══ */
+/* ═══ PAGE FILTER (floating search button → centered modal) ═══ */
 .page-filter {
   position: fixed !important;
   top: 14px !important;
@@ -826,10 +826,7 @@ body.has-page-filter-modal {
 }
 
 @media (max-width: 760px) {
-  .page-filter {
-    top: calc(var(--shipping-bar-height) + 10px) !important;
-    right: 12px !important;
-  }
+  /* .page-filter position is set defensively inline by JS (top: 12px, right: 12px) */
   .page-filter-toggle { width: 44px; height: 44px; font-size: 19px; }
   .page-filter-panel {
     width: calc(100vw - 24px);
@@ -2264,9 +2261,8 @@ body.has-page-filter-modal {
    ═══════════════════════════════════════════════════════════ */
 .cart-floating {
   position: fixed !important;
-  /* Stacked directly below search button: search top (14px) + search height (50px) + 10px gap = 74px */
   top: 74px !important;
-  right: 16px !important; /* aligned with search button */
+  right: 16px !important;
   left: auto !important;
   bottom: auto !important;
   margin: 0 !important;
