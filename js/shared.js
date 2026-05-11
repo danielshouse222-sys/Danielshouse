@@ -755,22 +755,12 @@
     document.body.prepend(banner);
     document.documentElement.classList.add('coming-soon-active');
 
-    // Measure actual rendered height and update CSS variables so other fixed
-    // elements (shipping bar, floating buttons) move down to make room.
+    // Track banner height for any consumer that wants to know it, but don't touch
+    // --shipping-bar-height anymore — headers are non-sticky and floating buttons
+    // anchor directly to viewport top (top: 14px), independent of any banner.
     function syncHeights() {
       const h = banner.getBoundingClientRect().height;
       document.documentElement.style.setProperty('--coming-soon-height', h + 'px');
-      // Floating buttons (cart, search) anchor to --shipping-bar-height — bump that
-      // up to include the banner so they sit below everything at top.
-      const styles = getComputedStyle(document.documentElement);
-      const shipBarBase = parseFloat(styles.getPropertyValue('--shipping-bar-base') || '46');
-      document.documentElement.style.setProperty('--shipping-bar-height', (h + shipBarBase) + 'px');
-    }
-    // Preserve the original shipping bar height as a base value once
-    const styles = getComputedStyle(document.documentElement);
-    const currentSBH = parseFloat(styles.getPropertyValue('--shipping-bar-height') || '46');
-    if (!styles.getPropertyValue('--shipping-bar-base')) {
-      document.documentElement.style.setProperty('--shipping-bar-base', currentSBH + 'px');
     }
     syncHeights();
     window.addEventListener('resize', syncHeights);
