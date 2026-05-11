@@ -391,6 +391,23 @@
 
     // ═══ PAGE FILTER (floating button → centered modal with backdrop) ═══
     document.querySelectorAll('.page-filter').forEach(filterEl => {
+      // Defensive inline-style positioning — guarantees the floating search is
+      // always top-right of viewport regardless of any stylesheet conflict.
+      const isMobile = window.matchMedia('(max-width: 600px)').matches;
+      Object.assign(filterEl.style, {
+        position: 'fixed',
+        top: isMobile ? '12px' : '14px',
+        right: isMobile ? '12px' : '16px',
+        left: 'auto',
+        bottom: 'auto',
+        zIndex: '1100'
+      });
+      window.addEventListener('resize', () => {
+        const m = window.matchMedia('(max-width: 600px)').matches;
+        filterEl.style.top = m ? '12px' : '14px';
+        filterEl.style.right = m ? '12px' : '16px';
+      });
+
       const input = filterEl.querySelector('.page-filter-input');
       const count = filterEl.querySelector('.page-filter-count');
       const clearBtn = filterEl.querySelector('.page-filter-clear');
@@ -797,6 +814,25 @@
       </div>
     `;
     document.body.appendChild(wrap);
+
+    // Defensive inline-style positioning — guarantees the floating cart is always
+    // top-right (stacked below the search button), even if a stylesheet conflict
+    // or media-query oddity tries to push it somewhere else.
+    const isMobile = window.matchMedia('(max-width: 600px)').matches;
+    Object.assign(wrap.style, {
+      position: 'fixed',
+      top: isMobile ? '64px' : '74px',
+      right: isMobile ? '12px' : '16px',
+      left: 'auto',
+      bottom: 'auto',
+      zIndex: '1100'
+    });
+    // Re-anchor on resize in case the viewport crosses the mobile breakpoint
+    window.addEventListener('resize', () => {
+      const m = window.matchMedia('(max-width: 600px)').matches;
+      wrap.style.top = m ? '64px' : '74px';
+      wrap.style.right = m ? '12px' : '16px';
+    });
 
     const toggle = wrap.querySelector('.cart-floating-toggle');
     const overlay = wrap.querySelector('.cart-floating-overlay');
