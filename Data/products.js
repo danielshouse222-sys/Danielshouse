@@ -1600,6 +1600,12 @@ window.CURATED_BUNDLES = [
     slugs: ['the-house-greens','the-house-burn','the-house-power','the-house-pump','the-house-seal']
   },
   {
+    id: 'foundation',
+    name: 'The Foundation Bundle',
+    discount: 0.15,
+    slugs: ['the-house-multi','the-house-sunshine','the-house-flow','the-house-biome','the-house-calm']
+  },
+  {
     id: 'longevity',
     name: 'The Longevity Bundle',
     discount: 0.15,
