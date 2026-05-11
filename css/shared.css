@@ -3283,9 +3283,135 @@ body.has-page-filter-modal {
 }
 .bd-full-link:hover { color: var(--sage); border-color: var(--sage); }
 
+/* ── Rich bundle-detail sections (routines / mechanism / audience) ───────── */
+
+/* Routine step list (AM/PM/Supplements) */
+.bd-routine {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.bd-step {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 14px;
+  align-items: baseline;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.bd-step:last-child { border-bottom: none; padding-bottom: 4px; }
+.bd-step-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 22px;
+  color: var(--gold);
+  font-weight: 500;
+  line-height: 1;
+  text-align: center;
+}
+.bd-step-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 19px;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 4px;
+  line-height: 1.1;
+}
+.bd-step-note {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--ink-soft);
+  line-height: 1.55;
+}
+
+/* Why-this-stack-works mechanism rows */
+.bd-why-lead {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin-bottom: 18px;
+}
+.bd-mechanisms {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.bd-mech {
+  display: grid;
+  grid-template-columns: minmax(140px, 0.8fr) 24px 1.2fr;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 14px;
+  background: var(--cream-warm);
+  border-left: 2px solid var(--gold);
+}
+.bd-mech-problem {
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+}
+.bd-mech-arrow {
+  font-size: 14px;
+  color: var(--gold);
+  text-align: center;
+  line-height: 1;
+}
+.bd-mech-solution {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 14.5px;
+  color: var(--ink);
+  line-height: 1.45;
+}
+
+/* Audience yes/no cards */
+.bd-audience {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.bd-audience-card {
+  padding: 16px 18px;
+  border: 1px solid var(--rule);
+  background: var(--cream-warm);
+}
+.bd-audience-card.yes  { border-left: 3px solid var(--sage); }
+.bd-audience-card.no   { border-left: 3px solid var(--gold); opacity: 0.85; }
+.bd-audience-tag {
+  font-size: 9.5px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+.bd-audience-card.yes .bd-audience-tag { color: var(--sage); }
+.bd-audience-card.no  .bd-audience-tag { color: var(--gold); }
+.bd-audience-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
 @media (max-width: 600px) {
   .bd-products { grid-template-columns: 1fr; }
   .bd-intro { font-size: 14px; }
   .bd-product-img { width: 44px; height: 44px; flex-basis: 44px; }
   .bd-product-name { font-size: 13.5px; }
+  .bd-step { grid-template-columns: 32px 1fr; gap: 12px; }
+  .bd-step-num  { font-size: 19px; }
+  .bd-step-name { font-size: 17px; }
+  .bd-step-note { font-size: 13px; }
+  .bd-mech { grid-template-columns: 1fr; gap: 4px; padding: 12px 14px; }
+  .bd-mech-arrow { display: none; }
+  .bd-mech-solution { font-size: 13.5px; }
+  .bd-audience { grid-template-columns: 1fr; }
+  .bd-why-lead { font-size: 14px; }
 }
