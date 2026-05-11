@@ -2846,3 +2846,332 @@ body.has-page-filter-modal {
   .cf-item { grid-template-columns: 50px 1fr auto; gap: 10px; }
   .cf-item-img { width: 50px; height: 50px; }
 }
+/* ═══ SITE-WIDE "VIEW DETAILS" DROPDOWN PANEL ═══
+   Base styles for the expandable details panel injected by shared.js below any
+   .row element when its .row-view-link is clicked. Skincare.html provides
+   additional ritual.am / ritual.pm color overrides inline (which take
+   precedence). These base styles are what supplements.html and any other page
+   with the same .row + .row-view-link structure see. */
+.row-details {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease;
+  border-bottom: 1px solid transparent;
+}
+.row-details.open {
+  max-height: 1600px;
+  border-color: var(--rule);
+  background: rgba(184, 153, 104, 0.04);
+}
+.row-details-inner {
+  padding: 28px 24px 36px 114px;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 44px;
+}
+.rd-label {
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.rd-label::before { content: ''; width: 16px; height: 1px; background: var(--gold); }
+.rd-block { margin-bottom: 24px; }
+.rd-block:last-child { margin-bottom: 0; }
+.rd-ingredient { padding: 10px 0; border-bottom: 1px solid rgba(212, 201, 182, 0.5); }
+.rd-ingredient:last-child { border-bottom: none; }
+.rd-ing-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px;
+  font-weight: 500;
+  font-style: italic;
+  margin-bottom: 3px;
+  color: var(--ink);
+}
+.rd-ing-name em { color: var(--sage); font-style: italic; }
+.rd-ing-role {
+  font-size: 9.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+.rd-ing-desc { font-size: 12px; line-height: 1.55; opacity: 0.72; }
+.rd-howto {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 15px;
+  line-height: 1.55;
+  opacity: 0.85;
+}
+.rd-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.rd-tag {
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  padding: 5px 11px;
+  border: 1px solid var(--rule);
+  border-radius: 100px;
+  font-weight: 400;
+  color: var(--ink-soft);
+  background: var(--cream);
+}
+.rd-protip { border-left: 2px solid var(--gold); padding: 4px 0 4px 14px; margin-top: 6px; }
+.rd-protip-label {
+  font-size: 9.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+.rd-protip-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 14px;
+  line-height: 1.5;
+  opacity: 0.88;
+}
+.rd-freefrom { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
+.rd-ff-badge {
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 4px 9px;
+  opacity: 0.55;
+  border: 1px solid var(--rule);
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+.rd-full-link {
+  display: inline-block;
+  margin-top: 20px;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: none;
+  border-bottom: 1px solid var(--gold);
+  padding-bottom: 4px;
+  font-weight: 500;
+  transition: color 0.3s, border-color 0.3s;
+}
+.rd-full-link:hover { color: var(--sage); border-color: var(--sage); }
+.row-view-link.expanded { color: var(--sage); }
+
+@media (max-width: 720px) {
+  .row-details-inner {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 20px 14px 30px;
+  }
+  .rd-ing-name { font-size: 15px; }
+  .rd-ing-desc { font-size: 11.5px; }
+  .rd-howto { font-size: 13.5px; }
+  .rd-protip-text { font-size: 13px; }
+}
+
+/* ═══ BUNDLE CARD CTA REPOSITIONING ═══
+   On bundles.html, move the "Add Bundle to Cart" button up to sit immediately
+   below the description (instead of after Included / Savings / Subscribe).
+   Uses CSS flex order, so source order stays accessible for screen readers. */
+.bundle-card .bundle-body { display: flex; flex-direction: column; }
+.bundle-card .bundle-body > .bundle-eyebrow         { order: 1; }
+.bundle-card .bundle-body > .bundle-title           { order: 2; }
+.bundle-card .bundle-body > .bundle-sub             { order: 3; }
+.bundle-card .bundle-body > .bundle-desc            { order: 4; }
+.bundle-card .bundle-body > .bundle-view-link       { order: 5; margin-top: 14px; }
+.bundle-card .bundle-body > .bundle-details         { order: 6; }
+.bundle-card .bundle-body > .bundle-subscribe-toggle{ order: 7; margin-top: 16px; }
+.bundle-card .bundle-body > .bundle-cta             { order: 8; margin-top: 12px; }
+.bundle-card .bundle-body > .bundle-included        { order: 9; margin-top: 24px; }
+.bundle-card .bundle-body > .bundle-savings         { order: 10; margin-top: 12px; }
+
+/* ═══ BUNDLE DETAILS — VIEW DETAILS DROPDOWN ON BUNDLE CARDS ═══════════════
+   Aesthetic: cream-warm panel with gold rule above, inline below description.
+   Holds a bundle-level intro paragraph + tag pills + clickable product grid. */
+.bundle-view-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  font-size: 10.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+  text-align: left;
+  align-self: flex-start;
+  border-bottom: 1px solid var(--gold);
+  padding-bottom: 4px;
+  transition: color 0.3s, border-color 0.3s;
+}
+.bundle-view-link:hover {
+  color: var(--sage);
+  border-color: var(--sage);
+}
+.bundle-view-link.expanded { color: var(--sage); border-color: var(--sage); }
+.bundle-view-link .bvl-arrow {
+  font-size: 12px;
+  letter-spacing: 0;
+  transition: transform 0.3s ease;
+}
+
+.bundle-details {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), margin-top 0.3s ease, border-color 0.3s ease;
+  border-top: 1px solid transparent;
+  margin-top: 0;
+}
+.bundle-details.open {
+  max-height: 2400px;
+  margin-top: 20px;
+  border-top: 1px solid var(--rule);
+}
+.bd-inner {
+  padding: 20px 0 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.bd-block { display: flex; flex-direction: column; }
+.bd-label {
+  font-size: 9.5px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.bd-label::before {
+  content: '';
+  width: 16px;
+  height: 1px;
+  background: var(--gold);
+}
+.bd-intro {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin-bottom: 14px;
+}
+.bd-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.bd-tag {
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  padding: 5px 11px;
+  border: 1px solid var(--rule);
+  border-radius: 100px;
+  font-weight: 400;
+  color: var(--ink-soft);
+  background: var(--cream-warm);
+}
+.bd-tag:last-child {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(184, 153, 104, 0.06);
+}
+
+/* Inside-this-bundle product grid */
+.bd-products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.bd-product {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  background: var(--cream-warm);
+  border: 1px solid var(--rule);
+  text-decoration: none;
+  color: var(--ink);
+  transition: border-color 0.3s, background 0.3s, transform 0.2s ease;
+}
+.bd-product:hover {
+  border-color: var(--gold);
+  background: var(--cream);
+  transform: translateY(-1px);
+}
+.bd-product-img {
+  width: 48px;
+  height: 48px;
+  flex: 0 0 48px;
+  background: var(--cream);
+  border: 1px solid var(--rule);
+  overflow: hidden;
+}
+.bd-product-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.bd-product-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.bd-product-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.bd-product-meta {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.bd-product-price {
+  color: var(--gold);
+  font-weight: 500;
+}
+.bd-full-link {
+  align-self: flex-start;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: none;
+  border-bottom: 1px solid var(--gold);
+  padding-bottom: 4px;
+  font-weight: 500;
+  transition: color 0.3s, border-color 0.3s;
+}
+.bd-full-link:hover { color: var(--sage); border-color: var(--sage); }
+
+@media (max-width: 600px) {
+  .bd-products { grid-template-columns: 1fr; }
+  .bd-intro { font-size: 14px; }
+  .bd-product-img { width: 44px; height: 44px; flex-basis: 44px; }
+  .bd-product-name { font-size: 13.5px; }
+}
