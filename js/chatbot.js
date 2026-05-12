@@ -81,8 +81,8 @@
      burn through credits. Anthropic enforces per-key rate limits, so
      worst-case the spend is bounded, but rotate the key if abused.
      ════════════════════════════════════════════════════════════════════════ */
-  const BRAND_API_KEY    = '';  // ← paste your Anthropic API key here to auto-enable Claude
-  const BRAND_API_PROXY  = '';  // ← OR point to a proxy endpoint (e.g. https://your-worker.workers.dev/v1/messages)
+  const BRAND_API_KEY    = '';  // ← cleared; key now lives server-side in the Cloudflare Worker
+  const BRAND_API_PROXY  = 'https://claud-proxy.daniellruggiero.workers.dev';  // Cloudflare Worker proxy holding the real Anthropic key
 
   const CLAUDE_KEY_STORAGE   = 'dh_chatbot_claude_key';
   const CLAUDE_ON_STORAGE    = 'dh_chatbot_claude_enabled';
