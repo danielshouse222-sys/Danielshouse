@@ -1,6 +1,6 @@
 /* ═══════════════════════════════════════════════════════════════════
-   BUNDLE EXPANSION — inline "More Details" expansion
-   Triggered by a toggle button injected next to each bundle's Add to Cart.
+   BUNDLE EXPANSION — inline "View Details" collapsible link
+   Triggered by a small text link injected next to each bundle's Add to Cart.
    Expands inline below the bundle card to show the full bundle details
    without navigating to a separate page.
 
@@ -8,88 +8,99 @@
    ═══════════════════════════════════════════════════════════════════ */
 
 .bundle-details-toggle {
-  display: inline-block;
-  width: 100%;
-  margin-top: 12px;
-  padding: 13px 16px;
-  background: var(--cream-warm);
-  border: 1px solid var(--rule);
-  color: var(--ink);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin: 20px auto 0;
+  padding: 4px 0;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid transparent;
+  color: var(--gold);
   font-family: 'Poppins', sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.2em;
+  font-size: 10.5px;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   font-weight: 500;
-  text-align: center;
   cursor: pointer;
-  transition: background 0.3s, border-color 0.3s, color 0.3s;
+  transition: color 0.3s, border-color 0.3s;
+  line-height: 1;
+  align-self: center;  /* center within flex parents like .bundle-body */
+}
+/* When inserted into the concern-actions grid as a third item, span all columns
+   so it forms its own centered row below the Preview/Add buttons */
+.concern-actions .bundle-details-toggle {
+  grid-column: 1 / -1;
+  justify-self: center;
+  margin-top: 16px;
 }
 .bundle-details-toggle:hover {
-  border-color: var(--gold);
-  color: var(--gold);
+  color: var(--ink);
+  border-bottom-color: var(--ink);
 }
 .bundle-details-toggle .toggle-icon {
   display: inline-block;
-  margin-left: 6px;
+  font-size: 9px;
   transition: transform 0.3s;
+  margin-top: -1px;
 }
 .bundle-details-toggle.is-open .toggle-icon { transform: rotate(180deg); }
+.bundle-details-toggle.is-open {
+  color: var(--ink);
+  border-bottom-color: var(--rule);
+}
 
-/* On the Ultimate dark hero panel, button needs light/dark inversion */
+/* On the Ultimate dark hero panel, lighter color inversion */
 .hero-bundle-panel .bundle-details-toggle {
-  background: transparent;
-  border-color: rgba(184, 153, 104, 0.4);
-  color: rgba(250, 246, 240, 0.85);
+  color: var(--gold);
 }
 .hero-bundle-panel .bundle-details-toggle:hover {
-  border-color: var(--gold);
-  color: var(--gold);
-  background: rgba(184, 153, 104, 0.08);
+  color: var(--cream);
+  border-bottom-color: var(--cream);
+}
+.hero-bundle-panel .bundle-details-toggle.is-open {
+  color: var(--cream);
+  border-bottom-color: rgba(250, 246, 240, 0.3);
 }
 
-/* The expansion container */
+/* The expansion container — lives INSIDE the card body and the card box just
+   grows when opened. No separate background, no border (besides a hairline
+   divider at top to separate from the View Details link), no internal scroll. */
 .bundle-expansion {
-  grid-column: 1 / -1;     /* span full row when inserted between grid bundle cards */
-  background: var(--cream);
-  border: 1px solid var(--rule);
-  border-top: 3px solid var(--gold);
-  margin-top: 20px;
-  padding: 0 36px;
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin-top: 18px;
+  padding: 0;
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.5s ease, padding 0.4s ease;
+  transition: max-height 0.6s ease, padding 0.4s ease, margin-top 0.4s ease;
 }
 .bundle-expansion.is-open {
-  max-height: 9000px;
-  padding: 38px 36px;
+  /* 50000px is effectively unlimited — content displays in full, page scrolls if needed */
+  max-height: 50000px;
+  padding-top: 26px;
 }
 
-.bundle-expansion-eyebrow {
-  font-family: 'Poppins', sans-serif;
-  font-size: 10px;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--gold);
-  font-weight: 500;
-  margin-bottom: 12px;
-}
-.bundle-expansion-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 30px;
-  font-weight: 400;
+/* When the expansion is a child of the Ultimate hero (.hero-bundle is a 2-col grid),
+   make it span the full row beneath the img + content columns. Cream background so
+   the body text reads correctly (.hero-bundle has a dark background). */
+.hero-bundle > .bundle-expansion {
+  grid-column: 1 / -1;
+  background: var(--cream);
   color: var(--ink);
-  line-height: 1.15;
-  margin: 0 0 14px;
+  margin-top: 0;
+  border-top: 1px solid var(--gold);
 }
-.bundle-expansion-title em { font-style: italic; color: var(--sage); }
-.bundle-expansion-desc {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: 16.5px;
-  line-height: 1.65;
-  color: var(--ink);
-  margin: 0 0 28px;
-  max-width: 720px;
+.hero-bundle > .bundle-expansion.is-open {
+  padding: 32px 50px;
+}
+@media (max-width: 800px) {
+  .hero-bundle > .bundle-expansion.is-open {
+    padding: 24px 22px;
+  }
 }
 
 .bundle-exp-section { margin-bottom: 36px; }
@@ -120,27 +131,28 @@
 .bundle-exp-rows { display: flex; flex-direction: column; }
 .bundle-exp-row {
   display: grid;
-  grid-template-columns: 90px 1fr 160px;
-  gap: 24px;
-  align-items: center;
-  padding: 22px 0;
+  grid-template-columns: 64px 1fr;
+  column-gap: 16px;
+  row-gap: 8px;
+  align-items: start;
+  padding: 18px 0;
   border-bottom: 1px solid var(--rule);
   transition: padding-left 0.3s, background 0.3s;
-  min-height: 148px;
 }
 .bundle-exp-row:hover {
-  padding-left: 8px;
-  background: rgba(184, 153, 104, 0.05);
+  padding-left: 6px;
+  background: rgba(184, 153, 104, 0.04);
 }
 .bundle-exp-row:last-child { border-bottom: none; }
 
 .bundle-exp-row-img {
-  width: 90px; height: 90px;
+  width: 64px; height: 64px;
   border: 1px solid var(--rule);
   background: linear-gradient(140deg, var(--tan) 0%, var(--cream) 60%, var(--tan) 100%);
   position: relative;
   overflow: hidden;
   flex-shrink: 0;
+  align-self: start;
 }
 .bundle-exp-row-img img {
   width: 100%; height: 100%;
@@ -149,7 +161,7 @@
 }
 .bundle-exp-row-img::after {
   content: '';
-  position: absolute; inset: 5px;
+  position: absolute; inset: 4px;
   border: 1px solid var(--gold);
   opacity: 0.3;
   pointer-events: none;
@@ -162,69 +174,74 @@
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--gold);
-  margin-bottom: 5px;
+  margin-bottom: 4px;
   font-weight: 500;
 }
 .bundle-exp-row-name {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 22px;
+  font-size: 19px;
   line-height: 1.15;
   font-weight: 500;
-  margin-bottom: 5px;
+  margin-bottom: 4px;
 }
 .bundle-exp-row-name em { font-style: italic; color: var(--sage); }
 .bundle-exp-row-desc {
   font-family: 'Poppins', sans-serif;
-  font-size: 12.5px;
+  font-size: 12px;
   line-height: 1.55;
   color: var(--ink-soft);
   max-width: 95%;
+  margin-bottom: 10px;
 }
-
+/* Compact mode: shop section spans content column under name/desc as a horizontal row */
 .bundle-exp-row-shop {
+  grid-column: 2;
   display: flex;
-  flex-direction: column;
-  gap: 6px;
-  align-items: stretch;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 .bundle-exp-row-price {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 26px;
+  font-size: 22px;
   font-weight: 500;
   color: var(--ink);
   line-height: 1;
-  margin-bottom: 4px;
+  margin-bottom: 0;
+  flex-shrink: 0;
 }
 .bundle-exp-row-link {
-  display: block;
-  width: 100%;
+  display: inline-block;
   text-align: center;
   font-family: 'Poppins', sans-serif;
-  font-size: 10px;
+  font-size: 9.5px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--gold);
   text-decoration: none;
   font-weight: 500;
-  padding: 5px 0;
+  padding: 4px 0;
   transition: color 0.3s;
+  white-space: nowrap;
 }
 .bundle-exp-row-link:hover { color: var(--sage); }
+
 .bundle-exp-row-add {
-  display: block;
-  width: 100%;
+  display: inline-block;
   text-align: center;
   background: var(--ink);
   color: var(--cream);
-  padding: 11px 12px;
+  padding: 8px 14px;
   font-family: 'Poppins', sans-serif;
-  font-size: 10.5px;
-  letter-spacing: 0.22em;
+  font-size: 10px;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   font-weight: 500;
   border: none;
   cursor: pointer;
   transition: background 0.3s;
+  white-space: nowrap;
 }
 .bundle-exp-row-add:hover { background: var(--sage); }
 
@@ -302,27 +319,343 @@
   padding-top: 12px;
 }
 
-/* Mobile */
+/* ═══ STUDIES SECTION — peer-reviewed research aggregated from ingredients ═══ */
+.bundle-exp-studies {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.bundle-exp-study {
+  background: var(--cream-warm);
+  border-left: 3px solid var(--gold);
+  padding: 18px 22px 20px;
+}
+.bundle-exp-study-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+.bundle-exp-study-type {
+  font-family: 'Poppins', sans-serif;
+  font-size: 9px;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: var(--cream);
+  background: var(--sage);
+  font-weight: 500;
+  padding: 3px 9px;
+  white-space: nowrap;
+}
+.bundle-exp-study-ing {
+  font-family: 'Poppins', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.25s, border-color 0.25s;
+}
+.bundle-exp-study-ing:hover {
+  color: var(--gold);
+  border-bottom-color: var(--gold);
+}
+.bundle-exp-study-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  line-height: 1.3;
+  color: var(--ink);
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+.bundle-exp-study-cite {
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+.bundle-exp-study-cite em {
+  font-style: italic;
+  color: var(--ink);
+  font-weight: 500;
+}
+.bundle-exp-study-finding {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+/* ═══ ROUTINE STEPS (AM / PM / supplements — numbered list) ═══ */
+.bundle-exp-routine {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.bundle-exp-step {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 14px;
+  align-items: start;
+  padding: 12px 16px;
+  background: var(--cream);
+  border-left: 2px solid var(--gold);
+}
+.bundle-exp-step-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 22px;
+  color: var(--gold);
+  line-height: 1;
+  font-weight: 500;
+  padding-top: 2px;
+}
+.bundle-exp-step-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+.bundle-exp-step-note {
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+/* ═══ MECHANISMS (problem → solution rows) ═══ */
+.bundle-exp-mech-lead {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: var(--ink);
+  margin-bottom: 18px;
+}
+.bundle-exp-mechanisms {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.bundle-exp-mech {
+  display: grid;
+  grid-template-columns: 1fr auto 1.4fr;
+  gap: 12px;
+  align-items: center;
+  padding: 14px 18px;
+  background: var(--cream);
+  border: 1px solid var(--rule);
+}
+.bundle-exp-mech-problem {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  color: var(--ink);
+  font-weight: 500;
+  font-style: italic;
+}
+.bundle-exp-mech-arrow {
+  color: var(--gold);
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+}
+.bundle-exp-mech-solution {
+  font-family: 'Poppins', sans-serif;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
+/* ═══ AUDIENCE (Who It's For — Yes / Not for you cards) ═══ */
+.bundle-exp-audience {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.bundle-exp-audience-card {
+  padding: 18px 20px;
+  background: var(--cream);
+  border: 1px solid var(--rule);
+  border-top: 3px solid var(--gold);
+}
+.bundle-exp-audience-card.no {
+  border-top-color: var(--ink-soft);
+  opacity: 0.85;
+}
+.bundle-exp-audience-tag {
+  font-family: 'Poppins', sans-serif;
+  font-size: 9.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.bundle-exp-audience-card.no .bundle-exp-audience-tag { color: var(--ink-soft); }
+.bundle-exp-audience-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+/* ═════════════════════════════════════════════════════════════════════
+   MOBILE (≤ 800px) — readability boost + compact layouts
+   Bumps all small text (section headers, tags, captions, body) to sizes
+   that are comfortable to read on phones, with looser line-heights.
+   ════════════════════════════════════════════════════════════════════ */
 @media (max-width: 800px) {
+
+  /* ─── expansion container ─────────────────────────────────────── */
   .bundle-expansion { padding: 0 18px; }
-  .bundle-expansion.is-open { padding: 28px 18px; }
-  .bundle-expansion-title { font-size: 24px; }
-  .bundle-exp-section { margin-bottom: 28px; }
+  .bundle-expansion.is-open { padding-top: 22px; }
+  .bundle-exp-section { margin-bottom: 32px; }
+
+  /* ─── SECTION HEADERS — slightly bigger, less aggressive tracking ── */
+  .bundle-exp-h {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+  }
+
+  /* ─── PRODUCT ROWS — image + content stack (compact) ──────────── */
   .bundle-exp-row {
-    grid-template-columns: 70px 1fr;
-    gap: 14px;
+    grid-template-columns: 72px 1fr;
+    column-gap: 14px;
+    row-gap: 10px;
     min-height: 0;
     padding: 18px 0;
   }
-  .bundle-exp-row-img { width: 70px; height: 70px; }
+  .bundle-exp-row-img { width: 72px; height: 72px; }
+  .bundle-exp-row-tag {
+    font-size: 10.5px;
+    letter-spacing: 0.2em;
+    margin-bottom: 5px;
+  }
+  .bundle-exp-row-name { font-size: 20px; line-height: 1.2; }
+  .bundle-exp-row-desc {
+    font-size: 13px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
   .bundle-exp-row-shop {
-    grid-column: 1 / -1;
+    grid-column: 2;
     flex-direction: row;
     align-items: center;
-    gap: 8px;
-    margin-top: 4px;
+    gap: 12px;
+    flex-wrap: wrap;
   }
-  .bundle-exp-row-price { font-size: 22px; flex: 0 0 auto; }
-  .bundle-exp-row-link, .bundle-exp-row-add { flex: 1; }
-  .bundle-why-block { padding: 18px 18px; font-size: 15px; }
+  .bundle-exp-row-price { font-size: 24px; flex: 0 0 auto; }
+  .bundle-exp-row-link {
+    display: inline-block;
+    width: auto;
+    font-size: 10.5px;
+    padding: 4px 0;
+    white-space: nowrap;
+  }
+  .bundle-exp-row-add {
+    display: inline-block;
+    width: auto;
+    padding: 9px 16px;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    white-space: nowrap;
+  }
+
+  /* ─── WHY THIS STACK WORKS block ──────────────────────────────── */
+  .bundle-why-block {
+    padding: 20px 22px;
+    font-size: 16px;
+    line-height: 1.65;
+  }
+
+  /* ─── MECHANISMS (Why This Stack Works · Mechanism by Mechanism) ── */
+  .bundle-exp-mech-lead {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+  .bundle-exp-mech {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    padding: 14px 16px;
+  }
+  .bundle-exp-mech-arrow { display: none; }
+  .bundle-exp-mech-problem { font-size: 17px; }
+  .bundle-exp-mech-solution {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* ─── WHO THIS IS FOR (Yes / Not for you cards) ───────────────── */
+  .bundle-exp-audience { grid-template-columns: 1fr; gap: 12px; }
+  .bundle-exp-audience-card { padding: 18px 20px; }
+  .bundle-exp-audience-tag {
+    font-size: 10.5px;
+    letter-spacing: 0.2em;
+    margin-bottom: 8px;
+  }
+  .bundle-exp-audience-text {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  /* ─── ROUTINE STEPS (AM / PM / supplements) ───────────────────── */
+  .bundle-exp-step {
+    grid-template-columns: 38px 1fr;
+    gap: 12px;
+    padding: 14px 16px;
+  }
+  .bundle-exp-step-num { font-size: 22px; padding-top: 3px; }
+  .bundle-exp-step-name { font-size: 18px; line-height: 1.25; }
+  .bundle-exp-step-note {
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  /* ─── STUDIES (Peer-Reviewed Research) ────────────────────────── */
+  .bundle-exp-study { padding: 18px 20px; }
+  .bundle-exp-study-meta { gap: 10px; margin-bottom: 10px; }
+  .bundle-exp-study-type {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    padding: 4px 10px;
+  }
+  .bundle-exp-study-ing {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+  }
+  .bundle-exp-study-title {
+    font-size: 19px;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .bundle-exp-study-cite {
+    font-size: 12px;
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+  .bundle-exp-study-finding {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* ─── TIMELINE ────────────────────────────────────────────────── */
+  .bundle-exp-timeline { gap: 12px; }
+  .bundle-exp-timeline-week { font-size: 11px; letter-spacing: 0.18em; }
+  .bundle-exp-timeline-text { font-size: 14px; line-height: 1.55; }
+
+  /* ─── FAQ ─────────────────────────────────────────────────────── */
+  .bundle-exp-faq-q { font-size: 15px; padding: 16px 0; }
+  .bundle-exp-faq-a { font-size: 14px; line-height: 1.65; }
 }
