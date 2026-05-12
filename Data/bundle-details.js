@@ -336,19 +336,20 @@ window.BUNDLE_DETAILS = {
       ]
     },
     'stress': {
-      eyebrow: 'Resilience & Calm · Adaptogens + Skin That Shows Stress',
-      description: 'Five products — KSM-66 ashwagandha, magnesium glycinate, and the adaptogenic greens for cortisol modulation, plus the gentle barrier-supporting topicals for skin that shows stress before the body says it.',
-      whyThis: "Chronic stress shows on skin: increased sebum, slower wound healing, barrier dysfunction, more visible reactivity. This bundle addresses stress at the systemic level and supports the skin that's bearing the brunt. Tranquil's KSM-66 ashwagandha is the most-studied adaptogen for cortisol reduction. Calm (magnesium glycinate) addresses nervous-system magnesium depletion common in chronically stressed adults. Greens provides additional adaptogens (ginseng) plus the nutrient-dense base for resilience. Balance is the gentle witch-hazel toner that doesn't trigger reactive skin. Soft is the overnight ceramide cream that supports barrier repair when stress is compromising it.",
+      eyebrow: 'Resilience & Calm · Adaptogens + Skincare as Ritual',
+      description: 'Five products — KSM-66 ashwagandha, magnesium glycinate, and the adaptogenic greens that quiet the cortisol response, plus the witch-hazel toner mist and the weekly detox mask. Skincare reframed as the calming self-care ritual it should be.',
+      whyThis: "Chronic stress shows up on skin first — increased sebum, slower wound healing, barrier dysfunction, more visible reactivity — and at the nervous system long before the rest of the body says anything. This bundle works both fronts at once. Tranquil's KSM-66 ashwagandha is the most-studied adaptogen for cortisol reduction. Calm (magnesium glycinate) addresses the nervous-system magnesium depletion that's near-universal in chronically stressed adults. Greens layers in additional adaptogens (ginseng) on a nutrient-dense base for daily resilience. The topical half is built as a ritual rather than a treatment: Balance is the gentle witch-hazel toner that's meant to be misted onto the face — a small sensory pause between cleanse and serums that doubles as a deliberate calm-down moment. Mask is the weekly detox treatment — a slow, intentional ten-minute reset that pulls double duty as skincare and as decompression. Together, the mist and the mask reframe skincare as the calming self-care it should be, while the supplements work quietly on the cortisol response underneath.",
       timeline: [
-        { week: 'Week 1', text: 'Nervous system feels less tense; skin reactivity reduces.' },
-        { week: 'Week 4', text: 'Cortisol response noticeably calmer. Sleep improves; skin barrier feels stronger.' },
-        { week: 'Week 8', text: 'Adaptogenic effect compounds. Stress recovery faster; skin clarity improves.' },
+        { week: 'Week 1', text: 'Nervous system feels less tense; the mist and mask rituals become a daily/weekly decompression anchor.' },
+        { week: 'Week 4', text: 'Cortisol response noticeably calmer. Sleep improves; skin reactivity reduces.' },
+        { week: 'Week 8', text: 'Adaptogenic effect compounds. Stress recovery faster; skin clarity improves with the weekly mask cadence.' },
         { week: 'Week 12+', text: 'Sustained resilience baseline. The "always-on" feeling resets; skin holds steady through normal stress.' }
       ],
       faq: [
         { q: 'Will adaptogens numb my edge?', a: 'No — adaptogens modulate the stress response without blunting it. Users typically report sharper focus and better decision-making once cortisol drops.' },
         { q: 'How does stress affect skin?', a: 'Cortisol increases sebum production, slows wound healing, and weakens the skin barrier. Reducing systemic cortisol — through ashwagandha and magnesium — visibly improves skin in stressed populations.' },
-        { q: 'Can I take all three supplements daily?', a: "Yes. Tranquil morning, Greens with breakfast or as smoothie base, Calm at night." }
+        { q: 'Why frame skincare as self-care here?', a: 'Because the act itself matters. The 30 seconds of misting Balance onto your face, the ten minutes with the Mask on — these are deliberate pauses in a day that doesn\u2019t otherwise give you any. The cortisol benefit isn\u2019t just from the witch hazel; it\u2019s from the ritual.' },
+        { q: 'Can I take all three supplements daily?', a: 'Yes. Tranquil in the morning, Greens with breakfast or as a smoothie base, Calm at night.' }
       ]
     },
     'strength': {
