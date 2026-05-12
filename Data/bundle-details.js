@@ -156,17 +156,18 @@ window.BUNDLE_DETAILS = {
     },
     'moms': {
       eyebrow: "For the Tired but Glowing",
-      description: "Ten products built for mothers — gentle but effective skincare, energy and immunity support, calm-down magnesium, and the postnatal-friendly collagen and cellular stack.",
-      whyThis: "The needs of mothers — especially new mothers — are specific: gentle on the skin (no fragrances, no harsh actives that flake off into baby's face), reliable on energy (because sleep is unpredictable), supportive of nervous-system recovery (because cortisol after pregnancy is its own thing). This bundle combines the gentle skincare staples (Wash, Defense, Bounce at low frequency, Eye, Soft) with the daily-energy stack (Multi, Collagen, NAD+, Vitality) plus Tranquil for adaptogenic support. Together they form a sustainable rhythm — not aspirational, not maximum, just supportive.",
+      description: "Ten products built for parents in their 40s and 50s — gentle but effective skincare, energy and immunity support, calm-down magnesium, and the longevity-grade collagen and cellular stack. Named for the season of life it supports — works just as well for dads.",
+      whyThis: "The needs of parents at this stage are specific: gentle on the skin (no fragrances, no harsh actives that flake off, mindful of skin that's grown more reactive), reliable on energy (because life and sleep can both be unpredictable), supportive of nervous-system recovery (because cortisol after decades of work and family life is its own thing). This bundle combines the gentle anti-aging skincare staples (Wash, Defense, Bounce at low frequency, Eye, Soft) with the daily-energy stack (Multi, Collagen, NAD+, Vitality) plus Tranquil for adaptogenic support. Together they form a sustainable rhythm — not aspirational, not maximum, just supportive.",
       timeline: [
         { week: 'Week 1', text: 'Skin feels balanced and protected. Daily energy from Multi and Vitality begins.' },
         { week: 'Week 4', text: 'Sleep and stress resilience improve (Tranquil + Multi). Skin glow from Collagen visible.' },
         { week: 'Week 8', text: 'Sustained inside-out support. Skin elasticity, daily energy, mood balance all baseline improved.' },
-        { week: 'Week 12+', text: "Durable mom-life-friendly baseline. The bundle that supports you so you can support everyone else." }
+        { week: 'Week 12+', text: "Durable family-life-friendly baseline. The bundle that supports you so you can support everyone else." }
       ],
       faq: [
-        { q: 'Is this safe while breastfeeding?', a: 'Most products in this bundle are breastfeeding-safe; however, consult your healthcare provider about any supplement during nursing. Topical retinol (Bounce) should be used cautiously while breastfeeding — many providers recommend avoiding it. The other products are routinely used by nursing moms.' },
-        { q: "I'm not a new mom — can I still use this?", a: 'Of course — the bundle was named for the season of life it supports, not the only people who benefit. Anyone wanting gentle skincare + sustaining daily nutrients works.' },
+        { q: 'Is this safe while pregnant or breastfeeding?', a: 'Most products in this bundle are pregnancy- and breastfeeding-safe; however, consult your healthcare provider about any supplement during pregnancy or nursing. Topical retinol (Bounce) should be used cautiously or avoided entirely — many providers recommend skipping it during pregnancy and while nursing. The other products are routinely used by parents in those seasons.' },
+        { q: "I'm not a parent — can I still use this?", a: 'Of course — the bundle was named for the season of life it supports, not the only people who benefit. Anyone in their 40s or 50s wanting gentle anti-aging skincare + sustaining daily nutrients works.' },
+        { q: "Will my husband / dad use this too?", a: "Yes — the routine works just as well for men. Skin in your 40s and 50s has the same fundamental needs across genders: barrier-supportive cleansing, daily antioxidants, targeted anti-aging actives, deep hydration. The supplements are gender-neutral. If you're sharing the bundle, just split the bottles." },
         { q: 'When should I take the supplements?', a: 'Morning with breakfast: Multi, NAD+, Vitality, Collagen. Evening with dinner or pre-bed: Tranquil. Spread them out — it aids absorption and matches each supplement\'s timing.' }
       ]
     },

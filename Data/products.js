@@ -1749,7 +1749,7 @@ window.CURATED_BUNDLES = [
   },
   {
     id: 'moms',
-    name: "The Parents Bundle",
+    name: "The Mom's Bundle",
     discount: 0.15,
     slugs: ['the-house-wash','the-house-defense','the-house-bounce','the-house-eye','the-house-soft','the-house-multi','the-house-collagen','the-house-nad-plus','the-house-vitality','the-house-tranquil']
   },
