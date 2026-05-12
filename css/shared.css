@@ -1620,6 +1620,11 @@ body.has-page-filter-modal {
   grid-template-columns: 1fr 1fr;
   gap: 8px;
 }
+/* When Smart Refill is disabled, the 3rd cadence button (Every 3 Months)
+   is left alone in row 2. Span it across both columns so it doesn't look orphaned. */
+.bundle-cadence[data-no-smart] .cadence-grid .cadence-btn:nth-child(3) {
+  grid-column: 1 / -1;
+}
 .cadence-btn {
   background: var(--cream-warm);
   border: 1px solid var(--rule);
