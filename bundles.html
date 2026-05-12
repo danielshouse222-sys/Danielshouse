@@ -1154,6 +1154,7 @@ function renderConcernCard(bundle) {
   // Discount percentage for the inline savings ribbon
   const discountPct = Math.round((bundle.discount || 0.07) * 100);
 
+
   return `
     <div class="concern-card" data-bundle-id="${bundle.id}" data-bundle-kind="concern" data-product-slugs="${bundle.slugs.join(',')}" data-bundle-name="${bundle.name}">
       <div class="concern-savings-ribbon">Save ${discountPct}%</div>
@@ -1194,16 +1195,7 @@ function renderConcernCard(bundle) {
           <div class="concern-count">${productCount}<span>products</span></div>
         </div>
 
-        <div class="bundle-subscribe-toggle concern-subscribe-toggle" data-bundle-id="${bundle.id}" data-toggle>
-          <button type="button" data-mode="once" class="active">
-            <div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">One-Time</span></div>
-            <span class="toggle-meta">Single delivery</span>
-          </button>
-          <button type="button" data-mode="subscribe">
-            <div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">Monthly</span></div>
-            <span class="toggle-meta">Cancel anytime</span>
-          </button>
-        </div>
+        ${window.dhBuildSubscribeToggle(bundle)}
 
         <div class="concern-actions">
           <button class="concern-btn secondary" data-action="preview">Preview Bundle →</button>
@@ -1246,6 +1238,7 @@ function renderRoutineCard(bundle) {
 
   const discountPct = Math.round((bundle.discount || 0.15) * 100);
 
+
   return `
     <div class="concern-card routine-card" data-bundle-id="${bundle.id}" data-bundle-kind="routine" data-product-slugs="${bundle.slugs.join(',')}" data-bundle-name="${bundle.name}">
       <div class="concern-savings-ribbon">Save ${discountPct}%</div>
@@ -1287,16 +1280,7 @@ function renderRoutineCard(bundle) {
           <div class="concern-count">${productCount}<span>products</span></div>
         </div>
 
-        <div class="bundle-subscribe-toggle concern-subscribe-toggle" data-bundle-id="${bundle.id}" data-toggle>
-          <button type="button" data-mode="once" class="active">
-            <div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">One-Time</span></div>
-            <span class="toggle-meta">Single delivery</span>
-          </button>
-          <button type="button" data-mode="subscribe">
-            <div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">Monthly</span></div>
-            <span class="toggle-meta">Cancel anytime</span>
-          </button>
-        </div>
+        ${window.dhBuildSubscribeToggle(bundle)}
 
         <div class="concern-actions">
           <button class="concern-btn secondary" data-action="preview">Preview Routine →</button>
@@ -1765,27 +1749,42 @@ document.addEventListener('DOMContentLoaded', () => {
     const SUB_BONUS = 0.10;
     const noun = isRoutine ? 'routine' : 'bundle';
 
-    // Subscribe toggle — drives the +10% subscription bonus
+    // Subscribe + cadence state — drives the per-shipment vs smart-refill pricing
     const toggle = card.querySelector('[data-toggle]');
+    const cadenceSel = card.querySelector('[data-cadence-selector]');
     let subscribed = false;
+    let cadence = 'monthly'; // default — full bundle every month
     const isSubscribe = () => subscribed;
 
-    // Live-update the pricing label as the toggle changes
+    // Live-update the pricing label as the toggle/cadence changes
     const priceNowEl = card.querySelector('.concern-price-now');
     const savingsEl = card.querySelector('.concern-savings');
     const wasEl = card.querySelector('.concern-price-was');
     const fullPrice = wasEl ? parseFloat(wasEl.textContent.replace('$', '')) : 0;
+    // Look up the actual bundle object (needed for smart-refill math)
+    const bundleObj = (hit && hit.bundle) || null;
 
     function refreshPricing() {
       const baseDiscounted = fullPrice * (1 - bundleDiscount);
-      const finalPrice = subscribed ? baseDiscounted * (1 - SUB_BONUS) : baseDiscounted;
-      const totalSavings = fullPrice - finalPrice;
-      if (priceNowEl) priceNowEl.textContent = `$${finalPrice.toFixed(2)}`;
-      if (savingsEl) {
-        savingsEl.textContent = subscribed
-          ? `Save $${totalSavings.toFixed(2)} (${noun} + subscribe)`
-          : `Save $${totalSavings.toFixed(2)} as a ${noun}`;
+      let displayPrice, savingsCopy;
+      const cadenceLabel = window.formatCadence ? window.formatCadence(cadence).name : 'Monthly';
+      if (!subscribed) {
+        displayPrice = baseDiscounted;
+        savingsCopy = `Save $${(fullPrice - displayPrice).toFixed(2)} as a ${noun}`;
+      } else if (cadence === 'smart' && bundleObj && window.computeSmartRefillAvgMonthly) {
+        // Smart Refill — show average monthly cost
+        displayPrice = window.computeSmartRefillAvgMonthly(bundleObj);
+        const annualSmart = displayPrice * 12;
+        const annualFlat  = (baseDiscounted * 0.90) * 12;
+        const annualSave  = annualFlat - annualSmart;
+        savingsCopy = `Avg per month · Smart Refill saves ~$${Math.round(annualSave)}/yr vs flat monthly`;
+      } else {
+        // Flat cadence — same per-shipment price, different cadence label
+        displayPrice = baseDiscounted * (1 - SUB_BONUS);
+        savingsCopy = `Save $${(fullPrice - displayPrice).toFixed(2)} per shipment · ${cadenceLabel}`;
       }
+      if (priceNowEl) priceNowEl.textContent = `$${displayPrice.toFixed(2)}`;
+      if (savingsEl)  savingsEl.textContent  = savingsCopy;
     }
 
     if (toggle) {
@@ -1794,6 +1793,28 @@ document.addEventListener('DOMContentLoaded', () => {
           toggle.querySelectorAll('button').forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
           subscribed = btn.dataset.mode === 'subscribe';
+          toggle.classList.toggle('subscribe-mode', subscribed);
+          // Show/hide the cadence selector below
+          if (cadenceSel) {
+            if (subscribed) cadenceSel.removeAttribute('hidden');
+            else cadenceSel.setAttribute('hidden', '');
+          }
+          refreshPricing();
+        });
+      });
+    }
+    if (cadenceSel) {
+      cadenceSel.querySelectorAll('.cadence-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          cadenceSel.querySelectorAll('.cadence-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          cadence = btn.dataset.cadence || 'monthly';
+          // Toggle the smart-refill explainer note
+          const note = cadenceSel.querySelector('[data-smart-note]');
+          if (note) {
+            if (cadence === 'smart') note.removeAttribute('hidden');
+            else note.setAttribute('hidden', '');
+          }
           refreshPricing();
         });
       });
@@ -1823,9 +1844,9 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    // Add Bundle/Routine → add all to cart at this bundle's discount, with current subscribe state
+    // Add Bundle/Routine → add all to cart at this bundle's discount, with current subscribe state + cadence
     card.querySelector('[data-action="add"]').addEventListener('click', () => {
-      window.dhCart.addBundle(slugs, bundleName, bundleDiscount, isSubscribe());
+      window.dhCart.addBundle(slugs, bundleName, bundleDiscount, isSubscribe(), { cadence: subscribed ? cadence : null });
     });
   });
 

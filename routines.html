@@ -1595,7 +1595,40 @@
           <div class="hero-savings-label">$717 → $538 · 25% off</div>
         </div>
 
-        <div class="bundle-subscribe-toggle" data-bundle-id="ultimate" style="max-width: 480px; margin-bottom: 16px;"><button type="button" data-mode="once" class="active"><div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">One-Time</span></div><span class="toggle-meta">Single delivery</span></button><button type="button" data-mode="subscribe"><div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">Monthly</span></div><span class="toggle-meta">Cancel anytime</span></button></div><button class="hero-cta" data-bundle-add="ultimate" style="border: none; cursor: pointer;">Add Ultimate to Cart →</button>
+                <div class="bundle-subscribe-toggle" data-bundle-id="ultimate" data-toggle style="max-width: 480px; margin-bottom: 0;">
+          <button type="button" data-mode="once" class="active">
+            <div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">One-Time</span></div>
+            <span class="toggle-meta">Single delivery</span>
+          </button>
+          <button type="button" data-mode="subscribe">
+            <div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">Subscribe</span></div>
+            <span class="toggle-meta">Save 10% · cancel anytime</span>
+          </button>
+        </div>
+        <div class="bundle-cadence" data-bundle-id="ultimate" data-cadence-selector hidden style="max-width: 480px; margin-bottom: 16px;">
+          <div class="cadence-eyebrow">Shipment Frequency</div>
+          <div class="cadence-grid">
+            <button type="button" class="cadence-btn active" data-cadence="monthly">
+              <div class="cadence-name">Monthly</div>
+              <div class="cadence-meta">Full bundle</div>
+            </button>
+            <button type="button" class="cadence-btn" data-cadence="bimonthly">
+              <div class="cadence-name">Every 2 Months</div>
+              <div class="cadence-meta">Full bundle</div>
+            </button>
+            <button type="button" class="cadence-btn" data-cadence="quarterly">
+              <div class="cadence-name">Every 3 Months</div>
+              <div class="cadence-meta">Full bundle</div>
+            </button>
+            <button type="button" class="cadence-btn cadence-btn-smart" data-cadence="smart">
+              <div class="cadence-name">Smart Refill</div>
+              <div class="cadence-meta">Only what you need</div>
+            </button>
+          </div>
+          <div class="cadence-note" data-smart-note hidden>
+            <strong>How Smart Refill works:</strong> Your first shipment is the full bundle. After that, each month ships only the products you actually need to replenish — supplements every month, most skincare every 2 months, eye creams &amp; oils every 3. You only pay for what arrives in each shipment.
+          </div>
+        </div><button class="hero-cta" data-bundle-add="ultimate" style="border: none; cursor: pointer;">Add Ultimate to Cart →</button>
       </div>
     </div>
   </div>
@@ -1798,7 +1831,7 @@
       </div>
 
       <div class="byo-popup-purchase">
-        <div class="bundle-subscribe-toggle" data-bundle-id="byo"><button type="button" data-mode="once" class="active"><div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">One-Time</span></div><span class="toggle-meta">Single delivery</span></button><button type="button" data-mode="subscribe"><div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">Monthly</span></div><span class="toggle-meta">Cancel anytime</span></button></div>
+        <div class="bundle-subscribe-toggle" data-bundle-id="byo"><button type="button" data-mode="once" class="active"><div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">One-Time</span></div><span class="toggle-meta">Single delivery</span></button><button type="button" data-mode="subscribe"><div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">Subscribe</span></div><span class="toggle-meta">Save 10% · cancel anytime</span></button></div>
         <button class="byo-popup-cta" id="byoAddBundle">Add Custom Routine to Cart →</button>
       </div>
     </div>
@@ -2200,6 +2233,7 @@
     const savings = fullPrice - discountedPrice;
     const discountPct = Math.round(bundle.discount * 100);
 
+
     const displayName = formatName(bundle);
     const blurb = BLURBS[bundleId] || '';
     const colsClass = productCount === 2 ? 'cols-2' : productCount === 3 ? 'cols-3' : productCount === 4 ? 'cols-4' : productCount === 5 ? 'cols-5' : 'cols-6';
@@ -2244,16 +2278,7 @@
             <div class="concern-count">${productCount}<span>products</span></div>
           </div>
 
-          <div class="bundle-subscribe-toggle concern-subscribe-toggle" data-bundle-id="${bundle.id}" data-toggle>
-            <button type="button" data-mode="once" class="active">
-              <div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">One-Time</span></div>
-              <span class="toggle-meta">Single delivery</span>
-            </button>
-            <button type="button" data-mode="subscribe">
-              <div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">Monthly</span></div>
-              <span class="toggle-meta">Cancel anytime</span>
-            </button>
-          </div>
+          ${window.dhBuildSubscribeToggle(bundle)}
 
           <div class="concern-actions">
             <button class="concern-btn secondary" data-action="preview">Preview Bundle →</button>
@@ -2389,74 +2414,145 @@
   });
 })();
 
-// ═══ Bundle Subscribe Toggles + Add Bundle CTAs ═══
+// ═══ Bundle Subscribe Toggles + Cadence Selectors + Add Bundle CTAs ═══
 (function() {
+  // Helper: read the current cadence for a given bundleId from its cadence selector
+  function getCurrentCadence(bundleId) {
+    const sel = document.querySelector(`.bundle-cadence[data-bundle-id="${bundleId}"]`);
+    if (!sel) return 'monthly';
+    const active = sel.querySelector('.cadence-btn.active');
+    return (active && active.dataset.cadence) || 'monthly';
+  }
+  function isSubscribed(toggle) {
+    return toggle && toggle.querySelector('button.active')?.dataset.mode === 'subscribe';
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
-    // Wire each bundle subscribe toggle
+    // ── 1. Wire each One-Time/Subscribe toggle ──
     document.querySelectorAll('.bundle-subscribe-toggle').forEach(toggle => {
       toggle.querySelectorAll('button').forEach(btn => {
         btn.addEventListener('click', () => {
           toggle.querySelectorAll('button').forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
-          toggle.classList.toggle('subscribe-mode', btn.dataset.mode === 'subscribe');
-          // Update CTA label if there's a paired add-bundle button
+          const subscribed = btn.dataset.mode === 'subscribe';
+          toggle.classList.toggle('subscribe-mode', subscribed);
+
+          // Reveal/hide the cadence selector beneath the toggle
           const bundleId = toggle.dataset.bundleId;
-          const isSub = btn.dataset.mode === 'subscribe';
+          const cadenceSel = document.querySelector(`.bundle-cadence[data-bundle-id="${bundleId}"]`);
+          if (cadenceSel) {
+            if (subscribed) cadenceSel.removeAttribute('hidden');
+            else cadenceSel.setAttribute('hidden', '');
+          }
+
+          // Update the paired CTA label
           const addBtn = document.querySelector(`[data-bundle-add="${bundleId}"]`);
           if (addBtn) {
             if (bundleId === 'ultimate') {
-              addBtn.textContent = isSub ? 'Subscribe to Ultimate →' : 'Add Ultimate to Cart →';
+              addBtn.textContent = subscribed ? 'Subscribe to Ultimate →' : 'Add Ultimate to Cart →';
             } else {
-              addBtn.textContent = isSub ? 'Subscribe to Routine →' : 'Add Routine to Cart →';
+              addBtn.textContent = subscribed ? 'Subscribe to Routine →' : 'Add Routine to Cart →';
             }
           }
-          // BYO custom button label
           if (bundleId === 'byo') {
             const byoBtn = document.getElementById('byoAddBundle');
             if (byoBtn) {
-              byoBtn.textContent = isSub
+              byoBtn.textContent = subscribed
                 ? 'Subscribe to Custom Routine →'
                 : 'Add Custom Routine to Cart →';
             }
-            // BYO has its own tracker that recomputes — trigger it
             if (typeof window.recomputeBYOSavings === 'function') window.recomputeBYOSavings();
           } else {
-            // Recompute and update the Save $X display — pass THIS toggle so we
-            // update the card it belongs to (handles Ultimate appearing both as
-            // hero and as a grid card with separate independent toggles).
-            updateBundleSavingsDisplay(toggle, isSub);
+            updateBundleSavingsDisplay(toggle);
           }
         });
       });
     });
 
-    // Dynamic price + savings recalculation — stacks the +10% bundle-subscription bonus.
-    // Updates price/savings labels on either layout style:
-    //   1. Hero-section / legacy .bundle-card (.bundle-save + .bundle-save-label)
-    //   2. Curated grid cards rendered by renderCuratedBundleCard
-    //      (.concern-price-now + .concern-savings + .concern-price-was)
-    function updateBundleSavingsDisplay(toggle, subscribed) {
+    // ── 2. Wire each Cadence button (Monthly / Bimonthly / Quarterly / Smart) ──
+    document.querySelectorAll('.bundle-cadence').forEach(cadenceSel => {
+      cadenceSel.querySelectorAll('.cadence-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          cadenceSel.querySelectorAll('.cadence-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          // Toggle the smart-refill explainer note
+          const isSmart = btn.dataset.cadence === 'smart';
+          const note = cadenceSel.querySelector('[data-smart-note]');
+          if (note) {
+            if (isSmart) note.removeAttribute('hidden');
+            else note.setAttribute('hidden', '');
+          }
+          // Recompute price for the parent card's bundle
+          const bundleId = cadenceSel.dataset.bundleId;
+          const toggle = document.querySelector(`.bundle-subscribe-toggle[data-bundle-id="${bundleId}"]`);
+          if (toggle) updateBundleSavingsDisplay(toggle);
+        });
+      });
+    });
+
+    // ── Recompute and update the price + savings labels on a bundle card ──
+    // Cadence-aware: smart refill displays AVG/month and the savings copy adapts.
+    function updateBundleSavingsDisplay(toggle) {
       if (!toggle) return;
       const bundleId = toggle.dataset.bundleId;
-      const bundle = window.getCuratedBundleById && window.getCuratedBundleById(bundleId);
+      // Try routine first, then concern bundle (handles bundles.html which mixes both)
+      let bundle = window.getCuratedBundleById && window.getCuratedBundleById(bundleId);
+      let kind = 'routine';
+      if (!bundle && window.CONCERN_BUNDLES) {
+        bundle = window.CONCERN_BUNDLES.find(b => b.id === bundleId);
+        kind = 'concern';
+      }
       if (!bundle) return;
-      const products = bundle.slugs
+      const products = (bundle.slugs || [])
         .map(s => window.getProductBySlug && window.getProductBySlug(s))
         .filter(Boolean);
       if (!products.length) return;
+
+      const subscribed = isSubscribed(toggle);
+      const cadence = getCurrentCadence(bundleId);
       const fullPrice = products.reduce((s, p) => s + p.price, 0);
       const baseDiscounted = fullPrice * (1 - bundle.discount);
-      const finalPrice = subscribed ? baseDiscounted * 0.90 : baseDiscounted;
-      const savings = fullPrice - finalPrice;
-      const noun = (bundleId === 'ultimate') ? 'Ultimate' : 'routine';
+
+      // For flat cadences, per-shipment price is the same — bundle × sub bonus.
+      // For smart refill, displayed price is the avg monthly cost.
+      let displayPrice, savingsAmount, savingsCopy;
+      const cadenceLabel = window.formatCadence ? window.formatCadence(cadence).name : 'Monthly';
+
+      if (!subscribed) {
+        // One-time
+        displayPrice = baseDiscounted;
+        savingsAmount = fullPrice - baseDiscounted;
+        savingsCopy = `Save $${savingsAmount.toFixed(2)} as a ${kind === 'routine' ? (bundleId === 'ultimate' ? 'Ultimate' : 'routine') : 'bundle'}`;
+      } else if (cadence === 'smart') {
+        // Smart refill — display avg/month
+        displayPrice = window.computeSmartRefillAvgMonthly(bundle);
+        // Annual savings vs paying for flat monthly subscription
+        const annualSmart = displayPrice * 12;
+        const annualFlat  = (baseDiscounted * 0.90) * 12;
+        const annualSave  = annualFlat - annualSmart;
+        savingsCopy = `Avg per month · Smart Refill saves ~$${Math.round(annualSave)}/yr vs flat monthly`;
+      } else {
+        // Monthly / Bimonthly / Quarterly — per-shipment price
+        displayPrice = baseDiscounted * 0.90;
+        savingsAmount = fullPrice - displayPrice;
+        savingsCopy = `Save $${savingsAmount.toFixed(2)} per shipment · ${cadenceLabel}`;
+      }
 
       // 1) Hero / legacy markup
       const heroCard = toggle.closest('.bundle-card, .hero-section');
       if (heroCard) {
         const saveEl = heroCard.querySelector('.bundle-save');
         const labelEl = heroCard.querySelector('.bundle-save-label');
-        if (saveEl) saveEl.textContent = `Save $${Math.round(savings)}`;
-        if (labelEl) labelEl.textContent = `$${Math.round(fullPrice)} → $${Math.round(finalPrice)}`;
+        if (cadence === 'smart' && subscribed) {
+          if (saveEl) saveEl.textContent = `Avg $${Math.round(displayPrice)}/mo`;
+          if (labelEl) labelEl.textContent = `Smart Refill · first shipment $${Math.round(baseDiscounted * 0.90)}`;
+        } else {
+          const shown = subscribed ? displayPrice : displayPrice;
+          if (saveEl) saveEl.textContent = `Save $${Math.round(fullPrice - shown)}`;
+          if (labelEl) labelEl.textContent = subscribed
+            ? `$${Math.round(fullPrice)} → $${Math.round(shown)} · ${cadenceLabel}`
+            : `$${Math.round(fullPrice)} → $${Math.round(shown)}`;
+        }
       }
 
       // 2) Curated grid card markup (.curated-card)
@@ -2464,24 +2560,24 @@
       if (curatedCard) {
         const priceNowEl = curatedCard.querySelector('.concern-price-now');
         const savingsEl  = curatedCard.querySelector('.concern-savings');
-        if (priceNowEl) priceNowEl.textContent = `$${finalPrice.toFixed(2)}`;
-        if (savingsEl) {
-          savingsEl.textContent = subscribed
-            ? `Save $${savings.toFixed(2)} as a ${noun} + subscribe`
-            : `Save $${savings.toFixed(2)} as a ${noun}`;
-        }
+        if (priceNowEl) priceNowEl.textContent = `$${displayPrice.toFixed(2)}`;
+        if (savingsEl) savingsEl.textContent = savingsCopy;
       }
     }
+    // Expose so the bundles.html click handler can call into it
+    window.dhUpdateBundleDisplay = updateBundleSavingsDisplay;
 
-    // Wire each Add Bundle CTA (curated bundles)
+    // ── 3. Wire each Add Bundle CTA — read mode + cadence at click time ──
     document.querySelectorAll('[data-bundle-add]').forEach(btn => {
       btn.addEventListener('click', () => {
         const bundleId = btn.dataset.bundleAdd;
         const bundle = window.getCuratedBundleById(bundleId);
         if (!bundle) return;
         const toggle = document.querySelector(`.bundle-subscribe-toggle[data-bundle-id="${bundleId}"]`);
-        const subscribe = toggle?.querySelector('button.active')?.dataset.mode === 'subscribe';
-        window.dhCart.addBundle(bundle.slugs, bundle.name, bundle.discount, subscribe);
+        const subscribe = isSubscribed(toggle);
+        const cadence = subscribe ? getCurrentCadence(bundleId) : null;
+        // Pass cadence to cart so it can store it for the order
+        window.dhCart.addBundle(bundle.slugs, bundle.name, bundle.discount, subscribe, { cadence });
       });
     });
 
