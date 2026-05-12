@@ -42,6 +42,23 @@ window.BUNDLE_DETAILS = {
         { q: 'How long does one routine last?', a: 'About 30 days. Each bottle is a 30-day supply at recommended dosing. Most customers subscribe monthly for the protocol consistency.' }
       ]
     },
+    'daniels-skincare': {
+      eyebrow: "Founder's Stack · Skincare Only",
+      description: "Every product in the skincare line — AM ritual through PM ritual through the weekly reset. Fifteen formulations, the same discount Daniel gets on his daily supplement stack, the complete topical half of the Ultimate Routine. For customers who already have their supplement game figured out and want the full skincare house.",
+      whyThis: "The skincare half of the Ultimate, without the supplements. The 6 AM steps (Wash, Balance, Boost, Hyaluronic, Defense, Soft) prep and protect the skin every morning — vitamin C, multi-weight HA, niacinamide, ceramides, all properly sequenced thinnest-to-thickest. The 5 PM steps (Bounce, Renewal, Firm, Hydration, Glow) work at night when active ingredients aren't fighting UV — retinol, glycolic acid, peptides, ceramide cream, and a six-oil seal. Eye and Clear handle the targeted spots (orbital skin, breakouts) wherever they show up. Mask and Polish are the weekly reset that compounds everything else. Together it's the full topical protocol, layered for compounding effect.",
+      timeline: [
+        { week: 'Week 1', text: 'Texture feels cleaner and more balanced. Less midday shine; product layering becomes second nature.' },
+        { week: 'Week 4', text: 'Hydration holds through the day; pore appearance refines. The retinol + peptide nightly routine starts showing visible smoothing.' },
+        { week: 'Week 8', text: 'Tone evens out; fine lines soften measurably. Weekly mask + polish ritual produces visible "post-treatment" glow.' },
+        { week: 'Week 12+', text: 'Durable skin baseline. Brighter tone, firmer texture, fewer breakouts, the compound effect of fifteen actives working together properly sequenced.' }
+      ],
+      faq: [
+        { q: 'Do I really use all 15 products?', a: "Not every product every day. AM and PM rituals run daily (11 products). Eye and Clear go on as needed (eyes daily if you have an eye-cream habit, Clear only where active breakouts appear). Mask and Polish are weekly. Most days you'll use 10–12 of the 15." },
+        { q: 'What order do I apply them in?', a: 'AM: Wash → Balance → Boost (Vit C) → Hyaluronic → Defense → Soft → sunscreen. PM: Wash → Renewal OR Bounce (alternate nights) → Firm → Hyaluronic → Hydration → Eye → Glow (oil seal). Mask + Polish are weekly add-ons.' },
+        { q: 'Can I subscribe to all 15?', a: 'Yes — and Smart Refill is the right cadence here. The skincare line has products on 1, 2, and 3-month cycles. Smart Refill ships each bottle only when its cadence comes due, so you don\'t end up stockpiling 6 unused bottles of Renewal while you blow through Wash. Same discount, smarter shipments.' },
+        { q: 'How is this different from buying AM + PM + Reset separately?', a: "Buying AM + PM + Reset as three separate routines totals about 14% off (15% on each minus the smaller piece sizes). This routine pairs all 15 at a flat 18% — the same discount Daniel's Daily supplement stack gets — plus the targeted treatments (Eye, Clear) that don't fit cleanly into either AM or PM." }
+      ]
+    },
     'am': {
       eyebrow: 'Morning Skincare Ritual',
       description: 'The full morning routine. Cleanse, tone, brighten, hydrate, defend, moisturize — six steps to start the day with a complete barrier and visible glow.',

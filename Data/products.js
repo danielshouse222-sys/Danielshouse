@@ -1739,6 +1739,22 @@ window.CURATED_BUNDLES = [
     slugs: ['the-house-multi','the-house-sunshine','the-house-flow','the-house-biome','the-house-calm','the-house-nad-plus','the-house-vitality','the-house-synapse','the-house-restore','the-house-tranquil']
   },
   {
+    id: 'daniels-skincare',
+    name: "Daniel's Daily Skincare",
+    discount: 0.18,
+    blurb: "Every product in the skincare line. AM ritual through PM ritual through the weekly reset — the complete skincare house in a single routine.",
+    slugs: [
+      // AM (cleanse → tone → vitamin C → HA → defense → moisturizer)
+      'the-house-wash','the-house-balance','the-house-boost','the-house-hyaluronic','the-house-defense','the-house-soft',
+      // Targeted treatments
+      'the-house-clear','the-house-eye',
+      // PM (peptide treatments → retinol → hydration → seal)
+      'the-house-bounce','the-house-renewal','the-house-firm','the-house-hydration','the-house-glow',
+      // Weekly reset
+      'the-house-mask','the-house-polish'
+    ]
+  },
+  {
     id: 'am',
     name: 'The AM Routine',
     discount: 0.15,
