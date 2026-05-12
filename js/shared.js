@@ -41,15 +41,19 @@
       openCart();
     },
 
-    addBundle(productSlugs, bundleName, discount = BUNDLE_DISCOUNT_DEFAULT, subscribe = false) {
-      // Add all products in a bundle at the bundle discount, grouped by bundleName + subscribe state
+    addBundle(productSlugs, bundleName, discount = BUNDLE_DISCOUNT_DEFAULT, subscribe = false, opts = {}) {
+      // Add all products in a bundle at the bundle discount, grouped by bundleName + subscribe state.
+      // The cadence (monthly / bimonthly / quarterly / smart) is stored on each line item
+      // so the order can fulfill correctly. Cadence only applies when subscribe = true.
+      const cadence = subscribe ? (opts.cadence || 'monthly') : null;
       const products = productSlugs
         .map(s => window.getProductBySlug && window.getProductBySlug(s))
         .filter(Boolean);
       if (products.length === 0) return;
       products.forEach(p => {
         const existing = this.items.find(i =>
-          i.slug === p.slug && i.bundleName === bundleName && i.subscribe === !!subscribe
+          i.slug === p.slug && i.bundleName === bundleName &&
+          i.subscribe === !!subscribe && (i.cadence || null) === cadence
         );
         if (existing) {
           existing.qty += 1;
@@ -62,7 +66,8 @@
             qty: 1,
             subscribe: !!subscribe,
             bundleName: bundleName,
-            bundleDiscount: discount
+            bundleDiscount: discount,
+            cadence: cadence
           });
         }
       });
@@ -2315,6 +2320,163 @@
         if (typeof onChange === 'function') onChange(select.value);
       });
       return bar;
+    };
+
+    // ─── Subscription cadence + smart-refill helpers ───────────────────
+    //
+    // The subscription system supports 4 cadences:
+    //   • monthly        — full bundle ships every month (DEFAULT)
+    //   • bimonthly      — full bundle ships every 2 months
+    //   • quarterly      — full bundle ships every 3 months
+    //   • smart          — ships every month, but only the products that need
+    //                      replenishing that month based on each product's
+    //                      `runtime` field (in months). Average monthly cost is
+    //                      lower than flat monthly because skincare/oils ship
+    //                      less often than supplements.
+    //
+    // Bundle/sub-bonus pricing always uses:
+    //   final = list × (1 - bundle.discount) × (1 - 0.10 sub bonus)
+    //
+    // The "shipment" total is what the customer pays per delivery.
+    // The "amortized monthly" is what they pay per month on average.
+
+    window.formatCadence = function(cadence) {
+      switch (cadence) {
+        case 'bimonthly': return { name: 'Every 2 Months', short: '2 mo',    meta: 'Full bundle · ships every 2 months · cancel anytime' };
+        case 'quarterly': return { name: 'Every 3 Months', short: '3 mo',    meta: 'Full bundle · ships every 3 months · cancel anytime' };
+        case 'smart':     return { name: 'Smart Refill',   short: 'Smart',   meta: 'Ships monthly · only what you need · cancel anytime' };
+        case 'monthly':
+        default:          return { name: 'Monthly',        short: 'Monthly', meta: 'Full bundle · ships every month · cancel anytime' };
+      }
+    };
+
+    // Months between shipments for a flat cadence. Used to amortize the
+    // per-shipment price into a per-month equivalent for comparison.
+    window.cadenceMonths = function(cadence) {
+      return cadence === 'bimonthly' ? 2 : cadence === 'quarterly' ? 3 : 1;
+    };
+
+    // ─── Smart Refill scheduling ────────────────────────────────────────
+    //
+    // For a bundle, returns the list of products that ship in each month
+    // of a 12-month cycle. A product with runtime=N ships on months
+    // 1, 1+N, 1+2N, ... (always month 1 to seed the customer, then again
+    // when their previous shipment runs out).
+
+    function productRuntime(slug) {
+      const p = (window.PRODUCTS || []).find(x => x.slug === slug);
+      return (p && p.runtime) || 1;
+    }
+
+    window.getSmartRefillSchedule = function(bundle, totalMonths) {
+      totalMonths = totalMonths || 12;
+      const slugs = (bundle && bundle.slugs) || [];
+      // For each month index 1..totalMonths, list the products that ship.
+      const months = [];
+      for (let m = 1; m <= totalMonths; m++) {
+        const products = slugs.filter(slug => {
+          const rt = productRuntime(slug);
+          return ((m - 1) % rt) === 0; // ships in month 1, 1+rt, 1+2rt, ...
+        });
+        months.push({ monthIndex: m, products });
+      }
+      return months;
+    };
+
+    // Average per-month price under smart refill, with bundle + sub discount applied.
+    // = (sum of each product's annual cost) × discount stack / 12
+    window.computeSmartRefillAvgMonthly = function(bundle) {
+      if (!bundle) return 0;
+      const discount = bundle.discount || 0;
+      const subBonus = 0.10;
+      const slugs = bundle.slugs || [];
+      let annualList = 0;
+      slugs.forEach(slug => {
+        const p = (window.PRODUCTS || []).find(x => x.slug === slug);
+        if (!p) return;
+        const rt = p.runtime || 1;
+        const shipmentsPerYear = Math.ceil(12 / rt);
+        annualList += (p.price || 0) * shipmentsPerYear;
+      });
+      const annualNet = annualList * (1 - discount) * (1 - subBonus);
+      return annualNet / 12;
+    };
+
+    // First-shipment price under smart refill — same as flat-monthly subscribed price,
+    // because month 1 of a smart-refill plan is always the full bundle.
+    window.computeSmartRefillFirstShipment = function(bundle) {
+      if (!bundle) return 0;
+      const discount = bundle.discount || 0;
+      const subBonus = 0.10;
+      const slugs = bundle.slugs || [];
+      const list = slugs.reduce((s, slug) => {
+        const p = (window.PRODUCTS || []).find(x => x.slug === slug);
+        return s + ((p && p.price) || 0);
+      }, 0);
+      return list * (1 - discount) * (1 - subBonus);
+    };
+
+    // Per-shipment price for the flat cadences (monthly/bimonthly/quarterly).
+    // Same number for all three — the customer just pays it on a different rhythm.
+    window.computeBundleShipmentPrice = function(bundle, subscribed) {
+      if (!bundle) return 0;
+      const slugs = bundle.slugs || [];
+      const list = slugs.reduce((s, slug) => {
+        const p = (window.PRODUCTS || []).find(x => x.slug === slug);
+        return s + ((p && p.price) || 0);
+      }, 0);
+      const afterBundle = list * (1 - (bundle.discount || 0));
+      return subscribed ? afterBundle * 0.90 : afterBundle;
+    };
+
+    // ─── Unified Subscribe + Cadence Toggle Markup ──────────────────────
+    //
+    // Returns the HTML for the two-tier subscribe UI: a binary One-Time/
+    // Subscribe toggle on top, with a 2x2 cadence selector beneath that's
+    // hidden until Subscribe mode is selected.
+    //
+    // The 4 cadences (Monthly / Every 2 Mo / Every 3 Mo / Smart Refill) are
+    // ALL available for every bundle — the customer picks based on their
+    // own usage rhythm. Monthly is the default selection.
+
+    window.dhBuildSubscribeToggle = function(bundle) {
+      const id = bundle.id;
+      return `
+        <div class="bundle-subscribe-toggle" data-bundle-id="${id}" data-toggle>
+          <button type="button" data-mode="once" class="active">
+            <div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">One-Time</span></div>
+            <span class="toggle-meta">Single delivery</span>
+          </button>
+          <button type="button" data-mode="subscribe">
+            <div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">Subscribe</span></div>
+            <span class="toggle-meta">Save 10% · cancel anytime</span>
+          </button>
+        </div>
+        <div class="bundle-cadence" data-bundle-id="${id}" data-cadence-selector hidden>
+          <div class="cadence-eyebrow">Shipment Frequency</div>
+          <div class="cadence-grid">
+            <button type="button" class="cadence-btn active" data-cadence="monthly">
+              <div class="cadence-name">Monthly</div>
+              <div class="cadence-meta">Full bundle</div>
+            </button>
+            <button type="button" class="cadence-btn" data-cadence="bimonthly">
+              <div class="cadence-name">Every 2 Months</div>
+              <div class="cadence-meta">Full bundle</div>
+            </button>
+            <button type="button" class="cadence-btn" data-cadence="quarterly">
+              <div class="cadence-name">Every 3 Months</div>
+              <div class="cadence-meta">Full bundle</div>
+            </button>
+            <button type="button" class="cadence-btn cadence-btn-smart" data-cadence="smart">
+              <div class="cadence-name">Smart Refill</div>
+              <div class="cadence-meta">Only what you need</div>
+            </button>
+          </div>
+          <div class="cadence-note" data-smart-note hidden>
+            <strong>How Smart Refill works:</strong> Your first shipment is the full bundle. After that, each month ships only the products you actually need to replenish — supplements every month, most skincare every 2 months, eye creams &amp; oils every 3. You only pay for what arrives in each shipment.
+          </div>
+        </div>
+      `;
     };
 
   })();
