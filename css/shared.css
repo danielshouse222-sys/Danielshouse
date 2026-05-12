@@ -4383,3 +4383,93 @@ body.dh-menu-open {
   .bundle-direction-step .step-body { font-size: 13.5px; }
   .bundle-direction-step .step-body strong { font-size: 14px; }
 }
+
+/* ═════════════════════════════════════════════════════════════
+   FLOATING-LAUNCHER SHIFT WHEN BYO POPUP IS OPEN
+   The BYO bundle-preview popup has its own close ✕ at top-right;
+   normally the floating Search button (~top:14px) and the floating
+   Cart button (~top:74px) sit in the same corner and partially
+   obscure that ✕. When the popup is open, shift them down so the
+   close X is fully reachable.
+   ═════════════════════════════════════════════════════════════ */
+body.byo-popup-open .page-filter {
+  top: 80px !important;  /* was 14px */
+}
+body.byo-popup-open .cart-floating {
+  top: 140px !important; /* was 74px desktop / 64px mobile */
+}
+@media (max-width: 600px) {
+  body.byo-popup-open .page-filter {
+    top: 76px !important;
+  }
+  body.byo-popup-open .cart-floating {
+    top: 134px !important;
+  }
+}
+
+/* ═════════════════════════════════════════════════════════════
+   TOP-RIGHT CLOSE BUTTON on expanded bundle/routine cards.
+   Mirror of the bottom "Collapse" button — gives the user a second
+   way to collapse the card without scrolling to its footer. Same
+   data-card-toggle attr so it runs through the same handler.
+   ═════════════════════════════════════════════════════════════ */
+.card-close-top {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 36px;
+  height: 36px;
+  background: var(--ink);
+  border: 2px solid var(--cream);
+  border-radius: 50%;
+  color: var(--cream);
+  font-size: 16px;
+  font-weight: 300;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  font-family: 'Poppins', sans-serif;
+  transition: background 0.25s, transform 0.25s;
+  box-shadow: 0 2px 10px rgba(31, 27, 23, 0.22);
+  z-index: 3;
+}
+.card-close-top:hover {
+  background: var(--gold);
+  transform: scale(1.08);
+}
+
+/* Hidden when card is collapsed (only visible in expanded state) */
+.concern-card.is-collapsed > .card-close-top,
+.curated-card.is-collapsed > .card-close-top {
+  display: none;
+}
+
+/* Push the savings ribbon and routine pill down so they don't sit
+   on top of the new close button. (The close button takes the top
+   corner; ribbon shifts ~50px down on its right; routine pill
+   shifts ~50px down on its left.) */
+.concern-card .concern-savings-ribbon,
+.curated-card .concern-savings-ribbon {
+  top: 64px;
+}
+.concern-card .routine-pill {
+  /* routine-pill sits at top-left so it doesn't conflict with the
+     top-right close, but shift slightly down to keep visual balance */
+  top: 22px;
+}
+
+@media (max-width: 720px) {
+  .card-close-top {
+    width: 32px;
+    height: 32px;
+    top: 14px;
+    right: 14px;
+    font-size: 14px;
+  }
+  .concern-card .concern-savings-ribbon,
+  .curated-card .concern-savings-ribbon {
+    top: 56px;
+  }
+}
