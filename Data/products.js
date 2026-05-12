@@ -1518,143 +1518,145 @@ window.getProductsByConcern = function(concern) {
  * total bundle price — see the `discount` field on each bundle.
  */
 window.CONCERN_BUNDLES = [
-  // ═══ SKIN CONCERNS ═══
+  // ═══ SKIN CONCERNS — primary concern shows visibly on skin,
+  //     paired with the supplements that drive the inside-out half ═══
   {
     id: 'aging',
-    discount: 0.08,
+    discount: 0.10,
     tab: 'skin',
     icon: 'A.',
     name: 'The Anti-Aging Bundle',
-    blurb: 'Retinol, peptides, and resurfacing actives that work overnight. Built for visible firmness and texture refinement in 8-12 weeks.',
-    slugs: ['the-house-bounce', 'the-house-firm', 'the-house-renewal', 'the-house-eye']
+    blurb: "Retinol and peptides where age shows, plus collagen and NAD+ for the cellular side. Anti-aging from both directions, because skin doesn't age in isolation from the body.",
+    slugs: ['the-house-bounce', 'the-house-firm', 'the-house-eye', 'the-house-collagen', 'the-house-nad-plus', 'the-house-radiance']
   },
   {
     id: 'acne',
-    discount: 0.07,
+    discount: 0.08,
     tab: 'skin',
     icon: 'B.',
-    name: 'The Acne Bundle',
-    blurb: 'Salicylic acid, charcoal, and pore-refining actives. The clear-skin stack — gentle enough for daily use, strong enough to make a difference.',
-    slugs: ['the-house-clear', 'the-house-mask', 'the-house-polish', 'the-house-boost']
+    name: 'The Clear-Skin Bundle',
+    blurb: 'Salicylic acid and niacinamide where pores clog, plus probiotics and omega-3s for the gut-skin axis behind chronic breakouts. The full inside-out clear-skin protocol.',
+    slugs: ['the-house-clear', 'the-house-mask', 'the-house-boost', 'the-house-biome', 'the-house-flow']
   },
   {
     id: 'dryness',
-    discount: 0.07,
+    discount: 0.08,
     tab: 'skin',
     icon: 'C.',
     name: 'The Hydration Bundle',
-    blurb: 'Multi-weight hyaluronic acid and barrier-supporting lipids. The hydration stack that doesn\'t quit by the end of the day.',
-    slugs: ['the-house-hyaluronic', 'the-house-hydration', 'the-house-soft', 'the-house-glow']
+    blurb: "Multi-weight hyaluronic and ceramide moisturizers for surface hydration, plus omega-3s and collagen that build the lipid matrix that holds water in skin. Hydration that doesn't quit by mid-afternoon.",
+    slugs: ['the-house-hyaluronic', 'the-house-hydration', 'the-house-soft', 'the-house-collagen', 'the-house-flow']
   },
   {
     id: 'dullness',
-    discount: 0.08,
+    discount: 0.10,
     tab: 'skin',
     icon: 'D.',
     name: 'The Brightening Bundle',
-    blurb: 'Vitamin C, niacinamide, and gentle resurfacing for measurable brightness. Glow without irritation.',
-    slugs: ['the-house-boost', 'the-house-defense', 'the-house-renewal', 'the-house-radiance']
+    blurb: 'Topical vitamin C and gentle resurfacing acids paired with oral collagen and beauty vitamins. The inside-out approach to measurable luminosity in 6-8 weeks.',
+    slugs: ['the-house-boost', 'the-house-defense', 'the-house-renewal', 'the-house-radiance', 'the-house-collagen']
   },
   {
     id: 'sensitivity',
-    discount: 0.07,
+    discount: 0.08,
     tab: 'skin',
     icon: 'E.',
     name: 'The Soothing Bundle',
-    blurb: 'Calming cleansers, soothing toners, and gentle hydrators. The reactive-skin essentials — no fragrance, no aggressive actives.',
-    slugs: ['the-house-wash', 'the-house-balance', 'the-house-hyaluronic', 'the-house-soft']
+    blurb: 'Gentle topicals that never trigger reactivity, paired with probiotics and omega-3s that calm the systemic inflammation often behind sensitive skin. No fragrance, no aggressive actives.',
+    slugs: ['the-house-wash', 'the-house-balance', 'the-house-hyaluronic', 'the-house-soft', 'the-house-biome', 'the-house-flow']
   },
   {
     id: 'pores',
-    discount: 0.07,
+    discount: 0.08,
     tab: 'skin',
     icon: 'F.',
     name: 'The Pore Bundle',
-    blurb: 'Niacinamide, salicylic acid, and physical exfoliation. Smooth, refined skin without compromising the moisture barrier.',
-    slugs: ['the-house-boost', 'the-house-clear', 'the-house-polish', 'the-house-mask']
+    blurb: "Topical pore-refining actives plus the probiotic that addresses the gut-sebum connection most pore products ignore. Smoother, refined skin without compromising the moisture barrier.",
+    slugs: ['the-house-boost', 'the-house-clear', 'the-house-polish', 'the-house-mask', 'the-house-biome']
   },
 
-  // ═══ WELLNESS GOALS ═══
+  // ═══ WELLNESS GOALS — primary concern is systemic,
+  //     paired with the skincare that shows the result on the surface ═══
   {
     id: 'sleep',
-    discount: 0.05,
+    discount: 0.07,
     tab: 'goal',
     icon: 'A.',
     name: 'The Sleep Bundle',
-    blurb: 'Magnesium glycinate, glycine, ashwagandha. Deeper rest, less middle-of-the-night waking, calmer mornings.',
-    slugs: ['the-house-calm', 'the-house-tranquil']
+    blurb: "The wind-down stack: magnesium glycinate and ashwagandha for the nervous system, plus the overnight skincare that puts your routine to bed. Better sleep that visibly shows by morning.",
+    slugs: ['the-house-calm', 'the-house-tranquil', 'the-house-soft', 'the-house-eye']
   },
   {
     id: 'energy',
-    discount: 0.07,
+    discount: 0.08,
     tab: 'goal',
     icon: 'B.',
     name: 'The Energy Bundle',
-    blurb: 'Multivitamin, CoQ10, and Vitamin D — the foundational stack for sustainable mental and physical output.',
-    slugs: ['the-house-multi', 'the-house-vitality', 'the-house-sunshine', 'the-house-burn']
+    blurb: "Cellular energy from inside (multivitamin, CoQ10, D3) plus the topical vitamin C and antioxidants that keep tired skin from showing it. Energy that lasts through the day and shows on your face.",
+    slugs: ['the-house-multi', 'the-house-vitality', 'the-house-sunshine', 'the-house-defense', 'the-house-boost']
   },
   {
     id: 'focus',
-    discount: 0.06,
+    discount: 0.07,
     tab: 'goal',
     icon: 'C.',
     name: 'The Focus Bundle',
-    blurb: 'Lion\'s mane, bacopa, alpha GPC. Mental clarity that compounds — for thinking work and sustained output.',
-    slugs: ['the-house-focus', 'the-house-synapse', 'the-house-flow']
+    blurb: "Cognitive nootropics and omega-3 phospholipids for sustained thinking work, plus the eye treatment for the toll long focus sessions take on the orbital area. Sharp mind, present face.",
+    slugs: ['the-house-focus', 'the-house-synapse', 'the-house-flow', 'the-house-eye']
   },
   {
     id: 'stress',
-    discount: 0.06,
+    discount: 0.08,
     tab: 'goal',
     icon: 'D.',
     name: 'The Stress Bundle',
-    blurb: 'KSM-66 ashwagandha, magnesium glycinate, adaptogens. Lower cortisol, better stress recovery.',
-    slugs: ['the-house-tranquil', 'the-house-calm', 'the-house-greens']
+    blurb: "Adaptogens and magnesium for the cortisol response, plus the gentle barrier-supporting topicals for skin that shows stress before the body says it. Lower stress visibly.",
+    slugs: ['the-house-tranquil', 'the-house-calm', 'the-house-greens', 'the-house-balance', 'the-house-soft']
   },
   {
     id: 'strength',
-    discount: 0.07,
+    discount: 0.08,
     tab: 'goal',
     icon: 'E.',
     name: 'The Strength Bundle',
-    blurb: 'Creatine, glutamine, citrulline. The most-studied workout supplements at clinically-meaningful doses.',
-    slugs: ['the-house-power', 'the-house-pump', 'the-house-seal']
+    blurb: "The clinically-dosed performance stack — creatine, citrulline, glutamine — paired with collagen for connective tissue and the gentle cleanser for the post-workout skin reset. Built for people who train.",
+    slugs: ['the-house-power', 'the-house-pump', 'the-house-seal', 'the-house-collagen', 'the-house-wash']
   },
   {
     id: 'beauty',
-    discount: 0.06,
+    discount: 0.10,
     tab: 'goal',
     icon: 'F.',
     name: 'The Glow Bundle',
-    blurb: 'Marine collagen, biotin, vitamins A/C/E. Skin firmness, hair strength, nail growth — supplemented from inside.',
-    slugs: ['the-house-radiance', 'the-house-collagen']
+    blurb: "Inside-out beauty: oral collagen and beauty vitamins meet topical vitamin C, antioxidants, and the finishing glow oil. The compounded effect topical alone can't reach.",
+    slugs: ['the-house-radiance', 'the-house-collagen', 'the-house-boost', 'the-house-glow', 'the-house-defense']
   },
   {
     id: 'longevity',
-    discount: 0.07,
+    discount: 0.10,
     tab: 'goal',
     icon: 'G.',
     name: 'The Cellular Bundle',
-    blurb: 'NAD+, resveratrol, CoQ10. The longevity stack — the daily investments in cellular health that compound over years.',
-    slugs: ['the-house-nad-plus', 'the-house-vitality', 'the-house-restore']
+    blurb: "Cellular longevity — NAD+, CoQ10, curcumin — paired with retinol and peptides where aging shows. The biggest evidence-based bets in anti-aging, daily.",
+    slugs: ['the-house-nad-plus', 'the-house-vitality', 'the-house-restore', 'the-house-bounce', 'the-house-firm']
   },
   {
     id: 'gut',
-    discount: 0.06,
+    discount: 0.07,
     tab: 'goal',
     icon: 'H.',
     name: 'The Gut Bundle',
-    blurb: 'Multi-strain probiotics, glutamine, digestive enzymes. The gut-health foundation for everything else to work better.',
-    slugs: ['the-house-biome', 'the-house-seal', 'the-house-greens']
+    blurb: "Gut-foundation supplements that downstream improve nearly everything else, plus the niacinamide serum for when the gut-skin axis shows up on your face. The foundation makes everything else work better.",
+    slugs: ['the-house-biome', 'the-house-seal', 'the-house-greens', 'the-house-boost']
   },
   {
     id: 'joints',
-    discount: 0.06,
+    discount: 0.08,
     tab: 'goal',
     icon: 'I.',
     name: 'The Joint Bundle',
-    blurb: 'Curcumin, glucosamine, omega-3, MSM. Daily joint support for active people whose bodies have earned a little extra care.',
-    slugs: ['the-house-restore', 'the-house-flow', 'the-house-collagen']
+    blurb: "The joint-comfort protocol — curcumin, omega-3, collagen, CoQ10 — plus the omega-rich facial oil that pairs internally and topically for whole-body inflammation resolution.",
+    slugs: ['the-house-restore', 'the-house-flow', 'the-house-collagen', 'the-house-vitality', 'the-house-glow']
   }
 ];
 

@@ -190,244 +190,244 @@ window.BUNDLE_DETAILS = {
 
   concern: {
     'aging': {
-      eyebrow: 'Skin Concern · Visible Anti-Aging',
-      description: 'Four targeted products — retinol, peptides, glycolic resurfacing, and the eye treatment — that together address the four mechanisms of visible aging: cell turnover slowdown, collagen breakdown, surface texture buildup, and the thinning skin around the eyes.',
-      whyThis: "Anti-aging that works isn't one hero product — it's the right combination working at different depths and different times. Retinol (in Bounce, used at night) stimulates collagen and cell turnover at the dermis. Peptides (in Firm) signal collagen synthesis at the surface. Glycolic acid (in Renewal) accelerates surface turnover so the retinol can penetrate properly. The Eye Cream addresses the thinner orbital skin where caffeine and peptides have outsized effect. Visible results compound over 8-12 weeks of consistent use.",
+      eyebrow: 'Anti-Aging · Topical + Cellular',
+      description: 'Six targeted products — retinol, peptides, and the eye treatment for the surface plus collagen, NAD+, and beauty vitamins for the cellular foundation. The complete inside-out anti-aging protocol, working at the four levels visible aging actually shows.',
+      whyThis: "Aging skin reflects aging cells. The strongest anti-aging protocols address both. Topically: Bounce (retinol) stimulates collagen and cell turnover at the dermis; Firm (peptides) signals collagen synthesis at the surface; Eye Cream addresses the thin orbital skin where peptides have outsized effect. Internally: Collagen at 10g daily provides the amino acid substrates fibroblasts need to actually build new collagen; NAD+ supports the cellular energy and sirtuin pathways central to longevity research; Radiance covers the daily A/C/E/biotin/zinc baseline skin needs to function. Each side without the other hits a ceiling. Together they compound.",
       timeline: [
-        { week: 'Week 1', text: 'Initial skin acclimation — possible mild dryness or flaking as cell turnover accelerates. This is expected and resolves.' },
-        { week: 'Week 4', text: 'Surface texture noticeably smoother. Skin reflects light differently — early "glow" effect from improved turnover.' },
-        { week: 'Week 8', text: 'Fine lines around eyes and forehead measurably softer. Skin firmness improves; foundation sits differently on the surface.' },
-        { week: 'Week 12+', text: 'The compounding effect: visible improvement in elasticity, tone evenness, and skin density. Maintain with consistent use — anti-aging is a long-term protocol, not a short-term treatment.' }
+        { week: 'Week 1', text: 'Skin acclimates to retinol; mild dryness possible. Collagen and NAD+ begin to load.' },
+        { week: 'Week 4', text: 'Texture noticeably smoother; surface refinement from retinol. Hair and nails respond to collagen.' },
+        { week: 'Week 8', text: 'Fine lines around eyes and forehead measurably softer. Skin elasticity (collagen-driven) measurably improves.' },
+        { week: 'Week 12+', text: 'The compounded effect — visible firmness and density at a higher baseline. Anti-aging is a long protocol; this is what consistency produces.' }
       ],
       faq: [
-        { q: "I've never used retinol before — is this too much?", a: 'Start slow: Bounce (the retinol product) once or twice a week for the first 2-3 weeks, building up to 4-5 nights weekly. The other three products are gentle enough for daily use from day one. Always wear sunscreen during the day when using retinol.' },
-        { q: 'When should I see results?', a: 'Texture and brightness shifts in 4 weeks. Visible firmness and fine line reduction at 8-12 weeks. Anti-aging is a marathon protocol — consistency over intensity is what produces durable results.' },
-        { q: 'Can I use these every day?', a: 'Renewal (glycolic) and Bounce (retinol) are nighttime products — alternate them rather than using both same night when starting out. Firm and Eye are AM or PM and can be used daily.' }
+        { q: "I've never used retinol — is this too much?", a: 'Start slow on Bounce (1-2 nights weekly for the first 2-3 weeks). The supplements (Collagen, NAD+, Radiance) and the other topicals (Firm, Eye) are gentle from day one. Always wear sunscreen during retinol use.' },
+        { q: 'Do I need both topical AND oral collagen support?', a: 'Yes — they work at different levels. Topical retinol/peptides signal fibroblasts; oral collagen provides the amino acids fibroblasts need. Either alone is partial; together they compound.' },
+        { q: 'When should I take each?', a: 'Morning: Collagen (in coffee works), Radiance (with breakfast for fat-soluble vitamins), NAD+. Evening skincare: Bounce or alternate with other actives; Firm + Eye nightly.' }
       ]
     },
     'acne': {
-      eyebrow: 'Skin Concern · Clear, Refined Skin',
-      description: 'A four-product clear-skin protocol — salicylic acid toner, charcoal mask, physical polish, and pore-refining niacinamide serum. Gentle enough for daily use, strong enough to make measurable difference in 4-8 weeks.',
-      whyThis: "Acne and breakouts are usually a multi-factor problem: excess oil, pore clogging, surface buildup, and inflammation. This bundle addresses all four. Clear (salicylic acid toner) dissolves the oil and dead-skin matrix inside pores — the most-validated topical for acne-prone skin. Mask (charcoal weekly) draws out accumulated impurities. Polish (physical exfoliation) smooths surface texture without over-stripping. Boost (niacinamide) reduces inflammation and refines pore appearance over time. Built to be gentle enough for daily-to-multi-weekly use without triggering rebound oil.",
+      eyebrow: 'Clear Skin · Topical + Gut-Skin Axis',
+      description: 'A five-product clear-skin protocol — salicylic acid, charcoal mask, and niacinamide for the surface, plus probiotics and omega-3s for the gut-skin connection behind chronic breakouts.',
+      whyThis: "Chronic acne is rarely just a surface problem. The gut-skin axis is well-documented: gut inflammation, dysbiosis, and systemic inflammation reliably worsen acne. This protocol works both sides. Clear (salicylic acid) dissolves the oil and dead-skin matrix inside pores. Mask (charcoal weekly) draws out accumulated impurities. Boost (niacinamide) reduces inflammation and refines pore appearance. Internally, Biome's 40-billion-CFU probiotic helps restore the gut microbiome that correlates with cleaner skin in clinical trials; Flow's omega-3 EPA/DHA actively resolves inflammation. Together they address acne at its actual root causes.",
       timeline: [
-        { week: 'Week 1', text: 'Pores feel cleaner; immediate visible reduction in surface oil. Possible initial purging if very acne-prone.' },
-        { week: 'Week 4', text: 'New breakouts noticeably less frequent. Existing blemishes heal faster; less post-acne marks.' },
-        { week: 'Week 8', text: 'Skin clarity measurably improved. Pore appearance refined; surface texture smoother. Skin tone more even.' },
-        { week: 'Week 12+', text: 'Sustained clear-skin baseline. Cyclical breakouts much reduced.' }
+        { week: 'Week 1', text: 'Pores feel cleaner; surface oil reduced. Gut sensitivities may briefly stir as probiotic settles.' },
+        { week: 'Week 4', text: 'New breakouts noticeably less frequent. Existing blemishes heal faster.' },
+        { week: 'Week 8', text: 'Skin clarity measurably improved. Pore appearance refined; surface texture smoother.' },
+        { week: 'Week 12+', text: 'Sustained clear-skin baseline. The protocol becomes preventive maintenance rather than corrective treatment.' }
       ],
       faq: [
-        { q: 'I have sensitive acne-prone skin — is this too aggressive?', a: 'No — this stack is built to address acne without harsh-stripping that triggers rebound oil. Polish and Mask are weekly, not daily. Start with 2-3 nights of Clear and build up.' },
-        { q: 'Can I use this with prescription acne treatments?', a: 'Generally yes — niacinamide and salicylic acid work alongside most prescription topicals. Avoid using physical exfoliation (Polish) on the same day as strong actives. Check with your dermatologist.' },
-        { q: 'When will I see clearer skin?', a: 'Visible reduction in new breakouts at 4 weeks. Sustained clearer skin at 8-12 weeks. Skin needs a full cell turnover cycle (~28 days) to show response.' }
+        { q: 'Will probiotics really help my acne?', a: "There's growing clinical evidence linking gut dysbiosis to acne — particularly for chronic, treatment-resistant cases. Probiotic supplementation has shown meaningful effect in trials. Combined with topical actives, the result is stronger than either alone." },
+        { q: 'I have sensitive acne-prone skin — is this too aggressive?', a: "No — Polish/Mask are weekly, not daily. Start with 2-3 nights of Clear and build up. The internal stack is barrier-supportive: it shouldn't trigger reactivity." },
+        { q: 'When will I see clearer skin?', a: 'Visible reduction in new breakouts at 4 weeks. Sustained clearer skin at 8-12 weeks. Skin needs a full cell turnover cycle (~28 days) to respond to topical changes; the gut microbiome takes longer.' }
       ]
     },
     'dryness': {
-      eyebrow: 'Skin Concern · Lasting Hydration',
-      description: 'Four hydration-focused products — multi-weight hyaluronic acid serum, ceramide moisturizer, finishing facial oil, and overnight oil — that build hydration at multiple skin depths and seal it in.',
-      whyThis: "Lasting hydration requires three things: humectants that pull water in (hyaluronic acid), emollients that fill the gaps between cells (ceramides, squalane), and occlusives that prevent water loss (facial oils). This bundle delivers all three. Hyaluronic (multi-weight HA) hydrates at multiple depths simultaneously. Hydration (ceramide moisturizer) restores the lipid matrix. Soft (overnight ceramide cream) does deep barrier repair while you sleep. Glow (facial oil) seals it all in.",
+      eyebrow: 'Lasting Hydration · Topical + Lipid Matrix',
+      description: 'Five hydration-focused products — multi-weight hyaluronic, ceramide moisturizer, and overnight cream for surface hydration, plus collagen and omega-3s that build the lipid matrix that holds water in skin.',
+      whyThis: "Lasting hydration requires three things: humectants (HA), emollients (ceramides), and the structural support that keeps moisture from escaping. Topically: Hyaluronic delivers multi-weight HA at multiple depths; Hydration moisturizer restores the ceramide matrix; Soft does deep overnight barrier repair. Internally: Flow's omega-3 EPA/DHA are precursors to skin ceramides — your barrier literally builds from dietary fatty acids; Collagen at 10g daily improves skin's water-binding capacity in clinical trials. Topical alone is corrective; pairing with internal nutrient support is preventive and durable.",
       timeline: [
         { week: 'Week 1', text: 'Immediate plump-and-glow effect from layered hyaluronic. Skin feels softer to the touch.' },
-        { week: 'Week 4', text: 'Skin barrier visibly stronger — less reactivity, less afternoon dullness.' },
-        { week: 'Week 8', text: 'Sustained all-day hydration without midday reapplication. Elasticity improves.' },
-        { week: 'Week 12+', text: 'Durable, deep hydration that compounds. The "thirsty skin" baseline resets to "well-hydrated."' }
+        { week: 'Week 4', text: 'Barrier visibly stronger; less reactivity, less afternoon dullness.' },
+        { week: 'Week 8', text: 'Sustained all-day hydration; collagen effect on water-binding kicks in.' },
+        { week: 'Week 12+', text: 'Durable, deep hydration that compounds. The "thirsty skin" baseline resets durably.' }
       ],
       faq: [
-        { q: 'Can I use all four products together every day?', a: "Yes — that's the design. Layer in order from thinnest to thickest: Hyaluronic (serum) → Hydration (moisturizer) → Soft (overnight cream) → Glow (oil)." },
-        { q: 'Will the facial oil break me out?', a: 'No — Glow uses non-comedogenic plant oils (squalane, jojoba) that mimic skin\'s natural sebum. Even oily skin tolerates it well.' },
-        { q: 'Is this enough for very dry/cracked skin?', a: 'For seasonal dryness, yes. For chronic conditions like eczema, pair with a clinical-grade barrier cream and consult a dermatologist.' }
+        { q: 'Can I layer all the topical products every day?', a: "Yes — that's the design. Thinnest to thickest: Hyaluronic (serum) → Hydration (moisturizer) → Soft (overnight cream). All daily-safe." },
+        { q: 'Why omega-3 and collagen for dry skin?', a: "Skin barrier integrity depends on dietary lipids — omega-3 EPA/DHA are direct ceramide precursors. Collagen peptides improve skin hydration markers in multiple RCTs at 8-12 weeks. Both compound with topical hydration." },
+        { q: 'Is this enough for very dry/cracked skin?', a: 'For seasonal dryness, yes. For chronic eczema or severe atopic conditions, pair with clinical-grade barrier cream and consult a dermatologist.' }
       ]
     },
     'dullness': {
-      eyebrow: 'Skin Concern · Brightness & Even Tone',
-      description: 'Four brightening products — vitamin C serum, antioxidant defense moisturizer, glycolic resurfacing pads, and the beauty gummy — that target uneven tone from both topical and internal angles.',
-      whyThis: "Dull, uneven skin tone has three causes: surface buildup, pigment irregularities, and oxidative damage. This stack addresses all three. Boost (vitamin C) brightens pigment irregularities and inhibits melanin transfer. Defense (antioxidant complex) neutralizes the free-radical damage that causes dullness. Renewal (glycolic acid) accelerates surface turnover to reveal fresh skin beneath. Radiance (oral collagen + beauty vitamins) supports skin from inside, where surface protocols can't reach.",
+      eyebrow: 'Brightness · Topical Antioxidants + Internal Beauty Stack',
+      description: 'Five brightening products — topical vitamin C, antioxidant defense, and gentle resurfacing acids paired with oral collagen and the full beauty vitamin stack. The inside-out approach to measurable luminosity.',
+      whyThis: "Dull skin has three causes: surface buildup, pigment irregularities, and oxidative damage. Topical alone addresses the first two. Adding internal nutrient support pushes through the ceiling. Topically: Boost (vitamin C) brightens pigment irregularities and inhibits melanin transfer; Defense neutralizes free-radical damage; Renewal accelerates surface turnover to reveal fresh skin. Internally: Radiance covers daily vitamins A/C/E/biotin — the nutrient foundation for skin function; Collagen improves skin elasticity, hydration, and the way light reflects off the surface. Together they produce visible brightness that surface-only protocols can't match.",
       timeline: [
-        { week: 'Week 1', text: 'Immediate freshness from Renewal exfoliation; vitamin C starts the antioxidant baseline.' },
-        { week: 'Week 4', text: 'Skin reflects light more evenly. Hyperpigmentation starts to fade.' },
-        { week: 'Week 8', text: 'Measurable brightness improvement; sun-damage spots visibly softer.' },
-        { week: 'Week 12+', text: 'Sustained luminosity. The inside-out effect compounds durably.' }
+        { week: 'Week 1', text: 'Immediate freshness from Renewal exfoliation; vitamin C antioxidant baseline begins.' },
+        { week: 'Week 4', text: 'Skin reflects light more evenly. Hyperpigmentation and post-acne marks start to fade.' },
+        { week: 'Week 8', text: 'Measurable brightness improvement; collagen effect on skin density adds to luminosity.' },
+        { week: 'Week 12+', text: 'Sustained inside-out glow. The compounded effect produces durable brightness.' }
       ],
       faq: [
-        { q: 'Will vitamin C make my skin sun-sensitive?', a: 'Counterintuitively, no — vitamin C enhances sunscreen\'s photoprotection. Always wear SPF daily (especially with glycolic acid in the routine).' },
-        { q: 'When will I see brighter skin?', a: 'Subtle freshness in 1-2 weeks. Visible tone improvement in 6-8 weeks. Internal beauty stack (Radiance) takes 8-12 weeks for full effect.' },
-        { q: 'Can I use this with prescription brighteners?', a: 'Yes — pairs well with hydroquinone and other prescription brighteners. Niacinamide supports the same melanin pathway and amplifies prescription effects.' }
+        { q: 'Will vitamin C make my skin sun-sensitive?', a: "Counterintuitively, no — vitamin C enhances sunscreen's photoprotection. Always wear SPF daily (especially when using glycolic acid in Renewal)." },
+        { q: 'When will I see brighter skin?', a: 'Subtle freshness in 1-2 weeks from topical resurfacing. Visible tone improvement in 6-8 weeks. Internal stack (Collagen + Radiance) takes 8-12 weeks for full inside-out effect.' },
+        { q: 'Can I pair this with prescription brighteners?', a: 'Yes — niacinamide and vitamin C work alongside hydroquinone and other prescription brighteners. The combined mechanism is stronger than monotherapy.' }
       ]
     },
     'sensitivity': {
-      eyebrow: 'Skin Concern · Calm, Resilient Skin',
-      description: 'Four reactive-skin essentials — gentle hydrating cleanser, alcohol-free witch hazel toner, multi-weight hyaluronic acid, and the overnight ceramide cream.',
-      whyThis: "Sensitive skin doesn't need more — it needs better. The wrong actives compound irritation for weeks. This bundle strips out everything reactive skin reacts to. Wash is sulfate-free and built on hydrolyzed plant proteins. Balance uses witch hazel (gentle astringent) rather than alcohol. Hyaluronic delivers pure barrier-supporting hydration. Soft's ceramide cream does overnight barrier repair. Together they form a no-irritation routine that actually heals the barrier.",
+      eyebrow: 'Calm & Resilient · Topical + Systemic Inflammation',
+      description: 'Six reactive-skin essentials — sulfate-free cleanser, witch hazel toner, multi-weight hyaluronic, and overnight ceramide cream for the surface, plus probiotics and omega-3s for the systemic inflammation often behind sensitive skin.',
+      whyThis: "Reactive skin often has a systemic-inflammation component that surface-only protocols miss. Topically: Wash is sulfate-free and barrier-respecting; Balance uses witch hazel (gentle astringent, no alcohol); Hyaluronic delivers pure barrier-supporting hydration; Soft does overnight ceramide repair. Internally: Biome's probiotic addresses the gut-skin axis — reactive skin often correlates with gut dysbiosis; Flow's omega-3 EPA/DHA actively resolves inflammation systemically. Together they heal the barrier from both sides instead of perpetuating the reactive cycle.",
       timeline: [
-        { week: 'Week 1', text: 'Reactivity reduces; less redness after washing.' },
+        { week: 'Week 1', text: 'Reactivity reduces; less redness after washing. Gut may briefly adjust to probiotic.' },
         { week: 'Week 4', text: 'Barrier visibly stronger; tolerance to other actives gradually returns.' },
-        { week: 'Week 8', text: 'Sustained calm baseline. Triggers cause noticeably less reaction.' },
-        { week: 'Week 12+', text: 'Durable barrier resilience. Can tolerate gentle actives you previously couldn\'t.' }
+        { week: 'Week 8', text: 'Sustained calm baseline. Triggers (weather, fragrance) cause noticeably less reaction.' },
+        { week: 'Week 12+', text: "Durable barrier resilience. Internal inflammation baseline lower; skin can tolerate gentle actives it previously couldn't." }
       ],
       faq: [
-        { q: 'Is this enough for rosacea or eczema?', a: 'For mild reactive skin, yes. For diagnosed conditions, pair with a dermatologist-prescribed treatment. This complements clinical care; it doesn\'t replace it.' },
-        { q: 'Can I add retinol or vitamin C later?', a: 'After 4-8 weeks of barrier rebuilding, yes — slowly. Start with niacinamide, then vitamin C, then retinol if desired. The barrier needs to heal first.' },
-        { q: 'Why no facial oil in this bundle?', a: 'Some sensitive skin reacts to oils. We left it out and recommend Glow as an optional add-on once your barrier has stabilized.' }
+        { q: 'Is this enough for rosacea or eczema?', a: 'For mild reactive skin and barrier compromise from over-exfoliation, yes. For diagnosed conditions, pair with a dermatologist-prescribed treatment.' },
+        { q: 'Why probiotics for sensitive skin?', a: "Multiple studies link gut dysbiosis to skin reactivity, atopic conditions, and rosacea. A probiotic + omega-3 stack reduces the systemic inflammation that often drives reactive skin." },
+        { q: 'Can I add retinol or vitamin C later?', a: 'After 4-8 weeks of consistent barrier rebuilding from both sides, yes — slowly. Start with niacinamide, then vitamin C, then retinol if desired.' }
       ]
     },
     'pores': {
-      eyebrow: 'Skin Concern · Pore Refinement',
-      description: 'Four targeted products — niacinamide pore serum, salicylic acid toner, physical polish, and the weekly charcoal mask — that refine pore appearance and clarity.',
-      whyThis: "Pore size is genetic, but pore appearance is highly modifiable. Visible pores look bigger when they're clogged, when texture is uneven, and when inflammation reduces elasticity. This bundle addresses all three. Boost (niacinamide) reduces sebum and refines pore appearance. Clear (salicylic acid) dissolves the oil plugs that visually enlarge pores. Polish (gentle exfoliation) smooths surface texture. Mask (charcoal weekly) decongests.",
+      eyebrow: 'Pore Refinement · Topical + Gut-Sebum Connection',
+      description: 'Five targeted products — niacinamide, salicylic acid, physical polish, and the weekly charcoal mask for the surface, plus the probiotic that addresses the gut-sebum connection most pore products ignore.',
+      whyThis: "Pore appearance is genetic, but pore appearance is highly modifiable. Visible pores look bigger when they're clogged, when texture is uneven, and when sebum production is high. Topically: Boost (niacinamide) reduces sebum and refines pore appearance; Clear (salicylic) dissolves the oil plugs that visually enlarge pores; Polish smooths surface texture; Mask weekly draws out impurities. Internally: Biome's probiotic supports the gut microbiome that influences sebum production — a connection emerging strongly in dermatology research.",
       timeline: [
         { week: 'Week 1', text: 'Pores feel cleaner; skin immediately smoother after Polish or Mask.' },
-        { week: 'Week 4', text: 'Less visible oil; pore appearance softens in T-zone.' },
-        { week: 'Week 8', text: 'Niacinamide effect on sebum production compounds. Surface texture smoother.' },
-        { week: 'Week 12+', text: 'Durable refined-skin baseline. Less shine; foundation sits more evenly.' }
+        { week: 'Week 4', text: 'Less visible oil throughout the day. Pore appearance softens in T-zone.' },
+        { week: 'Week 8', text: 'Niacinamide effect on sebum production compounds. Surface texture noticeably smoother.' },
+        { week: 'Week 12+', text: 'Durable refined-skin baseline. Less day-long shine; foundation sits more evenly.' }
       ],
       faq: [
-        { q: 'Will my pores actually get smaller?', a: 'Not literally — pore size is genetic. But pore appearance can visibly shrink with sustained protocol. Most users see clear improvement at 8-12 weeks.' },
-        { q: 'How often should I use Polish and Mask?', a: 'Polish: 1-2x per week. Mask: 1x per week. Daily physical exfoliation triggers rebound oil. Less is more.' },
-        { q: 'Does this dry out my skin?', a: 'No — salicylic at gentle 2%; niacinamide is barrier-supporting. Pair with hydration bundle if you run dry.' }
+        { q: 'Will my pores actually get smaller?', a: 'Pore size is genetic — but pore appearance can shrink significantly with sustained protocol. Most users see visible reduction at 8-12 weeks.' },
+        { q: 'How does the probiotic help pores?', a: "Sebum production is influenced by hormonal and inflammatory signals — both modulated by the gut microbiome. Adding the probiotic addresses an upstream lever most pore products skip." },
+        { q: 'How often should I use Polish and Mask?', a: 'Polish: 1-2x per week. Mask: 1x per week. Daily physical exfoliation triggers rebound oil. Less is more.' }
       ]
     },
 
     'sleep': {
-      eyebrow: 'Wellness Goal · Deeper Rest',
-      description: 'Two supplements together — magnesium glycinate for nervous system support and KSM-66 ashwagandha for cortisol regulation. No melatonin, no morning grogginess.',
-      whyThis: "Most 'sleep supplements' use melatonin, which addresses jet lag but isn't built for routine nightly use. The actual mechanisms of poor sleep are usually nervous system overstimulation and elevated evening cortisol. Calm (magnesium glycinate) supports GABA pathway and nervous system relaxation without sedation. Tranquil (KSM-66 ashwagandha) reduces serum cortisol over 4-6 weeks of use, which directly improves sleep architecture.",
+      eyebrow: 'Deeper Rest · Wind-Down + Overnight Skincare',
+      description: 'Four products — magnesium glycinate and KSM-66 ashwagandha for the nervous system, plus the overnight ceramide cream and eye treatment that put your routine to bed.',
+      whyThis: "Sleep quality affects skin repair directly — your skin does its biggest repair work between 10 PM and 2 AM. This bundle pairs sleep-improving supplements with the overnight skincare that takes advantage of that repair window. Calm (magnesium glycinate) supports the GABA pathway and nervous system relaxation. Tranquil (KSM-66 ashwagandha) reduces serum cortisol over 4-6 weeks, improving sleep architecture. Soft (overnight ceramide cream) seals in moisture during the repair window. Eye Cream addresses the puffiness and dark circles that show when sleep is short. Together: a wind-down ritual that visibly shows by morning.",
       timeline: [
-        { week: 'Week 1', text: 'Faster wind-down at night; muscle tension reduces.' },
-        { week: 'Week 4', text: 'Sleep onset improves; mid-night wakings reduce.' },
-        { week: 'Week 8', text: 'Cortisol response to daily stressors visibly calmer. Sleep quality measurably deeper.' },
-        { week: 'Week 12+', text: 'Sustained nervous system support. The "tired but wired" baseline resets to genuine rest.' }
+        { week: 'Week 1', text: 'Faster wind-down; muscle tension reduces. Skin feels softer in the morning.' },
+        { week: 'Week 4', text: 'Sleep onset improves; mid-night wakings reduce. Under-eye puffiness less pronounced.' },
+        { week: 'Week 8', text: 'Cortisol response calmer; sleep architecture measurably deeper. Skin shows the difference.' },
+        { week: 'Week 12+', text: 'Sustained nervous system support and brighter morning skin. The "tired but wired" baseline resets.' }
       ],
       faq: [
         { q: 'Will this make me drowsy during the day?', a: "No — these aren't sedatives. Magnesium supports natural wind-down at night. Ashwagandha is adaptogenic — supports stress resilience without sedation." },
-        { q: 'When should I take them?', a: 'Calm: 30-60 minutes before bed. Tranquil: morning or split AM/PM. Both can be taken in the evening.' },
-        { q: 'Is this safe long-term?', a: 'Yes — both have extensive long-term safety data. Unlike melatonin, neither creates dependence or tolerance.' }
+        { q: 'When should I take each?', a: 'Calm: 30-60 minutes before bed. Tranquil: morning or split AM/PM. Soft and Eye Cream: nightly as the last step of evening skincare.' },
+        { q: 'Is this safe long-term?', a: 'Yes — both supplements have extensive long-term safety data. Unlike melatonin, neither creates dependence or tolerance.' }
       ]
     },
     'energy': {
-      eyebrow: 'Wellness Goal · Sustainable Daily Energy',
-      description: 'Four supplements together — multivitamin foundation, CoQ10 for mitochondrial energy, vitamin D3 for cellular vitality, and the thermogenic energy boost.',
-      whyThis: "Sustainable energy isn't a stimulant problem — it's a nutrient and mitochondrial-function problem. Most 'low energy' is actually multiple small deficiencies compounding: low B-vitamins, low D, low CoQ10. This bundle addresses the foundational gaps. Multi covers daily B-complex, iron, zinc — what cells need for ATP production. Vitality (CoQ10) directly supports mitochondrial function. Sunshine (D3) addresses one of the most common modern deficiencies. Burn provides the thermogenic boost when wanted, without becoming a caffeine dependence.",
+      eyebrow: 'Daily Energy · Cellular Inside + Visible Outside',
+      description: 'Five products — multivitamin, CoQ10, and vitamin D3 for foundational cellular energy, plus topical vitamin C and antioxidant defense for the surface effects of fatigue.',
+      whyThis: "Sustainable energy is a foundational nutrient and mitochondrial-function problem — not a stimulant problem. This bundle addresses both the cellular energy and the way energy (or lack of it) shows on your face. Multi covers daily B-complex, iron, zinc — what cells need for ATP production. Vitality (CoQ10) supports mitochondrial function — the actual energy factories. Sunshine (D3) addresses one of the most common modern deficiencies, with well-documented mood and energy effects. Defense neutralizes the oxidative damage that makes tired skin look dull. Boost (vitamin C) brightens the dullness fatigue produces. The inside-out energy stack.",
       timeline: [
-        { week: 'Week 1', text: 'Burn provides immediate pre-workout and mid-day energy. Foundation begins to fill in.' },
-        { week: 'Week 4', text: 'Daily energy stabilizes; afternoon crashes less pronounced.' },
-        { week: 'Week 8', text: 'CoQ10 effect compounds — mitochondrial energy markedly improved.' },
-        { week: 'Week 12+', text: 'Sustained foundational energy. Less reliance on caffeine; more steady output.' }
+        { week: 'Week 1', text: 'Topical vitamin C provides immediate skin freshness. Foundation supplements begin to fill in.' },
+        { week: 'Week 4', text: 'Daily energy stabilizes; afternoon crashes less pronounced. Skin reflects more evenly.' },
+        { week: 'Week 8', text: 'CoQ10 effect on mitochondrial energy markedly improved, particularly in adults 40+.' },
+        { week: 'Week 12+', text: 'Sustained foundational energy that visibly shows. Less reliance on caffeine; more steady output.' }
       ],
       faq: [
-        { q: 'Will Burn make me jittery?', a: 'The caffeine dose is moderate (about a cup of coffee). L-theanine in green tea smooths the edge — most users find less jitter than coffee.' },
-        { q: 'Should I take all four daily?', a: 'Multi, Vitality, Sunshine: daily with breakfast. Burn: pre-workout or mid-day when you want a boost — not necessarily every day. Avoid within 6 hours of bed.' },
-        { q: 'How is this different from coffee?', a: 'Caffeine works on the surface (alertness). This stack works on the foundation (cellular energy). Combine them — daily foundation + occasional caffeine — for the strongest result.' }
+        { q: 'Should I take all the supplements daily?', a: 'Yes — Multi, Vitality, Sunshine: daily with breakfast (fat-soluble vitamins absorb best with food).' },
+        { q: 'How is this different from coffee?', a: 'Caffeine works on the surface (alertness via adenosine blockade). This stack works on the foundation (cellular energy via mitochondria + nutrient repletion). Combine them — daily foundation + occasional caffeine — for the strongest result.' },
+        { q: 'When will I notice energy changes?', a: 'Skin freshness from vitamin C: 1-2 weeks. Daily energy stabilization: 4-6 weeks as nutrient stores fill in. Full CoQ10 effect: 8-12 weeks.' }
       ]
     },
     'focus': {
-      eyebrow: 'Wellness Goal · Mental Clarity',
-      description: 'Three supplements together — nootropic blend with Alpha GPC and Bacopa, the 10-mushroom Lion\'s Mane complex, and omega-3 EPA/DHA for brain structure.',
-      whyThis: "Cognitive function depends on three things: neurotransmitter availability (acetylcholine, dopamine), brain structural support (omega-3 phospholipids), and neuroprotective mechanisms (NGF, antioxidant defense). This bundle addresses all three. Focus delivers acute cognitive support via Alpha GPC, L-Tyrosine, Bacopa, and Huperzine A. Synapse's mushroom complex (particularly Lion's Mane) supports nerve growth factor production. Flow (omega-3) supplies the DHA your brain literally needs as structural material.",
+      eyebrow: 'Mental Clarity · Cognitive Stack + Eye Recovery',
+      description: 'Four products — nootropics with Alpha GPC and Bacopa, the 10-mushroom Lion\'s Mane complex, omega-3 for brain structure, plus the eye treatment for the toll long focus sessions take.',
+      whyThis: "Focus work compounds in two places: the cognitive stack that supports it, and the orbital area that bears the visible toll. Focus delivers acute cognitive support via Alpha GPC (acetylcholine precursor), L-Tyrosine (dopamine precursor), Bacopa (compound buildup over 4-6 weeks). Synapse's mushroom complex — particularly Lion's Mane — supports nerve growth factor and long-term cognitive resilience. Flow's omega-3 EPA/DHA supplies the DHA your brain needs as structural material. Eye Cream addresses the strain, puffiness, and dark circles that show after long thinking sessions. The stack for serious mental work.",
       timeline: [
-        { week: 'Week 1', text: 'Alpha GPC and L-Tyrosine work acutely — focus from first dose.' },
+        { week: 'Week 1', text: 'Alpha GPC and L-Tyrosine work acutely — focus from first dose. Eye Cream reduces strain look.' },
         { week: 'Week 4', text: 'Bacopa effect begins to compound; memory consolidation improves.' },
-        { week: 'Week 8', text: "Lion's Mane NGF effect builds; mental endurance noticeably better." },
-        { week: 'Week 12+', text: 'Sustained cognitive baseline. Compounded structural support becomes default.' }
+        { week: 'Week 8', text: "Lion's Mane NGF effect builds; mental endurance noticeably better through long thinking work." },
+        { week: 'Week 12+', text: 'Sustained cognitive baseline. The compounded effect becomes the new default.' }
       ],
       faq: [
-        { q: 'Is Focus a stimulant?', a: 'No — nootropic stack working on acetylcholine, dopamine, GABA pathways. Pairs cleanly with caffeine if you want stimulant kick.' },
-        { q: 'When should I take each?', a: 'Focus: morning or pre-thinking work. Synapse: morning with breakfast (daily). Flow: with any meal containing fat.' },
-        { q: 'How long until cognitive effects?', a: 'Focus works same-day. Synapse and Flow take 4-8 weeks of consistent use for compounding effects.' }
+        { q: 'Is Focus a stimulant?', a: 'No — nootropic stack working on acetylcholine, dopamine, and GABA pathways. Pairs cleanly with caffeine if you want stimulant kick.' },
+        { q: 'When should I take each?', a: 'Focus: morning or pre-thinking work. Synapse: morning with breakfast (daily). Flow: with any meal containing fat. Eye Cream: AM + PM.' },
+        { q: 'How long until cognitive effects?', a: 'Focus works same-day. Synapse and Flow take 4-8 weeks for compounding effects.' }
       ]
     },
     'stress': {
-      eyebrow: 'Wellness Goal · Resilience & Calm',
-      description: 'Three supplements together — KSM-66 ashwagandha, magnesium glycinate, and the 22-ingredient adaptogenic greens powder.',
-      whyThis: "Chronic stress doesn't respond to a sedative — it responds to adaptogens that modulate the HPA axis and to nutrients that support the nervous system. Tranquil's KSM-66 ashwagandha is the most-studied adaptogen, with 24+ RCTs showing measurable cortisol reduction over 4-8 weeks. Calm (magnesium glycinate) addresses the nervous-system magnesium depletion common in chronically stressed adults. Greens provides additional adaptogens plus nutrient-dense plant ingredients.",
+      eyebrow: 'Resilience & Calm · Adaptogens + Skin That Shows Stress',
+      description: 'Five products — KSM-66 ashwagandha, magnesium glycinate, and the adaptogenic greens for cortisol modulation, plus the gentle barrier-supporting topicals for skin that shows stress before the body says it.',
+      whyThis: "Chronic stress shows on skin: increased sebum, slower wound healing, barrier dysfunction, more visible reactivity. This bundle addresses stress at the systemic level and supports the skin that's bearing the brunt. Tranquil's KSM-66 ashwagandha is the most-studied adaptogen for cortisol reduction. Calm (magnesium glycinate) addresses nervous-system magnesium depletion common in chronically stressed adults. Greens provides additional adaptogens (ginseng) plus the nutrient-dense base for resilience. Balance is the gentle witch-hazel toner that doesn't trigger reactive skin. Soft is the overnight ceramide cream that supports barrier repair when stress is compromising it.",
       timeline: [
-        { week: 'Week 1', text: 'Nervous system feels less tense; physical stress markers reduce.' },
-        { week: 'Week 4', text: 'Cortisol response to daily stressors noticeably calmer. Sleep improves.' },
-        { week: 'Week 8', text: 'Adaptogenic effect compounds. Stress recovery faster.' },
-        { week: 'Week 12+', text: 'Sustained stress resilience baseline. The "always-on" feeling resets to a manageable rhythm.' }
+        { week: 'Week 1', text: 'Nervous system feels less tense; skin reactivity reduces.' },
+        { week: 'Week 4', text: 'Cortisol response noticeably calmer. Sleep improves; skin barrier feels stronger.' },
+        { week: 'Week 8', text: 'Adaptogenic effect compounds. Stress recovery faster; skin clarity improves.' },
+        { week: 'Week 12+', text: 'Sustained resilience baseline. The "always-on" feeling resets; skin holds steady through normal stress.' }
       ],
       faq: [
-        { q: 'Will this numb my edge or make me less sharp?', a: 'No — adaptogens modulate the stress response without blunting it. Users typically report sharper focus and better decision-making once cortisol drops.' },
-        { q: 'Can I take all three daily?', a: "Yes — that's the protocol. Tranquil morning, Greens with breakfast, Calm at night." },
-        { q: 'Is this safe long-term?', a: 'Yes — ashwagandha has decades of safety data; magnesium glycinate has none of the laxative effect of oxide forms; Greens is whole-food based.' }
+        { q: 'Will adaptogens numb my edge?', a: 'No — adaptogens modulate the stress response without blunting it. Users typically report sharper focus and better decision-making once cortisol drops.' },
+        { q: 'How does stress affect skin?', a: 'Cortisol increases sebum production, slows wound healing, and weakens the skin barrier. Reducing systemic cortisol — through ashwagandha and magnesium — visibly improves skin in stressed populations.' },
+        { q: 'Can I take all three supplements daily?', a: "Yes. Tranquil morning, Greens with breakfast or as smoothie base, Calm at night." }
       ]
     },
     'strength': {
-      eyebrow: 'Wellness Goal · Performance & Recovery',
-      description: 'Three supplements together — pharmaceutical-grade creatine, nitric oxide-boosting L-citrulline, and gut-repairing L-glutamine. The most-studied workout stack at clinically-meaningful doses.',
-      whyThis: "Performance supplements have hundreds of products and a handful that work. Power delivers 5g pharmaceutical-grade creatine — the most-studied supplement in sports nutrition, with hundreds of trials confirming strength, power, and lean mass benefits. Pump (L-citrulline malate) raises plasma arginine more effectively than arginine itself, supporting nitric oxide-driven blood flow. Seal (L-glutamine) addresses gut barrier integrity and recovery — plasma glutamine drops 20-30% after intense training.",
+      eyebrow: 'Performance & Recovery · Training Stack + Post-Workout Skin',
+      description: 'Five products — pharmaceutical-grade creatine, nitric oxide-boosting L-citrulline, gut-repairing L-glutamine, and collagen for connective tissue, plus the gentle cleanser for the post-workout skin reset.',
+      whyThis: "Training hard demands both internal recovery and a skincare routine that handles sweat without stripping. Power delivers 5g pharmaceutical-grade creatine — the most-studied supplement in sports nutrition. Pump (L-citrulline) raises plasma arginine and supports nitric-oxide-driven blood flow. Seal (L-glutamine) addresses gut barrier integrity and post-training recovery — plasma glutamine drops 20-30% after intense work. Collagen at 10g daily supports connective tissue, joints, and the cartilage that takes a beating in training. Wash is the sulfate-free, barrier-respecting cleanser for post-workout face — strong enough for sweat, gentle enough for daily use.",
       timeline: [
         { week: 'Week 1', text: 'Visible vascular pump from Pump pre-workout. Slight intramuscular fullness from creatine.' },
         { week: 'Week 4', text: 'Lift performance increases — better volume, more reps. Recovery accelerates.' },
-        { week: 'Week 8', text: 'Muscle volume visibly increased; new strength baseline established.' },
-        { week: 'Week 12+', text: 'Sustained strength and recovery baseline. The most-validated stack in sports nutrition working as intended.' }
+        { week: 'Week 8', text: 'Muscle volume visibly increased. Joint comfort improves (collagen effect).' },
+        { week: 'Week 12+', text: 'Sustained strength baseline. The most-validated training stack working as intended.' }
       ],
       faq: [
-        { q: 'When should I take each?', a: 'Power: post-workout (or any consistent daily time). Pump: 30-45 min pre-workout. Seal: post-workout or pre-bed.' },
-        { q: 'Do I need a loading phase for creatine?', a: 'No — 5g daily reaches muscle saturation in 3-4 weeks, same end state as loading. Just be consistent.' },
-        { q: 'Will creatine make me hold water?', a: 'Some intramuscular water retention — the "muscle fullness" effect, not bloating. The water is inside the muscle, not under skin.' }
+        { q: 'When should I take each?', a: 'Power: post-workout. Pump: 30-45 min pre-workout. Seal: post-workout or pre-bed. Collagen: any time daily. Wash: post-workout to remove sweat.' },
+        { q: 'Do I need a loading phase for creatine?', a: 'No — 5g daily reaches muscle saturation in 3-4 weeks. Loading is faster, not better.' },
+        { q: 'Why collagen for strength training?', a: 'Joint and tendon health is the limiting factor for serious lifters. Collagen at 10g daily, especially paired with vitamin C, has clinical evidence supporting tendon and cartilage health.' }
       ]
     },
     'beauty': {
-      eyebrow: 'Wellness Goal · Inside-Out Radiance',
-      description: 'Two supplements together — bovine collagen peptides for skin elasticity and joint support, plus the beauty gummy with marine collagen and the full vitamin stack.',
-      whyThis: "The strongest results in skin, hair, and nails come from combining topical and internal approaches. Collagen (bovine peptides) at 10g/day provides the amino acid substrates fibroblasts need to synthesize new collagen — clinical literature consistently shows skin elasticity improvement in 8-12 weeks at this dose. Radiance is the daily vitamin foundation: vitamins A/C/D/E, biotin, B-complex, zinc, iodine.",
+      eyebrow: 'Inside-Out Radiance · Oral + Topical Beauty Stack',
+      description: 'Five products — bovine collagen peptides and the beauty vitamin gummy for the internal foundation, plus topical vitamin C, antioxidant defense, and the finishing glow oil. The compounded inside-out beauty effect.',
+      whyThis: "Beauty results compound when topical and internal work together — neither alone reaches the same ceiling. Internally: Collagen at 10g daily provides amino acid substrates fibroblasts need; Radiance covers vitamins A/C/D/E, biotin, B-complex, zinc — the nutrient foundation for skin, hair, nails. Topically: Boost (vitamin C) brightens pigment irregularities and signals collagen synthesis at the surface; Defense protects from environmental dullness via niacinamide and antioxidants; Glow's facial oil seals it all with luminous finish. Each piece amplifies the others.",
       timeline: [
-        { week: 'Week 1', text: 'Hair feels stronger; nails grow visibly faster.' },
-        { week: 'Week 4', text: 'Skin hydration improves; collagen amino acid pool fills in.' },
-        { week: 'Week 8', text: 'Skin elasticity measurably improved. Hair density and growth enhanced.' },
-        { week: 'Week 12+', text: 'Sustained beauty baseline — durable improvements compounding over months.' }
+        { week: 'Week 1', text: 'Immediate skin freshness from vitamin C and oil. Hair and nails feel stronger from collagen.' },
+        { week: 'Week 4', text: 'Brightness visibly improves; skin reflects light more evenly. Hair growth accelerates.' },
+        { week: 'Week 8', text: 'Skin elasticity measurably improves (collagen effect). Glow baseline at a higher level.' },
+        { week: 'Week 12+', text: 'Sustained inside-out beauty. The compounded effect of topical + internal works as designed.' }
       ],
       faq: [
-        { q: 'When should I take each?', a: 'Collagen: daily, any time — morning in coffee is the most popular ritual. Radiance: any time, with food for fat-soluble vitamin absorption.' },
-        { q: 'How long until results?', a: 'Hair and nails: 4-6 weeks. Skin elasticity: 8-12 weeks. The clinical literature is consistent on collagen timelines.' },
-        { q: 'Is bovine collagen vegetarian/vegan?', a: 'No — Collagen is bovine-sourced. Radiance contains marine collagen (pescatarian). For fully plant-based beauty, the topical brightening bundle is a better choice.' }
+        { q: 'When should I take Collagen and Radiance?', a: 'Collagen: any time daily — morning in coffee is the most popular ritual. Radiance: with food for fat-soluble vitamin absorption.' },
+        { q: 'How long until visible glow?', a: '1-2 weeks for surface freshness from topical actives. 4-6 weeks for collagen + Radiance effects on hair, nails, and early skin response. 8-12 weeks for full inside-out compounding.' },
+        { q: 'Is Collagen vegan?', a: 'No — Collagen is bovine-sourced. Radiance contains marine collagen (pescatarian-friendly).' }
       ]
     },
     'longevity': {
-      eyebrow: 'Wellness Goal · Cellular Health & Aging',
-      description: 'Three supplements together — NAD+ precursor stack with resveratrol, CoQ10 for mitochondrial function, and the curcumin-based joint and inflammation complex.',
-      whyThis: "Longevity isn't a single supplement — it's a portfolio of cellular health investments. NAD+ pairs NAD+ direct supplementation with resveratrol and quercetin — the same sirtuin-activator stack used in longevity research labs. Vitality (CoQ10) supports mitochondrial function as it declines with age and statin use. Restore (curcumin + glucosamine + boswellia) addresses chronic low-grade inflammation, considered a primary aging mechanism.",
+      eyebrow: 'Cellular Health + Visible Anti-Aging',
+      description: 'Five products — NAD+ precursor stack with resveratrol, CoQ10 for mitochondrial function, and curcumin-based joint complex for inflammation, paired with retinol and peptides where aging visibly shows.',
+      whyThis: "Longevity is a portfolio of cellular bets that compound over years — and visible aging is the part you can see results on in 8-12 weeks. This bundle does both. Internally: NAD+ pairs direct NAD+ supplementation with quercetin and trans-resveratrol — the multi-pathway approach used in longevity labs; Vitality (CoQ10) supports mitochondrial function as it declines with age; Restore (curcumin + glucosamine + boswellia + MSM) addresses chronic low-grade inflammation. Topically: Bounce (retinol) is the most-validated anti-aging active in dermatology; Firm (peptides) signals collagen synthesis. Cellular bets that show.",
       timeline: [
-        { week: 'Week 1', text: 'No dramatic acute effects — these work upstream and slowly.' },
-        { week: 'Week 4', text: 'Joint comfort improves (curcumin effect); daily energy stabilizes.' },
-        { week: 'Week 8', text: 'CoQ10 effect on mitochondrial function compounds.' },
-        { week: 'Week 12+', text: 'Sustained cellular vitality markers. The compounded longevity protocol as intended.' }
+        { week: 'Week 1', text: 'Skin acclimates to retinol; supplements begin loading. No dramatic acute effects from longevity stack.' },
+        { week: 'Week 4', text: 'Joint comfort improves (curcumin effect). Skin texture refines from retinol.' },
+        { week: 'Week 8', text: 'CoQ10 effect on mitochondrial energy compounds. Visible firmness from retinol + peptides.' },
+        { week: 'Week 12+', text: 'Sustained cellular vitality + visible anti-aging baseline. The compounded longevity protocol working as intended.' }
       ],
       faq: [
-        { q: 'When will I feel a difference?', a: 'These work upstream — most users don\'t experience dramatic acute changes. Benefits compound over months and years. Think of it as preventive investment.' },
-        { q: 'Is NAD+ supplementation proven?', a: 'NAD+ precursors (NR, NMN) have strong human trial data. We pair NAD+ with quercetin and trans-resveratrol — the multi-pathway approach used in longevity labs.' },
-        { q: 'When should I take each?', a: 'NAD+: morning. Vitality: breakfast or lunch (fat-soluble). Restore: with meal containing fat for curcumin absorption.' }
+        { q: 'When will I notice the longevity supplements?', a: "These work upstream and slowly. Joint comfort and stress modulation surface first (4-8 weeks). The cellular benefits compound over months and years — preventive investment, not symptomatic treatment." },
+        { q: 'Is NAD+ supplementation proven?', a: 'NAD+ precursors have strong human trial data raising blood NAD+ levels. We pair NAD+ direct supplementation with quercetin and trans-resveratrol — the multi-pathway approach used in longevity research labs.' },
+        { q: 'When should I take each?', a: 'NAD+, Vitality: morning. Restore: with meal containing fat. Bounce: night (alternating retinol nights). Firm: daily morning or night.' }
       ]
     },
     'gut': {
-      eyebrow: 'Wellness Goal · Digestive Health',
-      description: 'Three supplements together — multi-strain probiotic, gut-repairing L-glutamine, and the 22-ingredient adaptogenic greens powder.',
-      whyThis: "Gut health affects nearly every other body system: immune function, mood, skin clarity, energy, nutrient absorption. This bundle addresses the gut at three levels. Biome provides 40 billion CFU of clinically-studied probiotic strains with MAKTREK Bi-Pass for stomach-acid survival. Seal (L-glutamine) directly supports the enterocytes — gut-lining cells. Greens provides 22 plant-based ingredients including fiber, polyphenols, and prebiotic compounds that feed beneficial microbiome.",
+      eyebrow: 'Digestive Health · Gut Foundation + Gut-Skin Axis',
+      description: 'Four products — multi-strain probiotic, gut-repairing L-glutamine, and the 22-ingredient adaptogenic greens, plus the niacinamide serum for when the gut-skin axis shows up on your face.',
+      whyThis: "Gut health affects nearly every other body system — and the gut-skin axis is one of the strongest connections. This bundle addresses the gut at three levels and supports the skin that bears the visible cost of gut issues. Biome provides 40 billion CFU of clinically-studied probiotic strains with MAKTREK Bi-Pass for stomach-acid survival. Seal (L-glutamine) directly supports the enterocytes lining the gut. Greens provides 22 plant-based ingredients including fiber, polyphenols, and prebiotic compounds. Boost (niacinamide) addresses the inflammation that gut issues commonly show as on skin.",
       timeline: [
         { week: 'Week 1', text: 'Digestion normalizes; bloating and irregularity reduce.' },
-        { week: 'Week 4', text: 'Energy more stable; mid-afternoon slumps less pronounced. Cravings reduce.' },
-        { week: 'Week 8', text: 'Sustained gut diversity. Immune resilience improves; mood balance noticeable.' },
+        { week: 'Week 4', text: 'Energy more stable. Skin reactivity reduces as systemic inflammation drops.' },
+        { week: 'Week 8', text: 'Sustained gut diversity. Skin clarity improves via the gut-skin axis.' },
         { week: 'Week 12+', text: 'Gut-health baseline reset. Downstream effects on skin, energy, mood compound.' }
       ],
       faq: [
-        { q: 'Do I need to refrigerate the probiotic?', a: 'No — MAKTREK Bi-Pass technology and shelf-stable formulation maintain potency at room temperature.' },
+        { q: 'Do I need to refrigerate the probiotic?', a: 'No — MAKTREK Bi-Pass technology maintains potency at room temperature.' },
         { q: 'Can I take this with antibiotics?', a: 'Yes, but space them 2+ hours apart. Continue probiotic for 2+ weeks after finishing antibiotics.' },
-        { q: 'When should I take each?', a: 'Biome: morning (empty stomach or with food). Seal: post-workout or pre-bed. Greens: morning with breakfast or as smoothie base.' }
+        { q: 'How does gut health affect my skin?', a: "Gut dysbiosis and inflammation are strongly linked to acne, rosacea, eczema, and general skin reactivity. Improving the gut consistently improves the skin in cases where surface protocols haven't been enough." }
       ]
     },
     'joints': {
-      eyebrow: 'Wellness Goal · Joint Comfort',
-      description: 'Three supplements together — the curcumin-based joint complex, omega-3 EPA/DHA for inflammation, and bovine collagen peptides for joint structure.',
-      whyThis: "Joint health depends on three things: controlling inflammation (omega-3s, curcumin), supporting joint structure (collagen, glucosamine), and reducing wear-and-tear damage (curcumin, glucosamine). Restore is the daily anti-inflammatory: 95% curcumin extract with BioPerine (2,000% absorption boost), glucosamine, boswellia, chondroitin, MSM. Flow (omega-3) supports inflammation resolution via resolvins. Collagen provides amino acid substrates joints use to maintain cartilage.",
+      eyebrow: 'Joint Comfort · Internal Anti-Inflammation + Topical EFAs',
+      description: 'Five products — the curcumin-based joint complex, omega-3 EPA/DHA, bovine collagen peptides, and CoQ10, plus the omega-rich facial oil that pairs internally and topically for whole-body inflammation resolution.',
+      whyThis: "Joint health depends on three things: controlling inflammation, supporting joint structure, and aiding recovery from wear and tear. This bundle delivers all three internally — and the topical oil completes the omega-rich, anti-inflammatory theme. Restore is the daily anti-inflammatory: 95% curcumin with BioPerine (2,000% absorption boost), glucosamine, boswellia, chondroitin, MSM. Flow's omega-3 supports inflammation resolution via resolvins. Collagen provides amino acid substrates joints use to maintain cartilage. Vitality (CoQ10) supports the cellular energy joints need to recover. Glow (facial oil) is the topical complement — omega-rich plant oils for skin's anti-inflammatory pathway.",
       timeline: [
-        { week: 'Week 1', text: 'Subtle morning stiffness reduction. Recovery between workouts begins to improve.' },
+        { week: 'Week 1', text: 'Subtle morning stiffness reduction. Skin feels softer from Glow.' },
         { week: 'Week 4', text: 'Joint comfort noticeably better; morning stiffness markedly reduced.' },
-        { week: 'Week 8', text: 'Inflammation baseline measurably lower. Training recovery accelerates.' },
-        { week: 'Week 12+', text: 'Sustained joint health baseline. The compounded anti-inflammatory + structural support works as designed.' }
+        { week: 'Week 8', text: 'Inflammation baseline measurably lower. Recovery from training accelerates.' },
+        { week: 'Week 12+', text: 'Sustained joint health baseline. Whole-body anti-inflammatory protocol working as designed.' }
       ],
       faq: [
-        { q: 'How is this different from OTC joint supplements?', a: 'Most OTC joint products are under-dosed glucosamine alone. This uses clinical-dose curcumin with BioPerine, 10g daily collagen, and EPA/DHA omega-3 that actively resolves inflammation.' },
-        { q: 'When should I take each?', a: 'Restore: with a meal containing fat. Flow: any meal with fat. Collagen: daily, any time — morning in coffee is popular.' },
-        { q: 'How long until joint improvement?', a: 'Mild improvement in 1-2 weeks. Significant joint comfort builds over 4-8 weeks. Curcumin works upstream on inflammation rather than masking pain.' }
+        { q: 'How is this different from OTC joint supplements?', a: 'Most OTC joint products are under-dosed glucosamine alone. This uses clinical-dose curcumin with BioPerine, 10g daily collagen, EPA/DHA omega-3, and CoQ10. The combined mechanism is much stronger.' },
+        { q: 'When should I take each?', a: 'Restore: with a meal containing fat. Flow: any meal with fat. Collagen: any time. Vitality: with breakfast or lunch. Glow: nightly as the final skincare step.' },
+        { q: 'How long until joint improvement?', a: 'Mild improvement in 1-2 weeks. Significant joint comfort builds over 4-8 weeks. Curcumin works upstream on inflammation rather than masking pain — slower onset, more durable effect.' }
       ]
     }
   }
