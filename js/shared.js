@@ -2429,6 +2429,18 @@
       return subscribed ? afterBundle * 0.90 : afterBundle;
     };
 
+    // Annual savings of Smart Refill vs. flat-monthly subscription. Used on every
+    // card to show the customer the dollar value of the smart cadence at a glance.
+    // Returns 0 (or a near-zero value) when all products in the bundle have
+    // runtime=1 — there's literally no savings because flat-monthly = smart for that bundle.
+    window.computeSmartRefillAnnualSavings = function(bundle) {
+      if (!bundle) return 0;
+      const flatMonthlyAnnual = window.computeBundleShipmentPrice(bundle, true) * 12;
+      const smartAnnual = window.computeSmartRefillAvgMonthly(bundle) * 12;
+      const diff = flatMonthlyAnnual - smartAnnual;
+      return diff > 0 ? diff : 0;
+    };
+
     // ─── Unified Subscribe + Cadence Toggle Markup ──────────────────────
     //
     // Returns the HTML for the two-tier subscribe UI: a binary One-Time/
