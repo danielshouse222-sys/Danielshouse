@@ -166,33 +166,36 @@
   .sec-blurb { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 17px; color: var(--ink-soft); max-width: 580px; margin: 0 auto; line-height: 1.55; }
 
   /* Bundle grid */
-  .bundle-grid { max-width: 1200px; margin: 60px auto 0; padding: 0 40px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
+  .bundle-grid { max-width: 1200px; margin: 60px auto 0; padding: 0 40px; display: grid; grid-template-columns: 1fr; row-gap: 320px; }
 
-  .bundle-card { background: var(--cream); border: 1px solid var(--rule); padding: 0; display: flex; flex-direction: column; transition: transform 0.4s, border-color 0.3s, box-shadow 0.3s; }
+  .bundle-card { background: var(--cream); border: 1px solid var(--rule); padding: 0; display: grid; grid-template-columns: 1fr 1.15fr; transition: transform 0.4s, border-color 0.3s, box-shadow 0.3s; }
   .bundle-card:hover { transform: translateY(-4px); border-color: var(--gold); box-shadow: 0 12px 40px rgba(31, 27, 23, 0.06); }
 
-  .bundle-img-area { padding: 32px 32px 24px; background: var(--cream-warm); border-bottom: 1px solid var(--rule); }
-  .bundle-product-grid { display: grid; gap: 8px; max-width: 100%; }
-  .bundle-product-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
-  .bundle-product-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
-  .bundle-product-grid.cols-5 { grid-template-columns: repeat(5, 1fr); }
+  .bundle-img-area { padding: 48px 48px; background: var(--cream-warm); border-right: 1px solid var(--rule); display: flex; align-items: center; justify-content: center; }
+  .bundle-product-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; width: 100%; max-width: 460px; }
+  .bundle-product-grid.cols-3 .bundle-thumb,
+  .bundle-product-grid.cols-3 .bundle-thumb-label { width: calc(33.333% - 7px); }
+  .bundle-product-grid.cols-4 .bundle-thumb,
+  .bundle-product-grid.cols-4 .bundle-thumb-label { width: calc(25% - 8px); }
+  .bundle-product-grid.cols-5 .bundle-thumb,
+  .bundle-product-grid.cols-5 .bundle-thumb-label { width: calc(33.333% - 7px); }
   .bundle-thumb { aspect-ratio: 1/1; background: var(--cream); border: 1px solid var(--rule); overflow: hidden; position: relative; }
   .bundle-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .bundle-thumb-label { aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center; background: var(--cream); border: 1px solid var(--rule); font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--sage); font-size: 11px; padding: 4px; text-align: center; line-height: 1.2; }
 
-  .bundle-body { padding: 30px 32px 32px; flex: 1; display: flex; flex-direction: column; }
-  .bundle-eyebrow { font-size: 10.5px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 10px; }
-  .bundle-title { font-family: 'Cormorant Garamond', serif; font-size: 34px; font-weight: 400; line-height: 1.05; margin-bottom: 6px; }
+  .bundle-body { padding: 48px 48px; flex: 1; display: flex; flex-direction: column; text-align: left; }
+  .bundle-eyebrow { font-size: 10.5px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 14px; text-align: left; }
+  .bundle-title { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-weight: 400; line-height: 1.05; margin-bottom: 10px; text-align: left; }
   .bundle-title em { font-style: italic; color: var(--sage); }
-  .bundle-sub { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-soft); font-weight: 500; margin-bottom: 18px; }
-  .bundle-desc { font-size: 13.5px; line-height: 1.65; color: var(--ink-soft); margin-bottom: 22px; }
-  .bundle-included { padding-top: 18px; border-top: 1px solid var(--rule); margin-bottom: 22px; }
-  .bundle-included-label { font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 10px; }
-  .bundle-included-list { font-family: 'Cormorant Garamond', serif; font-size: 14.5px; line-height: 1.7; color: var(--ink); }
-  .bundle-savings { display: flex; justify-content: space-between; align-items: baseline; padding: 16px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin-bottom: 22px; }
-  .bundle-save { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 24px; font-weight: 500; color: var(--sage); }
+  .bundle-sub { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-soft); font-weight: 500; margin-bottom: 22px; text-align: left; }
+  .bundle-desc { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 16px; line-height: 1.6; color: var(--ink-soft); margin-bottom: 24px; text-align: left; }
+  .bundle-included { padding-top: 20px; border-top: 1px solid var(--rule); margin-bottom: 22px; }
+  .bundle-included-label { font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 10px; text-align: left; }
+  .bundle-included-list { font-family: 'Cormorant Garamond', serif; font-size: 15px; line-height: 1.7; color: var(--ink); text-align: left; }
+  .bundle-savings { display: flex; justify-content: space-between; align-items: baseline; padding: 18px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin-bottom: 22px; }
+  .bundle-save { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 26px; font-weight: 500; color: var(--sage); }
   .bundle-save-label { font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft); }
-  .bundle-cta { display: block; text-align: center; padding: 14px 0; background: var(--ink); color: var(--cream); text-decoration: none; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 500; transition: background 0.3s; margin-top: auto; }
+  .bundle-cta { display: block; text-align: center; padding: 16px 0; background: var(--ink); color: var(--cream); text-decoration: none; font-size: 11.5px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 500; transition: background 0.3s; margin-top: auto; }
   .bundle-cta:hover { background: var(--sage); }
 
   /* Closing */
@@ -212,12 +215,38 @@
     .hero-bundle { grid-template-columns: 1fr; }
     .hero-img-side { padding: 40px; }
     .hero-content-side { padding: 40px 32px; }
-    .bundle-grid { grid-template-columns: 1fr; }
+    .bundle-card { grid-template-columns: 1fr; }
+    .bundle-img-area { padding: 36px 36px 24px; border-right: none; border-bottom: 1px solid var(--rule); }
+    .bundle-product-grid { max-width: 360px; }
+    .bundle-product-grid.cols-5 .bundle-thumb,
+    .bundle-product-grid.cols-5 .bundle-thumb-label { width: calc(20% - 8px); }
+    .bundle-body { padding: 32px 36px 36px; }
+    .bundle-title { font-size: 34px; }
+    .bundle-grid { row-gap: 240px; }
+    .bundle-product-grid.cols-5 .bundle-thumb,
+    .bundle-product-grid.cols-5 .bundle-thumb-label { width: calc(25% - 8px); }
   }
   @media (max-width: 640px) {
     .credibility { grid-template-columns: 1fr 1fr; }
     .hero-product-grid { grid-template-columns: repeat(4, 1fr); }
-    .bundle-product-grid.cols-5 { grid-template-columns: repeat(4, 1fr); }
+
+    /* Unified page edges + card padding (matches shop.html concern-card on mobile) */
+    .bundle-grid { padding: 0 22px; }
+    .bundle-body { padding: 26px 24px 28px; }
+
+    /* Bundle card text — readability boost on phones */
+    .bundle-eyebrow { font-size: 11.5px; letter-spacing: 0.22em; margin-bottom: 12px; }
+    .bundle-title { font-size: 30px; line-height: 1.1; }
+    .bundle-sub { font-size: 12px; letter-spacing: 0.18em; margin-bottom: 16px; }
+    .bundle-desc { font-size: 16px; line-height: 1.65; margin-bottom: 22px; }
+    .bundle-included-label { font-size: 11.5px; letter-spacing: 0.22em; margin-bottom: 12px; }
+    .bundle-included-list { font-size: 16px; line-height: 1.65; }
+    .bundle-save { font-size: 16px; }
+    .bundle-save-label { font-size: 13.5px; }
+
+    /* Hero bundle (Ultimate) — readability boost */
+    .hero-bundle-sub { font-size: 12px; letter-spacing: 0.22em; }
+    .hero-bundle-desc { font-size: 16px; line-height: 1.7; }
   }
 
   /* ═══ BUILD YOUR OWN BUNDLE ═══ */
@@ -617,6 +646,357 @@
   .hero-product-grid-ultimate .hero-thumb-empty { aspect-ratio: 1/1; background: rgba(184, 153, 104, 0.06); border: 1px solid rgba(184, 153, 104, 0.2); display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--gold); font-size: 12px; opacity: 0.6; }
     .lightbox-body { flex-direction: column; }
     .lightbox-arrow { width: 100%; }
+
+  /* ═══════════════════════════════════════════════════════════════════
+     WHY-BUNDLES MESSAGE (3-pillar block above the Ultimate hero)
+     ═══════════════════════════════════════════════════════════════════ */
+  .why-bundles {
+    max-width: 1100px;
+    margin: 12px auto 0;
+    padding: 0 40px;
+  }
+  .why-bundles-inner {
+    background: var(--cream-warm);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--gold);
+    padding: 32px 36px 28px;
+  }
+  .why-bundles-eyebrow {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-style: italic;
+    color: var(--ink);
+    margin-bottom: 22px;
+    text-align: center;
+  }
+  .why-bundles-eyebrow em {
+    font-style: italic;
+    color: var(--sage);
+    font-weight: 500;
+  }
+  .why-bundles-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-bottom: 22px;
+  }
+  .why-pillar { display: flex; flex-direction: column; gap: 6px; }
+  .why-pillar-mark {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--gold);
+    font-weight: 500;
+    line-height: 1;
+  }
+  .why-pillar-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    line-height: 1.15;
+    color: var(--ink);
+    font-weight: 500;
+    margin: 4px 0 2px;
+  }
+  .why-pillar-body {
+    font-family: 'Poppins', sans-serif;
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+  .why-pillar-body strong { color: var(--gold); font-weight: 600; }
+  .why-bundles-foot {
+    text-align: center;
+    border-top: 1px solid var(--rule);
+    padding-top: 16px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+  .why-bundles-foot a {
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+  .why-bundles-foot a:hover { color: var(--ink); }
+
+  @media (max-width: 1000px) {
+    .why-bundles-grid { grid-template-columns: repeat(2, 1fr); gap: 22px; }
+  }
+  @media (max-width: 760px) {
+    .why-bundles { padding: 0 22px; }
+    .why-bundles-inner { padding: 24px 22px 20px; }
+    .why-bundles-grid { grid-template-columns: 1fr; gap: 22px; }
+    .why-bundles-eyebrow { font-size: 18px; margin-bottom: 18px; }
+    .why-pillar-title { font-size: 21px; }
+    .why-pillar-body { font-size: 14px; line-height: 1.65; }
+    .why-bundles-foot { font-size: 15px; line-height: 1.5; }
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════
+     SEARCH BAR + FILTER PANEL (shared classes with shop.html)
+     ═══════════════════════════════════════════════════════════════════ */
+  .bundle-search-wrap {
+    max-width: 1200px;
+    margin: 32px auto 16px;
+    padding: 0 40px;
+    text-align: center;
+  }
+  .concern-search {
+    position: relative;
+    display: flex;
+    align-items: center;
+    max-width: 640px;
+    margin: 0 auto;
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .concern-search:focus-within {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 4px rgba(184, 153, 104, 0.10);
+  }
+  .concern-search-icon {
+    font-size: 20px;
+    color: var(--ink-soft);
+    padding: 0 4px 0 22px;
+    transition: color 0.3s;
+    line-height: 1;
+  }
+  .concern-search:focus-within .concern-search-icon { color: var(--gold); }
+  .concern-search-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 18px 16px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    color: var(--ink);
+    width: 100%;
+  }
+  .concern-search-input::placeholder {
+    color: var(--ink-soft);
+    opacity: 0.7;
+    font-style: italic;
+  }
+  .concern-search-clear {
+    background: transparent;
+    border: none;
+    color: var(--ink-soft);
+    cursor: pointer;
+    padding: 0 22px 0 8px;
+    font-size: 14px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s, color 0.25s;
+  }
+  .concern-search-clear.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .concern-search-clear:hover { color: var(--gold); }
+
+  .concern-search-meta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 28px;
+    margin-top: 18px;
+    flex-wrap: wrap;
+  }
+  .concern-search-count {
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+  }
+  .concern-search-hints {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .concern-search-hints .hint-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+  .concern-search-hint {
+    background: transparent;
+    border: 1px solid var(--rule);
+    color: var(--ink-soft);
+    font-family: 'Poppins', sans-serif;
+    font-size: 10.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.25s;
+  }
+  .concern-search-hint:hover {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--cream);
+  }
+
+  .concern-filter-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--cream);
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 8px 14px;
+    transition: background 0.25s, color 0.25s;
+  }
+  .concern-filter-toggle:hover {
+    background: var(--ink);
+    color: var(--cream);
+  }
+  .concern-filter-toggle .toggle-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 6px;
+    border-radius: 100px;
+    background: var(--gold);
+    color: var(--ink);
+    font-size: 10px;
+    letter-spacing: 0;
+    font-weight: 600;
+  }
+  .concern-filter-toggle .toggle-arrow {
+    font-size: 9px;
+    transition: transform 0.3s;
+    margin-top: -1px;
+  }
+  .concern-filter-toggle[aria-expanded="true"] .toggle-arrow {
+    transform: rotate(-180deg);
+  }
+
+  .concern-filter-panel {
+    max-width: 1100px;
+    margin: 28px auto 0;
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    overflow: hidden;
+    text-align: left;
+  }
+  .concern-filter-panel[hidden] { display: none; }
+  .filter-panel-inner {
+    padding: 32px 36px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+  }
+  .filter-group { display: flex; flex-direction: column; gap: 12px; }
+  .filter-group-label {
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+  }
+  .filter-group-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .bundle-search-wrap .filter-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: transparent;
+    border: 1px solid var(--rule);
+    color: var(--ink-soft);
+    font-family: 'Poppins', sans-serif;
+    font-size: 11.5px;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.25s;
+    line-height: 1.4;
+    text-transform: none;
+  }
+  .bundle-search-wrap .filter-chip:hover {
+    border-color: var(--ink);
+    color: var(--ink);
+  }
+  .bundle-search-wrap .filter-chip.is-active {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--cream);
+  }
+  .bundle-search-wrap .filter-chip.is-active:hover {
+    background: var(--sage);
+    border-color: var(--sage);
+  }
+  .bundle-search-wrap .filter-chip .chip-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 100%;
+    display: inline-block;
+  }
+  .bundle-search-wrap .filter-chip .chip-dot.sage { background: var(--sage); }
+  .bundle-search-wrap .filter-chip .chip-dot.gold { background: var(--gold); }
+  .bundle-search-wrap .filter-chip.is-active .chip-dot { box-shadow: 0 0 0 2px rgba(250, 246, 240, 0.3); }
+
+  .filter-panel-footer {
+    border-top: 1px solid var(--rule);
+    padding-top: 18px;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .filter-clear-all {
+    background: transparent;
+    border: none;
+    color: var(--ink-soft);
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: color 0.25s;
+    padding: 8px 12px;
+  }
+  .filter-clear-all:hover { color: var(--gold); }
+  .filter-clear-all:disabled { opacity: 0.4; cursor: default; }
+
+  .bundle-card.is-hidden { display: none !important; }
+
+  @media (max-width: 980px) {
+    .bundle-search-wrap { padding: 0 22px; }
+    .concern-search-meta { gap: 16px; }
+    .filter-panel-inner { padding: 24px 22px 20px; }
+  }
+  @media (max-width: 640px) {
+    .concern-search-input { font-size: 16px; padding: 16px 12px; }
+    .concern-search-icon { padding: 0 4px 0 16px; font-size: 18px; }
+    .concern-search-clear { padding: 0 16px 0 6px; }
+    .concern-filter-toggle { width: 100%; justify-content: center; }
+    .bundle-search-wrap .filter-chip { font-size: 11px; padding: 7px 12px; }
+    .filter-group-chips { gap: 6px; }
+  }
 </style>
 </head>
 <body data-bundle-category="curated">
@@ -807,6 +1187,38 @@
     <p>The full skincare line and supplement stack, organized into the routines, rituals, and gifts they're actually meant for. Save up to $179 per bundle versus buying individually — without the guesswork of figuring out which bottles work together.</p>
   </div>
 
+  <!-- ═══ WHY BUNDLES vs CONCERN BUNDLES ═══ -->
+  <div class="why-bundles">
+    <div class="why-bundles-inner">
+      <div class="why-bundles-eyebrow">Why a <em>curated</em> bundle over a concern bundle?</div>
+      <div class="why-bundles-grid">
+        <div class="why-pillar">
+          <div class="why-pillar-mark">01</div>
+          <div class="why-pillar-title">Tested &amp; Proven</div>
+          <div class="why-pillar-body">Every bundle is a combination Daniel runs on himself, his family, and his customers. Real protocols, refined over years of daily use.</div>
+        </div>
+        <div class="why-pillar">
+          <div class="why-pillar-mark">02</div>
+          <div class="why-pillar-title">Editorially Curated</div>
+          <div class="why-pillar-body">Hand-picked combinations built around real rituals — the AM routine, the workout stack, the longevity protocol, the gift for mom. Each bundle serves a moment, not a generic concern.</div>
+        </div>
+        <div class="why-pillar">
+          <div class="why-pillar-mark">03</div>
+          <div class="why-pillar-title">Deeper Savings</div>
+          <div class="why-pillar-body">Bundle discounts go up to <strong>25% off</strong> (the Ultimate) versus 7–10% on most concern bundles. The bigger the stack, the deeper the savings.</div>
+        </div>
+        <div class="why-pillar">
+          <div class="why-pillar-mark">04</div>
+          <div class="why-pillar-title">Built for Routine</div>
+          <div class="why-pillar-body">A lifestyle stack — built to fit your existing routine or shape a new one. Ships as a single premium package, ready to use from day one.</div>
+        </div>
+      </div>
+      <div class="why-bundles-foot">
+        Shopping for a single concern instead? <a href="shop.html">Browse Concern Bundles →</a>
+      </div>
+    </div>
+  </div>
+
   <!-- Credibility -->
   <div class="credibility credibility-quad">
     <div class="cred-item"><div class="cred-num">9<em>.</em></div><div class="cred-label">Curated bundles</div></div>
@@ -892,6 +1304,113 @@
     <div class="sec-eyebrow">More Ways to Stack</div>
     <div class="sec-title">The <em>Curated</em> Collection</div>
     <div class="sec-blurb">Eight more bundles — each built for a specific use, person, or moment in the day.</div>
+  </div>
+
+  <!-- SEARCH + FILTER FOR THE CURATED GRID -->
+  <div class="bundle-search-wrap">
+    <div class="concern-search">
+      <span class="concern-search-icon" aria-hidden="true">⌕</span>
+      <input
+        type="text"
+        class="concern-search-input"
+        id="bundle-search-input"
+        placeholder="Search bundles, ingredients, ritual…"
+        autocomplete="off"
+      />
+      <button class="concern-search-clear" id="bundle-search-clear" type="button" aria-label="Clear search">✕</button>
+    </div>
+    <div class="concern-search-meta">
+      <span class="concern-search-count" id="bundle-search-count">8 curated bundles</span>
+      <span class="concern-search-hints">
+        <span class="hint-label">Try:</span>
+        <button class="concern-search-hint" data-hint="daily" type="button">daily</button>
+        <button class="concern-search-hint" data-hint="anti-aging" type="button">anti-aging</button>
+        <button class="concern-search-hint" data-hint="moms" type="button">moms</button>
+        <button class="concern-search-hint" data-hint="active" type="button">active</button>
+        <button class="concern-search-hint" data-hint="ashwagandha" type="button">ashwagandha</button>
+      </span>
+      <button class="concern-filter-toggle" id="bundle-filter-toggle" type="button" aria-expanded="false" aria-controls="bundle-filter-panel">
+        <span class="toggle-text">Filters</span>
+        <span class="toggle-badge" id="bundle-filter-badge" hidden>0</span>
+        <span class="toggle-arrow">▾</span>
+      </button>
+    </div>
+
+    <div class="concern-filter-panel" id="bundle-filter-panel" hidden>
+      <div class="filter-panel-inner">
+
+        <div class="filter-group" data-group="focus">
+          <div class="filter-group-label">Primary Focus</div>
+          <div class="filter-group-chips">
+            <button class="filter-chip" data-group="focus" data-value="skin" type="button"><span class="chip-dot sage"></span>Skin Focus</button>
+            <button class="filter-chip" data-group="focus" data-value="goal" type="button"><span class="chip-dot gold"></span>Wellness Focus</button>
+          </div>
+        </div>
+
+        <div class="filter-group" data-group="effect">
+          <div class="filter-group-label">Effect &amp; Benefit</div>
+          <div class="filter-group-chips">
+            <button class="filter-chip" data-group="effect" data-value="anti-aging" type="button">Anti-Aging</button>
+            <button class="filter-chip" data-group="effect" data-value="brightening" type="button">Brightening</button>
+            <button class="filter-chip" data-group="effect" data-value="hydrating" type="button">Hydrating</button>
+            <button class="filter-chip" data-group="effect" data-value="calming" type="button">Calming · Sleep</button>
+            <button class="filter-chip" data-group="effect" data-value="energizing" type="button">Energizing</button>
+            <button class="filter-chip" data-group="effect" data-value="pore-refining" type="button">Pore-Refining</button>
+            <button class="filter-chip" data-group="effect" data-value="anti-inflammatory" type="button">Anti-Inflammatory</button>
+            <button class="filter-chip" data-group="effect" data-value="recovery" type="button">Recovery · Strength</button>
+          </div>
+        </div>
+
+        <div class="filter-group" data-group="lifestyle">
+          <div class="filter-group-label">Lifestyle</div>
+          <div class="filter-group-chips">
+            <button class="filter-chip" data-group="lifestyle" data-value="active" type="button">Active · Athletes</button>
+            <button class="filter-chip" data-group="lifestyle" data-value="busy-pro" type="button">Busy Professional</button>
+            <button class="filter-chip" data-group="lifestyle" data-value="parent" type="button">Parents · Moms</button>
+            <button class="filter-chip" data-group="lifestyle" data-value="anti-aging" type="button">Anti-Aging Focused</button>
+            <button class="filter-chip" data-group="lifestyle" data-value="sensitive" type="button">Sensitive Type</button>
+            <button class="filter-chip" data-group="lifestyle" data-value="beauty" type="button">Beauty-Forward</button>
+            <button class="filter-chip" data-group="lifestyle" data-value="beginner" type="button">Wellness Beginner</button>
+          </div>
+        </div>
+
+        <div class="filter-group" data-group="ingredient">
+          <div class="filter-group-label">Key Ingredient</div>
+          <div class="filter-group-chips">
+            <button class="filter-chip" data-group="ingredient" data-value="retinol" type="button">Retinol</button>
+            <button class="filter-chip" data-group="ingredient" data-value="vitamin-c" type="button">Vitamin C</button>
+            <button class="filter-chip" data-group="ingredient" data-value="hyaluronic-acid" type="button">Hyaluronic Acid</button>
+            <button class="filter-chip" data-group="ingredient" data-value="niacinamide" type="button">Niacinamide</button>
+            <button class="filter-chip" data-group="ingredient" data-value="salicylic-acid" type="button">Salicylic Acid</button>
+            <button class="filter-chip" data-group="ingredient" data-value="peptides" type="button">Peptides</button>
+            <button class="filter-chip" data-group="ingredient" data-value="bovine-collagen" type="button">Collagen</button>
+            <button class="filter-chip" data-group="ingredient" data-value="ashwagandha" type="button">Ashwagandha</button>
+            <button class="filter-chip" data-group="ingredient" data-value="magnesium-glycinate" type="button">Magnesium</button>
+            <button class="filter-chip" data-group="ingredient" data-value="omega-3" type="button">Omega-3</button>
+            <button class="filter-chip" data-group="ingredient" data-value="probiotics" type="button">Probiotics</button>
+            <button class="filter-chip" data-group="ingredient" data-value="nad-plus" type="button">NAD+</button>
+            <button class="filter-chip" data-group="ingredient" data-value="coq10" type="button">CoQ10</button>
+            <button class="filter-chip" data-group="ingredient" data-value="curcumin" type="button">Curcumin</button>
+            <button class="filter-chip" data-group="ingredient" data-value="creatine" type="button">Creatine</button>
+          </div>
+        </div>
+
+        <div class="filter-group" data-group="price">
+          <div class="filter-group-label">Price Range</div>
+          <div class="filter-group-chips">
+            <button class="filter-chip" data-group="price" data-value="under-150" type="button">Under $150</button>
+            <button class="filter-chip" data-group="price" data-value="150-250" type="button">$150–250</button>
+            <button class="filter-chip" data-group="price" data-value="250-400" type="button">$250–400</button>
+            <button class="filter-chip" data-group="price" data-value="over-400" type="button">$400+</button>
+          </div>
+        </div>
+
+        <div class="filter-panel-footer">
+          <button class="filter-clear-all" id="bundle-filter-clear-all" type="button">Clear all filters</button>
+        </div>
+
+      </div>
+    </div>
   </div>
 
   <div class="bundle-grid">
@@ -1092,7 +1611,7 @@
         <div class="bundle-eyebrow">Anti-Aging · Longevity · Firm</div>
         <div class="bundle-title">The <em>Mom's</em> Bundle</div>
         <div class="bundle-sub">5 Skincare + 5 Supplements</div>
-        <div class="bundle-desc">Five skincare layers built around the highest-evidence anti-aging actives — retinol overnight, antioxidants by day, peptides around the eyes — paired with five longevity-grade supplements that work the cellular layer: NAD+ for mitochondrial energy, collagen building blocks, antioxidant support, and the sleep aid that turns nights into real repair time. Built for moms serious about aging well.</div>
+        <div class="bundle-desc">Built for my 65-year-old mother. Focused on her three daily priorities — skincare, longevity, and cognitive support — this stack pairs five skincare layers using the highest-evidence anti-aging actives (retinol overnight, antioxidants by day, peptides around the eyes) with five longevity-grade supplements working the cellular layer: NAD+ for mitochondrial energy, collagen building blocks, antioxidant support, and the sleep aid that turns nights into real repair time.</div>
         <div class="bundle-included">
           <div class="bundle-included-label">What's Inside</div>
           <div class="bundle-included-list">Wash · Defense · Bounce · Eye · Soft<br>Multi · Collagen · NAD+ · Vitality · Tranquil</div>
@@ -1124,7 +1643,7 @@
         <div class="bundle-eyebrow">Glow · Brighten · Defy Aging</div>
         <div class="bundle-title">The <em>Ariana's</em> Bundle</div>
         <div class="bundle-sub">6 Skincare + 3 Supplements</div>
-        <div class="bundle-desc">A complete inside-out routine — cleanse, brighten, defend, renew, and protect the eyes with six skincare layers, then compound the glow from within with collagen, antioxidants, and the daily multi. Built for visible results, week over week.</div>
+        <div class="bundle-desc">Built for my 25-year-old sister. Focused on inner-and-outer beauty, this stack pairs six skincare layers — cleanse, brighten, defend, renew, and protect the eyes — with three inner-beauty supplements that compound the glow from within: collagen, antioxidants, and the daily multi.</div>
         <div class="bundle-included">
           <div class="bundle-included-label">What's Inside</div>
           <div class="bundle-included-list">Wash · Boost · Defense · Renewal · Eye · Soft<br>Multi · Radiance · Collagen</div>
@@ -1566,6 +2085,7 @@
 
 <script src="data/products.js"></script>
 <script src="data/bundle-details.js"></script>
+<script src="data/ingredients.js"></script>
 <script src="js/shared.js"></script>
 <script src="js/bundle-expand.js"></script>
 <script>
@@ -1726,6 +2246,273 @@
         }
       });
     }
+  });
+})();
+</script>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     BUNDLE SEARCH + FILTER (same pattern as shop.html, adapted for
+     curated bundles. Filters .bundle-card elements only — the Ultimate
+     hero stays always visible as the flagship.)
+     ═══════════════════════════════════════════════════════════════════ -->
+<script>
+(function() {
+  'use strict';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    if (!window.CURATED_BUNDLES || !window.CURATED_BUNDLES.length) {
+      console.error('[bundles.html] CURATED_BUNDLES not loaded; search bar disabled.');
+      return;
+    }
+
+    const searchInput = document.getElementById('bundle-search-input');
+    const searchClear = document.getElementById('bundle-search-clear');
+    const searchCount = document.getElementById('bundle-search-count');
+    const filterToggle = document.getElementById('bundle-filter-toggle');
+    const filterPanel = document.getElementById('bundle-filter-panel');
+    const filterBadge = document.getElementById('bundle-filter-badge');
+    const filterClearAll = document.getElementById('bundle-filter-clear-all');
+    const hintBtns = document.querySelectorAll('.bundle-search-wrap .concern-search-hint');
+    const cards = document.querySelectorAll('.bundle-grid .bundle-card');
+
+    if (!searchInput || !cards.length) {
+      console.warn('[bundles.html] Search elements or bundle cards missing.');
+      return;
+    }
+
+    const total = cards.length;
+
+    // Keywords that trigger each effect marker
+    const EFFECT_KEYWORDS = {
+      'anti-aging': ['anti-aging','aging','firming','retinol','peptide','longevity','cellular','collagen'],
+      'brightening': ['brightening','vitamin c','glow','dullness','radiance','beauty','luminous'],
+      'hydrating': ['hydrating','hyaluronic','moisturizing','dryness','hydration','ceramide'],
+      'calming': ['calming','soothing','stress','sleep','sensitive','sensitivity','ashwagandha','magnesium','tranquil'],
+      'energizing': ['energy','energizing','thermogenic','caffeine','coq10','b-complex'],
+      'pore-refining': ['pores','pore','acne','clear','salicylic','sebum'],
+      'anti-inflammatory': ['anti-inflammatory','inflammation','joint','curcumin','omega'],
+      'recovery': ['recovery','repair','restore','gut','muscle','strength','training']
+    };
+
+    // Lifestyle persona map for curated bundles (editorial)
+    const LIFESTYLE_MAP = {
+      'ultimate':      ['anti-aging','beauty','busy-pro'],
+      'daniels-daily': ['busy-pro','beginner','active'],
+      'am':            ['beauty','beginner'],
+      'pm':            ['anti-aging','beauty'],
+      'workout':       ['active'],
+      'foundation':    ['beginner','busy-pro'],
+      'longevity':     ['anti-aging','busy-pro'],
+      'glow':          ['beauty','anti-aging'],
+      'weekly':        ['beauty','busy-pro'],
+      'moms':          ['parent','sensitive'],
+      'arianas':       ['beauty','busy-pro']
+    };
+
+    const GENERIC_INGREDIENT_WORDS = new Set([
+      'vitamin','extract','acid','complex','blend','powder','marine','active',
+      'natural','organic','derived','strain','capsule','chelate','monnieri'
+    ]);
+
+    // ═══ BUILD PER-CARD HAYSTACK + MARKERS ═══
+    cards.forEach(card => {
+      // Get the bundle ID from the data-bundle-add CTA inside the card
+      const cta = card.querySelector('[data-bundle-add]');
+      if (!cta) return;
+      const bundleId = cta.getAttribute('data-bundle-add');
+      const bundle = window.CURATED_BUNDLES.find(b => b.id === bundleId);
+      if (!bundle) return;
+
+      card.dataset.bundleId = bundleId;
+
+      const products = (bundle.slugs || []).map(s => window.getProductBySlug(s)).filter(Boolean);
+      const details = window.getBundleDetails ? window.getBundleDetails('curated', bundleId) : null;
+
+      // Text-search content: bundle name, blurb, every product name/tag/ingredient
+      const textParts = [
+        bundle.name,
+        bundle.id,
+        details?.description || '',
+        details?.whyThis || '',
+        details?.eyebrow || ''
+      ];
+      products.forEach(p => {
+        textParts.push(p.name, p.tag || '', p.tagline || '');
+        (p.ingredients || []).forEach(ing => textParts.push(ing.name || ''));
+      });
+      const searchText = textParts.join(' ').toLowerCase();
+
+      const markers = [];
+
+      // Focus — based on actual product categories. Mixed bundles get BOTH markers.
+      const hasSkin = products.some(p => p.category === 'skincare');
+      const hasSupp = products.some(p => p.category === 'supplement');
+      if (hasSkin) markers.push('__focus-skin__');
+      if (hasSupp) markers.push('__focus-goal__');
+
+      // Effects
+      Object.entries(EFFECT_KEYWORDS).forEach(([effect, keywords]) => {
+        if (keywords.some(k => searchText.includes(k))) {
+          markers.push(`__effect-${effect}__`);
+        }
+      });
+
+      // Lifestyle
+      (LIFESTYLE_MAP[bundleId] || []).forEach(l => markers.push(`__lifestyle-${l}__`));
+
+      // Price — bundles are pricier than concern bundles, so brackets are higher
+      const fullPrice = products.reduce((sum, p) => sum + p.price, 0);
+      const discount = typeof bundle.discount === 'number' ? bundle.discount : 0.15;
+      const discountedPrice = fullPrice * (1 - discount);
+      if (discountedPrice < 150) markers.push('__price-under-150__');
+      else if (discountedPrice < 250) markers.push('__price-150-250__');
+      else if (discountedPrice < 400) markers.push('__price-250-400__');
+      else markers.push('__price-over-400__');
+
+      // Ingredients (via glossary alias matching)
+      const INGREDIENT_GLOSSARY = window.INGREDIENTS || [];
+      const matchedIngSlugs = new Set();
+      if (INGREDIENT_GLOSSARY.length) {
+        products.forEach(prod => (prod.ingredients || []).forEach(ing => {
+          const ingName = (ing.name || '').toLowerCase().replace(/[^a-z0-9'+-]+/g, ' ');
+          INGREDIENT_GLOSSARY.forEach(g => {
+            const aliases = [g.name];
+            if (g.alt) g.alt.split(',').forEach(a => aliases.push(a.trim()));
+            [g.name, g.alt || ''].forEach(s => s.split(/[^A-Za-z0-9'+-]+/).forEach(w => {
+              if (w.length >= 6 && !GENERIC_INGREDIENT_WORDS.has(w.toLowerCase())) {
+                aliases.push(w);
+              }
+            }));
+            for (const alias of aliases) {
+              const a = alias.toLowerCase().replace(/[^a-z0-9'+-]+/g, ' ').trim();
+              if (a.length < 4) continue;
+              if ((' ' + ingName + ' ').includes(' ' + a + ' ')) {
+                matchedIngSlugs.add(g.slug);
+                break;
+              }
+            }
+          });
+        }));
+      }
+      matchedIngSlugs.forEach(slug => markers.push(`__ing-${slug}__`));
+
+      card.dataset.haystack = searchText + ' ' + markers.join(' ');
+    });
+
+    // ═══ FILTER STATE ═══
+    const activeFilters = {
+      focus: new Set(),
+      effect: new Set(),
+      lifestyle: new Set(),
+      ingredient: new Set(),
+      price: new Set()
+    };
+
+    function totalActiveFilters() {
+      return Object.values(activeFilters).reduce((sum, s) => sum + s.size, 0);
+    }
+
+    // ═══ APPLY FILTER ═══
+    function applyFilter() {
+      const rawQuery = searchInput.value || '';
+      const q = rawQuery.trim().toLowerCase();
+      let visible = 0;
+
+      cards.forEach(card => {
+        const haystack = card.dataset.haystack || '';
+
+        if (q && !haystack.includes(q)) {
+          card.classList.add('is-hidden');
+          return;
+        }
+
+        let allGroupsPass = true;
+        Object.entries(activeFilters).forEach(([group, values]) => {
+          if (!values.size) return;
+          const groupPasses = Array.from(values).some(v => haystack.includes(`__${group}-${v}__`));
+          if (!groupPasses) allGroupsPass = false;
+        });
+
+        if (allGroupsPass) {
+          card.classList.remove('is-hidden');
+          visible++;
+        } else {
+          card.classList.add('is-hidden');
+        }
+      });
+
+      const activeCount = totalActiveFilters();
+      const hasAnyFilter = q.length > 0 || activeCount > 0;
+      if (!hasAnyFilter) {
+        searchCount.textContent = `${total} curated bundles`;
+      } else if (visible === 0) {
+        searchCount.textContent = `0 of ${total} match`;
+      } else if (visible === total) {
+        searchCount.textContent = `${total} curated bundles`;
+      } else {
+        searchCount.textContent = `${visible} of ${total} bundles`;
+      }
+
+      searchClear.classList.toggle('is-visible', q.length > 0);
+
+      if (activeCount > 0) {
+        filterBadge.hidden = false;
+        filterBadge.textContent = activeCount;
+      } else {
+        filterBadge.hidden = true;
+      }
+
+      if (filterClearAll) {
+        filterClearAll.disabled = activeCount === 0;
+      }
+    }
+
+    // ═══ EVENT WIRING ═══
+    searchInput.addEventListener('input', applyFilter);
+    searchClear.addEventListener('click', () => {
+      searchInput.value = '';
+      searchInput.focus();
+      applyFilter();
+    });
+    hintBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        searchInput.value = btn.dataset.hint;
+        applyFilter();
+        searchInput.focus();
+      });
+    });
+
+    filterToggle.addEventListener('click', () => {
+      const isOpen = filterPanel.hidden === false;
+      filterPanel.hidden = isOpen;
+      filterToggle.setAttribute('aria-expanded', !isOpen);
+    });
+
+    document.querySelectorAll('.bundle-search-wrap .filter-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        const group = chip.dataset.group;
+        const value = chip.dataset.value;
+        if (!group || !value || !activeFilters[group]) return;
+        if (activeFilters[group].has(value)) {
+          activeFilters[group].delete(value);
+          chip.classList.remove('is-active');
+        } else {
+          activeFilters[group].add(value);
+          chip.classList.add('is-active');
+        }
+        applyFilter();
+      });
+    });
+
+    if (filterClearAll) {
+      filterClearAll.addEventListener('click', () => {
+        Object.values(activeFilters).forEach(set => set.clear());
+        document.querySelectorAll('.bundle-search-wrap .filter-chip.is-active').forEach(c => c.classList.remove('is-active'));
+        applyFilter();
+      });
+    }
+
+    applyFilter();
   });
 })();
 </script>

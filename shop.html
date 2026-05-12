@@ -83,60 +83,309 @@
   }
   .shop-note strong { color: var(--gold); font-weight: 500; }
 
-  /* ═══════ TAB SWITCHER ═══════ */
-  .shop-switch-wrap {
+  /* ═══════ SEARCH BAR ═══════ */
+  .concern-search-wrap {
     background: var(--cream-warm);
-    padding: 32px 20px 0;
+    padding: 40px 32px 36px;
     border-bottom: 1px solid var(--rule);
-  }
-  .shop-switch {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-  .shop-tab {
-    background: transparent;
-    border: none;
-    padding: 18px 44px 22px;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-    border-bottom: 2px solid transparent;
-    transition: border-color 0.35s, color 0.35s;
     text-align: center;
   }
-  .shop-tab-label {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 28px;
-    line-height: 1;
-    color: var(--ink-soft);
-    font-weight: 500;
-    transition: color 0.35s;
+  .concern-search {
+    position: relative;
+    display: flex;
+    align-items: center;
+    max-width: 640px;
+    margin: 0 auto;
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    transition: border-color 0.3s, box-shadow 0.3s;
   }
-  .shop-tab-label em { font-style: italic; color: var(--sage); }
-  .shop-tab-count {
-    font-family: 'Poppins', sans-serif;
-    font-size: 10px;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
+  .concern-search:focus-within {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 4px rgba(184, 153, 104, 0.10);
+  }
+  .concern-search-icon {
+    font-size: 20px;
+    color: var(--ink-soft);
+    padding: 0 4px 0 22px;
+    transition: color 0.3s;
+    line-height: 1;
+  }
+  .concern-search:focus-within .concern-search-icon { color: var(--gold); }
+  .concern-search-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 18px 16px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    color: var(--ink);
+    width: 100%;
+  }
+  .concern-search-input::placeholder {
     color: var(--ink-soft);
     opacity: 0.7;
-    transition: color 0.35s, opacity 0.35s;
+    font-style: italic;
   }
-  .shop-tab:hover .shop-tab-label { color: var(--ink); }
-  .shop-tab.active {
-    border-bottom-color: var(--gold);
+  .concern-search-clear {
+    background: transparent;
+    border: none;
+    color: var(--ink-soft);
+    cursor: pointer;
+    padding: 0 22px 0 8px;
+    font-size: 14px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s, color 0.25s;
   }
-  .shop-tab.active .shop-tab-label { color: var(--ink); }
-  .shop-tab.active .shop-tab-count {
-    color: var(--gold);
+  .concern-search-clear.is-visible {
     opacity: 1;
+    pointer-events: auto;
+  }
+  .concern-search-clear:hover { color: var(--gold); }
+
+  .concern-search-meta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 28px;
+    margin-top: 18px;
+    flex-wrap: wrap;
+  }
+  .concern-search-count {
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--gold);
     font-weight: 600;
   }
+  .concern-search-hints {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .concern-search-hints .hint-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+  .concern-search-hint {
+    background: transparent;
+    border: 1px solid var(--rule);
+    color: var(--ink-soft);
+    font-family: 'Poppins', sans-serif;
+    font-size: 10.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.25s;
+  }
+  .concern-search-hint:hover {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--cream);
+  }
+
+  /* ═══════ FILTER TOGGLE + PANEL ═══════ */
+  .concern-filter-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--cream);
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 8px 14px;
+    transition: background 0.25s, color 0.25s;
+  }
+  .concern-filter-toggle:hover {
+    background: var(--ink);
+    color: var(--cream);
+  }
+  .concern-filter-toggle .toggle-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 6px;
+    border-radius: 100px;
+    background: var(--gold);
+    color: var(--ink);
+    font-size: 10px;
+    letter-spacing: 0;
+    font-weight: 600;
+  }
+  .concern-filter-toggle .toggle-arrow {
+    font-size: 9px;
+    transition: transform 0.3s;
+    margin-top: -1px;
+  }
+  .concern-filter-toggle[aria-expanded="true"] .toggle-arrow {
+    transform: rotate(-180deg);
+  }
+
+  .concern-filter-panel {
+    max-width: 1100px;
+    margin: 28px auto 0;
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    overflow: hidden;
+    text-align: left;
+  }
+  .concern-filter-panel[hidden] { display: none; }
+  .filter-panel-inner {
+    padding: 32px 36px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+  }
+
+  .filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .filter-group-label {
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+  }
+  .filter-group-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .filter-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: transparent;
+    border: 1px solid var(--rule);
+    color: var(--ink-soft);
+    font-family: 'Poppins', sans-serif;
+    font-size: 11.5px;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.25s;
+    line-height: 1.4;
+  }
+  .filter-chip:hover {
+    border-color: var(--ink);
+    color: var(--ink);
+  }
+  .filter-chip.is-active {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--cream);
+  }
+  .filter-chip.is-active:hover {
+    background: var(--sage);
+    border-color: var(--sage);
+  }
+  .filter-chip .chip-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 100%;
+    display: inline-block;
+  }
+  .filter-chip .chip-dot.sage { background: var(--sage); }
+  .filter-chip .chip-dot.gold { background: var(--gold); }
+  .filter-chip.is-active .chip-dot { box-shadow: 0 0 0 2px rgba(250, 246, 240, 0.3); }
+
+  .filter-panel-footer {
+    border-top: 1px solid var(--rule);
+    padding-top: 18px;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .filter-clear-all {
+    background: transparent;
+    border: none;
+    color: var(--ink-soft);
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: color 0.25s;
+    padding: 8px 12px;
+  }
+  .filter-clear-all:hover { color: var(--gold); }
+  .filter-clear-all:disabled {
+    opacity: 0.4;
+    cursor: default;
+  }
+
+  /* No-results empty state */
+  .concern-empty {
+    text-align: center;
+    padding: 80px 24px;
+    background: var(--cream-warm);
+    border: 1px solid var(--rule);
+  }
+  .concern-empty .empty-eyebrow {
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+  .concern-empty .empty-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 4vw, 38px);
+    font-weight: 400;
+    line-height: 1.1;
+    margin: 0 0 14px;
+    color: var(--ink);
+  }
+  .concern-empty .empty-title em { font-style: italic; color: var(--sage); }
+  .concern-empty .empty-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--ink-soft);
+    margin: 0 0 28px;
+  }
+  .concern-empty .empty-reset {
+    background: var(--ink);
+    color: var(--cream);
+    border: none;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 16px 32px;
+    transition: background 0.3s;
+  }
+  .concern-empty .empty-reset:hover { background: var(--sage); }
+
+  /* Hidden by filter — cards keep their layout space-free so the grid reflows */
+  .concern-card.is-hidden { display: none !important; }
 
   .shop-content {
     max-width: 1280px;
@@ -147,9 +396,9 @@
   /* ═══════ CONCERN GRID ═══════ */
   .concern-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 44px;
-    justify-content: center;
+    grid-template-columns: 1fr;
+    row-gap: 320px;
+    max-width: 1200px;
     margin: 0 auto;
   }
 
@@ -157,11 +406,24 @@
   .concern-card {
     background: var(--cream);
     border: 1px solid var(--rule);
-    padding: 36px 36px 32px;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1.15fr;
     transition: border-color 0.35s, box-shadow 0.35s, transform 0.35s;
+    position: relative;
+  }
+  .concern-card-img-side {
+    padding: 48px 48px;
+    background: var(--cream-warm);
+    border-right: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .concern-card-content-side {
+    padding: 48px 48px;
     display: flex;
     flex-direction: column;
-    position: relative;
   }
   .concern-card::before {
     content: '';
@@ -198,12 +460,11 @@
   /* Card header — name, mix pills, blurb */
   .concern-header {
     margin-bottom: 26px;
-    padding-right: 110px; /* leave room for the savings ribbon */
   }
   .concern-name {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 30px;
-    font-weight: 500;
+    font-size: 42px;
+    font-weight: 400;
     line-height: 1.05;
     margin-bottom: 14px;
     color: var(--ink);
@@ -251,17 +512,18 @@
 
   /* Product preview grid — auto-fitting tiles with category-tinted borders */
   .concern-products {
-    display: grid;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 14px 12px;
-    margin-bottom: 26px;
-    padding-top: 26px;
-    border-top: 1px solid var(--rule);
+    width: 100%;
+    max-width: 380px;
   }
-  .concern-products.cols-2 { grid-template-columns: repeat(2, 1fr); max-width: 65%; margin-left: auto; margin-right: auto; }
-  .concern-products.cols-3 { grid-template-columns: repeat(3, 1fr); }
-  .concern-products.cols-4 { grid-template-columns: repeat(4, 1fr); }
-  .concern-products.cols-5 { grid-template-columns: repeat(5, 1fr); }
-  .concern-products.cols-6 { grid-template-columns: repeat(3, 1fr); }
+  .concern-products.cols-2 .concern-product { width: calc(50% - 6px); }
+  .concern-products.cols-3 .concern-product { width: calc(50% - 6px); }
+  .concern-products.cols-4 .concern-product { width: calc(50% - 6px); }
+  .concern-products.cols-5 .concern-product { width: calc(50% - 6px); }
+  .concern-products.cols-6 .concern-product { width: calc(50% - 6px); }
 
   .concern-product {
     display: flex;
@@ -434,184 +696,36 @@
   }
 
   @media (max-width: 980px) {
-    .concern-grid { grid-template-columns: 1fr; gap: 32px; }
-    .shop-tab { padding: 16px 28px 18px; }
-    .shop-tab-label { font-size: 22px; }
+    .concern-grid { row-gap: 240px; }
+    .concern-search-wrap { padding: 32px 22px 28px; }
+    .concern-search-meta { gap: 16px; }
+    .filter-panel-inner { padding: 24px 22px 20px; }
+    .shop-content { padding: 56px 22px 80px; }
+    /* Concern card collapses to single column — img on top, content below */
+    .concern-card { grid-template-columns: 1fr; }
+    .concern-card-img-side { border-right: none; border-bottom: 1px solid var(--rule); padding: 36px; }
+    .concern-card-content-side { padding: 32px 36px 36px; }
+    .concern-products { max-width: 360px; }
   }
   @media (max-width: 640px) {
     .shop-hero { padding: 64px 24px 48px; }
-    .concern-card { padding: 28px 24px 24px; }
-    .concern-header { padding-right: 90px; }
+    .concern-search-input { font-size: 16px; padding: 16px 12px; }
+    .concern-search-icon { padding: 0 4px 0 16px; font-size: 18px; }
+    .concern-search-clear { padding: 0 16px 0 6px; }
+    .concern-search-hints { flex-wrap: wrap; }
+    .concern-filter-toggle { width: 100%; justify-content: center; }
+    .filter-chip { font-size: 11px; padding: 7px 12px; }
+    .filter-group-chips { gap: 6px; }
+    .concern-card-img-side { padding: 28px 24px; }
+    .concern-card-content-side { padding: 26px 24px 28px; }
     .concern-savings-ribbon { top: 16px; right: 16px; font-size: 9px; padding: 6px 10px; }
-    .concern-name { font-size: 25px; }
-    .concern-products.cols-5,
-    .concern-products.cols-6 { grid-template-columns: repeat(3, 1fr); }
-    .concern-products.cols-4 { grid-template-columns: repeat(2, 1fr); }
+    .concern-name { font-size: 30px; }
     .concern-actions { grid-template-columns: 1fr; }
     .concern-pricing { flex-direction: row; align-items: center; }
     .concern-count { font-size: 24px; }
   }
 
-  /* ═══ CONCERN DIRECTORY (skin vs wellness side-by-side list) ═══ */
-  .directory-section {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 100px 40px 50px;
-  }
-  .directory-eyebrow {
-    text-align: center;
-    font-size: 11px;
-    letter-spacing: 0.34em;
-    text-transform: uppercase;
-    color: var(--gold);
-    font-weight: 500;
-    margin-bottom: 14px;
-  }
-  .directory-headline {
-    text-align: center;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(30px, 4vw, 44px);
-    font-weight: 400;
-    line-height: 1.1;
-    margin-bottom: 8px;
-  }
-  .directory-headline em { font-style: italic; color: var(--sage); }
-  .directory-sub {
-    text-align: center;
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 17px;
-    color: var(--ink-soft);
-    max-width: 560px;
-    margin: 0 auto 50px;
-    line-height: 1.5;
-  }
-
-  .directory-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    background: var(--cream-warm);
-    border: 1px solid var(--rule);
-    padding: 50px 56px 44px;
-    position: relative;
-  }
-  /* Vertical divider between the two columns */
-  .directory-grid::before {
-    content: '';
-    position: absolute;
-    top: 60px;
-    bottom: 50px;
-    left: 50%;
-    width: 1px;
-    background: var(--rule);
-  }
-  .directory-col-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 26px;
-    font-weight: 500;
-    margin-bottom: 6px;
-    color: var(--ink);
-    display: flex;
-    align-items: baseline;
-    gap: 12px;
-  }
-  .directory-col-title em {
-    font-style: italic;
-    color: var(--sage);
-  }
-  .directory-col-count {
-    font-size: 10px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--gold);
-    font-weight: 500;
-  }
-  .directory-col-blurb {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 14px;
-    color: var(--ink-soft);
-    margin-bottom: 28px;
-    padding-bottom: 18px;
-    border-bottom: 1px solid var(--rule);
-  }
-  .directory-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  .directory-list li { margin: 0; }
-  .directory-link {
-    display: grid;
-    grid-template-columns: 38px 1fr auto;
-    gap: 16px;
-    align-items: center;
-    padding: 14px 0;
-    border-bottom: 1px solid rgba(212, 201, 182, 0.5);
-    cursor: pointer;
-    text-decoration: none;
-    color: var(--ink);
-    transition: padding-left 0.3s ease, color 0.3s ease;
-    background: transparent;
-    border-left: none;
-    border-right: none;
-    border-top: none;
-    width: 100%;
-    text-align: left;
-    font-family: inherit;
-  }
-  .directory-list li:last-child .directory-link { border-bottom: none; }
-  .directory-link:hover {
-    padding-left: 8px;
-    color: var(--gold);
-  }
-  .directory-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 22px;
-    color: var(--gold);
-    font-weight: 500;
-    line-height: 1;
-  }
-  .directory-name {
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-    min-width: 0;
-  }
-  .directory-name-text {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 19px;
-    font-weight: 500;
-    line-height: 1.15;
-    color: var(--ink);
-    transition: color 0.3s;
-  }
-  .directory-name-text em { font-style: italic; color: var(--sage); }
-  .directory-link:hover .directory-name-text { color: var(--gold); }
-  .directory-meta {
-    font-size: 9.5px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-    font-weight: 500;
-  }
-  .directory-savings {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 14px;
-    color: var(--sage);
-    text-align: right;
-    white-space: nowrap;
-    transition: transform 0.3s, color 0.3s;
-  }
-  .directory-link:hover .directory-savings {
-    transform: translateX(4px);
-    color: var(--gold);
-  }
-
-  /* Pulse highlight on a card when jumped-to from the directory */
+  /* ═══ FLASH HIGHLIGHT (used briefly when search resets/restores cards) ═══ */
   .concern-card.flash-highlight {
     animation: dh-card-flash 1.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
@@ -619,17 +733,6 @@
     0%   { box-shadow: 0 0 0 0 rgba(184, 153, 104, 0); border-color: var(--rule); }
     25%  { box-shadow: 0 0 0 6px rgba(184, 153, 104, 0.45); border-color: var(--gold); }
     100% { box-shadow: 0 0 0 0 rgba(184, 153, 104, 0); border-color: var(--rule); }
-  }
-
-  @media (max-width: 880px) {
-    .directory-grid {
-      grid-template-columns: 1fr;
-      gap: 40px;
-      padding: 36px 28px 28px;
-    }
-    .directory-grid::before { display: none; }
-    .directory-link { grid-template-columns: 32px 1fr auto; gap: 12px; }
-    .directory-name-text { font-size: 17px; }
   }
 </style>
 </head>
@@ -809,43 +912,122 @@
   <p class="shop-note">Tell us what to fix: <strong>stress, breakouts, dull skin, low energy</strong> — pick the bundle, save instantly.</p>
 </section>
 
-<div class="shop-switch-wrap">
-  <div class="shop-switch">
-    <button class="shop-tab active" data-view="skin">
-      <span class="shop-tab-label">Skin <em>Concerns</em></span>
-      <span class="shop-tab-count">6 bundles</span>
+<div class="concern-search-wrap">
+  <div class="concern-search">
+    <span class="concern-search-icon" aria-hidden="true">⌕</span>
+    <input
+      type="text"
+      class="concern-search-input"
+      id="concern-search-input"
+      placeholder="Search bundles, ingredients, concerns…"
+      autocomplete="off"
+    />
+    <button class="concern-search-clear" id="concern-search-clear" type="button" aria-label="Clear search">✕</button>
+  </div>
+  <div class="concern-search-meta">
+    <span class="concern-search-count" id="concern-search-count">15 bundles</span>
+    <span class="concern-search-hints">
+      <span class="hint-label">Try:</span>
+      <button class="concern-search-hint" data-hint="sleep" type="button">sleep</button>
+      <button class="concern-search-hint" data-hint="anti-aging" type="button">anti-aging</button>
+      <button class="concern-search-hint" data-hint="ashwagandha" type="button">ashwagandha</button>
+      <button class="concern-search-hint" data-hint="gut" type="button">gut</button>
+      <button class="concern-search-hint" data-hint="collagen" type="button">collagen</button>
+    </span>
+    <button class="concern-filter-toggle" id="concern-filter-toggle" type="button" aria-expanded="false" aria-controls="concern-filter-panel">
+      <span class="toggle-text">Filters</span>
+      <span class="toggle-badge" id="concern-filter-badge" hidden>0</span>
+      <span class="toggle-arrow">▾</span>
     </button>
-    <button class="shop-tab" data-view="goal">
-      <span class="shop-tab-label">Wellness <em>Goals</em></span>
-      <span class="shop-tab-count">9 bundles</span>
-    </button>
+  </div>
+
+  <!-- COLLAPSIBLE FILTER PANEL -->
+  <div class="concern-filter-panel" id="concern-filter-panel" hidden>
+    <div class="filter-panel-inner">
+
+      <div class="filter-group" data-group="focus">
+        <div class="filter-group-label">Primary Focus</div>
+        <div class="filter-group-chips">
+          <button class="filter-chip" data-group="focus" data-value="skin" type="button"><span class="chip-dot sage"></span>Skin Focus</button>
+          <button class="filter-chip" data-group="focus" data-value="goal" type="button"><span class="chip-dot gold"></span>Wellness Focus</button>
+        </div>
+      </div>
+
+      <div class="filter-group" data-group="effect">
+        <div class="filter-group-label">Effect &amp; Benefit</div>
+        <div class="filter-group-chips">
+          <button class="filter-chip" data-group="effect" data-value="anti-aging" type="button">Anti-Aging</button>
+          <button class="filter-chip" data-group="effect" data-value="brightening" type="button">Brightening</button>
+          <button class="filter-chip" data-group="effect" data-value="hydrating" type="button">Hydrating</button>
+          <button class="filter-chip" data-group="effect" data-value="calming" type="button">Calming · Sleep</button>
+          <button class="filter-chip" data-group="effect" data-value="energizing" type="button">Energizing</button>
+          <button class="filter-chip" data-group="effect" data-value="pore-refining" type="button">Pore-Refining</button>
+          <button class="filter-chip" data-group="effect" data-value="anti-inflammatory" type="button">Anti-Inflammatory</button>
+          <button class="filter-chip" data-group="effect" data-value="recovery" type="button">Recovery · Strength</button>
+        </div>
+      </div>
+
+      <div class="filter-group" data-group="lifestyle">
+        <div class="filter-group-label">Lifestyle</div>
+        <div class="filter-group-chips">
+          <button class="filter-chip" data-group="lifestyle" data-value="active" type="button">Active · Athletes</button>
+          <button class="filter-chip" data-group="lifestyle" data-value="busy-pro" type="button">Busy Professional</button>
+          <button class="filter-chip" data-group="lifestyle" data-value="parent" type="button">Parents · Moms</button>
+          <button class="filter-chip" data-group="lifestyle" data-value="anti-aging" type="button">Anti-Aging Focused</button>
+          <button class="filter-chip" data-group="lifestyle" data-value="sensitive" type="button">Sensitive Type</button>
+          <button class="filter-chip" data-group="lifestyle" data-value="beauty" type="button">Beauty-Forward</button>
+          <button class="filter-chip" data-group="lifestyle" data-value="beginner" type="button">Wellness Beginner</button>
+        </div>
+      </div>
+
+      <div class="filter-group" data-group="ingredient">
+        <div class="filter-group-label">Key Ingredient</div>
+        <div class="filter-group-chips">
+          <button class="filter-chip" data-group="ingredient" data-value="retinol" type="button">Retinol</button>
+          <button class="filter-chip" data-group="ingredient" data-value="vitamin-c" type="button">Vitamin C</button>
+          <button class="filter-chip" data-group="ingredient" data-value="hyaluronic-acid" type="button">Hyaluronic Acid</button>
+          <button class="filter-chip" data-group="ingredient" data-value="niacinamide" type="button">Niacinamide</button>
+          <button class="filter-chip" data-group="ingredient" data-value="salicylic-acid" type="button">Salicylic Acid</button>
+          <button class="filter-chip" data-group="ingredient" data-value="peptides" type="button">Peptides</button>
+          <button class="filter-chip" data-group="ingredient" data-value="bovine-collagen" type="button">Collagen</button>
+          <button class="filter-chip" data-group="ingredient" data-value="ashwagandha" type="button">Ashwagandha</button>
+          <button class="filter-chip" data-group="ingredient" data-value="magnesium-glycinate" type="button">Magnesium</button>
+          <button class="filter-chip" data-group="ingredient" data-value="omega-3" type="button">Omega-3</button>
+          <button class="filter-chip" data-group="ingredient" data-value="probiotics" type="button">Probiotics</button>
+          <button class="filter-chip" data-group="ingredient" data-value="nad-plus" type="button">NAD+</button>
+          <button class="filter-chip" data-group="ingredient" data-value="coq10" type="button">CoQ10</button>
+          <button class="filter-chip" data-group="ingredient" data-value="curcumin" type="button">Curcumin</button>
+          <button class="filter-chip" data-group="ingredient" data-value="creatine" type="button">Creatine</button>
+        </div>
+      </div>
+
+      <div class="filter-group" data-group="price">
+        <div class="filter-group-label">Price Range</div>
+        <div class="filter-group-chips">
+          <button class="filter-chip" data-group="price" data-value="under-100" type="button">Under $100</button>
+          <button class="filter-chip" data-group="price" data-value="100-150" type="button">$100–150</button>
+          <button class="filter-chip" data-group="price" data-value="150-200" type="button">$150–200</button>
+          <button class="filter-chip" data-group="price" data-value="over-200" type="button">$200+</button>
+        </div>
+      </div>
+
+      <div class="filter-panel-footer">
+        <button class="filter-clear-all" id="filter-clear-all" type="button">Clear all filters</button>
+      </div>
+
+    </div>
   </div>
 </div>
 
 <div class="shop-content">
-  <div class="concern-grid" id="skin-grid"></div>
-  <div class="concern-grid" id="goal-grid" style="display: none;"></div>
-</div>
-
-<!-- ═══ CONCERN DIRECTORY — Quick Index at end as reference ═══ -->
-<section class="directory-section">
-  <div class="directory-eyebrow">Quick Index · All 15 Bundles</div>
-  <h2 class="directory-headline">Every <em>bundle</em>, every <em>concern</em>.</h2>
-  <p class="directory-sub">Jump to any bundle above — or browse the full list below.</p>
-
-  <div class="directory-grid">
-    <div class="directory-col">
-      <div class="directory-col-title"><em>Skin</em> Concerns <span class="directory-col-count">· 6 bundles</span></div>
-      <p class="directory-col-blurb">What shows on the surface — paired with the supplements that drive results from inside.</p>
-      <ol class="directory-list" id="directory-skin"></ol>
-    </div>
-    <div class="directory-col">
-      <div class="directory-col-title"><em>Wellness</em> Goals <span class="directory-col-count">· 9 bundles</span></div>
-      <p class="directory-col-blurb">What you feel but don't always see — paired with the skincare that shows the result on the surface.</p>
-      <ol class="directory-list" id="directory-goal"></ol>
-    </div>
+  <div class="concern-grid" id="concern-grid"></div>
+  <div class="concern-empty" id="concern-empty" hidden>
+    <div class="empty-eyebrow">No bundles match</div>
+    <h3 class="empty-title">Nothing for <em><span id="empty-query"></span></em>.</h3>
+    <p class="empty-sub">Try a shorter term, or one of the suggestions below.</p>
+    <button class="empty-reset" id="empty-reset" type="button">Show all 15 bundles →</button>
   </div>
-</section>
+</div>
 
 <footer>
   <div class="footer-newsletter">
@@ -917,6 +1099,7 @@
 
 <script src="data/products.js?v=4"></script>
 <script src="data/bundle-details.js?v=1"></script>
+<script src="data/ingredients.js?v=1"></script>
 <script src="js/shared.js?v=4"></script>
 <script src="js/bundle-expand.js"></script>
 <script>
@@ -941,61 +1124,75 @@ function renderConcernCard(bundle) {
     <div class="concern-card" data-bundle-id="${bundle.id}" data-product-slugs="${bundle.slugs.join(',')}" data-bundle-name="${bundle.name}">
       <div class="concern-savings-ribbon">Save ${discountPct}%</div>
 
-      <div class="concern-header">
-        <div class="concern-name">${formattedName}</div>
-        <div class="concern-mix">
-          ${skinCount > 0 ? `<span class="concern-mix-pill skin"><span class="dot"></span>${skinCount} Skincare</span>` : ''}
-          ${suppCount > 0 ? `<span class="concern-mix-pill supp"><span class="dot"></span>${suppCount} Supplement${suppCount > 1 ? 's' : ''}</span>` : ''}
-        </div>
-        <div class="concern-blurb">${bundle.blurb}</div>
-      </div>
-
-      <div class="concern-products ${colsClass}">
-        ${products.map((p, i) => `
-          <div class="concern-product" data-idx="${i}" title="The House ${p.name} — click to preview">
-            <div class="concern-product-img is-${p.category}">
-              <img src="${p.image}" alt="${p.name}" loading="lazy"/>
+      <div class="concern-card-img-side">
+        <div class="concern-products ${colsClass}">
+          ${products.map((p, i) => `
+            <div class="concern-product" data-idx="${i}" title="The House ${p.name} — click to preview">
+              <div class="concern-product-img is-${p.category}">
+                <img src="${p.image}" alt="${p.name}" loading="lazy"/>
+              </div>
+              <div class="concern-product-name">The House <em>${p.name}</em></div>
+              <div class="concern-product-tag">${p.tag.split('·')[0].trim()}</div>
+              <div class="concern-product-price">$${p.price.toFixed(0)}</div>
             </div>
-            <div class="concern-product-name">The House <em>${p.name}</em></div>
-            <div class="concern-product-tag">${p.tag.split('·')[0].trim()}</div>
-            <div class="concern-product-price">$${p.price.toFixed(0)}</div>
-          </div>
-        `).join('')}
-      </div>
-
-      <div class="concern-pricing">
-        <div class="concern-price-stack">
-          <div class="concern-price-line">
-            <span class="concern-price-was">$${fullPrice.toFixed(2)}</span>
-            <span class="concern-price-now">$${discountedPrice.toFixed(2)}</span>
-          </div>
-          <div class="concern-savings">Save $${savings.toFixed(2)} as a bundle</div>
+          `).join('')}
         </div>
-        <div class="concern-count">${productCount}<span>products</span></div>
       </div>
 
-      <div class="bundle-subscribe-toggle concern-subscribe-toggle" data-bundle-id="${bundle.id}" data-toggle>
-        <button type="button" data-mode="once" class="active">
-          <div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">One-Time</span></div>
-          <span class="toggle-meta">Single delivery</span>
-        </button>
-        <button type="button" data-mode="subscribe">
-          <div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">Monthly</span></div>
-          <span class="toggle-meta">Cancel anytime</span>
-        </button>
-      </div>
+      <div class="concern-card-content-side">
+        <div class="concern-header">
+          <div class="concern-name">${formattedName}</div>
+          <div class="concern-mix">
+            ${skinCount > 0 ? `<span class="concern-mix-pill skin"><span class="dot"></span>${skinCount} Skincare</span>` : ''}
+            ${suppCount > 0 ? `<span class="concern-mix-pill supp"><span class="dot"></span>${suppCount} Supplement${suppCount > 1 ? 's' : ''}</span>` : ''}
+          </div>
+          <div class="concern-blurb">${bundle.blurb}</div>
+        </div>
 
-      <div class="concern-actions">
-        <button class="concern-btn secondary" data-action="preview">Preview Bundle →</button>
-        <button class="concern-btn primary" data-action="add" data-bundle-add="${bundle.id}">Add Bundle to Cart →</button>
+        <div class="concern-pricing">
+          <div class="concern-price-stack">
+            <div class="concern-price-line">
+              <span class="concern-price-was">$${fullPrice.toFixed(2)}</span>
+              <span class="concern-price-now">$${discountedPrice.toFixed(2)}</span>
+            </div>
+            <div class="concern-savings">Save $${savings.toFixed(2)} as a bundle</div>
+          </div>
+          <div class="concern-count">${productCount}<span>products</span></div>
+        </div>
+
+        <div class="bundle-subscribe-toggle concern-subscribe-toggle" data-bundle-id="${bundle.id}" data-toggle>
+          <button type="button" data-mode="once" class="active">
+            <div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">One-Time</span></div>
+            <span class="toggle-meta">Single delivery</span>
+          </button>
+          <button type="button" data-mode="subscribe">
+            <div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">Monthly</span></div>
+            <span class="toggle-meta">Cancel anytime</span>
+          </button>
+        </div>
+
+        <div class="concern-actions">
+          <button class="concern-btn secondary" data-action="preview">Preview Bundle →</button>
+          <button class="concern-btn primary" data-action="add" data-bundle-add="${bundle.id}">Add Bundle to Cart →</button>
+        </div>
       </div>
     </div>
   `;
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  const skinGrid = document.getElementById('skin-grid');
-  const goalGrid = document.getElementById('goal-grid');
+  const grid = document.getElementById('concern-grid');
+  const emptyEl = document.getElementById('concern-empty');
+  const emptyQueryEl = document.getElementById('empty-query');
+  const emptyResetBtn = document.getElementById('empty-reset');
+  const searchInput = document.getElementById('concern-search-input');
+  const searchClear = document.getElementById('concern-search-clear');
+  const searchCount = document.getElementById('concern-search-count');
+  const hintBtns = document.querySelectorAll('.concern-search-hint');
+  const filterToggle = document.getElementById('concern-filter-toggle');
+  const filterPanel = document.getElementById('concern-filter-panel');
+  const filterBadge = document.getElementById('concern-filter-badge');
+  const filterClearAll = document.getElementById('filter-clear-all');
 
   // Defensive: surface a clear error if the data didn't load (cache issue, missing file, etc.)
   if (!window.CONCERN_BUNDLES || !window.CONCERN_BUNDLES.length || !window.getConcernBundlePricing) {
@@ -1006,71 +1203,283 @@ document.addEventListener('DOMContentLoaded', () => {
         <div style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold);">If this keeps happening, clear site data for this domain.</div>
       </div>
     `;
-    if (skinGrid) skinGrid.innerHTML = errMsg;
+    if (grid) grid.innerHTML = errMsg;
     console.error('[shop.html] CONCERN_BUNDLES not loaded. Check that data/products.js loaded successfully.');
     return;
   }
 
-  const skinBundles = window.CONCERN_BUNDLES.filter(b => b.tab === 'skin');
-  const goalBundles = window.CONCERN_BUNDLES.filter(b => b.tab === 'goal');
+  const total = window.CONCERN_BUNDLES.length;
+  console.log(`[shop.html] Rendering ${total} concern bundles in unified grid.`);
 
-  console.log(`[shop.html] Rendering ${skinBundles.length} skin + ${goalBundles.length} wellness bundles.`);
+  // ═══ RENDER ALL BUNDLES INTO ONE GRID ═══
+  grid.innerHTML = window.CONCERN_BUNDLES.map(renderConcernCard).join('');
 
-  skinGrid.innerHTML = skinBundles.map(renderConcernCard).join('');
-  goalGrid.innerHTML = goalBundles.map(renderConcernCard).join('');
+  // ═══ BUILD PER-CARD METADATA MARKERS FOR FILTERING ═══
+  // Each card gets a haystack containing:
+  //   - All searchable text (bundle name, blurb, product names, ingredient names)
+  //   - Filter markers like __focus-skin__, __mix-balanced__, __price-100-150__,
+  //     __effect-brightening__, __ing-retinol__, etc.
+  // Combined haystack-includes-marker matching gives O(1) per filter check.
 
-  // ═══ Directory list (skin vs wellness) ═══
-  function renderDirectoryItem(bundle, idx) {
+  // Keywords that trigger each effect marker — checked against haystack text
+  const EFFECT_KEYWORDS = {
+    'anti-aging': ['anti-aging', 'aging', 'firming', 'retinol', 'peptide', 'longevity', 'cellular', 'collagen'],
+    'brightening': ['brightening', 'vitamin c', 'glow', 'dullness', 'radiance', 'beauty', 'luminous'],
+    'hydrating': ['hydrating', 'hyaluronic', 'moisturizing', 'dryness', 'hydration', 'ceramide'],
+    'calming': ['calming', 'soothing', 'stress', 'sleep', 'sensitive', 'sensitivity', 'ashwagandha', 'magnesium', 'tranquil'],
+    'energizing': ['energy', 'energizing', 'thermogenic', 'caffeine', 'coq10', 'b-complex'],
+    'pore-refining': ['pores', 'pore', 'acne', 'clear', 'salicylic', 'sebum'],
+    'anti-inflammatory': ['anti-inflammatory', 'inflammation', 'joint', 'curcumin', 'omega'],
+    'recovery': ['recovery', 'repair', 'restore', 'gut', 'muscle', 'strength', 'training']
+  };
+
+  // Lifestyle persona map — manually curated since "who is this for" requires
+  // editorial judgment rather than keyword matching. Each bundle is tagged with
+  // the lifestyles it best serves; multiple bundles can serve the same lifestyle.
+  const LIFESTYLE_MAP = {
+    // SKIN-focused bundles
+    'aging':       ['anti-aging', 'beauty'],
+    'acne':        ['beauty', 'beginner', 'sensitive'],
+    'dryness':     ['sensitive', 'beauty', 'beginner'],
+    'dullness':    ['beauty', 'busy-pro'],
+    'sensitivity': ['sensitive', 'parent', 'beginner'],
+    'pores':       ['beauty', 'beginner'],
+    // WELLNESS-focused bundles
+    'sleep':       ['parent', 'busy-pro', 'beginner'],
+    'energy':      ['busy-pro', 'parent', 'beginner', 'active'],
+    'focus':       ['busy-pro', 'active'],
+    'stress':      ['busy-pro', 'parent', 'sensitive'],
+    'strength':    ['active'],
+    'beauty':      ['beauty', 'anti-aging'],
+    'longevity':   ['anti-aging', 'busy-pro'],
+    'gut':         ['beginner', 'busy-pro', 'sensitive'],
+    'joints':      ['active', 'anti-aging']
+  };
+
+  document.querySelectorAll('.concern-card').forEach(card => {
+    const bundle = window.CONCERN_BUNDLES.find(b => b.id === card.dataset.bundleId);
+    if (!bundle) return;
+    const products = bundle.slugs.map(s => window.getProductBySlug(s)).filter(Boolean);
     const pricing = window.getConcernBundlePricing(bundle.id);
-    if (!pricing) return '';
-    const num = String(idx + 1).padStart(2, '0');
-    const productCount = bundle.slugs.length;
-    const nameMatch = bundle.name.match(/^The (.+) Bundle$/);
-    const meaningfulWord = nameMatch ? nameMatch[1] : bundle.name.split(' ')[0];
-    const formattedName = nameMatch ? `The <em>${meaningfulWord}</em> Bundle` : bundle.name;
-    return `
-      <li>
-        <button class="directory-link" data-bundle-id="${bundle.id}" data-tab="${bundle.tab}">
-          <span class="directory-num">${num}</span>
-          <span class="directory-name">
-            <span class="directory-name-text">${formattedName}</span>
-            <span class="directory-meta">${productCount} products · bundled</span>
-          </span>
-          <span class="directory-savings">Save ${pricing.savings.toFixed(0)} →</span>
-        </button>
-      </li>
-    `;
+    if (!pricing) return;
+
+    // Searchable text: name, blurb, product names, tags, ingredient names
+    const textParts = [bundle.name, bundle.blurb || '', bundle.id, bundle.tab];
+    products.forEach(p => {
+      textParts.push(p.name, p.tag || '');
+      (p.ingredients || []).forEach(ing => textParts.push(ing.name || ''));
+    });
+    const searchText = textParts.join(' ').toLowerCase();
+
+    // Filter markers
+    const markers = [];
+
+    // Focus (was tab)
+    markers.push(`__focus-${bundle.tab}__`);
+
+    // Price (discounted bundle price)
+    const p = pricing.discountedPrice;
+    if (p < 100) markers.push('__price-under-100__');
+    else if (p < 150) markers.push('__price-100-150__');
+    else if (p < 200) markers.push('__price-150-200__');
+    else markers.push('__price-over-200__');
+
+    // Effects — check the search text against keyword variants
+    Object.entries(EFFECT_KEYWORDS).forEach(([effect, keywords]) => {
+      if (keywords.some(k => searchText.includes(k))) {
+        markers.push(`__effect-${effect}__`);
+      }
+    });
+
+    // Lifestyle — pull from the LIFESTYLE_MAP (editorial mapping per bundle id)
+    const lifestyles = LIFESTYLE_MAP[bundle.id] || [];
+    lifestyles.forEach(l => markers.push(`__lifestyle-${l}__`));
+
+    // Ingredients — leverage the same glossary auto-linking matcher used on product.html
+    // Match each product ingredient name against window.INGREDIENTS aliases.
+    // Generic words like 'vitamin' are excluded as standalone aliases (they would
+    // over-match — e.g. biotin's alt "Vitamin B7" makes "Vitamin" a generic single
+    // word that would incorrectly match every Vitamin-containing ingredient).
+    const GENERIC_INGREDIENT_WORDS = new Set([
+      'vitamin','extract','acid','complex','blend','powder','marine','active',
+      'natural','organic','derived','strain','capsule','chelate','monnieri'
+    ]);
+    const INGREDIENT_GLOSSARY = (window.INGREDIENTS || []);
+    const matchedIngSlugs = new Set();
+    if (INGREDIENT_GLOSSARY.length) {
+      products.forEach(prod => {
+        (prod.ingredients || []).forEach(ing => {
+          const ingName = (ing.name || '').toLowerCase().replace(/[^a-z0-9'+-]+/g, ' ');
+          INGREDIENT_GLOSSARY.forEach(g => {
+            // Build alias list: full name + alt entries + significant words ≥6 chars
+            const aliases = [g.name];
+            if (g.alt) g.alt.split(',').forEach(a => aliases.push(a.trim()));
+            [g.name, g.alt || ''].forEach(s => s.split(/[^A-Za-z0-9'+-]+/).forEach(w => {
+              if (w.length >= 6 && !GENERIC_INGREDIENT_WORDS.has(w.toLowerCase())) {
+                aliases.push(w);
+              }
+            }));
+            for (const alias of aliases) {
+              const a = alias.toLowerCase().replace(/[^a-z0-9'+-]+/g, ' ').trim();
+              if (a.length < 4) continue;
+              if ((' ' + ingName + ' ').includes(' ' + a + ' ')) {
+                matchedIngSlugs.add(g.slug);
+                break;
+              }
+            }
+          });
+        });
+      });
+    }
+    matchedIngSlugs.forEach(slug => markers.push(`__ing-${slug}__`));
+
+    card.dataset.haystack = searchText + ' ' + markers.join(' ');
+  });
+
+  // ═══ FILTER STATE ═══
+  // activeFilters[group] = Set of selected values
+  const activeFilters = {
+    focus: new Set(),
+    price: new Set(),
+    effect: new Set(),
+    lifestyle: new Set(),
+    ingredient: new Set()
+  };
+
+  function totalActiveFilters() {
+    return Object.values(activeFilters).reduce((sum, s) => sum + s.size, 0);
   }
-  document.getElementById('directory-skin').innerHTML = skinBundles.map(renderDirectoryItem).join('');
-  document.getElementById('directory-goal').innerHTML = goalBundles.map(renderDirectoryItem).join('');
 
-  // Click handler: switch to correct tab, scroll to card, flash highlight
-  document.querySelectorAll('.directory-link').forEach(link => {
-    link.addEventListener('click', () => {
-      const bundleId = link.dataset.bundleId;
-      const targetTab = link.dataset.tab;
+  // ═══ APPLY ALL FILTERS (search + chips) ═══
+  function applyFilter() {
+    const rawQuery = searchInput.value || '';
+    const q = rawQuery.trim().toLowerCase();
+    let visible = 0;
 
-      // Switch to the right tab if needed
-      const tabBtn = document.querySelector(`.shop-tab[data-view="${targetTab}"]`);
-      if (tabBtn && !tabBtn.classList.contains('active')) tabBtn.click();
+    document.querySelectorAll('.concern-card').forEach(card => {
+      const haystack = card.dataset.haystack || '';
 
-      // Scroll to and flash the matching card after a brief delay (let the tab switch finish)
-      setTimeout(() => {
-        const card = document.querySelector(`.concern-card[data-bundle-id="${bundleId}"]`);
-        if (!card) return;
-        const headerOffset = 110; // fixed header height with breathing room
-        const top = card.getBoundingClientRect().top + window.scrollY - headerOffset;
-        window.scrollTo({ top, behavior: 'smooth' });
-        card.classList.remove('flash-highlight');
-        // Reflow trick to retrigger the animation if clicked rapidly
-        void card.offsetWidth;
-        card.classList.add('flash-highlight');
-        setTimeout(() => card.classList.remove('flash-highlight'), 1500);
-      }, 80);
+      // Text search check
+      if (q && !haystack.includes(q)) {
+        card.classList.add('is-hidden');
+        return;
+      }
+
+      // Chip filter check — AND across groups, OR within group
+      let allGroupsPass = true;
+      Object.entries(activeFilters).forEach(([group, values]) => {
+        if (!values.size) return;
+        const groupPasses = Array.from(values).some(v => haystack.includes(`__${group}-${v}__`));
+        if (!groupPasses) allGroupsPass = false;
+      });
+
+      if (allGroupsPass) {
+        card.classList.remove('is-hidden');
+        visible++;
+      } else {
+        card.classList.add('is-hidden');
+      }
+    });
+
+    // Update count display
+    const activeCount = totalActiveFilters();
+    const hasAnyFilter = q.length > 0 || activeCount > 0;
+    if (!hasAnyFilter) {
+      searchCount.textContent = `${total} bundles`;
+    } else if (visible === 0) {
+      searchCount.textContent = `0 of ${total}`;
+    } else if (visible === total) {
+      searchCount.textContent = `${total} bundles`;
+    } else {
+      searchCount.textContent = `${visible} of ${total} bundles`;
+    }
+
+    // Toggle empty state
+    if (hasAnyFilter && visible === 0) {
+      emptyEl.hidden = false;
+      grid.style.display = 'none';
+      if (emptyQueryEl) emptyQueryEl.textContent = q || 'these filters';
+    } else {
+      emptyEl.hidden = true;
+      grid.style.display = '';
+    }
+
+    // Show/hide search clear button
+    searchClear.classList.toggle('is-visible', q.length > 0);
+
+    // Update filter toggle badge
+    if (activeCount > 0) {
+      filterBadge.hidden = false;
+      filterBadge.textContent = activeCount;
+    } else {
+      filterBadge.hidden = true;
+    }
+
+    // Update clear-all enabled state
+    if (filterClearAll) {
+      filterClearAll.disabled = activeCount === 0;
+    }
+  }
+
+  // ═══ SEARCH BAR EVENTS ═══
+  searchInput.addEventListener('input', applyFilter);
+  searchClear.addEventListener('click', () => {
+    searchInput.value = '';
+    searchInput.focus();
+    applyFilter();
+  });
+  hintBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      searchInput.value = btn.dataset.hint;
+      applyFilter();
+      searchInput.focus();
+    });
+  });
+  if (emptyResetBtn) {
+    emptyResetBtn.addEventListener('click', () => {
+      // Clear EVERYTHING (search text + all chip filters)
+      searchInput.value = '';
+      Object.values(activeFilters).forEach(set => set.clear());
+      document.querySelectorAll('.filter-chip.is-active').forEach(c => c.classList.remove('is-active'));
+      applyFilter();
+      searchInput.focus();
+    });
+  }
+
+  // ═══ FILTER PANEL TOGGLE ═══
+  filterToggle.addEventListener('click', () => {
+    const isOpen = filterPanel.hidden === false;
+    filterPanel.hidden = isOpen;
+    filterToggle.setAttribute('aria-expanded', !isOpen);
+  });
+
+  // ═══ FILTER CHIPS ═══
+  document.querySelectorAll('.filter-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      const group = chip.dataset.group;
+      const value = chip.dataset.value;
+      if (!group || !value || !activeFilters[group]) return;
+      if (activeFilters[group].has(value)) {
+        activeFilters[group].delete(value);
+        chip.classList.remove('is-active');
+      } else {
+        activeFilters[group].add(value);
+        chip.classList.add('is-active');
+      }
+      applyFilter();
     });
   });
 
-  // Wire up clicks on each card's products + buttons
+  // Clear all filters
+  if (filterClearAll) {
+    filterClearAll.addEventListener('click', () => {
+      Object.values(activeFilters).forEach(set => set.clear());
+      document.querySelectorAll('.filter-chip.is-active').forEach(c => c.classList.remove('is-active'));
+      applyFilter();
+    });
+  }
+
+  // ═══ WIRE UP CARD INTERACTIONS (subscribe toggle, preview, add) ═══
   document.querySelectorAll('.concern-card').forEach(card => {
     const slugs = card.dataset.productSlugs.split(',');
     const bundleName = card.dataset.bundleName;
@@ -1078,7 +1487,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const bundleDiscount = (bundle && typeof bundle.discount === 'number') ? bundle.discount : 0.07;
     const SUB_BONUS = 0.10;
 
-    // Subscribe toggle — now actually drives the +10% subscription bonus
+    // Subscribe toggle — drives the +10% subscription bonus
     const toggle = card.querySelector('[data-toggle]');
     let subscribed = false;
     const isSubscribe = () => subscribed;
@@ -1142,16 +1551,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Tab switcher
-  document.querySelectorAll('.shop-tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      document.querySelectorAll('.shop-tab').forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-      const view = tab.dataset.view;
-      skinGrid.style.display = view === 'skin' ? 'grid' : 'none';
-      goalGrid.style.display = view === 'goal' ? 'grid' : 'none';
-    });
-  });
+  // Initial render of count
+  applyFilter();
 });
 </script>
 </body>
