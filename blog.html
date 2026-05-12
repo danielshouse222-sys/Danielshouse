@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Field Notes — Daniel's House</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="css/shared.css">
+<style>
+  body { background: var(--cream); color: var(--ink); font-family: 'Poppins', sans-serif; margin: 0; }
+
+  /* HERO */
+  .blog-hero {
+    text-align: center;
+    padding: 110px 40px 80px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .blog-eyebrow {
+    font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--gold); font-weight: 500; margin-bottom: 20px;
+  }
+  .blog-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 7vw, 84px);
+    font-weight: 400; line-height: 0.95;
+    margin-bottom: 22px;
+  }
+  .blog-title em { font-style: italic; color: var(--sage); }
+  .blog-tagline {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: clamp(18px, 2.3vw, 26px);
+    color: var(--ink-soft);
+    max-width: 720px; margin: 0 auto;
+  }
+
+  /* COMING SOON BANNER */
+  .blog-banner {
+    max-width: 980px;
+    margin: 60px auto 0;
+    padding: 0 40px;
+  }
+  .blog-banner-inner {
+    background: var(--cream-warm);
+    border: 1px solid var(--gold);
+    padding: 44px 56px;
+    text-align: center;
+    position: relative;
+  }
+  .blog-banner-inner::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px; background: var(--gold);
+  }
+  .blog-banner-stamp {
+    display: inline-block;
+    font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase;
+    color: var(--gold); font-weight: 600;
+    padding: 8px 16px; border: 1px solid var(--gold);
+    margin-bottom: 18px;
+  }
+  .blog-banner-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 3.6vw, 38px);
+    font-weight: 400; line-height: 1.15;
+    margin-bottom: 12px;
+  }
+  .blog-banner-title em { font-style: italic; color: var(--sage); }
+  .blog-banner-body {
+    font-size: 15px; line-height: 1.75; color: var(--ink-soft);
+    max-width: 620px; margin: 0 auto;
+  }
+  .blog-banner-body strong { color: var(--ink); font-weight: 600; }
+
+  /* POST GRID */
+  .blog-grid-section {
+    max-width: 1200px;
+    margin: 100px auto 0;
+    padding: 0 40px;
+  }
+  .blog-grid-head {
+    text-align: center; margin-bottom: 56px;
+  }
+  .blog-grid-eyebrow {
+    font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--gold); font-weight: 500; margin-bottom: 14px;
+  }
+  .blog-grid-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 4vw, 44px);
+    font-weight: 400; line-height: 1.1;
+    margin-bottom: 12px;
+  }
+  .blog-grid-title em { font-style: italic; color: var(--sage); }
+  .blog-grid-sub {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    color: var(--ink-soft);
+    font-size: 17px;
+    max-width: 600px; margin: 0 auto;
+  }
+
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+
+  .blog-card {
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    padding: 40px 32px;
+    position: relative;
+    transition: border-color 0.3s, transform 0.3s;
+    cursor: default;
+    opacity: 0.92;
+  }
+  .blog-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-2px);
+  }
+  .blog-card-status {
+    display: inline-block;
+    font-size: 9.5px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--gold); font-weight: 600;
+    padding: 5px 12px; border: 1px solid var(--gold);
+    margin-bottom: 22px;
+  }
+  .blog-card-cat {
+    font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--sage); font-weight: 500; margin-bottom: 14px;
+  }
+  .blog-card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px; font-weight: 500; line-height: 1.18;
+    margin-bottom: 14px;
+    color: var(--ink);
+  }
+  .blog-card-title em { font-style: italic; color: var(--sage); }
+  .blog-card-excerpt {
+    font-size: 14.5px; line-height: 1.7; color: var(--ink-soft);
+    margin-bottom: 24px;
+  }
+  .blog-card-meta {
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold);
+    border-top: 1px solid var(--rule);
+    padding-top: 18px;
+  }
+  .blog-card-meta span + span::before {
+    content: ' · '; margin: 0 4px; color: var(--rule);
+  }
+
+  /* NEWSLETTER PUSH */
+  .blog-news {
+    background: var(--ink); color: var(--cream);
+    margin: 120px 0 0;
+    padding: 80px 40px;
+    text-align: center;
+  }
+  .blog-news-eyebrow {
+    font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--gold); font-weight: 500; margin-bottom: 16px;
+  }
+  .blog-news-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 400; line-height: 1.05;
+    margin-bottom: 18px;
+  }
+  .blog-news-title em { font-style: italic; color: var(--gold); }
+  .blog-news-body {
+    color: var(--cream); opacity: 0.78;
+    font-size: 15.5px; line-height: 1.75;
+    max-width: 600px; margin: 0 auto 28px;
+  }
+  .blog-news-form {
+    display: flex; gap: 8px; max-width: 480px;
+    margin: 0 auto;
+  }
+  .blog-news-form input {
+    flex: 1;
+    padding: 16px 20px;
+    background: transparent;
+    border: 1px solid rgba(250,246,240,0.3);
+    color: var(--cream);
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+  }
+  .blog-news-form input::placeholder { color: rgba(250,246,240,0.5); }
+  .blog-news-form button {
+    padding: 16px 28px;
+    background: var(--gold); color: var(--ink); border: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  .blog-news-form button:hover { background: var(--cream); }
+
+  @media (max-width: 980px) {
+    .blog-grid { grid-template-columns: 1fr; gap: 22px; }
+  }
+  @media (max-width: 800px) {
+    .blog-hero { padding: 80px 22px 56px; }
+    .blog-banner { padding: 0 22px; margin-top: 44px; }
+    .blog-banner-inner { padding: 36px 28px; }
+    .blog-grid-section { padding: 0 22px; margin-top: 80px; }
+    .blog-news { padding: 60px 22px; margin-top: 80px; }
+    .blog-news-form { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<div class="shipping-bar">
+  <div class="shipping-bar-progress"></div>
+  <div class="shipping-bar-inner">
+    <div class="shipping-bar-text">Free shipping on orders over <strong>$75</strong></div>
+    <div class="shipping-bar-divider"></div>
+    <span class="shipping-bar-pill">30-Day Returns</span>
+    <div class="shipping-bar-divider"></div>
+    <span class="shipping-bar-pill">Cruelty-Free · Non-GMO</span>
+    <div class="shipping-bar-divider"></div>
+    <span class="shipping-bar-pill">Made in N.A.</span>
+  </div>
+</div>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Daniel<span class="amp">'s</span> House</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">Daniel's Story</a></li>
+      <li><a href="skincare.html">Skincare</a></li>
+      <li><a href="supplements.html">Supplements</a></li>
+      <li><a href="ingredients.html">Ingredients</a></li>
+      <li><a href="bundles.html">Bundles</a></li>
+      <li><a href="shop.html">Shop By Concern</a></li>
+    </ul>
+    <div style="display: flex; gap: 4px;">
+      <button class="search-trigger" aria-label="Search">Search</button>
+      <button class="cart-trigger" aria-label="Open cart">Cart <span class="cart-trigger-count">0</span></button>
+    </div>
+  </div>
+</nav>
+
+<section class="blog-hero">
+  <div class="blog-eyebrow">The House · Field Notes</div>
+  <h1 class="blog-title">Field <em>Notes.</em></h1>
+  <p class="blog-tagline">Ingredient deep-dives, routine guides, and the wellness science Daniel actually finds worth reading.</p>
+</section>
+
+<section class="blog-banner">
+  <div class="blog-banner-inner">
+    <div class="blog-banner-stamp">Launching Soon</div>
+    <h2 class="blog-banner-title">Posts roll out <em>every other week.</em></h2>
+    <p class="blog-banner-body">
+      Field Notes is the long-form companion to <strong>Letters from the House</strong>, our newsletter. The first posts are below and drop on a rolling schedule starting summer 2026. Subscribers get every post in their inbox the day it ships.
+    </p>
+  </div>
+</section>
+
+<section class="blog-grid-section">
+  <div class="blog-grid-head">
+    <div class="blog-grid-eyebrow">First six · queued up</div>
+    <h2 class="blog-grid-title">What's <em>coming first.</em></h2>
+    <p class="blog-grid-sub">The questions Daniel gets asked most — answered in full, with the research that backs them.</p>
+  </div>
+
+  <div class="blog-grid">
+
+    <article class="blog-card">
+      <span class="blog-card-status">Coming Soon</span>
+      <div class="blog-card-cat">Ingredient Science</div>
+      <h3 class="blog-card-title">Why <em>magnesium glycinate</em> beats oxide (and why most brands still sell oxide).</h3>
+      <p class="blog-card-excerpt">The same elemental magnesium with wildly different bioavailability. Why the form matters more than the milligrams, and how to read a supplement label like someone who knows the trick.</p>
+      <div class="blog-card-meta">
+        <span>10 min read</span><span>Daniel</span>
+      </div>
+    </article>
+
+    <article class="blog-card">
+      <span class="blog-card-status">Coming Soon</span>
+      <div class="blog-card-cat">Routine Building</div>
+      <h3 class="blog-card-title">How to <em>introduce retinol</em> without wrecking your skin.</h3>
+      <p class="blog-card-excerpt">A four-week protocol for starting Bounce — frequency, layering, what dryness is normal versus a barrier emergency, and what to pair it with so the upside compounds and the downside doesn't.</p>
+      <div class="blog-card-meta">
+        <span>12 min read</span><span>Daniel</span>
+      </div>
+    </article>
+
+    <article class="blog-card">
+      <span class="blog-card-status">Coming Soon</span>
+      <div class="blog-card-cat">Daniel's Routine</div>
+      <h3 class="blog-card-title">My actual <em>daily routine</em>, hour by hour.</h3>
+      <p class="blog-card-excerpt">What I take when, what I apply when, what I skip on travel days, and where the protocol bends. The honest version of "founder's daily routine" — not the Instagram version.</p>
+      <div class="blog-card-meta">
+        <span>14 min read</span><span>Daniel</span>
+      </div>
+    </article>
+
+    <article class="blog-card">
+      <span class="blog-card-status">Coming Soon</span>
+      <div class="blog-card-cat">Label Literacy</div>
+      <h3 class="blog-card-title">What "<em>clinical dose</em>" actually means (and why most labels skip it).</h3>
+      <p class="blog-card-excerpt">The gap between a marketing dose and a study dose, decoded with three real-world examples. The math behind why a $12 magnesium bottle and a $32 one aren't the same product.</p>
+      <div class="blog-card-meta">
+        <span>9 min read</span><span>Daniel</span>
+      </div>
+    </article>
+
+    <article class="blog-card">
+      <span class="blog-card-status">Coming Soon</span>
+      <div class="blog-card-cat">Skincare 101</div>
+      <h3 class="blog-card-title">The order <em>that actually matters:</em> building a skincare routine from scratch.</h3>
+      <p class="blog-card-excerpt">Thinnest to thickest, water before oil, actives at night. Three rules that cover 95% of the questions — plus the exceptions and the one mistake almost everyone makes when starting out.</p>
+      <div class="blog-card-meta">
+        <span>11 min read</span><span>Daniel</span>
+      </div>
+    </article>
+
+    <article class="blog-card">
+      <span class="blog-card-status">Coming Soon</span>
+      <div class="blog-card-cat">Compounding Effects</div>
+      <h3 class="blog-card-title">The <em>gut-skin axis:</em> what your probiotics have to do with your face.</h3>
+      <p class="blog-card-excerpt">The research linking the gut microbiome to chronic acne, eczema, and inflammation. Why a skincare-only acne protocol so often plateaus — and what to add on the inside to break through.</p>
+      <div class="blog-card-meta">
+        <span>13 min read</span><span>Daniel</span>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section class="blog-news">
+  <div class="blog-news-eyebrow">Letters from the House</div>
+  <h2 class="blog-news-title">Don't miss the <em>first one.</em></h2>
+  <p class="blog-news-body">Subscribers get every Field Notes post in their inbox the day it ships, plus first access to launches and Daniel's routine notes. Twice a month, no spam.</p>
+  <form class="blog-news-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent = '✓ Subscribed';">
+    <input type="email" placeholder="Your email" required />
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  <div class="footer-newsletter">
+    <div class="footer-newsletter-inner">
+      <div class="footer-newsletter-eyebrow">Letters from the House</div>
+      <div class="footer-newsletter-title">Get Daniel's actual <em>routine notes.</em></div>
+      <div class="footer-newsletter-blurb">First access to launches, ingredient deep-dives, and the rituals Daniel uses every week — sent twice a month, no spam.</div>
+      <form class="footer-newsletter-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent = '✓ Subscribed';">
+        <input type="email" placeholder="Your email" required />
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </div>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Daniel<span class="amp">'s</span> House</div>
+      <div class="footer-tag">Your home for premium wellness — built on real results, not marketing.</div>
+      <div class="footer-attr">
+        <span>Non-GMO</span>
+        <span>Cruelty-Free</span>
+        <span>Made in NA</span>
+      </div>
+      <a href="mailto:daniel@danielshousewellness.com" class="footer-email">daniel@danielshousewellness.com</a>
+    </div>
+    <div class="footer-col"><h4>Shop</h4><ul><li><a href="skincare.html">Skincare</a></li><li><a href="supplements.html">Supplements</a></li><li><a href="bundles.html">Bundles</a></li><li><a href="shop.html">Concern Bundles</a></li><li><a href="compare.html">Compare</a></li></ul></div>
+    <div class="footer-col"><h4>The House</h4><ul><li><a href="about.html">Daniel's Story</a></li><li><a href="ingredients.html">Ingredient Glossary</a></li><li><a href="blog.html">Blog</a></li><li><a href="reviews.html">Reviews</a></li><li><a href="quiz.html">Take the Quiz</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
+    <div class="footer-col"><h4>Help</h4><ul><li><a href="faq.html#shipping">Shipping</a></li><li><a href="faq.html#returns">Returns Policy →</a></li><li><a href="faq.html#returns">30-Day Guarantee</a></li><li><a href="faq.html">Contact</a></li></ul></div>
+  </div>
+  <div class="footer-credit">
+    <div class="footer-credit-left">© 2026 Daniel's House. Premium wellness, built on real results.</div>
+    <div class="footer-credit-right">
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="accessibility.html">Accessibility</a>
+    </div>
+  </div>
+</footer>
+
+<script src="data/products.js"></script>
+<script src="js/shared.js"></script>
+</body>
+</html>

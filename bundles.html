@@ -166,7 +166,7 @@
   .sec-blurb { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 17px; color: var(--ink-soft); max-width: 580px; margin: 0 auto; line-height: 1.55; }
 
   /* Bundle grid */
-  .bundle-grid { max-width: 1200px; margin: 60px auto 0; padding: 0 40px; display: grid; grid-template-columns: 1fr; row-gap: 320px; }
+  .bundle-grid { max-width: 1200px; margin: 60px auto 0; padding: 0 40px; display: grid; grid-template-columns: 1fr; row-gap: 240px; }
 
   .bundle-card { background: var(--cream); border: 1px solid var(--rule); padding: 0; display: grid; grid-template-columns: 1fr 1.15fr; transition: transform 0.4s, border-color 0.3s, box-shadow 0.3s; }
   .bundle-card:hover { transform: translateY(-4px); border-color: var(--gold); box-shadow: 0 12px 40px rgba(31, 27, 23, 0.06); }
@@ -223,6 +223,9 @@
     padding: 48px 48px;
     display: flex;
     flex-direction: column;
+  }
+  .concern-card-content-side .bundle-subscribe-toggle {
+    margin-top: auto;
   }
   .concern-card::before {
     content: '';
@@ -503,7 +506,7 @@
     .bundle-product-grid.cols-5 .bundle-thumb-label { width: calc(20% - 8px); }
     .bundle-body { padding: 32px 36px 36px; }
     .bundle-title { font-size: 34px; }
-    .bundle-grid { row-gap: 240px; }
+    .bundle-grid { row-gap: 160px; }
     .bundle-product-grid.cols-5 .bundle-thumb,
     .bundle-product-grid.cols-5 .bundle-thumb-label { width: calc(25% - 8px); }
 
@@ -1496,7 +1499,7 @@
         <div class="why-pillar">
           <div class="why-pillar-mark">02</div>
           <div class="why-pillar-title">Editorially Curated</div>
-          <div class="why-pillar-body">Hand-picked combinations built around real rituals — the AM routine, the workout stack, the longevity protocol, the gift for mom. Each bundle serves a moment, not a generic concern.</div>
+          <div class="why-pillar-body">Hand-picked combinations built around real rituals — the AM routine, the workout stack, the longevity protocol, the gift for a parent. Each bundle serves a moment, not a generic concern.</div>
         </div>
         <div class="why-pillar">
           <div class="why-pillar-mark">03</div>
@@ -1662,7 +1665,7 @@
           <div class="filter-group-chips">
             <button class="filter-chip" data-group="lifestyle" data-value="active" type="button">Active · Athletes</button>
             <button class="filter-chip" data-group="lifestyle" data-value="busy-pro" type="button">Busy Professional</button>
-            <button class="filter-chip" data-group="lifestyle" data-value="parent" type="button">Parents · Moms</button>
+            <button class="filter-chip" data-group="lifestyle" data-value="parent" type="button">Parents · 40s–50s</button>
             <button class="filter-chip" data-group="lifestyle" data-value="anti-aging" type="button">Anti-Aging Focused</button>
             <button class="filter-chip" data-group="lifestyle" data-value="sensitive" type="button">Sensitive Type</button>
             <button class="filter-chip" data-group="lifestyle" data-value="beauty" type="button">Beauty-Forward</button>
@@ -1852,18 +1855,18 @@
         <span>Cruelty-Free</span>
         <span>Made in NA</span>
       </div>
-      <a href="mailto:daniel@danielshouse.com" class="footer-email">daniel@danielshouse.com</a>
+      <a href="mailto:daniel@danielshousewellness.com" class="footer-email">daniel@danielshousewellness.com</a>
     </div>
-    <div class="footer-col"><h4>Shop</h4><ul><li><a href="skincare.html">Skincare</a></li><li><a href="supplements.html">Supplements</a></li><li><a href="bundles.html">Bundles</a></li><li><a href="shop.html">Concern Bundles</a></li></ul></div>
-    <div class="footer-col"><h4>The House</h4><ul><li><a href="about.html">Daniel's Story</a></li><li><a href="ingredients.html">Ingredient Glossary</a></li><li><a href="quiz.html">Take the Quiz</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
+    <div class="footer-col"><h4>Shop</h4><ul><li><a href="skincare.html">Skincare</a></li><li><a href="supplements.html">Supplements</a></li><li><a href="bundles.html">Bundles</a></li><li><a href="shop.html">Concern Bundles</a></li><li><a href="compare.html">Compare</a></li></ul></div>
+    <div class="footer-col"><h4>The House</h4><ul><li><a href="about.html">Daniel's Story</a></li><li><a href="ingredients.html">Ingredient Glossary</a></li><li><a href="blog.html">Blog</a></li><li><a href="reviews.html">Reviews</a></li><li><a href="quiz.html">Take the Quiz</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
     <div class="footer-col"><h4>Help</h4><ul><li><a href="faq.html#shipping">Shipping</a></li><li><a href="faq.html#returns">Returns Policy →</a></li><li><a href="faq.html#returns">30-Day Guarantee</a></li><li><a href="faq.html">Contact</a></li></ul></div>
   </div>
   <div class="footer-credit">
-    <div class="footer-credit-left">© 2025 Daniel's House. Premium wellness, built on real results.</div>
+    <div class="footer-credit-left">© 2026 Daniel's House. Premium wellness, built on real results.</div>
     <div class="footer-credit-right">
-      <a href="faq.html">Privacy</a>
-      <a href="faq.html">Terms</a>
-      <a href="faq.html">Accessibility</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="accessibility.html">Accessibility</a>
     </div>
   </div>
 </footer>
@@ -2169,6 +2172,7 @@
   // edge-case formats — handle each explicitly.
   function formatName(bundle) {
     if (bundle.id === 'daniels-daily') return `Daniel's <em>Daily</em> Bundle`;
+    if (bundle.id === 'moms') return `The <em>Mom's</em> Bundle`;
     if (bundle.id === 'arianas') return `The <em>Ariana's</em> Bundle`;
     const m = bundle.name.match(/^The (.+) Bundle$/);
     if (m) return `The <em>${m[1]}</em> Bundle`;
