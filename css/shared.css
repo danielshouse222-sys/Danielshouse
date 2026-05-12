@@ -1703,7 +1703,61 @@ body.has-page-filter-modal {
   .cadence-note { font-size: 13px; }
 }
 
-/* ═══ BUNDLE FOOTNOTE ═══ */
+/* ═══ SMART REFILL ANNUAL SAVINGS TEASER ═══ */
+/* Editorial line above the subscribe toggle that telegraphs how much customers
+   save per year by picking Smart Refill. Hidden when savings are $0 (all-monthly bundles). */
+.smart-savings-teaser {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 14px 0 14px;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--ink-soft);
+  line-height: 1.2;
+}
+.smart-savings-teaser .smart-rule {
+  flex: 1;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.32;
+  max-width: 56px;
+}
+.smart-savings-teaser .smart-savings-text strong {
+  color: var(--gold);
+  font-family: 'Cormorant Garamond', serif;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.smart-savings-teaser .smart-savings-text .smart-prefix {
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-right: 8px;
+  padding: 2.5px 7px 2px;
+  background: rgba(184, 153, 104, 0.10);
+  border-radius: 2px;
+  vertical-align: 2px;
+}
+@media (max-width: 480px) {
+  .smart-savings-teaser { font-size: 13px; gap: 8px; margin: 12px 0; }
+  .smart-savings-teaser .smart-rule { max-width: 32px; }
+  .smart-savings-teaser .smart-savings-text .smart-prefix {
+    font-size: 8px;
+    letter-spacing: 0.18em;
+    padding: 2px 5px 1.5px;
+    margin-right: 6px;
+  }
+}
+
+
 /* Polished "save with the bundle" callout — name, pricing row, subscribe toggle, CTA */
 .bundle-footnote {
   max-width: 640px;
