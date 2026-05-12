@@ -1,0 +1,1397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Account — Daniel's House</title>
+<link rel="stylesheet" href="css/shared.css?v=4">
+<style>
+  /* ═══ ACCOUNT PORTAL ═══ */
+  .acct-page {
+    max-width: 1280px;
+    margin: 40px auto 80px;
+    padding: 0 40px;
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  /* ── Sidebar ── */
+  .acct-sidebar {
+    position: sticky;
+    top: 100px;
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    padding: 32px 24px;
+  }
+  .acct-avatar {
+    width: 64px;
+    height: 64px;
+    background: var(--ink);
+    color: var(--cream);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 400;
+    margin: 0 auto 16px;
+  }
+  .acct-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    text-align: center;
+    color: var(--ink);
+    line-height: 1.15;
+  }
+  .acct-email {
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    color: var(--ink-soft);
+    text-align: center;
+    margin-top: 4px;
+    word-break: break-all;
+  }
+  .acct-sidebar-rule {
+    height: 1px;
+    background: var(--rule);
+    margin: 24px -24px;
+  }
+  .acct-nav { list-style: none; padding: 0; margin: 0; }
+  .acct-nav-item {
+    display: block;
+    padding: 12px 12px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--ink-soft);
+    background: transparent;
+    border: none;
+    border-left: 2px solid transparent;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s, background 0.2s;
+  }
+  .acct-nav-item:hover {
+    color: var(--ink);
+    background: var(--cream-warm);
+  }
+  .acct-nav-item.active {
+    color: var(--ink);
+    border-left-color: var(--gold);
+    background: var(--cream-warm);
+  }
+  .acct-signout {
+    margin-top: 20px;
+    padding: 12px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    background: transparent;
+    border: 1px solid var(--rule);
+    width: 100%;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .acct-signout:hover { color: var(--ink); border-color: var(--ink); }
+
+  /* ── Main content ── */
+  .acct-main { min-width: 0; }
+  .acct-section { display: none; }
+  .acct-section.active { display: block; }
+
+  .acct-section-head {
+    margin-bottom: 36px;
+  }
+  .acct-eyebrow {
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .acct-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px;
+    font-weight: 400;
+    line-height: 1;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+  .acct-title em { font-style: italic; color: var(--sage); }
+  .acct-subtitle {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+
+  /* ── Stat tiles (dashboard) ── */
+  .acct-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .acct-stat {
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    padding: 24px 20px;
+  }
+  .acct-stat-label {
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 12px;
+  }
+  .acct-stat-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 38px;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .acct-stat-value em { font-style: italic; color: var(--sage); font-size: 18px; }
+
+  /* ── Section cards ── */
+  .acct-block {
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    padding: 28px 28px;
+    margin-bottom: 28px;
+  }
+  .acct-block-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .acct-block-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    color: var(--ink);
+    font-weight: 400;
+  }
+  .acct-block-title em { font-style: italic; color: var(--sage); }
+  .acct-block-link {
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border-bottom: 1px solid var(--gold);
+    cursor: pointer;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    padding: 0 0 2px;
+  }
+  .acct-block-link:hover { color: var(--ink); border-color: var(--ink); }
+
+  /* ── Order card ── */
+  .order-card {
+    background: var(--cream-warm);
+    border: 1px solid var(--rule);
+    padding: 22px;
+    margin-bottom: 16px;
+  }
+  .order-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .order-id {
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .order-id strong { color: var(--ink); }
+  .order-status {
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 2px;
+  }
+  .order-status.delivered { background: rgba(93, 110, 92, 0.15); color: var(--sage); }
+  .order-status.shipped   { background: rgba(184, 153, 104, 0.15); color: var(--gold); }
+  .order-status.processing{ background: rgba(31, 27, 23, 0.08); color: var(--ink); }
+  .order-status.cancelled { background: rgba(196, 78, 78, 0.10); color: #8b2e2e; }
+
+  .order-items {
+    display: grid;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .order-item {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 18px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    color: var(--ink);
+    padding: 6px 0;
+  }
+  .order-item-name { color: var(--ink); }
+  .order-item-qty  { color: var(--ink-soft); }
+  .order-item-price{ font-variant-numeric: tabular-nums; }
+  .order-item-sub {
+    font-family: 'Poppins', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-left: 6px;
+  }
+
+  .order-foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 14px;
+    border-top: 1px solid var(--rule);
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .order-total {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    color: var(--ink);
+  }
+  .order-total strong { font-variant-numeric: tabular-nums; font-weight: 600; }
+  .order-action {
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink);
+    background: transparent;
+    border: 1px solid var(--ink);
+    padding: 8px 14px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+  .order-action:hover { background: var(--ink); color: var(--cream); }
+
+  /* ── Profile form ── */
+  .profile-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+  .profile-field { display: block; }
+  .profile-field.full { grid-column: 1 / -1; }
+  .profile-label {
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--ink-soft);
+    margin-bottom: 8px;
+  }
+  .profile-input {
+    width: 100%;
+    box-sizing: border-box;
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    padding: 12px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    color: var(--ink);
+  }
+  .profile-input:focus { outline: none; border-color: var(--gold); }
+  .profile-input:read-only { background: var(--cream-warm); color: var(--ink-soft); }
+  .profile-save {
+    grid-column: 1 / -1;
+    margin-top: 8px;
+    background: var(--ink);
+    color: var(--cream);
+    border: none;
+    padding: 14px 22px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    cursor: pointer;
+    justify-self: start;
+  }
+  .profile-save:hover { background: var(--sage); }
+  .profile-msg {
+    grid-column: 1 / -1;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    color: var(--sage);
+    display: none;
+  }
+  .profile-msg.is-visible { display: block; }
+
+  /* Preference toggles */
+  .pref-row {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .pref-row:last-of-type { border-bottom: none; }
+  .pref-label-block {
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    color: var(--ink);
+    flex: 1;
+  }
+  .pref-label-block small {
+    display: block;
+    font-size: 11px;
+    color: var(--ink-soft);
+    margin-top: 4px;
+  }
+  .pref-toggle {
+    position: relative;
+    width: 44px;
+    height: 24px;
+    background: var(--rule);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.2s;
+    flex-shrink: 0;
+  }
+  .pref-toggle::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    background: var(--cream);
+    border-radius: 50%;
+    transition: transform 0.2s;
+  }
+  .pref-toggle.is-on { background: var(--sage); }
+  .pref-toggle.is-on::after { transform: translateX(20px); }
+
+  /* ── Routine viewer ── */
+  .routine-pillars {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 18px;
+  }
+  .routine-pillar {
+    background: var(--cream-warm);
+    border: 1px solid var(--rule);
+    padding: 22px;
+  }
+  .routine-pillar-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .routine-pillar-title em { font-style: italic; color: var(--sage); }
+  .routine-pillar-sub {
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 18px;
+  }
+  .routine-products {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .routine-product {
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    color: var(--ink);
+    padding: 8px 0;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+  }
+  .routine-product:last-child { border-bottom: none; }
+  .routine-product a { color: var(--ink); }
+  .routine-product a:hover { color: var(--gold); }
+  .routine-step {
+    color: var(--ink-soft);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+  }
+  .routine-empty {
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    color: var(--ink-soft);
+    text-align: center;
+    padding: 24px 8px;
+    font-style: italic;
+  }
+
+  /* ── Subscription card ── */
+  .sub-card {
+    background: var(--cream-warm);
+    border: 1px solid var(--rule);
+    padding: 22px;
+    margin-bottom: 14px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 14px;
+    align-items: center;
+  }
+  .sub-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .sub-meta {
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+  .sub-meta strong { color: var(--ink); }
+  .sub-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .sub-action {
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink);
+    background: transparent;
+    border: 1px solid var(--ink);
+    padding: 6px 14px;
+    cursor: pointer;
+  }
+  .sub-action.danger { color: #8b2e2e; border-color: #8b2e2e; }
+  .sub-action:hover { background: var(--ink); color: var(--cream); }
+  .sub-action.danger:hover { background: #8b2e2e; color: var(--cream); }
+
+  /* ── Address card ── */
+  .addr-card {
+    background: var(--cream-warm);
+    border: 1px solid var(--rule);
+    padding: 20px;
+    margin-bottom: 14px;
+    position: relative;
+  }
+  .addr-label {
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .addr-body {
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    color: var(--ink);
+    line-height: 1.6;
+    white-space: pre-line;
+  }
+  .addr-actions {
+    margin-top: 12px;
+    display: flex;
+    gap: 12px;
+  }
+
+  /* ── Review (mine) ── */
+  .myrev-card {
+    background: var(--cream-warm);
+    border: 1px solid var(--rule);
+    padding: 20px;
+    margin-bottom: 14px;
+  }
+  .myrev-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 10px;
+  }
+  .myrev-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    color: var(--ink);
+  }
+  .myrev-stars {
+    color: var(--gold);
+    font-size: 14px;
+    letter-spacing: 2px;
+  }
+  .myrev-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .myrev-body {
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.7;
+  }
+  .myrev-date {
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-top: 12px;
+  }
+
+  /* ── Empty state ── */
+  .empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    background: var(--cream-warm);
+    border: 1px dashed var(--rule);
+  }
+  .empty-state-icon {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    color: var(--gold);
+    font-style: italic;
+    margin-bottom: 12px;
+  }
+  .empty-state-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    margin-bottom: 18px;
+  }
+  .empty-state-cta {
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink);
+    background: transparent;
+    border: 1px solid var(--ink);
+    padding: 10px 18px;
+    cursor: pointer;
+  }
+  .empty-state-cta:hover { background: var(--ink); color: var(--cream); }
+
+  /* ── Auth gate (when not signed in) ── */
+  .acct-gate {
+    max-width: 540px;
+    margin: 100px auto;
+    text-align: center;
+    padding: 0 22px;
+  }
+  .acct-gate-eyebrow {
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .acct-gate-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 46px;
+    color: var(--ink);
+    line-height: 1.1;
+    margin-bottom: 18px;
+  }
+  .acct-gate-title em { font-style: italic; color: var(--sage); }
+  .acct-gate-body {
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    margin-bottom: 32px;
+  }
+  .acct-gate-cta {
+    display: inline-block;
+    background: var(--ink);
+    color: var(--cream);
+    padding: 16px 32px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  .acct-gate-cta:hover { background: var(--sage); }
+
+  /* ── Mobile ── */
+  @media (max-width: 900px) {
+    .acct-page { grid-template-columns: 1fr; gap: 28px; padding: 0 22px; }
+    .acct-sidebar { position: static; padding: 24px; }
+    .acct-nav {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 0;
+    }
+    .acct-nav-item { border-left: none; border-bottom: 2px solid transparent; text-align: center; padding: 10px 6px; }
+    .acct-nav-item.active { border-left: none; border-bottom-color: var(--gold); }
+    .acct-stats { grid-template-columns: 1fr 1fr; }
+    .acct-title { font-size: 38px; }
+    .profile-form { grid-template-columns: 1fr; }
+    .routine-pillars { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 500px) {
+    .acct-stats { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="top-nav">
+  <div class="top-nav-inner">
+    <a href="index.html" class="logo">Daniel<span class="amp">'s</span> House</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">Daniel's Story</a></li>
+      <li><a href="skincare.html">Skincare</a></li>
+      <li><a href="supplements.html">Supplements</a></li>
+      <li><a href="routines.html">Routines</a></li>
+      <li><a href="bundles.html">Bundles</a></li>
+    </ul>
+    <div style="display: flex; gap: 4px;">
+      <button class="search-trigger" aria-label="Search">Search</button>
+      <a class="account-trigger" href="account.html">Sign In</a>
+      <button class="cart-trigger" aria-label="Open cart">Cart <span class="cart-trigger-count">0</span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- Sign-in gate (shown when no user) -->
+<div class="acct-gate" id="acct-gate" hidden>
+  <div class="acct-gate-eyebrow">Your Account</div>
+  <h1 class="acct-gate-title">Sign in to see <em>your house.</em></h1>
+  <p class="acct-gate-body">Track your orders, manage your routine, and review the products you've actually purchased. New here? Create an account in 30 seconds.</p>
+  <a class="acct-gate-cta" href="signin.html">Sign In · Create Account →</a>
+</div>
+
+<!-- Portal (shown when signed in) -->
+<main class="acct-page" id="acct-app" hidden>
+  <!-- Sidebar -->
+  <aside class="acct-sidebar">
+    <div class="acct-avatar" id="acct-avatar">—</div>
+    <div class="acct-name" id="acct-name">Customer</div>
+    <div class="acct-email" id="acct-email">—</div>
+    <div class="acct-sidebar-rule"></div>
+    <ul class="acct-nav" role="tablist">
+      <li><button class="acct-nav-item active" data-section="dashboard">Dashboard</button></li>
+      <li><button class="acct-nav-item" data-section="profile">Profile</button></li>
+      <li><button class="acct-nav-item" data-section="orders">Orders</button></li>
+      <li><button class="acct-nav-item" data-section="past-orders">Past Orders</button></li>
+      <li><button class="acct-nav-item" data-section="routine">My Routine</button></li>
+      <li><button class="acct-nav-item" data-section="subscriptions">Subscriptions</button></li>
+      <li><button class="acct-nav-item" data-section="addresses">Addresses</button></li>
+      <li><button class="acct-nav-item" data-section="reviews">My Reviews</button></li>
+      <li><button class="acct-nav-item" data-section="settings">Settings</button></li>
+    </ul>
+    <button class="acct-signout" id="acct-signout-btn">Sign Out →</button>
+  </aside>
+
+  <!-- Main -->
+  <div class="acct-main">
+
+    <!-- ─── Dashboard ─── -->
+    <section class="acct-section active" data-section="dashboard">
+      <div class="acct-section-head">
+        <div class="acct-eyebrow">Dashboard</div>
+        <h1 class="acct-title">Welcome, <em id="dash-firstname">there</em>.</h1>
+        <p class="acct-subtitle">Your house at a glance — orders in flight, what's next to ship, the routine you've saved.</p>
+      </div>
+
+      <div class="acct-stats">
+        <div class="acct-stat">
+          <div class="acct-stat-label">Total Orders</div>
+          <div class="acct-stat-value" id="stat-orders">0</div>
+        </div>
+        <div class="acct-stat">
+          <div class="acct-stat-label">Active Subs</div>
+          <div class="acct-stat-value" id="stat-subs">0</div>
+        </div>
+        <div class="acct-stat">
+          <div class="acct-stat-label">Reviews Left</div>
+          <div class="acct-stat-value" id="stat-reviews">0</div>
+        </div>
+        <div class="acct-stat">
+          <div class="acct-stat-label">Member Since</div>
+          <div class="acct-stat-value" id="stat-since"><em>—</em></div>
+        </div>
+      </div>
+
+      <div class="acct-block">
+        <div class="acct-block-head">
+          <div class="acct-block-title">In <em>flight.</em></div>
+          <button class="acct-block-link" data-jump="orders">View all orders →</button>
+        </div>
+        <div id="dash-active-orders"></div>
+      </div>
+
+      <div class="acct-block">
+        <div class="acct-block-head">
+          <div class="acct-block-title">Next <em>ship.</em></div>
+          <button class="acct-block-link" data-jump="subscriptions">Manage subscriptions →</button>
+        </div>
+        <div id="dash-next-sub"></div>
+      </div>
+    </section>
+
+    <!-- ─── Profile ─── -->
+    <section class="acct-section" data-section="profile">
+      <div class="acct-section-head">
+        <div class="acct-eyebrow">Profile</div>
+        <h1 class="acct-title">Your <em>details.</em></h1>
+        <p class="acct-subtitle">Name, contact info, and how we communicate with you. Email is your sign-in — it's locked here for security.</p>
+      </div>
+
+      <div class="acct-block">
+        <form class="profile-form" id="profile-form">
+          <div class="profile-field">
+            <label class="profile-label" for="pf-first">First Name</label>
+            <input class="profile-input" id="pf-first" type="text">
+          </div>
+          <div class="profile-field">
+            <label class="profile-label" for="pf-last">Last Name</label>
+            <input class="profile-input" id="pf-last" type="text">
+          </div>
+          <div class="profile-field full">
+            <label class="profile-label" for="pf-email">Email <span style="color: var(--ink-soft); text-transform: none; letter-spacing: 0; font-size: 11px;">(locked — your sign-in)</span></label>
+            <input class="profile-input" id="pf-email" type="email" readonly>
+          </div>
+          <div class="profile-field full">
+            <label class="profile-label" for="pf-phone">Phone</label>
+            <input class="profile-input" id="pf-phone" type="tel" placeholder="(555) 555-5555">
+          </div>
+
+          <div class="pref-row">
+            <div class="pref-label-block">
+              Email marketing
+              <small>Field Notes from Daniel — once a month, never spam.</small>
+            </div>
+            <div class="pref-toggle" id="pf-email-marketing" data-pref="emailMarketing"></div>
+          </div>
+          <div class="pref-row">
+            <div class="pref-label-block">
+              SMS marketing
+              <small>Subscription reminders + restock alerts. Max 4/month.</small>
+            </div>
+            <div class="pref-toggle" id="pf-sms-marketing" data-pref="smsMarketing"></div>
+          </div>
+
+          <button type="submit" class="profile-save">Save Changes</button>
+          <div class="profile-msg" id="pf-msg">Profile updated.</div>
+        </form>
+      </div>
+    </section>
+
+    <!-- ─── Active Orders ─── -->
+    <section class="acct-section" data-section="orders">
+      <div class="acct-section-head">
+        <div class="acct-eyebrow">Orders</div>
+        <h1 class="acct-title">In <em>flight.</em></h1>
+        <p class="acct-subtitle">Everything currently processing or in transit. Tracking numbers update automatically when your order ships.</p>
+      </div>
+      <div id="active-orders-list"></div>
+    </section>
+
+    <!-- ─── Past Orders ─── -->
+    <section class="acct-section" data-section="past-orders">
+      <div class="acct-section-head">
+        <div class="acct-eyebrow">Past Orders</div>
+        <h1 class="acct-title">Your <em>history.</em></h1>
+        <p class="acct-subtitle">Every delivered order — reorder favorites in one tap, leave a review on anything you've tried.</p>
+      </div>
+      <div id="past-orders-list"></div>
+    </section>
+
+    <!-- ─── My Routine ─── -->
+    <section class="acct-section" data-section="routine">
+      <div class="acct-section-head">
+        <div class="acct-eyebrow">My Routine</div>
+        <h1 class="acct-title">Your <em>daily ritual.</em></h1>
+        <p class="acct-subtitle">The morning, evening, and daily-supplement stacks you've saved. Edit anytime to reflect what you're actually running.</p>
+      </div>
+      <div class="acct-block">
+        <div class="acct-block-head">
+          <div class="acct-block-title">Current <em>routine</em></div>
+          <button class="acct-block-link" id="routine-edit-btn">Edit routine →</button>
+        </div>
+        <div class="routine-pillars">
+          <div class="routine-pillar">
+            <div class="routine-pillar-title">AM <em>routine</em></div>
+            <div class="routine-pillar-sub">Morning · skincare</div>
+            <ul class="routine-products" id="routine-am"></ul>
+          </div>
+          <div class="routine-pillar">
+            <div class="routine-pillar-title">PM <em>routine</em></div>
+            <div class="routine-pillar-sub">Evening · skincare</div>
+            <ul class="routine-products" id="routine-pm"></ul>
+          </div>
+          <div class="routine-pillar">
+            <div class="routine-pillar-title">Daily <em>stack</em></div>
+            <div class="routine-pillar-sub">Supplements</div>
+            <ul class="routine-products" id="routine-daily"></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Subscriptions ─── -->
+    <section class="acct-section" data-section="subscriptions">
+      <div class="acct-section-head">
+        <div class="acct-eyebrow">Subscriptions</div>
+        <h1 class="acct-title">On <em>repeat.</em></h1>
+        <p class="acct-subtitle">Monthly shipments save 10% on top of any other discounts. Pause, swap, or cancel any time — no calls, no friction.</p>
+      </div>
+      <div id="subs-list"></div>
+    </section>
+
+    <!-- ─── Addresses ─── -->
+    <section class="acct-section" data-section="addresses">
+      <div class="acct-section-head">
+        <div class="acct-eyebrow">Addresses</div>
+        <h1 class="acct-title">Where it <em>ships.</em></h1>
+        <p class="acct-subtitle">Save multiple addresses for fast checkout. Set a default for your subscriptions.</p>
+      </div>
+      <div id="addresses-list"></div>
+      <button class="empty-state-cta" id="addr-add-btn" style="margin-top: 16px;">+ Add Address</button>
+    </section>
+
+    <!-- ─── My Reviews ─── -->
+    <section class="acct-section" data-section="reviews">
+      <div class="acct-section-head">
+        <div class="acct-eyebrow">My Reviews</div>
+        <h1 class="acct-title">What you've <em>shared.</em></h1>
+        <p class="acct-subtitle">Reviews you've left on products. You can only review what you've purchased — and that authenticity is the point.</p>
+      </div>
+      <div id="reviews-list"></div>
+    </section>
+
+    <!-- ─── Settings ─── -->
+    <section class="acct-section" data-section="settings">
+      <div class="acct-section-head">
+        <div class="acct-eyebrow">Settings</div>
+        <h1 class="acct-title">Account <em>controls.</em></h1>
+        <p class="acct-subtitle">Password, data, and the rest. Need help? Email <a href="mailto:hello@danielshousewellness.com" style="color: var(--gold); border-bottom: 1px solid var(--gold);">hello@danielshousewellness.com</a>.</p>
+      </div>
+
+      <div class="acct-block">
+        <div class="acct-block-head"><div class="acct-block-title">Change <em>password</em></div></div>
+        <form id="password-form" class="profile-form">
+          <div class="profile-field full">
+            <label class="profile-label" for="pw-current">Current Password</label>
+            <input class="profile-input" id="pw-current" type="password">
+          </div>
+          <div class="profile-field full">
+            <label class="profile-label" for="pw-new">New Password (6+ characters)</label>
+            <input class="profile-input" id="pw-new" type="password" minlength="6">
+          </div>
+          <button type="submit" class="profile-save">Update Password</button>
+          <div class="profile-msg" id="pw-msg"></div>
+        </form>
+      </div>
+
+      <div class="acct-block">
+        <div class="acct-block-head"><div class="acct-block-title">Danger <em>zone</em></div></div>
+        <p style="font-family: 'Poppins', sans-serif; font-size: 13px; color: var(--ink-soft); line-height: 1.7; margin-bottom: 16px;">Delete your account permanently. This removes all order history, subscriptions, addresses, and reviews. We cannot undo this.</p>
+        <button id="delete-account-btn" class="profile-save" style="background: #8b2e2e;">Delete Account</button>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-col"><h4>Shop</h4><ul><li><a href="skincare.html">Skincare</a></li><li><a href="supplements.html">Supplements</a></li><li><a href="routines.html">Routines</a></li><li><a href="bundles.html">Bundles</a></li><li><a href="compare.html">Compare</a></li></ul></div>
+    <div class="footer-col"><h4>The House</h4><ul><li><a href="about.html">Daniel's Story</a></li><li><a href="ingredients.html">Ingredient Glossary</a></li><li><a href="blog.html">Field Notes</a></li><li><a href="reviews.html">Reviews</a></li><li><a href="quiz.html">Take the Quiz</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
+    <div class="footer-col"><h4>Help</h4><ul><li><a href="faq.html#shipping">Shipping</a></li><li><a href="faq.html#returns">Returns</a></li><li><a href="faq.html#guarantee">30-Day Guarantee</a></li><li><a href="faq.html#contact">Contact</a></li></ul></div>
+    <div class="footer-col"><h4>Stay in Touch</h4><p style="font-family: 'Poppins', sans-serif; font-size: 12px; color: var(--ink-soft); line-height: 1.6;">Field notes from Daniel — once a month, never spam.</p></div>
+  </div>
+  <div class="footer-rule"></div>
+  <div class="footer-bar">
+    <p>© 2026 Daniel's House. All rights reserved.</p>
+    <p><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="accessibility.html">Accessibility</a></p>
+  </div>
+</footer>
+
+<script src="js/auth.js?v=1"></script>
+<script src="data/products.js?v=4"></script>
+<script src="js/shared.js?v=4"></script>
+<script>
+(function() {
+  const auth = window.dhAuth;
+  const u = auth.getCurrentUser();
+
+  // Auth gate
+  if (!u) {
+    document.getElementById('acct-gate').hidden = false;
+    document.getElementById('acct-app').hidden = true;
+    return;
+  }
+  document.getElementById('acct-gate').hidden = true;
+  document.getElementById('acct-app').hidden = false;
+
+  // ── Sidebar header ──
+  function initials(name, fallback) {
+    const parts = (name||'').trim().split(/\s+/).filter(Boolean);
+    if (!parts.length) return fallback || '·';
+    return (parts[0][0] + (parts[1] ? parts[1][0] : '')).toUpperCase();
+  }
+  function renderSidebar() {
+    const u = auth.getCurrentUser();
+    document.getElementById('acct-avatar').textContent = initials(u.firstName + ' ' + u.lastName, u.email[0].toUpperCase());
+    document.getElementById('acct-name').textContent = (u.firstName + ' ' + u.lastName).trim() || 'Customer';
+    document.getElementById('acct-email').textContent = u.email;
+  }
+  renderSidebar();
+
+  // ── Section switching ──
+  const sections = document.querySelectorAll('.acct-section');
+  const navItems = document.querySelectorAll('.acct-nav-item');
+  function activate(name) {
+    sections.forEach(s => s.classList.toggle('active', s.dataset.section === name));
+    navItems.forEach(n => n.classList.toggle('active', n.dataset.section === name));
+    history.replaceState(null, '', '#' + name);
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+  navItems.forEach(n => n.addEventListener('click', () => activate(n.dataset.section)));
+  document.querySelectorAll('[data-jump]').forEach(b => b.addEventListener('click', () => activate(b.dataset.jump)));
+  // Honor hash on load
+  const hashSection = (location.hash||'').slice(1);
+  if (hashSection && document.querySelector(`.acct-section[data-section="${hashSection}"]`)) {
+    activate(hashSection);
+  }
+
+  // ── Sign out ──
+  document.getElementById('acct-signout-btn').addEventListener('click', () => {
+    if (confirm('Sign out of your account?')) {
+      auth.signOut();
+      location.href = 'index.html';
+    }
+  });
+
+  // ── Helpers ──
+  function fmt$(n) { return '$' + (n||0).toFixed(2); }
+  function fmtDate(iso) {
+    if (!iso) return '—';
+    const d = new Date(iso);
+    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  }
+  function fmtMonthYear(iso) {
+    if (!iso) return '—';
+    const d = new Date(iso);
+    return d.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+  }
+  function escapeHtml(s) {
+    return (s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  // ── Render Dashboard ──
+  function renderDashboard() {
+    const u = auth.getCurrentUser();
+    document.getElementById('dash-firstname').textContent = u.firstName || 'there';
+    document.getElementById('stat-orders').textContent = (u.orders||[]).length;
+    document.getElementById('stat-subs').textContent = (u.subscriptions||[]).filter(s => s.status === 'active').length;
+    document.getElementById('stat-reviews').textContent = (u.reviews||[]).length;
+    document.getElementById('stat-since').innerHTML = `<em>${fmtMonthYear(u.createdAt)}</em>`;
+
+    // Active orders (status != delivered)
+    const active = (u.orders||[]).filter(o => o.status !== 'delivered' && o.status !== 'cancelled');
+    const dashOrders = document.getElementById('dash-active-orders');
+    if (!active.length) {
+      dashOrders.innerHTML = `<div class="empty-state">
+        <div class="empty-state-icon">—</div>
+        <div class="empty-state-text">Nothing in flight right now.</div>
+        <a class="empty-state-cta" href="bundles.html">Browse Routines & Bundles →</a>
+      </div>`;
+    } else {
+      dashOrders.innerHTML = active.slice(0, 2).map(renderOrderCard).join('');
+    }
+
+    // Next subscription ship
+    const nextSubEl = document.getElementById('dash-next-sub');
+    const activeSubs = (u.subscriptions||[]).filter(s => s.status === 'active');
+    if (!activeSubs.length) {
+      nextSubEl.innerHTML = `<div class="empty-state">
+        <div class="empty-state-icon">—</div>
+        <div class="empty-state-text">No active subscriptions. Save 10% by subscribing to anything.</div>
+      </div>`;
+    } else {
+      const next = activeSubs.slice().sort((a,b) => new Date(a.nextShipDate) - new Date(b.nextShipDate))[0];
+      nextSubEl.innerHTML = renderSubCard(next);
+    }
+  }
+
+  // ── Order card markup ──
+  function renderOrderCard(o) {
+    const items = (o.items||[]).map(i => `
+      <div class="order-item">
+        <div class="order-item-name">${escapeHtml(i.name)}${i.isSubscription ? '<span class="order-item-sub">Subscription</span>' : ''}</div>
+        <div class="order-item-qty">× ${i.qty}</div>
+        <div class="order-item-price">${fmt$(i.price * i.qty)}</div>
+      </div>
+    `).join('');
+    return `<div class="order-card">
+      <div class="order-head">
+        <div class="order-id">Order <strong>#${o.id.slice(-8).toUpperCase()}</strong> · ${fmtDate(o.date)}</div>
+        <div class="order-status ${o.status}">${o.status}</div>
+      </div>
+      <div class="order-items">${items}</div>
+      <div class="order-foot">
+        <div class="order-total">Total <strong>${fmt$(o.total)}</strong></div>
+        <div style="display:flex; gap: 10px;">
+          ${o.trackingNumber ? `<button class="order-action" onclick="alert('Tracking: ${o.trackingNumber} — (prototype, no live tracking)')">Track</button>` : ''}
+          ${o.status === 'delivered' ? `<button class="order-action" data-reorder='${o.id}'>Reorder</button>` : ''}
+        </div>
+      </div>
+    </div>`;
+  }
+
+  // ── Sub card markup ──
+  function renderSubCard(s) {
+    return `<div class="sub-card">
+      <div>
+        <div class="sub-name">${escapeHtml(s.productName)}</div>
+        <div class="sub-meta">
+          <strong>${fmt$(s.pricePerShip)}</strong> · ${s.frequency} ·
+          Next ship: <strong>${fmtDate(s.nextShipDate)}</strong>
+        </div>
+      </div>
+      <div class="sub-actions">
+        <button class="sub-action" data-sub-action="skip" data-sub-id="${s.id}">Skip Next</button>
+        <button class="sub-action" data-sub-action="pause" data-sub-id="${s.id}">Pause</button>
+        <button class="sub-action danger" data-sub-action="cancel" data-sub-id="${s.id}">Cancel</button>
+      </div>
+    </div>`;
+  }
+
+  // ── Active orders section ──
+  function renderActiveOrders() {
+    const u = auth.getCurrentUser();
+    const active = (u.orders||[]).filter(o => o.status !== 'delivered' && o.status !== 'cancelled');
+    const wrap = document.getElementById('active-orders-list');
+    if (!active.length) {
+      wrap.innerHTML = `<div class="empty-state">
+        <div class="empty-state-icon">—</div>
+        <div class="empty-state-text">No orders in flight. Want to start a routine?</div>
+        <a class="empty-state-cta" href="routines.html">Browse Routines →</a>
+      </div>`;
+    } else {
+      wrap.innerHTML = active.map(renderOrderCard).join('');
+    }
+  }
+
+  // ── Past orders section ──
+  function renderPastOrders() {
+    const u = auth.getCurrentUser();
+    const past = (u.orders||[]).filter(o => o.status === 'delivered' || o.status === 'cancelled');
+    const wrap = document.getElementById('past-orders-list');
+    if (!past.length) {
+      wrap.innerHTML = `<div class="empty-state">
+        <div class="empty-state-icon">—</div>
+        <div class="empty-state-text">No completed orders yet.</div>
+      </div>`;
+    } else {
+      wrap.innerHTML = past.map(renderOrderCard).join('');
+    }
+  }
+
+  // ── My Routine ──
+  function renderRoutine() {
+    const u = auth.getCurrentUser();
+    const r = u.savedRoutine || { am: [], pm: [], daily: [] };
+    const products = window.PRODUCTS || [];
+    function bySlug(slug) { return products.find(p => p.slug === slug); }
+    function rowsFor(slugs, prefix) {
+      if (!slugs || !slugs.length) {
+        return `<li class="routine-empty">No products saved yet.</li>`;
+      }
+      return slugs.map((slug, i) => {
+        const p = bySlug(slug);
+        if (!p) return '';
+        return `<li class="routine-product">
+          <a href="product.html?slug=${slug}">${escapeHtml(p.name)}</a>
+          <span class="routine-step">Step ${i + 1}</span>
+        </li>`;
+      }).join('');
+    }
+    document.getElementById('routine-am').innerHTML = rowsFor(r.am);
+    document.getElementById('routine-pm').innerHTML = rowsFor(r.pm);
+    document.getElementById('routine-daily').innerHTML = rowsFor(r.daily);
+  }
+  document.getElementById('routine-edit-btn').addEventListener('click', () => {
+    alert('Prototype: routine editor would open here. In production, this is a drag-to-reorder, add/remove-product UI.');
+  });
+
+  // ── Subscriptions ──
+  function renderSubs() {
+    const u = auth.getCurrentUser();
+    const subs = u.subscriptions || [];
+    const wrap = document.getElementById('subs-list');
+    if (!subs.length) {
+      wrap.innerHTML = `<div class="empty-state">
+        <div class="empty-state-icon">—</div>
+        <div class="empty-state-text">No active subscriptions. Save 10% by subscribing — pause or cancel any time.</div>
+        <a class="empty-state-cta" href="supplements.html">Browse Supplements →</a>
+      </div>`;
+    } else {
+      wrap.innerHTML = subs.map(renderSubCard).join('');
+    }
+  }
+
+  // Wire sub actions (delegated)
+  document.getElementById('subs-list').addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-sub-action]');
+    if (!btn) return;
+    const action = btn.dataset.subAction;
+    const subId = btn.dataset.subId;
+    const u = auth.getCurrentUser();
+    const subs = (u.subscriptions||[]).slice();
+    const idx = subs.findIndex(s => s.id === subId);
+    if (idx === -1) return;
+    if (action === 'skip') {
+      const d = new Date(subs[idx].nextShipDate);
+      d.setDate(d.getDate() + 30);
+      subs[idx].nextShipDate = d.toISOString();
+      alert('Skipped — next ship pushed by 30 days.');
+    } else if (action === 'pause') {
+      subs[idx].status = subs[idx].status === 'paused' ? 'active' : 'paused';
+      alert(subs[idx].status === 'paused' ? 'Subscription paused.' : 'Subscription resumed.');
+    } else if (action === 'cancel') {
+      if (!confirm('Cancel this subscription? You can re-subscribe at any time.')) return;
+      subs.splice(idx, 1);
+    }
+    auth.updateCurrentUser({ subscriptions: subs });
+    renderSubs();
+    renderDashboard();
+  });
+
+  // ── Addresses ──
+  function renderAddresses() {
+    const u = auth.getCurrentUser();
+    const addrs = u.addresses || [];
+    const wrap = document.getElementById('addresses-list');
+    if (!addrs.length) {
+      wrap.innerHTML = `<div class="empty-state">
+        <div class="empty-state-icon">—</div>
+        <div class="empty-state-text">No addresses saved. Add one for faster checkout.</div>
+      </div>`;
+    } else {
+      wrap.innerHTML = addrs.map((a, i) => `<div class="addr-card">
+        <div class="addr-label">${escapeHtml(a.label || 'Address ' + (i+1))}${a.isDefault ? ' · Default' : ''}</div>
+        <div class="addr-body">${escapeHtml(a.name||'')}\n${escapeHtml(a.street||'')}\n${escapeHtml(a.city||'')}, ${escapeHtml(a.state||'')} ${escapeHtml(a.zip||'')}\n${escapeHtml(a.country||'United States')}</div>
+        <div class="addr-actions">
+          <button class="acct-block-link" data-addr-default="${i}">Set Default</button>
+          <button class="acct-block-link" data-addr-delete="${i}" style="color: #8b2e2e; border-color: #8b2e2e;">Delete</button>
+        </div>
+      </div>`).join('');
+    }
+  }
+  document.getElementById('addr-add-btn').addEventListener('click', () => {
+    const label = prompt('Address label (e.g., Home, Office):');
+    if (!label) return;
+    const name = prompt('Recipient name:');
+    const street = prompt('Street address:');
+    const city = prompt('City:');
+    const state = prompt('State (abbreviation):');
+    const zip = prompt('ZIP code:');
+    if (!street || !city || !state || !zip) return;
+    const u = auth.getCurrentUser();
+    const addrs = (u.addresses||[]).slice();
+    addrs.push({ label, name: name||'', street, city, state, zip, country: 'United States', isDefault: addrs.length === 0 });
+    auth.updateCurrentUser({ addresses: addrs });
+    renderAddresses();
+  });
+  document.getElementById('addresses-list').addEventListener('click', (e) => {
+    const u = auth.getCurrentUser();
+    const addrs = (u.addresses||[]).slice();
+    const setDef = e.target.closest('[data-addr-default]');
+    const del    = e.target.closest('[data-addr-delete]');
+    if (setDef) {
+      const i = +setDef.dataset.addrDefault;
+      addrs.forEach((a, j) => a.isDefault = (j === i));
+    } else if (del) {
+      const i = +del.dataset.addrDelete;
+      if (!confirm('Delete this address?')) return;
+      addrs.splice(i, 1);
+    } else { return; }
+    auth.updateCurrentUser({ addresses: addrs });
+    renderAddresses();
+  });
+
+  // ── Reviews ──
+  function renderReviews() {
+    const u = auth.getCurrentUser();
+    const reviews = u.reviews || [];
+    const products = window.PRODUCTS || [];
+    const wrap = document.getElementById('reviews-list');
+    if (!reviews.length) {
+      wrap.innerHTML = `<div class="empty-state">
+        <div class="empty-state-icon">—</div>
+        <div class="empty-state-text">You haven't reviewed anything yet. Reviews appear here once you've purchased a product and shared your experience.</div>
+        <a class="empty-state-cta" href="#past-orders" data-jump="past-orders">View Past Orders →</a>
+      </div>`;
+      wrap.querySelector('[data-jump]')?.addEventListener('click', (e) => {
+        e.preventDefault();
+        activate('past-orders');
+      });
+    } else {
+      wrap.innerHTML = reviews.map(r => {
+        const p = products.find(x => x.slug === r.slug);
+        const stars = '★'.repeat(r.rating) + '☆'.repeat(5 - r.rating);
+        return `<div class="myrev-card">
+          <div class="myrev-head">
+            <div class="myrev-name">${escapeHtml(p ? p.name : r.slug)}</div>
+            <div class="myrev-stars">${stars}</div>
+          </div>
+          ${r.title ? `<div class="myrev-title">${escapeHtml(r.title)}</div>` : ''}
+          <div class="myrev-body">${escapeHtml(r.body)}</div>
+          <div class="myrev-date">${fmtDate(r.date)}</div>
+        </div>`;
+      }).join('');
+    }
+  }
+
+  // ── Profile form ──
+  function renderProfile() {
+    const u = auth.getCurrentUser();
+    document.getElementById('pf-first').value = u.firstName || '';
+    document.getElementById('pf-last').value  = u.lastName  || '';
+    document.getElementById('pf-email').value = u.email     || '';
+    document.getElementById('pf-phone').value = u.phone     || '';
+    document.querySelectorAll('.pref-toggle').forEach(t => {
+      const key = t.dataset.pref;
+      const on = u.preferences && u.preferences[key];
+      t.classList.toggle('is-on', !!on);
+    });
+  }
+  document.querySelectorAll('.pref-toggle').forEach(t => {
+    t.addEventListener('click', () => t.classList.toggle('is-on'));
+  });
+  document.getElementById('profile-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const prefs = {};
+    document.querySelectorAll('.pref-toggle').forEach(t => {
+      prefs[t.dataset.pref] = t.classList.contains('is-on');
+    });
+    const firstName = document.getElementById('pf-first').value.trim();
+    const lastName  = document.getElementById('pf-last').value.trim();
+    auth.updateCurrentUser({
+      firstName, lastName,
+      name: `${firstName} ${lastName}`.trim(),
+      phone: document.getElementById('pf-phone').value.trim(),
+      preferences: prefs
+    });
+    renderSidebar();
+    const msg = document.getElementById('pf-msg');
+    msg.classList.add('is-visible');
+    setTimeout(() => msg.classList.remove('is-visible'), 2400);
+  });
+
+  // ── Settings: password & delete ──
+  document.getElementById('password-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const msg = document.getElementById('pw-msg');
+    msg.classList.remove('is-visible');
+    msg.style.color = 'var(--sage)';
+    const cur = document.getElementById('pw-current').value;
+    const nw  = document.getElementById('pw-new').value;
+    try {
+      // Verify current password by attempting signin then setting new
+      auth.signIn(auth.getCurrentUser().email, cur);
+      if (nw.length < 6) throw new Error('New password must be at least 6 characters.');
+      // Hash new and write
+      const accounts = auth.getAccounts();
+      const id = auth.getCurrentUserId();
+      const idx = accounts.findIndex(a => a.id === id);
+      if (idx === -1) throw new Error('Account not found.');
+      // Use a tiny inline hasher mirroring auth.js logic
+      function hashPwd(p) {
+        let h = 0;
+        for (let i = 0; i < p.length; i++) { h = ((h<<5)-h)+p.charCodeAt(i); h |= 0; }
+        return 'h_' + Math.abs(h).toString(36) + '_' + p.length;
+      }
+      accounts[idx].passwordHash = hashPwd(nw);
+      localStorage.setItem('dh_accounts_v1', JSON.stringify(accounts));
+      msg.textContent = 'Password updated.';
+      msg.classList.add('is-visible');
+      document.getElementById('pw-current').value = '';
+      document.getElementById('pw-new').value = '';
+    } catch (err) {
+      msg.style.color = '#8b2e2e';
+      msg.textContent = err.message;
+      msg.classList.add('is-visible');
+    }
+  });
+  document.getElementById('delete-account-btn').addEventListener('click', () => {
+    if (!confirm('Permanently delete your account and all data? This cannot be undone.')) return;
+    if (!confirm('Truly sure? Click OK to delete everything.')) return;
+    const id = auth.getCurrentUserId();
+    const accounts = auth.getAccounts().filter(a => a.id !== id);
+    localStorage.setItem('dh_accounts_v1', JSON.stringify(accounts));
+    // Wipe their reviews too
+    const reviews = auth.getReviews().filter(r => r.userId !== id);
+    localStorage.setItem('dh_reviews_v1', JSON.stringify(reviews));
+    auth.signOut();
+    location.href = 'index.html';
+  });
+
+  // ── Reorder action ──
+  document.body.addEventListener('click', (e) => {
+    const reorderBtn = e.target.closest('[data-reorder]');
+    if (!reorderBtn) return;
+    const orderId = reorderBtn.dataset.reorder;
+    const u = auth.getCurrentUser();
+    const order = (u.orders||[]).find(o => o.id === orderId);
+    if (!order || !window.dhCart) return;
+    order.items.forEach(item => {
+      const product = (window.PRODUCTS||[]).find(p => p.slug === item.slug);
+      if (product) window.dhCart.add(product, { subscribe: item.isSubscription, qty: item.qty });
+    });
+    alert(`${order.items.length} item${order.items.length === 1 ? '' : 's'} added to cart from order #${orderId.slice(-8).toUpperCase()}.`);
+  });
+
+  // ── Initial render of all sections ──
+  renderDashboard();
+  renderActiveOrders();
+  renderPastOrders();
+  renderRoutine();
+  renderSubs();
+  renderAddresses();
+  renderReviews();
+  renderProfile();
+})();
+</script>
+</body>
+</html>

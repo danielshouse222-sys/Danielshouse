@@ -626,7 +626,7 @@
     </ul>
     <div style="display: flex; gap: 4px;">
       <button class="search-trigger" aria-label="Search">Search</button>
-      <button class="cart-trigger" aria-label="Open cart">
+      <a class="account-trigger" href="account.html">Sign In</a><button class="cart-trigger" aria-label="Open cart">
         Cart <span class="cart-trigger-count">0</span>
       </button>
     </div>
@@ -895,6 +895,234 @@
   <div class="faq-list" id="faq-list"></div>
 </section>
 
+<!-- ═══ REVIEWS SECTION ═══ -->
+<section class="product-section" id="reviews-section">
+  <div class="section-header">
+    <div class="section-eyebrow">Verified Buyers Only</div>
+    <div class="section-title"><em>Reviews</em></div>
+  </div>
+
+  <div class="reviews-summary" id="reviews-summary">
+    <!-- rendered by JS -->
+  </div>
+
+  <div class="reviews-gate" id="reviews-gate">
+    <!-- rendered by JS: shows form, sign-in prompt, or purchase-required notice -->
+  </div>
+
+  <div class="reviews-list" id="reviews-list">
+    <!-- rendered by JS -->
+  </div>
+</section>
+
+<style>
+  /* ── Reviews section ── */
+  .reviews-summary {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    padding: 22px 28px;
+    background: var(--cream-warm);
+    border: 1px solid var(--rule);
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+  }
+  .reviews-avg {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 56px;
+    line-height: 1;
+    color: var(--ink);
+  }
+  .reviews-stars-row {
+    color: var(--gold);
+    font-size: 18px;
+    letter-spacing: 3px;
+    margin-bottom: 6px;
+  }
+  .reviews-count {
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    color: var(--ink-soft);
+    letter-spacing: 0.08em;
+  }
+  .reviews-verified-note {
+    margin-left: auto;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--sage);
+    border: 1px solid var(--sage);
+    padding: 6px 12px;
+  }
+
+  /* Gate (auth/purchase status + write-review form) */
+  .reviews-gate {
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    padding: 26px;
+    margin-bottom: 28px;
+  }
+  .reviews-gate-msg {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+  .reviews-gate-msg strong { color: var(--ink); }
+  .reviews-gate-cta {
+    display: inline-block;
+    background: var(--ink);
+    color: var(--cream);
+    border: none;
+    padding: 12px 22px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .reviews-gate-cta:hover { background: var(--sage); }
+  .reviews-gate-cta.secondary {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--ink);
+    margin-left: 8px;
+  }
+  .reviews-gate-cta.secondary:hover { background: var(--ink); color: var(--cream); }
+
+  /* Write-review form */
+  .review-form { display: grid; gap: 14px; }
+  .review-form-row { display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: center; }
+  .review-stars {
+    display: inline-flex;
+    gap: 4px;
+  }
+  .review-star {
+    cursor: pointer;
+    font-size: 26px;
+    color: var(--rule);
+    background: none;
+    border: none;
+    padding: 0;
+    transition: color 0.15s;
+  }
+  .review-star.is-on { color: var(--gold); }
+  .review-star:hover { color: var(--gold); }
+  .review-input, .review-textarea {
+    width: 100%;
+    box-sizing: border-box;
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    padding: 12px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    color: var(--ink);
+  }
+  .review-textarea { min-height: 100px; resize: vertical; }
+  .review-input:focus, .review-textarea:focus { outline: none; border-color: var(--gold); }
+  .review-submit {
+    background: var(--ink);
+    color: var(--cream);
+    border: none;
+    padding: 14px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    cursor: pointer;
+    justify-self: start;
+  }
+  .review-submit:hover { background: var(--sage); }
+  .review-error, .review-success {
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    padding: 10px 14px;
+    display: none;
+  }
+  .review-error {
+    background: rgba(196, 78, 78, 0.08);
+    border-left: 3px solid #c44e4e;
+    color: #8b2e2e;
+  }
+  .review-success {
+    background: rgba(93, 110, 92, 0.10);
+    border-left: 3px solid var(--sage);
+    color: var(--sage);
+  }
+  .review-error.is-visible, .review-success.is-visible { display: block; }
+
+  /* Review cards (list) */
+  .reviews-list { display: grid; gap: 16px; }
+  .review-card {
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    padding: 22px 24px;
+  }
+  .review-card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .review-author {
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .review-verified {
+    font-family: 'Poppins', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-left: 8px;
+    border: 1px solid var(--sage);
+    padding: 2px 7px;
+    border-radius: 2px;
+  }
+  .review-date {
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    color: var(--ink-soft);
+    letter-spacing: 0.08em;
+  }
+  .review-stars-display {
+    color: var(--gold);
+    font-size: 13px;
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+  }
+  .review-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .review-body {
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.7;
+  }
+  .reviews-empty {
+    text-align: center;
+    padding: 30px 20px;
+    background: var(--cream-warm);
+    border: 1px dashed var(--rule);
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+</style>
+
 <section class="product-section">
   <div class="section-header">
     <div class="section-eyebrow">You May Also Like</div>
@@ -905,8 +1133,8 @@
 
 <div class="product-closing">
   <h2>Build the <em>full routine.</em></h2>
-  <p>Single products work. Bundles work better — built to layer correctly and save 15-25% over buying separately.</p>
-  <a href="routines.html" class="product-closing-btn">Explore Bundles →</a>
+  <p>Single products work. Routines work better — built to layer correctly and save 15-25% over buying separately.</p>
+  <a href="routines.html" class="product-closing-btn">Explore Routines →</a>
 </div>
 
 <footer>
@@ -979,7 +1207,7 @@
 
 <script src="data/products.js"></script>
 <script src="data/ingredients.js"></script>
-<script src="js/shared.js"></script>
+<script src="js/auth.js?v=1"></script><script src="js/shared.js"></script>
 <script>
 (function() {
   // Get product slug from URL
@@ -1329,6 +1557,146 @@
       product.freeFrom.map(b => `<span class="free-from-badge">${b}</span>`).join('');
     document.getElementById('freefrom-section').style.display = 'block';
   }
+
+  // ═══ REVIEWS — verified-buyer-only system ═══
+  function renderReviewsArea() {
+    const slug = product.slug;
+    const auth = window.dhAuth;
+    const reviews = auth.getReviewsForProduct(slug);
+    const user = auth.getCurrentUser();
+    const hasPurchased = auth.userHasPurchased(slug);
+
+    function escapeHtml(s){return (s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+    function fmtDate(iso){const d=new Date(iso);return d.toLocaleDateString('en-US',{month:'short', day:'numeric', year:'numeric'});}
+
+    // ── Summary block ──
+    let avg = 0;
+    if (reviews.length) {
+      avg = reviews.reduce((s, r) => s + r.rating, 0) / reviews.length;
+    }
+    const summaryEl = document.getElementById('reviews-summary');
+    if (reviews.length) {
+      const fullStars = Math.round(avg);
+      const starsRow = '★'.repeat(fullStars) + '☆'.repeat(5 - fullStars);
+      summaryEl.innerHTML = `
+        <div class="reviews-avg">${avg.toFixed(1)}</div>
+        <div>
+          <div class="reviews-stars-row">${starsRow}</div>
+          <div class="reviews-count">Based on ${reviews.length} verified ${reviews.length === 1 ? 'review' : 'reviews'}</div>
+        </div>
+        <div class="reviews-verified-note">Verified Buyers Only</div>
+      `;
+    } else {
+      summaryEl.innerHTML = `
+        <div class="reviews-avg">—</div>
+        <div>
+          <div class="reviews-stars-row">☆☆☆☆☆</div>
+          <div class="reviews-count">No reviews yet. Be the first verified buyer to share.</div>
+        </div>
+        <div class="reviews-verified-note">Verified Buyers Only</div>
+      `;
+    }
+
+    // ── Gate (form, sign-in prompt, or purchase notice) ──
+    const gate = document.getElementById('reviews-gate');
+    if (!user) {
+      gate.innerHTML = `
+        <div class="reviews-gate-msg">
+          <strong>Want to leave a review?</strong> Sign in or create an account first. We only publish reviews from <strong>verified buyers</strong> — no incentivized posts, no paid placements, no exceptions.
+        </div>
+        <a href="signin.html" class="reviews-gate-cta">Sign In →</a>
+        <a href="signin.html#signup" class="reviews-gate-cta secondary">Create Account →</a>
+      `;
+    } else if (!hasPurchased) {
+      gate.innerHTML = `
+        <div class="reviews-gate-msg">
+          <strong>You haven't purchased this product yet.</strong> Only verified buyers can review — once your order is delivered, the review form will unlock here. This keeps every review on the site genuinely earned.
+        </div>
+        <a href="account.html#past-orders" class="reviews-gate-cta secondary">View Past Orders</a>
+      `;
+    } else {
+      // User can review. Check if they've already reviewed.
+      const myExisting = reviews.find(r => r.userId === user.id);
+      gate.innerHTML = `
+        <div class="reviews-gate-msg">
+          <strong>${myExisting ? 'Update your review' : 'Verified buyer — share your experience'}.</strong> Your name shows as <strong>${escapeHtml(user.firstName || 'Customer')}${user.lastName ? ' ' + user.lastName[0] + '.' : ''}</strong> with a verified badge.
+        </div>
+        <div class="review-error" id="review-error"></div>
+        <div class="review-success" id="review-success"></div>
+        <form class="review-form" id="review-form">
+          <div class="review-form-row">
+            <span style="font-family: 'Poppins', sans-serif; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-soft); font-weight: 500;">Rating</span>
+            <div class="review-stars" id="review-stars" data-rating="${myExisting ? myExisting.rating : 0}">
+              ${[1,2,3,4,5].map(n => `<button type="button" class="review-star ${myExisting && myExisting.rating >= n ? 'is-on' : ''}" data-star="${n}">★</button>`).join('')}
+            </div>
+          </div>
+          <input type="text" class="review-input" id="review-title" placeholder="Title (optional)" maxlength="80" value="${escapeHtml(myExisting && myExisting.title || '')}">
+          <textarea class="review-textarea" id="review-body" placeholder="What's your experience? What worked, what didn't, how long did it take?" maxlength="2000">${escapeHtml(myExisting && myExisting.body || '')}</textarea>
+          <button type="submit" class="review-submit">${myExisting ? 'Update Review →' : 'Submit Review →'}</button>
+        </form>
+      `;
+
+      // Wire star rating
+      const starsEl = document.getElementById('review-stars');
+      starsEl.querySelectorAll('.review-star').forEach(starBtn => {
+        starBtn.addEventListener('click', () => {
+          const r = parseInt(starBtn.dataset.star, 10);
+          starsEl.dataset.rating = r;
+          starsEl.querySelectorAll('.review-star').forEach(s => {
+            s.classList.toggle('is-on', parseInt(s.dataset.star, 10) <= r);
+          });
+        });
+      });
+
+      // Form submit
+      document.getElementById('review-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const errEl = document.getElementById('review-error');
+        const okEl  = document.getElementById('review-success');
+        errEl.classList.remove('is-visible');
+        okEl.classList.remove('is-visible');
+        try {
+          const rating = parseInt(starsEl.dataset.rating, 10);
+          const title = document.getElementById('review-title').value;
+          const body  = document.getElementById('review-body').value;
+          window.dhAuth.addReview({ slug, rating, title, body });
+          okEl.textContent = 'Review submitted. Thanks for sharing.';
+          okEl.classList.add('is-visible');
+          setTimeout(() => renderReviewsArea(), 800);
+        } catch (err) {
+          errEl.textContent = err.message;
+          errEl.classList.add('is-visible');
+        }
+      });
+    }
+
+    // ── Review list ──
+    const listEl = document.getElementById('reviews-list');
+    if (!reviews.length) {
+      listEl.innerHTML = `<div class="reviews-empty">No reviews yet — be the first verified buyer to share your experience.</div>`;
+    } else {
+      // Newest first
+      const sorted = reviews.slice().sort((a, b) => new Date(b.date) - new Date(a.date));
+      listEl.innerHTML = sorted.map(r => {
+        const stars = '★'.repeat(r.rating) + '☆'.repeat(5 - r.rating);
+        return `<div class="review-card">
+          <div class="review-card-head">
+            <div>
+              <span class="review-author">${escapeHtml(r.userName)}</span>
+              ${r.verified ? '<span class="review-verified">Verified Buyer</span>' : ''}
+            </div>
+            <div class="review-date">${fmtDate(r.date)}</div>
+          </div>
+          <div class="review-stars-display">${stars}</div>
+          ${r.title ? `<div class="review-title">${escapeHtml(r.title)}</div>` : ''}
+          <div class="review-body">${escapeHtml(r.body)}</div>
+        </div>`;
+      }).join('');
+    }
+  }
+  renderReviewsArea();
+  // Re-render if auth state changes (e.g., user signs in via another tab)
+  window.addEventListener('dh:auth:change', renderReviewsArea);
 })();
 </script>
 </body>

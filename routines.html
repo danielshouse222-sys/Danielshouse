@@ -1281,7 +1281,9 @@
   .filter-clear-all:hover { color: var(--gold); }
   .filter-clear-all:disabled { opacity: 0.4; cursor: default; }
 
-  .bundle-card.is-hidden { display: none !important; }
+  .bundle-card.is-hidden,
+  .curated-card.is-hidden,
+  .concern-card.is-hidden { display: none !important; }
 
   @media (max-width: 980px) {
     .bundle-search-wrap { padding: 0 22px; }
@@ -1327,7 +1329,7 @@
     </ul>
     <div style="display: flex; gap: 4px;">
       <button class="search-trigger" aria-label="Search">Search</button>
-      <button class="cart-trigger" aria-label="Open cart">Cart <span class="cart-trigger-count">0</span></button>
+      <a class="account-trigger" href="account.html">Sign In</a><button class="cart-trigger" aria-label="Open cart">Cart <span class="cart-trigger-count">0</span></button>
     </div>
   </div>
 </nav>
@@ -1602,7 +1604,7 @@
   <div class="sec-header">
     <div class="sec-eyebrow">The Routines · Daily Rituals</div>
     <div class="sec-title">The <em>Routines</em> Collection</div>
-    <div class="sec-blurb">Eight more routines — each built for a specific use, person, or moment in the day.</div>
+    <div class="sec-blurb">Nine routines — each built for a specific use, person, or moment in the day.</div>
   </div>
 
   <!-- SEARCH + FILTER FOR THE CURATED GRID -->
@@ -1619,9 +1621,10 @@
       <button class="concern-search-clear" id="bundle-search-clear" type="button" aria-label="Clear search">✕</button>
     </div>
     <div class="concern-search-meta">
-      <span class="concern-search-count" id="bundle-search-count">8 routines</span>
+      <span class="concern-search-count" id="bundle-search-count">9 routines</span>
       <span class="concern-search-hints">
         <span class="hint-label">Try:</span>
+        <button class="concern-search-hint" data-hint="ultimate" type="button">ultimate</button>
         <button class="concern-search-hint" data-hint="daily" type="button">daily</button>
         <button class="concern-search-hint" data-hint="anti-aging" type="button">anti-aging</button>
         <button class="concern-search-hint" data-hint="moms" type="button">moms</button>
@@ -1716,7 +1719,7 @@
   <div class="bundles-sort-mount" style="max-width: 1200px; margin: 32px auto 0; padding: 0 40px;"></div>
 
   <div class="bundle-grid">
-    <!-- All 8 curated bundles render here via renderCuratedBundleCard, see bottom-of-page script. -->
+    <!-- All 9 curated routines render here via renderCuratedBundleCard (including Ultimate). -->
   
 
 
@@ -2264,7 +2267,7 @@
   // Populate the empty .bundle-grid container. Order matches the previous hardcoded order.
   const grid = document.querySelector('.bundle-grid');
   if (grid) {
-    const defaultOrder = ['daniels-daily', 'am', 'pm', 'workout', 'longevity', 'glow', 'moms', 'arianas'];
+    const defaultOrder = ['daniels-daily', 'am', 'pm', 'workout', 'longevity', 'glow', 'moms', 'arianas', 'ultimate'];
     grid.innerHTML = defaultOrder.map(id => window.renderCuratedBundleCard(id)).join('');
 
     // SORT: reorder existing DOM nodes (preserves all event listeners on cards)
@@ -2289,7 +2292,7 @@
       const bar = window.dhBuildSortBar(
         'bundles',
         'featured',
-        `<strong>8</strong> routines`,
+        `<strong>9</strong> routines`,
         (key) => reorderGrid(key)
       );
       if (bar) {
@@ -2330,7 +2333,7 @@
 })();
 </script>
 
-<script src="js/shared.js"></script>
+<script src="js/auth.js?v=1"></script><script src="js/shared.js"></script>
 <script src="js/bundle-expand.js"></script>
 <script>
 // Bundle thumb clicks → open shared lightbox carousel
@@ -2517,7 +2520,7 @@
     const filterBadge = document.getElementById('bundle-filter-badge');
     const filterClearAll = document.getElementById('bundle-filter-clear-all');
     const hintBtns = document.querySelectorAll('.bundle-search-wrap .concern-search-hint');
-    const cards = document.querySelectorAll('.bundle-grid .bundle-card');
+    const cards = document.querySelectorAll('.bundle-grid .curated-card');
 
     if (!searchInput || !cards.length) {
       console.warn('[routines.html] Search elements or bundle cards missing.');
@@ -2694,7 +2697,7 @@
       } else if (visible === total) {
         searchCount.textContent = `${total} routines`;
       } else {
-        searchCount.textContent = `${visible} of ${total} bundles`;
+        searchCount.textContent = `${visible} of ${total} routines`;
       }
 
       searchClear.classList.toggle('is-visible', q.length > 0);

@@ -794,7 +794,7 @@
     </ul>
     <div style="display: flex; gap: 4px;">
       <button class="search-trigger" aria-label="Search">Search</button>
-      <button class="cart-trigger" aria-label="Open cart">Cart <span class="cart-trigger-count">0</span></button>
+      <a class="account-trigger" href="account.html">Sign In</a><button class="cart-trigger" aria-label="Open cart">Cart <span class="cart-trigger-count">0</span></button>
     </div>
   </div>
 </nav>
@@ -958,6 +958,7 @@
     <span class="concern-search-hints">
       <span class="hint-label">Try:</span>
       <button class="concern-search-hint" data-hint="routine" type="button">routine</button>
+      <button class="concern-search-hint" data-hint="ultimate" type="button">ultimate</button>
       <button class="concern-search-hint" data-hint="sleep" type="button">sleep</button>
       <button class="concern-search-hint" data-hint="anti-aging" type="button">anti-aging</button>
       <button class="concern-search-hint" data-hint="ashwagandha" type="button">ashwagandha</button>
@@ -1133,7 +1134,7 @@
 <script src="data/products.js?v=4"></script>
 <script src="data/bundle-details.js?v=1"></script>
 <script src="data/ingredients.js?v=1"></script>
-<script src="js/shared.js?v=4"></script>
+<script src="js/auth.js?v=1"></script><script src="js/shared.js?v=4"></script>
 <script src="js/bundle-expand.js"></script>
 <script>
 function renderConcernCard(bundle) {

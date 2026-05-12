@@ -510,7 +510,7 @@
     </ul>
     <div style="display: flex; gap: 4px;">
       <button class="search-trigger" aria-label="Search">Search</button>
-      <button class="cart-trigger" aria-label="Open cart">Cart <span class="cart-trigger-count">0</span></button>
+      <a class="account-trigger" href="account.html">Sign In</a><button class="cart-trigger" aria-label="Open cart">Cart <span class="cart-trigger-count">0</span></button>
     </div>
   </div>
 </nav>
@@ -1264,7 +1264,7 @@
 </div>
 
 <script src="data/products.js"></script>
-<script src="js/shared.js"></script>
+<script src="js/auth.js?v=1"></script><script src="js/shared.js"></script>
 <script>
 // Wire up Add to Cart buttons on this page
 document.addEventListener('DOMContentLoaded', () => {
