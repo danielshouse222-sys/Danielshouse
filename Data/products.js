@@ -1544,8 +1544,8 @@ window.CONCERN_BUNDLES = [
     tab: 'skin',
     icon: 'C.',
     name: 'The Hydration Bundle',
-    blurb: "Multi-weight hyaluronic and ceramide moisturizers for surface hydration, plus omega-3s and collagen that build the lipid matrix that holds water in skin. Hydration that doesn't quit by mid-afternoon.",
-    slugs: ['the-house-hyaluronic', 'the-house-hydration', 'the-house-soft', 'the-house-collagen', 'the-house-flow']
+    blurb: "Multi-weight hyaluronic and ceramide moisturizers for surface hydration, paired with omega-3s that support the lipid barrier holding water in skin. Hydration that doesn't quit by mid-afternoon.",
+    slugs: ['the-house-hyaluronic', 'the-house-hydration', 'the-house-soft', 'the-house-flow']
   },
   {
     id: 'dullness',
@@ -1553,8 +1553,8 @@ window.CONCERN_BUNDLES = [
     tab: 'skin',
     icon: 'D.',
     name: 'The Brightening Bundle',
-    blurb: 'Topical vitamin C and gentle resurfacing acids paired with oral collagen and beauty vitamins. The inside-out approach to measurable luminosity in 6-8 weeks.',
-    slugs: ['the-house-boost', 'the-house-defense', 'the-house-renewal', 'the-house-radiance', 'the-house-collagen']
+    blurb: 'Topical vitamin C and gentle resurfacing acids paired with the beauty vitamins that compound the result from within. The inside-out approach to measurable luminosity in 6-8 weeks.',
+    slugs: ['the-house-boost', 'the-house-defense', 'the-house-renewal', 'the-house-radiance']
   },
   {
     id: 'sensitivity',
@@ -1563,7 +1563,7 @@ window.CONCERN_BUNDLES = [
     icon: 'E.',
     name: 'The Soothing Bundle',
     blurb: 'Gentle topicals that never trigger reactivity, paired with probiotics and omega-3s that calm the systemic inflammation often behind sensitive skin. No fragrance, no aggressive actives.',
-    slugs: ['the-house-wash', 'the-house-balance', 'the-house-hyaluronic', 'the-house-soft', 'the-house-biome', 'the-house-flow']
+    slugs: ['the-house-wash', 'the-house-balance', 'the-house-soft', 'the-house-biome', 'the-house-flow']
   },
   {
     id: 'pores',
@@ -1592,8 +1592,8 @@ window.CONCERN_BUNDLES = [
     tab: 'goal',
     icon: 'B.',
     name: 'The Energy Bundle',
-    blurb: "Cellular energy from inside (multivitamin, CoQ10, D3) plus the topical vitamin C and antioxidants that keep tired skin from showing it. Energy that lasts through the day and shows on your face.",
-    slugs: ['the-house-multi', 'the-house-vitality', 'the-house-sunshine', 'the-house-defense', 'the-house-boost']
+    blurb: "Cellular energy from inside (multivitamin, CoQ10, D3) plus the topical vitamin C that keeps tired skin from showing it. Energy that lasts through the day and shows on your face.",
+    slugs: ['the-house-multi', 'the-house-vitality', 'the-house-sunshine', 'the-house-boost']
   },
   {
     id: 'focus',
@@ -1610,8 +1610,8 @@ window.CONCERN_BUNDLES = [
     tab: 'goal',
     icon: 'D.',
     name: 'The Stress Bundle',
-    blurb: "Adaptogens and magnesium for the cortisol response, plus the gentle barrier-supporting topicals for skin that shows stress before the body says it. Lower stress visibly.",
-    slugs: ['the-house-tranquil', 'the-house-calm', 'the-house-greens', 'the-house-balance', 'the-house-soft']
+    blurb: "Adaptogens and magnesium for the cortisol response, plus the gentle barrier toner and weekly detox mask for skin that shows stress before the body says it. Lower stress visibly.",
+    slugs: ['the-house-tranquil', 'the-house-calm', 'the-house-greens', 'the-house-balance', 'the-house-mask']
   },
   {
     id: 'strength',
@@ -1619,8 +1619,8 @@ window.CONCERN_BUNDLES = [
     tab: 'goal',
     icon: 'E.',
     name: 'The Strength Bundle',
-    blurb: "The clinically-dosed performance stack — creatine, citrulline, glutamine — paired with collagen for connective tissue and the gentle cleanser for the post-workout skin reset. Built for people who train.",
-    slugs: ['the-house-power', 'the-house-pump', 'the-house-seal', 'the-house-collagen', 'the-house-wash']
+    blurb: "The clinically-dosed performance stack — creatine, citrulline, glutamine — plus collagen for connective tissue. Built for people who train.",
+    slugs: ['the-house-power', 'the-house-pump', 'the-house-seal', 'the-house-collagen']
   },
   {
     id: 'beauty',
@@ -1628,8 +1628,8 @@ window.CONCERN_BUNDLES = [
     tab: 'goal',
     icon: 'F.',
     name: 'The Glow Bundle',
-    blurb: "Inside-out beauty: oral collagen and beauty vitamins meet topical vitamin C, antioxidants, and the finishing glow oil. The compounded effect topical alone can't reach.",
-    slugs: ['the-house-radiance', 'the-house-collagen', 'the-house-boost', 'the-house-glow', 'the-house-defense']
+    blurb: "Inside-out beauty: oral collagen and beauty vitamins meet topical vitamin C and the finishing glow oil. The compounded effect topical alone can't reach.",
+    slugs: ['the-house-radiance', 'the-house-collagen', 'the-house-boost', 'the-house-glow']
   },
   {
     id: 'longevity',
@@ -1655,8 +1655,8 @@ window.CONCERN_BUNDLES = [
     tab: 'goal',
     icon: 'I.',
     name: 'The Joint Bundle',
-    blurb: "The joint-comfort protocol — curcumin, omega-3, collagen, CoQ10 — plus the omega-rich facial oil that pairs internally and topically for whole-body inflammation resolution.",
-    slugs: ['the-house-restore', 'the-house-flow', 'the-house-collagen', 'the-house-vitality', 'the-house-glow']
+    blurb: "The joint-comfort protocol — curcumin, omega-3, collagen — plus the omega-rich facial oil that pairs internally and topically for whole-body inflammation resolution.",
+    slugs: ['the-house-restore', 'the-house-flow', 'the-house-collagen', 'the-house-glow']
   }
 ];
 
@@ -1749,7 +1749,7 @@ window.CURATED_BUNDLES = [
   },
   {
     id: 'moms',
-    name: "The Mom's Bundle",
+    name: "The Parents Bundle",
     discount: 0.15,
     slugs: ['the-house-wash','the-house-defense','the-house-bounce','the-house-eye','the-house-soft','the-house-multi','the-house-collagen','the-house-nad-plus','the-house-vitality','the-house-tranquil']
   },
