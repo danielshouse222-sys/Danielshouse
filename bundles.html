@@ -8,8 +8,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css?v=4">
-<link rel="stylesheet" href="css/shared.css?v=6">
-<link rel="stylesheet" href="css/bundle-expand.css">
+<link rel="stylesheet" href="css/shared.css?v=9">
+<link rel="stylesheet" href="css/bundle-expand.css?v=2">
 <style>
   body { background: var(--cream); color: var(--ink); font-family: 'Poppins', sans-serif; margin: 0; }
 
@@ -605,7 +605,9 @@
   .concern-card.is-collapsed > .concern-savings-ribbon,
   .concern-card.is-collapsed > .routine-pill,
   .concern-card.is-collapsed > .concern-card-img-side,
-  .concern-card.is-collapsed > .concern-card-content-side { display: none; }
+  .concern-card.is-collapsed > .concern-card-content-side,
+  .concern-card.is-collapsed > .bundle-expansion,
+  .concern-card.is-collapsed > .bundle-details-toggle { display: none; }
   .concern-card.is-collapsed { display: block; }
   .concern-card.is-collapsed:hover { transform: none; box-shadow: none; border-color: var(--rule); }
 
@@ -648,7 +650,7 @@
     .card-collapsed-save { font-size: 13px; }
   }
 
-  /* Savings ribbon in top-right corner */
+  /* Savings ribbon in top-right corner — solid gold pill */
   .concern-savings-ribbon {
     position: absolute;
     top: 22px;
@@ -657,12 +659,13 @@
     font-size: 10px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    font-weight: 600;
-    color: var(--gold);
-    background: rgba(184, 153, 104, 0.10);
+    font-weight: 700;
+    color: var(--cream);
+    background: var(--gold);
     padding: 7px 12px;
     border-radius: 2px;
     z-index: 2;
+    box-shadow: 0 2px 8px rgba(31, 27, 23, 0.12);
   }
 
   /* Routine identifier pill — distinguishes curated routines from targeted bundles
@@ -1340,7 +1343,7 @@
 <script src="data/bundle-details.js?v=1"></script>
 <script src="data/ingredients.js?v=1"></script>
 <script src="js/auth.js?v=1"></script><script src="js/shared.js?v=4"></script>
-<script src="js/bundle-expand.js"></script>
+<script src="js/bundle-expand.js?v=2"></script>
 <script>
 function renderConcernCard(bundle) {
   const pricing = window.getConcernBundlePricing(bundle.id);
@@ -1385,18 +1388,19 @@ function renderConcernCard(bundle) {
       </button>
 
       <div class="concern-savings-ribbon">Save ${discountPct}%</div>
+      <button type="button" class="card-close-top" data-card-toggle aria-label="Collapse ${bundle.name}">✕</button>
 
       <div class="concern-card-img-side">
         <div class="concern-products ${colsClass}">
           ${products.map((p, i) => `
-            <div class="concern-product" data-idx="${i}" title="The House ${p.name} — click to preview">
+            <a class="concern-product" href="product.html?slug=${p.slug}" data-idx="${i}" title="View The House ${p.name} — ingredients, studies & details">
               <div class="concern-product-img is-${p.category}">
                 <img src="${p.image}" alt="${p.name}" loading="lazy"/>
               </div>
               <div class="concern-product-name">The House <em>${p.name}</em></div>
               <div class="concern-product-tag">${p.tag.split('·')[0].trim()}</div>
               <div class="concern-product-price">$${p.price.toFixed(0)}</div>
-            </div>
+            </a>
           `).join('')}
         </div>
       </div>
@@ -1497,18 +1501,19 @@ function renderRoutineCard(bundle) {
 
       <div class="concern-savings-ribbon">Save ${discountPct}%</div>
       <div class="routine-pill" title="Curated daily ritual">Routine</div>
+      <button type="button" class="card-close-top" data-card-toggle aria-label="Collapse ${bundle.name}">✕</button>
 
       <div class="concern-card-img-side">
         <div class="concern-products ${colsClass}">
           ${products.map((p, i) => `
-            <div class="concern-product" data-idx="${i}" title="The House ${p.name} — click to preview">
+            <a class="concern-product" href="product.html?slug=${p.slug}" data-idx="${i}" title="View The House ${p.name} — ingredients, studies & details">
               <div class="concern-product-img is-${p.category}">
                 <img src="${p.image}" alt="${p.name}" loading="lazy"/>
               </div>
               <div class="concern-product-name">The House <em>${p.name}</em></div>
               <div class="concern-product-tag">${(p.tag || '').split('·')[0].trim()}</div>
               <div class="concern-product-price">$${p.price.toFixed(0)}</div>
-            </div>
+            </a>
           `).join('')}
         </div>
       </div>
@@ -1672,6 +1677,26 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!card) return;
     const willCollapse = !card.classList.contains('is-collapsed');
     card.classList.toggle('is-collapsed');
+
+    // Always normalize the View Details + Directions state on EVERY toggle —
+    // collapsing OR expanding — so the card transitions to a clean baseline
+    // every time. Prevents stale "Hide Details" state when a user collapses,
+    // then re-expands the same card.
+    const dir = card.querySelector('.bundle-directions');
+    if (dir && !dir.classList.contains('is-collapsed')) {
+      dir.classList.add('is-collapsed');
+      const tog = dir.querySelector('[data-directions-toggle]');
+      if (tog) tog.setAttribute('aria-expanded', 'false');
+    }
+    const expansion = card.querySelector('.bundle-expansion.is-open');
+    if (expansion) expansion.classList.remove('is-open');
+    const detailsToggle = card.querySelector('.bundle-details-toggle.is-open');
+    if (detailsToggle) {
+      detailsToggle.classList.remove('is-open');
+      const lbl = detailsToggle.querySelector('.toggle-label');
+      if (lbl) lbl.textContent = 'View Details';
+    }
+
     if (willCollapse) {
       const rect = card.getBoundingClientRect();
       if (rect.top < 0) {

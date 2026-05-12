@@ -163,11 +163,54 @@
     background: var(--cream);
     border: 1px solid var(--rule);
     padding: 56px 56px;
-    margin-bottom: 32px;
+    margin-bottom: 16px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 56px;
+    position: relative;
+    transition: padding 0.3s ease;
   }
+  /* Collapsible header — chevron indicator in top-right (skipped on final block) */
+  .cmp-block:not(.cmp-block-final) .cmp-block-toggle {
+    position: absolute;
+    top: 22px;
+    right: 22px;
+    width: 36px;
+    height: 36px;
+    background: var(--cream-warm);
+    border: 1px solid var(--rule);
+    border-radius: 50%;
+    color: var(--ink-soft);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 500;
+    transition: background 0.25s, color 0.25s, transform 0.4s ease, border-color 0.25s;
+    z-index: 2;
+  }
+  .cmp-block:not(.cmp-block-final) .cmp-block-toggle:hover {
+    background: var(--gold);
+    color: var(--cream);
+    border-color: var(--gold);
+  }
+  /* When expanded, rotate chevron 180° */
+  .cmp-block:not(.is-collapsed):not(.cmp-block-final) .cmp-block-toggle { transform: rotate(180deg); }
+  /* The header (cat+name) becomes a clickable region */
+  .cmp-block:not(.cmp-block-final) .cmp-block-cat,
+  .cmp-block:not(.cmp-block-final) .cmp-block-name {
+    cursor: pointer;
+  }
+  .cmp-block:not(.cmp-block-final).is-collapsed {
+    padding: 28px 56px;
+  }
+  .cmp-block.is-collapsed .cmp-block-rule,
+  .cmp-block.is-collapsed .cmp-block-col {
+    display: none;
+  }
+  .cmp-block.is-collapsed .cmp-block-name { margin-bottom: 0; }
+  .cmp-block.is-collapsed:hover { border-color: var(--gold); }
   .cmp-block-name {
     font-family: 'Cormorant Garamond', serif;
     font-size: 36px;
@@ -541,5 +584,38 @@
 
 <script src="data/products.js"></script>
 <script src="js/auth.js?v=1"></script><script src="js/shared.js"></script>
+<script>
+  // Make each archetype block collapsible. Skip the final "Bottom Line" block.
+  document.addEventListener('DOMContentLoaded', () => {
+    const blocks = document.querySelectorAll('.cmp-block:not(.cmp-block-final)');
+    blocks.forEach(block => {
+      // Start collapsed
+      block.classList.add('is-collapsed');
+      // Insert chevron toggle button
+      const btn = document.createElement('button');
+      btn.className = 'cmp-block-toggle';
+      btn.type = 'button';
+      btn.setAttribute('aria-label', 'Toggle archetype details');
+      btn.setAttribute('aria-expanded', 'false');
+      btn.textContent = '▾';
+      block.appendChild(btn);
+
+      // Click anywhere on the block header (cat, name, rule, or chevron) toggles.
+      // But clicks inside expanded columns should NOT collapse — only the header.
+      block.addEventListener('click', (e) => {
+        // Ignore clicks on column content when expanded — only header toggles
+        if (!block.classList.contains('is-collapsed') && e.target.closest('.cmp-block-col')) return;
+        const wasCollapsed = block.classList.contains('is-collapsed');
+        block.classList.toggle('is-collapsed');
+        btn.setAttribute('aria-expanded', wasCollapsed ? 'true' : 'false');
+        if (!wasCollapsed) {
+          // Collapsing — smooth-scroll back to block top if it's drifted offscreen
+          const rect = block.getBoundingClientRect();
+          if (rect.top < 0) block.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  });
+</script>
 </body>
 </html>
