@@ -291,6 +291,22 @@
     background: var(--ink);
     color: var(--cream);
   }
+  .concern-view-details {
+    display: block;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--rule);
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: 10.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--ink);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .concern-view-details:hover { color: var(--gold); }
 
   @media (max-width: 900px) {
     .concern-grid { grid-template-columns: 1fr; gap: 28px; }
@@ -818,6 +834,7 @@ function renderConcernCard(bundle) {
         <button class="concern-btn secondary" data-action="preview">Preview Bundle →</button>
         <button class="concern-btn primary" data-action="add">Add Bundle to Cart →</button>
       </div>
+      <a class="concern-view-details" href="bundle.html?slug=${bundle.id}">View Full Details →</a>
     </div>
   `;
 }

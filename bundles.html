@@ -137,6 +137,25 @@
   .hero-savings-label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(250, 246, 240, 0.6); }
   .hero-cta { display: inline-block; padding: 16px 40px; background: var(--gold); color: var(--ink); text-decoration: none; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500; transition: background 0.3s; text-align: center; }
   .hero-cta:hover { background: var(--cream); }
+  .hero-view-details {
+    display: inline-block;
+    margin-top: 14px;
+    margin-left: 4px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: rgba(250, 246, 240, 0.78);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(184, 153, 104, 0.5);
+    padding-bottom: 4px;
+    transition: color 0.3s, border-color 0.3s;
+  }
+  .hero-view-details:hover {
+    color: var(--gold);
+    border-color: var(--gold);
+  }
 
   /* Section header */
   .sec-header { max-width: 1080px; margin: 0 auto; padding: 100px 40px 0; text-align: center; }
@@ -867,6 +886,7 @@
         </div>
 
         <div class="bundle-subscribe-toggle" data-bundle-id="ultimate" style="max-width: 480px; margin-bottom: 16px;"><button type="button" data-mode="once" class="active"><div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">One-Time</span></div><span class="toggle-meta">Single delivery</span></button><button type="button" data-mode="subscribe"><div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">Monthly</span></div><span class="toggle-meta">Cancel anytime</span></button></div><button class="hero-cta" data-bundle-add="ultimate" style="border: none; cursor: pointer;">Add Ultimate to Cart →</button>
+        <a href="bundle.html?slug=ultimate" class="hero-view-details">View Details →</a>
       </div>
     </div>
   </div>

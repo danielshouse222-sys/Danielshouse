@@ -104,6 +104,18 @@
     color: var(--ink-soft);
   }
   .stars { color: var(--gold); letter-spacing: 0.05em; font-size: 14px; }
+  .rating-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .rating-count {
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    color: var(--ink-soft);
+    letter-spacing: 0.02em;
+  }
 
   /* Pricing & purchase */
   .product-purchase {
@@ -762,7 +774,9 @@
     <div class="product-tagline" id="product-tagline"></div>
 
     <div class="product-rating">
+      <span class="rating-number" id="rating-num">4.8</span>
       <span class="stars">★★★★★</span>
+      <span class="rating-count">(<span id="rating-count">157</span> reviews)</span>
       </div>
 
     <p class="product-desc" id="product-desc"></p>
