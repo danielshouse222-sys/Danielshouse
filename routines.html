@@ -1,0 +1,3208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Routines — Daniel's House</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="css/shared.css">
+<link rel="stylesheet" href="css/bundle-expand.css">
+<style>
+  :root {
+    --cream: #FAF6F0;
+    --cream-warm: #F2EBDD;
+    --ink: #1F1B17;
+    --ink-soft: #4A433B;
+    --sage: #5D6E5C;
+    --gold: #B89968;
+    --tan: #E8E1D5;
+    --rule: #D4C9B6;
+    --night: #1A1714;
+  }
+
+  /* Page header */
+  .page-header { max-width: 920px; margin: 0 auto; padding: 100px 40px 70px; text-align: center; }
+  .page-header-eyebrow { font-size: 12px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 28px; font-weight: 500; }
+  .page-header h1 { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: clamp(48px, 6vw, 76px); line-height: 1.05; letter-spacing: -0.01em; margin-bottom: 32px; }
+  .page-header h1 em { font-style: italic; color: var(--sage); font-weight: 400; }
+  .page-header p { font-size: 16px; line-height: 1.75; color: var(--ink-soft); max-width: 640px; margin: 0 auto; }
+
+  /* Credibility strip */
+  .credibility { max-width: 1080px; margin: 0 auto 0; padding: 0 40px 50px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; border-bottom: 1px solid var(--rule); padding-bottom: 50px; text-align: center; }
+  .cred-item { display: flex; flex-direction: column; align-items: center; }
+  .cred-num { font-family: 'Cormorant Garamond', serif; font-size: 44px; font-weight: 500; color: var(--sage); line-height: 1; margin-bottom: 6px; }
+  .cred-num em { color: var(--gold); font-style: italic; }
+  .cred-label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft); font-weight: 500; }
+
+  /* Returns-policy tooltip — sits next to the "Day satisfaction guarantee" label.
+     Hover or tap the ? to reveal a one-sentence policy summary with a Full policy link. */
+  .cred-item-tooltip .cred-label { position: relative; display: inline-flex; align-items: center; gap: 6px; }
+  .cred-tip-trigger {
+    width: 16px; height: 16px;
+    padding: 0; border: 1px solid var(--gold);
+    border-radius: 100%;
+    background: transparent;
+    color: var(--gold);
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1;
+    cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center;
+    transition: background 0.25s, color 0.25s;
+    letter-spacing: 0;
+  }
+  .cred-tip-trigger:hover, .cred-tip-trigger:focus {
+    background: var(--gold);
+    color: var(--cream);
+    outline: none;
+  }
+  .cred-tip-bubble {
+    position: absolute;
+    bottom: calc(100% + 14px);
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+    width: 280px;
+    padding: 14px 16px;
+    background: var(--ink);
+    color: var(--cream);
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 13.5px;
+    line-height: 1.45;
+    text-transform: none;
+    letter-spacing: 0;
+    text-align: left;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    z-index: 50;
+    box-shadow: 0 8px 24px rgba(31, 27, 23, 0.25);
+  }
+  .cred-tip-bubble::after {
+    /* Arrow pointer */
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 12px; height: 12px;
+    background: var(--ink);
+  }
+  .cred-tip-bubble a {
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(184, 153, 104, 0.4);
+    transition: border-color 0.25s;
+  }
+  .cred-tip-bubble a:hover { border-color: var(--gold); }
+  .cred-item-tooltip:hover .cred-tip-bubble,
+  .cred-item-tooltip:focus-within .cred-tip-bubble {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: all;
+  }
+  @media (max-width: 640px) {
+    .cred-tip-bubble { width: 240px; font-size: 12.5px; padding: 12px 14px; }
+  }
+
+  /* Hero bundle */
+  .hero-section { max-width: 1200px; margin: 80px auto 0; padding: 0 40px; }
+  .hero-eyebrow { text-align: center; font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; font-weight: 500; }
+  .hero-title { text-align: center; font-family: 'Cormorant Garamond', serif; font-size: clamp(40px, 4.5vw, 52px); font-weight: 400; line-height: 1.05; margin-bottom: 50px; }
+  .hero-title em { font-style: italic; color: var(--sage); }
+
+  .hero-bundle { display: grid; grid-template-columns: 1.1fr 1fr; gap: 0; background: var(--ink); color: var(--cream); border: 1px solid var(--gold); }
+  .hero-img-side { background: linear-gradient(140deg, #2a2520, var(--ink)); padding: 50px; display: flex; align-items: center; justify-content: center; position: relative; }
+  .hero-product-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; width: 100%; max-width: 480px; }
+  .hero-product-thumb { aspect-ratio: 1/1; background: var(--cream-warm); border: 1px solid rgba(184, 153, 104, 0.35); overflow: hidden; }
+  .hero-product-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .hero-product-thumb-label { aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center; background: rgba(184, 153, 104, 0.1); border: 1px solid rgba(184, 153, 104, 0.4); font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--gold); font-size: 11px; padding: 4px; text-align: center; }
+
+  .hero-content-side { padding: 60px 50px; display: flex; flex-direction: column; justify-content: center; }
+  .hero-badge { display: inline-block; font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; background: var(--gold); color: var(--ink); padding: 5px 14px; font-weight: 500; align-self: flex-start; margin-bottom: 24px; }
+  .hero-bundle-title { font-family: 'Cormorant Garamond', serif; font-size: 52px; font-weight: 400; line-height: 1; margin-bottom: 8px; }
+  .hero-bundle-title em { font-style: italic; color: var(--gold); }
+  .hero-bundle-sub { font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 24px; }
+  .hero-bundle-desc { font-size: 15px; line-height: 1.7; color: rgba(250, 246, 240, 0.78); margin-bottom: 28px; }
+  .hero-included { padding-top: 24px; border-top: 1px solid rgba(184, 153, 104, 0.3); margin-bottom: 28px; }
+  .hero-included-label { font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 14px; }
+  .hero-included-list { font-family: 'Cormorant Garamond', serif; font-size: 16px; line-height: 1.85; color: rgba(250, 246, 240, 0.92); }
+  .hero-savings { display: flex; justify-content: space-between; align-items: baseline; padding: 18px 0; border-top: 1px solid rgba(184, 153, 104, 0.3); border-bottom: 1px solid rgba(184, 153, 104, 0.3); margin-bottom: 28px; }
+  .hero-savings-amount { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 500; color: var(--gold); font-style: italic; }
+  .hero-savings-label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(250, 246, 240, 0.6); }
+  .hero-cta { display: inline-block; padding: 16px 40px; background: var(--gold); color: var(--ink); text-decoration: none; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500; transition: background 0.3s; text-align: center; }
+  .hero-cta:hover { background: var(--cream); }
+  .hero-view-details {
+    display: inline-block;
+    margin-top: 14px;
+    margin-left: 4px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: rgba(250, 246, 240, 0.78);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(184, 153, 104, 0.5);
+    padding-bottom: 4px;
+    transition: color 0.3s, border-color 0.3s;
+  }
+  .hero-view-details:hover {
+    color: var(--gold);
+    border-color: var(--gold);
+  }
+
+  /* Section header */
+  .sec-header { max-width: 1080px; margin: 0 auto; padding: 100px 40px 0; text-align: center; }
+  .sec-eyebrow { font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; font-weight: 500; }
+  .sec-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(44px, 5vw, 56px); font-weight: 400; line-height: 1; margin-bottom: 14px; }
+  .sec-title em { font-style: italic; color: var(--sage); }
+  .sec-blurb { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 17px; color: var(--ink-soft); max-width: 580px; margin: 0 auto; line-height: 1.55; }
+
+  /* Bundle grid */
+  .bundle-grid { max-width: 1200px; margin: 60px auto 0; padding: 0 40px; display: grid; grid-template-columns: 1fr; row-gap: 240px; }
+
+  .bundle-card { background: var(--cream); border: 1px solid var(--rule); padding: 0; display: grid; grid-template-columns: 1fr 1.15fr; transition: transform 0.4s, border-color 0.3s, box-shadow 0.3s; }
+  .bundle-card:hover { transform: translateY(-4px); border-color: var(--gold); box-shadow: 0 12px 40px rgba(31, 27, 23, 0.06); }
+
+  .bundle-img-area { padding: 48px 48px; background: var(--cream-warm); border-right: 1px solid var(--rule); display: flex; align-items: center; justify-content: center; }
+  .bundle-product-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; width: 100%; max-width: 460px; }
+  .bundle-product-grid.cols-3 .bundle-thumb,
+  .bundle-product-grid.cols-3 .bundle-thumb-label { width: calc(33.333% - 7px); }
+  .bundle-product-grid.cols-4 .bundle-thumb,
+  .bundle-product-grid.cols-4 .bundle-thumb-label { width: calc(25% - 8px); }
+  .bundle-product-grid.cols-5 .bundle-thumb,
+  .bundle-product-grid.cols-5 .bundle-thumb-label { width: calc(33.333% - 7px); }
+  .bundle-thumb { aspect-ratio: 1/1; background: var(--cream); border: 1px solid var(--rule); overflow: hidden; position: relative; }
+  .bundle-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .bundle-thumb-label { aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center; background: var(--cream); border: 1px solid var(--rule); font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--sage); font-size: 11px; padding: 4px; text-align: center; line-height: 1.2; }
+
+  .bundle-body { padding: 32px 36px 36px; flex: 1; display: flex; flex-direction: column; text-align: center; }
+  .bundle-eyebrow { font-size: 10.5px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 14px; text-align: center; }
+  .bundle-title { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-weight: 400; line-height: 1.05; margin-bottom: 10px; text-align: center; }
+  .bundle-title em { font-style: italic; color: var(--sage); }
+  .bundle-sub { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-soft); font-weight: 500; margin-bottom: 22px; text-align: center; }
+  .bundle-desc { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 16px; line-height: 1.6; color: var(--ink-soft); margin-bottom: 24px; text-align: center; }
+  .bundle-included { padding-top: 20px; border-top: 1px solid var(--rule); margin-bottom: 22px; }
+  .bundle-included-label { font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 10px; text-align: center; }
+  .bundle-included-list { font-family: 'Cormorant Garamond', serif; font-size: 15px; line-height: 1.7; color: var(--ink); text-align: center; }
+  .bundle-savings { display: flex; justify-content: space-between; align-items: baseline; padding: 18px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin-bottom: 22px; }
+  .bundle-save { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 26px; font-weight: 500; color: var(--sage); }
+  .bundle-save-label { font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft); }
+  .bundle-cta { display: block; text-align: center; padding: 16px 0; background: var(--ink); color: var(--cream); text-decoration: none; font-size: 11.5px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 500; transition: background 0.3s; margin-top: auto; }
+  .bundle-cta:hover { background: var(--sage); }
+
+  /* ════════════════════════════════════════════════════════════════════════
+     CONCERN-CARD STYLES — used to render curated bundles in the concern-card
+     visual style. Mirrors the layout used on bundles.html for consistency.
+     ════════════════════════════════════════════════════════════════════════ */
+  .concern-card {
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1.15fr;
+    transition: border-color 0.35s, box-shadow 0.35s, transform 0.35s;
+    position: relative;
+  }
+  .concern-card-img-side {
+    padding: 48px 48px;
+    background: var(--cream-warm);
+    border-right: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .concern-card-content-side {
+    padding: 48px 48px;
+    display: flex;
+    flex-direction: column;
+  }
+  .concern-card-content-side .bundle-subscribe-toggle {
+    margin-top: auto;
+  }
+  .concern-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 40px; height: 1px;
+    background: var(--gold);
+    transition: width 0.4s ease;
+  }
+  .concern-card:hover {
+    border-color: var(--gold);
+    box-shadow: 0 24px 56px rgba(31, 27, 23, 0.10);
+    transform: translateY(-3px);
+  }
+  .concern-card:hover::before { width: 100%; }
+
+  .concern-savings-ribbon {
+    position: absolute;
+    top: 22px;
+    right: 22px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--gold);
+    background: rgba(184, 153, 104, 0.10);
+    padding: 7px 12px;
+    border-radius: 2px;
+    z-index: 2;
+  }
+
+  .concern-header { margin-bottom: 26px; }
+  .concern-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 400;
+    line-height: 1.05;
+    margin-bottom: 14px;
+    color: var(--ink);
+  }
+  .concern-name em { font-style: italic; color: var(--sage); }
+
+  .concern-mix {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+  }
+  .concern-mix-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 5px 11px 5px 10px;
+    border-radius: 2px;
+    background: var(--cream-warm);
+    border: 1px solid var(--rule);
+    color: var(--ink-soft);
+  }
+  .concern-mix-pill .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 100%;
+    display: inline-block;
+  }
+  .concern-mix-pill.skin .dot { background: var(--sage); }
+  .concern-mix-pill.supp .dot { background: var(--gold); }
+
+  .concern-blurb {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+
+  .concern-products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px 12px;
+    width: 100%;
+    max-width: 380px;
+  }
+  .concern-products.cols-2 .concern-product,
+  .concern-products.cols-3 .concern-product,
+  .concern-products.cols-4 .concern-product,
+  .concern-products.cols-5 .concern-product,
+  .concern-products.cols-6 .concern-product { width: calc(50% - 6px); }
+
+  .concern-product {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--ink);
+    transition: transform 0.3s ease;
+  }
+  .concern-product:hover { transform: translateY(-3px); }
+  .concern-product-img {
+    aspect-ratio: 1/1;
+    background: var(--cream-warm);
+    border: 1px solid var(--rule);
+    overflow: hidden;
+    margin-bottom: 10px;
+    position: relative;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .concern-product-img::after {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 2px;
+    transition: width 0.3s;
+  }
+  .concern-product-img.is-skincare::after { background: var(--sage); }
+  .concern-product-img.is-supplement::after { background: var(--gold); }
+  .concern-product:hover .concern-product-img {
+    border-color: var(--gold);
+    box-shadow: 0 12px 28px rgba(31, 27, 23, 0.12);
+  }
+  .concern-product:hover .concern-product-img::after { width: 3px; }
+  .concern-product-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+  .concern-product:hover .concern-product-img img { transform: scale(1.06); }
+  .concern-product-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14.5px;
+    font-weight: 500;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 3px;
+  }
+  .concern-product-name em { font-style: italic; color: var(--sage); }
+  .concern-product-tag {
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    font-weight: 500;
+    line-height: 1.3;
+    margin-bottom: 2px;
+  }
+  .concern-product-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    color: var(--gold);
+    font-weight: 600;
+  }
+
+  .concern-pricing {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 18px 0;
+    margin-bottom: 18px;
+    gap: 14px;
+  }
+  .concern-price-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .concern-price-line {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+  .concern-price-was {
+    font-size: 14px;
+    color: var(--ink-soft);
+    text-decoration: line-through;
+    opacity: 0.7;
+  }
+  .concern-price-now {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 34px;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .concern-savings {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--sage);
+  }
+  .concern-count {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-style: italic;
+    color: var(--gold);
+    text-align: right;
+    line-height: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+  }
+  .concern-count span {
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-size: 9px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+  .concern-subscribe-toggle { margin-bottom: 14px; }
+
+  .concern-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .concern-btn {
+    padding: 14px 16px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.3s;
+  }
+  .concern-btn.primary {
+    background: var(--ink);
+    color: var(--cream);
+  }
+  .concern-btn.primary:hover { background: var(--sage); }
+  .concern-btn.secondary {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--ink);
+  }
+  .concern-btn.secondary:hover {
+    background: var(--ink);
+    color: var(--cream);
+  }
+
+  /* Closing */
+  .closing { text-align: center; padding: 120px 40px 100px; max-width: 720px; margin: 0 auto; }
+  .closing h2 { font-family: 'Cormorant Garamond', serif; font-size: 44px; font-weight: 400; margin-bottom: 16px; line-height: 1.15; }
+  .closing h2 em { font-style: italic; color: var(--sage); }
+  .closing p { color: var(--ink-soft); margin-bottom: 28px; font-size: 15px; line-height: 1.7; }
+  .closing-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .closing-btn { display: inline-block; padding: 16px 36px; text-decoration: none; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500; transition: all 0.3s; }
+  .closing-btn.primary { background: var(--ink); color: var(--cream); }
+  .closing-btn.primary:hover { background: var(--sage); }
+  .closing-btn.secondary { border: 1px solid var(--ink); color: var(--ink); }
+  .closing-btn.secondary:hover { background: var(--ink); color: var(--cream); }
+
+  @media (max-width: 1000px) {
+    .credibility { grid-template-columns: 1fr 1fr; gap: 30px 20px; }
+    .hero-bundle { grid-template-columns: 1fr; }
+    .hero-img-side { padding: 40px; }
+    .hero-content-side { padding: 40px 32px; }
+    .bundle-card { grid-template-columns: 1fr; }
+    .bundle-img-area { padding: 36px 36px 24px; border-right: none; border-bottom: 1px solid var(--rule); }
+    .bundle-product-grid { max-width: 360px; }
+    .bundle-product-grid.cols-5 .bundle-thumb,
+    .bundle-product-grid.cols-5 .bundle-thumb-label { width: calc(20% - 8px); }
+    .bundle-body { padding: 32px 36px 36px; }
+    .bundle-title { font-size: 34px; }
+    .bundle-grid { row-gap: 160px; }
+    .bundle-product-grid.cols-5 .bundle-thumb,
+    .bundle-product-grid.cols-5 .bundle-thumb-label { width: calc(25% - 8px); }
+
+    /* Concern card on routines.html — same collapse behavior as on bundles.html */
+    .concern-card { grid-template-columns: 1fr; }
+    .concern-card-img-side { border-right: none; border-bottom: 1px solid var(--rule); padding: 36px; }
+    .concern-card-content-side { padding: 32px 36px 36px; }
+    .concern-products { max-width: 360px; }
+  }
+  @media (max-width: 640px) {
+    .concern-card-img-side { padding: 28px 24px; }
+    .concern-card-content-side { padding: 26px 24px 28px; }
+    .concern-savings-ribbon { top: 16px; right: 16px; font-size: 9px; padding: 6px 10px; }
+    .concern-name { font-size: 30px; }
+    .concern-actions { grid-template-columns: 1fr; }
+    .concern-pricing { flex-direction: row; align-items: center; }
+    .concern-count { font-size: 24px; }
+  }
+  @media (max-width: 640px) {
+    .credibility { grid-template-columns: 1fr 1fr; }
+    .hero-product-grid { grid-template-columns: repeat(4, 1fr); }
+
+    /* Unified page edges + card padding (matches bundles.html concern-card on mobile) */
+    .bundle-grid { padding: 0 22px; }
+    .bundle-body { padding: 26px 24px 28px; }
+
+    /* Bundle card text — readability boost on phones */
+    .bundle-eyebrow { font-size: 11.5px; letter-spacing: 0.22em; margin-bottom: 12px; }
+    .bundle-title { font-size: 30px; line-height: 1.1; }
+    .bundle-sub { font-size: 12px; letter-spacing: 0.18em; margin-bottom: 16px; }
+    .bundle-desc { font-size: 16px; line-height: 1.65; margin-bottom: 22px; }
+    .bundle-included-label { font-size: 11.5px; letter-spacing: 0.22em; margin-bottom: 12px; }
+    .bundle-included-list { font-size: 16px; line-height: 1.65; }
+    .bundle-save { font-size: 16px; }
+    .bundle-save-label { font-size: 13.5px; }
+
+    /* Hero bundle (Ultimate) — readability boost */
+    .hero-bundle-sub { font-size: 12px; letter-spacing: 0.22em; }
+    .hero-bundle-desc { font-size: 16px; line-height: 1.7; }
+  }
+
+  /* ═══ BUILD YOUR OWN BUNDLE ═══ */
+  .builder-section { background: var(--cream-warm); padding: 100px 40px; border-top: 1px solid var(--rule); margin-top: 80px; }
+  .builder-section-inner { max-width: 1200px; margin: 0 auto; }
+  .builder-header { text-align: center; max-width: 720px; margin: 0 auto 50px; }
+  .builder-eyebrow { font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; font-weight: 500; }
+  .builder-header h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(44px, 5vw, 64px); font-weight: 400; line-height: 1.05; margin-bottom: 18px; }
+  .builder-header h2 em { font-style: italic; color: var(--sage); }
+  .builder-header p { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 17px; color: var(--ink-soft); line-height: 1.55; }
+
+  /* Tier chips beneath the header — pill row showing the 3 savings tiers */
+  .builder-tiers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 32px auto 0;
+    max-width: 560px;
+  }
+  .tier-chip {
+    font-family: 'Poppins', sans-serif;
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    transition: all 0.35s ease;
+    cursor: pointer;
+    padding: 14px 10px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    text-align: center;
+    position: relative;
+  }
+  .tier-chip:hover {
+    border-color: rgba(184, 153, 104, 0.5);
+    background: var(--cream-warm);
+  }
+  /* The chip's two text lines stack vertically inside the chip */
+  .tier-chip-num {
+    font-family: 'Poppins', sans-serif;
+    font-size: 9.5px;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    font-weight: 600;
+    line-height: 1;
+  }
+  .tier-chip-save {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--gold);
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
+  .tier-chip.active {
+    background: var(--ink);
+    border-color: var(--ink);
+    box-shadow: inset 0 -3px 0 var(--gold);
+  }
+  .tier-chip.active .tier-chip-num { color: var(--cream); }
+  .tier-chip.active .tier-chip-save { color: var(--gold); }
+
+  .builder-tracker { background: var(--cream); border: 1px solid var(--rule); border-left: 3px solid var(--gold); padding: 22px 28px; margin-bottom: 36px; display: grid; grid-template-columns: 1fr 1fr auto; gap: 32px; align-items: center; position: sticky; top: 70px; z-index: 30; box-shadow: 0 2px 12px rgba(31, 27, 23, 0.04); box-sizing: border-box; max-width: 100%; }
+  .tracker-progress { min-width: 0; }
+  .tracker-count { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 500; color: var(--ink); margin-bottom: 10px; line-height: 1; }
+  .tracker-count em { font-style: italic; color: var(--sage); }
+
+  /* Bar + marker pins — three checkpoints at 33/66/100 % of the bar.
+     Bar is inset 11px on each side via wrap's horizontal padding, so the 9-marker
+     (centered on the bar's right edge with translate -50%) lands cleanly inside
+     the card, not overflowing past the right border. */
+  .tracker-bar-wrap { position: relative; padding: 14px 11px 22px; }
+  .tracker-bar { position: relative; height: 4px; background: var(--tan); border-radius: 2px; }
+  .tracker-fill { height: 100%; background: var(--gold); width: 0%; transition: width 0.5s ease; border-radius: 2px; }
+  .tracker-marker {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    pointer-events: none;
+    transition: all 0.4s ease;
+  }
+  .tracker-marker .marker-dot {
+    width: 22px;
+    height: 22px;
+    background: var(--cream);
+    border: 2px solid var(--rule);
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    line-height: 1;
+    transition: all 0.4s ease;
+    box-shadow: 0 1px 3px rgba(31, 27, 23, 0.06);
+  }
+  .tracker-marker .marker-label {
+    position: absolute;
+    top: 26px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 8.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    opacity: 0.6;
+    white-space: nowrap;
+    transition: all 0.35s ease;
+  }
+  .tracker-marker.reached .marker-dot {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--cream);
+    transform: scale(1.08);
+  }
+  .tracker-marker.reached .marker-label {
+    color: var(--gold);
+    opacity: 1;
+    font-weight: 600;
+  }
+  .tracker-next {
+    margin-top: 22px;
+    text-align: left;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.45;
+  }
+  .tracker-next strong {
+    font-weight: 600;
+    color: var(--gold);
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin: 0 2px;
+  }
+
+  .tracker-prices { display: grid; gap: 4px; min-width: 0; font-size: 12.5px; color: var(--ink-soft); }
+  .tracker-line { display: flex; justify-content: space-between; gap: 16px; }
+  .tracker-line span:last-child { font-family: 'Cormorant Garamond', serif; font-size: 15px; font-weight: 500; color: var(--ink); }
+  .tracker-final { padding-top: 8px; border-top: 1px solid var(--rule); margin-top: 4px; }
+  .tracker-final span:last-child { color: var(--sage); font-size: 22px; font-style: italic; }
+  .builder-cta {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 16px 20px;
+    background: var(--ink);
+    color: var(--cream);
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: background 0.3s, opacity 0.3s;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    line-height: 1.3;
+  }
+  .builder-cta:hover:not(:disabled) { background: var(--sage); }
+  .builder-cta:disabled { background: var(--ink-soft); opacity: 0.4; cursor: not-allowed; }
+
+  .builder-tabs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin: 0 auto 28px;
+    max-width: 560px;
+  }
+  .tab {
+    padding: 12px 14px;
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--ink-soft);
+    transition: all 0.3s;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .tab:hover { color: var(--ink); border-color: rgba(184, 153, 104, 0.45); }
+  .tab.active { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+  .tab .tab-count {
+    opacity: 0.5;
+    margin-left: 3px;
+    font-weight: 400;
+  }
+  .tab.active .tab-count { opacity: 0.7; color: var(--gold); }
+
+  .builder-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+  .builder-card { background: var(--cream); border: 2px solid var(--rule); padding: 14px 14px 16px; cursor: pointer; transition: all 0.3s; position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; user-select: none; }
+  .builder-card:hover { border-color: var(--gold); transform: translateY(-2px); }
+  .builder-card.selected { border-color: var(--gold); background: rgba(184, 153, 104, 0.12); }
+  .builder-card-img { width: 100%; aspect-ratio: 1/1; background: var(--cream-warm); border: 1px solid var(--rule); margin-bottom: 12px; position: relative; overflow: hidden; }
+  .builder-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .builder-card-check { position: absolute; top: 8px; right: 8px; width: 28px; height: 28px; background: var(--gold); color: var(--cream); border-radius: 50%; display: none; align-items: center; justify-content: center; font-size: 16px; font-weight: 600; box-shadow: 0 2px 8px rgba(0,0,0,0.18); }
+  .builder-card.selected .builder-card-check { display: flex; }
+  .builder-card-cat { font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 5px; font-weight: 500; }
+  .builder-card-name { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-weight: 500; line-height: 1.15; margin-bottom: 5px; color: var(--ink); }
+  .builder-card-name em { font-style: italic; color: var(--sage); }
+  .builder-card-price { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 500; color: var(--ink); }
+
+  /* ═══ BYO BUNDLE POPUP ═══
+     Replaces the old inline summary — opens as a modal overlay when the user
+     clicks "See Your Routine →". Same backdrop pattern as the cart drawer. */
+  .byo-popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(31, 27, 23, 0.55);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    z-index: 998;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    overflow-y: auto;
+  }
+  .byo-popup-overlay.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .byo-popup {
+    background: var(--ink);
+    color: var(--cream);
+    border: 1px solid var(--gold);
+    max-width: 580px;
+    width: 100%;
+    max-height: calc(100vh - 80px);
+    padding: 44px 40px 36px;
+    position: relative;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+    overflow-y: auto;
+  }
+  .byo-popup-overlay.open .byo-popup {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  .byo-popup-close {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    width: 36px;
+    height: 36px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--cream);
+    font-size: 28px;
+    line-height: 1;
+    padding: 0;
+    opacity: 0.6;
+    transition: opacity 0.25s, color 0.25s;
+    font-family: 'Poppins', sans-serif;
+    z-index: 2;
+  }
+  .byo-popup-close:hover { opacity: 1; color: var(--gold); }
+
+  .byo-popup-header { text-align: center; margin-bottom: 26px; }
+  .byo-popup-eyebrow {
+    font-family: 'Poppins', sans-serif;
+    font-size: 10.5px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  .byo-popup-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 38px;
+    font-weight: 400;
+    line-height: 1.05;
+    margin: 0 0 8px;
+    color: var(--cream);
+  }
+  .byo-popup-title em { font-style: italic; color: var(--gold); }
+  .byo-popup-sub {
+    font-family: 'Poppins', sans-serif;
+    font-size: 10.5px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  .byo-popup-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+  .byo-popup-list .summary-item {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid rgba(184, 153, 104, 0.3);
+    text-decoration: none;
+    color: var(--cream);
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .byo-popup-list .summary-item:hover {
+    border-color: var(--gold);
+    background: rgba(184, 153, 104, 0.08);
+  }
+  .byo-popup-list .summary-item img {
+    width: 46px;
+    height: 46px;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+  .byo-popup-list .summary-item-text { flex: 1; min-width: 0; }
+  .byo-popup-list .summary-item-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.15;
+  }
+  .byo-popup-list .summary-item-name em { font-style: italic; color: var(--gold); }
+  .byo-popup-list .summary-item-price {
+    font-size: 11px;
+    color: rgba(250, 246, 240, 0.7);
+    margin-top: 2px;
+  }
+
+  .byo-popup-totals {
+    padding: 18px 0;
+    border-top: 1px solid rgba(184, 153, 104, 0.3);
+    border-bottom: 1px solid rgba(184, 153, 104, 0.3);
+    margin-bottom: 20px;
+  }
+  .byo-popup-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 13px;
+    color: rgba(250, 246, 240, 0.85);
+    padding: 5px 0;
+  }
+  .byo-popup-line span:last-child {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--cream);
+  }
+  .byo-popup-line-final {
+    padding-top: 12px;
+    border-top: 1px solid rgba(184, 153, 104, 0.25);
+    margin-top: 6px;
+  }
+  .byo-popup-line-final span:first-child {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: var(--cream);
+  }
+  .byo-popup-line-final span:last-child {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 30px;
+    color: var(--gold);
+  }
+
+  .byo-popup-code {
+    background: rgba(184, 153, 104, 0.1);
+    padding: 14px 18px;
+    border: 1px dashed var(--gold);
+    margin-bottom: 22px;
+    text-align: center;
+    font-size: 12px;
+    color: rgba(250, 246, 240, 0.85);
+  }
+  .byo-popup-code strong {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    color: var(--gold);
+    font-style: italic;
+    letter-spacing: 0.05em;
+    display: inline-block;
+    padding: 0 6px;
+    font-weight: 600;
+  }
+
+  .byo-popup-purchase {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .byo-popup-purchase .bundle-subscribe-toggle { max-width: none; margin: 0; }
+
+  /* Smart Refill teaser — same editorial treatment as bundle cards */
+  .byo-smart-teaser {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-align: center;
+    margin: 0 0 2px;
+    color: var(--ink-soft);
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 13.5px;
+    line-height: 1.4;
+  }
+  .byo-smart-teaser[hidden] { display: none; }
+  .byo-smart-rule {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--gold) 50%, transparent 100%);
+    opacity: 0.55;
+  }
+  .byo-smart-text {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+  }
+  .byo-smart-pill {
+    background: var(--gold);
+    color: var(--cream);
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-size: 8.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 3px 7px 2px;
+    border-radius: 2px;
+    line-height: 1;
+  }
+  .byo-smart-text strong {
+    font-style: normal;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    color: var(--gold);
+    font-size: 12.5px;
+  }
+  @media (max-width: 480px) {
+    .byo-smart-teaser { font-size: 12.5px; gap: 8px; flex-wrap: wrap; }
+    .byo-smart-text { white-space: normal; }
+  }
+  .byo-popup-cta {
+    display: block;
+    width: 100%;
+    padding: 18px 28px;
+    background: var(--gold);
+    color: var(--ink);
+    border: none;
+    cursor: pointer;
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 600;
+    transition: background 0.3s, color 0.3s;
+    font-family: 'Poppins', sans-serif;
+  }
+  .byo-popup-cta:hover { background: var(--cream); color: var(--ink); }
+
+  @media (max-width: 1000px) {
+    .builder-grid { grid-template-columns: repeat(3, 1fr); }
+    .builder-tracker { grid-template-columns: 1fr; gap: 18px; padding: 20px; }
+  }
+  @media (max-width: 480px) {
+    /* Tighten tier chips at narrow widths so all 3 stay side-by-side */
+    .builder-tiers { gap: 6px; }
+    .tier-chip { padding: 11px 4px 10px; }
+    .tier-chip-num { font-size: 8.5px; letter-spacing: 0.20em; }
+    .tier-chip-save { font-size: 14.5px; }
+    /* Tabs stay 3-up, just shrink padding */
+    .builder-tabs { gap: 6px; }
+    .tab { padding: 11px 6px; font-size: 9.5px; letter-spacing: 0.14em; }
+    .tab .tab-count { display: block; margin: 3px 0 0; font-size: 9px; }
+    /* Builder header spacing */
+    .builder-header { margin-bottom: 36px; }
+    .builder-header h2 { margin-bottom: 14px; }
+    /* Tracker card: tighter padding + CTA letter-spacing so the button stays inside */
+    .builder-tracker { padding: 18px 16px; }
+    .builder-cta { padding: 14px 12px; letter-spacing: 0.14em; font-size: 10.5px; }
+  }
+  /* Even narrower phones (≤380px) — shrink further */
+  @media (max-width: 380px) {
+    .builder-cta { letter-spacing: 0.10em; font-size: 10px; padding: 14px 8px; }
+    .tier-chip-num { font-size: 8px; letter-spacing: 0.16em; }
+    .tier-chip-save { font-size: 13.5px; }
+    .tab { font-size: 9px; letter-spacing: 0.10em; }
+  }
+  @media (max-width: 640px) {
+    .builder-grid { grid-template-columns: repeat(2, 1fr); }
+    .builder-section { padding: 70px 20px; }
+    .byo-popup-overlay { padding: 0; align-items: flex-end; }
+    .byo-popup {
+      max-width: 100vw;
+      width: 100vw;
+      max-height: 92vh;
+      padding: 38px 22px 28px;
+      border-left: none;
+      border-right: none;
+      border-bottom: none;
+      transform: translateY(100%);
+    }
+    .byo-popup-overlay.open .byo-popup { transform: translateY(0); }
+    .byo-popup-title { font-size: 30px; }
+    .byo-popup-list { grid-template-columns: 1fr; }
+  }
+
+
+  /* Ultimate Routine hero — overrides for 22-product grid */
+  .hero-product-grid-ultimate { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; width: 100%; max-width: 540px; }
+  .hero-product-grid-ultimate .hero-product-thumb { aspect-ratio: 1/1; background: var(--cream-warm); border: 1px solid rgba(184, 153, 104, 0.35); overflow: hidden; }
+  .hero-product-grid-ultimate .hero-product-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .hero-product-grid-ultimate .hero-thumb-empty { aspect-ratio: 1/1; background: rgba(184, 153, 104, 0.06); border: 1px solid rgba(184, 153, 104, 0.2); display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--gold); font-size: 12px; opacity: 0.6; }
+    .lightbox-body { flex-direction: column; }
+    .lightbox-arrow { width: 100%; }
+
+  /* ═══════════════════════════════════════════════════════════════════
+     WHY-BUNDLES MESSAGE (3-pillar block above the Ultimate hero)
+     ═══════════════════════════════════════════════════════════════════ */
+  .why-bundles {
+    max-width: 1100px;
+    margin: 12px auto 0;
+    padding: 0 40px;
+  }
+  .why-bundles-inner {
+    background: var(--cream-warm);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--gold);
+    padding: 32px 36px 28px;
+  }
+  .why-bundles-eyebrow {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-style: italic;
+    color: var(--ink);
+    margin-bottom: 22px;
+    text-align: center;
+  }
+  .why-bundles-eyebrow em {
+    font-style: italic;
+    color: var(--sage);
+    font-weight: 500;
+  }
+  .why-bundles-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-bottom: 22px;
+  }
+  .why-pillar { display: flex; flex-direction: column; gap: 6px; }
+  .why-pillar-mark {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--gold);
+    font-weight: 500;
+    line-height: 1;
+  }
+  .why-pillar-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    line-height: 1.15;
+    color: var(--ink);
+    font-weight: 500;
+    margin: 4px 0 2px;
+  }
+  .why-pillar-body {
+    font-family: 'Poppins', sans-serif;
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+  .why-pillar-body strong { color: var(--gold); font-weight: 600; }
+  .why-bundles-foot {
+    text-align: center;
+    border-top: 1px solid var(--rule);
+    padding-top: 16px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+  .why-bundles-foot a {
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+  .why-bundles-foot a:hover { color: var(--ink); }
+
+  @media (max-width: 1000px) {
+    .why-bundles-grid { grid-template-columns: repeat(2, 1fr); gap: 22px; }
+  }
+  @media (max-width: 760px) {
+    .why-bundles { padding: 0 22px; }
+    .why-bundles-inner { padding: 24px 22px 20px; }
+    .why-bundles-grid { grid-template-columns: 1fr; gap: 22px; }
+    .why-bundles-eyebrow { font-size: 18px; margin-bottom: 18px; }
+    .why-pillar-title { font-size: 21px; }
+    .why-pillar-body { font-size: 14px; line-height: 1.65; }
+    .why-bundles-foot { font-size: 15px; line-height: 1.5; }
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════
+     SEARCH BAR + FILTER PANEL (shared classes with bundles.html)
+     ═══════════════════════════════════════════════════════════════════ */
+  .bundle-search-wrap {
+    max-width: 1200px;
+    margin: 32px auto 16px;
+    padding: 0 40px;
+    text-align: center;
+  }
+  .concern-search {
+    position: relative;
+    display: flex;
+    align-items: center;
+    max-width: 640px;
+    margin: 0 auto;
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .concern-search:focus-within {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 4px rgba(184, 153, 104, 0.10);
+  }
+  .concern-search-icon {
+    font-size: 20px;
+    color: var(--ink-soft);
+    padding: 0 4px 0 22px;
+    transition: color 0.3s;
+    line-height: 1;
+  }
+  .concern-search:focus-within .concern-search-icon { color: var(--gold); }
+  .concern-search-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 18px 16px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    color: var(--ink);
+    width: 100%;
+  }
+  .concern-search-input::placeholder {
+    color: var(--ink-soft);
+    opacity: 0.7;
+    font-style: italic;
+  }
+  .concern-search-clear {
+    background: transparent;
+    border: none;
+    color: var(--ink-soft);
+    cursor: pointer;
+    padding: 0 22px 0 8px;
+    font-size: 14px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s, color 0.25s;
+  }
+  .concern-search-clear.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .concern-search-clear:hover { color: var(--gold); }
+
+  .concern-search-meta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 28px;
+    margin-top: 18px;
+    flex-wrap: wrap;
+  }
+  .concern-search-count {
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+  }
+  .concern-search-hints {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .concern-search-hints .hint-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+  .concern-search-hint {
+    background: transparent;
+    border: 1px solid var(--rule);
+    color: var(--ink-soft);
+    font-family: 'Poppins', sans-serif;
+    font-size: 10.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.25s;
+  }
+  .concern-search-hint:hover {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--cream);
+  }
+
+  .concern-filter-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--cream);
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 8px 14px;
+    transition: background 0.25s, color 0.25s;
+  }
+  .concern-filter-toggle:hover {
+    background: var(--ink);
+    color: var(--cream);
+  }
+  .concern-filter-toggle .toggle-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 6px;
+    border-radius: 100px;
+    background: var(--gold);
+    color: var(--ink);
+    font-size: 10px;
+    letter-spacing: 0;
+    font-weight: 600;
+  }
+  .concern-filter-toggle .toggle-arrow {
+    font-size: 9px;
+    transition: transform 0.3s;
+    margin-top: -1px;
+  }
+  .concern-filter-toggle[aria-expanded="true"] .toggle-arrow {
+    transform: rotate(-180deg);
+  }
+
+  .concern-filter-panel {
+    max-width: 1100px;
+    margin: 28px auto 0;
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    overflow: hidden;
+    text-align: left;
+  }
+  .concern-filter-panel[hidden] { display: none; }
+  .filter-panel-inner {
+    padding: 32px 36px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+  }
+  .filter-group { display: flex; flex-direction: column; gap: 12px; }
+  .filter-group-label {
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+  }
+  .filter-group-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .bundle-search-wrap .filter-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: transparent;
+    border: 1px solid var(--rule);
+    color: var(--ink-soft);
+    font-family: 'Poppins', sans-serif;
+    font-size: 11.5px;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.25s;
+    line-height: 1.4;
+    text-transform: none;
+  }
+  .bundle-search-wrap .filter-chip:hover {
+    border-color: var(--ink);
+    color: var(--ink);
+  }
+  .bundle-search-wrap .filter-chip.is-active {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--cream);
+  }
+  .bundle-search-wrap .filter-chip.is-active:hover {
+    background: var(--sage);
+    border-color: var(--sage);
+  }
+  .bundle-search-wrap .filter-chip .chip-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 100%;
+    display: inline-block;
+  }
+  .bundle-search-wrap .filter-chip .chip-dot.sage { background: var(--sage); }
+  .bundle-search-wrap .filter-chip .chip-dot.gold { background: var(--gold); }
+  .bundle-search-wrap .filter-chip.is-active .chip-dot { box-shadow: 0 0 0 2px rgba(250, 246, 240, 0.3); }
+
+  .filter-panel-footer {
+    border-top: 1px solid var(--rule);
+    padding-top: 18px;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .filter-clear-all {
+    background: transparent;
+    border: none;
+    color: var(--ink-soft);
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: color 0.25s;
+    padding: 8px 12px;
+  }
+  .filter-clear-all:hover { color: var(--gold); }
+  .filter-clear-all:disabled { opacity: 0.4; cursor: default; }
+
+  .bundle-card.is-hidden,
+  .curated-card.is-hidden,
+  .concern-card.is-hidden { display: none !important; }
+
+  @media (max-width: 980px) {
+    .bundle-search-wrap { padding: 0 22px; }
+    .concern-search-meta { gap: 16px; }
+    .filter-panel-inner { padding: 24px 22px 20px; }
+  }
+  @media (max-width: 640px) {
+    .concern-search-input { font-size: 16px; padding: 16px 12px; }
+    .concern-search-icon { padding: 0 4px 0 16px; font-size: 18px; }
+    .concern-search-clear { padding: 0 16px 0 6px; }
+    .concern-filter-toggle { width: 100%; justify-content: center; }
+    .bundle-search-wrap .filter-chip { font-size: 11px; padding: 7px 12px; }
+    .filter-group-chips { gap: 6px; }
+  }
+</style>
+</head>
+<body data-bundle-category="curated">
+
+<div class="shipping-bar">
+  <div class="shipping-bar-progress"></div>
+  <div class="shipping-bar-inner">
+    <div class="shipping-bar-text">Free shipping on orders over <strong>$75</strong></div>
+    <div class="shipping-bar-divider"></div>
+    <span class="shipping-bar-pill">30-Day Returns</span>
+    <div class="shipping-bar-divider"></div>
+    <span class="shipping-bar-pill">Cruelty-Free · Non-GMO</span>
+    <div class="shipping-bar-divider"></div>
+    <span class="shipping-bar-pill">Made in N.A.</span>
+  </div>
+</div>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Daniel<span class="amp">'s</span> House</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">Daniel's Story</a></li>
+      <li><a href="skincare.html">Skincare</a></li>
+      <li><a href="supplements.html">Supplements</a></li>
+
+      <li><a href="routines.html" class="active">Routines</a></li>
+      <li><a href="bundles.html">Bundles</a></li>
+    </ul>
+    <div style="display: flex; gap: 4px;">
+      <button class="search-trigger" aria-label="Search">Search</button>
+      <a class="account-trigger" href="account.html">Sign In</a><button class="cart-trigger" aria-label="Open cart">Cart <span class="cart-trigger-count">0</span></button>
+    </div>
+  </div>
+</nav>
+<!-- Floating Search Button → Centered Modal Filter -->
+<div class="page-filter collapsed" data-filter-target=".bundle-card" data-filter-noun="routines">
+  <button class="page-filter-toggle" type="button" aria-label="Open search and filters">
+    <span class="page-filter-toggle-icon">⌕</span>
+    <span class="page-filter-toggle-badge"></span>
+  </button>
+  <div class="page-filter-overlay"></div>
+  <div class="page-filter-panel">
+    <div class="page-filter-head">
+      <div class="page-filter-head-title">Search &amp; Filter</div>
+      <button class="page-filter-close" type="button" aria-label="Close">✕</button>
+    </div>
+    <div class="page-filter-bar">
+      <span class="page-filter-icon">⌕</span>
+      <input type="text" class="page-filter-input" placeholder="Search anything... press Enter for full results" />
+      <button class="page-filter-clear" type="button" aria-label="Clear">✕</button>
+    </div>
+    <div class="page-filter-categories">
+      <div class="page-filter-category">
+        <div class="page-filter-category-label">Category</div>
+        <div class="page-filter-category-chips">
+          <button class="filter-chip" data-chip="skincare" data-group="category">Skincare</button>
+          <button class="filter-chip" data-chip="supplement" data-group="category">Supplements</button>
+          <button class="filter-chip" data-chip="bundle" data-group="category">Bundles</button>
+        </div>
+      </div>
+      <div class="page-filter-category">
+        <div class="page-filter-category-label">Effect</div>
+        <div class="page-filter-category-chips">
+          <button class="filter-chip" data-chip="hydrat" data-group="effect">Hydrating</button>
+          <button class="filter-chip" data-chip="brighten" data-group="effect">Brightening</button>
+          <button class="filter-chip" data-chip="firm" data-group="effect">Firming</button>
+          <button class="filter-chip" data-chip="exfoliat" data-group="effect">Exfoliating</button>
+          <button class="filter-chip" data-chip="protect" data-group="effect">Protecting</button>
+          <button class="filter-chip" data-chip="detox" data-group="effect">Detoxifying</button>
+          <button class="filter-chip" data-chip="calm" data-group="effect">Calming</button>
+          <button class="filter-chip" data-chip="energiz" data-group="effect">Energizing</button>
+        </div>
+      </div>
+      <div class="page-filter-category">
+        <div class="page-filter-category-label">Goal</div>
+        <div class="page-filter-category-chips">
+          <button class="filter-chip" data-chip="sleep" data-group="goal">Sleep</button>
+          <button class="filter-chip" data-chip="energy" data-group="goal">Energy</button>
+          <button class="filter-chip" data-chip="stress" data-group="goal">Stress</button>
+          <button class="filter-chip" data-chip="focus" data-group="goal">Focus</button>
+          <button class="filter-chip" data-chip="recovery" data-group="goal">Recovery</button>
+          <button class="filter-chip" data-chip="beauty" data-group="goal">Beauty</button>
+          <button class="filter-chip" data-chip="anti-aging" data-group="goal">Anti-Aging</button>
+          <button class="filter-chip" data-chip="hydration" data-group="goal">Hydration</button>
+          <button class="filter-chip" data-chip="immune" data-group="goal">Immunity</button>
+          <button class="filter-chip" data-chip="gut" data-group="goal">Gut Health</button>
+          <button class="filter-chip" data-chip="daily" data-group="goal">Daily</button>
+        </div>
+      </div>
+      <div class="page-filter-category">
+        <div class="page-filter-category-label">Key Ingredient</div>
+        <div class="page-filter-category-chips">
+          <button class="filter-chip" data-chip="vitamin c" data-group="key ingredient">Vitamin C</button>
+          <button class="filter-chip" data-chip="retinol" data-group="key ingredient">Retinol</button>
+          <button class="filter-chip" data-chip="hyaluronic" data-group="key ingredient">Hyaluronic</button>
+          <button class="filter-chip" data-chip="niacinamide" data-group="key ingredient">Niacinamide</button>
+          <button class="filter-chip" data-chip="peptide" data-group="key ingredient">Peptides</button>
+          <button class="filter-chip" data-chip="antioxidant" data-group="key ingredient">Antioxidants</button>
+          <button class="filter-chip" data-chip="magnesium" data-group="key ingredient">Magnesium</button>
+          <button class="filter-chip" data-chip="ashwagandha" data-group="key ingredient">Ashwagandha</button>
+          <button class="filter-chip" data-chip="nad" data-group="key ingredient">NAD+</button>
+          <button class="filter-chip" data-chip="collagen" data-group="key ingredient">Collagen</button>
+          <button class="filter-chip" data-chip="probiotic" data-group="key ingredient">Probiotic</button>
+          <button class="filter-chip" data-chip="vitamin d" data-group="key ingredient">Vitamin D</button>
+          <button class="filter-chip" data-chip="omega" data-group="key ingredient">Omega-3</button>
+          <button class="filter-chip" data-chip="creatine" data-group="key ingredient">Creatine</button>
+        </div>
+      </div>
+      <div class="page-filter-category">
+        <div class="page-filter-category-label">Type of Product</div>
+        <div class="page-filter-category-chips">
+          <button class="filter-chip" data-chip="cleanser" data-group="type of product">Cleanser</button>
+          <button class="filter-chip" data-chip="toner" data-group="type of product">Toner</button>
+          <button class="filter-chip" data-chip="serum" data-group="type of product">Serum</button>
+          <button class="filter-chip" data-chip="moisturizer" data-group="type of product">Moisturizer</button>
+          <button class="filter-chip" data-chip="eye" data-group="type of product">Eye Care</button>
+          <button class="filter-chip" data-chip="mask" data-group="type of product">Mask</button>
+          <button class="filter-chip" data-chip="oil" data-group="type of product">Oil</button>
+          <button class="filter-chip" data-chip="capsule" data-group="type of product">Capsule</button>
+          <button class="filter-chip" data-chip="powder" data-group="type of product">Powder</button>
+          <button class="filter-chip" data-chip="gummy" data-group="type of product">Gummy</button>
+          <button class="filter-chip" data-chip="tablet" data-group="type of product">Tablet</button>
+        </div>
+      </div>
+      <div class="page-filter-category">
+        <div class="page-filter-category-label">Dietary</div>
+        <div class="page-filter-category-chips">
+          <button class="filter-chip" data-chip="vegetarian" data-group="dietary">Vegetarian</button>
+          <button class="filter-chip" data-chip="halal" data-group="dietary">Halal</button>
+          <button class="filter-chip" data-chip="kosher" data-group="dietary">Kosher</button>
+          <button class="filter-chip" data-chip="gluten-free" data-group="dietary">Gluten-Free</button>
+          <button class="filter-chip" data-chip="lactose-free" data-group="dietary">Lactose-Free</button>
+          <button class="filter-chip" data-chip="sugar-free" data-group="dietary">Sugar-Free</button>
+          <button class="filter-chip" data-chip="soy-free" data-group="dietary">Soy-Free</button>
+          <button class="filter-chip" data-chip="nut-free" data-group="dietary">Nut-Free</button>
+          <button class="filter-chip" data-chip="corn-free" data-group="dietary">Corn-Free</button>
+          <button class="filter-chip" data-chip="non-gmo" data-group="dietary">Non-GMO</button>
+          <button class="filter-chip" data-chip="organic" data-group="dietary">Organic</button>
+          <button class="filter-chip" data-chip="all natural" data-group="dietary">All Natural</button>
+          <button class="filter-chip" data-chip="hormone-free" data-group="dietary">Hormone-Free</button>
+          <button class="filter-chip" data-chip="antibiotic-free" data-group="dietary">Antibiotic-Free</button>
+          <button class="filter-chip" data-chip="allergen-free" data-group="dietary">Allergen-Free</button>
+          <button class="filter-chip" data-chip="cruelty-free" data-group="dietary">Cruelty-Free</button>
+        </div>
+      </div>
+    </div>
+    <div class="page-filter-results"></div>
+    <div class="page-filter-foot">
+      <span class="page-filter-count"></span>
+      <button class="page-filter-clear-all" type="button">Clear all</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- Expanding Search Panel -->
+<div class="search-panel" id="search-panel">
+  <div class="search-panel-inner">
+    <div class="search-panel-bar">
+      <input type="text" class="search-panel-input" placeholder="Search products, ingredients, concerns..." />
+      <button class="search-panel-close" aria-label="Close search">✕</button>
+    </div>
+    <div class="search-panel-results" id="search-panel-results">
+      <div class="search-panel-hint">Type to search across all 33 products.</div>
+    </div>
+  </div>
+</div>
+
+<!-- CRED STRIP BANNER -->
+<div class="cred-strip">
+  <div class="cred-strip-inner">
+    <div class="cred-item"><span class="cred-dot"></span> Clinical Doses Only</div>
+    <div class="cred-item"><span class="cred-dot"></span> 100% Made in North America</div>
+    <div class="cred-item"><span class="cred-dot"></span> 3x Batch Tested</div>
+    <div class="cred-item"><span class="cred-dot"></span> Cruelty-Free · Non-GMO</div>
+    <div class="cred-item"><span class="cred-dot"></span> 30-Day Guarantee</div>
+  </div>
+</div>
+
+
+
+<section class="page">
+
+  <div class="page-header">
+    <div class="page-header-eyebrow">Curated Routines · Built for Real Days</div>
+    <h1>Routines. Built —<br><em>The Way You'll Use Them.</em></h1>
+    <p>The full skincare line and supplement stack, organized into the routines, rituals, and gifts they're actually meant for. Save up to $179 per bundle versus buying individually — without the guesswork of figuring out which bottles work together.</p>
+  </div>
+
+  <!-- ═══ WHY BUNDLES vs CONCERN BUNDLES ═══ -->
+  <div class="why-bundles">
+    <div class="why-bundles-inner">
+      <div class="why-bundles-eyebrow">Why a <em>routine</em> over a targeted bundle?</div>
+      <div class="why-bundles-grid">
+        <div class="why-pillar">
+          <div class="why-pillar-mark">01</div>
+          <div class="why-pillar-title">Tested &amp; Proven</div>
+          <div class="why-pillar-body">Every routine is a combination Daniel runs on himself, his family, and his customers. Real protocols, refined over years of daily use.</div>
+        </div>
+        <div class="why-pillar">
+          <div class="why-pillar-mark">02</div>
+          <div class="why-pillar-title">Editorially Curated</div>
+          <div class="why-pillar-body">Hand-picked combinations built around real rituals — the AM routine, the workout stack, the longevity protocol, the gift for a parent. Each bundle serves a moment, not a generic concern.</div>
+        </div>
+        <div class="why-pillar">
+          <div class="why-pillar-mark">03</div>
+          <div class="why-pillar-title">Deeper Savings</div>
+          <div class="why-pillar-body">Routine discounts go up to <strong>25% off</strong> (the Ultimate) versus 7–10% on single-concern bundles. The bigger the stack, the deeper the savings.</div>
+        </div>
+        <div class="why-pillar">
+          <div class="why-pillar-mark">04</div>
+          <div class="why-pillar-title">Built for Routine</div>
+          <div class="why-pillar-body">A lifestyle stack — built to fit your existing routine or shape a new one. Ships as a single premium package, ready to use from day one.</div>
+        </div>
+      </div>
+      <div class="why-bundles-foot">
+        Shopping for a single concern instead? <a href="bundles.html">Browse Bundles →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Credibility -->
+  <div class="credibility credibility-quad">
+    <div class="cred-item"><div class="cred-num">9<em>.</em></div><div class="cred-label">Curated routines</div></div>
+    <div class="cred-item"><div class="cred-num">$179</div><div class="cred-label">Max bundle savings</div></div>
+    <div class="cred-item cred-item-tooltip">
+      <div class="cred-num">30<em>.</em></div>
+      <div class="cred-label">
+        Day satisfaction guarantee
+        <button class="cred-tip-trigger" type="button" aria-label="Returns policy details" tabindex="0">?</button>
+        <div class="cred-tip-bubble" role="tooltip">
+          Try anything for 30 days. If it doesn't work for you — open bottle or not — we'll refund it. Free return shipping. <a href="faq.html#returns">Full policy →</a>
+        </div>
+      </div>
+    </div>
+    <div class="cred-item"><div class="cred-num">Free</div><div class="cred-label">Shipping over $75</div></div>
+  </div>
+  <div class="page-filter-results"></div>
+</div>
+</div>
+
+  <!-- ═══ HERO: THE ULTIMATE BUNDLE ═══ -->
+  <div class="hero-section">
+    <div class="hero-eyebrow">The Full Stack · Every Bottle, Every Bottle Worth Having</div>
+    <div class="hero-title">The <em>Ultimate</em> Routine</div>
+
+    <div class="hero-bundle">
+      <div class="hero-img-side">
+        <div class="hero-product-grid hero-product-grid-ultimate">
+          <!-- Skincare AM (6) -->
+          <div class="hero-product-thumb"><img src="images/wash.jpeg" alt="Wash" loading="lazy"/></div>
+          <div class="hero-product-thumb"><img src="images/balance.jpeg" alt="Balance" loading="lazy"/></div>
+          <div class="hero-product-thumb"><img src="images/boost.jpeg" alt="Boost" loading="lazy"/></div>
+          <div class="hero-product-thumb"><img src="images/hyaluronic.jpeg" alt="Hyaluronic" loading="lazy"/></div>
+          <div class="hero-product-thumb"><img src="images/defense.jpeg" alt="Defense" loading="lazy"/></div>
+          <div class="hero-product-thumb"><img src="images/soft.jpeg" alt="Soft" loading="lazy"/></div>
+          <!-- Skincare PM (6) -->
+          <div class="hero-product-thumb"><img src="images/bounce.jpeg" alt="Bounce" loading="lazy"/></div>
+          <div class="hero-product-thumb"><img src="images/renewal.jpeg" alt="Renewal" loading="lazy"/></div>
+          <div class="hero-product-thumb"><img src="images/firm.jpeg" alt="Firm" loading="lazy"/></div>
+          <div class="hero-product-thumb"><img src="images/hydration.jpeg" alt="Hydration" loading="lazy"/></div>
+          <div class="hero-product-thumb"><img src="images/eye.jpeg" alt="Eye" loading="lazy"/></div>
+          <div class="hero-product-thumb"><img src="images/glow.jpeg" alt="Glow" loading="lazy"/></div>
+          <!-- Morning supplements (9) -->
+          <div class="hero-product-thumb"><img src="products/Multi.jpeg" alt="Multi" loading="lazy"/></div>
+          <div class="hero-product-thumb"><img src="products/Sunshine.jpeg" alt="Sunshine" loading="lazy"/></div>
+          <div class="hero-product-thumb"><img src="products/Flow.jpeg" alt="Flow" loading="lazy"/></div>
+          <div class="hero-product-thumb"><img src="products/Biome.jpeg" alt="Biome" loading="lazy"/></div>
+          <div class="hero-product-thumb"><img src="products/Calm.jpeg" alt="Calm" loading="lazy"/></div>
+          <div class="hero-product-thumb"><img src="products/Nadplus.jpeg" alt="NAD+" loading="lazy"/></div>
+          <div class="hero-product-thumb"><img src="products/Vitality.jpeg" alt="Vitality" loading="lazy"/></div>
+          <div class="hero-product-thumb"><img src="products/Synapse.jpeg" alt="Synapse" loading="lazy"/></div>
+          <div class="hero-product-thumb"><img src="products/Restore.jpeg" alt="Restore" loading="lazy"/></div>
+          <!-- Evening supplement (1) -->
+          <div class="hero-product-thumb"><img src="products/Tranquil.jpeg" alt="Tranquil" loading="lazy"/></div>
+          <!-- Two decorative empty cells -->
+          <div class="hero-thumb-empty">All 22</div>
+          <div class="hero-thumb-empty">In One Box</div>
+        </div>
+      </div>
+      <div class="hero-content-side">
+        <span class="hero-badge">Biggest Savings</span>
+        <div class="hero-bundle-title">The <em>Ultimate</em></div>
+        <div class="hero-bundle-sub">22 Bottles · Skincare + Supplements · Save 25%</div>
+        <div class="hero-bundle-desc">Everything Daniel actually uses on himself, every day. The complete Daily Stack of ten supplements plus the full AM and PM skincare rituals — twenty-two bottles in one box. The biggest savings on the site, the simplest decision: the whole house, all at once.</div>
+
+        <div class="hero-included">
+          <div class="hero-included-label">What's Inside · 22 Products</div>
+          <div class="hero-included-list">10 Daily Supplements · 6 AM Skincare<br>6 PM Skincare</div>
+        </div>
+
+        <div class="hero-savings">
+          <div class="hero-savings-amount">Save $179</div>
+          <div class="hero-savings-label">$717 → $538 · 25% off</div>
+        </div>
+
+        <div class="smart-savings-teaser" style="max-width: 480px;" data-hero-smart-teaser="ultimate"><span class="smart-rule"></span><span class="smart-savings-text"><span class="smart-prefix">Smart Refill</span>saves up to <strong data-smart-amount></strong>/year</span><span class="smart-rule"></span></div>
+
+                <div class="bundle-subscribe-toggle" data-bundle-id="ultimate" data-toggle style="max-width: 480px; margin-bottom: 0;">
+          <button type="button" data-mode="once" class="active">
+            <div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">One-Time</span></div>
+            <span class="toggle-meta">Single delivery</span>
+          </button>
+          <button type="button" data-mode="subscribe">
+            <div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">Subscribe</span></div>
+            <span class="toggle-meta">Save 10% · cancel anytime</span>
+          </button>
+        </div>
+        <div class="bundle-cadence" data-bundle-id="ultimate" data-cadence-selector hidden style="max-width: 480px; margin-bottom: 16px;">
+          <div class="cadence-eyebrow">Shipment Frequency</div>
+          <div class="cadence-grid">
+            <button type="button" class="cadence-btn active" data-cadence="monthly">
+              <div class="cadence-name">Monthly</div>
+              <div class="cadence-meta">Full bundle</div>
+            </button>
+            <button type="button" class="cadence-btn" data-cadence="bimonthly">
+              <div class="cadence-name">Every 2 Months</div>
+              <div class="cadence-meta">Full bundle</div>
+            </button>
+            <button type="button" class="cadence-btn" data-cadence="quarterly">
+              <div class="cadence-name">Every 3 Months</div>
+              <div class="cadence-meta">Full bundle</div>
+            </button>
+            <button type="button" class="cadence-btn cadence-btn-smart" data-cadence="smart">
+              <div class="cadence-name">Smart Refill</div>
+              <div class="cadence-meta">Only what you need</div>
+            </button>
+          </div>
+          <div class="cadence-note" data-smart-note hidden>
+            <strong>How Smart Refill works:</strong> Your first shipment is the full bundle. After that, each month ships only the products you actually need to replenish — supplements every month, most skincare every 2 months, eye creams &amp; oils every 3. You only pay for what arrives in each shipment.
+          </div>
+        </div><button class="hero-cta" data-bundle-add="ultimate" style="border: none; cursor: pointer;">Add Ultimate to Cart →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ BUNDLE GRID ═══ -->
+  <div class="sec-header">
+    <div class="sec-eyebrow">The Routines · Daily Rituals</div>
+    <div class="sec-title">The <em>Routines</em> Collection</div>
+    <div class="sec-blurb">Eleven routines — each built for a specific use, person, or moment in the day.</div>
+  </div>
+
+  <!-- SEARCH + FILTER FOR THE CURATED GRID -->
+  <div class="bundle-search-wrap">
+    <div class="concern-search">
+      <span class="concern-search-icon" aria-hidden="true">⌕</span>
+      <input
+        type="text"
+        class="concern-search-input"
+        id="bundle-search-input"
+        placeholder="Search routines, ingredients, ritual…"
+        autocomplete="off"
+      />
+      <button class="concern-search-clear" id="bundle-search-clear" type="button" aria-label="Clear search">✕</button>
+    </div>
+    <div class="concern-search-meta">
+      <span class="concern-search-count" id="bundle-search-count">11 routines</span>
+      <span class="concern-search-hints">
+        <span class="hint-label">Try:</span>
+        <button class="concern-search-hint" data-hint="ultimate" type="button">ultimate</button>
+        <button class="concern-search-hint" data-hint="daily" type="button">daily</button>
+        <button class="concern-search-hint" data-hint="anti-aging" type="button">anti-aging</button>
+        <button class="concern-search-hint" data-hint="moms" type="button">moms</button>
+        <button class="concern-search-hint" data-hint="active" type="button">active</button>
+        <button class="concern-search-hint" data-hint="ashwagandha" type="button">ashwagandha</button>
+      </span>
+      <button class="concern-filter-toggle" id="bundle-filter-toggle" type="button" aria-expanded="false" aria-controls="bundle-filter-panel">
+        <span class="toggle-text">Filters</span>
+        <span class="toggle-badge" id="bundle-filter-badge" hidden>0</span>
+        <span class="toggle-arrow">▾</span>
+      </button>
+    </div>
+
+    <div class="concern-filter-panel" id="bundle-filter-panel" hidden>
+      <div class="filter-panel-inner">
+
+        <div class="filter-group" data-group="focus">
+          <div class="filter-group-label">Primary Focus</div>
+          <div class="filter-group-chips">
+            <button class="filter-chip" data-group="focus" data-value="skin" type="button"><span class="chip-dot sage"></span>Skin Focus</button>
+            <button class="filter-chip" data-group="focus" data-value="goal" type="button"><span class="chip-dot gold"></span>Wellness Focus</button>
+          </div>
+        </div>
+
+        <div class="filter-group" data-group="effect">
+          <div class="filter-group-label">Effect &amp; Benefit</div>
+          <div class="filter-group-chips">
+            <button class="filter-chip" data-group="effect" data-value="anti-aging" type="button">Anti-Aging</button>
+            <button class="filter-chip" data-group="effect" data-value="brightening" type="button">Brightening</button>
+            <button class="filter-chip" data-group="effect" data-value="hydrating" type="button">Hydrating</button>
+            <button class="filter-chip" data-group="effect" data-value="calming" type="button">Calming · Sleep</button>
+            <button class="filter-chip" data-group="effect" data-value="energizing" type="button">Energizing</button>
+            <button class="filter-chip" data-group="effect" data-value="pore-refining" type="button">Pore-Refining</button>
+            <button class="filter-chip" data-group="effect" data-value="anti-inflammatory" type="button">Anti-Inflammatory</button>
+            <button class="filter-chip" data-group="effect" data-value="recovery" type="button">Recovery · Strength</button>
+          </div>
+        </div>
+
+        <div class="filter-group" data-group="lifestyle">
+          <div class="filter-group-label">Lifestyle</div>
+          <div class="filter-group-chips">
+            <button class="filter-chip" data-group="lifestyle" data-value="active" type="button">Active · Athletes</button>
+            <button class="filter-chip" data-group="lifestyle" data-value="busy-pro" type="button">Busy Professional</button>
+            <button class="filter-chip" data-group="lifestyle" data-value="parent" type="button">Parents · 40s–50s</button>
+            <button class="filter-chip" data-group="lifestyle" data-value="anti-aging" type="button">Anti-Aging Focused</button>
+            <button class="filter-chip" data-group="lifestyle" data-value="sensitive" type="button">Sensitive Type</button>
+            <button class="filter-chip" data-group="lifestyle" data-value="beauty" type="button">Beauty-Forward</button>
+            <button class="filter-chip" data-group="lifestyle" data-value="beginner" type="button">Wellness Beginner</button>
+          </div>
+        </div>
+
+        <div class="filter-group" data-group="ingredient">
+          <div class="filter-group-label">Key Ingredient</div>
+          <div class="filter-group-chips">
+            <button class="filter-chip" data-group="ingredient" data-value="retinol" type="button">Retinol</button>
+            <button class="filter-chip" data-group="ingredient" data-value="vitamin-c" type="button">Vitamin C</button>
+            <button class="filter-chip" data-group="ingredient" data-value="hyaluronic-acid" type="button">Hyaluronic Acid</button>
+            <button class="filter-chip" data-group="ingredient" data-value="niacinamide" type="button">Niacinamide</button>
+            <button class="filter-chip" data-group="ingredient" data-value="salicylic-acid" type="button">Salicylic Acid</button>
+            <button class="filter-chip" data-group="ingredient" data-value="peptides" type="button">Peptides</button>
+            <button class="filter-chip" data-group="ingredient" data-value="bovine-collagen" type="button">Collagen</button>
+            <button class="filter-chip" data-group="ingredient" data-value="ashwagandha" type="button">Ashwagandha</button>
+            <button class="filter-chip" data-group="ingredient" data-value="magnesium-glycinate" type="button">Magnesium</button>
+            <button class="filter-chip" data-group="ingredient" data-value="omega-3" type="button">Omega-3</button>
+            <button class="filter-chip" data-group="ingredient" data-value="probiotics" type="button">Probiotics</button>
+            <button class="filter-chip" data-group="ingredient" data-value="nad-plus" type="button">NAD+</button>
+            <button class="filter-chip" data-group="ingredient" data-value="coq10" type="button">CoQ10</button>
+            <button class="filter-chip" data-group="ingredient" data-value="curcumin" type="button">Curcumin</button>
+            <button class="filter-chip" data-group="ingredient" data-value="creatine" type="button">Creatine</button>
+          </div>
+        </div>
+
+        <div class="filter-group" data-group="price">
+          <div class="filter-group-label">Price Range</div>
+          <div class="filter-group-chips">
+            <button class="filter-chip" data-group="price" data-value="under-150" type="button">Under $150</button>
+            <button class="filter-chip" data-group="price" data-value="150-250" type="button">$150–250</button>
+            <button class="filter-chip" data-group="price" data-value="250-400" type="button">$250–400</button>
+            <button class="filter-chip" data-group="price" data-value="over-400" type="button">$400+</button>
+          </div>
+        </div>
+
+        <div class="filter-panel-footer">
+          <button class="filter-clear-all" id="bundle-filter-clear-all" type="button">Clear all filters</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Sort bar for the curated bundles (mounted via JS) -->
+  <div class="bundles-sort-mount" style="max-width: 1200px; margin: 32px auto 0; padding: 0 40px;"></div>
+
+  <div class="bundle-grid">
+    <!-- All 9 curated routines render here via renderCuratedBundleCard (including Ultimate). -->
+  
+
+
+
+
+  </div>
+
+
+  <!-- ═══ BUILD YOUR OWN BUNDLE ═══ -->
+<a id="build-your-own"></a>
+  <section class="builder-section">
+    <div class="builder-section-inner">
+      <div class="builder-header">
+        <div class="builder-eyebrow">Build Your Own · Skincare + Supplements</div>
+        <h2>Pick more. <em>Save more.</em></h2>
+        <p>The more you mix, the more you save. Three tiers — pick 3 to start, build up to 9 for the full bundle discount. Subscribe to stack an extra 10% off on top.</p>
+        <div class="builder-tiers">
+          <div class="tier-chip" data-tier="3">
+            <span class="tier-chip-num">Mix 3</span>
+            <span class="tier-chip-save">save 10%</span>
+          </div>
+          <div class="tier-chip" data-tier="6">
+            <span class="tier-chip-num">Mix 6</span>
+            <span class="tier-chip-save">save 12%</span>
+          </div>
+          <div class="tier-chip" data-tier="9">
+            <span class="tier-chip-num">Mix 9</span>
+            <span class="tier-chip-save">save 15%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="builder-tracker" id="builderTracker">
+        <div class="tracker-progress">
+          <div class="tracker-count"><span id="selectedCount">0</span> selected</div>
+          <div class="tracker-bar-wrap">
+            <div class="tracker-bar">
+              <div class="tracker-fill"></div>
+              <div class="tracker-marker" data-threshold="3" style="left:33.33%"><span class="marker-dot">3</span><span class="marker-label">10%</span></div>
+              <div class="tracker-marker" data-threshold="6" style="left:66.66%"><span class="marker-dot">6</span><span class="marker-label">12%</span></div>
+              <div class="tracker-marker" data-threshold="9" style="left:100%"><span class="marker-dot">9</span><span class="marker-label">15%</span></div>
+            </div>
+          </div>
+          <div class="tracker-next" id="trackerNext">Pick 3 to start saving</div>
+        </div>
+        <div class="tracker-prices">
+          <div class="tracker-line"><span>Subtotal</span><span id="subtotal">$0.00</span></div>
+          <div class="tracker-line"><span class="savings-label" id="savingsLabel">Save —</span><span id="savings">—</span></div>
+          <div class="tracker-line tracker-final"><span>Routine Total</span><span id="total">$0.00</span></div>
+        </div>
+        <button class="builder-cta" id="builderCTA" disabled>Pick 3 to Start Saving</button>
+      </div>
+
+      <div class="builder-tabs">
+        <button class="tab active" data-filter="all">All<span class="tab-count">· 33</span></button>
+        <button class="tab" data-filter="skincare">Skincare<span class="tab-count">· 15</span></button>
+        <button class="tab" data-filter="supplement">Supplements<span class="tab-count">· 18</span></button>
+      </div>
+
+      <div class="builder-grid" id="builderGrid"></div>
+    </div>
+  </section>
+
+  <!-- ═══ BYO BUNDLE POPUP (opens from "See Your Routine →" CTA) ═══ -->
+  <div class="byo-popup-overlay" id="byoPopupOverlay" aria-hidden="true">
+    <div class="byo-popup" role="dialog" aria-modal="true" aria-labelledby="byoPopupTitle">
+      <button class="byo-popup-close" id="byoPopupClose" aria-label="Close bundle preview">×</button>
+
+      <div class="byo-popup-header">
+        <div class="byo-popup-eyebrow">Your Custom Routine</div>
+        <h3 class="byo-popup-title" id="byoPopupTitle">Built by <em>you.</em></h3>
+        <div class="byo-popup-sub" id="summarySub">Pick products to see your discount</div>
+      </div>
+
+      <div class="byo-popup-list" id="summaryList"></div>
+
+      <div class="byo-popup-totals">
+        <div class="byo-popup-line"><span>Subtotal</span><span id="summarySubtotal">$0.00</span></div>
+        <div class="byo-popup-line"><span id="summarySavingsLabel">Save —</span><span id="summarySavings">$0.00</span></div>
+        <div class="byo-popup-line byo-popup-line-final"><span>Routine Total</span><span id="summaryTotal">$0.00</span></div>
+      </div>
+
+      <div class="byo-popup-code">
+        Use code <strong id="summaryCode">MIX</strong> at checkout, or click below to add directly with discount applied.
+      </div>
+
+      <div class="byo-popup-purchase">
+        <!-- Smart Refill annual savings teaser — populated by JS when subscribe & smart cadence make sense -->
+        <div class="byo-smart-teaser" id="byoSmartTeaser" hidden>
+          <span class="byo-smart-rule"></span>
+          <span class="byo-smart-text"><span class="byo-smart-pill">SMART REFILL</span>&nbsp;saves up to&nbsp;<strong id="byoSmartAmount">$0</strong>&nbsp;/year</span>
+          <span class="byo-smart-rule"></span>
+        </div>
+        <!-- Subscribe toggle + cadence selector — populated by JS via dhBuildSubscribeToggle({id:'byo', ...}) -->
+        <div id="byoSubscribeWrap"></div>
+        <button class="byo-popup-cta" id="byoAddBundle">Add Custom Routine to Cart →</button>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ═══ OUR GUARANTEE — Return / refund policy summary ═══ -->
+<section class="guarantee-strip">
+  <div class="guarantee-strip-inner">
+    <div class="guarantee-strip-header">
+      <div class="guarantee-eyebrow">Our Guarantee</div>
+      <h2>Try the routine. <em>Love it or send it back.</em></h2>
+      <p>Skincare and supplements are personal. We don't expect you to commit before you've actually used them. Every order — single product, bundle, or subscription — is backed by the same 30-day promise.</p>
+    </div>
+    <div class="guarantee-grid">
+      <div class="guarantee-card">
+        <div class="guarantee-icon">30</div>
+        <div class="guarantee-title">30-Day Window</div>
+        <div class="guarantee-text">From the day your order arrives. Plenty of time to see if it works.</div>
+      </div>
+      <div class="guarantee-card">
+        <div class="guarantee-icon">✓</div>
+        <div class="guarantee-title">Opened Is Fine</div>
+        <div class="guarantee-text">Use the product. Really try it. Don't love it? Return what's left for a full refund.</div>
+      </div>
+      <div class="guarantee-card">
+        <div class="guarantee-icon">→</div>
+        <div class="guarantee-title">Free Return Shipping</div>
+        <div class="guarantee-text">We send the prepaid label both ways. Refund within 5 business days of receipt.</div>
+      </div>
+      <div class="guarantee-card">
+        <div class="guarantee-icon">⊘</div>
+        <div class="guarantee-title">Cancel Anytime</div>
+        <div class="guarantee-text">Subscriptions pause, skip, or stop with one click. No minimums, no fees.</div>
+      </div>
+    </div>
+    <a href="faq.html#returns" class="guarantee-link">Full policy details →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-newsletter">
+    <div class="footer-newsletter-inner">
+      <div class="footer-newsletter-eyebrow">Letters from the House</div>
+      <div class="footer-newsletter-title">Get Daniel's actual <em>routine notes.</em></div>
+      <div class="footer-newsletter-blurb">First access to launches, ingredient deep-dives, and the rituals Daniel uses every week — sent twice a month, no spam.</div>
+      <form class="footer-newsletter-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent = '✓ Subscribed';">
+        <input type="email" placeholder="Your email" required />
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </div>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Daniel<span class="amp">'s</span> House</div>
+      <div class="footer-tag">Your home for premium wellness — built on real results, not marketing.</div>
+      <div class="footer-attr">
+        <span>Non-GMO</span>
+        <span>Cruelty-Free</span>
+        <span>Made in NA</span>
+      </div>
+      <a href="mailto:daniel@danielshousewellness.com" class="footer-email">daniel@danielshousewellness.com</a>
+    </div>
+    <div class="footer-col"><h4>Shop</h4><ul><li><a href="skincare.html">Skincare</a></li><li><a href="supplements.html">Supplements</a></li><li><a href="routines.html">Routines</a></li><li><a href="bundles.html">Bundles</a></li><li><a href="compare.html">Compare</a></li></ul></div>
+    <div class="footer-col"><h4>The House</h4><ul><li><a href="about.html">Daniel's Story</a></li><li><a href="ingredients.html">Ingredient Glossary</a></li><li><a href="studies.html">Research Library</a></li><li><a href="blog.html">Blog</a></li><li><a href="reviews.html">Reviews</a></li><li><a href="quiz.html">Take the Quiz</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
+    <div class="footer-col"><h4>Help</h4><ul><li><a href="faq.html#shipping">Shipping</a></li><li><a href="faq.html#returns">Returns Policy →</a></li><li><a href="faq.html#returns">30-Day Guarantee</a></li><li><a href="faq.html">Contact</a></li></ul></div>
+  </div>
+  <div class="footer-credit">
+    <div class="footer-credit-left">© 2026 Daniel's House. Premium wellness, built on real results.</div>
+    <div class="footer-credit-right">
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="accessibility.html">Accessibility</a>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+(function() {
+  const products = [
+    { name: 'Wash', price: 26, img: 'images/wash.jpeg', category: 'skincare', handle: 'the-house-wash' },
+    { name: 'Balance', price: 24, img: 'images/balance.jpeg', category: 'skincare', handle: 'the-house-balance' },
+    { name: 'Boost', price: 34, img: 'images/boost.jpeg', category: 'skincare', handle: 'the-house-boost' },
+    { name: 'Hyaluronic', price: 28, img: 'images/hyaluronic.jpeg', category: 'skincare', handle: 'the-house-hyaluronic' },
+    { name: 'Defense', price: 38, img: 'images/defense.jpeg', category: 'skincare', handle: 'the-house-defense' },
+    { name: 'Soft', price: 32, img: 'images/soft.jpeg', category: 'skincare', handle: 'the-house-soft' },
+    { name: 'Clear', price: 32, img: 'images/clear.jpeg', category: 'skincare', handle: 'the-house-clear' },
+    { name: 'Bounce', price: 42, img: 'images/bounce.jpeg', category: 'skincare', handle: 'the-house-bounce' },
+    { name: 'Firm', price: 36, img: 'images/firm.jpeg', category: 'skincare', handle: 'the-house-firm' },
+    { name: 'Hydration', price: 26, img: 'images/hydration.jpeg', category: 'skincare', handle: 'the-house-hydration' },
+    { name: 'Eye', price: 36, img: 'images/eye.jpeg', category: 'skincare', handle: 'the-house-eye' },
+    { name: 'Renewal', price: 44, img: 'images/renewal.jpeg', category: 'skincare', handle: 'the-house-renewal' },
+    { name: 'Glow', price: 36, img: 'images/glow.jpeg', category: 'skincare', handle: 'the-house-glow' },
+    { name: 'Mask', price: 30, img: 'images/mask.jpeg', category: 'skincare', handle: 'the-house-mask' },
+    { name: 'Polish', price: 28, img: 'images/polish.jpeg', category: 'skincare', handle: 'the-house-polish' },
+    { name: 'Multi', price: 32.90, img: 'products/Multi.jpeg', category: 'supplement', handle: 'the-house-multi' },
+    { name: 'Calm', price: 26.90, img: 'products/Calm.jpeg', category: 'supplement', handle: 'the-house-calm' },
+    { name: 'Sunshine', price: 19.90, img: 'products/Sunshine.jpeg', category: 'supplement', handle: 'the-house-sunshine' },
+    { name: 'Flow', price: 24.90, img: 'products/Flow.jpeg', category: 'supplement', handle: 'the-house-flow' },
+    { name: 'Biome', price: 30.90, img: 'products/Biome.jpeg', category: 'supplement', handle: 'the-house-biome' },
+    { name: 'NAD+', price: 60, img: 'products/Nadplus.jpeg', category: 'supplement', handle: 'the-house-nad-plus' },
+    { name: 'Vitality', price: 28.90, img: 'products/Vitality.jpeg', category: 'supplement', handle: 'the-house-vitality' },
+    { name: 'Synapse', price: 34.90, img: 'products/Synapse.jpeg', category: 'supplement', handle: 'the-house-synapse' },
+    { name: 'Tranquil', price: 29.50, img: 'products/Tranquil.jpeg', category: 'supplement', handle: 'the-house-tranquil' },
+    { name: 'Restore', price: 25.90, img: 'products/Restore.jpeg', category: 'supplement', handle: 'the-house-restore' },
+    { name: 'Power', price: 33.90, img: 'products/Power.jpeg', category: 'supplement', handle: 'the-house-power' },
+    { name: 'Pump', price: 39.99, img: 'products/Pump.jpeg', category: 'supplement', handle: 'the-house-pump' },
+    { name: 'Seal', price: 29.90, img: 'products/Seal.jpeg', category: 'supplement', handle: 'the-house-seal' },
+    { name: 'Greens', price: 35.90, img: 'products/Greens.jpeg', category: 'supplement', handle: 'the-house-greens' },
+    { name: 'Burn', price: 33.90, img: 'products/Burn.jpeg', category: 'supplement', handle: 'the-house-burn' },
+    { name: 'Radiance', price: 34.90, img: 'products/Radiance.jpeg', category: 'supplement', handle: 'the-house-radiance' },
+    { name: 'Collagen', price: 33.90, img: 'products/Collagen.jpeg', category: 'supplement', handle: 'the-house-collagen' },
+    { name: 'Focus', price: 29.90, img: 'products/Focus.jpeg', category: 'supplement', handle: 'the-house-focus' }
+  ];
+  const SHOPIFY = 'https://rvttkx-99.myshopify.com';
+  // ── TIERED MIX DISCOUNT ──────────────────────────────────────────────────
+  // Pick more, save more. Tiers are sorted from highest to lowest so getTier
+  // can short-circuit on the first match. MIN_TIER is the entry threshold.
+  const TIERS = [
+    { min: 9, pct: 0.15, label: '15%', code: 'MIX9' },
+    { min: 6, pct: 0.12, label: '12%', code: 'MIX6' },
+    { min: 3, pct: 0.10, label: '10%', code: 'MIX3' }
+  ];
+  const MIN_TIER = TIERS[TIERS.length - 1].min; // 3
+  const MAX_DISPLAY = TIERS[0].min; // 9 — used for the progress bar denominator
+
+  function getTier(count) {
+    return TIERS.find(t => count >= t.min) || null;
+  }
+  function nextTier(count) {
+    for (let i = TIERS.length - 1; i >= 0; i--) {
+      if (count < TIERS[i].min) return TIERS[i];
+    }
+    return null;
+  }
+
+  const grid = document.getElementById('builderGrid');
+  const state = new Set();
+
+  products.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'builder-card';
+    card.dataset.handle = p.handle;
+    card.dataset.category = p.category;
+    card.innerHTML = `
+      <div class="builder-card-img">
+        <img src="${p.img}" alt="The House ${p.name}" loading="lazy" />
+        <div class="builder-card-check">✓</div>
+      </div>
+      <div class="builder-card-cat">${p.category === 'skincare' ? 'Skincare' : 'Supplement'}</div>
+      <div class="builder-card-name">The House <em>${p.name}</em></div>
+      <div class="builder-card-price">$${p.price.toFixed(2)}</div>
+    `;
+    card.addEventListener('click', () => toggle(p, card));
+    grid.appendChild(card);
+  });
+
+  function toggle(p, card) {
+    if (state.has(p.handle)) {
+      state.delete(p.handle);
+      card.classList.remove('selected');
+    } else {
+      state.add(p.handle);
+      card.classList.add('selected');
+    }
+    update();
+  }
+
+  function update() {
+    const selected = products.filter(p => state.has(p.handle));
+    const count = selected.length;
+    const subtotal = selected.reduce((s, p) => s + p.price, 0);
+
+    const tier = getTier(count);          // current tier (or null if below MIN_TIER)
+    const next = nextTier(count);          // next tier to unlock (or null at max)
+    const eligible = !!tier;
+
+    // Check BYO subscribe toggle + cadence
+    const byoToggle = document.querySelector('.bundle-subscribe-toggle[data-bundle-id="byo"]');
+    const subscribed = byoToggle?.querySelector('button.active')?.dataset.mode === 'subscribe';
+    const byoCadenceEl = document.querySelector('.bundle-cadence[data-bundle-id="byo"]');
+    const activeCadence = byoCadenceEl?.querySelector('.cadence-btn.active')?.dataset.cadence || 'monthly';
+    const isSmart = subscribed && activeCadence === 'smart';
+
+    let savings = eligible ? subtotal * tier.pct : 0;
+    let total = subtotal - savings;
+    if (eligible && subscribed) {
+      const subBonus = total * 0.10; // stack +10% bundle subscribe
+      total -= subBonus;
+      savings += subBonus;
+    }
+
+    // ─ Header / count ─
+    document.getElementById('selectedCount').textContent = count;
+    document.getElementById('subtotal').textContent = '$' + subtotal.toFixed(2);
+    document.getElementById('savings').textContent = eligible ? '−$' + savings.toFixed(2) : '—';
+    document.getElementById('total').textContent = '$' + total.toFixed(2);
+
+    // ─ Progress bar (denominator = 9, the max tier) ─
+    const fillPct = Math.min(count / MAX_DISPLAY * 100, 100);
+    document.querySelector('.tracker-fill').style.width = fillPct + '%';
+
+    // ─ Tier markers — light up when their threshold is crossed ─
+    document.querySelectorAll('.tracker-marker').forEach(m => {
+      const threshold = parseInt(m.dataset.threshold, 10);
+      m.classList.toggle('reached', count >= threshold);
+    });
+
+    // ─ Tier chips in the header — highlight current tier ─
+    document.querySelectorAll('.tier-chip').forEach(chip => {
+      const t = parseInt(chip.dataset.tier, 10);
+      chip.classList.toggle('active', tier && t === tier.min);
+    });
+
+    // ─ Next-tier teaser ─
+    const nextEl = document.getElementById('trackerNext');
+    if (count === 0) {
+      nextEl.textContent = 'Pick 3 to start saving';
+    } else if (!eligible) {
+      nextEl.innerHTML = `Add <strong>${MIN_TIER - count} more</strong> to save <strong>10%</strong>`;
+    } else if (next) {
+      nextEl.innerHTML = `Saving <strong>${tier.label}</strong> · Add <strong>${next.min - count} more</strong> for <strong>${next.label} off</strong>`;
+    } else {
+      nextEl.innerHTML = `<strong>Maximum tier unlocked — saving ${tier.label}${subscribed ? ' + 10% subscribe' : ''}</strong>`;
+    }
+
+    // ─ Savings label in tracker prices ─
+    const savingsLabelEl = document.getElementById('savingsLabel');
+    if (savingsLabelEl) {
+      if (eligible) {
+        if (isSmart) {
+          savingsLabelEl.textContent = `Save ${tier.label} + 10% smart`;
+        } else if (subscribed) {
+          savingsLabelEl.textContent = `Save ${tier.label} + 10% sub`;
+        } else {
+          savingsLabelEl.textContent = `Save ${tier.label}`;
+        }
+      } else {
+        savingsLabelEl.textContent = 'Save —';
+      }
+    }
+
+    // ─ CTA button ─
+    const cta = document.getElementById('builderCTA');
+    if (eligible) {
+      cta.disabled = false;
+      cta.textContent = 'See Your Routine →';
+    } else {
+      cta.disabled = true;
+      cta.textContent = `Pick ${MIN_TIER - count} More to Start Saving`;
+    }
+
+    if (eligible) {
+      updateSummary(selected, subtotal, savings, total, tier);
+    }
+
+    // ─ Refresh Smart Refill teaser based on new selection ─
+    if (typeof window.dhRefreshByoSmartTeaser === 'function') {
+      window.dhRefreshByoSmartTeaser();
+    }
+  }
+
+  // Expose update() globally so the BYO toggle / cadence handlers can call it
+  window.dhUpdateBYOTracker = update;
+  // Alias so the master toggle handler's BYO branch calls our tracker correctly
+  window.recomputeBYOSavings = update;
+
+  function updateSummary(selected, subtotal, savings, total, tier) {
+    document.getElementById('summaryList').innerHTML = selected.map(p => `
+      <a href="${SHOPIFY}/products/${p.handle}" target="_blank" rel="noopener" class="summary-item">
+        <img src="${p.img}" alt="${p.name}" />
+        <div class="summary-item-text">
+          <div class="summary-item-name">The House <em>${p.name}</em></div>
+          <div class="summary-item-price">$${p.price.toFixed(2)}</div>
+        </div>
+      </a>
+    `).join('');
+    document.getElementById('summarySub').textContent = `${selected.length} Products · ${tier.label} Off`;
+    document.getElementById('summarySubtotal').textContent = '$' + subtotal.toFixed(2);
+    document.getElementById('summarySavingsLabel').textContent = `Save ${tier.label}`;
+    document.getElementById('summarySavings').textContent = '−$' + savings.toFixed(2);
+    document.getElementById('summaryTotal').textContent = '$' + total.toFixed(2);
+    document.getElementById('summaryCode').textContent = tier.code;
+  }
+
+  // ── BYO Popup open/close ─────────────────────────────────────────────
+  const popupOverlay = document.getElementById('byoPopupOverlay');
+  const popupCloseBtn = document.getElementById('byoPopupClose');
+
+  function openBYOPopup() {
+    if (!popupOverlay) return;
+    popupOverlay.classList.add('open');
+    popupOverlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    // Refresh the Smart Refill teaser when the popup opens
+    if (typeof window.dhRefreshByoSmartTeaser === 'function') {
+      window.dhRefreshByoSmartTeaser();
+    }
+  }
+  function closeBYOPopup() {
+    if (!popupOverlay) return;
+    popupOverlay.classList.remove('open');
+    popupOverlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+  window.dhOpenBYOPopup = openBYOPopup;
+
+  // CTA: open the popup if any tier is reached
+  document.getElementById('builderCTA').addEventListener('click', () => {
+    if (state.size >= MIN_TIER) {
+      openBYOPopup();
+    }
+  });
+
+  // Close: X button, backdrop click, ESC key
+  popupCloseBtn?.addEventListener('click', closeBYOPopup);
+  popupOverlay?.addEventListener('click', (e) => {
+    if (e.target === popupOverlay) closeBYOPopup();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && popupOverlay?.classList.contains('open')) closeBYOPopup();
+  });
+
+  document.querySelectorAll('.builder-tabs .tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.builder-tabs .tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const filter = tab.dataset.filter;
+      document.querySelectorAll('.builder-card').forEach(card => {
+        card.style.display = (filter === 'all' || card.dataset.category === filter) ? '' : 'none';
+      });
+    });
+  });
+
+  update();
+  // Expose recompute so the bundle-subscribe-toggle handler can trigger a refresh
+  window.recomputeBYOSavings = update;
+})();
+</script>
+</div>
+
+<!-- Shared Lightbox / Product Carousel -->
+<div class="lightbox-overlay">
+  <div class="lightbox">
+    <div class="lightbox-header">
+      <div class="lightbox-title"></div>
+      <button class="lightbox-close" aria-label="Close">×</button>
+    </div>
+    <div class="lightbox-body">
+      <div class="lightbox-image-side">
+        <button class="lightbox-arrow prev" aria-label="Previous">←</button>
+        <img class="lightbox-image" src="" alt="" />
+        <button class="lightbox-arrow next" aria-label="Next">→</button>
+      </div>
+      <div class="lightbox-info-side">
+        <div class="lightbox-counter"></div>
+        <div class="lightbox-tag"></div>
+        <div class="lightbox-name"></div>
+        <div class="lightbox-tagline"></div>
+        <div class="lightbox-desc"></div>
+        <div class="lightbox-price-row">
+          <div class="lightbox-price"></div>
+          <div class="lightbox-size"></div>
+        </div>
+        <div class="lightbox-actions"></div>
+      </div>
+    </div>
+    <div class="lightbox-dots"></div>
+  </div>
+</div>
+
+<script src="data/products.js"></script>
+<script src="data/bundle-details.js"></script>
+<script src="data/ingredients.js"></script>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════════════
+// CURATED BUNDLE RENDERER — produces concern-card-style markup for each
+// curated bundle so routines.html and bundles.html share the same visual layout.
+// Runs synchronously here, BEFORE shared.js and bundle-expand.js, so the cards
+// exist in the DOM by the time those scripts wire CTAs and expansions.
+// ═══════════════════════════════════════════════════════════════════════════
+(function() {
+  // Marketing copy per bundle id — extracted from the previously hardcoded HTML
+  const BLURBS = {
+    'daniels-daily': "Everything Daniel takes, every single day. Five Foundation essentials paired with five Longevity actives — the complete daily supplement protocol, no skincare. For customers who already have a routine and want the inside-out half.",
+    'am': "The full morning routine. Cleanse, tone, brighten, hydrate, defend, moisturize — six steps to start the day with a complete barrier and visible glow.",
+    'pm': "The full evening routine. Resurface, firm, hydrate, treat the eyes, repair overnight, and seal it all in with the finishing oil. Wake up better.",
+    'workout': "The full performance stack. Strength, output, recovery, nutrient density, and the metabolic edge. Five formulations for the days you put in real work.",
+    'foundation': "The five foundational supplements every adult needs daily — multivitamin, vitamin D, omega-3, probiotic, and magnesium. The simple starting protocol that handles 80% of what most diets miss.",
+    'longevity': "The five actives that pay off over years. Cellular energy, cognitive support, stress resilience, and joint mobility — daily, with the science behind each one.",
+    'glow': "The full glow protocol. Topical brightening + antioxidant defense + finishing oil + the weekly detox mask — paired with the beauty gummy and collagen peptides that build it from within.",
+    'weekly': "The reset ritual. The clarifying mask and gentle polish — used once or twice a week to clear buildup, brighten dull patches, and prime skin for everything else to work better.",
+    'moms': "The needs that come with age are specific: skincare gentle enough for skin that's grown more reactive, paired with the actives that actually move the needle on visible aging — retinol overnight, peptides around the eyes, antioxidants by day. Steady energy as the body's rhythms change. Adaptogenic support for a nervous system that's carried decades of work and family life. This routine combines the gentle anti-aging skincare staples (Wash, Defense, Bounce, Eye, Soft) with the inside-out longevity stack (Multi, Collagen, NAD+, Vitality) plus Tranquil for evening recovery. Together they form a sustainable daily rhythm — not aspirational, not maximum, just the inside-out routine that compounds in your favor.",
+    'arianas': "Built for my 25-year-old sister. Focused on inner-and-outer beauty, this stack pairs six skincare layers — cleanse, brighten, defend, renew, and protect the eyes — with three inner-beauty supplements that compound the glow from within: collagen, antioxidants, and the daily multi.",
+    'ultimate': "Everything. Twelve skincare products — the full AM + PM rituals — plus ten daily supplements that handle the inside half. The complete protocol, twenty-two products, twenty-five percent off as a bundle. The most committed version of this brand."
+  };
+
+  // Italicize the meaningful word in each bundle name to match the concern-card
+  // styling ("The <em>Anti-Aging</em> Bundle"). Curated bundles have a few
+  // edge-case formats — handle each explicitly.
+  function formatName(bundle) {
+    if (bundle.id === 'daniels-daily') return `Daniel's <em>Daily</em> Routine`;
+    if (bundle.id === 'moms') return `The <em>Mom's</em> Routine`;
+    if (bundle.id === 'arianas') return `The <em>Ariana's</em> Routine`;
+    const m = bundle.name.match(/^The (.+) Routine$/);
+    if (m) return `The <em>${m[1]}</em> Routine`;
+    return bundle.name;
+  }
+
+  window.renderCuratedBundleCard = function(bundleId) {
+    const bundle = window.getCuratedBundleById(bundleId);
+    if (!bundle) return '';
+    const products = bundle.slugs.map(slug => window.getProductBySlug(slug)).filter(Boolean);
+    if (!products.length) return '';
+
+    const skinCount = products.filter(p => p.category === 'skincare').length;
+    const suppCount = products.filter(p => p.category === 'supplement').length;
+    const productCount = products.length;
+
+    const fullPrice = products.reduce((acc, p) => acc + p.price, 0);
+    const discountedPrice = fullPrice * (1 - bundle.discount);
+    const savings = fullPrice - discountedPrice;
+    const discountPct = Math.round(bundle.discount * 100);
+    const smartAnnualSave = window.computeSmartRefillAnnualSavings ? window.computeSmartRefillAnnualSavings(bundle) : 0;
+    const smartTeaserHTML = (smartAnnualSave >= 50 && window.bundleSmartRefillEligible && window.bundleSmartRefillEligible(bundle))
+      ? `<div class="smart-savings-teaser"><span class="smart-rule"></span><span class="smart-savings-text"><span class="smart-prefix">Smart Refill</span>saves up to <strong>$${Math.round(smartAnnualSave)}</strong>/year</span><span class="smart-rule"></span></div>`
+      : '';
+
+
+    const displayName = formatName(bundle);
+    const blurb = BLURBS[bundleId] || '';
+    const colsClass = productCount === 2 ? 'cols-2' : productCount === 3 ? 'cols-3' : productCount === 4 ? 'cols-4' : productCount === 5 ? 'cols-5' : 'cols-6';
+
+    return `
+      <div class="concern-card curated-card" data-bundle-id="${bundle.id}" data-product-slugs="${bundle.slugs.join(',')}" data-bundle-name="${bundle.name}">
+        <div class="concern-savings-ribbon">Save ${discountPct}%</div>
+
+        <div class="concern-card-img-side">
+          <div class="concern-products ${colsClass}">
+            ${products.map((p, i) => `
+              <div class="concern-product" data-idx="${i}" title="The House ${p.name}">
+                <div class="concern-product-img is-${p.category}">
+                  <img src="${p.image}" alt="${p.name}" loading="lazy"/>
+                </div>
+                <div class="concern-product-name">The House <em>${p.name}</em></div>
+                <div class="concern-product-tag">${p.tag.split('·')[0].trim()}</div>
+                <div class="concern-product-price">$${p.price.toFixed(0)}</div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <div class="concern-card-content-side">
+          <div class="concern-header">
+            <div class="concern-name">${displayName}</div>
+            <div class="concern-mix">
+              ${skinCount > 0 ? `<span class="concern-mix-pill skin"><span class="dot"></span>${skinCount} Skincare</span>` : ''}
+              ${suppCount > 0 ? `<span class="concern-mix-pill supp"><span class="dot"></span>${suppCount} Supplement${suppCount > 1 ? 's' : ''}</span>` : ''}
+            </div>
+            <div class="concern-blurb">${blurb}</div>
+          </div>
+
+          <div class="concern-pricing">
+            <div class="concern-price-stack">
+              <div class="concern-price-line">
+                <span class="concern-price-was">$${fullPrice.toFixed(2)}</span>
+                <span class="concern-price-now">$${discountedPrice.toFixed(2)}</span>
+              </div>
+              <div class="concern-savings">Save $${savings.toFixed(2)} as a routine</div>
+            </div>
+            <div class="concern-count">${productCount}<span>products</span></div>
+          </div>
+
+          ${smartTeaserHTML}
+
+          ${typeof window.dhBuildSubscribeToggle === 'function' ? window.dhBuildSubscribeToggle(bundle) : '<!-- subscribe toggle pending -->'}
+
+          <div class="concern-actions">
+            <button class="concern-btn secondary" data-action="preview">Preview Bundle →</button>
+            <button class="concern-btn primary" data-action="add" data-bundle-add="${bundle.id}">Add Routine to Cart →</button>
+          </div>
+        </div>
+      </div>
+    `;
+  };
+
+  // Populate the empty .bundle-grid container. Order matches the previous hardcoded order.
+  // IMPORTANT: must run AFTER shared.js has loaded so window.dhBuildSubscribeToggle
+  // is defined (the card template calls into it). DOMContentLoaded fires after all
+  // synchronous <script src> tags including js/shared.js have executed.
+  document.addEventListener('DOMContentLoaded', () => {
+    const grid = document.querySelector('.bundle-grid');
+    if (!grid) return;
+
+    const defaultOrder = ['daniels-daily', 'am', 'pm', 'workout', 'foundation', 'longevity', 'glow', 'weekly', 'moms', 'arianas', 'ultimate'];
+    grid.innerHTML = defaultOrder.map(id => window.renderCuratedBundleCard(id)).join('');
+
+    // SORT: reorder existing DOM nodes (preserves all event listeners on cards)
+    function reorderGrid(sortKey) {
+      const cards = Array.from(grid.querySelectorAll('.curated-card'));
+      const bundles = cards
+        .map(c => window.getCuratedBundleById?.(c.dataset.bundleId))
+        .filter(Boolean);
+      const sorted = window.dhSortItems(bundles, 'bundles', sortKey || 'featured');
+      const cardById = new Map(cards.map(c => [c.dataset.bundleId, c]));
+      sorted.forEach(b => {
+        const card = cardById.get(b.id);
+        if (card) grid.appendChild(card); // moves to end; full pass = full reorder
+      });
+    }
+
+    // Mount sort bar (when shared.js sort module is ready)
+    function mountSortBar() {
+      if (!window.dhBuildSortBar) { setTimeout(mountSortBar, 50); return; }
+      const mount = document.querySelector('.bundles-sort-mount');
+      if (!mount || mount.dataset.mounted === '1') return;
+      const bar = window.dhBuildSortBar(
+        'bundles',
+        'featured',
+        `<strong>11</strong> routines`,
+        (key) => reorderGrid(key)
+      );
+      if (bar) {
+        mount.appendChild(bar);
+        mount.dataset.mounted = '1';
+      }
+    }
+    mountSortBar();
+  });
+
+  // Wire Preview Bundle buttons — open the shared lightbox carousel for that bundle's products.
+  // Defer until after shared.js has loaded (dhLightbox lives there).
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.bundle-grid .curated-card').forEach(card => {
+      const slugs = (card.dataset.productSlugs || '').split(',').filter(Boolean);
+      const bundleId = card.dataset.bundleId;
+      const bundleName = card.dataset.bundleName || '';
+      const bundle = window.getCuratedBundleById?.(bundleId);
+      if (!bundle) return;
+      const previewBtn = card.querySelector('[data-action="preview"]');
+      const isSubscribe = () => {
+        const toggle = card.querySelector('.bundle-subscribe-toggle');
+        return toggle?.querySelector('button.active')?.dataset.mode === 'subscribe';
+      };
+      if (previewBtn && window.dhLightbox) {
+        previewBtn.addEventListener('click', () => {
+          window.dhLightbox.open(slugs, 0, {
+            title: `Browsing the <strong>${bundleName}</strong>`,
+            bundleName: bundleName,
+            bundleSlugs: slugs,
+            bundleDiscount: bundle.discount,
+            bundleSubscribe: isSubscribe()
+          });
+        });
+      }
+    });
+  });
+})();
+</script>
+
+<script src="js/auth.js?v=1"></script><script src="js/shared.js"></script>
+<script src="js/bundle-expand.js"></script>
+<script>
+// Bundle thumb clicks → open shared lightbox carousel
+(function() {
+  function findProductByImage(imgSrc) {
+    if (!window.PRODUCTS) return null;
+    return window.PRODUCTS.find(p => imgSrc.includes(p.image.split('/').pop()));
+  }
+
+  function getBundleSlugs(card) {
+    const thumbs = card.querySelectorAll('.bundle-thumb img, .hero-product-thumb img');
+    const slugs = [];
+    thumbs.forEach(img => {
+      const product = findProductByImage(img.src);
+      if (product) slugs.push(product.slug);
+    });
+    return slugs;
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.bundle-card, .hero-section').forEach(card => {
+      const thumbs = card.querySelectorAll('.bundle-thumb, .hero-product-thumb');
+      thumbs.forEach((thumb, idx) => {
+        const img = thumb.querySelector('img');
+        if (!img) return;
+        thumb.style.cursor = 'pointer';
+        thumb.addEventListener('click', () => {
+          const slugs = getBundleSlugs(card);
+          const validThumbs = Array.from(thumbs).filter(t => t.querySelector('img'));
+          const validIdx = validThumbs.indexOf(thumb);
+          if (slugs.length === 0) return;
+          const titleEl = card.querySelector('.bundle-title, .hero-title');
+          const title = titleEl ? `Browsing <strong>${titleEl.textContent.trim()}</strong>` : 'Browsing';
+          // Find the bundle id from a sibling toggle, if present
+          const toggle = card.querySelector('[data-bundle-id]');
+          const bundleId = toggle?.dataset.bundleId;
+          const bundleData = bundleId ? window.getCuratedBundleById(bundleId) : null;
+          const subscribeMode = toggle?.querySelector('button.active')?.dataset.mode === 'subscribe';
+          if (bundleData) {
+            window.dhLightbox.open(slugs, validIdx, {
+              title,
+              bundleName: bundleData.name,
+              bundleSlugs: bundleData.slugs,
+              bundleDiscount: bundleData.discount,
+              bundleSubscribe: subscribeMode
+            });
+          } else {
+            window.dhLightbox.open(slugs, validIdx, { title });
+          }
+        });
+      });
+    });
+  });
+})();
+
+// ═══ Bundle Subscribe Toggles + Cadence Selectors + Add Bundle CTAs ═══
+(function() {
+  // Helper: read the current cadence for a given bundleId from its cadence selector
+  function getCurrentCadence(bundleId) {
+    const sel = document.querySelector(`.bundle-cadence[data-bundle-id="${bundleId}"]`);
+    if (!sel) return 'monthly';
+    const active = sel.querySelector('.cadence-btn.active');
+    return (active && active.dataset.cadence) || 'monthly';
+  }
+  function isSubscribed(toggle) {
+    return toggle && toggle.querySelector('button.active')?.dataset.mode === 'subscribe';
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // ── 0. Populate any hardcoded "Smart Refill saves $X/year" hero teasers ──
+    document.querySelectorAll('[data-hero-smart-teaser]').forEach(teaser => {
+      const bundleId = teaser.dataset.heroSmartTeaser;
+      const bundle = window.getCuratedBundleById && window.getCuratedBundleById(bundleId);
+      if (!bundle || !window.computeSmartRefillAnnualSavings) return;
+      const eligible = window.bundleSmartRefillEligible && window.bundleSmartRefillEligible(bundle);
+      const amount = window.computeSmartRefillAnnualSavings(bundle);
+      const amountEl = teaser.querySelector('[data-smart-amount]');
+      if (eligible && amount >= 50) {
+        if (amountEl) amountEl.textContent = `$${Math.round(amount)}`;
+      } else {
+        teaser.style.display = 'none'; // hide entirely if ineligible or trivial savings
+      }
+    });
+
+    // ── 1. Wire each One-Time/Subscribe toggle ──
+    document.querySelectorAll('.bundle-subscribe-toggle').forEach(toggle => {
+      toggle.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          toggle.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const subscribed = btn.dataset.mode === 'subscribe';
+          toggle.classList.toggle('subscribe-mode', subscribed);
+
+          // Reveal/hide the cadence selector beneath the toggle
+          const bundleId = toggle.dataset.bundleId;
+          const cadenceSel = document.querySelector(`.bundle-cadence[data-bundle-id="${bundleId}"]`);
+          if (cadenceSel) {
+            if (subscribed) cadenceSel.removeAttribute('hidden');
+            else cadenceSel.setAttribute('hidden', '');
+          }
+
+          // Update the paired CTA label
+          const addBtn = document.querySelector(`[data-bundle-add="${bundleId}"]`);
+          if (addBtn) {
+            if (bundleId === 'ultimate') {
+              addBtn.textContent = subscribed ? 'Subscribe to Ultimate →' : 'Add Ultimate to Cart →';
+            } else {
+              addBtn.textContent = subscribed ? 'Subscribe to Routine →' : 'Add Routine to Cart →';
+            }
+          }
+          if (bundleId === 'byo') {
+            const byoBtn = document.getElementById('byoAddBundle');
+            if (byoBtn) {
+              byoBtn.textContent = subscribed
+                ? 'Subscribe to Custom Routine →'
+                : 'Add Custom Routine to Cart →';
+            }
+            if (typeof window.recomputeBYOSavings === 'function') window.recomputeBYOSavings();
+          } else {
+            updateBundleSavingsDisplay(toggle);
+          }
+        });
+      });
+    });
+
+    // ── 2. Wire each Cadence button (Monthly / Bimonthly / Quarterly / Smart) ──
+    document.querySelectorAll('.bundle-cadence').forEach(cadenceSel => {
+      cadenceSel.querySelectorAll('.cadence-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          cadenceSel.querySelectorAll('.cadence-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          // Toggle the smart-refill explainer note
+          const isSmart = btn.dataset.cadence === 'smart';
+          const note = cadenceSel.querySelector('[data-smart-note]');
+          if (note) {
+            if (isSmart) note.removeAttribute('hidden');
+            else note.setAttribute('hidden', '');
+          }
+          // Recompute price for the parent card's bundle
+          const bundleId = cadenceSel.dataset.bundleId;
+          const toggle = document.querySelector(`.bundle-subscribe-toggle[data-bundle-id="${bundleId}"]`);
+          if (toggle) updateBundleSavingsDisplay(toggle);
+        });
+      });
+    });
+
+    // ── Recompute and update the price + savings labels on a bundle card ──
+    // Cadence-aware: smart refill displays AVG/month and the savings copy adapts.
+    function updateBundleSavingsDisplay(toggle) {
+      if (!toggle) return;
+      const bundleId = toggle.dataset.bundleId;
+      // Try routine first, then concern bundle (handles bundles.html which mixes both)
+      let bundle = window.getCuratedBundleById && window.getCuratedBundleById(bundleId);
+      let kind = 'routine';
+      if (!bundle && window.CONCERN_BUNDLES) {
+        bundle = window.CONCERN_BUNDLES.find(b => b.id === bundleId);
+        kind = 'concern';
+      }
+      if (!bundle) return;
+      const products = (bundle.slugs || [])
+        .map(s => window.getProductBySlug && window.getProductBySlug(s))
+        .filter(Boolean);
+      if (!products.length) return;
+
+      const subscribed = isSubscribed(toggle);
+      const cadence = getCurrentCadence(bundleId);
+      const fullPrice = products.reduce((s, p) => s + p.price, 0);
+      const baseDiscounted = fullPrice * (1 - bundle.discount);
+
+      // For flat cadences, per-shipment price is the same — bundle × sub bonus.
+      // For smart refill, displayed price is the avg monthly cost.
+      let displayPrice, savingsAmount, savingsCopy;
+      const cadenceLabel = window.formatCadence ? window.formatCadence(cadence).name : 'Monthly';
+
+      if (!subscribed) {
+        // One-time
+        displayPrice = baseDiscounted;
+        savingsAmount = fullPrice - baseDiscounted;
+        savingsCopy = `Save $${savingsAmount.toFixed(2)} as a ${kind === 'routine' ? (bundleId === 'ultimate' ? 'Ultimate' : 'routine') : 'bundle'}`;
+      } else if (cadence === 'smart') {
+        // Smart refill — display avg/month
+        displayPrice = window.computeSmartRefillAvgMonthly(bundle);
+        // Annual savings vs paying for flat monthly subscription
+        const annualSmart = displayPrice * 12;
+        const annualFlat  = (baseDiscounted * 0.90) * 12;
+        const annualSave  = annualFlat - annualSmart;
+        savingsCopy = `Avg per month · Smart Refill saves ~$${Math.round(annualSave)}/yr vs flat monthly`;
+      } else {
+        // Monthly / Bimonthly / Quarterly — per-shipment price
+        displayPrice = baseDiscounted * 0.90;
+        savingsAmount = fullPrice - displayPrice;
+        savingsCopy = `Save $${savingsAmount.toFixed(2)} per shipment · ${cadenceLabel}`;
+      }
+
+      // 1) Hero / legacy markup
+      const heroCard = toggle.closest('.bundle-card, .hero-section');
+      if (heroCard) {
+        // Two naming conventions: legacy `.bundle-save` / `.bundle-save-label`
+        // and the Ultimate hero `.hero-savings-amount` / `.hero-savings-label`.
+        // Update whichever pair exists.
+        const saveEl  = heroCard.querySelector('.bundle-save')        || heroCard.querySelector('.hero-savings-amount');
+        const labelEl = heroCard.querySelector('.bundle-save-label')  || heroCard.querySelector('.hero-savings-label');
+        if (cadence === 'smart' && subscribed) {
+          // Smart Refill: show avg/month + annual savings vs flat monthly subscribe
+          const annualSmart = displayPrice * 12;
+          const annualFlat  = (baseDiscounted * 0.90) * 12;
+          const annualSave  = Math.max(0, annualFlat - annualSmart);
+          if (saveEl)  saveEl.textContent  = `~$${Math.round(displayPrice)}/mo avg`;
+          if (labelEl) labelEl.textContent = `Smart Refill · saves $${Math.round(annualSave)}/yr vs monthly`;
+        } else if (subscribed) {
+          // Flat-cadence subscription: show per-shipment price + cadence
+          if (saveEl)  saveEl.textContent  = `Save $${Math.round(fullPrice - displayPrice)}`;
+          if (labelEl) labelEl.textContent = `$${Math.round(fullPrice)} → $${Math.round(displayPrice)} · ${cadenceLabel}`;
+        } else {
+          // One-time
+          if (saveEl)  saveEl.textContent  = `Save $${Math.round(fullPrice - displayPrice)}`;
+          if (labelEl) labelEl.textContent = `$${Math.round(fullPrice)} → $${Math.round(displayPrice)} · ${Math.round(bundle.discount * 100)}% off`;
+        }
+      }
+
+      // 2) Curated grid card markup (.curated-card)
+      const curatedCard = toggle.closest('.curated-card');
+      if (curatedCard) {
+        const priceNowEl = curatedCard.querySelector('.concern-price-now');
+        const savingsEl  = curatedCard.querySelector('.concern-savings');
+        if (priceNowEl) priceNowEl.textContent = `$${displayPrice.toFixed(2)}`;
+        if (savingsEl) savingsEl.textContent = savingsCopy;
+      }
+    }
+    // Expose so the bundles.html click handler can call into it
+    window.dhUpdateBundleDisplay = updateBundleSavingsDisplay;
+
+    // ── 3. Wire each Add Bundle CTA — read mode + cadence at click time ──
+    document.querySelectorAll('[data-bundle-add]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const bundleId = btn.dataset.bundleAdd;
+        const bundle = window.getCuratedBundleById(bundleId);
+        if (!bundle) return;
+        const toggle = document.querySelector(`.bundle-subscribe-toggle[data-bundle-id="${bundleId}"]`);
+        const subscribe = isSubscribed(toggle);
+        const cadence = subscribe ? getCurrentCadence(bundleId) : null;
+        // Pass cadence to cart so it can store it for the order
+        window.dhCart.addBundle(bundle.slugs, bundle.name, bundle.discount, subscribe, { cadence });
+      });
+    });
+
+    // ─────────────────────────────────────────────────────────────
+    // BYO Smart Refill integration
+    // ─────────────────────────────────────────────────────────────
+    // 1. Populate the BYO subscribe wrapper with the full toggle + cadence
+    //    selector using the same builder used by every other bundle card.
+    //    Synthetic bundle: id='byo', slugs=[] (slugs are determined by current
+    //    selection at click-time, but the toggle markup doesn't depend on them).
+    const byoWrap = document.getElementById('byoSubscribeWrap');
+    if (byoWrap && typeof window.dhBuildSubscribeToggle === 'function') {
+      byoWrap.innerHTML = window.dhBuildSubscribeToggle({ id: 'byo', slugs: [] });
+    }
+
+    // 2. Helper: build a synthetic bundle object from the current builder
+    //    selection. Used for Smart Refill schedule + savings computations.
+    function getByoSyntheticBundle() {
+      const slugs = [];
+      document.querySelectorAll('.builder-card.selected').forEach(card => {
+        const h = card.dataset.handle;
+        if (h) slugs.push(h);
+      });
+      // Match the tier logic used for live tracker updates
+      const tiers = [{min:9,pct:0.15},{min:6,pct:0.12},{min:3,pct:0.10}];
+      const tier = tiers.find(t => slugs.length >= t.min);
+      return {
+        id: 'byo',
+        name: 'Build Your Own Routine',
+        slugs,
+        discount: tier ? tier.pct : 0
+      };
+    }
+
+    // 3. Refresh the Smart Refill teaser amount based on current selection.
+    //    Show only when: ≥3 items selected (eligible for tier), the user is in
+    //    subscribe mode, and the savings figure clears a $50 threshold.
+    function refreshByoSmartTeaser() {
+      const teaser = document.getElementById('byoSmartTeaser');
+      const amountEl = document.getElementById('byoSmartAmount');
+      if (!teaser || !amountEl) return;
+
+      const byoBundle = getByoSyntheticBundle();
+      if (byoBundle.slugs.length < 3 || !window.computeSmartRefillAnnualSavings) {
+        teaser.hidden = true;
+        return;
+      }
+      const annualSave = window.computeSmartRefillAnnualSavings(byoBundle);
+      if (annualSave < 50) {
+        teaser.hidden = true;
+        return;
+      }
+      amountEl.textContent = '$' + Math.round(annualSave);
+      teaser.hidden = false;
+    }
+
+    // 4. Wire up the toggle + cadence buttons to re-run the tracker + teaser
+    //    whenever the user changes subscribe mode or cadence selection.
+    const byoToggleEl = byoWrap?.querySelector('.bundle-subscribe-toggle[data-bundle-id="byo"]');
+    const byoCadenceEl = byoWrap?.querySelector('.bundle-cadence[data-bundle-id="byo"]');
+
+    if (byoToggleEl) {
+      byoToggleEl.addEventListener('click', (e) => {
+        const btn = e.target.closest('button[data-mode]');
+        if (!btn) return;
+        // Toggle active state
+        byoToggleEl.querySelectorAll('button[data-mode]').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        // Show/hide cadence selector
+        if (byoCadenceEl) {
+          if (btn.dataset.mode === 'subscribe') {
+            byoCadenceEl.removeAttribute('hidden');
+            byoToggleEl.classList.add('subscribe-mode');
+          } else {
+            byoCadenceEl.setAttribute('hidden', '');
+            byoToggleEl.classList.remove('subscribe-mode');
+          }
+        }
+        // Trigger tracker update
+        if (typeof window.dhUpdateBYOTracker === 'function') window.dhUpdateBYOTracker();
+        refreshByoSmartTeaser();
+      });
+    }
+    if (byoCadenceEl) {
+      byoCadenceEl.addEventListener('click', (e) => {
+        const btn = e.target.closest('.cadence-btn');
+        if (!btn) return;
+        byoCadenceEl.querySelectorAll('.cadence-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        // Show/hide smart-refill explanation note
+        const note = byoCadenceEl.querySelector('[data-smart-note]');
+        if (note) {
+          if (btn.dataset.cadence === 'smart') note.removeAttribute('hidden');
+          else note.setAttribute('hidden', '');
+        }
+        if (typeof window.dhUpdateBYOTracker === 'function') window.dhUpdateBYOTracker();
+      });
+    }
+
+    // 5. Hook the teaser refresh into the existing selection-change events.
+    //    The builder cards already trigger updateTracker on click; we hook into
+    //    that via a global function for cleanliness.
+    window.dhRefreshByoSmartTeaser = refreshByoSmartTeaser;
+
+    // Wire BYO add-to-cart — uses the tier-based discount computed from current count
+    const byoBtn = document.getElementById('byoAddBundle');
+    if (byoBtn) {
+      byoBtn.addEventListener('click', () => {
+        const selectedSlugs = [];
+        document.querySelectorAll('.builder-card.selected').forEach(card => {
+          const handle = card.dataset.handle;
+          if (handle) selectedSlugs.push(handle);
+        });
+        // Match the tier logic from the IIFE above
+        const tiers = [
+          { min: 9, pct: 0.15 },
+          { min: 6, pct: 0.12 },
+          { min: 3, pct: 0.10 }
+        ];
+        const tier = tiers.find(t => selectedSlugs.length >= t.min);
+        if (!tier) {
+          alert('Please select at least 3 products to build your bundle.');
+          return;
+        }
+        const toggle = document.querySelector('.bundle-subscribe-toggle[data-bundle-id="byo"]');
+        const subscribe = isSubscribed(toggle);
+        const cadence = subscribe ? getCurrentCadence('byo') : null;
+        window.dhCart.addBundle(selectedSlugs, 'Build Your Own Routine', tier.pct, subscribe, { cadence });
+
+        // Close the popup so the user sees their cart confirmation
+        if (typeof window.dhOpenBYOPopup === 'function') {
+          document.getElementById('byoPopupOverlay')?.classList.remove('open');
+          document.body.style.overflow = '';
+        }
+      });
+    }
+  });
+})();
+</script>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     BUNDLE SEARCH + FILTER (same pattern as bundles.html, adapted for
+     curated bundles. Filters .bundle-card elements only — the Ultimate
+     hero stays always visible as the flagship.)
+     ═══════════════════════════════════════════════════════════════════ -->
+<script>
+(function() {
+  'use strict';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    if (!window.CURATED_BUNDLES || !window.CURATED_BUNDLES.length) {
+      console.error('[routines.html] CURATED_BUNDLES not loaded; search bar disabled.');
+      return;
+    }
+
+    const searchInput = document.getElementById('bundle-search-input');
+    const searchClear = document.getElementById('bundle-search-clear');
+    const searchCount = document.getElementById('bundle-search-count');
+    const filterToggle = document.getElementById('bundle-filter-toggle');
+    const filterPanel = document.getElementById('bundle-filter-panel');
+    const filterBadge = document.getElementById('bundle-filter-badge');
+    const filterClearAll = document.getElementById('bundle-filter-clear-all');
+    const hintBtns = document.querySelectorAll('.bundle-search-wrap .concern-search-hint');
+    const cards = document.querySelectorAll('.bundle-grid .curated-card');
+
+    if (!searchInput || !cards.length) {
+      console.warn('[routines.html] Search elements or bundle cards missing.');
+      return;
+    }
+
+    const total = cards.length;
+
+    // Keywords that trigger each effect marker
+    const EFFECT_KEYWORDS = {
+      'anti-aging': ['anti-aging','aging','firming','retinol','peptide','longevity','cellular','collagen'],
+      'brightening': ['brightening','vitamin c','glow','dullness','radiance','beauty','luminous'],
+      'hydrating': ['hydrating','hyaluronic','moisturizing','dryness','hydration','ceramide'],
+      'calming': ['calming','soothing','stress','sleep','sensitive','sensitivity','ashwagandha','magnesium','tranquil'],
+      'energizing': ['energy','energizing','thermogenic','caffeine','coq10','b-complex'],
+      'pore-refining': ['pores','pore','acne','clear','salicylic','sebum'],
+      'anti-inflammatory': ['anti-inflammatory','inflammation','joint','curcumin','omega'],
+      'recovery': ['recovery','repair','restore','gut','muscle','strength','training']
+    };
+
+    // Lifestyle persona map for curated bundles (editorial)
+    const LIFESTYLE_MAP = {
+      'ultimate':      ['anti-aging','beauty','busy-pro'],
+      'daniels-daily': ['busy-pro','beginner','active'],
+      'am':            ['beauty','beginner'],
+      'pm':            ['anti-aging','beauty'],
+      'workout':       ['active'],
+      'foundation':    ['beginner','busy-pro'],
+      'longevity':     ['anti-aging','busy-pro'],
+      'glow':          ['beauty','anti-aging'],
+      'weekly':        ['beauty','busy-pro'],
+      'moms':          ['parent','sensitive'],
+      'arianas':       ['beauty','busy-pro']
+    };
+
+    const GENERIC_INGREDIENT_WORDS = new Set([
+      'vitamin','extract','acid','complex','blend','powder','marine','active',
+      'natural','organic','derived','strain','capsule','chelate','monnieri'
+    ]);
+
+    // ═══ BUILD PER-CARD HAYSTACK + MARKERS ═══
+    cards.forEach(card => {
+      // Get the bundle ID from the data-bundle-add CTA inside the card
+      const cta = card.querySelector('[data-bundle-add]');
+      if (!cta) return;
+      const bundleId = cta.getAttribute('data-bundle-add');
+      const bundle = window.CURATED_BUNDLES.find(b => b.id === bundleId);
+      if (!bundle) return;
+
+      card.dataset.bundleId = bundleId;
+
+      const products = (bundle.slugs || []).map(s => window.getProductBySlug(s)).filter(Boolean);
+      const details = window.getBundleDetails ? window.getBundleDetails('curated', bundleId) : null;
+
+      // Text-search content: bundle name, blurb, every product name/tag/ingredient
+      const textParts = [
+        bundle.name,
+        bundle.id,
+        details?.description || '',
+        details?.whyThis || '',
+        details?.eyebrow || ''
+      ];
+      products.forEach(p => {
+        textParts.push(p.name, p.tag || '', p.tagline || '');
+        (p.ingredients || []).forEach(ing => textParts.push(ing.name || ''));
+      });
+      const searchText = textParts.join(' ').toLowerCase();
+
+      const markers = [];
+
+      // Focus — based on actual product categories. Mixed bundles get BOTH markers.
+      const hasSkin = products.some(p => p.category === 'skincare');
+      const hasSupp = products.some(p => p.category === 'supplement');
+      if (hasSkin) markers.push('__focus-skin__');
+      if (hasSupp) markers.push('__focus-goal__');
+
+      // Effects
+      Object.entries(EFFECT_KEYWORDS).forEach(([effect, keywords]) => {
+        if (keywords.some(k => searchText.includes(k))) {
+          markers.push(`__effect-${effect}__`);
+        }
+      });
+
+      // Lifestyle
+      (LIFESTYLE_MAP[bundleId] || []).forEach(l => markers.push(`__lifestyle-${l}__`));
+
+      // Price — bundles are pricier than concern bundles, so brackets are higher
+      const fullPrice = products.reduce((sum, p) => sum + p.price, 0);
+      const discount = typeof bundle.discount === 'number' ? bundle.discount : 0.15;
+      const discountedPrice = fullPrice * (1 - discount);
+      if (discountedPrice < 150) markers.push('__price-under-150__');
+      else if (discountedPrice < 250) markers.push('__price-150-250__');
+      else if (discountedPrice < 400) markers.push('__price-250-400__');
+      else markers.push('__price-over-400__');
+
+      // Ingredients (via glossary alias matching)
+      const INGREDIENT_GLOSSARY = window.INGREDIENTS || [];
+      const matchedIngSlugs = new Set();
+      if (INGREDIENT_GLOSSARY.length) {
+        products.forEach(prod => (prod.ingredients || []).forEach(ing => {
+          const ingName = (ing.name || '').toLowerCase().replace(/[^a-z0-9'+-]+/g, ' ');
+          INGREDIENT_GLOSSARY.forEach(g => {
+            const aliases = [g.name];
+            if (g.alt) g.alt.split(',').forEach(a => aliases.push(a.trim()));
+            [g.name, g.alt || ''].forEach(s => s.split(/[^A-Za-z0-9'+-]+/).forEach(w => {
+              if (w.length >= 6 && !GENERIC_INGREDIENT_WORDS.has(w.toLowerCase())) {
+                aliases.push(w);
+              }
+            }));
+            for (const alias of aliases) {
+              const a = alias.toLowerCase().replace(/[^a-z0-9'+-]+/g, ' ').trim();
+              if (a.length < 4) continue;
+              if ((' ' + ingName + ' ').includes(' ' + a + ' ')) {
+                matchedIngSlugs.add(g.slug);
+                break;
+              }
+            }
+          });
+        }));
+      }
+      matchedIngSlugs.forEach(slug => markers.push(`__ing-${slug}__`));
+
+      card.dataset.haystack = searchText + ' ' + markers.join(' ');
+    });
+
+    // ═══ FILTER STATE ═══
+    const activeFilters = {
+      focus: new Set(),
+      effect: new Set(),
+      lifestyle: new Set(),
+      ingredient: new Set(),
+      price: new Set()
+    };
+
+    function totalActiveFilters() {
+      return Object.values(activeFilters).reduce((sum, s) => sum + s.size, 0);
+    }
+
+    // ═══ APPLY FILTER ═══
+    function applyFilter() {
+      const rawQuery = searchInput.value || '';
+      const q = rawQuery.trim().toLowerCase();
+      let visible = 0;
+
+      cards.forEach(card => {
+        const haystack = card.dataset.haystack || '';
+
+        if (q && !haystack.includes(q)) {
+          card.classList.add('is-hidden');
+          return;
+        }
+
+        let allGroupsPass = true;
+        Object.entries(activeFilters).forEach(([group, values]) => {
+          if (!values.size) return;
+          const groupPasses = Array.from(values).some(v => haystack.includes(`__${group}-${v}__`));
+          if (!groupPasses) allGroupsPass = false;
+        });
+
+        if (allGroupsPass) {
+          card.classList.remove('is-hidden');
+          visible++;
+        } else {
+          card.classList.add('is-hidden');
+        }
+      });
+
+      const activeCount = totalActiveFilters();
+      const hasAnyFilter = q.length > 0 || activeCount > 0;
+      if (!hasAnyFilter) {
+        searchCount.textContent = `${total} routines`;
+      } else if (visible === 0) {
+        searchCount.textContent = `0 of ${total} match`;
+      } else if (visible === total) {
+        searchCount.textContent = `${total} routines`;
+      } else {
+        searchCount.textContent = `${visible} of ${total} routines`;
+      }
+
+      searchClear.classList.toggle('is-visible', q.length > 0);
+
+      if (activeCount > 0) {
+        filterBadge.hidden = false;
+        filterBadge.textContent = activeCount;
+      } else {
+        filterBadge.hidden = true;
+      }
+
+      if (filterClearAll) {
+        filterClearAll.disabled = activeCount === 0;
+      }
+    }
+
+    // ═══ EVENT WIRING ═══
+    searchInput.addEventListener('input', applyFilter);
+    searchClear.addEventListener('click', () => {
+      searchInput.value = '';
+      searchInput.focus();
+      applyFilter();
+    });
+    hintBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        searchInput.value = btn.dataset.hint;
+        applyFilter();
+        searchInput.focus();
+      });
+    });
+
+    filterToggle.addEventListener('click', () => {
+      const isOpen = filterPanel.hidden === false;
+      filterPanel.hidden = isOpen;
+      filterToggle.setAttribute('aria-expanded', !isOpen);
+    });
+
+    document.querySelectorAll('.bundle-search-wrap .filter-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        const group = chip.dataset.group;
+        const value = chip.dataset.value;
+        if (!group || !value || !activeFilters[group]) return;
+        if (activeFilters[group].has(value)) {
+          activeFilters[group].delete(value);
+          chip.classList.remove('is-active');
+        } else {
+          activeFilters[group].add(value);
+          chip.classList.add('is-active');
+        }
+        applyFilter();
+      });
+    });
+
+    if (filterClearAll) {
+      filterClearAll.addEventListener('click', () => {
+        Object.values(activeFilters).forEach(set => set.clear());
+        document.querySelectorAll('.bundle-search-wrap .filter-chip.is-active').forEach(c => c.classList.remove('is-active'));
+        applyFilter();
+      });
+    }
+
+    applyFilter();
+  });
+})();
+</script>
+
+</body>
+</html>
