@@ -933,11 +933,40 @@
         btn.addEventListener('click', () => {
           toggle.querySelectorAll('button').forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
-          toggle.classList.toggle('subscribe-mode', btn.dataset.mode === 'subscribe');
+          const subscribed = btn.dataset.mode === 'subscribe';
+          toggle.classList.toggle('subscribe-mode', subscribed);
+
+          // Reveal/hide a paired cadence selector (Monthly / Bimonthly / Quarterly / Smart Refill)
+          // so any page that includes a `<div class="bundle-cadence" data-bundle-id="...">`
+          // sibling will get the subscribe-time cadence picker for free.
+          const bundleId = toggle.dataset.bundleId;
+          if (bundleId) {
+            const cadenceSel = document.querySelector(`.bundle-cadence[data-bundle-id="${bundleId}"]`);
+            if (cadenceSel) {
+              if (subscribed) cadenceSel.removeAttribute('hidden');
+              else cadenceSel.setAttribute('hidden', '');
+            }
+          }
 
           // Trigger reactive pricing refresh on the parent bundle container
           const container = toggle.closest('.bundle-card, .bundle-footnote, .hero-bundle');
           if (container) refreshBundleDisplay(container, btn.dataset.mode);
+        });
+      });
+    });
+
+    // Global cadence-button click handler — works for any `.bundle-cadence` on any page.
+    // Highlights the active cadence and toggles the Smart Refill explainer note.
+    document.querySelectorAll('.bundle-cadence').forEach(cadenceSel => {
+      cadenceSel.querySelectorAll('.cadence-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          cadenceSel.querySelectorAll('.cadence-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const note = cadenceSel.querySelector('[data-smart-note]');
+          if (note) {
+            if (btn.dataset.cadence === 'smart') note.removeAttribute('hidden');
+            else note.setAttribute('hidden', '');
+          }
         });
       });
     });
@@ -979,6 +1008,7 @@
     injectTrust(document.getElementById('add-to-cart'));
 
     // Add Bundle to Cart — reads bundle by id, checks subscribe state, adds to cart
+    // (and forwards the active cadence when a `.bundle-cadence` selector is present).
     document.querySelectorAll('[data-bundle-add]').forEach(btn => {
       // Skip if routines.html scoped handler already wired it (it gets to run first)
       if (btn._dhBundleAddWired) return;
@@ -989,7 +1019,15 @@
         if (!bundle) return;
         const toggle = document.querySelector(`.bundle-subscribe-toggle[data-bundle-id="${bundleId}"]`);
         const subscribe = toggle?.querySelector('button.active')?.dataset.mode === 'subscribe';
-        window.dhCart.addBundle(bundle.slugs, bundle.name, bundle.discount, subscribe);
+        // Read the active cadence from a paired .bundle-cadence selector, if any.
+        // Falls back to 'monthly' for legacy markup that doesn't include a selector.
+        let cadence = null;
+        if (subscribe) {
+          const cadenceSel = document.querySelector(`.bundle-cadence[data-bundle-id="${bundleId}"]`);
+          const activeCad = cadenceSel?.querySelector('.cadence-btn.active');
+          cadence = (activeCad && activeCad.dataset.cadence) || 'monthly';
+        }
+        window.dhCart.addBundle(bundle.slugs, bundle.name, bundle.discount, subscribe, { cadence });
       });
     });
   });
@@ -2581,11 +2619,13 @@
     // Smart Refill is mostly useless on pure-supplement bundles (where every product
     // has runtime=1 anyway) and on weekly-use bundles (Reset Routine) where the
     // small ship size erodes margin without retention upside. Disable it on those.
+    // NOTE: Daniel's Daily IS enabled — its 10 supplements have mixed runtimes
+    // (Multi/NAD+/Vitality/Synapse/Restore/Tranquil 1mo; Flow/Biome/Calm 2mo;
+    // Sunshine 3mo), so Smart Refill genuinely saves ~$484/yr vs flat monthly.
     const SMART_REFILL_DISABLED = [
-      'routine:daniels-daily', // 10 supplements
       'routine:workout',       // 5 supplements
-      'routine:foundation',    // 5 supplements
-      'routine:longevity',     // 5 supplements (NOT the Cellular Bundle concern)
+      'routine:foundation',    // 5 supplements (subset of daniels-daily)
+      'routine:longevity',     // 5 supplements (subset of daniels-daily)
       'routine:weekly',        // The Reset Routine (2 skincare, weekly-use)
       'concern:strength'       // 4 supplements
     ];
