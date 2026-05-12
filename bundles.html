@@ -1153,7 +1153,12 @@ function renderConcernCard(bundle) {
 
   // Discount percentage for the inline savings ribbon
   const discountPct = Math.round((bundle.discount || 0.07) * 100);
-
+  // Smart Refill annual savings — surfaced as a teaser line above the toggle so
+  // customers see the dollar value of the smart cadence at a glance.
+  const smartAnnualSave = window.computeSmartRefillAnnualSavings ? window.computeSmartRefillAnnualSavings(bundle) : 0;
+  const smartTeaserHTML = smartAnnualSave >= 50
+    ? `<div class="smart-savings-teaser"><span class="smart-rule"></span><span class="smart-savings-text"><span class="smart-prefix">Smart Refill</span>saves <strong>$${Math.round(smartAnnualSave)}</strong>/year</span><span class="smart-rule"></span></div>`
+    : '';
 
   return `
     <div class="concern-card" data-bundle-id="${bundle.id}" data-bundle-kind="concern" data-product-slugs="${bundle.slugs.join(',')}" data-bundle-name="${bundle.name}">
@@ -1194,6 +1199,8 @@ function renderConcernCard(bundle) {
           </div>
           <div class="concern-count">${productCount}<span>products</span></div>
         </div>
+
+        ${smartTeaserHTML}
 
         ${window.dhBuildSubscribeToggle(bundle)}
 
@@ -1237,6 +1244,10 @@ function renderRoutineCard(bundle) {
   }
 
   const discountPct = Math.round((bundle.discount || 0.15) * 100);
+  const smartAnnualSave = window.computeSmartRefillAnnualSavings ? window.computeSmartRefillAnnualSavings(bundle) : 0;
+  const smartTeaserHTML = smartAnnualSave >= 50
+    ? `<div class="smart-savings-teaser"><span class="smart-rule"></span><span class="smart-savings-text"><span class="smart-prefix">Smart Refill</span>saves <strong>$${Math.round(smartAnnualSave)}</strong>/year</span><span class="smart-rule"></span></div>`
+    : '';
 
 
   return `
@@ -1279,6 +1290,8 @@ function renderRoutineCard(bundle) {
           </div>
           <div class="concern-count">${productCount}<span>products</span></div>
         </div>
+
+        ${smartTeaserHTML}
 
         ${window.dhBuildSubscribeToggle(bundle)}
 

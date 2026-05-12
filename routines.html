@@ -1595,6 +1595,8 @@
           <div class="hero-savings-label">$717 → $538 · 25% off</div>
         </div>
 
+        <div class="smart-savings-teaser" style="max-width: 480px;" data-hero-smart-teaser="ultimate"><span class="smart-rule"></span><span class="smart-savings-text"><span class="smart-prefix">Smart Refill</span>saves <strong data-smart-amount></strong>/year</span><span class="smart-rule"></span></div>
+
                 <div class="bundle-subscribe-toggle" data-bundle-id="ultimate" data-toggle style="max-width: 480px; margin-bottom: 0;">
           <button type="button" data-mode="once" class="active">
             <div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">One-Time</span></div>
@@ -2232,6 +2234,10 @@
     const discountedPrice = fullPrice * (1 - bundle.discount);
     const savings = fullPrice - discountedPrice;
     const discountPct = Math.round(bundle.discount * 100);
+    const smartAnnualSave = window.computeSmartRefillAnnualSavings ? window.computeSmartRefillAnnualSavings(bundle) : 0;
+    const smartTeaserHTML = smartAnnualSave >= 50
+      ? `<div class="smart-savings-teaser"><span class="smart-rule"></span><span class="smart-savings-text"><span class="smart-prefix">Smart Refill</span>saves <strong>$${Math.round(smartAnnualSave)}</strong>/year</span><span class="smart-rule"></span></div>`
+      : '';
 
 
     const displayName = formatName(bundle);
@@ -2277,6 +2283,8 @@
             </div>
             <div class="concern-count">${productCount}<span>products</span></div>
           </div>
+
+          ${smartTeaserHTML}
 
           ${window.dhBuildSubscribeToggle(bundle)}
 
@@ -2428,6 +2436,20 @@
   }
 
   document.addEventListener('DOMContentLoaded', () => {
+    // ── 0. Populate any hardcoded "Smart Refill saves $X/year" hero teasers ──
+    document.querySelectorAll('[data-hero-smart-teaser]').forEach(teaser => {
+      const bundleId = teaser.dataset.heroSmartTeaser;
+      const bundle = window.getCuratedBundleById && window.getCuratedBundleById(bundleId);
+      if (!bundle || !window.computeSmartRefillAnnualSavings) return;
+      const amount = window.computeSmartRefillAnnualSavings(bundle);
+      const amountEl = teaser.querySelector('[data-smart-amount]');
+      if (amount >= 50) {
+        if (amountEl) amountEl.textContent = `$${Math.round(amount)}`;
+      } else {
+        teaser.style.display = 'none'; // hide entirely if savings are trivial
+      }
+    });
+
     // ── 1. Wire each One-Time/Subscribe toggle ──
     document.querySelectorAll('.bundle-subscribe-toggle').forEach(toggle => {
       toggle.querySelectorAll('button').forEach(btn => {
