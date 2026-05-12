@@ -809,11 +809,18 @@
     // Runs site-wide so newly-added bundles automatically inherit it.
     // Skips the BYO tracker preview CTA (`.builder-cta`) since that's not a purchase action.
     function injectTrust(btn) {
-      if (!btn || btn.nextElementSibling?.classList.contains('bundle-trust')) return;
+      if (!btn) return;
+      // Find current insertion anchor — skip past any View Details toggle so trust lands BELOW it
+      let anchor = btn;
+      while (anchor.nextElementSibling?.classList.contains('bundle-details-toggle')) {
+        anchor = anchor.nextElementSibling;
+      }
+      // Bail if a trust badge is already right after the anchor (avoid duplicates)
+      if (anchor.nextElementSibling?.classList.contains('bundle-trust')) return;
       const trust = document.createElement('div');
       trust.className = 'bundle-trust';
       trust.innerHTML = '<span class="bundle-trust-icon">⏱</span><span>30-day money-back guarantee · Free returns · Even on opened products</span>';
-      btn.parentNode.insertBefore(trust, btn.nextSibling);
+      anchor.parentNode.insertBefore(trust, anchor.nextSibling);
     }
     const trustSelectors = ['.bundle-cta', '.bundle-footnote-cta', '.hero-cta'];
     trustSelectors.forEach(sel => {

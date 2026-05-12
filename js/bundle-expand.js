@@ -139,160 +139,174 @@
       `).join('');
     }
 
-    const amHtml = rich && rich.am ? `
-      <div class="bundle-exp-section">
-        <div class="bundle-exp-h">The AM Routine · ${rich.am.length} Steps</div>
-        <div class="bundle-exp-routine">${renderRoutineSteps(rich.am)}</div>
-      </div>
-    ` : '';
-
-    const pmHtml = rich && rich.pm ? `
-      <div class="bundle-exp-section">
-        <div class="bundle-exp-h">The PM Routine · ${rich.pm.length} Steps</div>
-        <div class="bundle-exp-routine">${renderRoutineSteps(rich.pm)}</div>
-      </div>
-    ` : '';
-
-    const suppHtml = rich && rich.supplements ? `
-      <div class="bundle-exp-section">
-        <div class="bundle-exp-h">Daily Supplements · with breakfast</div>
-        <div class="bundle-exp-routine">${renderRoutineSteps(rich.supplements)}</div>
-      </div>
-    ` : '';
-
-    const mechanismsHtml = rich && rich.whyItWorks ? `
-      <div class="bundle-exp-section">
-        <div class="bundle-exp-h">Why This Stack Works · Mechanism by Mechanism</div>
-        <div class="bundle-exp-mech-lead">${rich.whyItWorks.lead || ''}</div>
-        <div class="bundle-exp-mechanisms">
-          ${(rich.whyItWorks.mechanisms || []).map(m => `
-            <div class="bundle-exp-mech">
-              <div class="bundle-exp-mech-problem">${m.problem}</div>
-              <div class="bundle-exp-mech-arrow">→</div>
-              <div class="bundle-exp-mech-solution">${m.solution}</div>
-            </div>
-          `).join('')}
-        </div>
-      </div>
-    ` : '';
-
-    const audienceHtml = rich && rich.whoItsFor ? `
-      <div class="bundle-exp-section">
-        <div class="bundle-exp-h">Who This Is For</div>
-        <div class="bundle-exp-audience">
-          <div class="bundle-exp-audience-card yes">
-            <div class="bundle-exp-audience-tag">Yes if</div>
-            <div class="bundle-exp-audience-text">${rich.whoItsFor.yes}</div>
-          </div>
-          <div class="bundle-exp-audience-card no">
-            <div class="bundle-exp-audience-tag">Not for you if</div>
-            <div class="bundle-exp-audience-text">${rich.whoItsFor.no}</div>
+    // Helper: build one collapsible section. Returns '' if there's no inner
+    // content, so empty sections never render. Each section starts EXPANDED
+    // (.is-open) so the View Details click behavior is unchanged — the button
+    // lets users collapse sections they want to skip.
+    function section(title, contentHtml, opts) {
+      if (!contentHtml || !contentHtml.trim()) return '';
+      opts = opts || {};
+      const meta = opts.meta ? ` · ${opts.meta}` : '';
+      return `
+        <div class="bundle-exp-section is-collapsible">
+          <button class="bundle-exp-h bundle-exp-toggle" type="button" aria-expanded="false">
+            <span class="exp-h-label">${title}${meta}</span>
+            <span class="exp-h-icon" aria-hidden="true"></span>
+          </button>
+          <div class="bundle-exp-content">
+            ${contentHtml}
           </div>
         </div>
-      </div>
-    ` : '';
+      `;
+    }
 
+    // ─── What's Inside ─────────────────────────────────────────────────────
     const rowsHtml = products.map(p => {
       const tag = (p.tag || '').split('·')[0].trim() || (p.category === 'skincare' ? 'Skincare' : 'Supplement');
       const desc = p.blurb || p.tag || '';
       const italicName = `The House <em>${p.name}</em>`;
       return `
         <div class="bundle-exp-row">
-          <a class="bundle-exp-row-img" href="product.html?slug=${p.slug}" aria-label="${p.name} details">
+          <div class="bundle-exp-row-img">
             <img src="${p.image}" alt="${p.name}" loading="lazy"/>
-          </a>
+          </div>
           <div class="bundle-exp-row-content">
             <div class="bundle-exp-row-tag">${tag}</div>
             <div class="bundle-exp-row-name">${italicName}</div>
             <div class="bundle-exp-row-desc">${desc}</div>
           </div>
           <div class="bundle-exp-row-shop">
-            <div class="bundle-exp-row-price">$${p.price.toFixed(2)}</div>
+            <div class="bundle-exp-row-price">$${p.price.toFixed(0)}</div>
             <a class="bundle-exp-row-link" href="product.html?slug=${p.slug}">View Details →</a>
-            <button class="bundle-exp-row-add" data-add-slug="${p.slug}" type="button">Add to Cart →</button>
+            <button type="button" class="bundle-exp-row-add" data-product-slug="${p.slug}">Add to Cart</button>
           </div>
         </div>
       `;
     }).join('');
+    const insideSection = section(
+      "What's Inside",
+      `<div class="bundle-exp-rows">${rowsHtml}</div>`,
+      { meta: `${products.length} Products` }
+    );
 
-    const whyHtml = details?.whyThis ? `
-      <div class="bundle-exp-section">
-        <div class="bundle-exp-h">Why This Stack Works</div>
-        <div class="bundle-why-block">${details.whyThis}</div>
+    // ─── Why This Stack Works (combined: text block + mechanisms) ──────────
+    const whyTextHtml = details?.whyThis ? `<div class="bundle-why-block">${details.whyThis}</div>` : '';
+    const mechanismsHtml = rich && rich.whyItWorks ? `
+      <div class="bundle-exp-mech-lead">${rich.whyItWorks.lead || ''}</div>
+      <div class="bundle-exp-mechanisms">
+        ${(rich.whyItWorks.mechanisms || []).map(m => `
+          <div class="bundle-exp-mech">
+            <div class="bundle-exp-mech-problem">${m.problem}</div>
+            <div class="bundle-exp-mech-arrow">→</div>
+            <div class="bundle-exp-mech-solution">${m.solution}</div>
+          </div>
+        `).join('')}
       </div>
     ` : '';
+    const whySection = section('Why This Stack Works', whyTextHtml + mechanismsHtml);
 
-    const timelineHtml = (details?.timeline && details.timeline.length) ? `
-      <div class="bundle-exp-section">
-        <div class="bundle-exp-h">What to Expect</div>
-        <div class="bundle-exp-timeline">
-          ${details.timeline.map(t => `
-            <div class="bundle-exp-timeline-item">
-              <div class="bundle-exp-timeline-week">${t.week}</div>
-              <div class="bundle-exp-timeline-text">${t.text}</div>
-            </div>
-          `).join('')}
+    // ─── Who This Is For ───────────────────────────────────────────────────
+    const audienceContent = rich && rich.whoItsFor ? `
+      <div class="bundle-exp-audience">
+        <div class="bundle-exp-audience-card yes">
+          <div class="bundle-exp-audience-tag">Yes if</div>
+          <div class="bundle-exp-audience-text">${rich.whoItsFor.yes}</div>
+        </div>
+        <div class="bundle-exp-audience-card no">
+          <div class="bundle-exp-audience-tag">Not for you if</div>
+          <div class="bundle-exp-audience-text">${rich.whoItsFor.no}</div>
         </div>
       </div>
     ` : '';
+    const audienceSection = section('Who This Is For', audienceContent);
 
+    // ─── Daily Supplements ─────────────────────────────────────────────────
+    const suppSection = section(
+      'Daily Supplements',
+      rich && rich.supplements ? `<div class="bundle-exp-routine">${renderRoutineSteps(rich.supplements)}</div>` : '',
+      { meta: 'with breakfast' }
+    );
+
+    // ─── Skincare (combines AM + PM under a single header) ─────────────────
+    const amBlock = rich && rich.am ? `
+      <div class="bundle-exp-subroutine">
+        <div class="bundle-exp-subroutine-h">The AM Routine · ${rich.am.length} Steps</div>
+        <div class="bundle-exp-routine">${renderRoutineSteps(rich.am)}</div>
+      </div>
+    ` : '';
+    const pmBlock = rich && rich.pm ? `
+      <div class="bundle-exp-subroutine">
+        <div class="bundle-exp-subroutine-h">The PM Routine · ${rich.pm.length} Steps</div>
+        <div class="bundle-exp-routine">${renderRoutineSteps(rich.pm)}</div>
+      </div>
+    ` : '';
+    const skincareSection = section('Skincare', amBlock + pmBlock);
+
+    // ─── What to Expect (timeline) ─────────────────────────────────────────
+    const timelineContent = (details?.timeline && details.timeline.length) ? `
+      <div class="bundle-exp-timeline">
+        ${details.timeline.map(t => `
+          <div class="bundle-exp-timeline-item">
+            <div class="bundle-exp-timeline-week">${t.week}</div>
+            <div class="bundle-exp-timeline-text">${t.text}</div>
+          </div>
+        `).join('')}
+      </div>
+    ` : '';
+    const timelineSection = section('What to Expect', timelineContent);
+
+    // ─── Research (peer-reviewed studies) ──────────────────────────────────
     const studies = aggregateStudies(products, 6);
-    const studiesHtml = studies.length ? `
-      <div class="bundle-exp-section">
-        <div class="bundle-exp-h">Peer-Reviewed Research · ${studies.length} ${studies.length === 1 ? 'Study' : 'Studies'}</div>
-        <div class="bundle-exp-studies">
-          ${studies.map(s => `
-            <div class="bundle-exp-study">
-              <div class="bundle-exp-study-meta">
-                <span class="bundle-exp-study-type">${s.type || 'Study'}</span>
-                <a class="bundle-exp-study-ing" href="ingredient.html?slug=${s.ingredientSlug}">${s.ingredient}</a>
-              </div>
-              <div class="bundle-exp-study-title">${s.title}</div>
-              <div class="bundle-exp-study-cite">${s.authors || ''}${s.authors ? ' · ' : ''}<em>${s.journal || ''}</em>${s.journal && s.year ? ' · ' : ''}${s.year || ''}</div>
-              <div class="bundle-exp-study-finding">${s.finding || ''}</div>
+    const studiesContent = studies.length ? `
+      <div class="bundle-exp-studies">
+        ${studies.map(s => `
+          <div class="bundle-exp-study">
+            <div class="bundle-exp-study-meta">
+              <span class="bundle-exp-study-type">${s.type || 'Study'}</span>
+              <a class="bundle-exp-study-ing" href="ingredient.html?slug=${s.ingredientSlug}">${s.ingredient}</a>
             </div>
-          `).join('')}
-        </div>
+            <div class="bundle-exp-study-title">${s.title}</div>
+            <div class="bundle-exp-study-cite">${s.authors || ''}${s.authors ? ' · ' : ''}<em>${s.journal || ''}</em>${s.journal && s.year ? ' · ' : ''}${s.year || ''}</div>
+            <div class="bundle-exp-study-finding">${s.finding || ''}</div>
+          </div>
+        `).join('')}
       </div>
     ` : '';
+    const studiesSection = section(
+      'Research',
+      studiesContent,
+      studies.length ? { meta: `${studies.length} ${studies.length === 1 ? 'Study' : 'Studies'}` } : {}
+    );
 
-    const faqHtml = (details?.faq && details.faq.length) ? `
-      <div class="bundle-exp-section">
-        <div class="bundle-exp-h">Common Questions</div>
-        <div class="bundle-exp-faq">
-          ${details.faq.map(f => `
-            <div class="bundle-exp-faq-item">
-              <div class="bundle-exp-faq-q">
-                <span>${f.q}</span>
-                <span class="bundle-exp-faq-toggle">+</span>
-              </div>
-              <div class="bundle-exp-faq-a">${f.a}</div>
+    // ─── Common Questions (FAQ — each item also collapses individually) ────
+    const faqContent = (details?.faq && details.faq.length) ? `
+      <div class="bundle-exp-faq">
+        ${details.faq.map(f => `
+          <div class="bundle-exp-faq-item">
+            <div class="bundle-exp-faq-q">
+              <span>${f.q}</span>
+              <span class="bundle-exp-faq-toggle">+</span>
             </div>
-          `).join('')}
-        </div>
+            <div class="bundle-exp-faq-a">${f.a}</div>
+          </div>
+        `).join('')}
       </div>
     ` : '';
+    const faqSection = section('Common Questions', faqContent);
 
     return `
       <div class="bundle-expansion">
-        <div class="bundle-exp-section">
-          <div class="bundle-exp-h">What's Inside · ${products.length} Products</div>
-          <div class="bundle-exp-rows">${rowsHtml}</div>
-        </div>
-
-        ${whyHtml}
-        ${mechanismsHtml}
-        ${audienceHtml}
-        ${amHtml}
-        ${pmHtml}
-        ${suppHtml}
-        ${timelineHtml}
-        ${studiesHtml}
-        ${faqHtml}
+        ${insideSection}
+        ${whySection}
+        ${audienceSection}
+        ${suppSection}
+        ${skincareSection}
+        ${timelineSection}
+        ${studiesSection}
+        ${faqSection}
       </div>
     `;
   }
-
   function wireToggle(button, expansion) {
     button.addEventListener('click', () => {
       const isOpen = expansion.classList.toggle('is-open');
@@ -307,6 +321,21 @@
   function wireFaqItems(expansion) {
     expansion.querySelectorAll('.bundle-exp-faq-item').forEach(item => {
       item.addEventListener('click', () => item.classList.toggle('is-open'));
+    });
+  }
+
+  // Each section header inside the expansion is a button that toggles whether
+  // that section's content is visible. Default state is open (set in render);
+  // clicking the header collapses the section, clicking again expands.
+  function wireCollapsibleSections(expansion) {
+    expansion.querySelectorAll('.bundle-exp-section.is-collapsible > .bundle-exp-toggle').forEach(toggle => {
+      toggle.addEventListener('click', e => {
+        e.stopPropagation();
+        const section = toggle.parentElement;
+        if (!section) return;
+        const isOpen = section.classList.toggle('is-open');
+        toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
     });
   }
 
@@ -382,6 +411,7 @@
 
     wireToggle(toggle, expansion);
     wireFaqItems(expansion);
+    wireCollapsibleSections(expansion);
     wireAddRowButtons(expansion);
   }
 
