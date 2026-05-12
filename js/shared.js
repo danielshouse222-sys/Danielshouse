@@ -1637,12 +1637,12 @@
         }
       },
       moms: {
-        intro: "The bundle for moms who want visible anti-aging results <em>and</em> take the long view on aging. Five skincare layers built around the highest-evidence topical actives — retinol overnight, antioxidants by day, peptides around the eyes — paired with five longevity-grade supplements that work the cellular layer: <em>NAD+ for mitochondrial energy, collagen building blocks, antioxidant support, and the sleep aid that turns nights into real repair time.</em>",
+        intro: "The bundle for parents who want visible anti-aging results <em>and</em> take the long view on aging. Named for the season of life it supports — works just as well for dads. Five skincare layers built around the highest-evidence topical actives — retinol overnight, antioxidants by day, peptides around the eyes — paired with five longevity-grade supplements that work the cellular layer: <em>NAD+ for mitochondrial energy, collagen building blocks, antioxidant support, and the sleep aid that turns nights into real repair time.</em>",
         am: [
-          { name: "Wash",    note: "Gentle cleanser that doesn't strip mature skin's natural oils — the daily reset before the actives." },
+          { name: "Wash",    note: "Gentle cleanser that doesn't strip the skin's natural oils — the daily reset before the actives." },
           { name: "Defense", note: "The daytime antioxidant heavy hitter. Stable vitamin C (tetrahexyldecyl ascorbate), hydrolyzed soy protein, squalane, and caffeine — protects existing collagen from breaking down throughout the day." },
           { name: "Eye",     note: "Peptide cream firms and brightens the orbital area before moisturizer locks it in. Cucumber and aloe depuff." },
-          { name: "Soft",    note: "Multi-weight hyaluronic acid + aloe seals everything with deep hydration — a non-negotiable step for mature skin." }
+          { name: "Soft",    note: "Multi-weight hyaluronic acid + aloe seals everything with deep hydration — a non-negotiable step for aging skin." }
         ],
         pm: [
           { name: "Wash",    note: "Gentle cleanser removes the day without compromising the barrier." },
