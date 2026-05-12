@@ -388,33 +388,51 @@
     const expansion = wrapper.firstElementChild;
 
     // Insertion strategy:
-    //  - The toggle ("View Details ▾") stays right after the CTA inside the card body
-    //  - The expansion goes to the END of the appropriate inner body container so it
-    //    visually merges as part of the card (not a separate panel underneath)
-    //  - Containers per card type:
-    //      .bundle-card      → .bundle-body
-    //      .concern-card     → the card itself (since concern-card has its own padding)
-    //      .hero-bundle      → .hero-bundle-panel (the dark content side of the Ultimate hero)
+    //  - For .bundle-card and .hero-bundle: keep historical placement.
+    //  - For .concern-card (the routine + bundle cards on routines.html and
+    //    bundles.html): place the toggle + expansion inside the CONTENT SIDE
+    //    column, between the routine-directions tab and the subscribe toggle.
+    //    This puts View Details to the right of the product image grid,
+    //    under the directions tab, and above the purchase box.
     const bundleCard = cta.closest('.bundle-card');
     const concernCard = cta.closest('.concern-card');
     const heroBundle = cta.closest('.hero-bundle');
 
     let bodyContainer;
+    let toggleInsertAnchor = null;  // node BEFORE which toggle+expansion get inserted
+    let toggleInsertParent = cta.parentNode;
+
     if (bundleCard) {
       bodyContainer = bundleCard.querySelector('.bundle-body') || bundleCard;
     } else if (concernCard) {
-      bodyContainer = concernCard;
+      // Content side column — same column as name, blurb, pricing
+      const contentSide = concernCard.querySelector('.concern-card-content-side') || concernCard;
+      bodyContainer = contentSide;
+      // Anchor: subscribe toggle (place toggle + expansion just before it).
+      // Fall back to .concern-actions if no subscribe toggle present.
+      toggleInsertAnchor = contentSide.querySelector('.bundle-subscribe-toggle')
+                       || contentSide.querySelector('.concern-actions');
+      toggleInsertParent = contentSide;
     } else if (heroBundle) {
       bodyContainer = heroBundle.querySelector('.hero-bundle-panel') || heroBundle;
     } else {
       bodyContainer = cta.parentNode;
     }
 
-    // Toggle: right after the CTA (stays inline next to it)
-    cta.parentNode.insertBefore(toggle, cta.nextSibling);
+    // Toggle placement
+    if (toggleInsertAnchor && toggleInsertParent) {
+      toggleInsertParent.insertBefore(toggle, toggleInsertAnchor);
+    } else {
+      cta.parentNode.insertBefore(toggle, cta.nextSibling);
+    }
 
-    // Expansion: appended at the end of the body container so it merges as one window
-    bodyContainer.appendChild(expansion);
+    // Expansion placement
+    if (toggleInsertAnchor && toggleInsertParent) {
+      // Insert expansion AFTER the toggle, BEFORE the subscribe/actions anchor
+      toggleInsertParent.insertBefore(expansion, toggleInsertAnchor);
+    } else {
+      bodyContainer.appendChild(expansion);
+    }
 
     // Mark dark context for Ultimate hero panel
     const heroPanel = cta.closest('.hero-bundle-panel');

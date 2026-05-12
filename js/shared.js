@@ -1125,6 +1125,69 @@
       return item.price;
     }
 
+    // ─── Smart Refill checkout explainer ────────────────────────────────
+    // Shown only when the cart contains at least one Smart Refill bundle item.
+    // Explains what ships today vs. what ships in subsequent months and shows
+    // the 12-month shipment schedule for the customer's actual cart contents.
+    function renderSmartRefillExplainer(items) {
+      // Group cart items by bundle name + collect bundles that have cadence='smart'
+      const smartBundles = {};
+      items.forEach(it => {
+        if (it.subscribe && it.cadence === 'smart' && it.bundleName) {
+          if (!smartBundles[it.bundleName]) smartBundles[it.bundleName] = { slugs: [], discount: it.bundleDiscount };
+          smartBundles[it.bundleName].slugs.push(it.slug);
+        }
+      });
+      const bundleNames = Object.keys(smartBundles);
+      if (!bundleNames.length) return '';
+
+      // Build a schedule preview for the first Smart Refill bundle in the cart.
+      // Multiple Smart Refill bundles are summarized with the same explainer.
+      const firstName = bundleNames[0];
+      const data = smartBundles[firstName];
+      const synthBundle = { slugs: data.slugs, discount: data.discount };
+      let scheduleHTML = '';
+      if (typeof window.getSmartRefillSchedule === 'function') {
+        const schedule = window.getSmartRefillSchedule(synthBundle, 6);  // preview first 6 months
+        const monthCells = schedule.map((m, i) => {
+          const count = m.products.length;
+          const isToday = i === 0;
+          if (count === 0) {
+            return `<div class="cf-sr-month empty"><div class="cf-sr-month-label">M${i + 1}</div><div class="cf-sr-month-count">—</div><div class="cf-sr-month-note">Skipped</div></div>`;
+          }
+          const price = m.products.reduce((s, slug) => {
+            const p = (window.getProductBySlug && window.getProductBySlug(slug));
+            return s + (p ? p.price : 0);
+          }, 0) * (1 - data.discount) * (1 - 0.10);
+          return `<div class="cf-sr-month${isToday ? ' today' : ''}">
+            <div class="cf-sr-month-label">${isToday ? 'Today' : 'M' + (i + 1)}</div>
+            <div class="cf-sr-month-count">${count}<span class="cf-sr-month-unit">item${count === 1 ? '' : 's'}</span></div>
+            <div class="cf-sr-month-note">~$${price.toFixed(0)}</div>
+          </div>`;
+        }).join('');
+        scheduleHTML = `<div class="cf-sr-schedule">${monthCells}</div>`;
+      }
+
+      return `
+        <div class="cf-smart-explainer">
+          <div class="cf-sr-head">
+            <span class="cf-sr-icon">↻</span>
+            <div>
+              <div class="cf-sr-title">How Smart Refill works at checkout</div>
+              <div class="cf-sr-sub">You're on Smart Refill for the ${firstName}.</div>
+            </div>
+          </div>
+          <ol class="cf-sr-steps">
+            <li><strong>Today</strong> — your first shipment is the full bundle at the discounted price you see above. Same products, same pricing, no surprises.</li>
+            <li><strong>After today</strong> — each month we only ship the products that actually need replenishing based on each bottle's real runtime. A 1-month Multi ships monthly. A 2-month Wash ships every 60 days. A 3-month NAD+ ships every 90.</li>
+            <li><strong>$30 minimum per shipment</strong> — if a month's refills come in under $30, we automatically roll them into the next month's box. Fewer small shipments, lower carbon footprint, same total products over the year.</li>
+            <li><strong>Cancel or pause anytime</strong> — manage it all from your account. No retention calls.</li>
+          </ol>
+          ${scheduleHTML ? `<div class="cf-sr-schedule-label">Your next 6 months of shipments</div>${scheduleHTML}` : ''}
+        </div>
+      `;
+    }
+
     function selectedShippingRate(subtotal) {
       const sel = content.querySelector('.cf-ship-option.selected');
       if (!sel) return subtotal >= FREE_SHIP ? 0 : 7.95;
@@ -1161,9 +1224,18 @@
               const labels = [];
               if (it.bundleName && it.bundleDiscount) {
                 labels.push(`<div class="cf-item-meta discount">${it.bundleName}</div>`);
-                if (it.subscribe) labels.push(`<div class="cf-item-meta discount">↻ Bundle Subscription</div>`);
+                if (it.subscribe) {
+                  // Show cadence-specific labels so the user understands their shipment cycle
+                  const cadenceLabel = {
+                    'smart':     '↻ Smart Refill · only the products you need each month',
+                    'bimonthly': '↻ Subscription · ships every 2 months',
+                    'quarterly': '↻ Subscription · ships every 3 months',
+                    'monthly':   '↻ Bundle Subscription · ships every 30 days'
+                  }[it.cadence || 'monthly'] || '↻ Bundle Subscription · ships every 30 days';
+                  labels.push(`<div class="cf-item-meta discount cf-cadence-${it.cadence || 'monthly'}">${cadenceLabel}</div>`);
+                }
               }
-              else if (it.subscribe) labels.push(`<div class="cf-item-meta discount">↻ Subscribe &amp; Save</div>`);
+              else if (it.subscribe) labels.push(`<div class="cf-item-meta discount">↻ Subscribe &amp; Save · ships every 30 days</div>`);
               const bundleAttr = it.bundleName ? it.bundleName.replace(/"/g,'&quot;') : '';
               return `
                 <div class="cf-item" data-slug="${it.slug}" data-subscribe="${it.subscribe}" data-bundle="${bundleAttr}">
@@ -1187,16 +1259,24 @@
             }).join('')}
           </div>
 
+          ${renderSmartRefillExplainer(items)}
+
           <!-- Discount code -->
           <div class="cf-discount-row">
             <input type="text" class="cf-discount-input" placeholder="Discount code"/>
             <button class="cf-discount-btn" type="button">Apply</button>
           </div>
 
-          <!-- Totals -->
+          <!-- Totals — bundle/subscribe discounts apply AUTOMATICALLY.
+               Subtotal is shown at full price; the savings line shows the auto-applied
+               discount; after-discount line shows what you actually pay before
+               shipping & tax. This makes the discount transparent at every step. -->
           <div class="cf-totals">
-            <div class="cf-totals-row"><span>Subtotal</span><span class="cf-totals-value cf-subtotal">$${subtotal.toFixed(2)}</span></div>
-            ${savings > 0 ? `<div class="cf-totals-row savings"><span>Bundle / subscribe savings</span><span class="cf-totals-value">−$${savings.toFixed(2)}</span></div>` : ''}
+            <div class="cf-totals-row"><span>Subtotal <span class="cf-totals-sub-meta">(${items.reduce((s,i)=>s+i.qty,0)} item${items.reduce((s,i)=>s+i.qty,0)===1?'':'s'})</span></span><span class="cf-totals-value">$${fullPriceTotal.toFixed(2)}</span></div>
+            ${savings > 0 ? `
+              <div class="cf-totals-row savings"><span>Bundle &amp; subscribe discount <span class="cf-totals-auto">Applied automatically</span></span><span class="cf-totals-value">−$${savings.toFixed(2)}</span></div>
+              <div class="cf-totals-row after-discount"><span>After discount</span><span class="cf-totals-value cf-subtotal">$${subtotal.toFixed(2)}</span></div>
+            ` : ''}
             <div class="cf-totals-row"><span>Shipping</span><span class="cf-totals-value cf-shipping-line">${subtotal >= FREE_SHIP ? '<em style="font-family:Cormorant Garamond,serif;font-style:italic;color:var(--gold)">Free</em>' : '$7.95'}</span></div>
             <div class="cf-totals-row"><span>Estimated tax</span><span class="cf-totals-value cf-tax-line">$${(subtotal * TAX_RATE).toFixed(2)}</span></div>
             <div class="cf-totals-row total"><span>Total</span><span class="cf-totals-value cf-grand-total">$${(subtotal + (subtotal >= FREE_SHIP ? 0 : 7.95) + subtotal * TAX_RATE).toFixed(2)}</span></div>
