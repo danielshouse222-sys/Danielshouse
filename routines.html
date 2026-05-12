@@ -610,7 +610,7 @@
   .tier-chip.active .tier-chip-num { color: var(--cream); }
   .tier-chip.active .tier-chip-save { color: var(--gold); }
 
-  .builder-tracker { background: var(--cream); border: 1px solid var(--rule); border-left: 3px solid var(--gold); padding: 22px 28px; margin-bottom: 36px; display: grid; grid-template-columns: 1fr 1fr auto; gap: 32px; align-items: center; position: sticky; top: 70px; z-index: 30; box-shadow: 0 2px 12px rgba(31, 27, 23, 0.04); }
+  .builder-tracker { background: var(--cream); border: 1px solid var(--rule); border-left: 3px solid var(--gold); padding: 22px 28px; margin-bottom: 36px; display: grid; grid-template-columns: 1fr 1fr auto; gap: 32px; align-items: center; position: sticky; top: 70px; z-index: 30; box-shadow: 0 2px 12px rgba(31, 27, 23, 0.04); box-sizing: border-box; max-width: 100%; }
   .tracker-progress { min-width: 0; }
   .tracker-count { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 500; color: var(--ink); margin-bottom: 10px; line-height: 1; }
   .tracker-count em { font-style: italic; color: var(--sage); }
@@ -699,7 +699,25 @@
   .tracker-line span:last-child { font-family: 'Cormorant Garamond', serif; font-size: 15px; font-weight: 500; color: var(--ink); }
   .tracker-final { padding-top: 8px; border-top: 1px solid var(--rule); margin-top: 4px; }
   .tracker-final span:last-child { color: var(--sage); font-size: 22px; font-style: italic; }
-  .builder-cta { display: inline-block; padding: 18px 28px; background: var(--ink); color: var(--cream); text-decoration: none; border: none; cursor: pointer; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 500; transition: background 0.3s, opacity 0.3s; font-family: 'Poppins', sans-serif; white-space: nowrap; }
+  .builder-cta {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 16px 20px;
+    background: var(--ink);
+    color: var(--cream);
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: background 0.3s, opacity 0.3s;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    line-height: 1.3;
+  }
   .builder-cta:hover:not(:disabled) { background: var(--sage); }
   .builder-cta:disabled { background: var(--ink-soft); opacity: 0.4; cursor: not-allowed; }
 
@@ -943,6 +961,58 @@
     gap: 14px;
   }
   .byo-popup-purchase .bundle-subscribe-toggle { max-width: none; margin: 0; }
+
+  /* Smart Refill teaser — same editorial treatment as bundle cards */
+  .byo-smart-teaser {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-align: center;
+    margin: 0 0 2px;
+    color: var(--ink-soft);
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 13.5px;
+    line-height: 1.4;
+  }
+  .byo-smart-teaser[hidden] { display: none; }
+  .byo-smart-rule {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--gold) 50%, transparent 100%);
+    opacity: 0.55;
+  }
+  .byo-smart-text {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+  }
+  .byo-smart-pill {
+    background: var(--gold);
+    color: var(--cream);
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-size: 8.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 3px 7px 2px;
+    border-radius: 2px;
+    line-height: 1;
+  }
+  .byo-smart-text strong {
+    font-style: normal;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    color: var(--gold);
+    font-size: 12.5px;
+  }
+  @media (max-width: 480px) {
+    .byo-smart-teaser { font-size: 12.5px; gap: 8px; flex-wrap: wrap; }
+    .byo-smart-text { white-space: normal; }
+  }
   .byo-popup-cta {
     display: block;
     width: 100%;
@@ -977,6 +1047,16 @@
     /* Builder header spacing */
     .builder-header { margin-bottom: 36px; }
     .builder-header h2 { margin-bottom: 14px; }
+    /* Tracker card: tighter padding + CTA letter-spacing so the button stays inside */
+    .builder-tracker { padding: 18px 16px; }
+    .builder-cta { padding: 14px 12px; letter-spacing: 0.14em; font-size: 10.5px; }
+  }
+  /* Even narrower phones (≤380px) — shrink further */
+  @media (max-width: 380px) {
+    .builder-cta { letter-spacing: 0.10em; font-size: 10px; padding: 14px 8px; }
+    .tier-chip-num { font-size: 8px; letter-spacing: 0.16em; }
+    .tier-chip-save { font-size: 13.5px; }
+    .tab { font-size: 9px; letter-spacing: 0.10em; }
   }
   @media (max-width: 640px) {
     .builder-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1699,7 +1779,7 @@
   <div class="sec-header">
     <div class="sec-eyebrow">The Routines · Daily Rituals</div>
     <div class="sec-title">The <em>Routines</em> Collection</div>
-    <div class="sec-blurb">Nine routines — each built for a specific use, person, or moment in the day.</div>
+    <div class="sec-blurb">Eleven routines — each built for a specific use, person, or moment in the day.</div>
   </div>
 
   <!-- SEARCH + FILTER FOR THE CURATED GRID -->
@@ -1716,7 +1796,7 @@
       <button class="concern-search-clear" id="bundle-search-clear" type="button" aria-label="Clear search">✕</button>
     </div>
     <div class="concern-search-meta">
-      <span class="concern-search-count" id="bundle-search-count">9 routines</span>
+      <span class="concern-search-count" id="bundle-search-count">11 routines</span>
       <span class="concern-search-hints">
         <span class="hint-label">Try:</span>
         <button class="concern-search-hint" data-hint="ultimate" type="button">ultimate</button>
@@ -1902,7 +1982,14 @@
       </div>
 
       <div class="byo-popup-purchase">
-        <div class="bundle-subscribe-toggle" data-bundle-id="byo"><button type="button" data-mode="once" class="active"><div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">One-Time</span></div><span class="toggle-meta">Single delivery</span></button><button type="button" data-mode="subscribe"><div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">Subscribe</span></div><span class="toggle-meta">Save 10% · cancel anytime</span></button></div>
+        <!-- Smart Refill annual savings teaser — populated by JS when subscribe & smart cadence make sense -->
+        <div class="byo-smart-teaser" id="byoSmartTeaser" hidden>
+          <span class="byo-smart-rule"></span>
+          <span class="byo-smart-text"><span class="byo-smart-pill">SMART REFILL</span>&nbsp;saves up to&nbsp;<strong id="byoSmartAmount">$0</strong>&nbsp;/year</span>
+          <span class="byo-smart-rule"></span>
+        </div>
+        <!-- Subscribe toggle + cadence selector — populated by JS via dhBuildSubscribeToggle({id:'byo', ...}) -->
+        <div id="byoSubscribeWrap"></div>
         <button class="byo-popup-cta" id="byoAddBundle">Add Custom Routine to Cart →</button>
       </div>
     </div>
@@ -2082,9 +2169,12 @@
     const next = nextTier(count);          // next tier to unlock (or null at max)
     const eligible = !!tier;
 
-    // Check BYO subscribe toggle
+    // Check BYO subscribe toggle + cadence
     const byoToggle = document.querySelector('.bundle-subscribe-toggle[data-bundle-id="byo"]');
     const subscribed = byoToggle?.querySelector('button.active')?.dataset.mode === 'subscribe';
+    const byoCadenceEl = document.querySelector('.bundle-cadence[data-bundle-id="byo"]');
+    const activeCadence = byoCadenceEl?.querySelector('.cadence-btn.active')?.dataset.cadence || 'monthly';
+    const isSmart = subscribed && activeCadence === 'smart';
 
     let savings = eligible ? subtotal * tier.pct : 0;
     let total = subtotal - savings;
@@ -2132,7 +2222,13 @@
     const savingsLabelEl = document.getElementById('savingsLabel');
     if (savingsLabelEl) {
       if (eligible) {
-        savingsLabelEl.textContent = subscribed ? `Save ${tier.label} + 10% sub` : `Save ${tier.label}`;
+        if (isSmart) {
+          savingsLabelEl.textContent = `Save ${tier.label} + 10% smart`;
+        } else if (subscribed) {
+          savingsLabelEl.textContent = `Save ${tier.label} + 10% sub`;
+        } else {
+          savingsLabelEl.textContent = `Save ${tier.label}`;
+        }
       } else {
         savingsLabelEl.textContent = 'Save —';
       }
@@ -2151,7 +2247,17 @@
     if (eligible) {
       updateSummary(selected, subtotal, savings, total, tier);
     }
+
+    // ─ Refresh Smart Refill teaser based on new selection ─
+    if (typeof window.dhRefreshByoSmartTeaser === 'function') {
+      window.dhRefreshByoSmartTeaser();
+    }
   }
+
+  // Expose update() globally so the BYO toggle / cadence handlers can call it
+  window.dhUpdateBYOTracker = update;
+  // Alias so the master toggle handler's BYO branch calls our tracker correctly
+  window.recomputeBYOSavings = update;
 
   function updateSummary(selected, subtotal, savings, total, tier) {
     document.getElementById('summaryList').innerHTML = selected.map(p => `
@@ -2180,6 +2286,10 @@
     popupOverlay.classList.add('open');
     popupOverlay.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
+    // Refresh the Smart Refill teaser when the popup opens
+    if (typeof window.dhRefreshByoSmartTeaser === 'function') {
+      window.dhRefreshByoSmartTeaser();
+    }
   }
   function closeBYOPopup() {
     if (!popupOverlay) return;
@@ -2275,7 +2385,7 @@
     'longevity': "The five actives that pay off over years. Cellular energy, cognitive support, stress resilience, and joint mobility — daily, with the science behind each one.",
     'glow': "The full glow protocol. Topical brightening + antioxidant defense + finishing oil + the weekly detox mask — paired with the beauty gummy and collagen peptides that build it from within.",
     'weekly': "The reset ritual. The clarifying mask and gentle polish — used once or twice a week to clear buildup, brighten dull patches, and prime skin for everything else to work better.",
-    'moms': "The needs of parents in their 40s and 50s are specific: skincare gentle enough for skin that's grown more reactive, paired with the actives that actually move the needle on visible aging — retinol overnight, peptides around the eyes, antioxidants by day. Steady energy as the body's rhythms change. Adaptogenic support for a nervous system that's carried decades of work and family life. This routine combines the gentle anti-aging skincare staples (Wash, Defense, Bounce, Eye, Soft) with the inside-out longevity stack (Multi, Collagen, NAD+, Vitality) plus Tranquil for evening recovery. Together they form a sustainable daily rhythm — not aspirational, not maximum, just the inside-out routine that compounds in your favor.",
+    'moms': "The needs that come with age are specific: skincare gentle enough for skin that's grown more reactive, paired with the actives that actually move the needle on visible aging — retinol overnight, peptides around the eyes, antioxidants by day. Steady energy as the body's rhythms change. Adaptogenic support for a nervous system that's carried decades of work and family life. This routine combines the gentle anti-aging skincare staples (Wash, Defense, Bounce, Eye, Soft) with the inside-out longevity stack (Multi, Collagen, NAD+, Vitality) plus Tranquil for evening recovery. Together they form a sustainable daily rhythm — not aspirational, not maximum, just the inside-out routine that compounds in your favor.",
     'arianas': "Built for my 25-year-old sister. Focused on inner-and-outer beauty, this stack pairs six skincare layers — cleanse, brighten, defend, renew, and protect the eyes — with three inner-beauty supplements that compound the glow from within: collagen, antioxidants, and the daily multi.",
     'ultimate': "Everything. Twelve skincare products — the full AM + PM rituals — plus ten daily supplements that handle the inside half. The complete protocol, twenty-two products, twenty-five percent off as a bundle. The most committed version of this brand."
   };
@@ -2358,7 +2468,7 @@
 
           ${smartTeaserHTML}
 
-          ${window.dhBuildSubscribeToggle(bundle)}
+          ${typeof window.dhBuildSubscribeToggle === 'function' ? window.dhBuildSubscribeToggle(bundle) : '<!-- subscribe toggle pending -->'}
 
           <div class="concern-actions">
             <button class="concern-btn secondary" data-action="preview">Preview Bundle →</button>
@@ -2370,8 +2480,13 @@
   };
 
   // Populate the empty .bundle-grid container. Order matches the previous hardcoded order.
-  const grid = document.querySelector('.bundle-grid');
-  if (grid) {
+  // IMPORTANT: must run AFTER shared.js has loaded so window.dhBuildSubscribeToggle
+  // is defined (the card template calls into it). DOMContentLoaded fires after all
+  // synchronous <script src> tags including js/shared.js have executed.
+  document.addEventListener('DOMContentLoaded', () => {
+    const grid = document.querySelector('.bundle-grid');
+    if (!grid) return;
+
     const defaultOrder = ['daniels-daily', 'am', 'pm', 'workout', 'foundation', 'longevity', 'glow', 'weekly', 'moms', 'arianas', 'ultimate'];
     grid.innerHTML = defaultOrder.map(id => window.renderCuratedBundleCard(id)).join('');
 
@@ -2397,7 +2512,7 @@
       const bar = window.dhBuildSortBar(
         'bundles',
         'featured',
-        `<strong>9</strong> routines`,
+        `<strong>11</strong> routines`,
         (key) => reorderGrid(key)
       );
       if (bar) {
@@ -2406,7 +2521,7 @@
       }
     }
     mountSortBar();
-  }
+  });
 
   // Wire Preview Bundle buttons — open the shared lightbox carousel for that bundle's products.
   // Defer until after shared.js has loaded (dhLightbox lives there).
@@ -2636,17 +2751,26 @@
       // 1) Hero / legacy markup
       const heroCard = toggle.closest('.bundle-card, .hero-section');
       if (heroCard) {
-        const saveEl = heroCard.querySelector('.bundle-save');
-        const labelEl = heroCard.querySelector('.bundle-save-label');
+        // Two naming conventions: legacy `.bundle-save` / `.bundle-save-label`
+        // and the Ultimate hero `.hero-savings-amount` / `.hero-savings-label`.
+        // Update whichever pair exists.
+        const saveEl  = heroCard.querySelector('.bundle-save')        || heroCard.querySelector('.hero-savings-amount');
+        const labelEl = heroCard.querySelector('.bundle-save-label')  || heroCard.querySelector('.hero-savings-label');
         if (cadence === 'smart' && subscribed) {
-          if (saveEl) saveEl.textContent = `Avg $${Math.round(displayPrice)}/mo`;
-          if (labelEl) labelEl.textContent = `Smart Refill · first shipment $${Math.round(baseDiscounted * 0.90)}`;
+          // Smart Refill: show avg/month + annual savings vs flat monthly subscribe
+          const annualSmart = displayPrice * 12;
+          const annualFlat  = (baseDiscounted * 0.90) * 12;
+          const annualSave  = Math.max(0, annualFlat - annualSmart);
+          if (saveEl)  saveEl.textContent  = `~$${Math.round(displayPrice)}/mo avg`;
+          if (labelEl) labelEl.textContent = `Smart Refill · saves $${Math.round(annualSave)}/yr vs monthly`;
+        } else if (subscribed) {
+          // Flat-cadence subscription: show per-shipment price + cadence
+          if (saveEl)  saveEl.textContent  = `Save $${Math.round(fullPrice - displayPrice)}`;
+          if (labelEl) labelEl.textContent = `$${Math.round(fullPrice)} → $${Math.round(displayPrice)} · ${cadenceLabel}`;
         } else {
-          const shown = subscribed ? displayPrice : displayPrice;
-          if (saveEl) saveEl.textContent = `Save $${Math.round(fullPrice - shown)}`;
-          if (labelEl) labelEl.textContent = subscribed
-            ? `$${Math.round(fullPrice)} → $${Math.round(shown)} · ${cadenceLabel}`
-            : `$${Math.round(fullPrice)} → $${Math.round(shown)}`;
+          // One-time
+          if (saveEl)  saveEl.textContent  = `Save $${Math.round(fullPrice - displayPrice)}`;
+          if (labelEl) labelEl.textContent = `$${Math.round(fullPrice)} → $${Math.round(displayPrice)} · ${Math.round(bundle.discount * 100)}% off`;
         }
       }
 
@@ -2676,6 +2800,107 @@
       });
     });
 
+    // ─────────────────────────────────────────────────────────────
+    // BYO Smart Refill integration
+    // ─────────────────────────────────────────────────────────────
+    // 1. Populate the BYO subscribe wrapper with the full toggle + cadence
+    //    selector using the same builder used by every other bundle card.
+    //    Synthetic bundle: id='byo', slugs=[] (slugs are determined by current
+    //    selection at click-time, but the toggle markup doesn't depend on them).
+    const byoWrap = document.getElementById('byoSubscribeWrap');
+    if (byoWrap && typeof window.dhBuildSubscribeToggle === 'function') {
+      byoWrap.innerHTML = window.dhBuildSubscribeToggle({ id: 'byo', slugs: [] });
+    }
+
+    // 2. Helper: build a synthetic bundle object from the current builder
+    //    selection. Used for Smart Refill schedule + savings computations.
+    function getByoSyntheticBundle() {
+      const slugs = [];
+      document.querySelectorAll('.builder-card.selected').forEach(card => {
+        const h = card.dataset.handle;
+        if (h) slugs.push(h);
+      });
+      // Match the tier logic used for live tracker updates
+      const tiers = [{min:9,pct:0.15},{min:6,pct:0.12},{min:3,pct:0.10}];
+      const tier = tiers.find(t => slugs.length >= t.min);
+      return {
+        id: 'byo',
+        name: 'Build Your Own Routine',
+        slugs,
+        discount: tier ? tier.pct : 0
+      };
+    }
+
+    // 3. Refresh the Smart Refill teaser amount based on current selection.
+    //    Show only when: ≥3 items selected (eligible for tier), the user is in
+    //    subscribe mode, and the savings figure clears a $50 threshold.
+    function refreshByoSmartTeaser() {
+      const teaser = document.getElementById('byoSmartTeaser');
+      const amountEl = document.getElementById('byoSmartAmount');
+      if (!teaser || !amountEl) return;
+
+      const byoBundle = getByoSyntheticBundle();
+      if (byoBundle.slugs.length < 3 || !window.computeSmartRefillAnnualSavings) {
+        teaser.hidden = true;
+        return;
+      }
+      const annualSave = window.computeSmartRefillAnnualSavings(byoBundle);
+      if (annualSave < 50) {
+        teaser.hidden = true;
+        return;
+      }
+      amountEl.textContent = '$' + Math.round(annualSave);
+      teaser.hidden = false;
+    }
+
+    // 4. Wire up the toggle + cadence buttons to re-run the tracker + teaser
+    //    whenever the user changes subscribe mode or cadence selection.
+    const byoToggleEl = byoWrap?.querySelector('.bundle-subscribe-toggle[data-bundle-id="byo"]');
+    const byoCadenceEl = byoWrap?.querySelector('.bundle-cadence[data-bundle-id="byo"]');
+
+    if (byoToggleEl) {
+      byoToggleEl.addEventListener('click', (e) => {
+        const btn = e.target.closest('button[data-mode]');
+        if (!btn) return;
+        // Toggle active state
+        byoToggleEl.querySelectorAll('button[data-mode]').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        // Show/hide cadence selector
+        if (byoCadenceEl) {
+          if (btn.dataset.mode === 'subscribe') {
+            byoCadenceEl.removeAttribute('hidden');
+            byoToggleEl.classList.add('subscribe-mode');
+          } else {
+            byoCadenceEl.setAttribute('hidden', '');
+            byoToggleEl.classList.remove('subscribe-mode');
+          }
+        }
+        // Trigger tracker update
+        if (typeof window.dhUpdateBYOTracker === 'function') window.dhUpdateBYOTracker();
+        refreshByoSmartTeaser();
+      });
+    }
+    if (byoCadenceEl) {
+      byoCadenceEl.addEventListener('click', (e) => {
+        const btn = e.target.closest('.cadence-btn');
+        if (!btn) return;
+        byoCadenceEl.querySelectorAll('.cadence-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        // Show/hide smart-refill explanation note
+        const note = byoCadenceEl.querySelector('[data-smart-note]');
+        if (note) {
+          if (btn.dataset.cadence === 'smart') note.removeAttribute('hidden');
+          else note.setAttribute('hidden', '');
+        }
+        if (typeof window.dhUpdateBYOTracker === 'function') window.dhUpdateBYOTracker();
+      });
+    }
+
+    // 5. Hook the teaser refresh into the existing selection-change events.
+    //    The builder cards already trigger updateTracker on click; we hook into
+    //    that via a global function for cleanliness.
+    window.dhRefreshByoSmartTeaser = refreshByoSmartTeaser;
+
     // Wire BYO add-to-cart — uses the tier-based discount computed from current count
     const byoBtn = document.getElementById('byoAddBundle');
     if (byoBtn) {
@@ -2697,8 +2922,9 @@
           return;
         }
         const toggle = document.querySelector('.bundle-subscribe-toggle[data-bundle-id="byo"]');
-        const subscribe = toggle?.querySelector('button.active')?.dataset.mode === 'subscribe';
-        window.dhCart.addBundle(selectedSlugs, 'Build Your Own Routine', tier.pct, subscribe);
+        const subscribe = isSubscribed(toggle);
+        const cadence = subscribe ? getCurrentCadence('byo') : null;
+        window.dhCart.addBundle(selectedSlugs, 'Build Your Own Routine', tier.pct, subscribe, { cadence });
 
         // Close the popup so the user sees their cart confirmation
         if (typeof window.dhOpenBYOPopup === 'function') {
