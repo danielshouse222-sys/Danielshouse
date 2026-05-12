@@ -1,7 +1,7 @@
 /**
  * Daniel's House — Product Data
  * Single source of truth for all 33 products.
- * Used by product.html, shop.html, search, related products, etc.
+ * Used by product.html, bundles.html, search, related products, etc.
  */
 window.PRODUCTS = [
   // ═══════════════════════════════════════════════════════════
@@ -1678,14 +1678,14 @@ window.getConcernBundlePricing = function(bundleId) {
 };
 
 /**
- * CURATED BUNDLES — the named bundles featured on bundles.html
+ * CURATED BUNDLES — the named bundles featured on routines.html
  * Each has its own preset discount and slug list.
  * All can be subscribed to at the same bundle price (no additional 15% on top).
  */
 window.CURATED_BUNDLES = [
   {
     id: 'ultimate',
-    name: 'The Ultimate Bundle',
+    name: 'The Ultimate Routine',
     discount: 0.25,
     slugs: [
       // 6 AM skincare (in routine order: cleanse → tone → serums → moisturize)
@@ -1701,61 +1701,61 @@ window.CURATED_BUNDLES = [
   },
   {
     id: 'daniels-daily',
-    name: "Daniel's Daily Bundle",
+    name: "Daniel's Daily Routine",
     discount: 0.18,
     slugs: ['the-house-multi','the-house-sunshine','the-house-flow','the-house-biome','the-house-calm','the-house-nad-plus','the-house-vitality','the-house-synapse','the-house-restore','the-house-tranquil']
   },
   {
     id: 'am',
-    name: 'The AM Bundle',
+    name: 'The AM Routine',
     discount: 0.15,
     slugs: ['the-house-wash','the-house-balance','the-house-boost','the-house-hyaluronic','the-house-defense','the-house-soft']
   },
   {
     id: 'pm',
-    name: 'The PM Bundle',
+    name: 'The PM Routine',
     discount: 0.15,
     slugs: ['the-house-bounce','the-house-renewal','the-house-firm','the-house-hydration','the-house-eye','the-house-glow']
   },
   {
     id: 'workout',
-    name: 'The Workout Bundle',
+    name: 'The Workout Routine',
     discount: 0.15,
     slugs: ['the-house-greens','the-house-burn','the-house-power','the-house-pump','the-house-seal']
   },
   {
     id: 'foundation',
-    name: 'The Foundation Bundle',
+    name: 'The Foundation Routine',
     discount: 0.15,
     slugs: ['the-house-multi','the-house-sunshine','the-house-flow','the-house-biome','the-house-calm']
   },
   {
     id: 'longevity',
-    name: 'The Longevity Bundle',
+    name: 'The Longevity Routine',
     discount: 0.15,
     slugs: ['the-house-nad-plus','the-house-vitality','the-house-synapse','the-house-restore','the-house-tranquil']
   },
   {
     id: 'glow',
-    name: 'The Glow Bundle',
+    name: 'The Glow Routine',
     discount: 0.15,
     slugs: ['the-house-boost','the-house-defense','the-house-glow','the-house-mask','the-house-radiance','the-house-collagen']
   },
   {
     id: 'weekly',
-    name: 'The Reset Bundle',
+    name: 'The Reset Routine',
     discount: 0.15,
     slugs: ['the-house-mask','the-house-polish']
   },
   {
     id: 'moms',
-    name: "The Mom's Bundle",
+    name: "The Mom's Routine",
     discount: 0.15,
     slugs: ['the-house-wash','the-house-defense','the-house-bounce','the-house-eye','the-house-soft','the-house-multi','the-house-collagen','the-house-nad-plus','the-house-vitality','the-house-tranquil']
   },
   {
     id: 'arianas',
-    name: "The Ariana's Bundle",
+    name: "The Ariana's Routine",
     discount: 0.15,
     slugs: ['the-house-wash','the-house-boost','the-house-defense','the-house-renewal','the-house-eye','the-house-soft','the-house-multi','the-house-radiance','the-house-collagen']
   }

@@ -1,7 +1,7 @@
 /* BUNDLE DETAILS — long-form content per bundle.
    Used by:
-     - bundle.html (separate detail page, fallback when typed by URL)
-     - js/bundle-expand.js (inline expansion on bundles.html and shop.html)
+     - routine.html (separate detail page, fallback when typed by URL)
+     - js/bundle-expand.js (inline expansion on routines.html and bundles.html)
    Namespaced by category because `longevity` and `glow` exist in
    both CURATED_BUNDLES and CONCERN_BUNDLES.
 
@@ -21,9 +21,9 @@ window.BUNDLE_DETAILS = {
         { week: 'Week 12+', text: 'The full compounding effect: skin elasticity at multi-year baseline highs, sustained daily energy, deep cardiovascular and longevity markers in motion. The full-system effect Daniel built this around.' }
       ],
       faq: [
-        { q: 'Is this just every product bundled together?', a: 'Yes — 22 bottles, the entire AM/PM skincare routine plus the complete Daily supplement stack. The pricing reflects the buying-it-all discount (25% off retail) rather than a different formulation.' },
+        { q: 'Is this just every product packaged together?', a: 'Yes — 22 bottles, the entire AM/PM skincare routine plus the complete Daily supplement stack. The pricing reflects the buying-it-all discount (25% off retail) rather than a different formulation.' },
         { q: 'Can I subscribe to the Ultimate?', a: "Yes — and most customers do. Monthly delivery at the same 25% off price, with the option to skip, pause, or cancel any month. The subscribe price doesn't stack additional discount on top, since the Ultimate is already at the deepest savings on the site." },
-        { q: 'What if I already have some of these products?', a: 'You can build a custom version using BYO (Build Your Own) on the Bundles page — that gives tiered discounts at 3, 6, and 9 products. For 10+ overlapping products, the Ultimate is usually still better even with duplicates.' }
+        { q: 'What if I already have some of these products?', a: 'You can build a custom version using BYO (Build Your Own) on the Routines page — that gives tiered discounts at 3, 6, and 9 products. For 10+ overlapping products, the Ultimate is usually still better even with duplicates.' }
       ]
     },
     'daniels-daily': {
@@ -39,7 +39,7 @@ window.BUNDLE_DETAILS = {
       faq: [
         { q: 'Should I take all 10 at once?', a: 'No — distribute across the day. Morning: Multi, Sunshine, Flow, Biome, Vitality, Synapse, NAD+. Post-workout/with dinner: Restore. Evening: Calm, Tranquil. Spreading them aids absorption and matches each supplement\'s peak-effect timing.' },
         { q: 'Can I skip some and still benefit?', a: 'Yes — the Foundation 5 (Multi, Sunshine, Flow, Biome, Calm) is the most-validated core. The Longevity 5 (NAD+, Vitality, Synapse, Restore, Tranquil) is the optional second layer for users prioritizing aging and cellular health.' },
-        { q: 'How long does one bundle last?', a: 'About 30 days. Each bottle is a 30-day supply at recommended dosing. Most customers subscribe monthly for the protocol consistency.' }
+        { q: 'How long does one routine last?', a: 'About 30 days. Each bottle is a 30-day supply at recommended dosing. Most customers subscribe monthly for the protocol consistency.' }
       ]
     },
     'am': {
@@ -55,7 +55,7 @@ window.BUNDLE_DETAILS = {
       faq: [
         { q: 'What order do I use these in?', a: 'In order: Wash, Balance (toner), Boost (vitamin C), Hyaluronic (serum), Defense (antioxidant), Soft (moisturizer). Apply each before the next is fully absorbed — thinnest to thickest.' },
         { q: 'Do I need all six?', a: "If you're tight on time, the minimum is Wash + Boost + Soft + sunscreen. The full 6-step gets the most compounding benefit, but a streamlined version still works." },
-        { q: 'Where does sunscreen fit in?', a: 'After Soft, before makeup. We don\'t include SPF in this bundle so you can use whatever sunscreen you prefer — but daily SPF is non-negotiable, especially with vitamin C in the routine.' }
+        { q: 'Where does sunscreen fit in?', a: 'After Soft, before makeup. We don\'t include SPF in this routine so you can use whatever sunscreen you prefer — but daily SPF is non-negotiable, especially with vitamin C in the routine.' }
       ]
     },
     'pm': {
@@ -77,7 +77,7 @@ window.BUNDLE_DETAILS = {
     'workout': {
       eyebrow: 'Training & Recovery',
       description: 'The performance stack — pre-workout pump and metabolic support, daily creatine for strength, and post-workout recovery with gut repair. Built for people training hard.',
-      whyThis: "Performance supplements have hundreds of products and a handful that actually work. This bundle is the handful. Power delivers 5g of pharmaceutical-grade creatine — the most-studied supplement in sports nutrition. Pump (L-citrulline malate) raises plasma arginine for nitric oxide and the vascular pump effect. Burn is the thermogenic for pre-workout energy when you want it. Greens covers the polyphenol and adaptogen foundation that supports training adaptation. Seal (L-glutamine) addresses gut barrier and recovery — plasma glutamine drops 20-30% after intense training. Together they form the daily training stack at clinically meaningful doses.",
+      whyThis: "Performance supplements have hundreds of products and a handful that actually work. This routine is the handful. Power delivers 5g of pharmaceutical-grade creatine — the most-studied supplement in sports nutrition. Pump (L-citrulline malate) raises plasma arginine for nitric oxide and the vascular pump effect. Burn is the thermogenic for pre-workout energy when you want it. Greens covers the polyphenol and adaptogen foundation that supports training adaptation. Seal (L-glutamine) addresses gut barrier and recovery — plasma glutamine drops 20-30% after intense training. Together they form the daily training stack at clinically meaningful doses.",
       timeline: [
         { week: 'Week 1', text: 'Visible vascular pump from Pump pre-workout. Slight muscle fullness as creatine saturation begins.' },
         { week: 'Week 4', text: 'Lift performance increases — more reps at the same weight. Recovery between sessions accelerates.' },
@@ -157,24 +157,24 @@ window.BUNDLE_DETAILS = {
     'moms': {
       eyebrow: "For the Tired but Glowing",
       description: "Ten products built for parents in their 40s and 50s — gentle but effective skincare, energy and immunity support, calm-down magnesium, and the longevity-grade collagen and cellular stack. Named for the season of life it supports — works just as well for dads.",
-      whyThis: "The needs of parents at this stage are specific: gentle on the skin (no fragrances, no harsh actives that flake off, mindful of skin that's grown more reactive), reliable on energy (because life and sleep can both be unpredictable), supportive of nervous-system recovery (because cortisol after decades of work and family life is its own thing). This bundle combines the gentle anti-aging skincare staples (Wash, Defense, Bounce at low frequency, Eye, Soft) with the daily-energy stack (Multi, Collagen, NAD+, Vitality) plus Tranquil for adaptogenic support. Together they form a sustainable rhythm — not aspirational, not maximum, just supportive.",
+      whyThis: "The needs of parents at this stage are specific: gentle on the skin (no fragrances, no harsh actives that flake off, mindful of skin that's grown more reactive), reliable on energy (because life and sleep can both be unpredictable), supportive of nervous-system recovery (because cortisol after decades of work and family life is its own thing). This routine combines the gentle anti-aging skincare staples (Wash, Defense, Bounce at low frequency, Eye, Soft) with the daily-energy stack (Multi, Collagen, NAD+, Vitality) plus Tranquil for adaptogenic support. Together they form a sustainable rhythm — not aspirational, not maximum, just supportive.",
       timeline: [
         { week: 'Week 1', text: 'Skin feels balanced and protected. Daily energy from Multi and Vitality begins.' },
         { week: 'Week 4', text: 'Sleep and stress resilience improve (Tranquil + Multi). Skin glow from Collagen visible.' },
         { week: 'Week 8', text: 'Sustained inside-out support. Skin elasticity, daily energy, mood balance all baseline improved.' },
-        { week: 'Week 12+', text: "Durable family-life-friendly baseline. The bundle that supports you so you can support everyone else." }
+        { week: 'Week 12+', text: "Durable family-life-friendly baseline. The routine that supports you so you can support everyone else." }
       ],
       faq: [
-        { q: 'Is this safe while pregnant or breastfeeding?', a: 'Most products in this bundle are pregnancy- and breastfeeding-safe; however, consult your healthcare provider about any supplement during pregnancy or nursing. Topical retinol (Bounce) should be used cautiously or avoided entirely — many providers recommend skipping it during pregnancy and while nursing. The other products are routinely used by parents in those seasons.' },
-        { q: "I'm not a parent — can I still use this?", a: 'Of course — the bundle was named for the season of life it supports, not the only people who benefit. Anyone in their 40s or 50s wanting gentle anti-aging skincare + sustaining daily nutrients works.' },
-        { q: "Will my husband / dad use this too?", a: "Yes — the routine works just as well for men. Skin in your 40s and 50s has the same fundamental needs across genders: barrier-supportive cleansing, daily antioxidants, targeted anti-aging actives, deep hydration. The supplements are gender-neutral. If you're sharing the bundle, just split the bottles." },
+        { q: 'Is this safe while pregnant or breastfeeding?', a: 'Most products in this routine are pregnancy- and breastfeeding-safe; however, consult your healthcare provider about any supplement during pregnancy or nursing. Topical retinol (Bounce) should be used cautiously or avoided entirely — many providers recommend skipping it during pregnancy and while nursing. The other products are routinely used by parents in those seasons.' },
+        { q: "I'm not a parent — can I still use this?", a: 'Of course — the routine was named for the season of life it supports, not the only people who benefit. Anyone in their 40s or 50s wanting gentle anti-aging skincare + sustaining daily nutrients works.' },
+        { q: "Will my husband / dad use this too?", a: "Yes — the routine works just as well for men. Skin in your 40s and 50s has the same fundamental needs across genders: barrier-supportive cleansing, daily antioxidants, targeted anti-aging actives, deep hydration. The supplements are gender-neutral. If you're sharing the routine, just split the bottles." },
         { q: 'When should I take the supplements?', a: 'Morning with breakfast: Multi, NAD+, Vitality, Collagen. Evening with dinner or pre-bed: Tranquil. Spread them out — it aids absorption and matches each supplement\'s timing.' }
       ]
     },
     'arianas': {
       eyebrow: "Ariana's Picks · The Editor's Choice",
       description: "Nine products curated by Ariana — the streamlined effective routine, no fluff. Skincare essentials, daily wellness, beauty support. The 'I want what works' bundle.",
-      whyThis: "Ariana's bundle is the streamlined version: nine products that cover the essentials without overcomplicating. Wash, Boost, Defense, Renewal, Eye, Soft = a complete cleansing-to-overnight skincare arc using the most-validated actives (niacinamide, vitamin C, glycolic, peptides). Multi, Radiance, Collagen = the daily nutrient foundation plus beauty support. It's intentionally smaller than the Ultimate — for users who want the high-confidence routine without 22 bottles to track.",
+      whyThis: "Ariana's routine is the streamlined version: nine products that cover the essentials without overcomplicating. Wash, Boost, Defense, Renewal, Eye, Soft = a complete cleansing-to-overnight skincare arc using the most-validated actives (niacinamide, vitamin C, glycolic, peptides). Multi, Radiance, Collagen = the daily nutrient foundation plus beauty support. It's intentionally smaller than the Ultimate — for users who want the high-confidence routine without 22 bottles to track.",
       timeline: [
         { week: 'Week 1', text: 'Skincare feels balanced; daily vitamins and collagen begin.' },
         { week: 'Week 4', text: 'Visible glow from vitamin C + Renewal; hair and nails respond to collagen.' },
