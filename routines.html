@@ -2239,7 +2239,7 @@
                 <span class="concern-price-was">$${fullPrice.toFixed(2)}</span>
                 <span class="concern-price-now">$${discountedPrice.toFixed(2)}</span>
               </div>
-              <div class="concern-savings">Save $${savings.toFixed(2)} as a bundle</div>
+              <div class="concern-savings">Save $${savings.toFixed(2)} as a routine</div>
             </div>
             <div class="concern-count">${productCount}<span>products</span></div>
           </div>
@@ -2421,15 +2421,23 @@
             // BYO has its own tracker that recomputes — trigger it
             if (typeof window.recomputeBYOSavings === 'function') window.recomputeBYOSavings();
           } else {
-            // Recompute and update the Save $X display
-            updateBundleSavingsDisplay(bundleId, isSub);
+            // Recompute and update the Save $X display — pass THIS toggle so we
+            // update the card it belongs to (handles Ultimate appearing both as
+            // hero and as a grid card with separate independent toggles).
+            updateBundleSavingsDisplay(toggle, isSub);
           }
         });
       });
     });
 
-    // Dynamic savings recalculation — stacks the +10% bundle-subscription bonus
-    function updateBundleSavingsDisplay(bundleId, subscribed) {
+    // Dynamic price + savings recalculation — stacks the +10% bundle-subscription bonus.
+    // Updates price/savings labels on either layout style:
+    //   1. Hero-section / legacy .bundle-card (.bundle-save + .bundle-save-label)
+    //   2. Curated grid cards rendered by renderCuratedBundleCard
+    //      (.concern-price-now + .concern-savings + .concern-price-was)
+    function updateBundleSavingsDisplay(toggle, subscribed) {
+      if (!toggle) return;
+      const bundleId = toggle.dataset.bundleId;
       const bundle = window.getCuratedBundleById && window.getCuratedBundleById(bundleId);
       if (!bundle) return;
       const products = bundle.slugs
@@ -2437,17 +2445,32 @@
         .filter(Boolean);
       if (!products.length) return;
       const fullPrice = products.reduce((s, p) => s + p.price, 0);
-      let finalPrice = fullPrice * (1 - bundle.discount);
-      if (subscribed) finalPrice *= 0.90; // stack the +10% subscription bonus
+      const baseDiscounted = fullPrice * (1 - bundle.discount);
+      const finalPrice = subscribed ? baseDiscounted * 0.90 : baseDiscounted;
       const savings = fullPrice - finalPrice;
-      const toggle = document.querySelector(`.bundle-subscribe-toggle[data-bundle-id="${bundleId}"]`);
-      if (!toggle) return;
-      const card = toggle.closest('.bundle-card, .hero-section');
-      if (!card) return;
-      const saveEl = card.querySelector('.bundle-save');
-      const labelEl = card.querySelector('.bundle-save-label');
-      if (saveEl) saveEl.textContent = `Save $${Math.round(savings)}`;
-      if (labelEl) labelEl.textContent = `$${Math.round(fullPrice)} → $${Math.round(finalPrice)}`;
+      const noun = (bundleId === 'ultimate') ? 'Ultimate' : 'routine';
+
+      // 1) Hero / legacy markup
+      const heroCard = toggle.closest('.bundle-card, .hero-section');
+      if (heroCard) {
+        const saveEl = heroCard.querySelector('.bundle-save');
+        const labelEl = heroCard.querySelector('.bundle-save-label');
+        if (saveEl) saveEl.textContent = `Save $${Math.round(savings)}`;
+        if (labelEl) labelEl.textContent = `$${Math.round(fullPrice)} → $${Math.round(finalPrice)}`;
+      }
+
+      // 2) Curated grid card markup (.curated-card)
+      const curatedCard = toggle.closest('.curated-card');
+      if (curatedCard) {
+        const priceNowEl = curatedCard.querySelector('.concern-price-now');
+        const savingsEl  = curatedCard.querySelector('.concern-savings');
+        if (priceNowEl) priceNowEl.textContent = `$${finalPrice.toFixed(2)}`;
+        if (savingsEl) {
+          savingsEl.textContent = subscribed
+            ? `Save $${savings.toFixed(2)} as a ${noun} + subscribe`
+            : `Save $${savings.toFixed(2)} as a ${noun}`;
+        }
+      }
     }
 
     // Wire each Add Bundle CTA (curated bundles)

@@ -91,61 +91,285 @@
     line-height: 1.55;
   }
 
-  /* ═══ STATS STRIP — Cormorant italic numerals with hairline dividers ═══ */
-  .studies-stats-section {
+  /* ═══ CREDIBILITY STRIP — matches routines page treatment ═══ */
+  .credibility.studies-cred {
     background: var(--cream);
     border-bottom: 1px solid var(--rule);
+    margin: 0;
+    max-width: none;
+    padding: 50px 40px 56px;
   }
-  .studies-stats {
-    display: flex;
-    justify-content: center;
-    align-items: stretch;
-    flex-wrap: wrap;
-    padding: 56px 40px;
-    max-width: 1180px;
-    margin: 0 auto;
-  }
-  .studies-stat {
-    text-align: center;
-    padding: 0 clamp(28px, 5vw, 60px);
-    position: relative;
-  }
-  .studies-stat:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    right: 0;
-    top: 14%;
-    bottom: 14%;
-    width: 1px;
-    background: var(--rule);
-  }
-  .studies-stat-num {
+  .credibility.studies-cred .cred-item { display: flex; flex-direction: column; align-items: center; }
+  .credibility.studies-cred .cred-num {
     font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: clamp(48px, 5.5vw, 64px);
-    font-weight: 400;
-    color: var(--ink);
-    line-height: 1;
-    margin-bottom: 14px;
-  }
-  .studies-stat-num .stat-suffix {
-    font-size: 0.42em;
-    color: var(--gold);
-    margin-left: 4px;
-    vertical-align: 0.55em;
-    font-style: normal;
-    font-family: 'Poppins', sans-serif;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
+    font-size: 48px;
     font-weight: 500;
+    color: var(--sage);
+    line-height: 1;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
   }
-  .studies-stat-label {
+  .credibility.studies-cred .cred-num em {
+    color: var(--gold);
+    font-style: italic;
+    margin-left: 1px;
+  }
+  .credibility.studies-cred .cred-label {
     font-family: 'Poppins', sans-serif;
-    font-size: 9.5px;
-    letter-spacing: 0.32em;
+    font-size: 11px;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--ink-soft);
     font-weight: 500;
+  }
+  @media (max-width: 720px) {
+    .credibility.studies-cred { padding: 32px 22px 36px; }
+    .credibility.studies-cred .cred-num { font-size: 44px; }
+  }
+
+  /* ═══ SEARCH BAR + FILTER PANEL — adapted from bundles.html ═══ */
+  .concern-search-wrap {
+    background: var(--cream);
+    padding: 50px 32px 40px;
+    text-align: center;
+  }
+  .concern-search {
+    position: relative;
+    display: flex;
+    align-items: center;
+    max-width: 640px;
+    margin: 0 auto;
+    background: var(--cream-warm);
+    border: 1px solid var(--rule);
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .concern-search:focus-within {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 4px rgba(184, 153, 104, 0.10);
+  }
+  .concern-search-icon {
+    font-size: 20px;
+    color: var(--ink-soft);
+    padding: 0 4px 0 22px;
+    transition: color 0.3s;
+    line-height: 1;
+  }
+  .concern-search:focus-within .concern-search-icon { color: var(--gold); }
+  .concern-search-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 18px 16px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    color: var(--ink);
+    width: 100%;
+  }
+  .concern-search-input::placeholder {
+    color: var(--ink-soft);
+    opacity: 0.7;
+    font-style: italic;
+  }
+  .concern-search-clear {
+    background: transparent;
+    border: none;
+    color: var(--ink-soft);
+    cursor: pointer;
+    padding: 0 22px 0 8px;
+    font-size: 14px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s, color 0.25s;
+  }
+  .concern-search-clear.is-visible { opacity: 1; pointer-events: auto; }
+  .concern-search-clear:hover { color: var(--gold); }
+
+  /* Meta row: count + Try chips + Filters button. Stacks cleanly on mobile. */
+  .concern-search-meta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 28px;
+    margin-top: 22px;
+    flex-wrap: wrap;
+    max-width: 880px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .concern-search-count {
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+  }
+  .concern-search-hints {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .concern-search-hints .hint-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--ink-soft);
+    margin-right: 2px;
+  }
+  .concern-search-hint {
+    background: transparent;
+    border: 1px solid var(--rule);
+    color: var(--ink-soft);
+    font-family: 'Poppins', sans-serif;
+    font-size: 10.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 7px 14px;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.25s;
+  }
+  .concern-search-hint:hover {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--cream);
+  }
+
+  /* Filters toggle button */
+  .concern-filter-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--cream);
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 9px 16px;
+    transition: background 0.25s, color 0.25s;
+  }
+  .concern-filter-toggle:hover { background: var(--ink); color: var(--cream); }
+  .concern-filter-toggle .toggle-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 6px;
+    border-radius: 100px;
+    background: var(--gold);
+    color: var(--ink);
+    font-size: 10px;
+    letter-spacing: 0;
+    font-weight: 600;
+  }
+  .concern-filter-toggle .toggle-arrow {
+    font-size: 9px;
+    transition: transform 0.3s;
+    margin-top: -1px;
+  }
+  .concern-filter-toggle[aria-expanded="true"] .toggle-arrow { transform: rotate(-180deg); }
+
+  /* Filter panel + chips */
+  .concern-filter-panel {
+    max-width: 1100px;
+    margin: 28px auto 0;
+    background: var(--cream-warm);
+    border: 1px solid var(--rule);
+    overflow: hidden;
+    text-align: left;
+  }
+  .concern-filter-panel[hidden] { display: none; }
+  .filter-panel-inner {
+    padding: 32px 36px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+  }
+  .filter-group { display: flex; flex-direction: column; gap: 12px; }
+  .filter-group-label {
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+  }
+  .filter-group-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .filter-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: transparent;
+    border: 1px solid var(--rule);
+    color: var(--ink-soft);
+    font-family: 'Poppins', sans-serif;
+    font-size: 11.5px;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.25s;
+    line-height: 1.4;
+  }
+  .filter-chip:hover { border-color: var(--ink); color: var(--ink); }
+  .filter-chip.is-active {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--cream);
+  }
+  .filter-chip.is-active:hover { background: var(--sage); border-color: var(--sage); }
+  .filter-chip .chip-dot {
+    width: 7px; height: 7px;
+    border-radius: 100%;
+    display: inline-block;
+  }
+  .filter-chip .chip-dot.sage { background: var(--sage); }
+  .filter-chip .chip-dot.gold { background: var(--gold); }
+  .filter-chip.is-active .chip-dot { box-shadow: 0 0 0 2px rgba(250, 246, 240, 0.3); }
+
+  .filter-actions {
+    border-top: 1px solid var(--rule);
+    padding-top: 18px;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .filter-clear-all {
+    background: transparent;
+    border: none;
+    color: var(--ink-soft);
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: color 0.25s;
+    padding: 8px 12px;
+  }
+  .filter-clear-all:hover { color: var(--gold); }
+  .filter-clear-all:disabled { opacity: 0.4; cursor: default; }
+
+  @media (max-width: 720px) {
+    .concern-search-wrap { padding: 36px 22px 32px; }
+    .concern-search-meta { gap: 14px; row-gap: 16px; }
+    .concern-search-input { font-size: 16px; padding: 16px 12px; }
+    .concern-search-icon { padding: 0 4px 0 16px; font-size: 18px; }
+    .concern-search-clear { padding: 0 16px 0 6px; }
+    .concern-search-hints { width: 100%; }
+    .concern-filter-toggle { width: 100%; justify-content: center; padding: 11px 16px; }
+    .filter-panel-inner { padding: 24px 22px 20px; }
+    .filter-chip { font-size: 11px; padding: 7px 12px; }
+    .filter-group-chips { gap: 6px; }
   }
 
   /* ═══ SORT BAR MOUNT ═══ */
@@ -427,17 +651,15 @@
   @media (max-width: 768px) {
     .studies-hero { padding: 70px 22px 50px; }
     .studies-eyebrow { letter-spacing: 0.34em; margin-bottom: 22px; }
-    .studies-stats { padding: 36px 22px; gap: 24px; flex-direction: column; align-items: center; }
-    .studies-stat { padding: 0; }
-    .studies-stat:not(:last-child)::after { display: none; }
-    .studies-stat-num { font-size: 44px; }
     .studies-section { padding: 0 22px; }
     .studies-sort-mount { padding: 0 22px; }
-    .study-entry { padding: 28px 24px 22px; }
-    .study-year { font-size: 28px; }
-    .study-title { font-size: 22px; }
-    .study-finding { font-size: 15.5px; }
+    .study-entry { padding: 30px 24px 24px; }
+    .study-year { font-size: 30px; }
+    .study-title { font-size: 23px; line-height: 1.28; }
+    .study-finding { font-size: 16px; line-height: 1.7; padding-left: 16px; }
     .study-journal { font-size: 16px; }
+    .study-authors { font-size: 11.5px; }
+    .study-ingredient-name { font-size: 17px; }
     .studies-disclaimer-wrap { padding: 20px 22px 70px; }
     .studies-disclaimer { padding: 30px 24px; }
   }
@@ -489,30 +711,28 @@
   <p class="studies-tagline">Every active in the Daniel's House line is anchored in peer-reviewed evidence. The full archive — ninety clinical citations across thirty ingredients — fully searchable.</p>
 </section>
 
-<!-- ═══ STATS STRIP ═══ -->
-<section class="studies-stats-section">
-  <div class="studies-stats">
-    <div class="studies-stat">
-      <div class="studies-stat-num" id="stat-studies">—</div>
-      <div class="studies-stat-label">Studies Cited</div>
-    </div>
-    <div class="studies-stat">
-      <div class="studies-stat-num" id="stat-journals">—</div>
-      <div class="studies-stat-label">Peer-Reviewed Journals</div>
-    </div>
-    <div class="studies-stat">
-      <div class="studies-stat-num" id="stat-ingredients">—</div>
-      <div class="studies-stat-label">Ingredients Covered</div>
-    </div>
-    <div class="studies-stat">
-      <div class="studies-stat-num" id="stat-years">—</div>
-      <div class="studies-stat-label">Years of Evidence</div>
-    </div>
+<!-- ═══ CREDIBILITY STRIP — matches routines page pattern ═══ -->
+<div class="credibility credibility-quad studies-cred">
+  <div class="cred-item">
+    <div class="cred-num" id="stat-studies">—</div>
+    <div class="cred-label">Studies Cited</div>
   </div>
-</section>
+  <div class="cred-item">
+    <div class="cred-num" id="stat-journals">—</div>
+    <div class="cred-label">Peer-Reviewed Journals</div>
+  </div>
+  <div class="cred-item">
+    <div class="cred-num" id="stat-ingredients">—</div>
+    <div class="cred-label">Ingredients Covered</div>
+  </div>
+  <div class="cred-item">
+    <div class="cred-num" id="stat-years">—</div>
+    <div class="cred-label">Years of Evidence</div>
+  </div>
+</div>
 
 <!-- ═══ SEARCH + FILTERS ═══ -->
-<div class="concern-search-wrap" style="margin-top: 36px;">
+<div class="concern-search-wrap">
   <div class="concern-search">
     <span class="concern-search-icon" aria-hidden="true">⌕</span>
     <input
@@ -712,12 +932,12 @@
       ].join(' ').toLowerCase();
     });
 
-    document.getElementById('stat-studies').textContent     = allStudies.length;
-    document.getElementById('stat-journals').textContent    = new Set(allStudies.map(s => s.journal)).size;
-    document.getElementById('stat-ingredients').textContent = new Set(allStudies.map(s => s.ingredientSlug)).size;
+    document.getElementById('stat-studies').innerHTML     = allStudies.length + '<em>.</em>';
+    document.getElementById('stat-journals').innerHTML    = new Set(allStudies.map(s => s.journal)).size + '<em>.</em>';
+    document.getElementById('stat-ingredients').innerHTML = new Set(allStudies.map(s => s.ingredientSlug)).size + '<em>.</em>';
     const years = allStudies.map(s => s.year);
     const span = Math.max(...years) - Math.min(...years);
-    document.getElementById('stat-years').innerHTML = `${span}<span class="stat-suffix">yrs</span>`;
+    document.getElementById('stat-years').textContent = span;
 
     document.getElementById('study-search-count').textContent = `${allStudies.length} studies`;
   })();
@@ -757,13 +977,13 @@
         <div class="study-authors">${s.authors}</div>
         <div class="study-journal">${s.journal}</div>
         <p class="study-finding">${s.finding}</p>
-        <footer class="study-foot">
+        <div class="study-foot">
           <a class="study-ingredient" href="ingredient.html?slug=${s.ingredientSlug}">
             <span class="study-ingredient-label">Ingredient</span>
             <span class="study-ingredient-name">${s.ingredientName}</span>
           </a>
           <a class="study-scholar" href="${scholarUrl}" target="_blank" rel="noopener noreferrer">Google Scholar →</a>
-        </footer>
+        </div>
       </article>
     `;
   }
