@@ -357,7 +357,7 @@
 <script src="data/products.js"></script>
 <script src="data/ingredients.js"></script>
 <script src="data/bundle-details.js"></script>
-<script src="js/auth.js?v=1"></script><script src="js/shared.js"></script>
+<script src="js/auth.js?v=1"></script><script src="js/shared.js?v=6"></script>
 
 <script>
 (function() {
@@ -437,15 +437,41 @@
   function searchBundles(q) {
     const ql = q.toLowerCase();
     const out = [];
+    // Helper: pull rich details (description, whyThis, eyebrow) from BUNDLE_DETAILS
+    // so users can match on a bundle's actual marketing copy, not just its slug.
+    function detailHaystack(bundle, category) {
+      const d = (window.BUNDLE_DETAILS && window.BUNDLE_DETAILS[category] && window.BUNDLE_DETAILS[category][bundle.id]) || null;
+      if (!d) return '';
+      const faqText = (d.faq || []).map(f => (f.q || '') + ' ' + (f.a || '')).join(' ');
+      return [d.eyebrow || '', d.description || '', d.whyThis || '', faqText].join(' ');
+    }
+    // Helper: human-readable product names from each bundle's slugs, so a user
+    // searching "ashwagandha" or "wash" can find the bundles that contain those.
+    function productNames(slugs) {
+      return (slugs || [])
+        .map(s => window.getProductBySlug && window.getProductBySlug(s))
+        .filter(Boolean)
+        .map(p => `${p.name} ${p.tag || ''} ${(p.ingredients || []).map(i => i.name || '').join(' ')}`)
+        .join(' ');
+    }
+
     if (window.CURATED_BUNDLES) {
       window.CURATED_BUNDLES.forEach(b => {
-        const hay = [b.name, b.id, ...(b.slugs || [])].join(' ').toLowerCase();
+        const hay = [
+          b.name, b.id, b.blurb || '',
+          productNames(b.slugs),
+          detailHaystack(b, 'curated')
+        ].join(' ').toLowerCase();
         if (hay.includes(ql)) out.push({ kind: 'curated', bundle: b });
       });
     }
     if (window.CONCERN_BUNDLES) {
       window.CONCERN_BUNDLES.forEach(b => {
-        const hay = [b.name, b.id, b.concern, b.description || '', ...(b.slugs || [])].join(' ').toLowerCase();
+        const hay = [
+          b.name, b.id, b.concern || '', b.blurb || '', b.description || '',
+          productNames(b.slugs),
+          detailHaystack(b, 'concern')
+        ].join(' ').toLowerCase();
         if (hay.includes(ql)) out.push({ kind: 'concern', bundle: b });
       });
     }

@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css?v=4">
-<link rel="stylesheet" href="css/shared.css?v=9">
+<link rel="stylesheet" href="css/shared.css?v=10">
 <link rel="stylesheet" href="css/bundle-expand.css?v=2">
 <style>
   body { background: var(--cream); color: var(--ink); font-family: 'Poppins', sans-serif; margin: 0; }
@@ -1342,7 +1342,7 @@
 <script src="data/products.js?v=4"></script>
 <script src="data/bundle-details.js?v=1"></script>
 <script src="data/ingredients.js?v=1"></script>
-<script src="js/auth.js?v=1"></script><script src="js/shared.js?v=4"></script>
+<script src="js/auth.js?v=1"></script><script src="js/shared.js?v=6"></script>
 <script src="js/bundle-expand.js?v=2"></script>
 <script>
 function renderConcernCard(bundle) {
@@ -1709,6 +1709,27 @@ document.addEventListener('DOMContentLoaded', () => {
   const concernCount = FEATURED_ORDER.filter(e => e.kind === 'concern').length;
   const totalCount = routineCount + concernCount;
   console.log(`[bundles.html] Rendering ${routineCount} routines + ${concernCount} bundles = ${totalCount} total in featured order.`);
+
+  // ═══ HASH NAVIGATION ═══
+  // When arriving from a search result like bundles.html#sleep or
+  // bundles.html#anti-aging, find the matching card, auto-expand it, and
+  // smooth-scroll to it. Runs on initial load and on hashchange.
+  function focusBundleFromHash() {
+    const hash = (window.location.hash || '').replace(/^#/, '');
+    if (!hash) return;
+    const targetCard = grid.querySelector(`.concern-card[data-bundle-id="${CSS.escape(hash)}"]`);
+    if (!targetCard) return;
+    // Expand the card if it's currently collapsed
+    targetCard.classList.remove('is-collapsed');
+    // Smooth-scroll into view after a tick (so layout settles post-expand)
+    setTimeout(() => {
+      targetCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 80);
+  }
+  // Run on initial load
+  focusBundleFromHash();
+  // Run when hash changes (e.g. user clicks a search result while already on bundles.html)
+  window.addEventListener('hashchange', focusBundleFromHash);
 
   // ═══ SORT: reorder existing DOM cards in place ═══
   // Each card carries data-bundle-kind so collisions on bundle ID (e.g.
