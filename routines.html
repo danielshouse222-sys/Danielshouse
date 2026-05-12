@@ -166,7 +166,7 @@
   .sec-blurb { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 17px; color: var(--ink-soft); max-width: 580px; margin: 0 auto; line-height: 1.55; }
 
   /* Bundle grid */
-  .bundle-grid { max-width: 1200px; margin: 60px auto 0; padding: 0 40px; display: grid; grid-template-columns: 1fr; row-gap: 240px; }
+  .bundle-grid { max-width: 1200px; margin: 60px auto 0; padding: 0 40px; display: grid; grid-template-columns: 1fr; row-gap: 6px; }
 
   .bundle-card { background: var(--cream); border: 1px solid var(--rule); padding: 0; display: grid; grid-template-columns: 1fr 1.15fr; transition: transform 0.4s, border-color 0.3s, box-shadow 0.3s; }
   .bundle-card:hover { transform: translateY(-4px); border-color: var(--gold); box-shadow: 0 12px 40px rgba(31, 27, 23, 0.06); }
@@ -251,8 +251,8 @@
     display: grid;
     grid-template-columns: 1fr auto auto;
     align-items: center;
-    gap: 22px;
-    padding: 26px 32px;
+    gap: 18px;
+    padding: 16px 22px;
     background: var(--cream);
     border: none;
     cursor: pointer;
@@ -277,7 +277,7 @@
   .card-collapsed-text { min-width: 0; }
   .card-collapsed-name {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 26px;
+    font-size: 24px;
     font-weight: 500;
     color: var(--ink);
     line-height: 1.1;
@@ -287,7 +287,7 @@
   .card-collapsed-meta {
     display: flex;
     gap: 14px;
-    margin-top: 7px;
+    margin-top: 6px;
     align-items: center;
     flex-wrap: wrap;
   }
@@ -308,13 +308,38 @@
     margin-right: 6px;
     vertical-align: middle;
   }
+  /* Stacked price+save block — price on top, savings below */
+  .card-collapsed-pricing {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+    text-align: right;
+    white-space: nowrap;
+  }
+  .card-collapsed-price {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--ink);
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1;
+  }
+  .card-collapsed-price-was {
+    font-family: 'Poppins', sans-serif;
+    color: var(--ink-soft);
+    font-size: 11px;
+    font-weight: 400;
+    text-decoration: line-through;
+    margin-right: 6px;
+    vertical-align: 2px;
+  }
   .card-collapsed-save {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
     color: var(--gold);
-    font-size: 22px;
+    font-size: 15px;
     font-weight: 500;
-    white-space: nowrap;
+    line-height: 1.2;
   }
   .card-toggle-chevron {
     width: 32px;
@@ -366,15 +391,14 @@
   .curated-card.is-collapsed .card-collapse-toggle { display: none; }
 
   @media (max-width: 720px) {
-    .curated-card .card-collapsed-strip { padding: 20px 18px; gap: 14px; grid-template-columns: 1fr auto; }
-    .card-collapsed-name { font-size: 22px; }
-    .card-collapsed-save { font-size: 18px; }
-    .card-toggle-chevron { width: 26px; height: 26px; grid-column: 2; grid-row: 1; }
-    /* Tighten the meta row on mobile */
-    .card-collapsed-meta { gap: 10px; margin-top: 6px; }
+    .curated-card .card-collapsed-strip { padding: 14px 16px; gap: 12px; grid-template-columns: 1fr auto; }
+    .card-collapsed-name { font-size: 20px; }
+    .card-toggle-chevron { width: 24px; height: 24px; grid-column: 2; grid-row: 1; }
+    .card-collapsed-meta { gap: 10px; margin-top: 5px; }
     .card-collapsed-pill { font-size: 8.5px; letter-spacing: 0.16em; }
-    /* Save text on mobile — drop below chevron line for breathing room */
-    .card-collapsed-save { grid-column: 1 / -1; font-size: 16px; margin-top: 2px; }
+    .card-collapsed-pricing { grid-column: 1 / -1; align-items: baseline; text-align: left; flex-direction: row; gap: 10px; margin-top: 4px; }
+    .card-collapsed-price { font-size: 17px; }
+    .card-collapsed-save { font-size: 13px; }
   }
 
   .concern-savings-ribbon {
@@ -641,7 +665,7 @@
     .bundle-product-grid.cols-5 .bundle-thumb-label { width: calc(20% - 8px); }
     .bundle-body { padding: 32px 36px 36px; }
     .bundle-title { font-size: 34px; }
-    .bundle-grid { row-gap: 160px; }
+    .bundle-grid { row-gap: 5px; }
     .bundle-product-grid.cols-5 .bundle-thumb,
     .bundle-product-grid.cols-5 .bundle-thumb-label { width: calc(25% - 8px); }
 
@@ -2602,7 +2626,10 @@
               ${suppCount > 0 ? `<span class="card-collapsed-pill"><span class="dot"></span>${suppCount} Supplement${suppCount > 1 ? 's' : ''}</span>` : ''}
             </div>
           </div>
-          <div class="card-collapsed-save">Save $${savings.toFixed(0)}</div>
+          <div class="card-collapsed-pricing">
+            <div class="card-collapsed-price"><span class="card-collapsed-price-was">$${fullPrice.toFixed(0)}</span>$${discountedPrice.toFixed(0)}</div>
+            <div class="card-collapsed-save">Save $${savings.toFixed(0)}</div>
+          </div>
           <div class="card-toggle-chevron">▾</div>
         </button>
 
