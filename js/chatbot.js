@@ -84,6 +84,16 @@
   const BRAND_API_KEY    = '';  // ← cleared; key now lives server-side in the Cloudflare Worker
   const BRAND_API_PROXY  = 'https://claud-proxy.daniellruggiero.workers.dev';  // Cloudflare Worker proxy holding the real Anthropic key
 
+  /* BRAND_CLAUDE_READY — single switch for whether brand-provided Claude is
+     live for all visitors. Flip this to true ONLY when:
+       (1) BRAND_API_KEY is set OR BRAND_API_PROXY is configured, AND
+       (2) The Anthropic account has a positive credit balance, AND
+       (3) Optional safety: spend limits are set in the Anthropic console.
+     Until then, the chatbot opens in rule-based mode and shows a "Claude
+     coming soon" callout. Visitors can still opt-in early with their own
+     API key via the settings modal. */
+  const BRAND_CLAUDE_READY = false;  // ← flip to true once Anthropic credits are loaded
+
   const CLAUDE_KEY_STORAGE   = 'dh_chatbot_claude_key';
   const CLAUDE_ON_STORAGE    = 'dh_chatbot_claude_enabled';
   const CLAUDE_MODEL_STORAGE = 'dh_chatbot_claude_model';
@@ -1017,23 +1027,29 @@
      ════════════════════════════════════════════════════════════════════ */
 
   function getClaudeSettings() {
-    // User's stored values
     const userKey   = localStorage.getItem(CLAUDE_KEY_STORAGE) || '';
     const userModel = localStorage.getItem(CLAUDE_MODEL_STORAGE) || '';
-    // `enabled` is a tri-state in storage: 'true' | 'false' | null (never set).
-    // When null, we default to TRUE if any key is available — so first-time
-    // visitors auto-talk to Claude when a brand key is configured.
     const enabledRaw = localStorage.getItem(CLAUDE_ON_STORAGE);
-    const haveAnyKey = Boolean(userKey || BRAND_API_KEY || BRAND_API_PROXY);
-    const enabled = (enabledRaw === null) ? haveAnyKey : (enabledRaw === 'true');
-    // Effective API key: user's key wins; otherwise brand key (or empty if neither).
-    const effectiveKey = userKey || BRAND_API_KEY || '';
+    // Brand-provided Claude is "live" only when explicitly flagged ready.
+    // A configured proxy URL alone isn't enough — the brand might still be
+    // in setup (worker deployed but no Anthropic credit yet).
+    const brandReady = BRAND_CLAUDE_READY && Boolean(BRAND_API_KEY || BRAND_API_PROXY);
+    // Auto-enable on first visit ONLY if the user has their own key, or
+    // brand-provided Claude is fully ready. Otherwise default to off so
+    // the chatbot opens in rule-based mode with a "coming soon" callout.
+    const defaultEnabled = Boolean(userKey || brandReady);
+    const enabled = (enabledRaw === null) ? defaultEnabled : (enabledRaw === 'true');
+    // Effective API key for direct mode: user's key wins; brand key only
+    // when brand-ready (otherwise empty so we don't accidentally call).
+    const effectiveKey = userKey || (brandReady ? BRAND_API_KEY : '') || '';
     return {
       apiKey: effectiveKey,
       userKey: userKey,
+      brandReady: brandReady,
+      brandConfigured: Boolean(BRAND_API_KEY || BRAND_API_PROXY),  // set up but maybe not live yet
       hasBrandKey: Boolean(BRAND_API_KEY),
       hasBrandProxy: Boolean(BRAND_API_PROXY),
-      keySource: userKey ? 'user' : (BRAND_API_KEY ? 'brand' : (BRAND_API_PROXY ? 'proxy' : 'none')),
+      keySource: userKey ? 'user' : (brandReady ? (BRAND_API_KEY ? 'brand' : 'proxy') : 'none'),
       enabled: enabled,
       model: userModel || CLAUDE_DEFAULT_MODEL
     };
@@ -1046,9 +1062,9 @@
   function isClaudeReady() {
     const s = getClaudeSettings();
     if (!s.enabled) return false;
-    // Ready if we have a real API key OR a proxy endpoint configured
+    // Ready if user has a real key, OR brand-provided Claude is live with a proxy
     if (s.apiKey && s.apiKey.length > 10) return true;
-    if (s.hasBrandProxy) return true;
+    if (s.brandReady && s.hasBrandProxy) return true;
     return false;
   }
 
@@ -1163,7 +1179,7 @@
       .filter(m => m.content);
     messages.push({ role: 'user', content: query });
 
-    const endpoint = (settings.hasBrandProxy && !settings.userKey)
+    const endpoint = (settings.brandReady && settings.hasBrandProxy && !settings.userKey)
       ? BRAND_API_PROXY
       : 'https://api.anthropic.com/v1/messages';
     const headers = (endpoint === 'https://api.anthropic.com/v1/messages')
@@ -1444,22 +1460,42 @@
       settingsKey.value = s.userKey;
       settingsModel.value = s.model;
       settingsEnabled.checked = s.enabled;
-      // Update the key input placeholder to reflect what's currently being used
+
+      // Update the modal blurb to reflect the current brand state
+      const blurbEl = wrap.querySelector('.dh-chat-settings-blurb');
+      if (blurbEl) {
+        if (s.brandReady) {
+          blurbEl.innerHTML = `This assistant is talking to Claude by default, with the entire Daniel's House catalog and FAQ loaded as context. Want to use your own key instead (e.g. to switch to Opus or have your usage on your own account)? Paste it below. Your key stays in your browser and is sent only to <code>api.anthropic.com</code>.`;
+        } else if (s.brandConfigured) {
+          blurbEl.innerHTML = `Brand-provided Claude is being set up — every visitor will get natural-language answers automatically once it's live. In the meantime, you can connect your own Anthropic API key for a preview. Your key stays in your browser and is sent only to <code>api.anthropic.com</code>.`;
+        } else {
+          blurbEl.innerHTML = `Connect your Anthropic API key to enable natural-language conversation backed by the full Daniel's House catalog. The rule-based engine handles questions either way; Claude adds richer, multi-turn answers. Your key stays in your browser and is sent only to <code>api.anthropic.com</code>.`;
+        }
+      }
+
+      // Key input placeholder
       if (s.keySource === 'brand' && !s.userKey) {
         settingsKey.setAttribute('placeholder', 'Using brand-provided Claude — paste your own key to override');
       } else if (s.keySource === 'proxy' && !s.userKey) {
         settingsKey.setAttribute('placeholder', 'Using brand proxy — paste your own key to override');
+      } else if (s.brandConfigured && !s.brandReady) {
+        settingsKey.setAttribute('placeholder', 'Brand Claude coming soon — paste your key for early access');
       } else {
         settingsKey.setAttribute('placeholder', 'sk-ant-...');
       }
+
+      // Status row
       let statusMsg, statusState;
       if (isClaudeReady()) {
         if (s.keySource === 'brand')      { statusMsg = 'Connected · Using brand-provided Claude'; statusState = 'ready'; }
         else if (s.keySource === 'proxy') { statusMsg = 'Connected · Using brand proxy'; statusState = 'ready'; }
         else                              { statusMsg = 'Connected · Using your key'; statusState = 'ready'; }
-      } else if (s.apiKey || s.hasBrandProxy) {
-        statusMsg = 'Key configured — toggle on to enable';
+      } else if (s.userKey) {
+        statusMsg = 'Key saved — toggle on to enable';
         statusState = 'idle';
+      } else if (s.brandConfigured && !s.brandReady) {
+        statusMsg = 'Brand-provided Claude coming soon';
+        statusState = 'pending';
       } else {
         statusMsg = 'Not connected — add a key to enable Claude';
         statusState = 'idle';
@@ -1543,13 +1579,28 @@
         const cart = getCartContext();
         const page = getCurrentPage();
         const claudeOn = isClaudeReady();
+        const s = getClaudeSettings();
         let welcome;
         if (claudeOn) {
-          const s = getClaudeSettings();
           const modelLabel = (CLAUDE_MODELS.find(m => m.id === s.model)?.label || s.model).split(' · ')[0];
           welcome = `<p>Hi — I'm Daniel's House's assistant, powered by <strong>Claude (${modelLabel})</strong> with our full catalog, FAQ, and ingredient glossary loaded. Ask me anything in plain English — I can also <strong>add things to your cart</strong>, <strong>compare products</strong>, and <strong>recommend by concern</strong>.</p>`;
         } else {
           welcome = `<p>Hi — I'm Daniel's House's assistant. I can <strong>answer questions</strong>, <strong>add things to your cart</strong>, <strong>compare products</strong>, <strong>recommend by concern</strong>, and more.</p>`;
+          // Coming-soon callout — only when brand has set up the proxy/key but
+          // hasn't flagged ready yet (i.e. credits not loaded). Visitors can
+          // opt-in early with their own key.
+          if (s.brandConfigured && !s.brandReady && !s.userKey) {
+            welcome += `<div class="dh-chat-claude-callout">
+              <div class="dh-chat-claude-callout-eyebrow">↻ Claude · Coming Soon</div>
+              <p>A natural-language version of this assistant, powered by Claude with the full Daniel's House catalog as context, is being set up — every visitor will get it automatically once it's live.</p>
+              <p>Want a preview now? <button type="button" class="dh-chat-inline-link" data-action="open-settings">Connect your own Anthropic API key</button> in settings.</p>
+            </div>`;
+          } else if (s.userKey && !s.enabled) {
+            // Edge case: user has a key but disabled it
+            welcome += `<div class="dh-chat-claude-callout">
+              <p style="margin:0;">Your Claude key is configured but turned off. <button type="button" class="dh-chat-inline-link" data-action="open-settings">Enable in settings</button> for natural-language answers.</p>
+            </div>`;
+          }
         }
         if (cart.count > 0) welcome += `<p style="margin-top:8px;color:var(--gold);font-weight:500;">You have ${cart.count} item${cart.count === 1 ? '' : 's'} in your cart (${formatPrice(cart.subtotal)} subtotal).</p>`;
         welcome += `<p style="font-size:11px;letter-spacing:0.06em;color:var(--ink-soft);margin-top:8px;">Try: <em>"add the AM Routine to my cart"</em>, <em>"compare retinol vs bakuchiol"</em>, <em>"I have dry skin"</em>.</p>`;
@@ -1763,6 +1814,12 @@
     });
 
     wrap.addEventListener('click', e => {
+      const action = e.target.closest('[data-action]')?.dataset?.action;
+      if (action === 'open-settings') {
+        e.preventDefault();
+        openSettings();
+        return;
+      }
       const sugg = e.target.closest('.dh-chat-suggestion, .dh-chat-cap-chip');
       if (sugg) {
         if (!wrap.classList.contains('expanded')) open();
