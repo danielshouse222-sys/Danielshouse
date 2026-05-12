@@ -227,19 +227,23 @@
 }
 .cart-title em { font-style: italic; color: var(--sage); }
 .cart-close {
-  background: transparent;
+  background: var(--ink);
   border: none;
   cursor: pointer;
-  font-size: 24px;
-  color: var(--ink-soft);
-  width: 32px;
-  height: 32px;
+  font-size: 22px;
+  color: var(--cream);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: color 0.3s;
+  transition: background 0.25s, transform 0.25s;
+  font-weight: 300;
+  line-height: 1;
+  box-shadow: 0 2px 10px rgba(31, 27, 23, 0.15);
 }
-.cart-close:hover { color: var(--ink); }
+.cart-close:hover { background: var(--gold); transform: scale(1.08); }
 .cart-body {
   flex: 1;
   overflow-y: auto;
@@ -407,16 +411,26 @@
 .popup-overlay.open .popup { transform: scale(1); }
 .popup-close {
   position: absolute;
-  top: 12px;
-  right: 16px;
-  background: transparent;
+  top: 14px;
+  right: 14px;
+  background: var(--ink);
   border: none;
   cursor: pointer;
   font-size: 20px;
-  color: var(--ink-soft);
-  width: 32px;
-  height: 32px;
+  color: var(--cream);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.25s, transform 0.25s;
+  font-weight: 300;
+  line-height: 1;
+  box-shadow: 0 2px 10px rgba(31, 27, 23, 0.15);
+  z-index: 10;
 }
+.popup-close:hover { background: var(--gold); transform: scale(1.08); }
 .popup-eyebrow {
   font-size: 11px;
   letter-spacing: 0.28em;
