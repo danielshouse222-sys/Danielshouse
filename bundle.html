@@ -545,7 +545,8 @@
   const concern = (window.CONCERN_BUNDLES || []).find(b => b.id === slug);
   const bundle = curated || concern;
   const isConcern = !!concern;
-  const details = window.getBundleDetails ? window.getBundleDetails(slug) : null;
+  const category = curated ? 'curated' : 'concern';
+  const details = window.getBundleDetails ? window.getBundleDetails(category, slug) : null;
 
   if (!bundle) {
     container.innerHTML = `
@@ -719,7 +720,7 @@
   const pool = isConcern ? (window.CONCERN_BUNDLES || []) : (window.CURATED_BUNDLES || []);
   const related = pool.filter(b => b.id !== slug).slice(0, 3);
   document.getElementById('related-grid').innerHTML = related.map(b => {
-    const d = window.getBundleDetails ? window.getBundleDetails(b.id) : null;
+    const d = window.getBundleDetails ? window.getBundleDetails(isConcern ? 'concern' : 'curated', b.id) : null;
     const blurb = b.blurb || d?.description?.split('.')[0] + '.' || '';
     const eyebrow = d?.eyebrow?.split('·').pop()?.trim() || (isConcern ? 'Concern Bundle' : 'Curated Bundle');
     let rname = b.name;

@@ -303,6 +303,20 @@
     font-weight: 500;
     color: var(--ink);
   }
+  .ingredient-name a.ingredient-link {
+    color: var(--ink);
+    text-decoration: none;
+    background-image: linear-gradient(var(--gold), var(--gold));
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 100% 1px;
+    padding-bottom: 2px;
+    transition: color 0.25s, background-size 0.25s;
+  }
+  .ingredient-name a.ingredient-link:hover {
+    color: var(--gold);
+    background-size: 100% 2px;
+  }
   .ingredient-dose {
     font-size: 12px;
     color: var(--ink-soft);
@@ -964,6 +978,7 @@
 </div>
 
 <script src="data/products.js"></script>
+<script src="data/ingredients.js"></script>
 <script src="js/shared.js"></script>
 <script>
 (function() {
@@ -1052,11 +1067,61 @@
     window.dhCart.add(product, { subscribe });
   });
 
-  // Ingredients
+  // Ingredients — with auto-linking to the glossary (ingredient.html?slug=X)
+  // For each product ingredient (e.g. "KSM-66® Ashwagandha"), match against the
+  // glossary aliases. Aliases come from each glossary entry's name + alt field
+  // PLUS each significant word inside them (≥6 chars, not a generic noise word).
+  // Special characters in the product name (®, ™, etc.) are normalized to spaces
+  // so they don't break word-boundary matching.
+  const GENERIC_WORDS = new Set([
+    'vitamin','extract','complex','blend','powder','acid','marine','complex','strain',
+    'capsule','liquid','formula','daily','organic','natural','active','plant','derived'
+  ]);
+  const glossary = (window.INGREDIENTS || []).map(g => {
+    const aliasSet = new Set();
+    const add = s => { if (s && s.length >= 4) aliasSet.add(s.trim()); };
+    add(g.name);
+    if (g.alt) g.alt.split(',').forEach(a => add(a));
+    // Split each into individual significant words
+    [g.name, g.alt || ''].forEach(str => {
+      str.split(/[^A-Za-z0-9'+-]+/).forEach(word => {
+        if (word.length >= 6 && !GENERIC_WORDS.has(word.toLowerCase())) add(word);
+      });
+    });
+    return {
+      slug: g.slug,
+      aliases: Array.from(aliasSet).sort((a, b) => b.length - a.length) // longest first
+    };
+  });
+
+  function normalize(s) {
+    // Replace special chars (®, ™, ©, etc.) with spaces so word boundaries work
+    return (s || '').toLowerCase().replace(/[^a-z0-9'+-]+/g, ' ');
+  }
+
+  function findGlossaryMatch(productIngredientName) {
+    if (!productIngredientName) return null;
+    const haystack = ' ' + normalize(productIngredientName) + ' ';
+    for (const entry of glossary) {
+      for (const alias of entry.aliases) {
+        const needle = ' ' + normalize(alias).trim() + ' ';
+        if (needle.length < 6) continue; // skip if alias normalized too short
+        if (haystack.includes(needle)) return entry.slug;
+      }
+    }
+    return null;
+  }
+
+  function linkedIngredientName(name) {
+    const slug = findGlossaryMatch(name);
+    if (!slug) return name;
+    return `<a href="ingredient.html?slug=${slug}" class="ingredient-link">${name}</a>`;
+  }
+
   const ingList = document.getElementById('ingredients-list');
   ingList.innerHTML = (product.ingredients || []).map(ing => `
     <div class="ingredient-row">
-      <div class="ingredient-name">${ing.name}</div>
+      <div class="ingredient-name">${linkedIngredientName(ing.name)}</div>
       <div class="ingredient-dose">${ing.dose || ''}</div>
       <div class="ingredient-what">${ing.what}</div>
     </div>

@@ -9,6 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="css/shared.css">
+<link rel="stylesheet" href="css/bundle-expand.css">
 <style>
   :root {
     --cream: #FAF6F0;
@@ -616,13 +617,9 @@
   .hero-product-grid-ultimate .hero-thumb-empty { aspect-ratio: 1/1; background: rgba(184, 153, 104, 0.06); border: 1px solid rgba(184, 153, 104, 0.2); display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--gold); font-size: 12px; opacity: 0.6; }
     .lightbox-body { flex-direction: column; }
     .lightbox-arrow { width: 100%; }
-    .lightbox-img { max-width: 240px; }
-    .lightbox-name { font-size: 26px; }
-  }
-
 </style>
 </head>
-<body>
+<body data-bundle-category="curated">
 
 <div class="shipping-bar">
   <div class="shipping-bar-progress"></div>
@@ -886,7 +883,6 @@
         </div>
 
         <div class="bundle-subscribe-toggle" data-bundle-id="ultimate" style="max-width: 480px; margin-bottom: 16px;"><button type="button" data-mode="once" class="active"><div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">One-Time</span></div><span class="toggle-meta">Single delivery</span></button><button type="button" data-mode="subscribe"><div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">Monthly</span></div><span class="toggle-meta">Cancel anytime</span></button></div><button class="hero-cta" data-bundle-add="ultimate" style="border: none; cursor: pointer;">Add Ultimate to Cart →</button>
-        <a href="bundle.html?slug=ultimate" class="hero-view-details">View Details →</a>
       </div>
     </div>
   </div>
@@ -1569,7 +1565,9 @@
 </div>
 
 <script src="data/products.js"></script>
+<script src="data/bundle-details.js"></script>
 <script src="js/shared.js"></script>
+<script src="js/bundle-expand.js"></script>
 <script>
 // Bundle thumb clicks → open shared lightbox carousel
 (function() {
