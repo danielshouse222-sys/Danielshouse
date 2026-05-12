@@ -4194,3 +4194,178 @@ body.dh-menu-open {
   .dh-sort-select { flex: 1; min-width: 0; }
   .dh-sort-bar-count { text-align: left; }
 }
+
+/* ═════════════════════════════════════════════════════════════
+   BUNDLE DIRECTIONS — "Routine Directions / How to Use" tab
+   Collapsible block inside expanded bundle cards. Two visual groups
+   (Skincare, Supplements) each with numbered steps (AM, PM, Weekly,
+   Morning, Workout, Dinner, Evening).
+   ═════════════════════════════════════════════════════════════ */
+.bundle-directions {
+  background: var(--cream-warm);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--gold);
+  margin: 18px 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* The clickable header tab — full width, behaves like a button */
+.bundle-directions-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 16px 24px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  transition: background 0.25s ease;
+}
+.bundle-directions-toggle:hover { background: rgba(184, 153, 104, 0.08); }
+.bundle-directions-label {
+  font-family: 'Poppins', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 700;
+}
+.bundle-directions-chevron {
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+  font-size: 13px;
+  transition: transform 0.35s ease;
+  flex-shrink: 0;
+}
+
+/* Collapsed: hide content, chevron points down */
+.bundle-directions.is-collapsed .bundle-directions-content { display: none; }
+/* Expanded: show content, chevron rotates 180° */
+.bundle-directions:not(.is-collapsed) .bundle-directions-chevron { transform: rotate(180deg); }
+.bundle-directions:not(.is-collapsed) .bundle-directions-toggle {
+  border-bottom: 1px solid rgba(184, 153, 104, 0.25);
+}
+
+/* Content area — padding only when expanded */
+.bundle-directions-content {
+  padding: 20px 24px 22px;
+}
+
+/* Section header (Skincare / Supplements) — major group divider */
+.directions-section { margin-bottom: 22px; }
+.directions-section:last-child { margin-bottom: 0; }
+.directions-section-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 14px;
+  border-bottom: 1px dashed rgba(184, 153, 104, 0.35);
+}
+.directions-section-icon {
+  color: var(--gold);
+  font-size: 16px;
+  line-height: 1;
+}
+.directions-section-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 20px;
+  color: var(--ink);
+  font-weight: 500;
+  flex: 1;
+}
+.directions-section-count {
+  font-family: 'Poppins', sans-serif;
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+
+/* Step layout — number + label/body */
+.bundle-direction-step {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 14px;
+  margin-bottom: 14px;
+  align-items: baseline;
+}
+.bundle-direction-step:last-child { margin-bottom: 0; }
+.bundle-direction-step .step-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 20px;
+  color: var(--gold);
+  font-weight: 600;
+  line-height: 1;
+  text-align: right;
+}
+.bundle-direction-step .step-content {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+.bundle-direction-step .step-label {
+  font-family: 'Poppins', sans-serif;
+  font-size: 8.5px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ink);
+  font-weight: 700;
+  display: block;
+  margin-bottom: 4px;
+}
+.bundle-direction-step .step-body {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14.5px;
+  font-style: italic;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+.bundle-direction-step .step-body strong {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: var(--sage);
+  font-weight: 600;
+  font-size: 15px;
+}
+.bundle-direction-step .step-arrow {
+  color: var(--gold);
+  font-style: normal;
+  font-weight: 700;
+  font-size: 11px;
+  margin: 0 4px;
+  vertical-align: 1px;
+}
+.bundle-direction-step .step-hint {
+  display: block;
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-size: 11px;
+  color: var(--ink-soft);
+  margin-top: 6px;
+  opacity: 0.75;
+  line-height: 1.4;
+}
+
+@media (max-width: 720px) {
+  .bundle-directions-toggle { padding: 14px 18px; }
+  .bundle-directions-content { padding: 16px 18px 18px; }
+  .directions-section { margin-bottom: 18px; }
+  .directions-section-name { font-size: 18px; }
+  .bundle-direction-step { grid-template-columns: 18px 1fr; gap: 10px; margin-bottom: 12px; }
+  .bundle-direction-step .step-num { font-size: 17px; }
+  .bundle-direction-step .step-body { font-size: 13.5px; }
+  .bundle-direction-step .step-body strong { font-size: 14px; }
+}
