@@ -1734,7 +1734,7 @@ window.CURATED_BUNDLES = [
   },
   {
     id: 'daniels-daily',
-    name: "Daniel's Daily Routine",
+    name: "Daniel's Daily Supplements",
     discount: 0.18,
     slugs: ['the-house-multi','the-house-sunshine','the-house-flow','the-house-biome','the-house-calm','the-house-nad-plus','the-house-vitality','the-house-synapse','the-house-restore','the-house-tranquil']
   },
