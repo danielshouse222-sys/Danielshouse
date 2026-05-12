@@ -2262,6 +2262,7 @@
       ],
       bundles: [
         'daniels-daily',
+        'daniels-skincare',
         'ultimate',
         'am',
         'glow',
@@ -2282,9 +2283,10 @@
       // composite keys disambiguate the 'longevity' id which exists in both lists.
       // Order = predicted sales volume (low-price + broad need rises to the top).
       bundleOrder: [
-        'routine:daniels-daily',  // foundational supplement stack — universal gateway
-        'concern:sleep',          // small bundle, universal need, affordable entry
-        'routine:am',             // skincare gateway
+        'routine:daniels-daily',     // foundational supplement stack — universal gateway
+        'routine:daniels-skincare',  // foundational skincare stack — paired counterpart
+        'concern:sleep',             // small bundle, universal need, affordable entry
+        'routine:am',                // skincare gateway
         'concern:dryness',        // Hydration — fundamental, small price
         'concern:aging',          // Anti-Aging — broad appeal
         'concern:stress',         // Stress — trending, affordable
