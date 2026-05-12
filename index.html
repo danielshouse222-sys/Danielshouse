@@ -443,6 +443,136 @@
     border: 1px solid rgba(212, 201, 182, 0.35);
   }
   .featured-btn.secondary:hover { border-color: var(--cream); background: rgba(250, 246, 240, 0.08); }
+  /* Smart Refill CTA — sage outline, hero treatment for the best-value option */
+  .featured-btn.smart {
+    background: rgba(93, 110, 92, 0.18);
+    color: var(--cream);
+    border: 1px solid var(--sage);
+  }
+  .featured-btn.smart:hover {
+    background: var(--sage);
+    color: var(--cream);
+    border-color: var(--sage);
+  }
+
+  /* What's inside · skincare + supplements split */
+  .featured-mix {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    margin-bottom: 24px;
+    padding: 18px 0;
+    border-top: 1px solid rgba(184, 153, 104, 0.25);
+    border-bottom: 1px solid rgba(184, 153, 104, 0.25);
+  }
+  .featured-mix-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex: 1;
+  }
+  .featured-mix-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 44px;
+    font-weight: 500;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .featured-mix-label {
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--cream);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .featured-mix-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 13.5px;
+    color: var(--cream);
+    opacity: 0.65;
+    line-height: 1.3;
+  }
+  .featured-mix-divider {
+    width: 1px;
+    height: 50px;
+    background: rgba(184, 153, 104, 0.25);
+  }
+
+  /* Pricing tiers — three rows showing One-Time → Monthly → Smart Refill */
+  .featured-pricing {
+    background: rgba(184, 153, 104, 0.08);
+    border-left: 2px solid var(--gold);
+    padding: 18px 22px;
+    margin-bottom: 24px;
+  }
+  .featured-price-line {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    padding: 8px 0;
+    flex-wrap: wrap;
+  }
+  .featured-price-line + .featured-price-line {
+    border-top: 1px dashed rgba(184, 153, 104, 0.22);
+  }
+  .featured-price-was {
+    font-family: 'Poppins', sans-serif;
+    color: var(--cream);
+    opacity: 0.45;
+    font-size: 14px;
+    text-decoration: line-through;
+  }
+  .featured-price-arrow {
+    color: var(--gold);
+    font-size: 14px;
+    opacity: 0.7;
+  }
+  .featured-price-now {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    color: var(--cream);
+    font-weight: 500;
+    line-height: 1;
+  }
+  .featured-price-smart .featured-price-now {
+    color: var(--gold);
+    font-style: italic;
+  }
+  .featured-price-tag {
+    font-family: 'Poppins', sans-serif;
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--cream);
+    opacity: 0.7;
+    font-weight: 500;
+  }
+  .featured-price-tag strong {
+    color: var(--gold);
+    font-weight: 600;
+    opacity: 1;
+  }
+
+  /* Trust row — quick value props between pricing and CTAs */
+  .featured-trust {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    color: var(--cream);
+    opacity: 0.7;
+    letter-spacing: 0.04em;
+  }
+  .featured-trust .dot {
+    color: var(--gold);
+    opacity: 0.5;
+  }
 
   .featured-mosaic {
     display: grid;
@@ -570,6 +700,15 @@
     .cats { grid-template-columns: 1fr; }
     .hero-content { padding: 60px 30px; }
     .featured-stats { gap: 20px; flex-wrap: wrap; }
+    .featured-mix { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .featured-mix-divider { width: 100%; height: 1px; }
+    .featured-mix-num { font-size: 38px; }
+    .featured-pricing { padding: 14px 16px; }
+    .featured-price-now { font-size: 22px; }
+    .featured-price-line { gap: 10px; }
+    .featured-trust { gap: 8px; font-size: 10.5px; }
+    .featured-trust .dot { display: none; }
+    .featured-btn { padding: 14px 22px; font-size: 10px; letter-spacing: 0.18em; }
   }
 
   /* ═══ THE RESEARCH (study quote cards) ═══ */
@@ -851,7 +990,44 @@
     <div>
       <div class="featured-eyebrow">The House Hero · 22 Products</div>
       <h2 class="featured-title">The <em>Ultimate</em> Routine.</h2>
-      <p class="featured-tagline">Everything Daniel uses, every day. The complete house — opened up.</p>
+      <p class="featured-tagline">Everything Daniel uses, every day. The complete house — opened up, paired into one box, the deepest discount on the site.</p>
+
+      <!-- What's inside · split by category -->
+      <div class="featured-mix">
+        <div class="featured-mix-item">
+          <span class="featured-mix-num">12</span>
+          <div class="featured-mix-text">
+            <div class="featured-mix-label">Skincare</div>
+            <div class="featured-mix-sub">AM + PM rituals · cleanse → seal</div>
+          </div>
+        </div>
+        <div class="featured-mix-divider"></div>
+        <div class="featured-mix-item">
+          <span class="featured-mix-num">10</span>
+          <div class="featured-mix-text">
+            <div class="featured-mix-label">Supplements</div>
+            <div class="featured-mix-sub">Foundation + Longevity stacks</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pricing block — three tiers side-by-side -->
+      <div class="featured-pricing">
+        <div class="featured-price-line">
+          <span class="featured-price-was">$716.70</span>
+          <span class="featured-price-arrow">→</span>
+          <span class="featured-price-now">$537.55</span>
+          <span class="featured-price-tag">One-Time · 25% off</span>
+        </div>
+        <div class="featured-price-line">
+          <span class="featured-price-now">$483.80</span>
+          <span class="featured-price-tag">Subscribe Monthly · saves an extra <strong>10%</strong></span>
+        </div>
+        <div class="featured-price-line featured-price-smart">
+          <span class="featured-price-now">~$303<span style="font-size: 0.55em; color: var(--cream); opacity: 0.7; font-weight: 400;">/mo</span></span>
+          <span class="featured-price-tag"><strong>Smart Refill</strong> · saves <strong>$2,168</strong>/year vs. monthly</span>
+        </div>
+      </div>
 
       <div class="featured-stats">
         <div>
@@ -860,7 +1036,7 @@
         </div>
         <div>
           <div class="featured-stat-num">25<em>%</em></div>
-          <div class="featured-stat-label">Routine Discount</div>
+          <div class="featured-stat-label">Bundle Discount</div>
         </div>
         <div>
           <div class="featured-stat-num"><em>$179</em></div>
@@ -868,8 +1044,22 @@
         </div>
       </div>
 
+      <!-- Value props row -->
+      <div class="featured-trust">
+        <span>✓&nbsp; Free shipping over $75</span>
+        <span class="dot">·</span>
+        <span>✓&nbsp; 30-day money-back guarantee</span>
+        <span class="dot">·</span>
+        <span>✓&nbsp; Cancel anytime, no questions</span>
+      </div>
+
+      <!-- Action stack — primary purchase, two cadence alternatives, BYO -->
       <div class="featured-actions">
-        <a href="routines.html" class="featured-btn primary">Shop the Ultimate →</a>
+        <a href="routine.html?slug=ultimate" class="featured-btn primary">Shop the Ultimate · $537.55 →</a>
+        <a href="routine.html?slug=ultimate#smart-refill" class="featured-btn smart">Try Smart Refill · saves $2K+/yr →</a>
+      </div>
+      <div class="featured-actions" style="margin-top: 10px;">
+        <a href="routine.html?slug=ultimate" class="featured-btn secondary">View Full Details</a>
         <a href="routines.html#build-your-own" class="featured-btn secondary">Or Build Your Own</a>
       </div>
     </div>
