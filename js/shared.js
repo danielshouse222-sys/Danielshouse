@@ -2544,5 +2544,188 @@
       `;
     };
 
+    // ─── Bundle Directions Generator ────────────────────────────────────
+    //
+    // Generates a collapsible "how to use" section organized into two
+    // groups: SKINCARE (split into AM / PM / WEEKLY sub-routines) and
+    // SUPPLEMENTS (split into Morning / Workout / Dinner / Evening
+    // buckets). Each product is classified into the appropriate
+    // sub-routine based on its slug.
+    //
+    // Returns HTML markup (or '' if the bundle has no products).
+    window.generateBundleDirections = function(bundle) {
+      if (!bundle || !Array.isArray(bundle.slugs)) return '';
+      const products = bundle.slugs
+        .map(s => window.getProductBySlug && window.getProductBySlug(s))
+        .filter(Boolean);
+      if (!products.length) return '';
+
+      const skincare    = products.filter(p => p.category === 'skincare');
+      const supplements = products.filter(p => p.category === 'supplement');
+
+      // SKINCARE: Each product is classified as AM-only, PM-only, or BOTH.
+      // Order numbers reflect application sequence (thinnest to thickest).
+      // Products that work for both AM and PM (cleanser, treatments) appear
+      // in whichever section the bundle composition makes appropriate.
+      const SKIN_AM_ORDER = {
+        'the-house-wash':       1, // cleanser — also PM
+        'the-house-balance':    2, // toner — AM only
+        'the-house-boost':      3, // vitamin C — AM only
+        'the-house-clear':      3, // acne treatment — both
+        'the-house-hyaluronic': 4, // HA serum — also PM
+        'the-house-defense':    5, // antioxidant — AM only
+        'the-house-soft':       6  // moisturizer — AM only
+      };
+      const SKIN_PM_ORDER = {
+        'the-house-wash':       1, // cleanser — also AM
+        'the-house-renewal':    2, // retinol — PM only
+        'the-house-clear':      2, // acne treatment — both
+        'the-house-bounce':     3, // peptide treatment — PM only
+        'the-house-firm':       3, // peptide serum — PM only
+        'the-house-hyaluronic': 4, // HA serum — also AM
+        'the-house-eye':        5, // eye cream — PM only
+        'the-house-hydration':  6, // PM moisturizer — PM only
+        'the-house-glow':       7  // face oil seal — PM only
+      };
+      // Sets of products that are ONLY appropriate for one time of day.
+      // Used to decide whether a bundle's composition warrants showing
+      // a section for that time of day at all.
+      const AM_EXCLUSIVE = new Set(['the-house-balance', 'the-house-boost', 'the-house-defense', 'the-house-soft']);
+      const PM_EXCLUSIVE = new Set(['the-house-renewal', 'the-house-bounce', 'the-house-firm', 'the-house-eye', 'the-house-hydration', 'the-house-glow']);
+      const SKIN_WEEKLY = new Set(['the-house-mask', 'the-house-polish']);
+
+      // SUPPLEMENTS: bucketed by time-of-day based on each formula's purpose.
+      const EVENING_SUPPS = new Set(['the-house-calm', 'the-house-tranquil']);
+      const DINNER_SUPPS  = new Set(['the-house-restore', 'the-house-seal']);
+      const WORKOUT_SUPPS = new Set(['the-house-power', 'the-house-pump', 'the-house-burn']);
+
+      // ── Build skincare groups ──
+      // Only show AM section if bundle has AM-exclusive products, and only show
+      // PM section if it has PM-exclusive products. Shared products (Wash, HA,
+      // Clear) appear in whichever section is shown.
+      const hasAmExclusive = skincare.some(p => AM_EXCLUSIVE.has(p.slug));
+      const hasPmExclusive = skincare.some(p => PM_EXCLUSIVE.has(p.slug));
+
+      const amSkin = (hasAmExclusive || (!hasPmExclusive && skincare.some(p => SKIN_AM_ORDER[p.slug] !== undefined)))
+        ? skincare
+            .filter(p => SKIN_AM_ORDER[p.slug] !== undefined && !PM_EXCLUSIVE.has(p.slug))
+            .sort((a, b) => SKIN_AM_ORDER[a.slug] - SKIN_AM_ORDER[b.slug])
+        : [];
+
+      const pmSkin = (hasPmExclusive || (!hasAmExclusive && skincare.some(p => SKIN_PM_ORDER[p.slug] !== undefined)))
+        ? skincare
+            .filter(p => SKIN_PM_ORDER[p.slug] !== undefined && !AM_EXCLUSIVE.has(p.slug))
+            .sort((a, b) => SKIN_PM_ORDER[a.slug] - SKIN_PM_ORDER[b.slug])
+        : [];
+
+      const weeklySkin = skincare.filter(p => SKIN_WEEKLY.has(p.slug));
+
+      const skincareSteps = [];
+      if (amSkin.length) {
+        skincareSteps.push({
+          title: 'Morning Skincare',
+          body: amSkin.map(p => `<strong>${p.name}</strong>`).join(' <span class="step-arrow">→</span> '),
+          hint: 'Apply in order, thinnest to thickest · finish with SPF before leaving the house'
+        });
+      }
+      if (pmSkin.length) {
+        skincareSteps.push({
+          title: 'Evening Skincare',
+          body: pmSkin.map(p => `<strong>${p.name}</strong>`).join(' <span class="step-arrow">→</span> '),
+          hint: 'Apply in order after cleansing · allow 1–2 minutes between active layers'
+        });
+      }
+      if (weeklySkin.length) {
+        skincareSteps.push({
+          title: 'Weekly Reset',
+          body: weeklySkin.map(p => `<strong>${p.name}</strong>`).join(' + '),
+          hint: 'Use 1–2× per week, after cleansing and before serums'
+        });
+      }
+
+      // ── Build supplement groups ──
+      const morning = supplements.filter(p =>
+        !EVENING_SUPPS.has(p.slug) && !DINNER_SUPPS.has(p.slug) && !WORKOUT_SUPPS.has(p.slug)
+      );
+      const workout = supplements.filter(p => WORKOUT_SUPPS.has(p.slug));
+      const dinner  = supplements.filter(p => DINNER_SUPPS.has(p.slug));
+      const evening = supplements.filter(p => EVENING_SUPPS.has(p.slug));
+
+      const suppSteps = [];
+      if (morning.length) suppSteps.push({
+        title: 'Morning',
+        body: morning.map(p => `<strong>${p.name}</strong>`).join(', '),
+        hint: 'Take with breakfast or your first meal of the day'
+      });
+      if (workout.length) suppSteps.push({
+        title: 'Pre / Post Workout',
+        body: workout.map(p => `<strong>${p.name}</strong>`).join(', '),
+        hint: 'Follow each bottle\u2019s label for pre vs post timing'
+      });
+      if (dinner.length) suppSteps.push({
+        title: 'With Dinner',
+        body: dinner.map(p => `<strong>${p.name}</strong>`).join(', '),
+        hint: 'Take alongside your evening meal for best absorption'
+      });
+      if (evening.length) suppSteps.push({
+        title: 'Evening',
+        body: evening.map(p => `<strong>${p.name}</strong>`).join(', '),
+        hint: 'Take 30–60 minutes before bed'
+      });
+
+      if (!skincareSteps.length && !suppSteps.length) return '';
+
+      // Global step numbering runs continuously across both sections.
+      let stepIdx = 0;
+      function renderStep(s) {
+        stepIdx++;
+        return `
+          <div class="bundle-direction-step">
+            <span class="step-num">${stepIdx}</span>
+            <div class="step-content">
+              <span class="step-label">${s.title}</span>
+              <span class="step-body">${s.body}${s.hint ? `<span class="step-hint">${s.hint}</span>` : ''}</span>
+            </div>
+          </div>
+        `;
+      }
+
+      const skincareSection = skincareSteps.length ? `
+        <div class="directions-section">
+          <div class="directions-section-label">
+            <span class="directions-section-icon">◐</span>
+            <span class="directions-section-name">Skincare</span>
+            <span class="directions-section-count">${skincare.length} ${skincare.length === 1 ? 'product' : 'products'}</span>
+          </div>
+          ${skincareSteps.map(renderStep).join('')}
+        </div>
+      ` : '';
+
+      const suppSection = suppSteps.length ? `
+        <div class="directions-section">
+          <div class="directions-section-label">
+            <span class="directions-section-icon">◍</span>
+            <span class="directions-section-name">Supplements</span>
+            <span class="directions-section-count">${supplements.length} ${supplements.length === 1 ? 'product' : 'products'}</span>
+          </div>
+          ${suppSteps.map(renderStep).join('')}
+        </div>
+      ` : '';
+
+      // Wrapper is collapsible — starts collapsed, tap header to expand.
+      return `
+        <div class="bundle-directions is-collapsed">
+          <button type="button" class="bundle-directions-toggle" data-directions-toggle aria-expanded="false">
+            <span class="bundle-directions-label">Routine Directions · How to Use</span>
+            <span class="bundle-directions-chevron">▾</span>
+          </button>
+          <div class="bundle-directions-content">
+            ${skincareSection}
+            ${suppSection}
+          </div>
+        </div>
+      `;
+    };
+
   })();
 
