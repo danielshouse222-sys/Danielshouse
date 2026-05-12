@@ -2574,7 +2574,7 @@
         'the-house-clear':      3, // acne treatment — both
         'the-house-hyaluronic': 4, // HA serum — also PM
         'the-house-defense':    5, // antioxidant — AM only
-        'the-house-soft':       6  // moisturizer — AM only
+        'the-house-soft':       6  // moisturizer
       };
       const SKIN_PM_ORDER = {
         'the-house-wash':       1, // cleanser — also AM
@@ -2584,14 +2584,38 @@
         'the-house-firm':       3, // peptide serum — PM only
         'the-house-hyaluronic': 4, // HA serum — also AM
         'the-house-eye':        5, // eye cream — PM only
-        'the-house-hydration':  6, // PM moisturizer — PM only
+        'the-house-hydration':  6, // PM moisturizer
         'the-house-glow':       7  // face oil seal — PM only
       };
-      // Sets of products that are ONLY appropriate for one time of day.
-      // Used to decide whether a bundle's composition warrants showing
-      // a section for that time of day at all.
-      const AM_EXCLUSIVE = new Set(['the-house-balance', 'the-house-boost', 'the-house-defense', 'the-house-soft']);
-      const PM_EXCLUSIVE = new Set(['the-house-renewal', 'the-house-bounce', 'the-house-firm', 'the-house-eye', 'the-house-hydration', 'the-house-glow']);
+
+      // ── Moisturizer logic ──
+      // Soft and Hydration are interchangeable end-of-routine sealants.
+      // Every routine — AM or PM — needs a moisturizer. When a bundle has
+      // BOTH, Soft is the AM moisturizer and Hydration is the PM moisturizer
+      // (each locked to its preferred time). When a bundle has only ONE,
+      // that moisturizer fills both AM and PM slots so the user has a
+      // sealing step in every routine.
+      const hasSoft      = skincare.some(p => p.slug === 'the-house-soft');
+      const hasHydration = skincare.some(p => p.slug === 'the-house-hydration');
+
+      if (hasSoft && !hasHydration) {
+        SKIN_PM_ORDER['the-house-soft'] = 6; // Soft serves PM too
+      }
+      if (hasHydration && !hasSoft) {
+        SKIN_AM_ORDER['the-house-hydration'] = 6; // Hydration serves AM too
+      }
+
+      // Time-exclusive products determine whether a bundle warrants an
+      // AM section, PM section, or both. A product appearing in this set
+      // means it's locked to that time of day.
+      const AM_EXCLUSIVE = new Set(['the-house-balance', 'the-house-boost', 'the-house-defense']);
+      const PM_EXCLUSIVE = new Set(['the-house-renewal', 'the-house-bounce', 'the-house-firm', 'the-house-eye', 'the-house-glow']);
+      // When both moisturizers are present, each becomes time-locked.
+      if (hasSoft && hasHydration) {
+        AM_EXCLUSIVE.add('the-house-soft');
+        PM_EXCLUSIVE.add('the-house-hydration');
+      }
+
       const SKIN_WEEKLY = new Set(['the-house-mask', 'the-house-polish']);
 
       // SUPPLEMENTS: bucketed by time-of-day based on each formula's purpose.
