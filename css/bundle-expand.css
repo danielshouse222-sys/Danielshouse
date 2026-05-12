@@ -117,6 +117,98 @@
   border-bottom: 1px solid var(--rule);
 }
 
+/* ───────── Collapsible section pattern ─────────
+   When .bundle-exp-h is a <button class="bundle-exp-toggle">, it becomes a
+   clickable header that toggles the section's content open/closed. The base
+   .bundle-exp-h styles still apply (typography, border, etc.) — we only
+   override the button-specific user-agent defaults and lay out the +/− icon. */
+button.bundle-exp-h.bundle-exp-toggle {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--rule);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  cursor: pointer;
+  text-align: left;
+  /* Re-assert .bundle-exp-h typography so button user-agent styles don't override */
+  font-family: 'Poppins', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+  margin-bottom: 16px;
+  padding: 0 0 10px;
+  transition: color 0.25s;
+}
+button.bundle-exp-h.bundle-exp-toggle:hover {
+  color: var(--ink);
+}
+button.bundle-exp-h.bundle-exp-toggle:focus-visible {
+  outline: 1px dashed var(--gold);
+  outline-offset: 4px;
+}
+.bundle-exp-toggle .exp-h-label {
+  flex: 1;
+  line-height: 1.2;
+}
+.bundle-exp-toggle .exp-h-icon {
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1;
+  color: var(--ink-soft);
+  letter-spacing: 0;            /* override parent letter-spacing for the symbol */
+  transition: color 0.25s, transform 0.3s;
+  flex-shrink: 0;
+}
+button.bundle-exp-h.bundle-exp-toggle:hover .exp-h-icon { color: var(--ink); }
+/* Icon glyph swaps based on section state via ::before */
+.bundle-exp-section.is-collapsible .exp-h-icon::before {
+  content: '+';
+}
+.bundle-exp-section.is-collapsible.is-open .exp-h-icon::before {
+  content: '−';
+}
+
+/* Content collapse animation. Default state (when .is-open) is fully visible.
+   When .is-open is removed, content collapses to 0 height and 0 opacity. */
+.bundle-exp-section.is-collapsible > .bundle-exp-content {
+  overflow: hidden;
+  max-height: 9000px;
+  opacity: 1;
+  transition: max-height 0.45s ease, opacity 0.3s ease, margin-top 0.3s ease;
+}
+.bundle-exp-section.is-collapsible:not(.is-open) > .bundle-exp-content {
+  max-height: 0;
+  opacity: 0;
+  margin-top: 0;
+}
+/* When collapsed, tighten the header margin since there's nothing below it */
+.bundle-exp-section.is-collapsible:not(.is-open) > .bundle-exp-h.bundle-exp-toggle {
+  margin-bottom: 0;
+}
+
+/* Skincare section sub-routine sub-headers (AM / PM grouped) */
+.bundle-exp-subroutine { margin-bottom: 28px; }
+.bundle-exp-subroutine:last-child { margin-bottom: 0; }
+.bundle-exp-subroutine-h {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 20px;
+  color: var(--ink);
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed var(--rule);
+}
+
 .bundle-why-block {
   background: var(--cream-warm);
   border-left: 3px solid var(--gold);
@@ -521,12 +613,21 @@
   .bundle-exp-section { margin-bottom: 32px; }
 
   /* ─── SECTION HEADERS — slightly bigger, less aggressive tracking ── */
-  .bundle-exp-h {
+  .bundle-exp-h,
+  button.bundle-exp-h.bundle-exp-toggle {
     font-size: 11px;
     letter-spacing: 0.22em;
     margin-bottom: 14px;
     padding-bottom: 10px;
   }
+  button.bundle-exp-h.bundle-exp-toggle { padding-top: 0; padding-left: 0; padding-right: 0; }
+  /* Sub-routine header (AM/PM under Skincare) — mobile sizing */
+  .bundle-exp-subroutine-h {
+    font-size: 18px;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+  }
+  .bundle-exp-subroutine { margin-bottom: 24px; }
 
   /* ─── PRODUCT ROWS — image + content stack (compact) ──────────── */
   .bundle-exp-row {
