@@ -13,144 +13,264 @@
 <style>
   body { background: var(--cream); color: var(--ink); font-family: 'Poppins', sans-serif; margin: 0; }
 
+  /* ═══════ HERO ═══════ */
   .shop-hero {
     text-align: center;
-    padding: 80px 40px 50px;
+    padding: 96px 40px 64px;
+    background: linear-gradient(180deg, var(--cream) 0%, var(--cream-warm) 100%);
     border-bottom: 1px solid var(--rule);
   }
-  .shop-eyebrow { font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 20px; }
-  .shop-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(48px, 6.5vw, 76px); font-weight: 400; line-height: 0.95; margin-bottom: 16px; }
-  .shop-title em { font-style: italic; color: var(--sage); }
-  .shop-tagline { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(17px, 2.2vw, 22px); color: var(--ink-soft); max-width: 720px; margin: 0 auto 14px; }
-  .shop-note {
-    font-size: 12px;
-    letter-spacing: 0.05em;
-    color: var(--ink-soft);
-    max-width: 560px;
-    margin: 0 auto;
-    font-style: italic;
-  }
-  .shop-note strong { color: var(--gold); font-style: normal; font-weight: 500; }
-  .shop-shipping-note {
+  .shop-eyebrow {
     font-size: 11px;
-    letter-spacing: 0.03em;
-    color: var(--ink-soft);
-    max-width: 620px;
-    margin: 18px auto 0;
-    line-height: 1.55;
-    padding: 12px 18px;
-    border: 1px solid var(--rule);
-    border-radius: 2px;
-    background: rgba(184, 153, 104, 0.04);
-  }
-  .shop-shipping-note .shipping-dot {
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
     color: var(--gold);
-    font-size: 9px;
-    margin-right: 6px;
-    vertical-align: 2px;
+    font-weight: 500;
+    margin-bottom: 24px;
   }
+  .shop-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 7vw, 88px);
+    font-weight: 400;
+    line-height: 0.95;
+    margin: 0 0 24px;
+  }
+  .shop-title em { font-style: italic; color: var(--sage); }
+  .shop-hero-rule {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 30px;
+    height: 14px;
+  }
+  .shop-hero-rule span {
+    display: block;
+    width: 80px;
+    height: 1px;
+    background: var(--gold);
+    position: relative;
+  }
+  .shop-hero-rule span::before,
+  .shop-hero-rule span::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 4px;
+    height: 4px;
+    background: var(--gold);
+    border-radius: 100%;
+    transform: translateY(-50%);
+  }
+  .shop-hero-rule span::before { left: -10px; }
+  .shop-hero-rule span::after { right: -10px; }
 
-  /* Tab switcher */
+  .shop-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(19px, 2.4vw, 25px);
+    color: var(--ink);
+    max-width: 720px;
+    margin: 0 auto 18px;
+    line-height: 1.45;
+  }
+  .shop-note {
+    font-size: 13px;
+    letter-spacing: 0.02em;
+    color: var(--ink-soft);
+    max-width: 540px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+  .shop-note strong { color: var(--gold); font-weight: 500; }
+
+  /* ═══════ TAB SWITCHER ═══════ */
+  .shop-switch-wrap {
+    background: var(--cream-warm);
+    padding: 32px 20px 0;
+    border-bottom: 1px solid var(--rule);
+  }
   .shop-switch {
     display: flex;
     justify-content: center;
-    gap: 0;
-    background: var(--cream-warm);
-    padding: 30px 20px 0;
+    gap: 8px;
+    max-width: 1100px;
+    margin: 0 auto;
   }
   .shop-tab {
     background: transparent;
     border: none;
-    padding: 16px 36px;
+    padding: 18px 44px 22px;
     cursor: pointer;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 26px;
-    font-style: italic;
-    color: var(--ink-soft);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
     border-bottom: 2px solid transparent;
-    transition: all 0.3s;
+    transition: border-color 0.35s, color 0.35s;
+    text-align: center;
   }
-  .shop-tab:hover { color: var(--ink); }
+  .shop-tab-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    line-height: 1;
+    color: var(--ink-soft);
+    font-weight: 500;
+    transition: color 0.35s;
+  }
+  .shop-tab-label em { font-style: italic; color: var(--sage); }
+  .shop-tab-count {
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    opacity: 0.7;
+    transition: color 0.35s, opacity 0.35s;
+  }
+  .shop-tab:hover .shop-tab-label { color: var(--ink); }
   .shop-tab.active {
-    color: var(--ink);
     border-bottom-color: var(--gold);
+  }
+  .shop-tab.active .shop-tab-label { color: var(--ink); }
+  .shop-tab.active .shop-tab-count {
+    color: var(--gold);
+    opacity: 1;
+    font-weight: 600;
   }
 
   .shop-content {
     max-width: 1280px;
     margin: 0 auto;
-    padding: 60px 40px;
+    padding: 72px 40px 100px;
   }
 
+  /* ═══════ CONCERN GRID ═══════ */
   .concern-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 36px;
+    gap: 44px;
     justify-content: center;
     margin: 0 auto;
   }
 
-  /* Concern bundle card */
+  /* ═══════ CONCERN CARD ═══════ */
   .concern-card {
     background: var(--cream);
     border: 1px solid var(--rule);
-    padding: 32px;
-    transition: border-color 0.3s, box-shadow 0.3s;
+    padding: 36px 36px 32px;
+    transition: border-color 0.35s, box-shadow 0.35s, transform 0.35s;
     display: flex;
     flex-direction: column;
     position: relative;
   }
+  .concern-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 40px; height: 1px;
+    background: var(--gold);
+    transition: width 0.4s ease;
+  }
   .concern-card:hover {
     border-color: var(--gold);
-    box-shadow: 0 16px 40px rgba(31, 27, 23, 0.08);
+    box-shadow: 0 24px 56px rgba(31, 27, 23, 0.10);
+    transform: translateY(-3px);
+  }
+  .concern-card:hover::before { width: 100%; }
+
+  /* Savings ribbon in top-right corner */
+  .concern-savings-ribbon {
+    position: absolute;
+    top: 22px;
+    right: 22px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--gold);
+    background: rgba(184, 153, 104, 0.10);
+    padding: 7px 12px;
+    border-radius: 2px;
+    z-index: 2;
   }
 
+  /* Card header — name, mix pills, blurb */
   .concern-header {
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-    margin-bottom: 20px;
-  }
-  .concern-icon {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 48px;
-    color: var(--gold);
-    line-height: 1;
-    flex-shrink: 0;
+    margin-bottom: 26px;
+    padding-right: 110px; /* leave room for the savings ribbon */
   }
   .concern-name {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 28px;
+    font-size: 30px;
     font-weight: 500;
     line-height: 1.05;
-    margin-bottom: 8px;
+    margin-bottom: 14px;
+    color: var(--ink);
   }
   .concern-name em { font-style: italic; color: var(--sage); }
+
+  /* The new MIX indicator pills — small badges showing the skincare/supplement split */
+  .concern-mix {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+  }
+  .concern-mix-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 5px 11px 5px 10px;
+    border-radius: 2px;
+    background: var(--cream-warm);
+    border: 1px solid var(--rule);
+    color: var(--ink-soft);
+  }
+  .concern-mix-pill .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 100%;
+    display: inline-block;
+  }
+  .concern-mix-pill.skin .dot { background: var(--sage); }
+  .concern-mix-pill.supp .dot { background: var(--gold); }
+
   .concern-blurb {
-    font-size: 13.5px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 15px;
     line-height: 1.6;
     color: var(--ink-soft);
   }
 
-  /* Product list inside each concern card — name + price visible per product */
+  /* Product preview grid — auto-fitting tiles with category-tinted borders */
   .concern-products {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
     gap: 14px 12px;
-    margin-bottom: 22px;
+    margin-bottom: 26px;
+    padding-top: 26px;
+    border-top: 1px solid var(--rule);
   }
+  .concern-products.cols-2 { grid-template-columns: repeat(2, 1fr); max-width: 65%; margin-left: auto; margin-right: auto; }
   .concern-products.cols-3 { grid-template-columns: repeat(3, 1fr); }
-  .concern-products.cols-2 { grid-template-columns: repeat(2, 1fr); max-width: 70%; }
+  .concern-products.cols-4 { grid-template-columns: repeat(4, 1fr); }
+  .concern-products.cols-5 { grid-template-columns: repeat(5, 1fr); }
+  .concern-products.cols-6 { grid-template-columns: repeat(3, 1fr); }
 
   .concern-product {
     display: flex;
     flex-direction: column;
     text-align: center;
     cursor: pointer;
-    transition: transform 0.3s ease;
     text-decoration: none;
     color: var(--ink);
+    transition: transform 0.3s ease;
   }
   .concern-product:hover { transform: translateY(-3px); }
 
@@ -163,10 +283,21 @@
     position: relative;
     transition: border-color 0.3s, box-shadow 0.3s;
   }
+  /* Category-tinted left accent stripe — visually communicates which tile is skin vs supp */
+  .concern-product-img::after {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 2px;
+    transition: width 0.3s;
+  }
+  .concern-product-img.is-skincare::after { background: var(--sage); }
+  .concern-product-img.is-supplement::after { background: var(--gold); }
   .concern-product:hover .concern-product-img {
     border-color: var(--gold);
-    box-shadow: 0 10px 28px rgba(31, 27, 23, 0.14);
+    box-shadow: 0 12px 28px rgba(31, 27, 23, 0.12);
   }
+  .concern-product:hover .concern-product-img::after { width: 3px; }
   .concern-product-img img {
     width: 100%;
     height: 100%;
@@ -178,57 +309,62 @@
 
   .concern-product-name {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 15px;
+    font-size: 14.5px;
     font-weight: 500;
     line-height: 1.15;
     color: var(--ink);
-    margin-bottom: 4px;
+    margin-bottom: 3px;
   }
   .concern-product-name em { font-style: italic; color: var(--sage); }
-
   .concern-product-tag {
-    font-size: 9.5px;
-    letter-spacing: 0.16em;
+    font-size: 9px;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--ink-soft);
     font-weight: 500;
     line-height: 1.3;
+    margin-bottom: 2px;
   }
-  .concern-product-tag .price {
+  .concern-product-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
     color: var(--gold);
     font-weight: 600;
   }
 
-  /* Price + actions */
+  /* Pricing block */
   .concern-pricing {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     justify-content: space-between;
     border-top: 1px solid var(--rule);
-    padding-top: 18px;
+    border-bottom: 1px solid var(--rule);
+    padding: 18px 0;
     margin-bottom: 18px;
     gap: 14px;
   }
   .concern-price-stack {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 3px;
   }
   .concern-price-line {
     display: flex;
     align-items: baseline;
-    gap: 10px;
+    gap: 12px;
   }
   .concern-price-was {
     font-size: 14px;
     color: var(--ink-soft);
     text-decoration: line-through;
+    opacity: 0.7;
   }
   .concern-price-now {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 30px;
+    font-size: 34px;
     font-weight: 500;
     color: var(--ink);
+    line-height: 1;
   }
   .concern-savings {
     font-family: 'Cormorant Garamond', serif;
@@ -237,36 +373,40 @@
     color: var(--sage);
   }
   .concern-count {
-    font-size: 11px;
-    letter-spacing: 0.18em;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-style: italic;
+    color: var(--gold);
+    text-align: right;
+    line-height: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+  }
+  .concern-count span {
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-size: 9px;
+    letter-spacing: 0.24em;
     text-transform: uppercase;
     color: var(--ink-soft);
     font-weight: 500;
-    text-align: right;
-    flex-shrink: 0;
   }
 
-  /* Subscribe toggle on concern cards — same toggle as bundle cards but tighter spacing */
-  .concern-subscribe-toggle {
-    margin-bottom: 12px;
-  }
-  .concern-subscribe-toggle button {
-    padding: 10px 12px;
-  }
-  .concern-subscribe-toggle .toggle-name {
-    font-size: 11px;
-  }
-  .concern-subscribe-toggle .toggle-meta {
-    font-size: 9.5px;
-  }
+  /* Subscribe toggle */
+  .concern-subscribe-toggle { margin-bottom: 14px; }
+  .concern-subscribe-toggle button { padding: 11px 12px; }
+  .concern-subscribe-toggle .toggle-name { font-size: 11px; }
+  .concern-subscribe-toggle .toggle-meta { font-size: 9.5px; }
 
   .concern-actions {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 8px;
+    gap: 10px;
   }
   .concern-btn {
-    padding: 13px 16px;
+    padding: 14px 16px;
     font-family: 'Poppins', sans-serif;
     font-size: 11px;
     letter-spacing: 0.22em;
@@ -293,13 +433,23 @@
     color: var(--cream);
   }
 
-  @media (max-width: 900px) {
-    .concern-grid { grid-template-columns: 1fr; gap: 28px; }
+  @media (max-width: 980px) {
+    .concern-grid { grid-template-columns: 1fr; gap: 32px; }
+    .shop-tab { padding: 16px 28px 18px; }
+    .shop-tab-label { font-size: 22px; }
   }
   @media (max-width: 640px) {
+    .shop-hero { padding: 64px 24px 48px; }
+    .concern-card { padding: 28px 24px 24px; }
+    .concern-header { padding-right: 90px; }
+    .concern-savings-ribbon { top: 16px; right: 16px; font-size: 9px; padding: 6px 10px; }
+    .concern-name { font-size: 25px; }
+    .concern-products.cols-5,
+    .concern-products.cols-6 { grid-template-columns: repeat(3, 1fr); }
+    .concern-products.cols-4 { grid-template-columns: repeat(2, 1fr); }
     .concern-actions { grid-template-columns: 1fr; }
-    .concern-pricing { flex-direction: column; align-items: flex-start; gap: 6px; }
-    .concern-count { text-align: left; }
+    .concern-pricing { flex-direction: row; align-items: center; }
+    .concern-count { font-size: 24px; }
   }
 
   /* ═══ CONCERN DIRECTORY (skin vs wellness side-by-side list) ═══ */
@@ -652,16 +802,24 @@
 
 
 <section class="shop-hero">
-  <div class="shop-eyebrow">15 Official Bundles · Save on Every Concern</div>
-  <h1 class="shop-title">Shop by <em>concern</em> or <em>worry.</em></h1>
-  <p class="shop-tagline">Tell us what you want to fix — stress, breakouts, dull skin, low energy — and add the official bundle that targets it. One click, instant savings.</p>
-  <p class="shop-note"><strong>Every concern is a bundle</strong> — pick one, get the curated set of products bundled at a discount. Click any product to preview it before you commit.</p>
-  <p class="shop-shipping-note"><span class="shipping-dot">●</span> Ships in 1–2 packages, arrives within 3–5 days. Your skincare and supplements come from specialist partners — most bundles arrive in a single shipment, mixed bundles a day or two apart.</p>
+  <div class="shop-eyebrow">15 Bundles · Inside + Out</div>
+  <h1 class="shop-title">Shop by <em>concern.</em></h1>
+  <div class="shop-hero-rule"><span></span></div>
+  <p class="shop-tagline">Every bundle pairs the topical with the internal — because skin and body don't work in isolation.</p>
+  <p class="shop-note">Tell us what to fix: <strong>stress, breakouts, dull skin, low energy</strong> — pick the bundle, save instantly.</p>
 </section>
 
-<div class="shop-switch">
-  <button class="shop-tab active" data-view="skin">Skin Concerns</button>
-  <button class="shop-tab" data-view="goal">Wellness Worries</button>
+<div class="shop-switch-wrap">
+  <div class="shop-switch">
+    <button class="shop-tab active" data-view="skin">
+      <span class="shop-tab-label">Skin <em>Concerns</em></span>
+      <span class="shop-tab-count">6 bundles</span>
+    </button>
+    <button class="shop-tab" data-view="goal">
+      <span class="shop-tab-label">Wellness <em>Goals</em></span>
+      <span class="shop-tab-count">9 bundles</span>
+    </button>
+  </div>
 </div>
 
 <div class="shop-content">
@@ -671,19 +829,19 @@
 
 <!-- ═══ CONCERN DIRECTORY — Quick Index at end as reference ═══ -->
 <section class="directory-section">
-  <div class="directory-eyebrow">Quick Index · The Full List</div>
-  <h2 class="directory-headline"><em>Skin</em> Concerns · <em>Wellness</em> Worries</h2>
-  <p class="directory-sub">All 15 bundles at a glance. Tap any name to scroll back up to it.</p>
+  <div class="directory-eyebrow">Quick Index · All 15 Bundles</div>
+  <h2 class="directory-headline">Every <em>bundle</em>, every <em>concern</em>.</h2>
+  <p class="directory-sub">Jump to any bundle above — or browse the full list below.</p>
 
   <div class="directory-grid">
     <div class="directory-col">
-      <div class="directory-col-title"><em>Skin</em> Concerns <span class="directory-col-count">· 6 official bundles</span></div>
-      <p class="directory-col-blurb">What shows on the surface. Cleansers, treatments, serums, oils.</p>
+      <div class="directory-col-title"><em>Skin</em> Concerns <span class="directory-col-count">· 6 bundles</span></div>
+      <p class="directory-col-blurb">What shows on the surface — paired with the supplements that drive results from inside.</p>
       <ol class="directory-list" id="directory-skin"></ol>
     </div>
     <div class="directory-col">
-      <div class="directory-col-title"><em>Wellness</em> Worries <span class="directory-col-count">· 9 official bundles</span></div>
-      <p class="directory-col-blurb">What you can't see but feel. Stress, sleep, energy, focus, gut, joints — bundled to fix.</p>
+      <div class="directory-col-title"><em>Wellness</em> Goals <span class="directory-col-count">· 9 bundles</span></div>
+      <p class="directory-col-blurb">What you feel but don't always see — paired with the skincare that shows the result on the surface.</p>
       <ol class="directory-list" id="directory-goal"></ol>
     </div>
   </div>
@@ -766,31 +924,41 @@ function renderConcernCard(bundle) {
   const pricing = window.getConcernBundlePricing(bundle.id);
   if (!pricing) return '';
   const { products, fullPrice, discountedPrice, savings } = pricing;
-  const colsClass = products.length === 2 ? 'cols-2' : products.length === 3 ? 'cols-3' : '';
+  const colsClass = products.length === 2 ? 'cols-2' : products.length === 3 ? 'cols-3' : products.length === 4 ? 'cols-4' : products.length === 5 ? 'cols-5' : 'cols-6';
   const productCount = products.length;
+  // Count skincare + supplement split — drives the new mix indicator pills
+  const skinCount = products.filter(p => p.category === 'skincare').length;
+  const suppCount = products.filter(p => p.category === 'supplement').length;
   // Bundle names are "The X Bundle" — italicize the X (the meaningful word)
   const nameMatch = bundle.name.match(/^The (.+) Bundle$/);
   const meaningfulWord = nameMatch ? nameMatch[1] : bundle.name.split(' ')[0];
   const formattedName = nameMatch ? `The <em>${meaningfulWord}</em> Bundle` : bundle.name;
 
+  // Discount percentage for the inline savings ribbon
+  const discountPct = Math.round((bundle.discount || 0.07) * 100);
+
   return `
     <div class="concern-card" data-bundle-id="${bundle.id}" data-product-slugs="${bundle.slugs.join(',')}" data-bundle-name="${bundle.name}">
+      <div class="concern-savings-ribbon">Save ${discountPct}%</div>
+
       <div class="concern-header">
-        <div class="concern-icon">${bundle.icon}</div>
-        <div>
-          <div class="concern-name">${formattedName}</div>
-          <div class="concern-blurb">${bundle.blurb}</div>
+        <div class="concern-name">${formattedName}</div>
+        <div class="concern-mix">
+          ${skinCount > 0 ? `<span class="concern-mix-pill skin"><span class="dot"></span>${skinCount} Skincare</span>` : ''}
+          ${suppCount > 0 ? `<span class="concern-mix-pill supp"><span class="dot"></span>${suppCount} Supplement${suppCount > 1 ? 's' : ''}</span>` : ''}
         </div>
+        <div class="concern-blurb">${bundle.blurb}</div>
       </div>
 
       <div class="concern-products ${colsClass}">
         ${products.map((p, i) => `
           <div class="concern-product" data-idx="${i}" title="The House ${p.name} — click to preview">
-            <div class="concern-product-img">
+            <div class="concern-product-img is-${p.category}">
               <img src="${p.image}" alt="${p.name}" loading="lazy"/>
             </div>
             <div class="concern-product-name">The House <em>${p.name}</em></div>
-            <div class="concern-product-tag">${p.tag.split('·')[0].trim()} · <span class="price">$${p.price.toFixed(0)}</span></div>
+            <div class="concern-product-tag">${p.tag.split('·')[0].trim()}</div>
+            <div class="concern-product-price">$${p.price.toFixed(0)}</div>
           </div>
         `).join('')}
       </div>
@@ -801,9 +969,9 @@ function renderConcernCard(bundle) {
             <span class="concern-price-was">$${fullPrice.toFixed(2)}</span>
             <span class="concern-price-now">$${discountedPrice.toFixed(2)}</span>
           </div>
-          <div class="concern-savings">Save ${savings.toFixed(2)} as a bundle</div>
+          <div class="concern-savings">Save $${savings.toFixed(2)} as a bundle</div>
         </div>
-        <div class="concern-count">${productCount} products</div>
+        <div class="concern-count">${productCount}<span>products</span></div>
       </div>
 
       <div class="bundle-subscribe-toggle concern-subscribe-toggle" data-bundle-id="${bundle.id}" data-toggle>
