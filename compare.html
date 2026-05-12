@@ -187,6 +187,31 @@
     width: 60px; height: 1px; background: var(--gold);
     margin: 6px 0 18px;
   }
+  /* The closing "Bottom Line" block: single-column, centered, distinct background */
+  .cmp-block.cmp-block-final {
+    grid-template-columns: 1fr;
+    background: var(--ink);
+    color: var(--cream);
+    text-align: center;
+    padding: 64px 56px;
+    margin-top: 24px;
+  }
+  .cmp-block.cmp-block-final .cmp-block-cat {
+    color: var(--gold);
+  }
+  .cmp-block.cmp-block-final .cmp-block-name {
+    color: var(--cream);
+  }
+  .cmp-block.cmp-block-final .cmp-block-name em {
+    color: var(--gold);
+  }
+  .cmp-block.cmp-block-final .cmp-block-rule {
+    margin-left: auto; margin-right: auto;
+    background: var(--gold);
+  }
+  .cmp-block.cmp-block-final p strong {
+    color: var(--cream);
+  }
   .cmp-block-col h4 {
     font-family: 'Poppins', sans-serif;
     font-size: 11px;
@@ -279,9 +304,9 @@
       <li><a href="about.html">Daniel's Story</a></li>
       <li><a href="skincare.html">Skincare</a></li>
       <li><a href="supplements.html">Supplements</a></li>
-      <li><a href="ingredients.html">Ingredients</a></li>
+
+      <li><a href="routines.html">Routines</a></li>
       <li><a href="bundles.html">Bundles</a></li>
-      <li><a href="shop.html">Shop By Concern</a></li>
     </ul>
     <div style="display: flex; gap: 4px;">
       <button class="search-trigger" aria-label="Search">Search</button>
@@ -291,203 +316,189 @@
 </nav>
 
 <section class="cmp-hero">
-  <div class="cmp-eyebrow">Compare · Honest Side-By-Side</div>
-  <h1 class="cmp-title">How we <em>compare.</em></h1>
-  <p class="cmp-tagline">An honest look at how Daniel's House stacks up against the brands we get compared to most.</p>
+  <div class="cmp-eyebrow">Compare · Honestly Indirect</div>
+  <h1 class="cmp-title">How we sit on <em>the shelf.</em></h1>
+  <p class="cmp-tagline">An honest look at how we compare to the brands you've definitely seen on your For You page — described, not named.</p>
 </section>
 
 <section class="cmp-intro">
-  <p>Wellness is a crowded shelf. We get asked all the time how we're different from <strong>AG1, Ritual, Hims, or The Ordinary</strong> — fair question. Here's the short answer: <strong>we're a different shape</strong>, not necessarily a better brand than any of them at the thing they do best. We do both supplements and skincare, in routines that compound, with clinical-dose forms and full transparency. If that's not what you want, one of the brands below probably is — and we'll happily point you to them.</p>
-</section>
-
-<section class="cmp-table-section">
-  <div class="cmp-table-head">
-    <div class="cmp-table-eyebrow">The Quick Compare</div>
-    <h2 class="cmp-table-title">Side-by-<em>side.</em></h2>
-  </div>
-
-  <div class="cmp-table-wrap">
-    <table class="cmp-table">
-      <thead>
-        <tr>
-          <th>What we compare</th>
-          <th class="is-us">Daniel's House</th>
-          <th>AG1</th>
-          <th>Ritual</th>
-          <th>Hims / Hers</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Supplements</td>
-          <td class="is-us">18 products · daily, longevity, workout, beauty</td>
-          <td>One all-in-one greens powder</td>
-          <td>Multivitamins + a handful of singles</td>
-          <td>Telehealth-Rx + a small wellness line</td>
-        </tr>
-        <tr>
-          <td>Skincare</td>
-          <td class="is-us">15 products · full AM + PM routines</td>
-          <td class="cell-x">Not offered</td>
-          <td class="cell-x">Not offered</td>
-          <td>A small skincare line (mainly Hers)</td>
-        </tr>
-        <tr>
-          <td>Bundle / Routine Architecture</td>
-          <td class="is-us">26 curated + concern bundles, plus Build-Your-Own</td>
-          <td>Single product, no bundling</td>
-          <td>Single-product subscriptions</td>
-          <td>Bundle-style "programs" inside categories</td>
-        </tr>
-        <tr>
-          <td>Clinical-Dose Approach</td>
-          <td class="is-us">Every active at study-dose; forms validated in research</td>
-          <td>Doses disclosed; volume of actives means small per-serving amounts</td>
-          <td>Doses fully disclosed; well-formulated for its scope</td>
-          <td>Varies by product; Rx side is clinical, OTC side varies</td>
-        </tr>
-        <tr>
-          <td>Made In</td>
-          <td class="is-us">North America · FDA-registered, GMP-certified</td>
-          <td>North Carolina, USA (TGA-registered facilities)</td>
-          <td>USA-based manufacturing</td>
-          <td>USA-based manufacturing</td>
-        </tr>
-        <tr>
-          <td>Subscribe &amp; Save</td>
-          <td class="is-us">Every product &amp; bundle · stacks on bundle discount · 10% extra</td>
-          <td>Subscription is the primary purchase model</td>
-          <td>Subscription is the primary purchase model</td>
-          <td>Subscription-based for most products</td>
-        </tr>
-        <tr>
-          <td>Guarantee</td>
-          <td class="is-us">30 days · full refund · even used bottles · prorated on bundles</td>
-          <td>90-day money back on first order</td>
-          <td>Money-back guarantee (terms vary)</td>
-          <td>30-day satisfaction guarantee on most products</td>
-        </tr>
-        <tr>
-          <td>Founder Access</td>
-          <td class="is-us">Daniel replies to email personally</td>
-          <td>Large team · standard CS</td>
-          <td>Large team · standard CS</td>
-          <td>Large team · clinical staff</td>
-        </tr>
-        <tr>
-          <td>Starting Price (one product)</td>
-          <td class="is-us">$24 – $52</td>
-          <td>~$79 / month subscription only</td>
-          <td>~$33 / month subscription</td>
-          <td>Varies widely by Rx vs OTC</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <p class="cmp-table-note">Pricing and product info above reflects publicly listed details at the time of writing. Competitor offerings may change. The point is what each brand is for, not what costs less.</p>
+  <p>Wellness is a crowded shelf. We get asked all the time how we compare to <strong>the brand with the green powder, the one with the see-through bottles, the model's new skincare line, the reality star's gummies, the TikTok creator's acne brand</strong>, and the rest. We're not going to name names — you know who they are. Below are the archetypes they fit into, what each one does brilliantly, and where we sit differently.</p>
+  <p style="margin-top: 18px;"><strong>The honest part:</strong> if you fit cleanly into one of the archetypes below, that brand is probably right for you. We're a different shape entirely — full routines, topical and internal, clinical-dose forms, paired to compound. That's it. That's the difference.</p>
 </section>
 
 <section class="cmp-deep">
   <div class="cmp-deep-head">
-    <div class="cmp-deep-eyebrow">The Long Version</div>
-    <h2 class="cmp-deep-title">Where each <em>brand wins.</em></h2>
-    <p class="cmp-deep-sub">An honest take on what these brands do well, and where Daniel's House does it differently.</p>
+    <div class="cmp-deep-eyebrow">The Archetypes</div>
+    <h2 class="cmp-deep-title">The shelf you <em>already know.</em></h2>
+    <p class="cmp-deep-sub">Seven brand archetypes that dominate the wellness conversation. What each one does well — and where Daniel's House sits differently. The names aren't here; the allusions are. If you know, you know.</p>
   </div>
 
-  <!-- AG1 -->
+  <!-- 1. The All-In-One Greens Powder -->
   <div class="cmp-block">
-    <div class="cmp-block-cat">Premium All-In-One Greens</div>
-    <h3 class="cmp-block-name">Daniel's House <em>vs.</em> AG1 (Athletic Greens)</h3>
+    <div class="cmp-block-cat">Archetype 01 · The Premium Greens Scoop</div>
+    <h3 class="cmp-block-name">The <em>one-scoop</em> wellness empire.</h3>
     <div class="cmp-block-rule"></div>
 
     <div class="cmp-block-col them">
-      <h4>Where AG1 Wins</h4>
-      <p><strong>Simplicity.</strong> One scoop, one product, one decision. If you want a single-step morning supplement and you don't want to think about it again, AG1 is genuinely good at being that.</p>
-      <p><strong>Brand and ubiquity.</strong> Heavily marketed, athlete-endorsed, broadly available. The decision feels safe even when the data behind it is mixed.</p>
-      <p><strong>Travel-friendly.</strong> Single sachet packs are the most travel-friendly format in the category.</p>
+      <h4>What they do well</h4>
+      <p><strong>The defining brand of the category.</strong> One canister, one scoop, 70-something ingredients you don't have to think about. The matte container, the founder podcast spots, the sponsorship of every athlete and host you've ever followed.</p>
+      <p><strong>Simplicity is the whole product.</strong> If you want a single morning decision and the comfort that you're "covered," they've genuinely solved that problem for millions of people.</p>
+      <p><strong>Travel-ready format.</strong> Single-serving sachets you can throw in a carry-on are unmatched in the category.</p>
     </div>
 
     <div class="cmp-block-col us">
-      <h4>Where We Differ</h4>
-      <p><strong>Clinical doses, not blend doses.</strong> AG1's "proprietary blend" contains 70+ ingredients in a small per-serving footprint. We separate ingredients into single-purpose products so each one is at its <strong>study dose</strong> — magnesium glycinate at 200mg, KSM-66 ashwagandha at 600mg, NAD+ at 250mg. You get a few products, not a blend, but you get the doses the research actually validated.</p>
-      <p><strong>Inside <em>and</em> outside.</strong> AG1 is supplements only. Our daily routines include the skincare layer, because we think most "wellness" stops at the neck and shouldn't.</p>
-      <p><strong>No subscription lock.</strong> Buy one bottle once, or subscribe and save 10%. No subscription minimum, no required commitment.</p>
+      <h4>Where we differ</h4>
+      <p><strong>Clinical doses, not blend doses.</strong> Seventy-plus ingredients in one scoop means each one is necessarily at a sprinkle dose. We separate every active into its own product so the magnesium glycinate is at 200mg, the KSM-66 is at 600mg, the NAD+ is at 250mg — the doses the actual studies used.</p>
+      <p><strong>We're not just supplements.</strong> Their scoop ends at the neck. Our routines include the skincare layer because most "wellness" should keep going.</p>
+      <p><strong>No subscription lock-in.</strong> Buy one bottle once, no minimum, no required commitment, no consultation. Just product.</p>
     </div>
   </div>
 
-  <!-- Ritual -->
+  <!-- 2. The Transparent Multivitamin -->
   <div class="cmp-block">
-    <div class="cmp-block-cat">Transparent Multivitamins</div>
-    <h3 class="cmp-block-name">Daniel's House <em>vs.</em> Ritual</h3>
+    <div class="cmp-block-cat">Archetype 02 · The Transparent Multivitamin</div>
+    <h3 class="cmp-block-name">The <em>yellow capsule</em> in the see-through bottle.</h3>
     <div class="cmp-block-rule"></div>
 
     <div class="cmp-block-col them">
-      <h4>Where Ritual Wins</h4>
-      <p><strong>Transparency was the starting point.</strong> Ritual was an early voice for label honesty — naming ingredient sources, formulation reasoning, third-party testing. They pushed the category forward.</p>
-      <p><strong>Beautiful product design.</strong> The capsule, the bottle, the packaging — everything is unmistakably theirs. Few brands feel this considered.</p>
-      <p><strong>Gendered formulation.</strong> Their women's-specific and pregnancy lines are some of the best-formulated in the multivitamin category.</p>
+      <h4>What they do well</h4>
+      <p><strong>Transparency was the starting point.</strong> The brand that taught the category that consumers actually want to know who made the active, where it came from, and what dose is inside. Everyone caught up because of them.</p>
+      <p><strong>Built specifically for women.</strong> Pregnancy, postnatal, perimenopause — separate formulations for separate seasons, all considered, all well-formulated.</p>
+      <p><strong>Beautiful, considered design.</strong> The capsule, the bottle, the visual language. Few wellness brands feel this art-directed.</p>
     </div>
 
     <div class="cmp-block-col us">
-      <h4>Where We Differ</h4>
-      <p><strong>A full system, not a multivitamin.</strong> Ritual's catalog is anchored on the multi. Ours is built around routines — a multi plus the supporting actives that the multi alone doesn't deliver at clinical levels (NAD+, ashwagandha, omega-3, magnesium glycinate, creatine).</p>
-      <p><strong>Skincare in the same house.</strong> Ritual doesn't do skincare. Our routines treat the surface and the system as one protocol.</p>
-      <p><strong>Bundle architecture.</strong> Ritual sells individual SKUs. We pre-bundle by goal (Daily, Workout, Longevity, Glow) and by concern (Anti-Aging, Sleep, Energy, Acne) — and let you build your own at a tiered discount.</p>
+      <h4>Where we differ</h4>
+      <p><strong>A full system, not a multi.</strong> Their catalog is anchored on a single product. Ours is built around routines — the multi <em>plus</em> the actives the multi alone can't deliver at clinical levels: NAD+, ashwagandha, omega-3, magnesium glycinate, creatine, collagen.</p>
+      <p><strong>Skincare in the same house.</strong> They don't do topical. We treat the surface and the system as one protocol because they affect each other.</p>
+      <p><strong>Bundle architecture.</strong> Their model is single-product subscriptions. Ours is pre-built routines (AM, PM, Workout, Longevity, Glow) plus targeted concern bundles plus a tiered Build-Your-Own routine — because a good multi is where most regimens start, not where they end.</p>
     </div>
   </div>
 
-  <!-- Hims/Hers -->
+  <!-- 3. The Telehealth Wellness Duo -->
   <div class="cmp-block">
-    <div class="cmp-block-cat">Wellness Telehealth Platforms</div>
-    <h3 class="cmp-block-name">Daniel's House <em>vs.</em> Hims &amp; Hers</h3>
+    <div class="cmp-block-cat">Archetype 03 · The Prescription Wellness Platforms</div>
+    <h3 class="cmp-block-name">The <em>pastel-website</em> Rx platforms.</h3>
     <div class="cmp-block-rule"></div>
 
     <div class="cmp-block-col them">
-      <h4>Where Hims Wins</h4>
-      <p><strong>Prescription access.</strong> Hims and Hers can prescribe — minoxidil for hair loss, sildenafil for ED, GLP-1s for weight, sertraline for mental health. That's a category we don't and won't operate in.</p>
-      <p><strong>Telehealth integration.</strong> Talking to a provider, getting a prescription, and receiving the product all happen inside one platform. For Rx needs, that's hard to beat.</p>
-      <p><strong>Scale and distribution.</strong> Operating coast-to-coast with state-level pharmacy compliance is a real operational moat.</p>
+      <h4>What they do well</h4>
+      <p><strong>Prescription access.</strong> Hair-loss medications, GLP-1s, ED, hormonal birth control, mental-health Rx — all delivered through telehealth, prescribed by a real provider, shipped monthly. That's a category we will never operate in, and they do it well.</p>
+      <p><strong>One platform, one experience.</strong> Talking to a clinician, getting a prescription, and receiving the product all happen inside one app. They've made medical care less awkward for a whole generation.</p>
+      <p><strong>State-level pharmacy compliance at scale.</strong> A genuine operational moat.</p>
     </div>
 
     <div class="cmp-block-col us">
-      <h4>Where We Differ</h4>
-      <p><strong>OTC, premium, transparent.</strong> Everything we sell is over-the-counter and consumer-facing. No subscription gating around a doctor visit, no Rx, no consultations required. You see exactly what's in the bottle and decide for yourself.</p>
-      <p><strong>Considered formulation, not category-blanketing.</strong> Hims-Hers' OTC wellness range is broad but generic — vitamin gummies, hair gummies, ashwagandha gummies, melatonin gummies. Our supplements are studied forms at clinical doses, no gummy fillers.</p>
-      <p><strong>Founder voice.</strong> Daniel takes everything we sell. Hims is a publicly traded company with a different brand-customer relationship. Different sizes, different feels.</p>
+      <h4>Where we differ</h4>
+      <p><strong>Everything we sell is over-the-counter.</strong> No subscription gated behind a doctor visit, no consultation queue, no prescription. You see exactly what's in the bottle and decide for yourself.</p>
+      <p><strong>OTC, but clinical-dose OTC.</strong> The OTC wellness side of their range is broad but generic — gummy this, gummy that. Our supplements are studied forms at study doses, in capsules and powders, not flavor-limited gummies.</p>
+      <p><strong>Founder voice.</strong> Daniel takes everything we sell and replies to email himself. Public-company customer service runs on a different rhythm.</p>
     </div>
   </div>
 
-  <!-- The Ordinary / Necessaire -->
+  <!-- 4. The Clinical Skincare Specialists -->
   <div class="cmp-block">
-    <div class="cmp-block-cat">Skincare-Only Specialists</div>
-    <h3 class="cmp-block-name">Daniel's House <em>vs.</em> The Ordinary &amp; Necessaire</h3>
+    <div class="cmp-block-cat">Archetype 04 · The Clinical Skincare Labs</div>
+    <h3 class="cmp-block-name">The <em>$7 actives</em> with the percentage on the label.</h3>
     <div class="cmp-block-rule"></div>
 
     <div class="cmp-block-col them">
-      <h4>Where They Win</h4>
-      <p><strong>The Ordinary on price.</strong> Single-actives at honest prices — niacinamide 10% for under $10, retinol for $15. Unbeatable on dollar-per-active in skincare. If budget is the top constraint, they're the answer.</p>
-      <p><strong>Necessaire on design and body care.</strong> Beautifully packaged, body-first, gender-neutral. Their bath oil and body serum are genuinely category-leading.</p>
-      <p><strong>Skincare specialization.</strong> Both brands are deep in skincare and don't dilute focus by selling supplements or wellness adjacents.</p>
+      <h4>What they do well</h4>
+      <p><strong>Price-to-active is unbeatable.</strong> Single-actives at honest prices — niacinamide 10% for under ten dollars, retinol for fifteen. If budget is the top constraint and you don't mind building your own routine from scratch, this archetype is the right answer.</p>
+      <p><strong>The minimalist sister brands.</strong> The off-white-bottle body-care variants, the gender-neutral aesthetic, the body serums and bath oils. Genuinely considered, often beautiful.</p>
+      <p><strong>Skincare specialization.</strong> They're deep in topical and don't dilute focus with supplements or wellness adjacents.</p>
     </div>
 
     <div class="cmp-block-col us">
-      <h4>Where We Differ</h4>
-      <p><strong>Routine over actives.</strong> The Ordinary asks you to assemble your own routine from 60+ products and figure out interactions. We pre-build the AM and PM routine and explain exactly how each step layers — no decision fatigue, no overlap risks.</p>
-      <p><strong>Skincare + supplements together.</strong> The gut-skin axis, the collagen-from-the-inside half, the magnesium-for-sleep-improves-skin-repair loop — all of it is in scope for us, none of it for skincare-only brands.</p>
-      <p><strong>Premium without the luxury markup.</strong> Bundle pricing puts our per-product cost into a range that's premium-grade but not luxury-priced. Necessaire is closer to luxury; we sit between.</p>
+      <h4>Where we differ</h4>
+      <p><strong>Routine, not actives.</strong> They ask you to assemble your own routine from sixty-plus single-actives and figure out the interactions yourself. We pre-build the AM and PM and tell you exactly how each step layers, what to skip on which night, what cancels what.</p>
+      <p><strong>Skincare <em>and</em> supplements together.</strong> The gut-skin axis, the collagen-from-the-inside half, the magnesium-improves-sleep-which-improves-repair loop — all in scope for us, none of it for any skincare-only brand.</p>
+      <p><strong>Premium without the luxury markup.</strong> Bundle pricing keeps our per-product cost premium-grade but not luxury-priced. The high-end variant of this archetype lives closer to luxury; we sit between.</p>
     </div>
+  </div>
+
+  <!-- 5. The Celebrity Gummy Line -->
+  <div class="cmp-block">
+    <div class="cmp-block-cat">Archetype 05 · The Reality-Star Gummies</div>
+    <h3 class="cmp-block-name">The <em>candy-colored</em> wellness shelf at Target.</h3>
+    <div class="cmp-block-rule"></div>
+
+    <div class="cmp-block-col them">
+      <h4>What they do well</h4>
+      <p><strong>Accessibility.</strong> Wellness gummies that don't feel intimidating. Mainstream retail, mainstream price point, named after what they do — "Sleep," "Debloat," "Burn." Genuinely got an audience to take a supplement that would never have walked into an apothecary.</p>
+      <p><strong>The founder is a household name.</strong> A reality-TV pedigree, a wellness-curious aesthetic, and the kind of cultural reach money can't buy. Made the category mainstream in a year.</p>
+      <p><strong>Price.</strong> Twenty-something dollars for a bottle of gummies puts it within reach of anyone.</p>
+    </div>
+
+    <div class="cmp-block-col us">
+      <h4>Where we differ</h4>
+      <p><strong>Form matters as much as the headline.</strong> Gummies physically can't carry clinically meaningful doses of most actives without becoming candy — the sugar, gelatin, and flavor crowd out the active. We use capsules and powders because that's how the research dosed the ingredient.</p>
+      <p><strong>Dose by what worked, not by what fits.</strong> A gummy magnesium has to compromise on the magnesium because of the format. Our capsule is 200mg of glycinate because that's what the sleep trials used. Same principle across every active.</p>
+      <p><strong>No flavored sugar.</strong> Most gummy lines hide 2-4g of sugar per serving. Our supplements are unflavored, sugar-free, no fillers — the product is the active and the carrier, not the active and the candy.</p>
+    </div>
+  </div>
+
+  <!-- 6. The Model-Founded Skincare Brand -->
+  <div class="cmp-block">
+    <div class="cmp-block-cat">Archetype 06 · The Model's Skincare Drop</div>
+    <h3 class="cmp-block-name">The <em>peptide-glaze</em> brand with the phone case.</h3>
+    <div class="cmp-block-rule"></div>
+
+    <div class="cmp-block-col them">
+      <h4>What they do well</h4>
+      <p><strong>Brand.</strong> The most desirable beauty launch of a generation. Built in under three years, sold to a beauty conglomerate at the end of 2025 for north of a billion. The aesthetic is genuinely beautiful and the founder is the most-photographed face of the moment.</p>
+      <p><strong>The peptide lip product.</strong> Underneath the marketing, it's actually a good product. The viral phone case was a stroke of merchandising genius.</p>
+      <p><strong>The dewy "glazed" look.</strong> Defined what skincare-as-aesthetic feels like for the entire under-thirty market.</p>
+    </div>
+
+    <div class="cmp-block-col us">
+      <h4>Where we differ</h4>
+      <p><strong>Routine, not aesthetic.</strong> Their catalog reads like a curated lip-and-glow set. Ours reads like a regimen — cleanser, toner, antioxidant serum, hydrator, peptide eye treatment, moisturizer, retinoid, weekly resurfacing. Things you use in order, not pieces you display on a counter.</p>
+      <p><strong>Glow comes from inside too.</strong> The "glazed" look isn't just topical — it's hydration, sleep, gut health, omega-3 status. We do the topicals AND the inside-out supplements that compound on them.</p>
+      <p><strong>Clinical-dose forms.</strong> Their products are well-formulated, but the catalog is small and gap-heavy by design. We do the whole arc, with peptides, retinol, vitamin C, niacinamide, hyaluronic acid, glycolic — all at study-grade concentrations.</p>
+    </div>
+  </div>
+
+  <!-- 7. The TikTok Creator's Acne Brand -->
+  <div class="cmp-block">
+    <div class="cmp-block-cat">Archetype 07 · The Creator-Founded Acne Brand</div>
+    <h3 class="cmp-block-name">The <em>get-ready-with-me</em> founder's first launch.</h3>
+    <div class="cmp-block-rule"></div>
+
+    <div class="cmp-block-col them">
+      <h4>What they do well</h4>
+      <p><strong>Voice.</strong> The founder has fourteen million followers who watched her struggle with cystic acne in real time — through college dorm get-ready-with-mes, late-night confessionals, and every product she tried that didn't work. That authenticity is rare and earned.</p>
+      <p><strong>A smart first formula.</strong> Mandelic-acid-first instead of salicylic for acne-prone skin is a genuinely good choice — gentler, less barrier-disrupting, well-tolerated by sensitive types. The launched four-piece is thoughtful for a Gen Z audience.</p>
+      <p><strong>Built for one specific season.</strong> Acne in your late teens and twenties is a specific problem with a specific protocol. They serve that protocol well.</p>
+    </div>
+
+    <div class="cmp-block-col us">
+      <h4>Where we differ</h4>
+      <p><strong>Full routine, not one concern.</strong> Acne is one thing. Hydration, anti-aging, brightening, barrier support, peptide work, weekly resurfacing — those are the other things. We do the full arc, so the routine evolves with you instead of being abandoned when the acne phase ends.</p>
+      <p><strong>Inside-out, too.</strong> Acne has gut, hormone, and inflammation components topicals can't reach. Our zinc, omega-3, probiotic, and adaptogen stack compounds on top of what mandelic acid does on the surface.</p>
+      <p><strong>Different season of life.</strong> Their archetype customer is twenty and fighting breakouts. Our archetype customer is anyone in their late twenties through fifties building a routine to last decades. Different shelf, different protocol.</p>
+    </div>
+  </div>
+
+  <!-- BOTTOM LINE -->
+  <div class="cmp-block cmp-block-final">
+    <div class="cmp-block-cat">The Bottom Line</div>
+    <h3 class="cmp-block-name">Why we <em>exist.</em></h3>
+    <div class="cmp-block-rule"></div>
+    <p style="font-size: 16px; line-height: 1.85; color: var(--ink-soft); max-width: 820px; margin: 0 auto; text-align: center;">
+      The brands above are all doing something well — some are doing it brilliantly. We don't exist to be a better version of any of them. We exist because <strong style="color: var(--ink);">none of them does what we do</strong>: full routines, topical and internal, every active at a clinical dose in a form your body absorbs, paired in routines and bundles that compound. If that's not what you want, one of the archetypes above is probably the right shelf. If it is — you're already home.
+    </p>
   </div>
 
 </section>
 
 <section class="cmp-final">
-  <div class="cmp-final-eyebrow">Now you've seen the shelf</div>
+  <div class="cmp-final-eyebrow">If you've made it this far</div>
   <h2 class="cmp-final-title">Find the routine <em>that fits.</em></h2>
-  <p class="cmp-final-body">If after all that we're still the closest match — take the quiz to find your bundle. If a brand above is a better fit for what you need, we're glad you found it.</p>
+  <p class="cmp-final-body">If after all the archetypes we're still the closest match, take the quiz and we'll point you to the routine that fits how you actually live. If one of the brands above is a better fit for what you need — we're glad you found it.</p>
   <div class="cmp-final-buttons">
     <a class="primary" href="quiz.html">Take the Quiz →</a>
-    <a class="secondary" href="bundles.html">Browse Bundles</a>
+    <a class="secondary" href="routines.html">Browse Routines</a>
   </div>
 </section>
 
@@ -514,7 +525,7 @@
       </div>
       <a href="mailto:daniel@danielshousewellness.com" class="footer-email">daniel@danielshousewellness.com</a>
     </div>
-    <div class="footer-col"><h4>Shop</h4><ul><li><a href="skincare.html">Skincare</a></li><li><a href="supplements.html">Supplements</a></li><li><a href="bundles.html">Bundles</a></li><li><a href="shop.html">Concern Bundles</a></li><li><a href="compare.html">Compare</a></li></ul></div>
+    <div class="footer-col"><h4>Shop</h4><ul><li><a href="skincare.html">Skincare</a></li><li><a href="supplements.html">Supplements</a></li><li><a href="routines.html">Routines</a></li><li><a href="bundles.html">Bundles</a></li><li><a href="compare.html">Compare</a></li></ul></div>
     <div class="footer-col"><h4>The House</h4><ul><li><a href="about.html">Daniel's Story</a></li><li><a href="ingredients.html">Ingredient Glossary</a></li><li><a href="blog.html">Blog</a></li><li><a href="reviews.html">Reviews</a></li><li><a href="quiz.html">Take the Quiz</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
     <div class="footer-col"><h4>Help</h4><ul><li><a href="faq.html#shipping">Shipping</a></li><li><a href="faq.html#returns">Returns Policy →</a></li><li><a href="faq.html#returns">30-Day Guarantee</a></li><li><a href="faq.html">Contact</a></li></ul></div>
   </div>

@@ -318,9 +318,9 @@
       <li><a href="about.html">Daniel's Story</a></li>
       <li><a href="skincare.html">Skincare</a></li>
       <li><a href="supplements.html">Supplements</a></li>
-      <li><a href="ingredients.html">Ingredients</a></li>
+
+      <li><a href="routines.html">Routines</a></li>
       <li><a href="bundles.html">Bundles</a></li>
-      <li><a href="shop.html">Shop By Concern</a></li>
     </ul>
     <div style="display: flex; gap: 4px;">
       <button class="search-trigger" aria-label="Search">Search</button>
@@ -497,6 +497,9 @@
 </div>
 
 <div class="ing-content">
+  <!-- Sort bar (mounted via JS) -->
+  <div class="ing-sort-mount" style="margin-bottom: 22px;"></div>
+
   <div class="ing-grid" id="ing-grid"></div>
 </div>
 
@@ -523,7 +526,7 @@
       </div>
       <a href="mailto:daniel@danielshousewellness.com" class="footer-email">daniel@danielshousewellness.com</a>
     </div>
-    <div class="footer-col"><h4>Shop</h4><ul><li><a href="skincare.html">Skincare</a></li><li><a href="supplements.html">Supplements</a></li><li><a href="bundles.html">Bundles</a></li><li><a href="shop.html">Concern Bundles</a></li><li><a href="compare.html">Compare</a></li></ul></div>
+    <div class="footer-col"><h4>Shop</h4><ul><li><a href="skincare.html">Skincare</a></li><li><a href="supplements.html">Supplements</a></li><li><a href="routines.html">Routines</a></li><li><a href="bundles.html">Bundles</a></li><li><a href="compare.html">Compare</a></li></ul></div>
     <div class="footer-col"><h4>The House</h4><ul><li><a href="about.html">Daniel's Story</a></li><li><a href="ingredients.html">Ingredient Glossary</a></li><li><a href="blog.html">Blog</a></li><li><a href="reviews.html">Reviews</a></li><li><a href="quiz.html">Take the Quiz</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
     <div class="footer-col"><h4>Help</h4><ul><li><a href="faq.html#shipping">Shipping</a></li><li><a href="faq.html#returns">Returns Policy →</a></li><li><a href="faq.html#returns">30-Day Guarantee</a></li><li><a href="faq.html">Contact</a></li></ul></div>
   </div>
@@ -578,8 +581,8 @@ const grid = document.getElementById('ing-grid');
 const tabs = document.querySelectorAll('.ing-tab');
 const tabsRoot = document.getElementById('ingTabs');
 
-// ── Filter state (two-axis: main category + optional sub-tag) ────────────
-const state = { cat: 'all', tag: '' };
+// ── Filter state (two-axis: main category + optional sub-tag + sort key) ─
+const state = { cat: 'all', tag: '', sort: 'featured' };
 // Per-category sub-tag memory — so toggling tabs preserves chosen sub-filters
 const tagByCat = { all: '', skincare: '', supplement: '', strong: '' };
 
@@ -600,7 +603,14 @@ function matchesTag(i, tag) {
 }
 
 function renderIngredients() {
-  const filtered = INGREDIENTS.filter(i => matchesMain(i, state.cat) && matchesTag(i, state.tag));
+  let filtered = INGREDIENTS.filter(i => matchesMain(i, state.cat) && matchesTag(i, state.tag));
+  // Apply sort (when shared.js sort module is available)
+  if (window.dhSortItems) {
+    filtered = window.dhSortItems(filtered, 'ingredients', state.sort);
+  }
+  // Update the count display in the sort bar (if it's mounted)
+  const countEl = document.querySelector('.ing-sort-mount .dh-sort-bar-count');
+  if (countEl) countEl.innerHTML = `<strong>${filtered.length}</strong> ingredient${filtered.length === 1 ? '' : 's'}`;
   if (filtered.length === 0) {
     grid.innerHTML = '<div class="ing-empty">No ingredients match this filter. Try a different sub-filter.</div>';
     return;
@@ -732,6 +742,24 @@ document.addEventListener('keydown', (e) => {
 // Initial render
 renderDropdowns();
 renderIngredients();
+
+// Mount sort bar (after shared.js sort module is ready)
+function mountIngredientsSortBar() {
+  if (!window.dhBuildSortBar) { setTimeout(mountIngredientsSortBar, 50); return; }
+  const mount = document.querySelector('.ing-sort-mount');
+  if (!mount || mount.dataset.mounted === '1') return;
+  const bar = window.dhBuildSortBar(
+    'ingredients',
+    state.sort,
+    `<strong>${INGREDIENTS.length}</strong> ingredients`,
+    (key) => { state.sort = key; renderIngredients(); }
+  );
+  if (bar) {
+    mount.appendChild(bar);
+    mount.dataset.mounted = '1';
+  }
+}
+mountIngredientsSortBar();
 
 // Re-render after products.js loads (so product-name links resolve)
 document.addEventListener('DOMContentLoaded', () => renderIngredients());

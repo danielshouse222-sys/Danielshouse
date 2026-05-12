@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Routine — Daniel's House</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/shared.css">
+
+<style>
+  body { background: var(--cream); }
+
+  .bundle-detail-page {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 40px 40px 100px;
+  }
+  .bundle-back-link {
+    display: inline-block;
+    margin-bottom: 28px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .bundle-back-link:hover { color: var(--gold); }
+
+  /* Hero — two columns on desktop: image grid + meta panel */
+  .bundle-hero {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 48px;
+    padding-bottom: 56px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 56px;
+    align-items: start;
+  }
+  .bundle-hero-imgs {
+    background: var(--cream-warm);
+    padding: 28px;
+    display: grid;
+    gap: 8px;
+  }
+  .bundle-hero-imgs.cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .bundle-hero-imgs.cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .bundle-hero-imgs.cols-4 { grid-template-columns: repeat(4, 1fr); }
+  .bundle-hero-imgs.cols-5 { grid-template-columns: repeat(5, 1fr); }
+  .bundle-hero-thumb {
+    aspect-ratio: 1 / 1;
+    background: var(--cream);
+    overflow: hidden;
+  }
+  .bundle-hero-thumb img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .bundle-hero-meta { padding-top: 8px; }
+  .bundle-hero-eyebrow {
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+  .bundle-hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(42px, 5vw, 56px);
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.04;
+    margin: 0 0 8px;
+  }
+  .bundle-hero-title em { font-style: italic; color: var(--sage); }
+  .bundle-hero-sub {
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 22px;
+  }
+  .bundle-hero-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: var(--ink);
+    line-height: 1.65;
+    margin: 0 0 28px;
+  }
+
+  .bundle-pricing {
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 20px 0;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .bundle-price-was {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    color: var(--ink-soft);
+    text-decoration: line-through;
+  }
+  .bundle-price-now {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .bundle-price-save {
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    padding: 5px 10px;
+    background: rgba(184, 153, 104, 0.12);
+    border-radius: 3px;
+  }
+
+  /* Purchase area */
+  .bundle-purchase-toggle {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .bundle-purchase-toggle button {
+    background: transparent;
+    border: 1px solid var(--rule);
+    padding: 14px 16px;
+    text-align: left;
+    cursor: pointer;
+    transition: border-color 0.3s, background 0.3s;
+    font-family: 'Poppins', sans-serif;
+  }
+  .bundle-purchase-toggle button.active {
+    border-color: var(--ink);
+    background: var(--cream-warm);
+  }
+  .bundle-purchase-toggle .toggle-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+  .bundle-purchase-toggle .toggle-mark {
+    width: 12px; height: 12px;
+    border: 1px solid var(--rule);
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+  .bundle-purchase-toggle button.active .toggle-mark {
+    background: var(--ink);
+    border-color: var(--ink);
+  }
+  .bundle-purchase-toggle .toggle-meta {
+    font-size: 10px;
+    color: var(--ink-soft);
+    letter-spacing: 0.04em;
+  }
+
+  .bundle-cta-add {
+    width: 100%;
+    padding: 16px;
+    background: var(--ink);
+    color: var(--cream);
+    border: none;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: background 0.3s;
+  }
+  .bundle-cta-add:hover { background: var(--sage); }
+
+  /* Section pattern */
+  .bundle-section { margin-bottom: 64px; }
+  .bundle-section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--ink);
+    margin: 0 0 10px;
+    line-height: 1.15;
+  }
+  .bundle-section-title em { font-style: italic; color: var(--sage); }
+  .bundle-section-eyebrow {
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+  .bundle-section-blurb {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    margin: 0 0 28px;
+    max-width: 720px;
+  }
+
+  /* What's Inside — product card grid */
+  .bundle-products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+  }
+  .bundle-product-card {
+    background: var(--cream-warm);
+    border: 1px solid var(--rule);
+    padding: 18px;
+    text-decoration: none;
+    color: var(--ink);
+    transition: border-color 0.3s, transform 0.3s;
+    display: flex;
+    flex-direction: column;
+  }
+  .bundle-product-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-2px);
+  }
+  .bundle-product-card-img {
+    aspect-ratio: 1 / 1;
+    background: var(--cream);
+    overflow: hidden;
+    margin-bottom: 14px;
+  }
+  .bundle-product-card-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .bundle-product-card-tag {
+    font-family: 'Poppins', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  .bundle-product-card-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    font-weight: 500;
+    line-height: 1.15;
+    margin-bottom: 6px;
+  }
+  .bundle-product-card-name em { font-style: italic; color: var(--sage); }
+  .bundle-product-card-price {
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    color: var(--ink);
+    margin-top: auto;
+    padding-top: 8px;
+  }
+  .bundle-product-card-link {
+    margin-top: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 9.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--ink-soft);
+    transition: color 0.3s;
+  }
+  .bundle-product-card:hover .bundle-product-card-link { color: var(--gold); }
+
+  /* Why this stack — rationale block */
+  .bundle-why-block {
+    background: var(--cream-warm);
+    border-left: 3px solid var(--gold);
+    padding: 28px 32px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--ink);
+  }
+
+  /* Timeline */
+  .bundle-timeline {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+  }
+  .bundle-timeline-item {
+    background: var(--cream-warm);
+    border: 1px solid var(--rule);
+    border-top: 3px solid var(--sage);
+    padding: 22px 22px 20px;
+  }
+  .bundle-timeline-week {
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .bundle-timeline-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15.5px;
+    line-height: 1.55;
+    color: var(--ink);
+  }
+
+  /* FAQ — uses the same collapse pattern as product.html */
+  .bundle-faq-list { display: flex; flex-direction: column; gap: 0; }
+  .bundle-faq-item {
+    border-bottom: 1px solid var(--rule);
+    padding: 18px 0;
+    cursor: pointer;
+  }
+  .bundle-faq-item:first-child { border-top: 1px solid var(--rule); }
+  .bundle-faq-q {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+  .bundle-faq-q span:first-child {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    color: var(--ink);
+    font-weight: 500;
+    line-height: 1.3;
+  }
+  .bundle-faq-toggle {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    color: var(--gold);
+    flex-shrink: 0;
+    width: 24px;
+    text-align: center;
+    transition: transform 0.3s;
+  }
+  .bundle-faq-item.open .bundle-faq-toggle { transform: rotate(45deg); }
+  .bundle-faq-a {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 15.5px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s, padding-top 0.3s;
+  }
+  .bundle-faq-item.open .bundle-faq-a {
+    max-height: 400px;
+    padding-top: 14px;
+  }
+
+  /* Related bundles */
+  .bundle-related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+  }
+  .bundle-related-card {
+    background: var(--cream-warm);
+    border: 1px solid var(--rule);
+    padding: 20px 22px;
+    text-decoration: none;
+    transition: border-color 0.3s, transform 0.3s;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .bundle-related-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-2px);
+  }
+  .bundle-related-eyebrow {
+    font-family: 'Poppins', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+  }
+  .bundle-related-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    font-weight: 500;
+    line-height: 1.15;
+    color: var(--ink);
+  }
+  .bundle-related-name em { font-style: italic; color: var(--sage); }
+  .bundle-related-blurb {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.45;
+  }
+
+  /* Mobile */
+  @media (max-width: 800px) {
+    .bundle-detail-page { padding: 30px 22px 70px; }
+    .bundle-hero {
+      grid-template-columns: 1fr;
+      gap: 32px;
+      padding-bottom: 36px;
+      margin-bottom: 40px;
+    }
+    .bundle-hero-imgs { padding: 16px; }
+    .bundle-hero-imgs.cols-5, .bundle-hero-imgs.cols-4 { grid-template-columns: repeat(3, 1fr); }
+    .bundle-section { margin-bottom: 48px; }
+    .bundle-section-title { font-size: 26px; }
+    .bundle-why-block { padding: 22px 20px; font-size: 15.5px; }
+    .bundle-products-grid, .bundle-related-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .bundle-pricing { gap: 10px; }
+    .bundle-price-now { font-size: 30px; }
+  }
+  @media (max-width: 480px) {
+    .bundle-products-grid, .bundle-related-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Top strip -->
+<div class="top-strip">
+  <span>Free shipping on orders over <strong>$75</strong></span>
+  <span class="dot"></span>
+  <span>30-Day Returns</span>
+  <span class="dot"></span>
+  <span>Cruelty-Free · Non-GMO</span>
+  <span class="dot"></span>
+  <span>Made in N.A.</span>
+</div>
+
+<!-- Nav -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Daniel<span class="amp">'s</span> House</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">Daniel's Story</a></li>
+      <li><a href="skincare.html">Skincare</a></li>
+      <li><a href="supplements.html">Supplements</a></li>
+
+      <li><a href="routines.html">Routines</a></li>
+      <li><a href="bundles.html">Bundles</a></li>
+    </ul>
+    <div style="display: flex; gap: 4px;">
+      <button class="search-trigger" aria-label="Search">Search</button>
+      <button class="cart-trigger" aria-label="Open cart">Cart <span class="cart-trigger-count">0</span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- Main: filled by JS -->
+<main class="bundle-detail-page">
+  <a href="routines.html" class="bundle-back-link" id="back-link">← Back to Routines</a>
+  <div id="bundle-content"></div>
+</main>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-newsletter">
+    <div class="footer-newsletter-inner">
+      <div class="footer-newsletter-eyebrow">Letters from the House</div>
+      <div class="footer-newsletter-title">Get Daniel's actual <em>routine notes.</em></div>
+      <div class="footer-newsletter-blurb">First access to launches, ingredient deep-dives, and the rituals Daniel uses every week — sent twice a month, no spam.</div>
+      <form class="footer-newsletter-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent = '✓ Subscribed';">
+        <input type="email" placeholder="Your email" required />
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </div>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Daniel<span class="amp">'s</span> House</div>
+      <div class="footer-tag">Your home for premium wellness — built on real results, not marketing.</div>
+      <div class="footer-attr">
+        <span>Non-GMO</span>
+        <span>Cruelty-Free</span>
+        <span>Made in NA</span>
+      </div>
+      <a href="mailto:daniel@danielshousewellness.com" class="footer-email">daniel@danielshousewellness.com</a>
+    </div>
+    <div class="footer-col"><h4>Shop</h4><ul><li><a href="skincare.html">Skincare</a></li><li><a href="supplements.html">Supplements</a></li><li><a href="routines.html">Routines</a></li><li><a href="bundles.html">Bundles</a></li><li><a href="compare.html">Compare</a></li></ul></div>
+    <div class="footer-col"><h4>The House</h4><ul><li><a href="about.html">Daniel's Story</a></li><li><a href="ingredients.html">Ingredient Glossary</a></li><li><a href="blog.html">Blog</a></li><li><a href="reviews.html">Reviews</a></li><li><a href="quiz.html">Take the Quiz</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
+    <div class="footer-col"><h4>Help</h4><ul><li><a href="faq.html#shipping">Shipping</a></li><li><a href="faq.html#returns">Returns Policy →</a></li><li><a href="faq.html#returns">30-Day Guarantee</a></li><li><a href="faq.html">Contact</a></li></ul></div>
+  </div>
+  <div class="footer-credit">
+    <div class="footer-credit-left">© 2026 Daniel's House. Premium wellness, built on real results.</div>
+    <div class="footer-credit-right">
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="accessibility.html">Accessibility</a>
+    </div>
+  </div>
+</footer>
+
+<script src="data/products.js"></script>
+<script src="data/bundle-details.js"></script>
+<script src="js/shared.js"></script>
+<script>
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  const slug = params.get('slug');
+  const container = document.getElementById('bundle-content');
+  const backLink = document.getElementById('back-link');
+
+  if (!slug) {
+    container.innerHTML = `
+      <div style="text-align: center; padding: 80px 20px;">
+        <h1 style="font-family: 'Cormorant Garamond', serif; font-size: 36px;">No bundle specified.</h1>
+        <p style="margin-top: 12px;"><a href="routines.html" style="color: var(--gold);">Browse all bundles →</a></p>
+      </div>`;
+    return;
+  }
+
+  // Look up bundle from CURATED_BUNDLES or CONCERN_BUNDLES
+  const curated = (window.CURATED_BUNDLES || []).find(b => b.id === slug);
+  const concern = (window.CONCERN_BUNDLES || []).find(b => b.id === slug);
+  const bundle = curated || concern;
+  const isConcern = !!concern;
+  const category = curated ? 'curated' : 'concern';
+  const details = window.getBundleDetails ? window.getBundleDetails(category, slug) : null;
+
+  if (!bundle) {
+    container.innerHTML = `
+      <div style="text-align: center; padding: 80px 20px;">
+        <h1 style="font-family: 'Cormorant Garamond', serif; font-size: 36px;">Routine not found.</h1>
+        <p style="margin-top: 12px;">We couldn't find a bundle named "${slug}". <a href="routines.html" style="color: var(--gold);">Browse all bundles →</a></p>
+      </div>`;
+    return;
+  }
+
+  // Set the back link based on source
+  backLink.href = isConcern ? 'bundles.html' : 'routines.html';
+  backLink.textContent = isConcern ? '← Back to Bundles' : '← Back to Routines';
+
+  // Compute pricing
+  const products = (bundle.slugs || []).map(s => window.getProductBySlug(s)).filter(Boolean);
+  const fullPrice = products.reduce((sum, p) => sum + p.price, 0);
+  const discount = typeof bundle.discount === 'number' ? bundle.discount : 0.15;
+  const discountedPrice = fullPrice * (1 - discount);
+  const savings = fullPrice - discountedPrice;
+  const discountPct = Math.round(discount * 100);
+
+  // Bundle display name (italicize the meaningful word like the cards do)
+  let displayName = bundle.name || 'Bundle';
+  // Match patterns like "The X Bundle" or "X's Y Bundle"
+  const m1 = displayName.match(/^(The )([\w'+&-]+)( Bundle)$/);
+  const m2 = displayName.match(/^([\w']+'s )([\w]+)( Bundle)$/);
+  if (m1) displayName = `${m1[1]}<em>${m1[2]}</em>${m1[3]}`;
+  else if (m2) displayName = `${m2[1]}<em>${m2[2]}</em>${m2[3]}`;
+
+  // Choose product grid columns
+  const cols = products.length >= 10 ? 5 : products.length >= 7 ? 4 : products.length >= 4 ? 3 : 2;
+
+  // Update page title
+  document.title = `${bundle.name} — Daniel's House`;
+
+  // Eyebrow + description fallbacks if no details entry exists
+  const eyebrow = details?.eyebrow || (isConcern ? 'Bundle' : 'Routine');
+  const description = details?.description || bundle.blurb || '';
+  const subLine = `${products.length} Products · Save ${discountPct}%`;
+
+  // Render the page
+  container.innerHTML = `
+    <!-- Hero -->
+    <section class="bundle-hero">
+      <div class="bundle-hero-imgs cols-${cols}">
+        ${products.map(p => `
+          <div class="bundle-hero-thumb">
+            <img src="${p.image}" alt="${p.name}" loading="lazy"/>
+          </div>
+        `).join('')}
+      </div>
+      <div class="bundle-hero-meta">
+        <div class="bundle-hero-eyebrow">${eyebrow}</div>
+        <h1 class="bundle-hero-title">${displayName}</h1>
+        <div class="bundle-hero-sub">${subLine}</div>
+        <p class="bundle-hero-desc">${description}</p>
+
+        <div class="bundle-pricing">
+          <span class="bundle-price-was">$${fullPrice.toFixed(2)}</span>
+          <span class="bundle-price-now">$${discountedPrice.toFixed(2)}</span>
+          <span class="bundle-price-save">Save $${savings.toFixed(2)} · ${discountPct}% off</span>
+        </div>
+
+        <div class="bundle-purchase-toggle" id="purchase-toggle">
+          <button type="button" data-mode="once" class="active">
+            <div class="toggle-row"><span class="toggle-mark"></span><span>One-Time</span></div>
+            <span class="toggle-meta">Single delivery</span>
+          </button>
+          <button type="button" data-mode="subscribe">
+            <div class="toggle-row"><span class="toggle-mark"></span><span>Monthly</span></div>
+            <span class="toggle-meta">Cancel anytime</span>
+          </button>
+        </div>
+        <button class="bundle-cta-add" id="bundle-add-btn">Add Routine to Cart →</button>
+      </div>
+    </section>
+
+    <!-- What's Inside -->
+    <section class="bundle-section">
+      <div class="bundle-section-eyebrow">What's Inside · Every Product</div>
+      <h2 class="bundle-section-title">The full <em>stack</em>.</h2>
+      <p class="bundle-section-blurb">Every product in this routine, with a direct link to the full detail page for each — ingredients, evidence, application, FAQ.</p>
+      <div class="bundle-products-grid">
+        ${products.map(p => `
+          <a class="bundle-product-card" href="product.html?slug=${p.slug}">
+            <div class="bundle-product-card-img">
+              <img src="${p.image}" alt="${p.name}" loading="lazy"/>
+            </div>
+            <div class="bundle-product-card-tag">${(p.tag || '').split('·')[0].trim() || (p.category === 'skincare' ? 'Skincare' : 'Supplement')}</div>
+            <div class="bundle-product-card-name">The House <em>${p.name}</em></div>
+            <div class="bundle-product-card-price">$${p.price.toFixed(2)}</div>
+            <div class="bundle-product-card-link">View Details →</div>
+          </a>
+        `).join('')}
+      </div>
+    </section>
+
+    ${details?.whyThis ? `
+      <section class="bundle-section">
+        <div class="bundle-section-eyebrow">Why This Stack Works</div>
+        <h2 class="bundle-section-title">The <em>logic</em>.</h2>
+        <div class="bundle-why-block">${details.whyThis}</div>
+      </section>
+    ` : ''}
+
+    ${details?.timeline && details.timeline.length ? `
+      <section class="bundle-section">
+        <div class="bundle-section-eyebrow">Realistic Expectations</div>
+        <h2 class="bundle-section-title">What to <em>expect</em>, week by week.</h2>
+        <div class="bundle-timeline">
+          ${details.timeline.map(t => `
+            <div class="bundle-timeline-item">
+              <div class="bundle-timeline-week">${t.week}</div>
+              <div class="bundle-timeline-text">${t.text}</div>
+            </div>
+          `).join('')}
+        </div>
+      </section>
+    ` : ''}
+
+    ${details?.faq && details.faq.length ? `
+      <section class="bundle-section">
+        <div class="bundle-section-eyebrow">FAQ</div>
+        <h2 class="bundle-section-title">Common <em>questions</em>.</h2>
+        <div class="bundle-faq-list" id="faq-list">
+          ${details.faq.map(f => `
+            <div class="bundle-faq-item">
+              <div class="bundle-faq-q">
+                <span>${f.q}</span>
+                <span class="bundle-faq-toggle">+</span>
+              </div>
+              <div class="bundle-faq-a">${f.a}</div>
+            </div>
+          `).join('')}
+        </div>
+      </section>
+    ` : ''}
+
+    <section class="bundle-section">
+      <div class="bundle-section-eyebrow">You May Also Like</div>
+      <h2 class="bundle-section-title">Related <em>bundles</em>.</h2>
+      <div class="bundle-related-grid" id="related-grid"></div>
+    </section>
+  `;
+
+  // FAQ accordion behavior
+  document.querySelectorAll('.bundle-faq-item').forEach(item => {
+    item.addEventListener('click', () => item.classList.toggle('open'));
+  });
+
+  // Purchase toggle
+  let isSubscribe = false;
+  const toggleEl = document.getElementById('purchase-toggle');
+  toggleEl.addEventListener('click', e => {
+    const btn = e.target.closest('button');
+    if (!btn) return;
+    toggleEl.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    isSubscribe = btn.dataset.mode === 'subscribe';
+  });
+
+  // Add to cart
+  document.getElementById('bundle-add-btn').addEventListener('click', () => {
+    if (window.dhCart && window.dhCart.addBundle) {
+      window.dhCart.addBundle(bundle.slugs, bundle.name, discount, isSubscribe);
+    }
+  });
+
+  // Related bundles — pick 3 from the same pool (curated or concern)
+  const pool = isConcern ? (window.CONCERN_BUNDLES || []) : (window.CURATED_BUNDLES || []);
+  const related = pool.filter(b => b.id !== slug).slice(0, 3);
+  document.getElementById('related-grid').innerHTML = related.map(b => {
+    const d = window.getBundleDetails ? window.getBundleDetails(isConcern ? 'concern' : 'curated', b.id) : null;
+    const blurb = b.blurb || d?.description?.split('.')[0] + '.' || '';
+    const eyebrow = d?.eyebrow?.split('·').pop()?.trim() || (isConcern ? 'Bundle' : 'Routine');
+    let rname = b.name;
+    const rm = rname.match(/^(The )([\w'+&-]+)( Bundle)$/);
+    if (rm) rname = `${rm[1]}<em>${rm[2]}</em>${rm[3]}`;
+    return `
+      <a class="bundle-related-card" href="routine.html?slug=${b.id}">
+        <div class="bundle-related-eyebrow">${eyebrow}</div>
+        <div class="bundle-related-name">${rname}</div>
+        <div class="bundle-related-blurb">${blurb}</div>
+      </a>
+    `;
+  }).join('');
+})();
+</script>
+
+</body>
+</html>

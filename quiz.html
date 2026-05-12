@@ -322,9 +322,9 @@
       <li><a href="about.html">Daniel's Story</a></li>
       <li><a href="skincare.html">Skincare</a></li>
       <li><a href="supplements.html">Supplements</a></li>
-      <li><a href="ingredients.html">Ingredients</a></li>
+
+      <li><a href="routines.html">Routines</a></li>
       <li><a href="bundles.html">Bundles</a></li>
-      <li><a href="shop.html">Shop By Concern</a></li>
     </ul>
     <div style="display: flex; gap: 4px;">
       <button class="search-trigger" aria-label="Search">Search</button>
@@ -346,7 +346,7 @@
     </div>
     <div class="page-filter-bar">
       <span class="page-filter-icon">⌕</span>
-      <input type="text" class="page-filter-input" placeholder="Search anything site-wide..." />
+      <input type="text" class="page-filter-input" placeholder="Search anything... press Enter for full results" />
       <button class="page-filter-clear" type="button" aria-label="Clear">✕</button>
     </div>
     <div class="page-filter-categories">
@@ -469,7 +469,7 @@
 <section class="quiz-hero">
   <div class="quiz-eyebrow">2-Minute Routine Builder</div>
   <h1 class="quiz-title">Find your <em>routine.</em></h1>
-  <p class="quiz-tagline">Answer 7 questions. We'll recommend the products and bundle built for you.</p>
+  <p class="quiz-tagline">Answer 7 questions. We'll recommend the products and routine built for you.</p>
 </section>
 
 <div class="quiz-progress">
@@ -491,7 +491,7 @@
       <button class="quiz-option" data-q="goal" data-v="energy"><em>Energy</em> — more sustainable mental and physical output<span class="quiz-option-sub">Lead with foundational supplements</span></button>
       <button class="quiz-option" data-q="goal" data-v="sleep"><em>Sleep</em> — deeper rest, less stress, calmer baseline<span class="quiz-option-sub">Lead with Calm + Tranquil</span></button>
       <button class="quiz-option" data-q="goal" data-v="performance"><em>Performance</em> — strength, recovery, workout gains<span class="quiz-option-sub">Lead with workout stack</span></button>
-      <button class="quiz-option" data-q="goal" data-v="overall"><em>Overall</em> — total wellness, the full house<span class="quiz-option-sub">Recommends Ultimate Bundle</span></button>
+      <button class="quiz-option" data-q="goal" data-v="overall"><em>Overall</em> — total wellness, the full house<span class="quiz-option-sub">Recommends Ultimate Routine</span></button>
     </div>
   </div>
 
@@ -562,7 +562,7 @@
     <div class="quiz-options">
       <button class="quiz-option" data-q="budget" data-v="low"><em>Under $75</em> — start small, build later</button>
       <button class="quiz-option" data-q="budget" data-v="medium"><em>$75-150</em> — solid starter routine</button>
-      <button class="quiz-option" data-q="budget" data-v="high"><em>$150-250</em> — full curated bundle</button>
+      <button class="quiz-option" data-q="budget" data-v="high"><em>$150-250</em> — full curated routine</button>
       <button class="quiz-option" data-q="budget" data-v="ultimate"><em>$250+</em> — go all in, the full house</button>
     </div>
   </div>
@@ -578,8 +578,8 @@
       <!-- Quiz-generated bundle: products as a discounted bundle with +10% subscribe option -->
       <div class="result-bundle" id="result-bundle">
         <div class="result-bundle-divider"></div>
-        <div class="result-bundle-eyebrow">Your Personal Bundle · 15% off as a Set</div>
-        <div class="result-bundle-title">Bundle them <em>together.</em></div>
+        <div class="result-bundle-eyebrow">Your Personal Routine · 15% off as a Set</div>
+        <div class="result-bundle-title">Stack them <em>together.</em></div>
         <div class="result-bundle-sub">All three, at a price built for the set — plus an extra 10% off when you make it monthly.</div>
 
         <div class="result-bundle-pricing" id="result-bundle-pricing">
@@ -637,7 +637,7 @@
       </div>
       <a href="mailto:daniel@danielshousewellness.com" class="footer-email">daniel@danielshousewellness.com</a>
     </div>
-    <div class="footer-col"><h4>Shop</h4><ul><li><a href="skincare.html">Skincare</a></li><li><a href="supplements.html">Supplements</a></li><li><a href="bundles.html">Bundles</a></li><li><a href="shop.html">Concern Bundles</a></li><li><a href="compare.html">Compare</a></li></ul></div>
+    <div class="footer-col"><h4>Shop</h4><ul><li><a href="skincare.html">Skincare</a></li><li><a href="supplements.html">Supplements</a></li><li><a href="routines.html">Routines</a></li><li><a href="bundles.html">Bundles</a></li><li><a href="compare.html">Compare</a></li></ul></div>
     <div class="footer-col"><h4>The House</h4><ul><li><a href="about.html">Daniel's Story</a></li><li><a href="ingredients.html">Ingredient Glossary</a></li><li><a href="blog.html">Blog</a></li><li><a href="reviews.html">Reviews</a></li><li><a href="quiz.html">Take the Quiz</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
     <div class="footer-col"><h4>Help</h4><ul><li><a href="faq.html#shipping">Shipping</a></li><li><a href="faq.html#returns">Returns Policy →</a></li><li><a href="faq.html#returns">30-Day Guarantee</a></li><li><a href="faq.html">Contact</a></li></ul></div>
   </div>
@@ -761,11 +761,11 @@ function showResult() {
     productSlugs: []
   };
 
-  // Big Ultimate Bundle for "overall" goal or ultimate budget
+  // Big Ultimate Routine for "overall" goal or ultimate budget
   if (goal === 'overall' || budget === 'ultimate') {
     recommendation.eyebrow = 'The Full House';
     recommendation.title = 'You\'re going <em>all in.</em>';
-    recommendation.blurb = 'You want the complete approach — everything Daniel takes, every day. The Ultimate Bundle is built for exactly this.';
+    recommendation.blurb = 'You want the complete approach — everything Daniel takes, every day. The Ultimate Routine is built for exactly this.';
     recommendation.productSlugs = ['the-house-multi', 'the-house-bounce', 'the-house-glow'];
   }
   // Skin-focused
@@ -789,7 +789,7 @@ function showResult() {
       recommendation.productSlugs = ['the-house-boost', 'the-house-defense', 'the-house-radiance'];
     } else {
       recommendation.title = 'A complete <em>skin routine.</em>';
-      recommendation.blurb = 'The AM Bundle covers your morning routine with targeted actives. The PM Bundle handles repair.';
+      recommendation.blurb = 'The AM Routine covers your morning routine with targeted actives. The PM Routine handles repair.';
       recommendation.productSlugs = ['the-house-wash', 'the-house-boost', 'the-house-soft'];
     }
   }
