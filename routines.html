@@ -558,39 +558,57 @@
   .builder-header p { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 17px; color: var(--ink-soft); line-height: 1.55; }
 
   /* Tier chips beneath the header — pill row showing the 3 savings tiers */
-  .builder-tiers { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 24px; }
+  .builder-tiers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 32px auto 0;
+    max-width: 560px;
+  }
   .tier-chip {
     font-family: 'Poppins', sans-serif;
-    font-size: 10.5px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-    font-weight: 500;
-    padding: 9px 18px;
     background: var(--cream);
     border: 1px solid var(--rule);
-    border-radius: 100px;
     transition: all 0.35s ease;
-    display: inline-flex;
-    align-items: baseline;
-    gap: 8px;
+    cursor: pointer;
+    padding: 14px 10px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    text-align: center;
+    position: relative;
   }
-  .tier-chip em {
+  .tier-chip:hover {
+    border-color: rgba(184, 153, 104, 0.5);
+    background: var(--cream-warm);
+  }
+  /* The chip's two text lines stack vertically inside the chip */
+  .tier-chip-num {
+    font-family: 'Poppins', sans-serif;
+    font-size: 9.5px;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    font-weight: 600;
+    line-height: 1;
+  }
+  .tier-chip-save {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
+    font-size: 17px;
     font-weight: 600;
     color: var(--gold);
-    font-size: 14px;
-    letter-spacing: 0;
-    text-transform: none;
+    line-height: 1;
+    letter-spacing: -0.01em;
   }
   .tier-chip.active {
     background: var(--ink);
     border-color: var(--ink);
-    color: var(--cream);
-    transform: scale(1.05);
+    box-shadow: inset 0 -3px 0 var(--gold);
   }
-  .tier-chip.active em { color: var(--gold); }
+  .tier-chip.active .tier-chip-num { color: var(--cream); }
+  .tier-chip.active .tier-chip-save { color: var(--gold); }
 
   .builder-tracker { background: var(--cream); border: 1px solid var(--rule); border-left: 3px solid var(--gold); padding: 22px 28px; margin-bottom: 36px; display: grid; grid-template-columns: 1fr 1fr auto; gap: 32px; align-items: center; position: sticky; top: 70px; z-index: 30; box-shadow: 0 2px 12px rgba(31, 27, 23, 0.04); }
   .tracker-progress { min-width: 0; }
@@ -685,10 +703,38 @@
   .builder-cta:hover:not(:disabled) { background: var(--sage); }
   .builder-cta:disabled { background: var(--ink-soft); opacity: 0.4; cursor: not-allowed; }
 
-  .builder-tabs { display: flex; gap: 8px; margin-bottom: 28px; justify-content: center; flex-wrap: wrap; }
-  .tab { padding: 10px 22px; background: transparent; border: 1px solid var(--rule); cursor: pointer; font-family: 'Poppins', sans-serif; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; color: var(--ink-soft); transition: all 0.3s; }
-  .tab:hover { border-color: var(--gold); color: var(--ink); }
+  .builder-tabs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin: 0 auto 28px;
+    max-width: 560px;
+  }
+  .tab {
+    padding: 12px 14px;
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--ink-soft);
+    transition: all 0.3s;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .tab:hover { color: var(--ink); border-color: rgba(184, 153, 104, 0.45); }
   .tab.active { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+  .tab .tab-count {
+    opacity: 0.5;
+    margin-left: 3px;
+    font-weight: 400;
+  }
+  .tab.active .tab-count { opacity: 0.7; color: var(--gold); }
 
   .builder-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
   .builder-card { background: var(--cream); border: 2px solid var(--rule); padding: 14px 14px 16px; cursor: pointer; transition: all 0.3s; position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; user-select: none; }
@@ -917,6 +963,20 @@
   @media (max-width: 1000px) {
     .builder-grid { grid-template-columns: repeat(3, 1fr); }
     .builder-tracker { grid-template-columns: 1fr; gap: 18px; padding: 20px; }
+  }
+  @media (max-width: 480px) {
+    /* Tighten tier chips at narrow widths so all 3 stay side-by-side */
+    .builder-tiers { gap: 6px; }
+    .tier-chip { padding: 11px 4px 10px; }
+    .tier-chip-num { font-size: 8.5px; letter-spacing: 0.20em; }
+    .tier-chip-save { font-size: 14.5px; }
+    /* Tabs stay 3-up, just shrink padding */
+    .builder-tabs { gap: 6px; }
+    .tab { padding: 11px 6px; font-size: 9.5px; letter-spacing: 0.14em; }
+    .tab .tab-count { display: block; margin: 3px 0 0; font-size: 9px; }
+    /* Builder header spacing */
+    .builder-header { margin-bottom: 36px; }
+    .builder-header h2 { margin-bottom: 14px; }
   }
   @media (max-width: 640px) {
     .builder-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1772,9 +1832,18 @@
         <h2>Pick more. <em>Save more.</em></h2>
         <p>The more you mix, the more you save. Three tiers — pick 3 to start, build up to 9 for the full bundle discount. Subscribe to stack an extra 10% off on top.</p>
         <div class="builder-tiers">
-          <div class="tier-chip" data-tier="3">Mix 3 · <em>save 10%</em></div>
-          <div class="tier-chip" data-tier="6">Mix 6 · <em>save 12%</em></div>
-          <div class="tier-chip" data-tier="9">Mix 9 · <em>save 15%</em></div>
+          <div class="tier-chip" data-tier="3">
+            <span class="tier-chip-num">Mix 3</span>
+            <span class="tier-chip-save">save 10%</span>
+          </div>
+          <div class="tier-chip" data-tier="6">
+            <span class="tier-chip-num">Mix 6</span>
+            <span class="tier-chip-save">save 12%</span>
+          </div>
+          <div class="tier-chip" data-tier="9">
+            <span class="tier-chip-num">Mix 9</span>
+            <span class="tier-chip-save">save 15%</span>
+          </div>
         </div>
       </div>
 
@@ -1800,9 +1869,9 @@
       </div>
 
       <div class="builder-tabs">
-        <button class="tab active" data-filter="all">All <span style="opacity:0.5; margin-left:4px;">· 33</span></button>
-        <button class="tab" data-filter="skincare">Skincare <span style="opacity:0.5; margin-left:4px;">· 15</span></button>
-        <button class="tab" data-filter="supplement">Supplements <span style="opacity:0.5; margin-left:4px;">· 18</span></button>
+        <button class="tab active" data-filter="all">All<span class="tab-count">· 33</span></button>
+        <button class="tab" data-filter="skincare">Skincare<span class="tab-count">· 15</span></button>
+        <button class="tab" data-filter="supplement">Supplements<span class="tab-count">· 18</span></button>
       </div>
 
       <div class="builder-grid" id="builderGrid"></div>
@@ -2202,10 +2271,13 @@
     'am': "The full morning routine. Cleanse, tone, brighten, hydrate, defend, moisturize — six steps to start the day with a complete barrier and visible glow.",
     'pm': "The full evening routine. Resurface, firm, hydrate, treat the eyes, repair overnight, and seal it all in with the finishing oil. Wake up better.",
     'workout': "The full performance stack. Strength, output, recovery, nutrient density, and the metabolic edge. Five formulations for the days you put in real work.",
+    'foundation': "The five foundational supplements every adult needs daily — multivitamin, vitamin D, omega-3, probiotic, and magnesium. The simple starting protocol that handles 80% of what most diets miss.",
     'longevity': "The five actives that pay off over years. Cellular energy, cognitive support, stress resilience, and joint mobility — daily, with the science behind each one.",
     'glow': "The full glow protocol. Topical brightening + antioxidant defense + finishing oil + the weekly detox mask — paired with the beauty gummy and collagen peptides that build it from within.",
+    'weekly': "The reset ritual. The clarifying mask and gentle polish — used once or twice a week to clear buildup, brighten dull patches, and prime skin for everything else to work better.",
     'moms': "The needs of parents in their 40s and 50s are specific: skincare gentle enough for skin that's grown more reactive, paired with the actives that actually move the needle on visible aging — retinol overnight, peptides around the eyes, antioxidants by day. Steady energy as the body's rhythms change. Adaptogenic support for a nervous system that's carried decades of work and family life. This routine combines the gentle anti-aging skincare staples (Wash, Defense, Bounce, Eye, Soft) with the inside-out longevity stack (Multi, Collagen, NAD+, Vitality) plus Tranquil for evening recovery. Together they form a sustainable daily rhythm — not aspirational, not maximum, just the inside-out routine that compounds in your favor.",
-    'arianas': "Built for my 25-year-old sister. Focused on inner-and-outer beauty, this stack pairs six skincare layers — cleanse, brighten, defend, renew, and protect the eyes — with three inner-beauty supplements that compound the glow from within: collagen, antioxidants, and the daily multi."
+    'arianas': "Built for my 25-year-old sister. Focused on inner-and-outer beauty, this stack pairs six skincare layers — cleanse, brighten, defend, renew, and protect the eyes — with three inner-beauty supplements that compound the glow from within: collagen, antioxidants, and the daily multi.",
+    'ultimate': "Everything. Twelve skincare products — the full AM + PM rituals — plus ten daily supplements that handle the inside half. The complete protocol, twenty-two products, twenty-five percent off as a bundle. The most committed version of this brand."
   };
 
   // Italicize the meaningful word in each bundle name to match the concern-card
@@ -2300,7 +2372,7 @@
   // Populate the empty .bundle-grid container. Order matches the previous hardcoded order.
   const grid = document.querySelector('.bundle-grid');
   if (grid) {
-    const defaultOrder = ['daniels-daily', 'am', 'pm', 'workout', 'longevity', 'glow', 'moms', 'arianas', 'ultimate'];
+    const defaultOrder = ['daniels-daily', 'am', 'pm', 'workout', 'foundation', 'longevity', 'glow', 'weekly', 'moms', 'arianas', 'ultimate'];
     grid.innerHTML = defaultOrder.map(id => window.renderCuratedBundleCard(id)).join('');
 
     // SORT: reorder existing DOM nodes (preserves all event listeners on cards)
