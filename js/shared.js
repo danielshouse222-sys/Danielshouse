@@ -331,31 +331,117 @@
     if (!results) return;
     const q = query.trim().toLowerCase();
     if (!q) {
-      results.innerHTML = '<div class="search-panel-hint">Type to search across all 33 products.</div>';
+      results.innerHTML = '<div class="search-panel-hint">Type to search products, routines, and bundles.</div>';
       return;
     }
     if (!window.PRODUCTS || !window.PRODUCTS.length) {
       results.innerHTML = '<div class="search-panel-empty">Product data unavailable.</div>';
       return;
     }
-    const matches = window.PRODUCTS.filter(p => {
+
+    // ── Products ─────────────────────────────────────────────
+    const productMatches = window.PRODUCTS.filter(p => {
       const haystack = [p.name, p.tag, p.tagline, p.description, ...(p.bestFor || []), ...(p.ingredients || []).map(i => i.name || '')].join(' ').toLowerCase();
       return haystack.includes(q);
-    }).slice(0, 12);
-    if (!matches.length) {
+    }).slice(0, 8);
+
+    // Helper: pull rich content from BUNDLE_DETAILS for richer matching
+    const detailHaystack = (bundleId, category) => {
+      const d = (window.BUNDLE_DETAILS && window.BUNDLE_DETAILS[category] && window.BUNDLE_DETAILS[category][bundleId]) || null;
+      if (!d) return '';
+      return [d.eyebrow || '', d.description || '', d.whyThis || ''].join(' ');
+    };
+
+    // ── Curated routines (AM, PM, Ultimate, Daniel's Daily, Mom's, etc.) ──
+    // Search name, blurb, descriptions, and the names + tags + ingredients
+    // of the products inside each routine.
+    const routineMatches = (window.CURATED_BUNDLES || []).filter(b => {
+      const productInfo = (b.slugs || [])
+        .map(s => window.getProductBySlug && window.getProductBySlug(s))
+        .filter(Boolean)
+        .map(p => `${p.name} ${p.tag || ''} ${(p.ingredients || []).map(i => i.name || '').join(' ')}`)
+        .join(' ');
+      const haystack = [b.name, b.id, b.blurb || '', productInfo, detailHaystack(b.id, 'curated')].join(' ').toLowerCase();
+      return haystack.includes(q);
+    }).slice(0, 6);
+
+    // ── Concern bundles (Anti-Aging, Sleep, Hydration, etc.) ──
+    const bundleMatches = (window.CONCERN_BUNDLES || []).filter(b => {
+      const productInfo = (b.slugs || [])
+        .map(s => window.getProductBySlug && window.getProductBySlug(s))
+        .filter(Boolean)
+        .map(p => `${p.name} ${p.tag || ''} ${(p.ingredients || []).map(i => i.name || '').join(' ')}`)
+        .join(' ');
+      const haystack = [b.name, b.id, b.blurb || '', productInfo, detailHaystack(b.id, 'concern')].join(' ').toLowerCase();
+      return haystack.includes(q);
+    }).slice(0, 6);
+
+    if (!productMatches.length && !routineMatches.length && !bundleMatches.length) {
       results.innerHTML = `<div class="search-panel-empty">No matches for "${query}".</div>`;
       return;
     }
-    results.innerHTML = matches.map(p => `
-      <a href="product.html?slug=${p.slug}" class="search-panel-result">
-        <img src="${p.image}" alt="${p.name}" loading="lazy"/>
-        <div class="search-panel-result-info">
-          <div class="search-panel-result-name">The House <em>${p.name}</em></div>
-          <div class="search-panel-result-tag">${(p.tag || '').split('·')[0].trim()}</div>
-        </div>
-        <div class="search-panel-result-price">$${p.price.toFixed(0)}</div>
-      </a>
-    `).join('');
+
+    // Build the results HTML — group by type, routines/bundles first
+    // (they're higher-intent entry points), then products.
+    const parts = [];
+
+    if (routineMatches.length) {
+      parts.push(`
+        <div class="search-panel-group-label">Routines · ${routineMatches.length}</div>
+        ${routineMatches.map(b => {
+          const count = (b.slugs || []).length;
+          const pct = Math.round((b.discount || 0.15) * 100);
+          return `
+            <a href="routine.html?slug=${encodeURIComponent(b.id)}" class="search-panel-result search-panel-result-bundle">
+              <div class="search-panel-result-kind kind-routine">Routine</div>
+              <div class="search-panel-result-info">
+                <div class="search-panel-result-name">${b.name}</div>
+                <div class="search-panel-result-tag">${count} products · ${pct}% off</div>
+              </div>
+              <div class="search-panel-result-arrow">→</div>
+            </a>
+          `;
+        }).join('')}
+      `);
+    }
+
+    if (bundleMatches.length) {
+      parts.push(`
+        <div class="search-panel-group-label">Bundles · ${bundleMatches.length}</div>
+        ${bundleMatches.map(b => {
+          const count = (b.slugs || []).length;
+          const pct = Math.round((b.discount || 0.1) * 100);
+          return `
+            <a href="bundles.html#${encodeURIComponent(b.id)}" class="search-panel-result search-panel-result-bundle">
+              <div class="search-panel-result-kind kind-bundle">Bundle</div>
+              <div class="search-panel-result-info">
+                <div class="search-panel-result-name">${b.name}</div>
+                <div class="search-panel-result-tag">${count} products · ${pct}% off</div>
+              </div>
+              <div class="search-panel-result-arrow">→</div>
+            </a>
+          `;
+        }).join('')}
+      `);
+    }
+
+    if (productMatches.length) {
+      parts.push(`
+        <div class="search-panel-group-label">Products · ${productMatches.length}</div>
+        ${productMatches.map(p => `
+          <a href="product.html?slug=${p.slug}" class="search-panel-result">
+            <img src="${p.image}" alt="${p.name}" loading="lazy"/>
+            <div class="search-panel-result-info">
+              <div class="search-panel-result-name">The House <em>${p.name}</em></div>
+              <div class="search-panel-result-tag">${(p.tag || '').split('·')[0].trim()}</div>
+            </div>
+            <div class="search-panel-result-price">$${p.price.toFixed(0)}</div>
+          </a>
+        `).join('')}
+      `);
+    }
+
+    results.innerHTML = parts.join('');
   }
 
   // ═══ INIT ═══
