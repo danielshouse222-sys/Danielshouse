@@ -1595,7 +1595,7 @@
           <div class="hero-savings-label">$717 → $538 · 25% off</div>
         </div>
 
-        <div class="smart-savings-teaser" style="max-width: 480px;" data-hero-smart-teaser="ultimate"><span class="smart-rule"></span><span class="smart-savings-text"><span class="smart-prefix">Smart Refill</span>saves <strong data-smart-amount></strong>/year</span><span class="smart-rule"></span></div>
+        <div class="smart-savings-teaser" style="max-width: 480px;" data-hero-smart-teaser="ultimate"><span class="smart-rule"></span><span class="smart-savings-text"><span class="smart-prefix">Smart Refill</span>saves up to <strong data-smart-amount></strong>/year</span><span class="smart-rule"></span></div>
 
                 <div class="bundle-subscribe-toggle" data-bundle-id="ultimate" data-toggle style="max-width: 480px; margin-bottom: 0;">
           <button type="button" data-mode="once" class="active">
@@ -2235,8 +2235,8 @@
     const savings = fullPrice - discountedPrice;
     const discountPct = Math.round(bundle.discount * 100);
     const smartAnnualSave = window.computeSmartRefillAnnualSavings ? window.computeSmartRefillAnnualSavings(bundle) : 0;
-    const smartTeaserHTML = smartAnnualSave >= 50
-      ? `<div class="smart-savings-teaser"><span class="smart-rule"></span><span class="smart-savings-text"><span class="smart-prefix">Smart Refill</span>saves <strong>$${Math.round(smartAnnualSave)}</strong>/year</span><span class="smart-rule"></span></div>`
+    const smartTeaserHTML = (smartAnnualSave >= 50 && window.bundleSmartRefillEligible && window.bundleSmartRefillEligible(bundle))
+      ? `<div class="smart-savings-teaser"><span class="smart-rule"></span><span class="smart-savings-text"><span class="smart-prefix">Smart Refill</span>saves up to <strong>$${Math.round(smartAnnualSave)}</strong>/year</span><span class="smart-rule"></span></div>`
       : '';
 
 
@@ -2441,12 +2441,13 @@
       const bundleId = teaser.dataset.heroSmartTeaser;
       const bundle = window.getCuratedBundleById && window.getCuratedBundleById(bundleId);
       if (!bundle || !window.computeSmartRefillAnnualSavings) return;
+      const eligible = window.bundleSmartRefillEligible && window.bundleSmartRefillEligible(bundle);
       const amount = window.computeSmartRefillAnnualSavings(bundle);
       const amountEl = teaser.querySelector('[data-smart-amount]');
-      if (amount >= 50) {
+      if (eligible && amount >= 50) {
         if (amountEl) amountEl.textContent = `$${Math.round(amount)}`;
       } else {
-        teaser.style.display = 'none'; // hide entirely if savings are trivial
+        teaser.style.display = 'none'; // hide entirely if ineligible or trivial savings
       }
     });
 

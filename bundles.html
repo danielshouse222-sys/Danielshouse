@@ -1156,8 +1156,8 @@ function renderConcernCard(bundle) {
   // Smart Refill annual savings — surfaced as a teaser line above the toggle so
   // customers see the dollar value of the smart cadence at a glance.
   const smartAnnualSave = window.computeSmartRefillAnnualSavings ? window.computeSmartRefillAnnualSavings(bundle) : 0;
-  const smartTeaserHTML = smartAnnualSave >= 50
-    ? `<div class="smart-savings-teaser"><span class="smart-rule"></span><span class="smart-savings-text"><span class="smart-prefix">Smart Refill</span>saves <strong>$${Math.round(smartAnnualSave)}</strong>/year</span><span class="smart-rule"></span></div>`
+  const smartTeaserHTML = (smartAnnualSave >= 50 && window.bundleSmartRefillEligible && window.bundleSmartRefillEligible(bundle))
+    ? `<div class="smart-savings-teaser"><span class="smart-rule"></span><span class="smart-savings-text"><span class="smart-prefix">Smart Refill</span>saves up to <strong>$${Math.round(smartAnnualSave)}</strong>/year</span><span class="smart-rule"></span></div>`
     : '';
 
   return `
@@ -1245,8 +1245,8 @@ function renderRoutineCard(bundle) {
 
   const discountPct = Math.round((bundle.discount || 0.15) * 100);
   const smartAnnualSave = window.computeSmartRefillAnnualSavings ? window.computeSmartRefillAnnualSavings(bundle) : 0;
-  const smartTeaserHTML = smartAnnualSave >= 50
-    ? `<div class="smart-savings-teaser"><span class="smart-rule"></span><span class="smart-savings-text"><span class="smart-prefix">Smart Refill</span>saves <strong>$${Math.round(smartAnnualSave)}</strong>/year</span><span class="smart-rule"></span></div>`
+  const smartTeaserHTML = (smartAnnualSave >= 50 && window.bundleSmartRefillEligible && window.bundleSmartRefillEligible(bundle))
+    ? `<div class="smart-savings-teaser"><span class="smart-rule"></span><span class="smart-savings-text"><span class="smart-prefix">Smart Refill</span>saves up to <strong>$${Math.round(smartAnnualSave)}</strong>/year</span><span class="smart-rule"></span></div>`
     : '';
 
 
