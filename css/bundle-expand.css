@@ -1,0 +1,328 @@
+/* ═══════════════════════════════════════════════════════════════════
+   BUNDLE EXPANSION — inline "More Details" expansion
+   Triggered by a toggle button injected next to each bundle's Add to Cart.
+   Expands inline below the bundle card to show the full bundle details
+   without navigating to a separate page.
+
+   Models the product-row layout from supplements.html's Longevity bundle.
+   ═══════════════════════════════════════════════════════════════════ */
+
+.bundle-details-toggle {
+  display: inline-block;
+  width: 100%;
+  margin-top: 12px;
+  padding: 13px 16px;
+  background: var(--cream-warm);
+  border: 1px solid var(--rule);
+  color: var(--ink);
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.3s, border-color 0.3s, color 0.3s;
+}
+.bundle-details-toggle:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+.bundle-details-toggle .toggle-icon {
+  display: inline-block;
+  margin-left: 6px;
+  transition: transform 0.3s;
+}
+.bundle-details-toggle.is-open .toggle-icon { transform: rotate(180deg); }
+
+/* On the Ultimate dark hero panel, button needs light/dark inversion */
+.hero-bundle-panel .bundle-details-toggle {
+  background: transparent;
+  border-color: rgba(184, 153, 104, 0.4);
+  color: rgba(250, 246, 240, 0.85);
+}
+.hero-bundle-panel .bundle-details-toggle:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(184, 153, 104, 0.08);
+}
+
+/* The expansion container */
+.bundle-expansion {
+  grid-column: 1 / -1;     /* span full row when inserted between grid bundle cards */
+  background: var(--cream);
+  border: 1px solid var(--rule);
+  border-top: 3px solid var(--gold);
+  margin-top: 20px;
+  padding: 0 36px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease, padding 0.4s ease;
+}
+.bundle-expansion.is-open {
+  max-height: 9000px;
+  padding: 38px 36px;
+}
+
+.bundle-expansion-eyebrow {
+  font-family: 'Poppins', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+.bundle-expansion-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 30px;
+  font-weight: 400;
+  color: var(--ink);
+  line-height: 1.15;
+  margin: 0 0 14px;
+}
+.bundle-expansion-title em { font-style: italic; color: var(--sage); }
+.bundle-expansion-desc {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 16.5px;
+  line-height: 1.65;
+  color: var(--ink);
+  margin: 0 0 28px;
+  max-width: 720px;
+}
+
+.bundle-exp-section { margin-bottom: 36px; }
+.bundle-exp-section:last-child { margin-bottom: 0; }
+.bundle-exp-h {
+  font-family: 'Poppins', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.bundle-why-block {
+  background: var(--cream-warm);
+  border-left: 3px solid var(--gold);
+  padding: 22px 26px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--ink);
+}
+
+/* Product rows — modeled after .row in supplements.html (Longevity bundle) */
+.bundle-exp-rows { display: flex; flex-direction: column; }
+.bundle-exp-row {
+  display: grid;
+  grid-template-columns: 90px 1fr 160px;
+  gap: 24px;
+  align-items: center;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--rule);
+  transition: padding-left 0.3s, background 0.3s;
+  min-height: 148px;
+}
+.bundle-exp-row:hover {
+  padding-left: 8px;
+  background: rgba(184, 153, 104, 0.05);
+}
+.bundle-exp-row:last-child { border-bottom: none; }
+
+.bundle-exp-row-img {
+  width: 90px; height: 90px;
+  border: 1px solid var(--rule);
+  background: linear-gradient(140deg, var(--tan) 0%, var(--cream) 60%, var(--tan) 100%);
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.bundle-exp-row-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.bundle-exp-row-img::after {
+  content: '';
+  position: absolute; inset: 5px;
+  border: 1px solid var(--gold);
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.bundle-exp-row-content { min-width: 0; }
+.bundle-exp-row-tag {
+  font-family: 'Poppins', sans-serif;
+  font-size: 9.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+.bundle-exp-row-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  line-height: 1.15;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+.bundle-exp-row-name em { font-style: italic; color: var(--sage); }
+.bundle-exp-row-desc {
+  font-family: 'Poppins', sans-serif;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  max-width: 95%;
+}
+
+.bundle-exp-row-shop {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: stretch;
+}
+.bundle-exp-row-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.bundle-exp-row-link {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 5px 0;
+  transition: color 0.3s;
+}
+.bundle-exp-row-link:hover { color: var(--sage); }
+.bundle-exp-row-add {
+  display: block;
+  width: 100%;
+  text-align: center;
+  background: var(--ink);
+  color: var(--cream);
+  padding: 11px 12px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 10.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.bundle-exp-row-add:hover { background: var(--sage); }
+
+/* Timeline */
+.bundle-exp-timeline {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+}
+.bundle-exp-timeline-item {
+  background: var(--cream-warm);
+  border: 1px solid var(--rule);
+  border-top: 3px solid var(--sage);
+  padding: 18px 20px;
+}
+.bundle-exp-timeline-week {
+  font-family: 'Poppins', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.bundle-exp-timeline-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+/* FAQ accordion */
+.bundle-exp-faq { display: flex; flex-direction: column; }
+.bundle-exp-faq-item {
+  border-bottom: 1px solid var(--rule);
+  padding: 15px 0;
+  cursor: pointer;
+}
+.bundle-exp-faq-item:first-child { border-top: 1px solid var(--rule); }
+.bundle-exp-faq-q {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+.bundle-exp-faq-q > span:first-child {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  color: var(--ink);
+  font-weight: 500;
+  line-height: 1.3;
+}
+.bundle-exp-faq-toggle {
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  color: var(--gold);
+  flex-shrink: 0;
+  width: 24px;
+  text-align: center;
+  transition: transform 0.3s;
+}
+.bundle-exp-faq-item.is-open .bundle-exp-faq-toggle { transform: rotate(45deg); }
+.bundle-exp-faq-a {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s, padding-top 0.3s;
+}
+.bundle-exp-faq-item.is-open .bundle-exp-faq-a {
+  max-height: 400px;
+  padding-top: 12px;
+}
+
+/* Mobile */
+@media (max-width: 800px) {
+  .bundle-expansion { padding: 0 18px; }
+  .bundle-expansion.is-open { padding: 28px 18px; }
+  .bundle-expansion-title { font-size: 24px; }
+  .bundle-exp-section { margin-bottom: 28px; }
+  .bundle-exp-row {
+    grid-template-columns: 70px 1fr;
+    gap: 14px;
+    min-height: 0;
+    padding: 18px 0;
+  }
+  .bundle-exp-row-img { width: 70px; height: 70px; }
+  .bundle-exp-row-shop {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+  }
+  .bundle-exp-row-price { font-size: 22px; flex: 0 0 auto; }
+  .bundle-exp-row-link, .bundle-exp-row-add { flex: 1; }
+  .bundle-why-block { padding: 18px 18px; font-size: 15px; }
+}
