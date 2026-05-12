@@ -5313,3 +5313,722 @@ body.byo-popup-open .cart-floating {
   border-color: var(--gold);
   transform: translateX(2px);
 }
+
+/* ════════════════════════════════════════════════════════════════════════
+   DH CHATBOT v2 — ADVANCED COMPONENTS
+   ════════════════════════════════════════════════════════════════════════
+   Rich inline cards, capability chips, voice button, feedback buttons,
+   reset button, side-by-side comparison tables, product grids inside
+   bubbles. All on top of the v1 base styles above. */
+
+/* ── Reset button in header ──────────────────────────────────────────── */
+.dh-chat-reset {
+  background: transparent;
+  border: 1px solid rgba(250, 246, 240, 0.25);
+  color: var(--cream);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+  margin-right: 6px;
+  transition: background 0.2s, border-color 0.2s, transform 0.4s;
+}
+.dh-chat-reset:hover {
+  background: rgba(250, 246, 240, 0.08);
+  border-color: var(--gold);
+  color: var(--gold);
+  transform: rotate(-90deg);
+}
+
+/* ── Capability chips row (right under header) ───────────────────────── */
+.dh-chat-capabilities {
+  display: flex;
+  gap: 6px;
+  padding: 10px 14px 10px;
+  background: var(--cream-warm);
+  border-bottom: 1px solid var(--rule);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.dh-chat-capabilities::-webkit-scrollbar { display: none; }
+.dh-chat-cap-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 11px;
+  background: var(--cream);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  cursor: pointer;
+  white-space: nowrap;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+.dh-chat-cap-chip:hover {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--gold);
+}
+
+/* ── Bubble wrap + feedback row ──────────────────────────────────────── */
+.dh-chat-bubble-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  max-width: 90%;
+}
+.dh-chat-msg-user .dh-chat-bubble-wrap { align-items: flex-end; }
+.dh-chat-feedback {
+  display: flex;
+  gap: 5px;
+  padding-left: 4px;
+}
+.dh-chat-feedback-btn {
+  background: transparent;
+  border: 1px solid var(--rule);
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 11px;
+  line-height: 1;
+  padding: 0;
+  opacity: 0.55;
+  transition: opacity 0.2s, background 0.2s, border-color 0.2s, transform 0.15s;
+}
+.dh-chat-feedback-btn:hover { opacity: 1; background: var(--cream-warm); }
+.dh-chat-feedback-btn.voted {
+  opacity: 1;
+  background: var(--gold);
+  border-color: var(--gold);
+  transform: scale(1.08);
+}
+
+/* ── Voice button ───────────────────────────────────────────────────── */
+.dh-chat-voice {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--cream-warm);
+  color: var(--ink);
+  border: 1px solid var(--rule);
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+  transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.15s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.dh-chat-voice:hover { background: var(--cream); border-color: var(--gold); }
+.dh-chat-voice.listening {
+  background: var(--gold);
+  color: var(--ink);
+  border-color: var(--gold);
+  animation: dh-chat-voice-pulse 1.4s infinite;
+}
+@keyframes dh-chat-voice-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(184, 153, 104, 0.6); }
+  50%      { box-shadow: 0 0 0 8px rgba(184, 153, 104, 0); }
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   RICH INLINE CARDS — products, bundles, ingredients, actions, etc.
+   These render INSIDE bot bubbles to give visual context to responses.
+   ════════════════════════════════════════════════════════════════════════ */
+
+.dh-chat-card {
+  background: var(--cream);
+  border: 1px solid var(--rule);
+  padding: 14px;
+  margin-bottom: 10px;
+}
+.dh-chat-card:last-child { margin-bottom: 0; }
+.dh-chat-card-cat {
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.dh-chat-card-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 19px;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+.dh-chat-card-name em { font-style: italic; color: var(--sage); }
+.dh-chat-card-name-sm { font-size: 15px; line-height: 1.3; }
+.dh-chat-card-alt {
+  font-size: 11px;
+  color: var(--ink-soft);
+  font-style: italic;
+  margin-bottom: 6px;
+}
+.dh-chat-card-blurb {
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  margin: 4px 0 10px;
+}
+.dh-chat-card-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  gap: 10px;
+}
+.dh-chat-card-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px;
+  color: var(--ink);
+  font-weight: 500;
+}
+.dh-chat-card-was {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px;
+  color: var(--ink-soft);
+  text-decoration: line-through;
+  margin-right: 6px;
+}
+.dh-chat-card-pricing { display: inline-flex; align-items: baseline; gap: 4px; }
+.dh-chat-card-btn {
+  background: var(--ink);
+  color: var(--gold);
+  border: 1px solid var(--ink);
+  padding: 7px 14px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 999px;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.15s;
+}
+.dh-chat-card-btn:hover {
+  background: var(--gold);
+  color: var(--ink);
+  border-color: var(--gold);
+  transform: translateY(-1px);
+}
+.dh-chat-card-link-btn {
+  background: var(--cream-warm);
+  color: var(--ink);
+  border: 1px solid var(--rule);
+}
+.dh-chat-card-link-btn:hover {
+  background: var(--cream);
+  color: var(--gold);
+  border-color: var(--gold);
+}
+.dh-chat-card-link {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(184, 153, 104, 0.4);
+  padding-bottom: 2px;
+}
+.dh-chat-card-link:hover { color: var(--ink); border-color: var(--gold); }
+
+/* ── Product card (image left, body right) ──────────────────────────── */
+.dh-chat-card-product { display: flex; gap: 12px; padding: 12px; }
+.dh-chat-card-img {
+  width: 70px;
+  height: 70px;
+  flex-shrink: 0;
+  background: var(--cream-warm);
+  overflow: hidden;
+}
+.dh-chat-card-img img { width: 100%; height: 100%; object-fit: cover; }
+.dh-chat-card-body { flex: 1; min-width: 0; }
+.dh-chat-card-product .dh-chat-card-foot { margin-top: 6px; }
+
+/* ── Bundle card ────────────────────────────────────────────────────── */
+.dh-chat-card-bundle-eyebrow {
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.dh-chat-card-bundle-products {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin: 8px 0 4px;
+}
+.dh-chat-mini-prod {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 9px 4px 4px;
+  background: var(--cream-warm);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--ink);
+}
+.dh-chat-mini-prod img {
+  width: 18px;
+  height: 18px;
+  object-fit: cover;
+  border-radius: 50%;
+  background: var(--cream);
+}
+.dh-chat-mini-more {
+  background: var(--ink);
+  color: var(--gold);
+  padding: 4px 10px;
+  font-weight: 600;
+  border-color: var(--ink);
+}
+
+/* ── Ingredient card ─────────────────────────────────────────────────── */
+.dh-chat-card-studies-pill,
+.dh-chat-card-ingredient-pill {
+  display: inline-block;
+  padding: 3px 9px;
+  background: rgba(184, 153, 104, 0.12);
+  border: 1px solid rgba(184, 153, 104, 0.3);
+  border-radius: 999px;
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--gold);
+  margin: 4px 4px 4px 0;
+}
+
+/* ── Action confirmation card ────────────────────────────────────────── */
+.dh-chat-card-action {
+  background: linear-gradient(180deg, rgba(184, 153, 104, 0.08) 0%, var(--cream) 100%);
+  border-color: var(--gold);
+}
+.dh-chat-card-action-row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.dh-chat-card-action-icon {
+  width: 36px;
+  height: 36px;
+  background: var(--gold);
+  color: var(--ink);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.dh-chat-card-actions-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+/* ── Compare card (side-by-side table) ───────────────────────────────── */
+.dh-chat-card-compare { padding: 12px; }
+.dh-chat-compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+  font-size: 11.5px;
+}
+.dh-chat-compare-table thead th {
+  text-align: left;
+  padding: 8px 6px;
+  border-bottom: 1px solid var(--rule);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink);
+}
+.dh-chat-compare-table thead th a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(184, 153, 104, 0.4);
+}
+.dh-chat-compare-table thead th a:hover { color: var(--gold); }
+.dh-chat-compare-sub {
+  display: block;
+  font-family: 'Poppins', sans-serif;
+  font-size: 8.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-top: 2px;
+}
+.dh-chat-compare-table tbody th {
+  text-align: left;
+  font-size: 9.5px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  padding: 9px 6px 9px 0;
+  border-bottom: 1px solid var(--rule);
+  width: 84px;
+  vertical-align: top;
+}
+.dh-chat-compare-table tbody td {
+  padding: 9px 6px;
+  border-bottom: 1px solid var(--rule);
+  color: var(--ink);
+  vertical-align: top;
+}
+
+/* ── Product grid card (filter results) ──────────────────────────────── */
+.dh-chat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin-top: 6px;
+}
+.dh-chat-grid-item {
+  display: block;
+  background: var(--cream-warm);
+  border: 1px solid var(--rule);
+  text-decoration: none;
+  color: inherit;
+  padding: 6px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.dh-chat-grid-item:hover { border-color: var(--gold); transform: translateY(-2px); }
+.dh-chat-grid-img {
+  width: 100%;
+  aspect-ratio: 1;
+  background: var(--cream);
+  margin-bottom: 6px;
+  overflow: hidden;
+}
+.dh-chat-grid-img img { width: 100%; height: 100%; object-fit: cover; }
+.dh-chat-grid-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.15;
+  margin-bottom: 2px;
+}
+.dh-chat-grid-price {
+  font-size: 10px;
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+
+/* ── Info card (generic) ─────────────────────────────────────────────── */
+.dh-chat-card-info { font-size: 13px; color: var(--ink-soft); line-height: 1.55; }
+
+/* ════════════════════════════════════════════════════════════════════════
+   CHATBOT SETTINGS MODAL + CLAUDE INTEGRATION UI
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* Settings button (gear icon) in panel header — matches Reset button styling */
+.dh-chat-settings {
+  background: transparent;
+  border: 1px solid rgba(250, 246, 240, 0.25);
+  color: var(--cream);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.dh-chat-settings:hover {
+  background: rgba(250, 246, 240, 0.08);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+/* "Connected to Claude" banner shown above the disclaimer when active */
+.dh-chat-claude-banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: linear-gradient(90deg, rgba(184, 153, 104, 0.12), rgba(184, 153, 104, 0.04));
+  border-top: 1px solid var(--rule);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+}
+.dh-chat-claude-banner[hidden] { display: none; }
+.dh-chat-claude-banner-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  animation: dh-chat-pulse 2.4s infinite;
+}
+.dh-chat-claude-banner-model { color: var(--ink); font-weight: 500; }
+
+/* Settings modal — sits over the chat panel */
+.dh-chat-settings-modal {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+}
+.dh-chat-settings-modal[hidden] { display: none; }
+.dh-chat-settings-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(31, 27, 23, 0.6);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+.dh-chat-settings-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(100% - 32px);
+  max-height: calc(100% - 32px);
+  overflow-y: auto;
+  background: var(--cream);
+  border: 1px solid var(--rule);
+  padding: 22px 22px 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+}
+.dh-chat-settings-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: 1px solid var(--rule);
+  color: var(--ink);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 13px;
+}
+.dh-chat-settings-close:hover { border-color: var(--gold); color: var(--gold); }
+.dh-chat-settings-eyebrow {
+  font-size: 9px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.dh-chat-settings-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  font-weight: 400;
+  margin: 0 0 10px;
+  line-height: 1.15;
+}
+.dh-chat-settings-title em { font-style: italic; color: var(--sage); }
+.dh-chat-settings-blurb {
+  font-size: 11.5px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin: 0 0 16px;
+}
+.dh-chat-settings-blurb code {
+  background: var(--cream-warm);
+  padding: 1px 6px;
+  border: 1px solid var(--rule);
+  font-size: 10.5px;
+  font-family: 'Courier New', monospace;
+}
+.dh-chat-settings-label {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+  font-weight: 600;
+}
+.dh-chat-settings-label > span { display: block; margin-bottom: 6px; }
+.dh-chat-settings-key,
+.dh-chat-settings-model {
+  width: 100%;
+  padding: 9px 12px;
+  background: var(--cream-warm);
+  border: 1px solid var(--rule);
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+.dh-chat-settings-key:focus,
+.dh-chat-settings-model:focus {
+  border-color: var(--gold);
+  background: var(--cream);
+}
+.dh-chat-settings-help {
+  display: block;
+  font-size: 10px;
+  color: var(--gold);
+  text-decoration: none;
+  margin: -6px 0 16px;
+  letter-spacing: 0.04em;
+  font-weight: 500;
+  text-transform: none;
+}
+.dh-chat-settings-help:hover { color: var(--ink); }
+.dh-chat-settings-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 12px;
+  background: var(--cream-warm);
+  border: 1px solid var(--rule);
+  cursor: pointer;
+  margin-bottom: 14px;
+  position: relative;
+  transition: border-color 0.2s, background 0.2s;
+}
+.dh-chat-settings-toggle:hover { border-color: var(--gold); }
+.dh-chat-settings-toggle input { display: none; }
+.dh-chat-settings-toggle-slider {
+  width: 32px;
+  height: 18px;
+  background: var(--rule);
+  border-radius: 999px;
+  position: relative;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+.dh-chat-settings-toggle-slider::after {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background: var(--cream);
+  border-radius: 50%;
+  top: 2px;
+  left: 2px;
+  transition: left 0.2s;
+}
+.dh-chat-settings-toggle input:checked + .dh-chat-settings-toggle-slider {
+  background: var(--gold);
+}
+.dh-chat-settings-toggle input:checked + .dh-chat-settings-toggle-slider::after {
+  left: 16px;
+}
+.dh-chat-settings-toggle-label {
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  font-weight: 500;
+  color: var(--ink);
+}
+.dh-chat-settings-note {
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  background: rgba(184, 153, 104, 0.08);
+  border-left: 2px solid var(--gold);
+  padding: 10px 12px;
+  margin-bottom: 14px;
+  font-family: 'Poppins', sans-serif;
+}
+.dh-chat-settings-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--ink-soft);
+  margin-bottom: 14px;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  font-weight: 500;
+}
+.dh-chat-settings-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--ink-soft);
+  flex-shrink: 0;
+}
+.dh-chat-settings-status-dot[data-state="ready"] { background: #6cc36c; box-shadow: 0 0 6px rgba(108, 195, 108, 0.6); }
+.dh-chat-settings-status-dot[data-state="pending"] { background: var(--gold); animation: dh-chat-pulse 1.2s infinite; }
+.dh-chat-settings-status-dot[data-state="error"] { background: #c66c6c; }
+.dh-chat-settings-status-dot[data-state="idle"] { background: var(--ink-soft); }
+.dh-chat-settings-actions {
+  display: flex;
+  gap: 8px;
+}
+.dh-chat-settings-save,
+.dh-chat-settings-test {
+  flex: 1;
+  padding: 11px 14px;
+  border: 1px solid var(--ink);
+  font-family: 'Poppins', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.dh-chat-settings-save {
+  background: var(--ink);
+  color: var(--gold);
+}
+.dh-chat-settings-save:hover {
+  background: var(--gold);
+  color: var(--ink);
+  border-color: var(--gold);
+}
+.dh-chat-settings-test {
+  background: transparent;
+  color: var(--ink);
+}
+.dh-chat-settings-test:hover {
+  background: var(--cream-warm);
+  border-color: var(--gold);
+}
+
+/* Streaming cursor — blinking gold caret while Claude is mid-response */
+.dh-chat-stream-cursor {
+  display: inline-block;
+  width: 7px;
+  height: 14px;
+  vertical-align: text-bottom;
+  background: var(--gold);
+  margin-left: 2px;
+  animation: dh-chat-cursor-blink 0.9s infinite;
+}
+@keyframes dh-chat-cursor-blink {
+  0%, 49%   { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
