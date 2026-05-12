@@ -119,16 +119,29 @@
     },
 
     save() {
-      // In production this would push to Shopify cart API.
-      // We use sessionStorage as a simple persistence layer for the session.
+      // Persist to localStorage so the cart survives page reloads AND tab/browser restarts.
+      // In production this would also push to Shopify cart API.
       try {
-        sessionStorage.setItem('dh_cart', JSON.stringify(this.items));
+        localStorage.setItem('dh_cart', JSON.stringify(this.items));
+      } catch (e) { /* ignore quota / disabled storage */ }
+      // Broadcast a change event so other UI (floating cart badge, etc.) can re-sync.
+      try {
+        window.dispatchEvent(new CustomEvent('dh:cart:change', { detail: { items: this.items } }));
       } catch (e) { /* ignore */ }
     },
 
     load() {
       try {
-        const data = sessionStorage.getItem('dh_cart');
+        let data = localStorage.getItem('dh_cart');
+        // Migration: pick up an older sessionStorage cart on first load.
+        if (!data) {
+          const legacy = sessionStorage.getItem('dh_cart');
+          if (legacy) {
+            data = legacy;
+            try { localStorage.setItem('dh_cart', legacy); } catch (e) { /* ignore */ }
+            try { sessionStorage.removeItem('dh_cart'); } catch (e) { /* ignore */ }
+          }
+        }
         if (data) this.items = JSON.parse(data);
       } catch (e) { /* ignore */ }
     },
@@ -149,7 +162,7 @@
         body.innerHTML = `
           <div class="cart-empty">
             <div class="cart-empty-text">Your cart is empty.</div>
-            <a href="bundles.html" style="color: var(--gold); text-decoration: underline; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;">Browse Bundles →</a>
+            <a href="routines.html" style="color: var(--gold); text-decoration: underline; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;">Browse Routines →</a>
           </div>
         `;
       } else {
@@ -256,9 +269,18 @@
 
   // ═══ CART DRAWER ═══
   function openCart() {
+    // Preferred: open the floating cart panel (used everywhere on this site).
+    const floating = document.querySelector('.cart-floating');
+    if (floating) {
+      // Trigger its own toggle to use its render() pipeline.
+      const btn = floating.querySelector('.cart-floating-toggle');
+      if (btn && !floating.classList.contains('expanded')) btn.click();
+      return;
+    }
+    // Legacy fallback (if a page still has the old slide-out drawer)
     const overlay = document.querySelector('.cart-overlay');
     const drawer = document.querySelector('.cart-drawer');
-    if (!overlay || !drawer) return; // Drawer removed — no-op
+    if (!overlay || !drawer) return;
     overlay.classList.add('open');
     drawer.classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -266,6 +288,7 @@
   function closeCart() {
     document.querySelector('.cart-overlay')?.classList.remove('open');
     document.querySelector('.cart-drawer')?.classList.remove('open');
+    // Floating cart has its own close path triggered by its overlay/close button.
     document.body.style.overflow = '';
   }
   window.dhOpenCart = openCart;
@@ -377,12 +400,24 @@
       });
     }
 
-    // Search
-    document.querySelectorAll('.search-trigger').forEach(el => el.addEventListener('click', openSearch));
+    // Search trigger (the "Search" text button in the top nav) — always navigates
+    // to the dedicated site-wide search page.
+    document.querySelectorAll('.search-trigger').forEach(el => {
+      el.addEventListener('click', () => {
+        window.location.href = 'search.html';
+      });
+    });
     document.querySelector('.search-panel-close')?.addEventListener('click', closeSearch);
     const searchInput = document.querySelector('.search-panel-input');
     if (searchInput) {
       searchInput.addEventListener('input', e => performSearch(e.target.value));
+      searchInput.addEventListener('keydown', e => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          const q = (e.target.value || '').trim();
+          window.location.href = 'search.html' + (q ? '?q=' + encodeURIComponent(q) : '');
+        }
+      });
     }
     // Click outside the search panel content closes it
     document.querySelector('.search-panel')?.addEventListener('click', e => {
@@ -552,6 +587,20 @@
 
       // Input typing
       input.addEventListener('input', runFilter);
+      // Enter → go to dedicated search page with full site-wide results
+      input.addEventListener('keydown', e => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          const q = input.value.trim();
+          // Collect active filter chips to forward as state
+          const activeChips = Array.from(filterEl.querySelectorAll('.filter-chip.active'))
+            .map(c => `${c.dataset.group || 'tag'}:${c.dataset.chip || c.dataset.value || c.textContent.trim()}`);
+          const params = new URLSearchParams();
+          if (q) params.set('q', q);
+          if (activeChips.length) params.set('filters', activeChips.join(','));
+          window.location.href = 'search.html' + (params.toString() ? '?' + params.toString() : '');
+        }
+      });
       // Clear text
       if (clearBtn) clearBtn.addEventListener('click', () => {
         input.value = '';
@@ -690,10 +739,13 @@
       // Action buttons
       const actions = document.querySelector('.lightbox-actions');
       if (actions) {
+        // Detect if bundleName looks like a "Routine" (curated) vs "Bundle" (targeted)
+        const isRoutine = /Routine\b/i.test(this.bundleName || '');
+        const ctaWord = isRoutine ? 'Routine' : 'Bundle';
         const buttons = [
           `<button class="lightbox-btn primary" data-lb-action="add-product">Add to Cart →</button>`,
           this.bundleName
-            ? `<button class="lightbox-btn primary" style="background: var(--gold);" data-lb-action="add-bundle">${this.bundleSubscribe ? 'Subscribe to Bundle' : 'Add Bundle'} →</button>`
+            ? `<button class="lightbox-btn primary" style="background: var(--gold);" data-lb-action="add-bundle">${this.bundleSubscribe ? `Subscribe to ${ctaWord}` : `Add ${ctaWord}`} →</button>`
             : '',
           `<a class="lightbox-btn secondary" href="product.html?slug=${p.slug}">View Full Details</a>`
         ].filter(Boolean).join('');
@@ -762,7 +814,7 @@
     const roundedNow   = Math.round(currentPrice);
     const roundedSave  = Math.round(savings);
 
-    // .bundle-card style pricing (bundles.html main cards)
+    // .bundle-card style pricing (routines.html main cards)
     const bSave  = container.querySelector('.bundle-save');
     const bLabel = container.querySelector('.bundle-save-label');
     if (bSave)  bSave.textContent  = `Save $${roundedSave}`;
@@ -776,7 +828,7 @@
     if (fnNow)     fnNow.textContent     = `$${roundedNow}`;
     if (fnSavings) fnSavings.textContent = `Save $${roundedSave} · ${fmtPct(pct)}% off`;
 
-    // .hero-bundle style pricing (Ultimate on bundles.html)
+    // .hero-bundle style pricing (Ultimate on routines.html)
     const hSave  = container.querySelector('.hero-savings-amount');
     const hLabel = container.querySelector('.hero-savings-label');
     if (hSave)  hSave.textContent  = `Save $${roundedSave}`;
@@ -837,7 +889,7 @@
 
     // Add Bundle to Cart — reads bundle by id, checks subscribe state, adds to cart
     document.querySelectorAll('[data-bundle-add]').forEach(btn => {
-      // Skip if bundles.html scoped handler already wired it (it gets to run first)
+      // Skip if routines.html scoped handler already wired it (it gets to run first)
       if (btn._dhBundleAddWired) return;
       btn._dhBundleAddWired = true;
       btn.addEventListener('click', () => {
@@ -962,17 +1014,14 @@
       wrap.classList.toggle('has-items', count > 0);
     }
 
-    // Hook into dhCart's persist/render to keep badge fresh.
-    // The cart's persist() may not exist on all builds — guard so we don't crash.
-    if (window.dhCart && typeof window.dhCart.persist === 'function') {
-      const origPersist = window.dhCart.persist.bind(window.dhCart);
-      window.dhCart.persist = function() {
-        origPersist();
-        syncBadge();
-        if (wrap.classList.contains('expanded')) render();
-      };
-    }
-    // Always sync the badge once on init regardless of persist hook
+    // Listen for cart mutations from anywhere on the page (add-to-cart buttons,
+    // quantity changes, etc.) and keep the badge + open panel in sync.
+    window.addEventListener('dh:cart:change', () => {
+      syncBadge();
+      if (wrap.classList.contains('expanded')) render();
+    });
+
+    // Always sync the badge once on init
     if (window.dhCart) syncBadge();
 
     function priceOf(item) {
@@ -1001,7 +1050,7 @@
           <div class="cf-empty">
             <div class="cf-empty-icon">— ◇ —</div>
             <div class="cf-empty-text">Your cart is empty</div>
-            <a href="bundles.html">Browse Bundles →</a>
+            <a href="routines.html">Browse Routines →</a>
           </div>
         `;
         return;
@@ -1383,7 +1432,7 @@
   });
 
   // ═══ BUNDLE CARD DROPDOWN — INLINE EXPANDABLE DETAILS ═══════════════════
-  // For each .bundle-card on bundles.html, injects a "View Details ↓" link
+  // For each .bundle-card on routines.html, injects a "View Details ↓" link
   // and an expandable panel that reveals:
   //   • A bundle-level intro paragraph ("what makes this stack work")
   //   • Three benefit-tag pills (Built to layer / Tested together / Saves $X)
@@ -1442,7 +1491,7 @@
         },
         whoItsFor: {
           yes: "You're committed to a real routine. You believe results compound when topical and internal work together. You want the discount that comes with one decision instead of twenty-two — and you're not interested in piecing this together over months.",
-          no: "You're new to skincare and supplements and want to test the waters first. Start with AM Bundle or Daniel's Daily and scale up. The Ultimate is for people who already know they want the full protocol."
+          no: "You're new to skincare and supplements and want to test the waters first. Start with AM Routine or Daniel's Daily and scale up. The Ultimate is for people who already know they want the full protocol."
         }
       },
       'daniels-daily': {
@@ -1494,7 +1543,7 @@
         },
         whoItsFor: {
           yes: "You want a complete morning routine that takes under five minutes once you have it dialed. You believe in protection-first skincare and want visible brightness without a 12-step Korean routine.",
-          no: "You only have time for a 2-step routine (just Wash + Soft works as a minimum). Or you want PM repair work too — the PM Bundle is the natural complement."
+          no: "You only have time for a 2-step routine (just Wash + Soft works as a minimum). Or you want PM repair work too — the PM Routine is the natural complement."
         }
       },
       pm: {
@@ -1614,7 +1663,7 @@
         },
         whoItsFor: {
           yes: "You want brighter skin in a measurable way — not just 'feels nicer.' You understand brightness is a compound effect (topical + internal + weekly treatment), not a single product result.",
-          no: "Your main concern is anti-aging fine lines (look at the PM Bundle or Mom's Bundle instead). Or you have very dry skin — Defense and Glow may feel rich; start with Boost + Radiance alone."
+          no: "Your main concern is anti-aging fine lines (look at the PM Routine or Mom's Routine instead). Or you have very dry skin — Defense and Glow may feel rich; start with Boost + Radiance alone."
         }
       },
       weekly: {
@@ -1668,7 +1717,7 @@
         },
         whoItsFor: {
           yes: "You want noticeable smoothing, firming, and brightening in 6-12 weeks <em>and</em> you take the long view on aging — you understand what happens at the cellular level (mitochondrial energy, sleep quality, sirtuin activity) shows up on your face years later.",
-          no: "You want a 2-step set-it-and-forget-it routine without supplements — look at the AM Bundle instead. Or you're not yet ready to commit to a daily multi-supplement protocol."
+          no: "You want a 2-step set-it-and-forget-it routine without supplements — look at the AM Routine instead. Or you're not yet ready to commit to a daily multi-supplement protocol."
         }
       },
       arianas: {
@@ -1824,7 +1873,7 @@
             <div class="bd-products">
               ${productCardsHtml}
             </div>
-            <a href="bundles.html" class="bd-full-link">Browse all bundles →</a>
+            <a href="routines.html" class="bd-full-link">Browse all routines →</a>
           </div>
         </div>
       `;
@@ -1837,3 +1886,344 @@
   });
 
 })();
+
+  // ═══════════════════════════════════════════════════════════════
+  // FLOATING MENU BUTTON (top-left) + SLIDE-OUT NAV PANEL
+  // Mirrors the cart-floating pattern. Injected on every page via JS
+  // so we don't have to maintain HTML in 18 files.
+  // ═══════════════════════════════════════════════════════════════
+  document.addEventListener('DOMContentLoaded', function() {
+    // Don't inject twice
+    if (document.querySelector('.dh-menu')) return;
+
+    // Determine current page filename for "is-current" highlighting
+    const currentPath = (window.location.pathname || '').split('/').pop() || 'index.html';
+
+    // Site map — keep in sync with footer link structure
+    const sections = [
+      {
+        eyebrow: 'Shop',
+        links: [
+          { href: 'skincare.html',     label: 'Skincare' },
+          { href: 'supplements.html',  label: 'Supplements' },
+          { href: 'routines.html',      label: 'Routines' },
+          { href: 'bundles.html',         label: 'Bundles' },
+          { href: 'compare.html',      label: 'Compare' }
+        ]
+      },
+      {
+        eyebrow: 'The House',
+        links: [
+          { href: 'index.html',        label: 'Home' },
+          { href: 'about.html',        label: "Daniel's Story" },
+          { href: 'ingredients.html',  label: 'Ingredient Glossary' },
+          { href: 'blog.html',         label: 'Field Notes (Blog)' },
+          { href: 'reviews.html',      label: 'Reviews' },
+          { href: 'quiz.html',         label: 'Take the Quiz' },
+          { href: 'faq.html',          label: 'FAQ' }
+        ]
+      },
+      {
+        eyebrow: 'Help',
+        links: [
+          { href: 'faq.html#shipping', label: 'Shipping' },
+          { href: 'faq.html#returns',  label: 'Returns Policy' },
+          { href: 'faq.html#returns',  label: '30-Day Guarantee' },
+          { href: 'faq.html',          label: 'Contact' }
+        ]
+      },
+      {
+        eyebrow: 'Legal',
+        links: [
+          { href: 'privacy.html',       label: 'Privacy Policy' },
+          { href: 'terms.html',         label: 'Terms of Service' },
+          { href: 'accessibility.html', label: 'Accessibility' }
+        ]
+      }
+    ];
+
+    const isCurrent = (href) => {
+      const target = (href.split('#')[0] || '').toLowerCase();
+      return target === currentPath.toLowerCase();
+    };
+
+    const sectionHTML = sections.map(sec => `
+      <div class="dh-menu-section">
+        <div class="dh-menu-section-eyebrow">${sec.eyebrow}</div>
+        <ul class="dh-menu-links">
+          ${sec.links.map(l => `
+            <li>
+              <a href="${l.href}" class="dh-menu-link${isCurrent(l.href) ? ' is-current' : ''}">
+                <span>${l.label}</span>
+                <span class="dh-menu-link-arrow">→</span>
+              </a>
+            </li>
+          `).join('')}
+        </ul>
+      </div>
+    `).join('');
+
+    const wrap = document.createElement('div');
+    wrap.className = 'dh-menu';
+    wrap.innerHTML = `
+      <button class="dh-menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+        <span class="dh-menu-toggle-icon">
+          <span></span><span></span><span></span>
+        </span>
+      </button>
+      <div class="dh-menu-overlay"></div>
+      <aside class="dh-menu-panel" role="dialog" aria-modal="true" aria-label="Site navigation">
+        <div class="dh-menu-head">
+          <div class="dh-menu-head-title">Daniel<em>'s</em> House</div>
+          <button class="dh-menu-close" type="button" aria-label="Close menu">✕</button>
+        </div>
+        <div class="dh-menu-body">
+          ${sectionHTML}
+        </div>
+        <div class="dh-menu-foot">
+          <em>Built on real results.</em>
+        </div>
+      </aside>
+    `;
+    document.body.appendChild(wrap);
+
+    const toggleBtn = wrap.querySelector('.dh-menu-toggle');
+    const overlay = wrap.querySelector('.dh-menu-overlay');
+    const closeBtn = wrap.querySelector('.dh-menu-close');
+
+    function openMenu() {
+      wrap.classList.add('is-open');
+      toggleBtn.setAttribute('aria-expanded', 'true');
+      document.body.classList.add('dh-menu-open');
+    }
+    function closeMenu() {
+      wrap.classList.remove('is-open');
+      toggleBtn.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('dh-menu-open');
+    }
+    function toggleMenu() {
+      if (wrap.classList.contains('is-open')) closeMenu(); else openMenu();
+    }
+
+    toggleBtn.addEventListener('click', toggleMenu);
+    overlay.addEventListener('click', closeMenu);
+    closeBtn.addEventListener('click', closeMenu);
+
+    // Close on ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && wrap.classList.contains('is-open')) {
+        closeMenu();
+      }
+    });
+
+    // Close when a link is clicked (so the destination page loads cleanly)
+    wrap.querySelectorAll('.dh-menu-link').forEach(a => {
+      a.addEventListener('click', () => {
+        // Brief delay so the visual feedback is visible before nav
+        setTimeout(closeMenu, 60);
+      });
+    });
+  });
+
+
+  // ═══════════════════════════════════════════════════════════════
+  // SORT SYSTEM — used by search.html, routines.html, bundles.html, ingredients.html
+  // Reusable: define sort options per content kind, expose sort fn + UI builder.
+  // ═══════════════════════════════════════════════════════════════
+  (function() {
+
+    // Editorially-curated best-seller orderings.
+    // First in list = most prominent. Items not listed are sorted to the end.
+    // Daniel can re-order these manually as real sales data comes in.
+    window.DH_BEST_SELLERS = {
+      products: [
+        'the-house-multi',     // foundational best-seller
+        'the-house-bounce',    // hero retinol product
+        'the-house-defense',   // antioxidant heavy hitter
+        'the-house-nad-plus',  // longevity hero
+        'the-house-tranquil',  // sleep-magnesium
+        'the-house-wash',      // gateway skincare
+        'the-house-collagen',  // top supplement
+        'the-house-eye',       // peptides
+        'the-house-soft',      // moisturizer
+        'the-house-vitality',  // longevity
+        'the-house-glow',      // face oil
+        'the-house-hyaluronic',
+        'the-house-boost',
+        'the-house-flow',
+        'the-house-radiance',
+        'the-house-firm',
+        'the-house-renewal',
+        'the-house-hydration',
+        'the-house-balance',
+        'the-house-calm',
+        'the-house-biome',
+        'the-house-sunshine',
+        'the-house-restore',
+        'the-house-synapse',
+        'the-house-mask',
+        'the-house-polish',
+        'the-house-focus',
+        'the-house-power',
+        'the-house-pump',
+        'the-house-seal',
+        'the-house-greens',
+        'the-house-burn'
+      ],
+      bundles: [
+        'daniels-daily',
+        'ultimate',
+        'am',
+        'glow',
+        'pm',
+        'workout',
+        'longevity',
+        'moms',
+        'arianas'
+      ],
+      // For concern bundles: ordered roughly by demand
+      concerns: [
+        'anti-aging', 'sleep', 'energy', 'stress', 'acne',
+        'glow', 'brightening', 'hydration', 'sensitive-skin',
+        'immunity', 'gut-health', 'workout-recovery', 'focus',
+        'hormonal-balance', 'hair-nails'
+      ]
+    };
+
+    // Sort option menus, per content kind.
+    window.DH_SORT_OPTIONS = {
+      products: [
+        { key: 'featured',   label: 'Featured' },
+        { key: 'bestseller', label: 'Best Sellers' },
+        { key: 'price-asc',  label: 'Price: Low → High' },
+        { key: 'price-desc', label: 'Price: High → Low' },
+        { key: 'name-asc',   label: 'Name: A → Z' },
+        { key: 'name-desc',  label: 'Name: Z → A' }
+      ],
+      bundles: [
+        { key: 'featured',       label: 'Featured' },
+        { key: 'bestseller',     label: 'Best Sellers' },
+        { key: 'price-asc',      label: 'Price: Low → High' },
+        { key: 'price-desc',     label: 'Price: High → Low' },
+        { key: 'products-desc',  label: 'Most Products' },
+        { key: 'products-asc',   label: 'Fewest Products' },
+        { key: 'discount-desc',  label: 'Biggest Discount' },
+        { key: 'name-asc',       label: 'Name: A → Z' }
+      ],
+      ingredients: [
+        { key: 'featured',   label: 'Most Used' },
+        { key: 'name-asc',   label: 'Name: A → Z' },
+        { key: 'name-desc',  label: 'Name: Z → A' },
+        { key: 'category',   label: 'By Category' }
+      ],
+      pages: [
+        { key: 'relevance',  label: 'Relevance' },
+        { key: 'name-asc',   label: 'Name: A → Z' }
+      ]
+    };
+
+    // ─── helpers ───
+    function rankIn(list, value) {
+      const i = list.indexOf(value);
+      return i === -1 ? 999 : i;
+    }
+    function bundleListPrice(b) {
+      // Sum of regular product prices for the bundle, BEFORE bundle discount.
+      const slugs = b.slugs || [];
+      return slugs.reduce((sum, slug) => {
+        const p = (window.getProductBySlug && window.getProductBySlug(slug)) || null;
+        return sum + (p ? (p.price || 0) : 0);
+      }, 0);
+    }
+    function bundleSalePrice(b) {
+      return bundleListPrice(b) * (1 - (b.discount || 0));
+    }
+
+    // ─── main sort function ───
+    window.dhSortItems = function(items, kind, sortKey) {
+      const arr = (items || []).slice();
+      if (!sortKey) return arr;
+
+      switch (kind) {
+        case 'products': {
+          if (sortKey === 'featured')   return arr; // already in editorial order
+          if (sortKey === 'bestseller') {
+            const order = window.DH_BEST_SELLERS.products;
+            return arr.sort((a, b) => rankIn(order, a.slug) - rankIn(order, b.slug));
+          }
+          if (sortKey === 'price-asc')  return arr.sort((a, b) => (a.price || 0) - (b.price || 0));
+          if (sortKey === 'price-desc') return arr.sort((a, b) => (b.price || 0) - (a.price || 0));
+          if (sortKey === 'name-asc')   return arr.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
+          if (sortKey === 'name-desc')  return arr.sort((a, b) => (b.name || '').localeCompare(a.name || ''));
+          return arr;
+        }
+        case 'bundles': {
+          if (sortKey === 'featured')   return arr;
+          if (sortKey === 'bestseller') {
+            const order = [...window.DH_BEST_SELLERS.bundles, ...window.DH_BEST_SELLERS.concerns];
+            return arr.sort((a, b) => rankIn(order, a.id) - rankIn(order, b.id));
+          }
+          if (sortKey === 'price-asc')      return arr.sort((a, b) => bundleSalePrice(a) - bundleSalePrice(b));
+          if (sortKey === 'price-desc')     return arr.sort((a, b) => bundleSalePrice(b) - bundleSalePrice(a));
+          if (sortKey === 'products-desc')  return arr.sort((a, b) => (b.slugs || []).length - (a.slugs || []).length);
+          if (sortKey === 'products-asc')   return arr.sort((a, b) => (a.slugs || []).length - (b.slugs || []).length);
+          if (sortKey === 'discount-desc')  return arr.sort((a, b) => (b.discount || 0) - (a.discount || 0));
+          if (sortKey === 'name-asc')       return arr.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
+          return arr;
+        }
+        case 'ingredients': {
+          if (sortKey === 'featured') {
+            // "Most used" — count how many products reference each ingredient.
+            // Supports both data shapes: ing.usedIn (search context) and ing.products (glossary).
+            const usage = ing => ((ing.usedIn || ing.products || []).length);
+            return arr.sort((a, b) => usage(b) - usage(a));
+          }
+          if (sortKey === 'name-asc')  return arr.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
+          if (sortKey === 'name-desc') return arr.sort((a, b) => (b.name || '').localeCompare(a.name || ''));
+          if (sortKey === 'category')  {
+            const cat = ing => (ing.category || ing.cat || '');
+            return arr.sort((a, b) => {
+              const c = cat(a).localeCompare(cat(b));
+              return c !== 0 ? c : (a.name || '').localeCompare(b.name || '');
+            });
+          }
+          return arr;
+        }
+        case 'pages': {
+          if (sortKey === 'relevance') return arr;
+          if (sortKey === 'name-asc')  return arr.sort((a, b) => (a.title || '').localeCompare(b.title || ''));
+          return arr;
+        }
+        default:
+          return arr;
+      }
+    };
+
+    // ─── UI builder: returns a sort-bar DOM node ───
+    // Pass a `countText` for "Showing 12 of 33", or null to hide the count side.
+    window.dhBuildSortBar = function(kind, currentKey, countText, onChange) {
+      const options = window.DH_SORT_OPTIONS[kind] || [];
+      if (!options.length) return null;
+      const bar = document.createElement('div');
+      bar.className = 'dh-sort-bar';
+      bar.innerHTML = `
+        <div class="dh-sort-bar-count">${countText || ''}</div>
+        <div class="dh-sort">
+          <span class="dh-sort-label">Sort by</span>
+          <div class="dh-sort-select-wrap">
+            <select class="dh-sort-select" aria-label="Sort ${kind}">
+              ${options.map(o => `<option value="${o.key}"${o.key === currentKey ? ' selected' : ''}>${o.label}</option>`).join('')}
+            </select>
+            <span class="dh-sort-caret">▾</span>
+          </div>
+        </div>
+      `;
+      const select = bar.querySelector('.dh-sort-select');
+      select.addEventListener('change', () => {
+        if (typeof onChange === 'function') onChange(select.value);
+      });
+      return bar;
+    };
+
+  })();
+

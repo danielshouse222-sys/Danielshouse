@@ -10,8 +10,8 @@
    based on body[data-bundle-category] (curated|concern). Merges with
    window.BUNDLE_DETAILS for the long-form content.
 
-   Designed to work both for HTML-baked cards (bundles.html) and for
-   JS-rendered cards (shop.html). MutationObserver picks up cards that
+   Designed to work both for HTML-baked cards (routines.html) and for
+   JS-rendered cards (bundles.html). MutationObserver picks up cards that
    appear after DOMContentLoaded.
    ═══════════════════════════════════════════════════════════════════ */
 
@@ -26,16 +26,25 @@
   }
 
   function lookupBundle(slug, category) {
-    if (category === 'concern') {
-      return (window.CONCERN_BUNDLES || []).find(b => b.id === slug);
+    // First check the page's default category, then fall back to the other.
+    // This lets routines render correctly on bundles.html (where the page category
+    // is 'concern') and lets concern bundles appear correctly on any page that mixes
+    // both types.
+    const lists = category === 'concern'
+      ? [window.CONCERN_BUNDLES || [], window.CURATED_BUNDLES || []]
+      : [window.CURATED_BUNDLES || [], window.CONCERN_BUNDLES || []];
+    for (const list of lists) {
+      const hit = list.find(b => b.id === slug);
+      if (hit) return hit;
     }
-    return (window.CURATED_BUNDLES || []).find(b => b.id === slug);
+    return null;
   }
 
   function italicizeName(name) {
     if (!name) return '';
-    const m1 = name.match(/^(The )([\w'+&-]+)( Bundle)$/);
-    const m2 = name.match(/^([\w']+'s )([\w]+)( Bundle)$/);
+    // Match both "The X Routine" (curated) and "The X Bundle" (targeted concern)
+    const m1 = name.match(/^(The )([\w'+&-]+)( (?:Bundle|Routine))$/);
+    const m2 = name.match(/^([\w']+'s )([\w]+)( (?:Bundle|Routine))$/);
     if (m1) return `${m1[1]}<em>${m1[2]}</em>${m1[3]}`;
     if (m2) return `${m2[1]}<em>${m2[2]}</em>${m2[3]}`;
     return name;
@@ -43,7 +52,7 @@
 
   // Aggregate peer-reviewed studies from the ingredients glossary based on
   // which ingredients appear in the bundle's products. Uses the same alias
-  // matching as shop.html — generic words ('vitamin','acid', etc.) are skipped
+  // matching as bundles.html — generic words ('vitamin','acid', etc.) are skipped
   // to avoid false-positive ingredient matches. Studies are sorted RCT first,
   // then by year descending, and deduplicated by title.
   function aggregateStudies(products, maxStudies = 6) {
@@ -119,8 +128,12 @@
       .map(s => window.getProductBySlug ? window.getProductBySlug(s) : null)
       .filter(Boolean);
 
-    const eyebrow = details?.eyebrow || (bundle.blurb ? 'Bundle Details' : 'Bundle');
-    const displayName = italicizeName(bundle.name || 'Bundle');
+    // Detect: is this a curated routine or a targeted bundle?
+    // Curated routines come from CURATED_BUNDLES (window.getCuratedBundleById).
+    const isCurated = !!(window.getCuratedBundleById && window.getCuratedBundleById(bundle.id));
+    const fallbackEyebrow = isCurated ? 'Routine Details' : 'Bundle Details';
+    const eyebrow = details?.eyebrow || (bundle.blurb ? fallbackEyebrow : (isCurated ? 'Routine' : 'Bundle'));
+    const displayName = italicizeName(bundle.name || (isCurated ? 'Routine' : 'Bundle'));
     const description = details?.description || bundle.blurb || '';
 
     // Pull the rich routine/mechanism data exposed by shared.js (if available)
@@ -426,7 +439,7 @@
     processAll();
   }
 
-  // Re-scan when new cards are added (shop.html renders concern cards via JS)
+  // Re-scan when new cards are added (bundles.html renders concern cards via JS)
   const obs = new MutationObserver(mutations => {
     mutations.forEach(m => {
       m.addedNodes.forEach(node => {
