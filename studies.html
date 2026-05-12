@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Research Library — Daniel's House</title>
+<meta name="description" content="Every peer-reviewed clinical study referenced across the Daniel's House line. Search and filter by ingredient, study type, decade, and evidence strength.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/shared.css?v=4">
+<style>
+  body { background: var(--cream); color: var(--ink); font-family: 'Poppins', sans-serif; margin: 0; }
+
+  /* ═══ HERO — editorial title block ═══ */
+  .studies-hero {
+    text-align: center;
+    padding: 120px 40px 90px;
+    background: var(--cream-warm);
+    position: relative;
+    overflow: hidden;
+  }
+  .studies-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.5;
+  }
+  .studies-eyebrow {
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 32px;
+    display: inline-block;
+  }
+  .studies-eyebrow::before { content: '[ '; opacity: 0.55; }
+  .studies-eyebrow::after  { content: ' ]'; opacity: 0.55; }
+
+  .studies-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(56px, 8vw, 96px);
+    font-weight: 400;
+    line-height: 1;
+    margin: 0 0 32px;
+    color: var(--ink);
+    letter-spacing: -0.012em;
+  }
+  .studies-title em { font-style: italic; color: var(--sage); }
+
+  /* Centered ornament: thin lines flanking a single dot */
+  .studies-ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin: 0 auto 32px;
+    max-width: 220px;
+  }
+  .studies-ornament::before,
+  .studies-ornament::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.4;
+  }
+  .studies-ornament-dot {
+    width: 5px;
+    height: 5px;
+    background: var(--gold);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .studies-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(17px, 2vw, 21px);
+    color: var(--ink-soft);
+    max-width: 680px;
+    margin: 0 auto;
+    line-height: 1.55;
+  }
+
+  /* ═══ STATS STRIP — Cormorant italic numerals with hairline dividers ═══ */
+  .studies-stats-section {
+    background: var(--cream);
+    border-bottom: 1px solid var(--rule);
+  }
+  .studies-stats {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: wrap;
+    padding: 56px 40px;
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+  .studies-stat {
+    text-align: center;
+    padding: 0 clamp(28px, 5vw, 60px);
+    position: relative;
+  }
+  .studies-stat:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 14%;
+    bottom: 14%;
+    width: 1px;
+    background: var(--rule);
+  }
+  .studies-stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(48px, 5.5vw, 64px);
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 14px;
+  }
+  .studies-stat-num .stat-suffix {
+    font-size: 0.42em;
+    color: var(--gold);
+    margin-left: 4px;
+    vertical-align: 0.55em;
+    font-style: normal;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .studies-stat-label {
+    font-family: 'Poppins', sans-serif;
+    font-size: 9.5px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+
+  /* ═══ SORT BAR MOUNT ═══ */
+  .studies-sort-mount {
+    max-width: 1180px;
+    margin: 36px auto 0;
+    padding: 0 40px;
+  }
+
+  /* ═══ STUDIES GRID ═══ */
+  .studies-section {
+    max-width: 1180px;
+    margin: 36px auto 60px;
+    padding: 0 40px;
+  }
+  .studies-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 26px;
+  }
+  @media (max-width: 960px) {
+    .studies-grid { grid-template-columns: 1fr; gap: 22px; }
+  }
+
+  /* ═══ STUDY ENTRY — editorial card design ═══ */
+  .study-entry {
+    background: var(--cream-warm);
+    border: 1px solid var(--rule);
+    padding: 40px 38px 30px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.3, 1),
+                border-color 0.3s,
+                box-shadow 0.4s;
+  }
+  .study-entry:hover {
+    transform: translateY(-4px);
+    border-color: var(--gold);
+    box-shadow: 0 14px 38px rgba(31, 27, 23, 0.07);
+  }
+  .study-entry.is-hidden { display: none !important; }
+
+  /* Top row: study number left, year right */
+  .study-entry-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 16px;
+  }
+  .study-no {
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+  }
+  .study-year {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 36px;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
+
+  /* Decorative short gold rule — animates wider on hover */
+  .study-rule {
+    width: 42px;
+    height: 1px;
+    background: var(--gold);
+    margin-bottom: 22px;
+    transition: width 0.4s ease;
+  }
+  .study-entry:hover .study-rule { width: 72px; }
+
+  /* Metadata line: type · evidence */
+  .study-meta-line {
+    font-family: 'Poppins', sans-serif;
+    font-size: 9.5px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .study-type-label { color: var(--ink); font-weight: 600; }
+  .study-meta-sep   { color: var(--ink-soft); opacity: 0.45; }
+  .study-evidence-tag {
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .study-evidence-tag::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .study-evidence-tag.strong            { color: var(--sage); }
+  .study-evidence-tag.strong::before    { background: var(--sage); }
+  .study-evidence-tag.moderate          { color: var(--gold); }
+  .study-evidence-tag.moderate::before  { background: var(--gold); }
+
+  /* Title — large Cormorant serif */
+  .study-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 500;
+    line-height: 1.25;
+    color: var(--ink);
+    margin: 0 0 16px;
+    letter-spacing: -0.005em;
+  }
+
+  .study-authors {
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    color: var(--ink-soft);
+    margin-bottom: 4px;
+    letter-spacing: 0.015em;
+    line-height: 1.5;
+  }
+  .study-journal {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: var(--ink);
+    margin-bottom: 22px;
+  }
+
+  /* Finding — pulled quote with thin gold bar on the left */
+  .study-finding {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16.5px;
+    line-height: 1.65;
+    color: var(--ink);
+    margin: 0 0 26px;
+    padding: 4px 0 4px 18px;
+    border-left: 2px solid var(--gold);
+    flex-grow: 1;
+  }
+
+  /* Footer — ingredient + Scholar link with subtle divider */
+  .study-foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+    padding-top: 20px;
+    border-top: 1px solid var(--rule);
+  }
+  .study-ingredient {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    transition: opacity 0.3s;
+  }
+  .study-ingredient-label {
+    font-family: 'Poppins', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+  .study-ingredient-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--sage);
+    line-height: 1.1;
+    transition: color 0.3s;
+  }
+  .study-ingredient:hover .study-ingredient-name { color: var(--gold); }
+
+  .study-scholar {
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--gold);
+    text-decoration: none;
+    padding-bottom: 3px;
+    border-bottom: 1px solid rgba(184, 153, 104, 0.4);
+    transition: border-color 0.3s, color 0.3s;
+    white-space: nowrap;
+  }
+  .study-scholar:hover {
+    border-bottom-color: var(--gold);
+    color: var(--ink);
+  }
+
+  /* ═══ EMPTY STATE ═══ */
+  .studies-empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 80px 40px;
+    background: var(--cream-warm);
+    border: 1px solid var(--rule);
+  }
+  .studies-empty-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 32px;
+    color: var(--ink);
+    margin: 0 0 14px;
+  }
+  .studies-empty-msg {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--ink-soft);
+    max-width: 460px;
+    margin: 0 auto 28px;
+    line-height: 1.65;
+  }
+  .studies-empty-reset {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--ink);
+    padding: 14px 36px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s, border-color 0.3s;
+  }
+  .studies-empty-reset:hover { background: var(--ink); color: var(--cream); }
+
+  /* ═══ DISCLAIMER — bracketed ornament ═══ */
+  .studies-disclaimer-wrap { padding: 20px 40px 100px; }
+  .studies-disclaimer {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 36px 40px;
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    position: relative;
+  }
+  .studies-disclaimer::before,
+  .studies-disclaimer::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.5;
+  }
+  .studies-disclaimer::before { top: 0; }
+  .studies-disclaimer::after  { bottom: 0; }
+  .studies-disclaimer a {
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(184, 153, 104, 0.4);
+    transition: color 0.3s, border-color 0.3s;
+  }
+  .studies-disclaimer a:hover {
+    color: var(--ink);
+    border-bottom-color: var(--ink);
+  }
+
+  /* ═══ RESPONSIVE ═══ */
+  @media (max-width: 768px) {
+    .studies-hero { padding: 70px 22px 50px; }
+    .studies-eyebrow { letter-spacing: 0.34em; margin-bottom: 22px; }
+    .studies-stats { padding: 36px 22px; gap: 24px; flex-direction: column; align-items: center; }
+    .studies-stat { padding: 0; }
+    .studies-stat:not(:last-child)::after { display: none; }
+    .studies-stat-num { font-size: 44px; }
+    .studies-section { padding: 0 22px; }
+    .studies-sort-mount { padding: 0 22px; }
+    .study-entry { padding: 28px 24px 22px; }
+    .study-year { font-size: 28px; }
+    .study-title { font-size: 22px; }
+    .study-finding { font-size: 15.5px; }
+    .study-journal { font-size: 16px; }
+    .studies-disclaimer-wrap { padding: 20px 22px 70px; }
+    .studies-disclaimer { padding: 30px 24px; }
+  }
+  @media (max-width: 480px) {
+    .study-foot { flex-direction: column; align-items: flex-start; gap: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="shipping-bar">
+  <div class="shipping-bar-progress"></div>
+  <div class="shipping-bar-inner">
+    <div class="shipping-bar-text">Free shipping on orders over <strong>$75</strong></div>
+    <div class="shipping-bar-divider"></div>
+    <span class="shipping-bar-pill">30-Day Returns</span>
+    <div class="shipping-bar-divider"></div>
+    <span class="shipping-bar-pill">Cruelty-Free · Non-GMO</span>
+    <div class="shipping-bar-divider"></div>
+    <span class="shipping-bar-pill">Made in N.A.</span>
+  </div>
+</div>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Daniel<span class="amp">'s</span> House</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">Daniel's Story</a></li>
+      <li><a href="skincare.html">Skincare</a></li>
+      <li><a href="supplements.html">Supplements</a></li>
+      <li><a href="routines.html">Routines</a></li>
+      <li><a href="bundles.html">Bundles</a></li>
+    </ul>
+    <div style="display: flex; gap: 4px;">
+      <button class="search-trigger" aria-label="Search">Search</button>
+      <a class="account-trigger" href="account.html">Sign In</a><button class="cart-trigger" aria-label="Open cart">Cart <span class="cart-trigger-count">0</span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="studies-hero">
+  <div class="studies-eyebrow">The Research Library</div>
+  <h1 class="studies-title">Every study, <em>in one place.</em></h1>
+  <div class="studies-ornament">
+    <span class="studies-ornament-dot"></span>
+  </div>
+  <p class="studies-tagline">Every active in the Daniel's House line is anchored in peer-reviewed evidence. The full archive — ninety clinical citations across thirty ingredients — fully searchable.</p>
+</section>
+
+<!-- ═══ STATS STRIP ═══ -->
+<section class="studies-stats-section">
+  <div class="studies-stats">
+    <div class="studies-stat">
+      <div class="studies-stat-num" id="stat-studies">—</div>
+      <div class="studies-stat-label">Studies Cited</div>
+    </div>
+    <div class="studies-stat">
+      <div class="studies-stat-num" id="stat-journals">—</div>
+      <div class="studies-stat-label">Peer-Reviewed Journals</div>
+    </div>
+    <div class="studies-stat">
+      <div class="studies-stat-num" id="stat-ingredients">—</div>
+      <div class="studies-stat-label">Ingredients Covered</div>
+    </div>
+    <div class="studies-stat">
+      <div class="studies-stat-num" id="stat-years">—</div>
+      <div class="studies-stat-label">Years of Evidence</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SEARCH + FILTERS ═══ -->
+<div class="concern-search-wrap" style="margin-top: 36px;">
+  <div class="concern-search">
+    <span class="concern-search-icon" aria-hidden="true">⌕</span>
+    <input
+      type="text"
+      class="concern-search-input"
+      id="study-search-input"
+      placeholder="Search studies, ingredients, journals, authors…"
+      autocomplete="off"
+    />
+    <button class="concern-search-clear" id="study-search-clear" type="button" aria-label="Clear search">✕</button>
+  </div>
+  <div class="concern-search-meta">
+    <span class="concern-search-count" id="study-search-count">90 studies</span>
+    <span class="concern-search-hints">
+      <span class="hint-label">Try:</span>
+      <button class="concern-search-hint" data-hint="ashwagandha" type="button">ashwagandha</button>
+      <button class="concern-search-hint" data-hint="retinol" type="button">retinol</button>
+      <button class="concern-search-hint" data-hint="creatine" type="button">creatine</button>
+      <button class="concern-search-hint" data-hint="magnesium" type="button">magnesium</button>
+      <button class="concern-search-hint" data-hint="collagen" type="button">collagen</button>
+      <button class="concern-search-hint" data-hint="cortisol" type="button">cortisol</button>
+    </span>
+    <button class="concern-filter-toggle" id="study-filter-toggle" type="button" aria-expanded="false" aria-controls="study-filter-panel">
+      <span class="toggle-text">Filters</span>
+      <span class="toggle-badge" id="study-filter-badge" hidden>0</span>
+      <span class="toggle-arrow">▾</span>
+    </button>
+  </div>
+
+  <!-- COLLAPSIBLE FILTER PANEL -->
+  <div class="concern-filter-panel" id="study-filter-panel" hidden>
+    <div class="filter-panel-inner">
+      <div class="filter-group" data-group="category">
+        <div class="filter-group-label">Category</div>
+        <div class="filter-group-chips">
+          <button class="filter-chip" data-group="category" data-value="skincare" type="button"><span class="chip-dot sage"></span>Skincare</button>
+          <button class="filter-chip" data-group="category" data-value="supplement" type="button"><span class="chip-dot gold"></span>Supplements</button>
+        </div>
+      </div>
+      <div class="filter-group" data-group="type">
+        <div class="filter-group-label">Study Type</div>
+        <div class="filter-group-chips">
+          <button class="filter-chip" data-group="type" data-value="trial"       type="button">Clinical Trials &amp; RCTs</button>
+          <button class="filter-chip" data-group="type" data-value="review"      type="button">Reviews &amp; Meta-Analyses</button>
+          <button class="filter-chip" data-group="type" data-value="mechanistic" type="button">Mechanistic Studies</button>
+          <button class="filter-chip" data-group="type" data-value="guideline"   type="button">Guidelines &amp; Position</button>
+        </div>
+      </div>
+      <div class="filter-group" data-group="decade">
+        <div class="filter-group-label">Decade</div>
+        <div class="filter-group-chips">
+          <button class="filter-chip" data-group="decade" data-value="1990s" type="button">1990s</button>
+          <button class="filter-chip" data-group="decade" data-value="2000s" type="button">2000s</button>
+          <button class="filter-chip" data-group="decade" data-value="2010s" type="button">2010s</button>
+          <button class="filter-chip" data-group="decade" data-value="2020s" type="button">2020s</button>
+        </div>
+      </div>
+      <div class="filter-group" data-group="evidence">
+        <div class="filter-group-label">Evidence Strength</div>
+        <div class="filter-group-chips">
+          <button class="filter-chip" data-group="evidence" data-value="strong"   type="button">Strong</button>
+          <button class="filter-chip" data-group="evidence" data-value="moderate" type="button">Moderate</button>
+        </div>
+      </div>
+      <div class="filter-group" data-group="ingredient">
+        <div class="filter-group-label">Ingredient</div>
+        <div class="filter-group-chips" id="ingredient-filter-chips">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+      <div class="filter-actions">
+        <button class="filter-clear-all" id="study-filter-clear-all" type="button" disabled>Clear all</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Sort bar (mounted by JS) -->
+<div class="studies-sort-mount" id="studies-sort-mount"></div>
+
+<!-- ═══ STUDIES GRID ═══ -->
+<section class="studies-section">
+  <div class="studies-grid" id="studies-grid">
+    <!-- Populated by JS -->
+  </div>
+</section>
+
+<!-- ═══ DISCLAIMER ═══ -->
+<div class="studies-disclaimer-wrap">
+  <div class="studies-disclaimer">
+    Studies referenced are peer-reviewed and conducted on the active ingredients used in Daniel's House products. Each citation links to a Google Scholar search to surface the original paper. Results in clinical settings may vary from individual outcomes. Statements have not been evaluated by the FDA; products are not intended to diagnose, treat, cure, or prevent any disease. See the <a href="ingredients.html">Ingredient Glossary</a> for product context.
+  </div>
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-newsletter">
+    <div class="footer-newsletter-inner">
+      <div class="footer-newsletter-eyebrow">Letters from the House</div>
+      <div class="footer-newsletter-title">Get Daniel's actual <em>routine notes.</em></div>
+      <div class="footer-newsletter-blurb">First access to launches, ingredient deep-dives, and the rituals Daniel uses every week — sent twice a month, no spam.</div>
+      <form class="footer-newsletter-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent = '✓ Subscribed';">
+        <input type="email" placeholder="Your email" required />
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </div>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Daniel<span class="amp">'s</span> House</div>
+      <div class="footer-tag">Your home for premium wellness — built on real results, not marketing.</div>
+      <div class="footer-attr">
+        <span>Non-GMO</span>
+        <span>Cruelty-Free</span>
+        <span>Made in NA</span>
+      </div>
+      <a href="mailto:daniel@danielshousewellness.com" class="footer-email">daniel@danielshousewellness.com</a>
+    </div>
+    <div class="footer-col"><h4>Shop</h4><ul><li><a href="skincare.html">Skincare</a></li><li><a href="supplements.html">Supplements</a></li><li><a href="routines.html">Routines</a></li><li><a href="bundles.html">Bundles</a></li><li><a href="compare.html">Compare</a></li></ul></div>
+    <div class="footer-col"><h4>The House</h4><ul><li><a href="about.html">Daniel's Story</a></li><li><a href="ingredients.html">Ingredient Glossary</a></li><li><a href="studies.html">Research Library</a></li><li><a href="blog.html">Blog</a></li><li><a href="reviews.html">Reviews</a></li><li><a href="quiz.html">Take the Quiz</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
+    <div class="footer-col"><h4>Help</h4><ul><li><a href="faq.html#shipping">Shipping</a></li><li><a href="faq.html#returns">Returns Policy →</a></li><li><a href="faq.html#returns">30-Day Guarantee</a></li><li><a href="faq.html">Contact</a></li></ul></div>
+  </div>
+  <div class="footer-credit">
+    <div class="footer-credit-left">© 2026 Daniel's House. Premium wellness, built on real results.</div>
+    <div class="footer-credit-right">
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="accessibility.html">Accessibility</a>
+    </div>
+  </div>
+</footer>
+
+<script src="data/products.js"></script>
+<script src="data/ingredients.js"></script>
+<script src="js/auth.js?v=1"></script>
+<script src="js/shared.js?v=4"></script>
+
+<script>
+  // ─── Build the master list of studies (flat) ───
+  (function() {
+    const TYPE_BUCKETS = {
+      'Randomized Controlled Trial':       'trial',
+      'Clinical Trial':                    'trial',
+      'Clinical Study':                    'trial',
+      'Multicenter Trial':                 'trial',
+      'Long-term Trial':                   'trial',
+      'Pharmacokinetic Study':             'trial',
+      'Comparative Bioavailability Study': 'trial',
+      'Review':                            'review',
+      'Systematic Review':                 'review',
+      'Meta-Analysis':                     'review',
+      'Mechanistic Review':                'review',
+      'Mechanistic Study':                 'mechanistic',
+      'Landmark Discovery':                'mechanistic',
+      'Position Statement':                'guideline',
+      'Consensus Statement':               'guideline'
+    };
+
+    function decadeOf(year) {
+      const d = Math.floor(year / 10) * 10;
+      return d + 's';
+    }
+
+    const allStudies = [];
+    let counter = 0;
+    (window.INGREDIENTS || []).forEach(ing => {
+      (ing.studies || []).forEach((s, i) => {
+        counter++;
+        allStudies.push({
+          idx: counter,
+          id: `${ing.slug}-${i}`,
+          type: s.type,
+          title: s.title,
+          authors: s.authors,
+          journal: s.journal,
+          year: s.year,
+          finding: s.finding,
+          ingredientSlug: ing.slug,
+          ingredientName: ing.name,
+          ingredientAlt: ing.alt || '',
+          category: ing.cat,
+          evidence: ing.evidence,
+          tags: ing.tags || [],
+          typeBucket: TYPE_BUCKETS[s.type] || 'trial',
+          decade: decadeOf(s.year)
+        });
+      });
+    });
+
+    window.DH_ALL_STUDIES = allStudies;
+
+    allStudies.forEach(s => {
+      s._haystack = [
+        s.title, s.authors, s.journal, String(s.year), s.finding,
+        s.type, s.ingredientName, s.ingredientAlt, s.category,
+        ...(s.tags || [])
+      ].join(' ').toLowerCase();
+    });
+
+    document.getElementById('stat-studies').textContent     = allStudies.length;
+    document.getElementById('stat-journals').textContent    = new Set(allStudies.map(s => s.journal)).size;
+    document.getElementById('stat-ingredients').textContent = new Set(allStudies.map(s => s.ingredientSlug)).size;
+    const years = allStudies.map(s => s.year);
+    const span = Math.max(...years) - Math.min(...years);
+    document.getElementById('stat-years').innerHTML = `${span}<span class="stat-suffix">yrs</span>`;
+
+    document.getElementById('study-search-count').textContent = `${allStudies.length} studies`;
+  })();
+
+  // ─── Build ingredient filter chips dynamically ───
+  (function() {
+    const ingredients = (window.INGREDIENTS || []).slice().sort((a, b) => (a.name || '').localeCompare(b.name || ''));
+    const container = document.getElementById('ingredient-filter-chips');
+    if (!container) return;
+    container.innerHTML = ingredients.map(ing =>
+      `<button class="filter-chip" data-group="ingredient" data-value="${ing.slug}" type="button">${ing.name}</button>`
+    ).join('');
+  })();
+
+  // ─── Render a study entry ───
+  function renderStudyEntry(s) {
+    const firstAuthor = (s.authors || '').split(',')[0].trim();
+    const searchQuery = encodeURIComponent(`${s.title} ${firstAuthor}`);
+    const scholarUrl  = `https://scholar.google.com/scholar?q=${searchQuery}`;
+    const evClass = (s.evidence === 'strong' || s.evidence === 'moderate') ? s.evidence : 'moderate';
+    const evLabel = s.evidence === 'strong' ? 'Strong Evidence' : 'Moderate Evidence';
+    const noStr   = String(s.idx).padStart(3, '0');
+
+    return `
+      <article class="study-entry" data-study-id="${s.id}">
+        <header class="study-entry-head">
+          <span class="study-no">No. ${noStr}</span>
+          <span class="study-year">${s.year}</span>
+        </header>
+        <div class="study-rule"></div>
+        <div class="study-meta-line">
+          <span class="study-type-label">${s.type}</span>
+          <span class="study-meta-sep">·</span>
+          <span class="study-evidence-tag ${evClass}">${evLabel}</span>
+        </div>
+        <h2 class="study-title">${s.title}</h2>
+        <div class="study-authors">${s.authors}</div>
+        <div class="study-journal">${s.journal}</div>
+        <p class="study-finding">${s.finding}</p>
+        <footer class="study-foot">
+          <a class="study-ingredient" href="ingredient.html?slug=${s.ingredientSlug}">
+            <span class="study-ingredient-label">Ingredient</span>
+            <span class="study-ingredient-name">${s.ingredientName}</span>
+          </a>
+          <a class="study-scholar" href="${scholarUrl}" target="_blank" rel="noopener noreferrer">Google Scholar →</a>
+        </footer>
+      </article>
+    `;
+  }
+
+  // ─── Filter + sort + render ───
+  (function() {
+    const grid          = document.getElementById('studies-grid');
+    const searchInput   = document.getElementById('study-search-input');
+    const searchClear   = document.getElementById('study-search-clear');
+    const searchCount   = document.getElementById('study-search-count');
+    const filterToggle  = document.getElementById('study-filter-toggle');
+    const filterPanel   = document.getElementById('study-filter-panel');
+    const filterBadge   = document.getElementById('study-filter-badge');
+    const filterClearAll = document.getElementById('study-filter-clear-all');
+    const sortMount     = document.getElementById('studies-sort-mount');
+    const hintBtns      = document.querySelectorAll('.concern-search-wrap .concern-search-hint');
+
+    if (!grid || !window.DH_ALL_STUDIES) return;
+
+    const TOTAL = window.DH_ALL_STUDIES.length;
+    let currentSort = 'year-desc';
+    const activeFilters = {
+      category:   new Set(),
+      type:       new Set(),
+      decade:     new Set(),
+      evidence:   new Set(),
+      ingredient: new Set()
+    };
+
+    function totalActiveFilters() {
+      return Object.values(activeFilters).reduce((sum, set) => sum + set.size, 0);
+    }
+
+    function matchesFilters(s) {
+      const c = activeFilters;
+      if (c.category.size   && !c.category.has(s.category))         return false;
+      if (c.type.size       && !c.type.has(s.typeBucket))           return false;
+      if (c.decade.size     && !c.decade.has(s.decade))             return false;
+      if (c.evidence.size   && !c.evidence.has(s.evidence))         return false;
+      if (c.ingredient.size && !c.ingredient.has(s.ingredientSlug)) return false;
+      return true;
+    }
+
+    function applyAndRender() {
+      const q = (searchInput.value || '').trim().toLowerCase();
+      let list = window.DH_ALL_STUDIES.filter(s => {
+        if (q && !s._haystack.includes(q)) return false;
+        if (!matchesFilters(s))            return false;
+        return true;
+      });
+
+      list = window.dhSortItems(list, 'studies', currentSort);
+
+      if (list.length === 0) {
+        grid.innerHTML = `
+          <div class="studies-empty">
+            <h3 class="studies-empty-title">No studies match.</h3>
+            <p class="studies-empty-msg">Try a broader search, a different decade, or clear your filters and start fresh.</p>
+            <button class="studies-empty-reset" id="empty-reset-btn" type="button">Clear all</button>
+          </div>
+        `;
+        const btn = document.getElementById('empty-reset-btn');
+        if (btn) btn.addEventListener('click', resetAll);
+      } else {
+        grid.innerHTML = list.map(renderStudyEntry).join('');
+      }
+
+      const activeCount = totalActiveFilters();
+      const hasAnyFilter = q.length > 0 || activeCount > 0;
+      if (!hasAnyFilter) {
+        searchCount.textContent = `${TOTAL} studies`;
+      } else if (list.length === 0) {
+        searchCount.textContent = `0 of ${TOTAL} match`;
+      } else if (list.length === TOTAL) {
+        searchCount.textContent = `${TOTAL} studies`;
+      } else {
+        searchCount.textContent = `${list.length} of ${TOTAL} studies`;
+      }
+
+      if (activeCount > 0) {
+        filterBadge.hidden = false;
+        filterBadge.textContent = activeCount;
+      } else {
+        filterBadge.hidden = true;
+      }
+
+      if (filterClearAll) {
+        filterClearAll.disabled = activeCount === 0;
+      }
+
+      searchClear.classList.toggle('is-visible', q.length > 0);
+
+      const sortBarCount = document.querySelector('.dh-sort-bar-count');
+      if (sortBarCount) {
+        sortBarCount.textContent = hasAnyFilter
+          ? `Showing ${list.length} of ${TOTAL}`
+          : `${TOTAL} studies cited`;
+      }
+    }
+
+    function resetAll() {
+      searchInput.value = '';
+      Object.values(activeFilters).forEach(set => set.clear());
+      document.querySelectorAll('.filter-chip.is-active').forEach(c => c.classList.remove('is-active'));
+      applyAndRender();
+    }
+
+    if (window.dhBuildSortBar) {
+      const bar = window.dhBuildSortBar('studies', currentSort, `${TOTAL} studies cited`, (key) => {
+        currentSort = key;
+        applyAndRender();
+      });
+      if (bar) sortMount.appendChild(bar);
+    }
+
+    searchInput.addEventListener('input', applyAndRender);
+    searchClear.addEventListener('click', () => {
+      searchInput.value = '';
+      applyAndRender();
+      searchInput.focus();
+    });
+
+    hintBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        searchInput.value = btn.dataset.hint || '';
+        applyAndRender();
+        searchInput.scrollIntoView({behavior: 'smooth', block: 'start'});
+      });
+    });
+
+    filterToggle.addEventListener('click', () => {
+      const isOpen = filterToggle.getAttribute('aria-expanded') === 'true';
+      filterToggle.setAttribute('aria-expanded', !isOpen);
+      filterPanel.hidden = isOpen;
+    });
+
+    filterPanel.addEventListener('click', (e) => {
+      const chip = e.target.closest('.filter-chip');
+      if (!chip) return;
+      const group = chip.dataset.group;
+      const value = chip.dataset.value;
+      if (!group || !value || !activeFilters[group]) return;
+      if (activeFilters[group].has(value)) {
+        activeFilters[group].delete(value);
+        chip.classList.remove('is-active');
+      } else {
+        activeFilters[group].add(value);
+        chip.classList.add('is-active');
+      }
+      applyAndRender();
+    });
+
+    if (filterClearAll) filterClearAll.addEventListener('click', resetAll);
+
+    applyAndRender();
+  })();
+</script>
+
+</body>
+</html>
