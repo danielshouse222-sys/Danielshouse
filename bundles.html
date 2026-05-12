@@ -1342,7 +1342,7 @@
 <script src="data/products.js?v=4"></script>
 <script src="data/bundle-details.js?v=1"></script>
 <script src="data/ingredients.js?v=1"></script>
-<script src="js/auth.js?v=1"></script><script src="js/shared.js?v=7"></script>
+<script src="js/auth.js?v=1"></script><script src="js/shared.js?v=8"></script>
 <script src="js/bundle-expand.js?v=3"></script>
 <script>
 function renderConcernCard(bundle) {
@@ -1465,9 +1465,10 @@ function renderRoutineCard(bundle) {
 
   // Italicize the meaningful word; mirror routines.html's formatName logic
   let formattedName;
-  if (bundle.id === 'daniels-daily')      formattedName = `Daniel's <em>Daily</em> Routine`;
-  else if (bundle.id === 'moms')          formattedName = `The <em>Mom's</em> Routine`;
-  else if (bundle.id === 'arianas')       formattedName = `The <em>Ariana's</em> Routine`;
+  if (bundle.id === 'daniels-daily')        formattedName = `Daniel's Daily <em>Supplements</em>`;
+  else if (bundle.id === 'daniels-skincare') formattedName = `Daniel's Daily <em>Skincare</em>`;
+  else if (bundle.id === 'moms')            formattedName = `The <em>Mom's</em> Routine`;
+  else if (bundle.id === 'arianas')         formattedName = `The <em>Ariana's</em> Routine`;
   else {
     const m = bundle.name.match(/^The (.+) Routine$/);
     formattedName = m ? `The <em>${m[1]}</em> Routine` : bundle.name;
@@ -1615,7 +1616,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // entry has {kind, id} so we can disambiguate the 'longevity' id collision
   // (routine:longevity vs concern:longevity / Cellular Bundle).
   const FEATURED_ORDER = [
-    { kind: 'routine', id: 'daniels-daily' }, // foundational supplement stack — universal entry
+    { kind: 'routine', id: 'daniels-daily' },     // foundational supplement stack — universal entry
+    { kind: 'routine', id: 'daniels-skincare' },  // foundational skincare stack — paired counterpart
     { kind: 'routine', id: 'am' },            // skincare gateway — daily ritual anchor
     { kind: 'concern', id: 'sleep' },         // small bundle, universal wellness need
     { kind: 'concern', id: 'aging' },         // top skin concern across demographics
@@ -1814,7 +1816,8 @@ document.addEventListener('DOMContentLoaded', () => {
     'gut':         ['beginner', 'busy-pro', 'sensitive'],
     'joints':      ['active', 'anti-aging'],
     // CURATED ROUTINES (added so routine cards filter correctly)
-    'daniels-daily': ['busy-pro', 'anti-aging', 'beginner'],
+    'daniels-daily':    ['busy-pro', 'anti-aging', 'beginner'],
+    'daniels-skincare': ['anti-aging', 'beauty', 'busy-pro'],
     'am':            ['busy-pro', 'beauty', 'beginner'],
     'pm':            ['anti-aging', 'beauty'],
     'workout':       ['active'],

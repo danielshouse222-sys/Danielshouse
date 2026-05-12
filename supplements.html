@@ -512,31 +512,6 @@
       </div>
     </div>
 
-    <div class="bundle-footnote">
-      <div class="bundle-footnote-inner">
-        <div class="bundle-footnote-name">The <em>Foundation</em> Routine</div>
-        <div class="bundle-footnote-pricing">
-          <span class="bundle-footnote-was">$136</span>
-          <span class="bundle-footnote-now">$115</span>
-          <span class="bundle-footnote-savings">Save $20 · 15% off</span>
-        </div>
-        <div class="bundle-subscribe-toggle" data-bundle-id="foundation">
-          <button type="button" data-mode="once" class="active">
-            <div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">One-Time</span></div>
-            <span class="toggle-meta">Single delivery</span>
-          </button>
-          <button type="button" data-mode="subscribe">
-            <div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">Monthly</span></div>
-            <span class="toggle-meta">Cancel anytime</span>
-          </button>
-        </div>
-        <div class="bundle-footnote-actions">
-          <a href="routine.html?slug=foundation" class="bundle-footnote-view">View Details →</a>
-          <button class="bundle-footnote-cta" data-bundle-add="foundation">Add Routine to Cart →</button>
-        </div>
-      </div>
-    </div>
-
     <div class="ritual longevity">
       <div class="ritual-header">
         <div class="ritual-icon">⧖</div>
@@ -615,31 +590,59 @@
       </div>
     </div>
 
-    <div class="bundle-footnote">
-      <div class="bundle-footnote-inner">
-        <div class="bundle-footnote-name">The <em>Longevity</em> Routine</div>
-        <div class="bundle-footnote-pricing">
-          <span class="bundle-footnote-was">$179</span>
-          <span class="bundle-footnote-now">$152</span>
-          <span class="bundle-footnote-savings">Save $27 · 15% off</span>
-        </div>
-        <div class="bundle-subscribe-toggle" data-bundle-id="longevity">
-          <button type="button" data-mode="once" class="active">
-            <div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">One-Time</span></div>
-            <span class="toggle-meta">Single delivery</span>
-          </button>
-          <button type="button" data-mode="subscribe">
-            <div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">Monthly</span></div>
-            <span class="toggle-meta">Cancel anytime</span>
-          </button>
-        </div>
-        <div class="bundle-footnote-actions">
-          <a href="routine.html?slug=longevity" class="bundle-footnote-view">View Details →</a>
-          <button class="bundle-footnote-cta" data-bundle-add="longevity">Add Routine to Cart →</button>
-        </div>
+  </div>
+
+  <!-- Foundation + Longevity routine purchase boxes — moved OUTSIDE the .split
+       grid so the rituals display side-by-side (like AM/PM on the skincare page)
+       and the purchase boxes stack full-width underneath. -->
+  <div class="bundle-footnote">
+    <div class="bundle-footnote-inner">
+      <div class="bundle-footnote-name">The <em>Foundation</em> Routine</div>
+      <div class="bundle-footnote-pricing">
+        <span class="bundle-footnote-was">$136</span>
+        <span class="bundle-footnote-now">$115</span>
+        <span class="bundle-footnote-savings">Save $20 · 15% off</span>
+      </div>
+      <div class="bundle-subscribe-toggle" data-bundle-id="foundation">
+        <button type="button" data-mode="once" class="active">
+          <div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">One-Time</span></div>
+          <span class="toggle-meta">Single delivery</span>
+        </button>
+        <button type="button" data-mode="subscribe">
+          <div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">Monthly</span></div>
+          <span class="toggle-meta">Cancel anytime</span>
+        </button>
+      </div>
+      <div class="bundle-footnote-actions">
+        <a href="routine.html?slug=foundation" class="bundle-footnote-view">View Details →</a>
+        <button class="bundle-footnote-cta" data-bundle-add="foundation">Add Routine to Cart →</button>
       </div>
     </div>
+  </div>
 
+  <div class="bundle-footnote">
+    <div class="bundle-footnote-inner">
+      <div class="bundle-footnote-name">The <em>Longevity</em> Routine</div>
+      <div class="bundle-footnote-pricing">
+        <span class="bundle-footnote-was">$179</span>
+        <span class="bundle-footnote-now">$152</span>
+        <span class="bundle-footnote-savings">Save $27 · 15% off</span>
+      </div>
+      <div class="bundle-subscribe-toggle" data-bundle-id="longevity">
+        <button type="button" data-mode="once" class="active">
+          <div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">One-Time</span></div>
+          <span class="toggle-meta">Single delivery</span>
+        </button>
+        <button type="button" data-mode="subscribe">
+          <div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">Monthly</span></div>
+          <span class="toggle-meta">Cancel anytime</span>
+        </button>
+      </div>
+      <div class="bundle-footnote-actions">
+        <a href="routine.html?slug=longevity" class="bundle-footnote-view">View Details →</a>
+        <button class="bundle-footnote-cta" data-bundle-add="longevity">Add Routine to Cart →</button>
+      </div>
+    </div>
   </div>
 
   <!-- II. WORKOUT STACK -->
@@ -1011,7 +1014,7 @@
 </div>
 
 <script src="data/products.js"></script>
-<script src="js/auth.js?v=1"></script><script src="js/shared.js?v=7"></script>
+<script src="js/auth.js?v=1"></script><script src="js/shared.js?v=8"></script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('[data-add-slug]').forEach(btn => {
