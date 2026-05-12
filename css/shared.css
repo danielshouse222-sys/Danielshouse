@@ -941,9 +941,14 @@ body.has-page-filter-modal {
 .search-panel-close:hover { color: var(--ink); }
 
 .search-panel-results {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.search-panel-results.has-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 .search-panel-result {
   display: flex;
@@ -987,6 +992,61 @@ body.has-page-filter-modal {
   margin-left: auto;
   padding-left: 8px;
 }
+
+/* ── Grouped results (Products / Routines / Bundles) ────────────── */
+.search-panel-group-label {
+  font-family: 'Poppins', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  padding: 16px 4px 8px;
+  border-bottom: 1px solid rgba(184, 153, 104, 0.25);
+  margin-bottom: 10px;
+}
+.search-panel-group-label:first-child { padding-top: 4px; }
+.search-panel-results > .search-panel-result + .search-panel-group-label,
+.search-panel-results > .search-panel-result-bundle + .search-panel-group-label {
+  margin-top: 18px;
+}
+
+/* Routine/bundle results — no thumbnail, replaced with a "kind" pill */
+.search-panel-result-bundle {
+  padding: 12px 14px;
+}
+.search-panel-result-kind {
+  font-family: 'Poppins', sans-serif;
+  font-size: 9px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 5px 9px;
+  border-radius: 2px;
+  flex-shrink: 0;
+  line-height: 1;
+}
+.search-panel-result-kind.kind-routine {
+  background: var(--gold);
+  color: var(--cream);
+}
+.search-panel-result-kind.kind-bundle {
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  background: transparent;
+  padding: 4px 8px;
+}
+.search-panel-result-arrow {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  color: var(--gold);
+  margin-left: auto;
+  padding-left: 8px;
+}
+.search-panel-result-bundle .search-panel-result-name {
+  font-size: 18px;
+}
+.search-panel-result-bundle .search-panel-result-name em { color: var(--gold); }
 .search-panel-empty,
 .search-panel-hint {
   text-align: center;
