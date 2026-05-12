@@ -183,20 +183,301 @@
   .bundle-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .bundle-thumb-label { aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center; background: var(--cream); border: 1px solid var(--rule); font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--sage); font-size: 11px; padding: 4px; text-align: center; line-height: 1.2; }
 
-  .bundle-body { padding: 48px 48px; flex: 1; display: flex; flex-direction: column; text-align: left; }
-  .bundle-eyebrow { font-size: 10.5px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 14px; text-align: left; }
-  .bundle-title { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-weight: 400; line-height: 1.05; margin-bottom: 10px; text-align: left; }
+  .bundle-body { padding: 32px 36px 36px; flex: 1; display: flex; flex-direction: column; text-align: center; }
+  .bundle-eyebrow { font-size: 10.5px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 14px; text-align: center; }
+  .bundle-title { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-weight: 400; line-height: 1.05; margin-bottom: 10px; text-align: center; }
   .bundle-title em { font-style: italic; color: var(--sage); }
-  .bundle-sub { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-soft); font-weight: 500; margin-bottom: 22px; text-align: left; }
-  .bundle-desc { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 16px; line-height: 1.6; color: var(--ink-soft); margin-bottom: 24px; text-align: left; }
+  .bundle-sub { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-soft); font-weight: 500; margin-bottom: 22px; text-align: center; }
+  .bundle-desc { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 16px; line-height: 1.6; color: var(--ink-soft); margin-bottom: 24px; text-align: center; }
   .bundle-included { padding-top: 20px; border-top: 1px solid var(--rule); margin-bottom: 22px; }
-  .bundle-included-label { font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 10px; text-align: left; }
-  .bundle-included-list { font-family: 'Cormorant Garamond', serif; font-size: 15px; line-height: 1.7; color: var(--ink); text-align: left; }
+  .bundle-included-label { font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 10px; text-align: center; }
+  .bundle-included-list { font-family: 'Cormorant Garamond', serif; font-size: 15px; line-height: 1.7; color: var(--ink); text-align: center; }
   .bundle-savings { display: flex; justify-content: space-between; align-items: baseline; padding: 18px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin-bottom: 22px; }
   .bundle-save { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 26px; font-weight: 500; color: var(--sage); }
   .bundle-save-label { font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft); }
   .bundle-cta { display: block; text-align: center; padding: 16px 0; background: var(--ink); color: var(--cream); text-decoration: none; font-size: 11.5px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 500; transition: background 0.3s; margin-top: auto; }
   .bundle-cta:hover { background: var(--sage); }
+
+  /* ════════════════════════════════════════════════════════════════════════
+     CONCERN-CARD STYLES — used to render curated bundles in the concern-card
+     visual style. Mirrors the layout used on shop.html for consistency.
+     ════════════════════════════════════════════════════════════════════════ */
+  .concern-card {
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1.15fr;
+    transition: border-color 0.35s, box-shadow 0.35s, transform 0.35s;
+    position: relative;
+  }
+  .concern-card-img-side {
+    padding: 48px 48px;
+    background: var(--cream-warm);
+    border-right: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .concern-card-content-side {
+    padding: 48px 48px;
+    display: flex;
+    flex-direction: column;
+  }
+  .concern-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 40px; height: 1px;
+    background: var(--gold);
+    transition: width 0.4s ease;
+  }
+  .concern-card:hover {
+    border-color: var(--gold);
+    box-shadow: 0 24px 56px rgba(31, 27, 23, 0.10);
+    transform: translateY(-3px);
+  }
+  .concern-card:hover::before { width: 100%; }
+
+  .concern-savings-ribbon {
+    position: absolute;
+    top: 22px;
+    right: 22px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--gold);
+    background: rgba(184, 153, 104, 0.10);
+    padding: 7px 12px;
+    border-radius: 2px;
+    z-index: 2;
+  }
+
+  .concern-header { margin-bottom: 26px; }
+  .concern-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 400;
+    line-height: 1.05;
+    margin-bottom: 14px;
+    color: var(--ink);
+  }
+  .concern-name em { font-style: italic; color: var(--sage); }
+
+  .concern-mix {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+  }
+  .concern-mix-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 5px 11px 5px 10px;
+    border-radius: 2px;
+    background: var(--cream-warm);
+    border: 1px solid var(--rule);
+    color: var(--ink-soft);
+  }
+  .concern-mix-pill .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 100%;
+    display: inline-block;
+  }
+  .concern-mix-pill.skin .dot { background: var(--sage); }
+  .concern-mix-pill.supp .dot { background: var(--gold); }
+
+  .concern-blurb {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+
+  .concern-products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px 12px;
+    width: 100%;
+    max-width: 380px;
+  }
+  .concern-products.cols-2 .concern-product,
+  .concern-products.cols-3 .concern-product,
+  .concern-products.cols-4 .concern-product,
+  .concern-products.cols-5 .concern-product,
+  .concern-products.cols-6 .concern-product { width: calc(50% - 6px); }
+
+  .concern-product {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--ink);
+    transition: transform 0.3s ease;
+  }
+  .concern-product:hover { transform: translateY(-3px); }
+  .concern-product-img {
+    aspect-ratio: 1/1;
+    background: var(--cream-warm);
+    border: 1px solid var(--rule);
+    overflow: hidden;
+    margin-bottom: 10px;
+    position: relative;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .concern-product-img::after {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 2px;
+    transition: width 0.3s;
+  }
+  .concern-product-img.is-skincare::after { background: var(--sage); }
+  .concern-product-img.is-supplement::after { background: var(--gold); }
+  .concern-product:hover .concern-product-img {
+    border-color: var(--gold);
+    box-shadow: 0 12px 28px rgba(31, 27, 23, 0.12);
+  }
+  .concern-product:hover .concern-product-img::after { width: 3px; }
+  .concern-product-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+  .concern-product:hover .concern-product-img img { transform: scale(1.06); }
+  .concern-product-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14.5px;
+    font-weight: 500;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 3px;
+  }
+  .concern-product-name em { font-style: italic; color: var(--sage); }
+  .concern-product-tag {
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    font-weight: 500;
+    line-height: 1.3;
+    margin-bottom: 2px;
+  }
+  .concern-product-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    color: var(--gold);
+    font-weight: 600;
+  }
+
+  .concern-pricing {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 18px 0;
+    margin-bottom: 18px;
+    gap: 14px;
+  }
+  .concern-price-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .concern-price-line {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+  .concern-price-was {
+    font-size: 14px;
+    color: var(--ink-soft);
+    text-decoration: line-through;
+    opacity: 0.7;
+  }
+  .concern-price-now {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 34px;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .concern-savings {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--sage);
+  }
+  .concern-count {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-style: italic;
+    color: var(--gold);
+    text-align: right;
+    line-height: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+  }
+  .concern-count span {
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-size: 9px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+  .concern-subscribe-toggle { margin-bottom: 14px; }
+
+  .concern-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .concern-btn {
+    padding: 14px 16px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.3s;
+  }
+  .concern-btn.primary {
+    background: var(--ink);
+    color: var(--cream);
+  }
+  .concern-btn.primary:hover { background: var(--sage); }
+  .concern-btn.secondary {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--ink);
+  }
+  .concern-btn.secondary:hover {
+    background: var(--ink);
+    color: var(--cream);
+  }
 
   /* Closing */
   .closing { text-align: center; padding: 120px 40px 100px; max-width: 720px; margin: 0 auto; }
@@ -225,6 +506,21 @@
     .bundle-grid { row-gap: 240px; }
     .bundle-product-grid.cols-5 .bundle-thumb,
     .bundle-product-grid.cols-5 .bundle-thumb-label { width: calc(25% - 8px); }
+
+    /* Concern card on bundles.html — same collapse behavior as on shop.html */
+    .concern-card { grid-template-columns: 1fr; }
+    .concern-card-img-side { border-right: none; border-bottom: 1px solid var(--rule); padding: 36px; }
+    .concern-card-content-side { padding: 32px 36px 36px; }
+    .concern-products { max-width: 360px; }
+  }
+  @media (max-width: 640px) {
+    .concern-card-img-side { padding: 28px 24px; }
+    .concern-card-content-side { padding: 26px 24px 28px; }
+    .concern-savings-ribbon { top: 16px; right: 16px; font-size: 9px; padding: 6px 10px; }
+    .concern-name { font-size: 30px; }
+    .concern-actions { grid-template-columns: 1fr; }
+    .concern-pricing { flex-direction: row; align-items: center; }
+    .concern-count { font-size: 24px; }
   }
   @media (max-width: 640px) {
     .credibility { grid-template-columns: 1fr 1fr; }
@@ -1414,247 +1710,8 @@
   </div>
 
   <div class="bundle-grid">
-
-    <!-- Daniel's Daily Bundle (was hero, now grid card) -->
-    <div class="bundle-card">
-      <div class="bundle-img-area">
-        <div class="bundle-product-grid cols-5">
-          <div class="bundle-thumb"><img src="products/Multi.jpeg" alt="Multi" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="products/Sunshine.jpeg" alt="Sunshine" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="products/Flow.jpeg" alt="Flow" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="products/Biome.jpeg" alt="Biome" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="products/Calm.jpeg" alt="Calm" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="products/Nadplus.jpeg" alt="NAD+" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="products/Vitality.jpeg" alt="Vitality" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="products/Synapse.jpeg" alt="Synapse" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="products/Restore.jpeg" alt="Restore" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="products/Tranquil.jpeg" alt="Tranquil" loading="lazy"/></div>
-        </div>
-      </div>
-      <div class="bundle-body">
-        <div class="bundle-eyebrow">Founder's Stack · Supplements Only</div>
-        <div class="bundle-title">Daniel's <em>Daily</em> Bundle</div>
-        <div class="bundle-sub">10 Daily Supplements</div>
-        <div class="bundle-desc">Everything Daniel takes, every single day. Five Foundation essentials paired with five Longevity actives — the complete daily supplement protocol, no skincare. For customers who already have a routine and want the inside-out half.</div>
-        <div class="bundle-included">
-          <div class="bundle-included-label">What's Inside</div>
-          <div class="bundle-included-list">Multi · Calm · Sunshine · Flow · Biome<br>NAD+ · Vitality · Synapse · Tranquil · Restore</div>
-        </div>
-        <div class="bundle-savings">
-          <div class="bundle-save">Save $57</div>
-          <div class="bundle-save-label">$315 → $258</div>
-        </div>
-        <div class="bundle-subscribe-toggle" data-bundle-id="daniels-daily"><button type="button" data-mode="once" class="active"><div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">One-Time</span></div><span class="toggle-meta">Single delivery</span></button><button type="button" data-mode="subscribe"><div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">Monthly</span></div><span class="toggle-meta">Cancel anytime</span></button></div><button class="bundle-cta" data-bundle-add="daniels-daily">Add Bundle to Cart →</button>
-      </div>
-    </div>
-
-    <!-- AM Bundle -->
-    <div class="bundle-card">
-      <div class="bundle-img-area">
-        <div class="bundle-product-grid cols-3">
-          <div class="bundle-thumb"><img src="images/wash.jpeg" alt="Wash" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="images/balance.jpeg" alt="Balance" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="images/boost.jpeg" alt="Boost" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="images/hyaluronic.jpeg" alt="Hyaluronic" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="images/defense.jpeg" alt="Defense" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="images/soft.jpeg" alt="Soft" loading="lazy"/></div>
-        </div>
-      </div>
-      <div class="bundle-body">
-        <div class="bundle-eyebrow">Morning Skincare Ritual</div>
-        <div class="bundle-title">The <em>AM</em> Bundle</div>
-        <div class="bundle-sub">6 Skincare Steps</div>
-        <div class="bundle-desc">The full morning routine. Cleanse, tone, brighten, hydrate, defend, moisturize — six steps to start the day with a complete barrier and visible glow.</div>
-        <div class="bundle-included">
-          <div class="bundle-included-label">What's Inside</div>
-          <div class="bundle-included-list">Wash · Balance · Boost<br>Hyaluronic · Defense · Soft</div>
-        </div>
-        <div class="bundle-savings">
-          <div class="bundle-save">Save $27</div>
-          <div class="bundle-save-label">$182 → $155</div>
-        </div>
-        <div class="bundle-subscribe-toggle" data-bundle-id="am"><button type="button" data-mode="once" class="active"><div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">One-Time</span></div><span class="toggle-meta">Single delivery</span></button><button type="button" data-mode="subscribe"><div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">Monthly</span></div><span class="toggle-meta">Cancel anytime</span></button></div><button class="bundle-cta" data-bundle-add="am">Add Bundle to Cart →</button>
-      </div>
-    </div>
-
-    <!-- PM Bundle -->
-    <div class="bundle-card">
-      <div class="bundle-img-area">
-        <div class="bundle-product-grid cols-3">
-          <div class="bundle-thumb"><img src="images/bounce.jpeg" alt="Bounce" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="images/renewal.jpeg" alt="Renewal" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="images/firm.jpeg" alt="Firm" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="images/hydration.jpeg" alt="Hydration" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="images/eye.jpeg" alt="Eye" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="images/glow.jpeg" alt="Glow" loading="lazy"/></div>
-        </div>
-      </div>
-      <div class="bundle-body">
-        <div class="bundle-eyebrow">Evening Skincare Ritual</div>
-        <div class="bundle-title">The <em>PM</em> Bundle</div>
-        <div class="bundle-sub">6 Skincare Steps</div>
-        <div class="bundle-desc">The full evening routine. Resurface, firm, hydrate, treat the eyes, repair overnight, and seal it all in with the finishing oil. Wake up better.</div>
-        <div class="bundle-included">
-          <div class="bundle-included-label">What's Inside</div>
-          <div class="bundle-included-list">Bounce · Firm · Hydration<br>Eye · Renewal · Glow</div>
-        </div>
-        <div class="bundle-savings">
-          <div class="bundle-save">Save $33</div>
-          <div class="bundle-save-label">$220 → $187</div>
-        </div>
-        <div class="bundle-subscribe-toggle" data-bundle-id="pm"><button type="button" data-mode="once" class="active"><div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">One-Time</span></div><span class="toggle-meta">Single delivery</span></button><button type="button" data-mode="subscribe"><div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">Monthly</span></div><span class="toggle-meta">Cancel anytime</span></button></div><button class="bundle-cta" data-bundle-add="pm">Add Bundle to Cart →</button>
-      </div>
-    </div>
-
-    <!-- Workout Bundle -->
-    <div class="bundle-card">
-      <div class="bundle-img-area">
-        <div class="bundle-product-grid cols-5">
-          <div class="bundle-thumb"><img src="products/Greens.jpeg" alt="Greens" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="products/Burn.jpeg" alt="Burn" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="products/Power.jpeg" alt="Power" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="products/Pump.jpeg" alt="Pump" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="products/Seal.jpeg" alt="Seal" loading="lazy"/></div>
-        </div>
-      </div>
-      <div class="bundle-body">
-        <div class="bundle-eyebrow">Train Harder · Recover Faster</div>
-        <div class="bundle-title">The <em>Workout</em> Bundle</div>
-        <div class="bundle-sub">5 Performance Supplements</div>
-        <div class="bundle-desc">The full performance stack. Strength, output, recovery, nutrient density, and the metabolic edge. Five formulations for the days you put in real work.</div>
-        <div class="bundle-included">
-          <div class="bundle-included-label">What's Inside</div>
-          <div class="bundle-included-list">Power · Pump · Seal<br>Greens · Burn</div>
-        </div>
-        <div class="bundle-savings">
-          <div class="bundle-save">Save $26</div>
-          <div class="bundle-save-label">$174 → $148</div>
-        </div>
-        <div class="bundle-subscribe-toggle" data-bundle-id="workout"><button type="button" data-mode="once" class="active"><div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">One-Time</span></div><span class="toggle-meta">Single delivery</span></button><button type="button" data-mode="subscribe"><div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">Monthly</span></div><span class="toggle-meta">Cancel anytime</span></button></div><button class="bundle-cta" data-bundle-add="workout">Add Bundle to Cart →</button>
-      </div>
-    </div>
-
-    <!-- Longevity Bundle -->
-    <div class="bundle-card">
-      <div class="bundle-img-area">
-        <div class="bundle-product-grid cols-5">
-          <div class="bundle-thumb"><img src="products/Nadplus.jpeg" alt="NAD+" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="products/Vitality.jpeg" alt="Vitality" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="products/Synapse.jpeg" alt="Synapse" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="products/Restore.jpeg" alt="Restore" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="products/Tranquil.jpeg" alt="Tranquil" loading="lazy"/></div>
-        </div>
-      </div>
-      <div class="bundle-body">
-        <div class="bundle-eyebrow">Age Better · Live Longer</div>
-        <div class="bundle-title">The <em>Longevity</em> Bundle</div>
-        <div class="bundle-sub">5 Longevity Actives</div>
-        <div class="bundle-desc">The five actives that pay off over years. Cellular energy, cognitive support, stress resilience, and joint mobility — daily, with the science behind each one.</div>
-        <div class="bundle-included">
-          <div class="bundle-included-label">What's Inside</div>
-          <div class="bundle-included-list">NAD+ · Vitality · Synapse<br>Tranquil · Restore</div>
-        </div>
-        <div class="bundle-savings">
-          <div class="bundle-save">Save $27</div>
-          <div class="bundle-save-label">$179 → $152</div>
-        </div>
-        <div class="bundle-subscribe-toggle" data-bundle-id="longevity"><button type="button" data-mode="once" class="active"><div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">One-Time</span></div><span class="toggle-meta">Single delivery</span></button><button type="button" data-mode="subscribe"><div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">Monthly</span></div><span class="toggle-meta">Cancel anytime</span></button></div><button class="bundle-cta" data-bundle-add="longevity">Add Bundle to Cart →</button>
-      </div>
-    </div>
-
-    <!-- The Glow Bundle (NEW) -->
-    <div class="bundle-card">
-      <div class="bundle-img-area">
-        <div class="bundle-product-grid cols-3">
-          <div class="bundle-thumb"><img src="images/boost.jpeg" alt="Boost" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="images/defense.jpeg" alt="Defense" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="images/glow.jpeg" alt="Glow" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="images/mask.jpeg" alt="Mask" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="products/Radiance.jpeg" alt="Radiance" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="products/Collagen.jpeg" alt="Collagen" loading="lazy"/></div>
-        </div>
-      </div>
-      <div class="bundle-body">
-        <div class="bundle-eyebrow">Inside-Out Radiance</div>
-        <div class="bundle-title">The <em>Glow</em> Bundle</div>
-        <div class="bundle-sub">4 Skincare + 2 Supplements</div>
-        <div class="bundle-desc">The full glow protocol. Topical brightening + antioxidant defense + finishing oil + the weekly detox mask — paired with the beauty gummy and collagen peptides that build it from within.</div>
-        <div class="bundle-included">
-          <div class="bundle-included-label">What's Inside</div>
-          <div class="bundle-included-list">Boost · Defense · Glow · Mask<br>Radiance · Collagen</div>
-        </div>
-        <div class="bundle-savings">
-          <div class="bundle-save">Save $31</div>
-          <div class="bundle-save-label">$207 → $176</div>
-        </div>
-        <div class="bundle-subscribe-toggle" data-bundle-id="glow"><button type="button" data-mode="once" class="active"><div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">One-Time</span></div><span class="toggle-meta">Single delivery</span></button><button type="button" data-mode="subscribe"><div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">Monthly</span></div><span class="toggle-meta">Cancel anytime</span></button></div><button class="bundle-cta" data-bundle-add="glow">Add Bundle to Cart →</button>
-      </div>
-    </div>
-
-    <!-- Mom's Bundle -->
-    <div class="bundle-card">
-      <div class="bundle-img-area">
-        <div class="bundle-product-grid cols-5">
-          <div class="bundle-thumb"><img src="images/wash.jpeg" alt="Wash" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="images/defense.jpeg" alt="Defense" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="images/bounce.jpeg" alt="Bounce" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="images/eye.jpeg" alt="Eye" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="images/soft.jpeg" alt="Soft" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="products/Multi.jpeg" alt="Multi" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="products/Collagen.jpeg" alt="Collagen" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="products/Nadplus.jpeg" alt="NAD+" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="products/Vitality.jpeg" alt="Vitality" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="products/Tranquil.jpeg" alt="Tranquil" loading="lazy"/></div>
-        </div>
-      </div>
-      <div class="bundle-body">
-        <div class="bundle-eyebrow">Anti-Aging · Longevity · Firm</div>
-        <div class="bundle-title">The <em>Mom's</em> Bundle</div>
-        <div class="bundle-sub">5 Skincare + 5 Supplements</div>
-        <div class="bundle-desc">Built for my 65-year-old mother. Focused on her three daily priorities — skincare, longevity, and cognitive support — this stack pairs five skincare layers using the highest-evidence anti-aging actives (retinol overnight, antioxidants by day, peptides around the eyes) with five longevity-grade supplements working the cellular layer: NAD+ for mitochondrial energy, collagen building blocks, antioxidant support, and the sleep aid that turns nights into real repair time.</div>
-        <div class="bundle-included">
-          <div class="bundle-included-label">What's Inside</div>
-          <div class="bundle-included-list">Wash · Defense · Bounce · Eye · Soft<br>Multi · Collagen · NAD+ · Vitality · Tranquil</div>
-        </div>
-        <div class="bundle-savings">
-          <div class="bundle-save">Save $54</div>
-          <div class="bundle-save-label">$359 → $305</div>
-        </div>
-        <div class="bundle-subscribe-toggle" data-bundle-id="moms"><button type="button" data-mode="once" class="active"><div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">One-Time</span></div><span class="toggle-meta">Single delivery</span></button><button type="button" data-mode="subscribe"><div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">Monthly</span></div><span class="toggle-meta">Cancel anytime</span></button></div><button class="bundle-cta" data-bundle-add="moms">Add Bundle to Cart →</button>
-      </div>
-    </div>
-
-    <!-- Ariana's Bundle -->
-    <div class="bundle-card">
-      <div class="bundle-img-area">
-        <div class="bundle-product-grid cols-3">
-          <div class="bundle-thumb"><img src="images/wash.jpeg" alt="Wash" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="images/boost.jpeg" alt="Boost" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="images/defense.jpeg" alt="Defense" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="images/renewal.jpeg" alt="Renewal" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="images/eye.jpeg" alt="Eye" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="images/soft.jpeg" alt="Soft" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="products/Multi.jpeg" alt="Multi" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="products/Radiance.jpeg" alt="Radiance" loading="lazy"/></div>
-          <div class="bundle-thumb"><img src="products/Collagen.jpeg" alt="Collagen" loading="lazy"/></div>
-        </div>
-      </div>
-      <div class="bundle-body">
-        <div class="bundle-eyebrow">Glow · Brighten · Defy Aging</div>
-        <div class="bundle-title">The <em>Ariana's</em> Bundle</div>
-        <div class="bundle-sub">6 Skincare + 3 Supplements</div>
-        <div class="bundle-desc">Built for my 25-year-old sister. Focused on inner-and-outer beauty, this stack pairs six skincare layers — cleanse, brighten, defend, renew, and protect the eyes — with three inner-beauty supplements that compound the glow from within: collagen, antioxidants, and the daily multi.</div>
-        <div class="bundle-included">
-          <div class="bundle-included-label">What's Inside</div>
-          <div class="bundle-included-list">Wash · Boost · Defense · Renewal · Eye · Soft<br>Multi · Radiance · Collagen</div>
-        </div>
-        <div class="bundle-savings">
-          <div class="bundle-save">Save $47</div>
-          <div class="bundle-save-label">$312 → $265</div>
-        </div>
-        <div class="bundle-subscribe-toggle" data-bundle-id="arianas"><button type="button" data-mode="once" class="active"><div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">One-Time</span></div><span class="toggle-meta">Single delivery</span></button><button type="button" data-mode="subscribe"><div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">Monthly</span></div><span class="toggle-meta">Cancel anytime</span></button></div><button class="bundle-cta" data-bundle-add="arianas">Add Bundle to Cart →</button>
-      </div>
-    </div>
+    <!-- All 8 curated bundles render here via renderCuratedBundleCard, see bottom-of-page script. -->
+  
 
 
 
@@ -2086,6 +2143,154 @@
 <script src="data/products.js"></script>
 <script src="data/bundle-details.js"></script>
 <script src="data/ingredients.js"></script>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════════════
+// CURATED BUNDLE RENDERER — produces concern-card-style markup for each
+// curated bundle so bundles.html and shop.html share the same visual layout.
+// Runs synchronously here, BEFORE shared.js and bundle-expand.js, so the cards
+// exist in the DOM by the time those scripts wire CTAs and expansions.
+// ═══════════════════════════════════════════════════════════════════════════
+(function() {
+  // Marketing copy per bundle id — extracted from the previously hardcoded HTML
+  const BLURBS = {
+    'daniels-daily': "Everything Daniel takes, every single day. Five Foundation essentials paired with five Longevity actives — the complete daily supplement protocol, no skincare. For customers who already have a routine and want the inside-out half.",
+    'am': "The full morning routine. Cleanse, tone, brighten, hydrate, defend, moisturize — six steps to start the day with a complete barrier and visible glow.",
+    'pm': "The full evening routine. Resurface, firm, hydrate, treat the eyes, repair overnight, and seal it all in with the finishing oil. Wake up better.",
+    'workout': "The full performance stack. Strength, output, recovery, nutrient density, and the metabolic edge. Five formulations for the days you put in real work.",
+    'longevity': "The five actives that pay off over years. Cellular energy, cognitive support, stress resilience, and joint mobility — daily, with the science behind each one.",
+    'glow': "The full glow protocol. Topical brightening + antioxidant defense + finishing oil + the weekly detox mask — paired with the beauty gummy and collagen peptides that build it from within.",
+    'moms': "The needs of parents in their 40s and 50s are specific: skincare gentle enough for skin that's grown more reactive, paired with the actives that actually move the needle on visible aging — retinol overnight, peptides around the eyes, antioxidants by day. Steady energy as the body's rhythms change. Adaptogenic support for a nervous system that's carried decades of work and family life. This bundle combines the gentle anti-aging skincare staples (Wash, Defense, Bounce, Eye, Soft) with the inside-out longevity stack (Multi, Collagen, NAD+, Vitality) plus Tranquil for evening recovery. Together they form a sustainable daily rhythm — not aspirational, not maximum, just the inside-out routine that compounds in your favor.",
+    'arianas': "Built for my 25-year-old sister. Focused on inner-and-outer beauty, this stack pairs six skincare layers — cleanse, brighten, defend, renew, and protect the eyes — with three inner-beauty supplements that compound the glow from within: collagen, antioxidants, and the daily multi."
+  };
+
+  // Italicize the meaningful word in each bundle name to match the concern-card
+  // styling ("The <em>Anti-Aging</em> Bundle"). Curated bundles have a few
+  // edge-case formats — handle each explicitly.
+  function formatName(bundle) {
+    if (bundle.id === 'daniels-daily') return `Daniel's <em>Daily</em> Bundle`;
+    if (bundle.id === 'arianas') return `The <em>Ariana's</em> Bundle`;
+    const m = bundle.name.match(/^The (.+) Bundle$/);
+    if (m) return `The <em>${m[1]}</em> Bundle`;
+    return bundle.name;
+  }
+
+  window.renderCuratedBundleCard = function(bundleId) {
+    const bundle = window.getCuratedBundleById(bundleId);
+    if (!bundle) return '';
+    const products = bundle.slugs.map(slug => window.getProductBySlug(slug)).filter(Boolean);
+    if (!products.length) return '';
+
+    const skinCount = products.filter(p => p.category === 'skincare').length;
+    const suppCount = products.filter(p => p.category === 'supplement').length;
+    const productCount = products.length;
+
+    const fullPrice = products.reduce((acc, p) => acc + p.price, 0);
+    const discountedPrice = fullPrice * (1 - bundle.discount);
+    const savings = fullPrice - discountedPrice;
+    const discountPct = Math.round(bundle.discount * 100);
+
+    const displayName = formatName(bundle);
+    const blurb = BLURBS[bundleId] || '';
+    const colsClass = productCount === 2 ? 'cols-2' : productCount === 3 ? 'cols-3' : productCount === 4 ? 'cols-4' : productCount === 5 ? 'cols-5' : 'cols-6';
+
+    return `
+      <div class="concern-card curated-card" data-bundle-id="${bundle.id}" data-product-slugs="${bundle.slugs.join(',')}" data-bundle-name="${bundle.name}">
+        <div class="concern-savings-ribbon">Save ${discountPct}%</div>
+
+        <div class="concern-card-img-side">
+          <div class="concern-products ${colsClass}">
+            ${products.map((p, i) => `
+              <div class="concern-product" data-idx="${i}" title="The House ${p.name}">
+                <div class="concern-product-img is-${p.category}">
+                  <img src="${p.image}" alt="${p.name}" loading="lazy"/>
+                </div>
+                <div class="concern-product-name">The House <em>${p.name}</em></div>
+                <div class="concern-product-tag">${p.tag.split('·')[0].trim()}</div>
+                <div class="concern-product-price">$${p.price.toFixed(0)}</div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <div class="concern-card-content-side">
+          <div class="concern-header">
+            <div class="concern-name">${displayName}</div>
+            <div class="concern-mix">
+              ${skinCount > 0 ? `<span class="concern-mix-pill skin"><span class="dot"></span>${skinCount} Skincare</span>` : ''}
+              ${suppCount > 0 ? `<span class="concern-mix-pill supp"><span class="dot"></span>${suppCount} Supplement${suppCount > 1 ? 's' : ''}</span>` : ''}
+            </div>
+            <div class="concern-blurb">${blurb}</div>
+          </div>
+
+          <div class="concern-pricing">
+            <div class="concern-price-stack">
+              <div class="concern-price-line">
+                <span class="concern-price-was">$${fullPrice.toFixed(2)}</span>
+                <span class="concern-price-now">$${discountedPrice.toFixed(2)}</span>
+              </div>
+              <div class="concern-savings">Save $${savings.toFixed(2)} as a bundle</div>
+            </div>
+            <div class="concern-count">${productCount}<span>products</span></div>
+          </div>
+
+          <div class="bundle-subscribe-toggle concern-subscribe-toggle" data-bundle-id="${bundle.id}" data-toggle>
+            <button type="button" data-mode="once" class="active">
+              <div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">One-Time</span></div>
+              <span class="toggle-meta">Single delivery</span>
+            </button>
+            <button type="button" data-mode="subscribe">
+              <div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">Monthly</span></div>
+              <span class="toggle-meta">Cancel anytime</span>
+            </button>
+          </div>
+
+          <div class="concern-actions">
+            <button class="concern-btn secondary" data-action="preview">Preview Bundle →</button>
+            <button class="concern-btn primary" data-action="add" data-bundle-add="${bundle.id}">Add Bundle to Cart →</button>
+          </div>
+        </div>
+      </div>
+    `;
+  };
+
+  // Populate the empty .bundle-grid container. Order matches the previous hardcoded order.
+  const grid = document.querySelector('.bundle-grid');
+  if (grid) {
+    const order = ['daniels-daily', 'am', 'pm', 'workout', 'longevity', 'glow', 'moms', 'arianas'];
+    grid.innerHTML = order.map(id => window.renderCuratedBundleCard(id)).join('');
+  }
+
+  // Wire Preview Bundle buttons — open the shared lightbox carousel for that bundle's products.
+  // Defer until after shared.js has loaded (dhLightbox lives there).
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.bundle-grid .curated-card').forEach(card => {
+      const slugs = (card.dataset.productSlugs || '').split(',').filter(Boolean);
+      const bundleId = card.dataset.bundleId;
+      const bundleName = card.dataset.bundleName || '';
+      const bundle = window.getCuratedBundleById?.(bundleId);
+      if (!bundle) return;
+      const previewBtn = card.querySelector('[data-action="preview"]');
+      const isSubscribe = () => {
+        const toggle = card.querySelector('.bundle-subscribe-toggle');
+        return toggle?.querySelector('button.active')?.dataset.mode === 'subscribe';
+      };
+      if (previewBtn && window.dhLightbox) {
+        previewBtn.addEventListener('click', () => {
+          window.dhLightbox.open(slugs, 0, {
+            title: `Browsing the <strong>${bundleName}</strong>`,
+            bundleName: bundleName,
+            bundleSlugs: slugs,
+            bundleDiscount: bundle.discount,
+            bundleSubscribe: isSubscribe()
+          });
+        });
+      }
+    });
+  });
+})();
+</script>
+
 <script src="js/shared.js"></script>
 <script src="js/bundle-expand.js"></script>
 <script>
