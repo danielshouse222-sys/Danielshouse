@@ -1,7 +1,7 @@
 /* ═══════════════════════════════════════════════════════════════════
-   BUNDLE EXPAND — inline "More Details" expansion for every bundle
+   BUNDLE EXPAND — inline "View Details" expansion for every bundle
    Auto-discovers all [data-bundle-add] CTAs on the page and injects:
-     - A "More Details ▾" toggle button after the CTA
+     - A "View Details ▾" collapsible link after the CTA
      - A hidden inline expansion section showing product rows
        (with View Details links to product.html) plus description,
        why-this-stack-works, timeline, and FAQ.
@@ -41,6 +41,79 @@
     return name;
   }
 
+  // Aggregate peer-reviewed studies from the ingredients glossary based on
+  // which ingredients appear in the bundle's products. Uses the same alias
+  // matching as shop.html — generic words ('vitamin','acid', etc.) are skipped
+  // to avoid false-positive ingredient matches. Studies are sorted RCT first,
+  // then by year descending, and deduplicated by title.
+  function aggregateStudies(products, maxStudies = 6) {
+    if (!window.INGREDIENTS || !window.INGREDIENTS.length) return [];
+
+    const GENERIC = new Set([
+      'vitamin','extract','acid','complex','blend','powder','marine','active',
+      'natural','organic','derived','strain','capsule','chelate','monnieri'
+    ]);
+    const matchedSlugs = new Set();
+
+    products.forEach(prod => {
+      (prod.ingredients || []).forEach(ing => {
+        const ingName = (ing.name || '').toLowerCase().replace(/[^a-z0-9'+-]+/g, ' ');
+        window.INGREDIENTS.forEach(g => {
+          const aliases = [g.name];
+          if (g.alt) g.alt.split(',').forEach(a => aliases.push(a.trim()));
+          [g.name, g.alt || ''].forEach(s => s.split(/[^A-Za-z0-9'+-]+/).forEach(w => {
+            if (w.length >= 6 && !GENERIC.has(w.toLowerCase())) aliases.push(w);
+          }));
+          for (const alias of aliases) {
+            const a = alias.toLowerCase().replace(/[^a-z0-9'+-]+/g, ' ').trim();
+            if (a.length < 4) continue;
+            if ((' ' + ingName + ' ').includes(' ' + a + ' ')) {
+              matchedSlugs.add(g.slug);
+              break;
+            }
+          }
+        });
+      });
+    });
+
+    // Collect all studies from matched ingredients
+    const allStudies = [];
+    matchedSlugs.forEach(slug => {
+      const g = window.INGREDIENTS.find(x => x.slug === slug);
+      if (g && Array.isArray(g.studies)) {
+        g.studies.forEach(s => {
+          allStudies.push(Object.assign({}, s, { ingredient: g.name, ingredientSlug: g.slug }));
+        });
+      }
+    });
+
+    // Deduplicate by title
+    const seen = new Set();
+    const unique = allStudies.filter(s => {
+      if (!s.title || seen.has(s.title)) return false;
+      seen.add(s.title);
+      return true;
+    });
+
+    // Sort by study-type priority (RCTs first), then year descending
+    const typePriority = {
+      'Meta-Analysis': 1,
+      'Systematic Review': 1,
+      'Randomized Controlled Trial': 2,
+      'Clinical Trial': 2,
+      'Cohort Study': 3,
+      'Mechanistic Study': 4
+    };
+    unique.sort((a, b) => {
+      const pa = typePriority[a.type] || 5;
+      const pb = typePriority[b.type] || 5;
+      if (pa !== pb) return pa - pb;
+      return (b.year || 0) - (a.year || 0);
+    });
+
+    return unique.slice(0, maxStudies);
+  }
+
   function buildExpansion(bundle, details) {
     const products = (bundle.slugs || [])
       .map(s => window.getProductBySlug ? window.getProductBySlug(s) : null)
@@ -49,6 +122,75 @@
     const eyebrow = details?.eyebrow || (bundle.blurb ? 'Bundle Details' : 'Bundle');
     const displayName = italicizeName(bundle.name || 'Bundle');
     const description = details?.description || bundle.blurb || '';
+
+    // Pull the rich routine/mechanism data exposed by shared.js (if available)
+    const rich = (window.CURATED_BUNDLE_RICH_DETAILS && window.CURATED_BUNDLE_RICH_DETAILS[bundle.id]) || null;
+
+    // Render numbered routine steps (AM/PM/supplements)
+    function renderRoutineSteps(steps) {
+      return steps.map((s, i) => `
+        <div class="bundle-exp-step">
+          <div class="bundle-exp-step-num">${String(i + 1).padStart(2, '0')}</div>
+          <div class="bundle-exp-step-body">
+            <div class="bundle-exp-step-name">${s.name}</div>
+            <div class="bundle-exp-step-note">${s.note}</div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    const amHtml = rich && rich.am ? `
+      <div class="bundle-exp-section">
+        <div class="bundle-exp-h">The AM Routine · ${rich.am.length} Steps</div>
+        <div class="bundle-exp-routine">${renderRoutineSteps(rich.am)}</div>
+      </div>
+    ` : '';
+
+    const pmHtml = rich && rich.pm ? `
+      <div class="bundle-exp-section">
+        <div class="bundle-exp-h">The PM Routine · ${rich.pm.length} Steps</div>
+        <div class="bundle-exp-routine">${renderRoutineSteps(rich.pm)}</div>
+      </div>
+    ` : '';
+
+    const suppHtml = rich && rich.supplements ? `
+      <div class="bundle-exp-section">
+        <div class="bundle-exp-h">Daily Supplements · with breakfast</div>
+        <div class="bundle-exp-routine">${renderRoutineSteps(rich.supplements)}</div>
+      </div>
+    ` : '';
+
+    const mechanismsHtml = rich && rich.whyItWorks ? `
+      <div class="bundle-exp-section">
+        <div class="bundle-exp-h">Why This Stack Works · Mechanism by Mechanism</div>
+        <div class="bundle-exp-mech-lead">${rich.whyItWorks.lead || ''}</div>
+        <div class="bundle-exp-mechanisms">
+          ${(rich.whyItWorks.mechanisms || []).map(m => `
+            <div class="bundle-exp-mech">
+              <div class="bundle-exp-mech-problem">${m.problem}</div>
+              <div class="bundle-exp-mech-arrow">→</div>
+              <div class="bundle-exp-mech-solution">${m.solution}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    ` : '';
+
+    const audienceHtml = rich && rich.whoItsFor ? `
+      <div class="bundle-exp-section">
+        <div class="bundle-exp-h">Who This Is For</div>
+        <div class="bundle-exp-audience">
+          <div class="bundle-exp-audience-card yes">
+            <div class="bundle-exp-audience-tag">Yes if</div>
+            <div class="bundle-exp-audience-text">${rich.whoItsFor.yes}</div>
+          </div>
+          <div class="bundle-exp-audience-card no">
+            <div class="bundle-exp-audience-tag">Not for you if</div>
+            <div class="bundle-exp-audience-text">${rich.whoItsFor.no}</div>
+          </div>
+        </div>
+      </div>
+    ` : '';
 
     const rowsHtml = products.map(p => {
       const tag = (p.tag || '').split('·')[0].trim() || (p.category === 'skincare' ? 'Skincare' : 'Supplement');
@@ -94,6 +236,26 @@
       </div>
     ` : '';
 
+    const studies = aggregateStudies(products, 6);
+    const studiesHtml = studies.length ? `
+      <div class="bundle-exp-section">
+        <div class="bundle-exp-h">Peer-Reviewed Research · ${studies.length} ${studies.length === 1 ? 'Study' : 'Studies'}</div>
+        <div class="bundle-exp-studies">
+          ${studies.map(s => `
+            <div class="bundle-exp-study">
+              <div class="bundle-exp-study-meta">
+                <span class="bundle-exp-study-type">${s.type || 'Study'}</span>
+                <a class="bundle-exp-study-ing" href="ingredient.html?slug=${s.ingredientSlug}">${s.ingredient}</a>
+              </div>
+              <div class="bundle-exp-study-title">${s.title}</div>
+              <div class="bundle-exp-study-cite">${s.authors || ''}${s.authors ? ' · ' : ''}<em>${s.journal || ''}</em>${s.journal && s.year ? ' · ' : ''}${s.year || ''}</div>
+              <div class="bundle-exp-study-finding">${s.finding || ''}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    ` : '';
+
     const faqHtml = (details?.faq && details.faq.length) ? `
       <div class="bundle-exp-section">
         <div class="bundle-exp-h">Common Questions</div>
@@ -113,17 +275,19 @@
 
     return `
       <div class="bundle-expansion">
-        <div class="bundle-expansion-eyebrow">${eyebrow}</div>
-        <h3 class="bundle-expansion-title">${displayName}</h3>
-        <p class="bundle-expansion-desc">${description}</p>
-
         <div class="bundle-exp-section">
           <div class="bundle-exp-h">What's Inside · ${products.length} Products</div>
           <div class="bundle-exp-rows">${rowsHtml}</div>
         </div>
 
         ${whyHtml}
+        ${mechanismsHtml}
+        ${audienceHtml}
+        ${amHtml}
+        ${pmHtml}
+        ${suppHtml}
         ${timelineHtml}
+        ${studiesHtml}
         ${faqHtml}
       </div>
     `;
@@ -135,7 +299,7 @@
       button.classList.toggle('is-open', isOpen);
       const label = button.querySelector('.toggle-label');
       if (label) {
-        label.textContent = isOpen ? 'Hide Details' : 'More Details';
+        label.textContent = isOpen ? 'Hide Details' : 'View Details';
       }
     });
   }
@@ -174,7 +338,7 @@
     const toggle = document.createElement('button');
     toggle.type = 'button';
     toggle.className = 'bundle-details-toggle';
-    toggle.innerHTML = `<span class="toggle-label">More Details</span><span class="toggle-icon">▾</span>`;
+    toggle.innerHTML = `<span class="toggle-label">View Details</span><span class="toggle-icon">▾</span>`;
 
     // Build expansion DOM
     const wrapper = document.createElement('div');
@@ -182,26 +346,33 @@
     const expansion = wrapper.firstElementChild;
 
     // Insertion strategy:
-    //  - For .bundle-card (curated cards on bundles.html): insert toggle inside the same .bundle-body
-    //    after the CTA, and place the expansion as the card's next-sibling so it spans full row
-    //  - For .concern-card (concern cards on shop.html): same — toggle inside card, expansion as next-sibling
-    //  - For .hero-bundle (Ultimate hero on bundles.html): toggle inside hero panel, expansion is full-width
-    //    sibling that appears below the hero
-    const card = cta.closest('.bundle-card, .concern-card, .hero-bundle');
-    if (!card) {
-      // Generic fallback: insert toggle after the CTA and expansion right after that
-      cta.parentNode.insertBefore(toggle, cta.nextSibling);
-      toggle.parentNode.insertBefore(expansion, toggle.nextSibling);
-    } else {
-      // Toggle goes right after CTA inside the card
-      cta.parentNode.insertBefore(toggle, cta.nextSibling);
+    //  - The toggle ("View Details ▾") stays right after the CTA inside the card body
+    //  - The expansion goes to the END of the appropriate inner body container so it
+    //    visually merges as part of the card (not a separate panel underneath)
+    //  - Containers per card type:
+    //      .bundle-card      → .bundle-body
+    //      .concern-card     → the card itself (since concern-card has its own padding)
+    //      .hero-bundle      → .hero-bundle-panel (the dark content side of the Ultimate hero)
+    const bundleCard = cta.closest('.bundle-card');
+    const concernCard = cta.closest('.concern-card');
+    const heroBundle = cta.closest('.hero-bundle');
 
-      // Expansion goes outside the card so it can span full width
-      // (Especially important for grid-laid-out cards.)
-      if (card.parentNode) {
-        card.parentNode.insertBefore(expansion, card.nextSibling);
-      }
+    let bodyContainer;
+    if (bundleCard) {
+      bodyContainer = bundleCard.querySelector('.bundle-body') || bundleCard;
+    } else if (concernCard) {
+      bodyContainer = concernCard;
+    } else if (heroBundle) {
+      bodyContainer = heroBundle.querySelector('.hero-bundle-panel') || heroBundle;
+    } else {
+      bodyContainer = cta.parentNode;
     }
+
+    // Toggle: right after the CTA (stays inline next to it)
+    cta.parentNode.insertBefore(toggle, cta.nextSibling);
+
+    // Expansion: appended at the end of the body container so it merges as one window
+    bodyContainer.appendChild(expansion);
 
     // Mark dark context for Ultimate hero panel
     const heroPanel = cta.closest('.hero-bundle-panel');

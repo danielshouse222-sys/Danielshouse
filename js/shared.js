@@ -955,16 +955,18 @@
       wrap.classList.toggle('has-items', count > 0);
     }
 
-    // Hook into dhCart's persist/render to keep badge fresh
-    if (window.dhCart) {
+    // Hook into dhCart's persist/render to keep badge fresh.
+    // The cart's persist() may not exist on all builds — guard so we don't crash.
+    if (window.dhCart && typeof window.dhCart.persist === 'function') {
       const origPersist = window.dhCart.persist.bind(window.dhCart);
       window.dhCart.persist = function() {
         origPersist();
         syncBadge();
         if (wrap.classList.contains('expanded')) render();
       };
-      syncBadge();
     }
+    // Always sync the badge once on init regardless of persist hook
+    if (window.dhCart) syncBadge();
 
     function priceOf(item) {
       if (item.bundleName && item.bundleDiscount) {
@@ -1697,6 +1699,11 @@
       }
     };
 
+    // Expose the rich routine/mechanism data so bundle-expand.js can render
+    // these sections inside its single comprehensive expansion. (The OLD
+    // bundle-card dropdown that previously rendered them inline has been removed.)
+    window.CURATED_BUNDLE_RICH_DETAILS = BUNDLE_DETAILS;
+
     function dollar(n) {
       const v = Math.round(n);
       return '$' + v;
@@ -1816,52 +1823,10 @@
       `;
     }
 
-    document.querySelectorAll('.bundle-card').forEach(card => {
-      // Find the bundle id from the Add-to-cart button in this card
-      const addBtn = card.querySelector('[data-bundle-add]');
-      if (!addBtn) return;
-      const bundleId = addBtn.dataset.bundleAdd;
-      const bundle = window.CURATED_BUNDLES.find(b => b.id === bundleId);
-      if (!bundle) return;
-      const products = bundle.slugs
-        .map(s => window.PRODUCTS.find(p => p.slug === s))
-        .filter(Boolean);
-      if (!products.length) return;
-
-      // Find description element — link sits right after it via CSS order
-      const body = card.querySelector('.bundle-body');
-      if (!body) return;
-
-      // Build the toggle link
-      const link = document.createElement('button');
-      link.type = 'button';
-      link.className = 'bundle-view-link';
-      link.innerHTML = 'View Details <span class="bvl-arrow">↓</span>';
-
-      // Build the panel container (kept hidden until expanded)
-      const panel = document.createElement('div');
-      panel.className = 'bundle-details';
-      panel.setAttribute('aria-hidden', 'true');
-
-      body.appendChild(link);
-      body.appendChild(panel);
-
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        const willOpen = !panel.classList.contains('open');
-        if (willOpen && !panel.innerHTML) {
-          panel.innerHTML = renderBundlePanel(bundle, products);
-        }
-        void panel.offsetHeight; // force reflow before transitioning
-        panel.classList.toggle('open', willOpen);
-        link.classList.toggle('expanded', willOpen);
-        link.innerHTML = willOpen
-          ? 'Hide Details <span class="bvl-arrow">↑</span>'
-          : 'View Details <span class="bvl-arrow">↓</span>';
-        panel.setAttribute('aria-hidden', String(!willOpen));
-      });
-    });
+    // NOTE: The previous bundle-card "View Details ↓" injection has been removed.
+    // bundle-expand.js now handles the single collapsible "View Details ▾" link
+    // per bundle, and the rich routine/mechanism data above (BUNDLE_DETAILS) is
+    // exposed via window.CURATED_BUNDLE_RICH_DETAILS for the new expansion to read.
   });
 
 })();
