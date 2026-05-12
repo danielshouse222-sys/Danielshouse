@@ -473,6 +473,153 @@
   }
   .concern-card:hover::before { width: 100%; }
 
+  /* ═══ COLLAPSIBLE CARDS — mirrors the routines.html implementation.
+     Every card starts collapsed showing a compact strip (name + meta + savings + chevron).
+     Tapping the strip expands the full card. The bottom "Collapse ▴" button collapses again. */
+  .concern-card .card-collapsed-strip {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: center;
+    gap: 22px;
+    padding: 26px 32px;
+    background: var(--cream);
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    font-family: inherit;
+    transition: background 0.3s, padding 0.3s;
+    position: relative;
+  }
+  .concern-card .card-collapsed-strip::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--gold);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.3s ease;
+  }
+  .concern-card .card-collapsed-strip:hover { background: var(--cream-warm); }
+  .concern-card .card-collapsed-strip:hover::before { transform: scaleY(1); }
+  /* Routine cards get a subtle ink-tinted strip background so they're still
+     visually distinguishable from concern bundles in the collapsed list */
+  .concern-card.routine-card .card-collapsed-strip { background: var(--cream-warm); }
+  .concern-card.routine-card .card-collapsed-strip:hover { background: #ECE3D0; }
+
+  .card-collapsed-text { min-width: 0; }
+  .card-collapsed-kind {
+    font-family: 'Poppins', sans-serif;
+    font-size: 8.5px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 6px;
+    display: inline-block;
+  }
+  .concern-card.routine-card .card-collapsed-kind { color: var(--ink); background: var(--gold); padding: 3px 8px 2px; border-radius: 2px; color: var(--cream); }
+  .card-collapsed-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+  .card-collapsed-name em { font-style: italic; color: var(--sage); }
+  .card-collapsed-meta {
+    display: flex;
+    gap: 14px;
+    margin-top: 7px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .card-collapsed-pill {
+    font-family: 'Poppins', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.20em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    font-weight: 600;
+  }
+  .card-collapsed-pill .dot {
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--gold);
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+  .card-collapsed-save {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--gold);
+    font-size: 22px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .card-toggle-chevron {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink-soft);
+    font-size: 14px;
+    transition: transform 0.4s ease, color 0.3s;
+    flex-shrink: 0;
+  }
+  .concern-card .card-collapsed-strip:hover .card-toggle-chevron { color: var(--gold); }
+
+  /* COLLAPSED STATE — show only the strip, hide everything else (including
+     the always-on routine-pill since the strip's own kind label takes over) */
+  .concern-card.is-collapsed > .concern-savings-ribbon,
+  .concern-card.is-collapsed > .routine-pill,
+  .concern-card.is-collapsed > .concern-card-img-side,
+  .concern-card.is-collapsed > .concern-card-content-side { display: none; }
+  .concern-card.is-collapsed { display: block; }
+  .concern-card.is-collapsed:hover { transform: none; box-shadow: none; border-color: var(--rule); }
+
+  /* EXPANDED STATE — hide the strip, show normal layout */
+  .concern-card:not(.is-collapsed) .card-collapsed-strip { display: none; }
+
+  /* Bottom "Collapse" button inside expanded card */
+  .card-collapse-toggle {
+    margin: 18px auto 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 9.5px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--ink-soft);
+    padding: 10px 18px;
+    transition: color 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    align-self: center;
+  }
+  .card-collapse-toggle:hover { color: var(--gold); }
+  .card-collapse-toggle::after { content: '▴'; font-size: 12px; }
+  .concern-card.is-collapsed .card-collapse-toggle { display: none; }
+
+  @media (max-width: 720px) {
+    .concern-card .card-collapsed-strip { padding: 20px 18px; gap: 14px; grid-template-columns: 1fr auto; }
+    .card-collapsed-name { font-size: 22px; }
+    .card-collapsed-save { font-size: 18px; }
+    .card-toggle-chevron { width: 26px; height: 26px; grid-column: 2; grid-row: 1; }
+    .card-collapsed-meta { gap: 10px; margin-top: 6px; }
+    .card-collapsed-pill { font-size: 8.5px; letter-spacing: 0.16em; }
+    .card-collapsed-save { grid-column: 1 / -1; font-size: 16px; margin-top: 2px; }
+  }
+
   /* Savings ribbon in top-right corner */
   .concern-savings-ribbon {
     position: absolute;
@@ -1191,7 +1338,21 @@ function renderConcernCard(bundle) {
     : '';
 
   return `
-    <div class="concern-card" data-bundle-id="${bundle.id}" data-bundle-kind="concern" data-product-slugs="${bundle.slugs.join(',')}" data-bundle-name="${bundle.name}">
+    <div class="concern-card is-collapsed" data-bundle-id="${bundle.id}" data-bundle-kind="concern" data-product-slugs="${bundle.slugs.join(',')}" data-bundle-name="${bundle.name}">
+
+      <button type="button" class="card-collapsed-strip" aria-label="Expand ${bundle.name}" data-card-toggle>
+        <div class="card-collapsed-text">
+          <span class="card-collapsed-kind">Bundle</span>
+          <div class="card-collapsed-name">${formattedName}</div>
+          <div class="card-collapsed-meta">
+            ${skinCount > 0 ? `<span class="card-collapsed-pill"><span class="dot"></span>${skinCount} Skincare</span>` : ''}
+            ${suppCount > 0 ? `<span class="card-collapsed-pill"><span class="dot"></span>${suppCount} Supplement${suppCount > 1 ? 's' : ''}</span>` : ''}
+          </div>
+        </div>
+        <div class="card-collapsed-save">Save $${savings.toFixed(0)}</div>
+        <div class="card-toggle-chevron">▾</div>
+      </button>
+
       <div class="concern-savings-ribbon">Save ${discountPct}%</div>
 
       <div class="concern-card-img-side">
@@ -1238,6 +1399,8 @@ function renderConcernCard(bundle) {
           <button class="concern-btn secondary" data-action="preview">Preview Bundle →</button>
           <button class="concern-btn primary" data-action="add" data-bundle-add="${bundle.id}">Add Bundle to Cart →</button>
         </div>
+
+        <button type="button" class="card-collapse-toggle" data-card-toggle aria-label="Collapse ${bundle.name}">Collapse</button>
       </div>
     </div>
   `;
@@ -1281,7 +1444,21 @@ function renderRoutineCard(bundle) {
 
 
   return `
-    <div class="concern-card routine-card" data-bundle-id="${bundle.id}" data-bundle-kind="routine" data-product-slugs="${bundle.slugs.join(',')}" data-bundle-name="${bundle.name}">
+    <div class="concern-card routine-card is-collapsed" data-bundle-id="${bundle.id}" data-bundle-kind="routine" data-product-slugs="${bundle.slugs.join(',')}" data-bundle-name="${bundle.name}">
+
+      <button type="button" class="card-collapsed-strip" aria-label="Expand ${bundle.name}" data-card-toggle>
+        <div class="card-collapsed-text">
+          <span class="card-collapsed-kind">Routine</span>
+          <div class="card-collapsed-name">${formattedName}</div>
+          <div class="card-collapsed-meta">
+            ${skinCount > 0 ? `<span class="card-collapsed-pill"><span class="dot"></span>${skinCount} Skincare</span>` : ''}
+            ${suppCount > 0 ? `<span class="card-collapsed-pill"><span class="dot"></span>${suppCount} Supplement${suppCount > 1 ? 's' : ''}</span>` : ''}
+          </div>
+        </div>
+        <div class="card-collapsed-save">Save $${savings.toFixed(0)}</div>
+        <div class="card-toggle-chevron">▾</div>
+      </button>
+
       <div class="concern-savings-ribbon">Save ${discountPct}%</div>
       <div class="routine-pill" title="Curated daily ritual">Routine</div>
 
@@ -1329,6 +1506,8 @@ function renderRoutineCard(bundle) {
           <button class="concern-btn secondary" data-action="preview">Preview Routine →</button>
           <button class="concern-btn primary" data-action="add" data-bundle-add="${bundle.id}">Add Routine to Cart →</button>
         </div>
+
+        <button type="button" class="card-collapse-toggle" data-card-toggle aria-label="Collapse ${bundle.name}">Collapse</button>
       </div>
     </div>
   `;
@@ -1430,6 +1609,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }).filter(Boolean);
   grid.innerHTML = orderedCards.join('');
+
+  // ── COLLAPSIBLE CARDS — delegated handler covers both the top collapsed-strip
+  // (to expand) and the bottom "Collapse" button (to collapse). Same pattern as
+  // routines.html. Smooth-scrolls the card top into view when collapsing so the
+  // user isn't visually stranded mid-page after a tall card snaps shut.
+  grid.addEventListener('click', (e) => {
+    const toggler = e.target.closest('[data-card-toggle]');
+    if (!toggler) return;
+    const card = toggler.closest('.concern-card');
+    if (!card) return;
+    const willCollapse = !card.classList.contains('is-collapsed');
+    card.classList.toggle('is-collapsed');
+    if (willCollapse) {
+      const rect = card.getBoundingClientRect();
+      if (rect.top < 0) {
+        card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  });
 
   const routineCount = FEATURED_ORDER.filter(e => e.kind === 'routine').length;
   const concernCount = FEATURED_ORDER.filter(e => e.kind === 'concern').length;
