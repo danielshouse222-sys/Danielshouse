@@ -154,12 +154,42 @@
     flex-wrap: wrap;
   }
   .concern-search-count {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--ink);
+    font-style: italic;
+    letter-spacing: -0.005em;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+    transition: opacity 0.25s ease;
+  }
+  .concern-search-count strong {
     font-family: 'Poppins', sans-serif;
-    font-size: 11px;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
+    font-style: normal;
+    font-weight: 700;
     color: var(--gold);
-    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    background: rgba(184, 153, 104, 0.12);
+    padding: 3px 9px;
+    border-radius: 100px;
+    line-height: 1.6;
+  }
+  .concern-search-count .count-breakdown {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ink-soft);
+    margin-left: 4px;
+  }
+  .concern-search-count.is-filtered strong { background: var(--gold); color: var(--cream); }
+  .concern-search-count.is-pulsing { animation: countPulse 0.45s ease; }
+  @keyframes countPulse {
+    0%   { transform: scale(1);    opacity: 0.6; }
+    50%  { transform: scale(1.04); opacity: 1;   }
+    100% { transform: scale(1);    opacity: 1;   }
   }
   .concern-search-hints {
     display: flex;
@@ -954,7 +984,7 @@
     <button class="concern-search-clear" id="concern-search-clear" type="button" aria-label="Clear search">✕</button>
   </div>
   <div class="concern-search-meta">
-    <span class="concern-search-count" id="concern-search-count">9 routines + 15 bundles</span>
+    <span class="concern-search-count" id="concern-search-count"><strong>26</strong> routines &amp; bundles</span>
     <span class="concern-search-hints">
       <span class="hint-label">Try:</span>
       <button class="concern-search-hint" data-hint="routine" type="button">routine</button>
@@ -1628,6 +1658,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const rawQuery = searchInput.value || '';
     const q = rawQuery.trim().toLowerCase();
     let visible = 0;
+    // Total = all cards in the grid (counts both routines and concern bundles)
+    const total = document.querySelectorAll('.concern-card').length;
 
     document.querySelectorAll('.concern-card').forEach(card => {
       const haystack = card.dataset.haystack || '';
@@ -1654,18 +1686,41 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Update count display
+    // Count visible routines vs concern bundles separately for the breakdown line
+    let visibleRoutines = 0;
+    let visibleBundles = 0;
+    document.querySelectorAll('.concern-card:not(.is-hidden)').forEach(card => {
+      // .concern-card uses data-bundle-kind="routine" or "concern" — see renderConcernCard / renderRoutineCard
+      const kind = card.dataset.bundleKind;
+      if (kind === 'routine') visibleRoutines++;
+      else if (kind === 'concern') visibleBundles++;
+    });
+
+    // Update count display — rich pill with breakdown
     const activeCount = totalActiveFilters();
     const hasAnyFilter = q.length > 0 || activeCount > 0;
+    const breakdown = hasAnyFilter && visible > 0
+      ? `<span class="count-breakdown">${visibleRoutines} routines + ${visibleBundles} bundles</span>`
+      : '';
+
+    let countHTML;
     if (!hasAnyFilter) {
-      searchCount.textContent = `${total} routines & bundles`;
+      countHTML = `<strong>${total}</strong> routines &amp; bundles`;
     } else if (visible === 0) {
-      searchCount.textContent = `0 of ${total}`;
+      countHTML = `<strong>0</strong> of ${total} match`;
     } else if (visible === total) {
-      searchCount.textContent = `${total} routines & bundles`;
+      countHTML = `<strong>${total}</strong> routines &amp; bundles`;
     } else {
-      searchCount.textContent = `${visible} of ${total} routines & bundles`;
+      countHTML = `<strong>${visible}</strong> of ${total} ${breakdown}`;
     }
+
+    if (searchCount.innerHTML !== countHTML) {
+      searchCount.innerHTML = countHTML;
+      searchCount.classList.remove('is-pulsing');
+      void searchCount.offsetWidth;
+      searchCount.classList.add('is-pulsing');
+    }
+    searchCount.classList.toggle('is-filtered', hasAnyFilter);
 
     // Toggle empty state
     if (hasAnyFilter && visible === 0) {

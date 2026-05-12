@@ -7,8 +7,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="css/shared.css">
+<link rel="stylesheet" href="styles.css?v=3">
+<link rel="stylesheet" href="css/shared.css?v=3">
 <link rel="stylesheet" href="css/bundle-expand.css">
 <style>
   :root {
@@ -241,6 +241,141 @@
     transform: translateY(-3px);
   }
   .concern-card:hover::before { width: 100%; }
+
+  /* ═══ COLLAPSIBLE ROUTINE CARDS ═══
+     Each card starts collapsed showing a compact strip (name + savings + chevron).
+     Tapping the strip expands the full card. Tapping the "Collapse ▴" button at
+     the bottom of the expanded card (or the strip area) collapses it again. */
+  .curated-card .card-collapsed-strip {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: center;
+    gap: 22px;
+    padding: 26px 32px;
+    background: var(--cream);
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    font-family: inherit;
+    transition: background 0.3s, padding 0.3s;
+    position: relative;
+  }
+  .curated-card .card-collapsed-strip::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--gold);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.3s ease;
+  }
+  .curated-card .card-collapsed-strip:hover { background: var(--cream-warm); }
+  .curated-card .card-collapsed-strip:hover::before { transform: scaleY(1); }
+  .card-collapsed-text { min-width: 0; }
+  .card-collapsed-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+  .card-collapsed-name em { font-style: italic; color: var(--sage); }
+  .card-collapsed-meta {
+    display: flex;
+    gap: 14px;
+    margin-top: 7px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .card-collapsed-pill {
+    font-family: 'Poppins', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.20em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    font-weight: 600;
+  }
+  .card-collapsed-pill .dot {
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--gold);
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+  .card-collapsed-save {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--gold);
+    font-size: 22px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .card-toggle-chevron {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink-soft);
+    font-size: 14px;
+    transition: transform 0.4s ease, color 0.3s;
+    flex-shrink: 0;
+  }
+  .curated-card .card-collapsed-strip:hover .card-toggle-chevron { color: var(--gold); }
+
+  /* COLLAPSED STATE — show only the strip, hide everything else */
+  .curated-card.is-collapsed > .concern-savings-ribbon,
+  .curated-card.is-collapsed > .concern-card-img-side,
+  .curated-card.is-collapsed > .concern-card-content-side { display: none; }
+  .curated-card.is-collapsed { display: block; }
+  .curated-card.is-collapsed:hover { transform: none; box-shadow: none; border-color: var(--rule); }
+
+  /* EXPANDED STATE — hide the strip, show normal layout */
+  .curated-card:not(.is-collapsed) .card-collapsed-strip { display: none; }
+
+  /* "Collapse ▴" button shown at the bottom of the expanded card */
+  .card-collapse-toggle {
+    margin: 18px auto 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 9.5px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--ink-soft);
+    padding: 10px 18px;
+    transition: color 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    align-self: center;
+  }
+  .card-collapse-toggle:hover { color: var(--gold); }
+  .card-collapse-toggle::after {
+    content: '▴';
+    font-size: 12px;
+  }
+  .curated-card.is-collapsed .card-collapse-toggle { display: none; }
+
+  @media (max-width: 720px) {
+    .curated-card .card-collapsed-strip { padding: 20px 18px; gap: 14px; grid-template-columns: 1fr auto; }
+    .card-collapsed-name { font-size: 22px; }
+    .card-collapsed-save { font-size: 18px; }
+    .card-toggle-chevron { width: 26px; height: 26px; grid-column: 2; grid-row: 1; }
+    /* Tighten the meta row on mobile */
+    .card-collapsed-meta { gap: 10px; margin-top: 6px; }
+    .card-collapsed-pill { font-size: 8.5px; letter-spacing: 0.16em; }
+    /* Save text on mobile — drop below chevron line for breathing room */
+    .card-collapsed-save { grid-column: 1 / -1; font-size: 16px; margin-top: 2px; }
+  }
 
   .concern-savings-ribbon {
     position: absolute;
@@ -610,7 +745,8 @@
   .tier-chip.active .tier-chip-num { color: var(--cream); }
   .tier-chip.active .tier-chip-save { color: var(--gold); }
 
-  .builder-tracker { background: var(--cream); border: 1px solid var(--rule); border-left: 3px solid var(--gold); padding: 22px 28px; margin-bottom: 36px; display: grid; grid-template-columns: 1fr 1fr auto; gap: 32px; align-items: center; position: sticky; top: 70px; z-index: 30; box-shadow: 0 2px 12px rgba(31, 27, 23, 0.04); box-sizing: border-box; max-width: 100%; }
+  .builder-tracker { background: var(--cream); border: 1px solid var(--rule); border-left: 3px solid var(--gold); padding: 22px 28px 22px 26px; margin-bottom: 36px; display: grid; grid-template-columns: 1fr 1fr auto; gap: 32px; align-items: center; position: sticky; top: 70px; z-index: 30; box-shadow: 0 2px 12px rgba(31, 27, 23, 0.04); box-sizing: border-box; max-width: 100%; overflow: hidden; }
+  .builder-tracker > * { min-width: 0; max-width: 100%; }
   .tracker-progress { min-width: 0; }
   .tracker-count { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 500; color: var(--ink); margin-bottom: 10px; line-height: 1; }
   .tracker-count em { font-style: italic; color: var(--sage); }
@@ -702,6 +838,8 @@
   .builder-cta {
     display: block;
     width: 100%;
+    max-width: 100%;
+    min-width: 0;
     box-sizing: border-box;
     padding: 16px 20px;
     background: var(--ink);
@@ -717,6 +855,8 @@
     font-family: 'Poppins', sans-serif;
     text-align: center;
     line-height: 1.3;
+    overflow-wrap: break-word;
+    word-break: normal;
   }
   .builder-cta:hover:not(:disabled) { background: var(--sage); }
   .builder-cta:disabled { background: var(--ink-soft); opacity: 0.4; cursor: not-allowed; }
@@ -1047,8 +1187,10 @@
     /* Builder header spacing */
     .builder-header { margin-bottom: 36px; }
     .builder-header h2 { margin-bottom: 14px; }
-    /* Tracker card: tighter padding + CTA letter-spacing so the button stays inside */
-    .builder-tracker { padding: 18px 16px; }
+    /* Tracker card: tighter padding + CTA letter-spacing so the button stays inside.
+       Right padding is 2px wider than left to compensate for the 3px gold left border
+       (vs 1px right border), so the button visually centers inside the cream box. */
+    .builder-tracker { padding: 18px 18px 18px 16px; }
     .builder-cta { padding: 14px 12px; letter-spacing: 0.14em; font-size: 10.5px; }
   }
   /* Even narrower phones (≤380px) — shrink further */
@@ -1246,12 +1388,35 @@
     flex-wrap: wrap;
   }
   .concern-search-count {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--ink);
+    font-style: italic;
+    letter-spacing: -0.005em;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+    transition: opacity 0.25s ease;
+  }
+  .concern-search-count strong {
     font-family: 'Poppins', sans-serif;
-    font-size: 11px;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
+    font-style: normal;
+    font-weight: 700;
     color: var(--gold);
-    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    background: rgba(184, 153, 104, 0.12);
+    padding: 3px 9px;
+    border-radius: 100px;
+    line-height: 1.6;
+  }
+  .concern-search-count.is-filtered strong { background: var(--gold); color: var(--cream); }
+  .concern-search-count.is-pulsing { animation: countPulse 0.45s ease; }
+  @keyframes countPulse {
+    0%   { transform: scale(1);    opacity: 0.6; }
+    50%  { transform: scale(1.04); opacity: 1;   }
+    100% { transform: scale(1);    opacity: 1;   }
   }
   .concern-search-hints {
     display: flex;
@@ -1796,7 +1961,7 @@
       <button class="concern-search-clear" id="bundle-search-clear" type="button" aria-label="Clear search">✕</button>
     </div>
     <div class="concern-search-meta">
-      <span class="concern-search-count" id="bundle-search-count">11 routines</span>
+      <span class="concern-search-count" id="bundle-search-count"><strong>11</strong> routines</span>
       <span class="concern-search-hints">
         <span class="hint-label">Try:</span>
         <button class="concern-search-hint" data-hint="ultimate" type="button">ultimate</button>
@@ -1945,7 +2110,7 @@
           <div class="tracker-line"><span class="savings-label" id="savingsLabel">Save —</span><span id="savings">—</span></div>
           <div class="tracker-line tracker-final"><span>Routine Total</span><span id="total">$0.00</span></div>
         </div>
-        <button class="builder-cta" id="builderCTA" disabled>Pick 3 to Start Saving</button>
+        <button class="builder-cta" id="builderCTA" disabled>Pick 3 to Save</button>
       </div>
 
       <div class="builder-tabs">
@@ -2241,7 +2406,7 @@
       cta.textContent = 'See Your Routine →';
     } else {
       cta.disabled = true;
-      cta.textContent = `Pick ${MIN_TIER - count} More to Start Saving`;
+      cta.textContent = `Pick ${MIN_TIER - count} More to Save`;
     }
 
     if (eligible) {
@@ -2427,7 +2592,20 @@
     const colsClass = productCount === 2 ? 'cols-2' : productCount === 3 ? 'cols-3' : productCount === 4 ? 'cols-4' : productCount === 5 ? 'cols-5' : 'cols-6';
 
     return `
-      <div class="concern-card curated-card" data-bundle-id="${bundle.id}" data-product-slugs="${bundle.slugs.join(',')}" data-bundle-name="${bundle.name}">
+      <div class="concern-card curated-card is-collapsed" data-bundle-id="${bundle.id}" data-product-slugs="${bundle.slugs.join(',')}" data-bundle-name="${bundle.name}">
+
+        <button type="button" class="card-collapsed-strip" aria-label="Expand ${bundle.name}" data-card-toggle>
+          <div class="card-collapsed-text">
+            <div class="card-collapsed-name">${displayName}</div>
+            <div class="card-collapsed-meta">
+              ${skinCount > 0 ? `<span class="card-collapsed-pill"><span class="dot"></span>${skinCount} Skincare</span>` : ''}
+              ${suppCount > 0 ? `<span class="card-collapsed-pill"><span class="dot"></span>${suppCount} Supplement${suppCount > 1 ? 's' : ''}</span>` : ''}
+            </div>
+          </div>
+          <div class="card-collapsed-save">Save $${savings.toFixed(0)}</div>
+          <div class="card-toggle-chevron">▾</div>
+        </button>
+
         <div class="concern-savings-ribbon">Save ${discountPct}%</div>
 
         <div class="concern-card-img-side">
@@ -2474,6 +2652,8 @@
             <button class="concern-btn secondary" data-action="preview">Preview Bundle →</button>
             <button class="concern-btn primary" data-action="add" data-bundle-add="${bundle.id}">Add Routine to Cart →</button>
           </div>
+
+          <button type="button" class="card-collapse-toggle" data-card-toggle aria-label="Collapse ${bundle.name}">Collapse</button>
         </div>
       </div>
     `;
@@ -2489,6 +2669,25 @@
 
     const defaultOrder = ['daniels-daily', 'am', 'pm', 'workout', 'foundation', 'longevity', 'glow', 'weekly', 'moms', 'arianas', 'ultimate'];
     grid.innerHTML = defaultOrder.map(id => window.renderCuratedBundleCard(id)).join('');
+
+    // ── COLLAPSIBLE CARDS — single delegated handler, supports both the top
+    // collapsed-strip (expand) and the bottom "Collapse" button (collapse).
+    grid.addEventListener('click', (e) => {
+      const toggler = e.target.closest('[data-card-toggle]');
+      if (!toggler) return;
+      const card = toggler.closest('.curated-card');
+      if (!card) return;
+      const willCollapse = !card.classList.contains('is-collapsed');
+      card.classList.toggle('is-collapsed');
+      // Smooth-scroll the card top into view when collapsing so the user doesn't
+      // get visually stranded mid-page after a tall card snaps shut.
+      if (willCollapse) {
+        const rect = card.getBoundingClientRect();
+        if (rect.top < 0) {
+          card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
 
     // SORT: reorder existing DOM nodes (preserves all event listeners on cards)
     function reorderGrid(sortKey) {
@@ -3130,15 +3329,26 @@
 
       const activeCount = totalActiveFilters();
       const hasAnyFilter = q.length > 0 || activeCount > 0;
+      // Build a rich pill-style count: "<strong>N</strong> routines"
+      let countHTML;
       if (!hasAnyFilter) {
-        searchCount.textContent = `${total} routines`;
+        countHTML = `<strong>${total}</strong> routines`;
       } else if (visible === 0) {
-        searchCount.textContent = `0 of ${total} match`;
+        countHTML = `<strong>0</strong> of ${total} match`;
       } else if (visible === total) {
-        searchCount.textContent = `${total} routines`;
+        countHTML = `<strong>${total}</strong> routines`;
       } else {
-        searchCount.textContent = `${visible} of ${total} routines`;
+        countHTML = `<strong>${visible}</strong> of ${total} routines`;
       }
+      // Only re-render + pulse if the count text actually changed (avoids constant flicker)
+      if (searchCount.innerHTML !== countHTML) {
+        searchCount.innerHTML = countHTML;
+        searchCount.classList.remove('is-pulsing');
+        // Force reflow so the animation re-runs each change
+        void searchCount.offsetWidth;
+        searchCount.classList.add('is-pulsing');
+      }
+      searchCount.classList.toggle('is-filtered', hasAnyFilter);
 
       searchClear.classList.toggle('is-visible', q.length > 0);
 
