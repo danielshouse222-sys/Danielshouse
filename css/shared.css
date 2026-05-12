@@ -1843,6 +1843,178 @@ body.has-page-filter-modal {
   margin: 64px auto 0;
   padding: 0 40px;
 }
+
+/* When two routine purchase boxes need to sit side-by-side directly under
+   a .split (e.g., Foundation/Longevity rituals on the supplements page) —
+   the boxes line up with their matching ritual column above. Stacks on mobile. */
+.bundle-footnotes-split {
+  max-width: 1200px;
+  margin: 64px auto 0;
+  padding: 0 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+.bundle-footnotes-split .bundle-footnote {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+@media (max-width: 1000px) {
+  .bundle-footnotes-split {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+/* ═══ DAILY STACK MOBILE INTERLEAVING ═══
+   Desktop layout: rituals row 1 (Foundation | Longevity), purchase boxes row 2
+   (Foundation | Longevity) — each footnote sits under its matching ritual via two
+   side-by-side grids.
+
+   Mobile (≤1000px): users want to see Foundation ritual *immediately* followed by
+   the Foundation purchase box (so you can add it right after reading what's in it),
+   THEN the Longevity ritual followed by its purchase box. To do that without
+   duplicating markup, we flatten both inner grids with `display: contents` so all
+   four elements become direct flex children of `.daily-stack-pair`, then assign
+   `order` 1–4 to interleave: F-ritual → F-footnote → L-ritual → L-footnote. */
+@media (max-width: 1000px) {
+  .daily-stack-pair {
+    display: flex;
+    flex-direction: column;
+  }
+  .daily-stack-pair > .split,
+  .daily-stack-pair > .bundle-footnotes-split {
+    display: contents;
+  }
+  /* When flattened, footnotes lose their grid-cell sizing — restore the standalone
+     bundle-footnote styling (centered, max-width 640px, side padding for mobile). */
+  .daily-stack-pair .bundle-footnotes-split > .bundle-footnote {
+    padding: 0 20px;
+    margin: 32px auto 0;
+    max-width: 640px;
+  }
+  /* Interleave order — F-ritual, F-footnote, L-ritual, L-footnote */
+  .daily-stack-pair .ritual.foundation                                { order: 1; }
+  .daily-stack-pair .bundle-footnotes-split > .bundle-footnote:nth-child(1) { order: 2; }
+  .daily-stack-pair .ritual.longevity                                 { order: 3; }
+  .daily-stack-pair .bundle-footnotes-split > .bundle-footnote:nth-child(2) { order: 4; }
+}
+
+/* Featured variant — used for the "Or get both together" upsell box that follows
+   a .bundle-footnotes-split (Daniel's Daily Supplements on the supplements page).
+   Larger, elevated, gold-accented to read as the natural upgrade path. */
+.bundle-footnote-featured {
+  max-width: 760px;
+  margin-top: 32px;
+}
+.bundle-footnote-featured .bundle-footnote-inner {
+  background: var(--night, var(--ink));
+  color: var(--cream);
+  padding: 44px 50px 36px;
+}
+.bundle-footnote-featured .bundle-footnote-inner::before {
+  background: linear-gradient(to right, transparent 0%, var(--gold) 20%, var(--gold) 80%, transparent 100%);
+  height: 3px;
+}
+.bundle-footnote-featured .bundle-footnote-name {
+  color: var(--cream);
+}
+.bundle-footnote-featured .bundle-footnote-name em {
+  color: var(--gold);
+}
+.bundle-footnote-featured .bundle-footnote-was {
+  color: rgba(255, 255, 255, 0.45);
+}
+.bundle-footnote-featured .bundle-footnote-now {
+  color: var(--gold);
+}
+.bundle-footnote-featured .bundle-footnote-savings {
+  color: rgba(255, 255, 255, 0.7);
+}
+.bundle-footnote-featured .bundle-footnote-pricing {
+  border-top-color: rgba(255, 255, 255, 0.18);
+  border-bottom-color: rgba(255, 255, 255, 0.18);
+}
+.bundle-footnote-featured .bundle-footnote-view {
+  color: var(--cream);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+.bundle-footnote-featured .bundle-footnote-view:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+.bundle-footnote-featured .bundle-footnote-cta {
+  background: var(--gold);
+  color: var(--ink);
+}
+.bundle-footnote-featured .bundle-footnote-cta:hover {
+  background: var(--cream);
+}
+.bundle-footnote-featured .bundle-subscribe-toggle button {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.22);
+  color: var(--cream);
+}
+.bundle-footnote-featured .bundle-subscribe-toggle button.active {
+  background: rgba(184, 153, 104, 0.18);
+  border-color: var(--gold);
+}
+.bundle-footnote-featured .toggle-name { color: var(--cream); }
+.bundle-footnote-featured .toggle-meta { color: rgba(255, 255, 255, 0.55); }
+
+/* Cadence selector dark-mode overrides — when the Daniel's Daily Supplements
+   cadence picker appears inside the dark featured box, it needs cream-on-dark
+   text and gold accents instead of the default cream-background look. */
+.bundle-footnote-featured .bundle-cadence {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.22);
+}
+.bundle-footnote-featured .cadence-btn {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.bundle-footnote-featured .cadence-btn:hover {
+  background: rgba(184, 153, 104, 0.12);
+  border-color: rgba(184, 153, 104, 0.5);
+}
+.bundle-footnote-featured .cadence-btn.active {
+  background: rgba(184, 153, 104, 0.18);
+  border-color: var(--gold);
+}
+.bundle-footnote-featured .cadence-name { color: var(--cream); }
+.bundle-footnote-featured .cadence-meta { color: rgba(255, 255, 255, 0.55); }
+.bundle-footnote-featured .cadence-btn.active .cadence-meta { color: var(--gold); }
+.bundle-footnote-featured .cadence-note {
+  background: rgba(184, 153, 104, 0.08);
+  color: rgba(255, 255, 255, 0.82);
+  border-color: rgba(184, 153, 104, 0.3);
+}
+.bundle-footnote-featured .cadence-note strong { color: var(--gold); }
+
+/* Eyebrow + prose-sub for the featured box */
+.bundle-footnote-eyebrow {
+  font-family: 'Poppins', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+.bundle-footnote-featured .bundle-footnote-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 16px;
+  letter-spacing: 0;
+  text-transform: none;
+  color: rgba(255, 255, 255, 0.78);
+  font-weight: 400;
+  line-height: 1.55;
+  max-width: 560px;
+  margin: 6px auto 22px;
+}
 .bundle-footnote-inner {
   background: var(--cream-warm);
   border: 1px solid var(--rule);
