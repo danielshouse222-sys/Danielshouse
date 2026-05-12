@@ -464,6 +464,311 @@
   @media (max-width: 720px) {
     .result-products { grid-template-columns: 1fr; }
   }
+
+  /* ═══ QUIZ BUNDLE DETAIL SECTIONS ═══
+     Mirrors the styling of routine.html's bundle-section blocks so the
+     quiz output reads like a full curated routine page even though the
+     bundle is dynamically generated. */
+  .quiz-bundle-detail {
+    max-width: 1100px;
+    margin: 80px auto 0;
+    padding: 0 24px;
+    text-align: center;
+  }
+  .quiz-section {
+    padding: 56px 0 8px;
+    border-top: 1px solid var(--rule);
+    margin-top: 8px;
+  }
+  .quiz-section:first-of-type { border-top: 0; padding-top: 24px; }
+  .quiz-section-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .quiz-section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 3.5vw, 38px);
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--ink);
+    margin: 0 0 14px;
+  }
+  .quiz-section-title em { font-style: italic; color: var(--sage); }
+  .quiz-section-blurb {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: var(--ink-soft);
+    max-width: 640px;
+    margin: 0 auto 38px;
+    line-height: 1.55;
+  }
+
+  /* ─── What's Inside cards ─── */
+  .quiz-products-detailed {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 18px;
+    text-align: left;
+  }
+  .quiz-product-card {
+    display: flex;
+    gap: 16px;
+    padding: 18px;
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.25s, transform 0.25s;
+  }
+  .quiz-product-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-2px);
+  }
+  .quiz-product-card-img {
+    width: 84px;
+    height: 84px;
+    flex-shrink: 0;
+    background: var(--cream-warm);
+    overflow: hidden;
+  }
+  .quiz-product-card-img img { width: 100%; height: 100%; object-fit: cover; }
+  .quiz-product-card-body { flex: 1; min-width: 0; }
+  .quiz-product-card-cat {
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .quiz-product-card-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: var(--ink);
+  }
+  .quiz-product-card-name em { font-style: italic; color: var(--sage); }
+  .quiz-product-card-blurb {
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    margin-bottom: 10px;
+  }
+  .quiz-product-card-foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 12px;
+  }
+  .quiz-product-card-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    color: var(--ink);
+  }
+  .quiz-product-card-view {
+    color: var(--gold);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  /* ─── Why This Stack Works ─── */
+  .quiz-why-text {
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: left;
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+  }
+  .quiz-why-text p {
+    margin: 0 0 16px;
+  }
+  .quiz-why-text strong {
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  /* ─── Timeline ─── */
+  .quiz-timeline {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    text-align: left;
+  }
+  .quiz-phase {
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    border-top: 3px solid var(--gold);
+    padding: 22px 20px 24px;
+  }
+  .quiz-phase-week {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--sage);
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+  .quiz-phase-text {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+  @media (max-width: 900px) {
+    .quiz-timeline { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 540px) {
+    .quiz-timeline { grid-template-columns: 1fr; }
+  }
+
+  /* ─── Research / Studies ─── */
+  .quiz-studies {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 16px;
+    text-align: left;
+  }
+  .quiz-study-card {
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    padding: 22px 22px 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  .quiz-study-active {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: var(--sage);
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+  .quiz-study-alt {
+    font-size: 12px;
+    color: var(--ink-soft);
+    font-style: normal;
+  }
+  .quiz-study-type {
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .quiz-study-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    line-height: 1.3;
+    color: var(--ink);
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  .quiz-study-meta {
+    font-size: 11px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+  .quiz-study-meta em { font-style: italic; }
+  .quiz-study-finding {
+    font-size: 12.5px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0 0 14px;
+    flex: 1;
+  }
+  .quiz-study-link {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(184, 153, 104, 0.4);
+    padding-bottom: 3px;
+    align-self: flex-start;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .quiz-study-link:hover { color: var(--ink); border-color: var(--gold); }
+  .quiz-studies-more {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding-top: 8px;
+  }
+  .quiz-studies-more-link {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(184, 153, 104, 0.4);
+  }
+
+  /* ─── Directions ─── */
+  .quiz-directions {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  /* ─── FAQ accordion (matches faq.html styling) ─── */
+  .quiz-faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+    border-top: 1px solid var(--rule);
+  }
+  .quiz-faq-item {
+    border-bottom: 1px solid var(--rule);
+    cursor: pointer;
+  }
+  .quiz-faq-q {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 18px;
+    padding: 22px 4px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.3;
+    transition: color 0.25s;
+  }
+  .quiz-faq-item:hover .quiz-faq-q { color: var(--gold); }
+  .quiz-faq-toggle {
+    color: var(--gold);
+    font-size: 20px;
+    flex-shrink: 0;
+    line-height: 1;
+    transition: transform 0.3s;
+    font-family: 'Poppins', sans-serif;
+  }
+  .quiz-faq-item.open .quiz-faq-toggle { transform: rotate(45deg); }
+  .quiz-faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s ease;
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    padding: 0 4px;
+  }
+  .quiz-faq-item.open .quiz-faq-a {
+    max-height: 600px;
+    padding: 0 4px 22px;
+  }
+  .quiz-faq-a strong { color: var(--ink); font-weight: 600; }
 </style>
 </head>
 <body>
@@ -821,12 +1126,98 @@
             <span class="toggle-meta">Single delivery</span>
           </button>
           <button type="button" data-mode="subscribe">
-            <div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">Monthly</span></div>
-            <span class="toggle-meta">Cancel anytime</span>
+            <div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">Subscribe</span></div>
+            <span class="toggle-meta">Save 10% · cancel anytime</span>
           </button>
         </div>
 
+        <!-- Cadence selector — revealed when Subscribe is active. Smart Refill ships
+             each product on its actual runtime cycle rather than as one bundle every
+             30 days, which saves money for mixed-runtime stacks (e.g. 1-month Multi
+             + 2-month Wash + 3-month Sunshine). -->
+        <div class="bundle-cadence" data-bundle-id="quiz-result" id="result-bundle-cadence" hidden>
+          <div class="cadence-eyebrow">Shipment Frequency</div>
+          <div class="cadence-grid">
+            <button type="button" class="cadence-btn active" data-cadence="monthly">
+              <div class="cadence-name">Monthly</div>
+              <div class="cadence-meta">Full bundle</div>
+            </button>
+            <button type="button" class="cadence-btn" data-cadence="bimonthly">
+              <div class="cadence-name">Every 2 Months</div>
+              <div class="cadence-meta">Full bundle</div>
+            </button>
+            <button type="button" class="cadence-btn" data-cadence="quarterly">
+              <div class="cadence-name">Every 3 Months</div>
+              <div class="cadence-meta">Full bundle</div>
+            </button>
+            <button type="button" class="cadence-btn cadence-btn-smart" data-cadence="smart">
+              <div class="cadence-name">Smart Refill</div>
+              <div class="cadence-meta">Only what you need</div>
+            </button>
+          </div>
+          <div class="cadence-note" data-smart-note hidden>
+            <strong>How Smart Refill works:</strong> Your first shipment is the full bundle. After that, each month we only ship the products you've actually run out of — supplements every 1, 2, or 3 months depending on the bottle, most skincare every 2 months, oils &amp; eye cream every 3. Any shipment under $30 is bundled into the next month's delivery. You only pay for what arrives.
+          </div>
+        </div>
+
         <button class="result-bundle-cta" id="result-bundle-cta">Add Your Bundle to Cart →</button>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════════════════════════════
+           Quiz-generated bundle DETAILS — mirrors what routine.html shows for the
+           curated routines: full product breakdown, rationale, timeline, research,
+           directions, and FAQs. All dynamically generated from the quiz output.
+           ═══════════════════════════════════════════════════════════════════════ -->
+      <div class="quiz-bundle-detail" id="quiz-bundle-detail" hidden>
+
+        <!-- 1. WHAT'S INSIDE — expanded product cards with descriptions -->
+        <section class="quiz-section">
+          <div class="quiz-section-eyebrow">What's Inside · Every Product</div>
+          <h3 class="quiz-section-title">Your <em>stack</em>, component by component.</h3>
+          <p class="quiz-section-blurb">Every product in your personal routine, with the role each plays in the larger system.</p>
+          <div class="quiz-products-detailed" id="quiz-products-detailed"></div>
+        </section>
+
+        <!-- 2. WHY THIS STACK WORKS — narrative rationale -->
+        <section class="quiz-section">
+          <div class="quiz-section-eyebrow">Why This Stack Works</div>
+          <h3 class="quiz-section-title">The compounding <em>logic</em>.</h3>
+          <p class="quiz-section-blurb">No single product on this site does what the right combination does. Here's why these particular pieces fit together for you.</p>
+          <div class="quiz-why-text" id="quiz-why-text"></div>
+        </section>
+
+        <!-- 3. WHAT TO EXPECT — week-by-week timeline -->
+        <section class="quiz-section">
+          <div class="quiz-section-eyebrow">What to Expect</div>
+          <h3 class="quiz-section-title">Your <em>timeline</em>.</h3>
+          <p class="quiz-section-blurb">Real changes compound over weeks, not days. Here's the realistic arc for this stack — early signals first, durable results later.</p>
+          <div class="quiz-timeline" id="quiz-timeline"></div>
+        </section>
+
+        <!-- 4. RESEARCH — clinical studies for the key actives in the bundle -->
+        <section class="quiz-section">
+          <div class="quiz-section-eyebrow">The Research</div>
+          <h3 class="quiz-section-title">Backed by <em>clinical evidence</em>.</h3>
+          <p class="quiz-section-blurb">Peer-reviewed studies on the key actives in your routine. Click any to read the original paper.</p>
+          <div class="quiz-studies" id="quiz-studies"></div>
+        </section>
+
+        <!-- 5. DIRECTIONS — how/when to use each product (generated by shared.js) -->
+        <section class="quiz-section">
+          <div class="quiz-section-eyebrow">Directions</div>
+          <h3 class="quiz-section-title">How to <em>use it</em>.</h3>
+          <p class="quiz-section-blurb">Your daily and evening rhythm, with each product placed at the right step of the routine.</p>
+          <div class="quiz-directions" id="quiz-directions"></div>
+        </section>
+
+        <!-- 6. COMMON QUESTIONS — generated FAQ entries tailored to the stack -->
+        <section class="quiz-section">
+          <div class="quiz-section-eyebrow">Common Questions</div>
+          <h3 class="quiz-section-title">Common <em>questions</em>.</h3>
+          <p class="quiz-section-blurb">Practical answers for getting started, subscribing, and tuning the routine over time.</p>
+          <div class="quiz-faq-list" id="quiz-faq-list"></div>
+        </section>
+
       </div>
 
       <div class="result-actions">
@@ -909,8 +1300,8 @@
   </div>
 </div>
 
-<script src="data/products.js"></script>
-<script src="js/auth.js?v=1"></script><script src="js/shared.js?v=9"></script>
+<script src="data/products.js"></script><script src="data/ingredients.js"></script>
+<script src="js/auth.js?v=1"></script><script src="js/shared.js?v=9"></script><script src="data/faq-data.js?v=1"></script><script src="js/chatbot.js?v=3"></script>
 <script>
 const TOTAL_STEPS = 11;
 let currentStep = 1;
@@ -1387,15 +1778,42 @@ function showResult() {
   refreshBundlePricing();
 
   const toggle = document.getElementById('result-bundle-toggle');
+  const cadenceEl = document.getElementById('result-bundle-cadence');
   toggle.querySelectorAll('button').forEach(btn => {
     btn.addEventListener('click', () => {
       toggle.querySelectorAll('button').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       subscribed = btn.dataset.mode === 'subscribe';
       toggle.classList.toggle('subscribe-mode', subscribed);
+      // Reveal/hide the cadence selector when Subscribe is engaged
+      if (cadenceEl) {
+        if (subscribed) cadenceEl.removeAttribute('hidden');
+        else cadenceEl.setAttribute('hidden', '');
+      }
       refreshBundlePricing();
     });
   });
+
+  // Cadence button handler — same UX as routine.html / supplements.html
+  if (cadenceEl) {
+    cadenceEl.querySelectorAll('.cadence-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        cadenceEl.querySelectorAll('.cadence-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const note = cadenceEl.querySelector('[data-smart-note]');
+        if (note) {
+          if (btn.dataset.cadence === 'smart') note.removeAttribute('hidden');
+          else note.setAttribute('hidden', '');
+        }
+      });
+    });
+  }
+
+  function getActiveCadence() {
+    if (!subscribed || !cadenceEl) return null;
+    const active = cadenceEl.querySelector('.cadence-btn.active');
+    return (active && active.dataset.cadence) || 'monthly';
+  }
 
   const cta = document.getElementById('result-bundle-cta');
   cta.addEventListener('click', () => {
@@ -1405,7 +1823,8 @@ function showResult() {
       recommendedSlugs,
       'Your Personal Bundle',
       QUIZ_BUNDLE_DISCOUNT,
-      subscribed
+      subscribed,
+      { cadence: getActiveCadence() }
     );
     cta.textContent = '✓ Added to Cart';
     cta.classList.add('added');
@@ -1414,7 +1833,246 @@ function showResult() {
       cta.classList.remove('added');
     }, 2400);
   });
+
+  // ─── Render the 6 detail sections (What's Inside, Why, Timeline, Research,
+  //     Directions, FAQ) — all dynamically generated from the quiz output. ───
+  renderQuizBundleDetail(products);
 }
+
+// ═══════════════════════════════════════════════════════════════════
+// RENDER QUIZ BUNDLE DETAIL — generates the 6 detail sections that
+// normally appear under a curated bundle (What's Inside, Why This
+// Works, Timeline, Research, Directions, Common Questions) tailored
+// to the dynamically-generated quiz bundle.
+// ═══════════════════════════════════════════════════════════════════
+function renderQuizBundleDetail(products) {
+  const wrap = document.getElementById('quiz-bundle-detail');
+  if (!wrap || !products || !products.length) return;
+  wrap.removeAttribute('hidden');
+
+  const skincare    = products.filter(p => p.category === 'skincare');
+  const supplements = products.filter(p => p.category === 'supplement');
+
+  // ─── 1. WHAT'S INSIDE — detailed product cards ────────────────────
+  document.getElementById('quiz-products-detailed').innerHTML = products.map(p => `
+    <a href="product.html?slug=${p.slug}" class="quiz-product-card">
+      <div class="quiz-product-card-img"><img src="${p.image}" alt="${p.name}" loading="lazy"/></div>
+      <div class="quiz-product-card-body">
+        <div class="quiz-product-card-cat">${p.category === 'skincare' ? 'Skincare' : 'Supplement'} · ${(p.tag || '').split('·')[0].trim()}</div>
+        <div class="quiz-product-card-name">The House <em>${p.name}</em></div>
+        <div class="quiz-product-card-blurb">${p.blurb || ''}</div>
+        <div class="quiz-product-card-foot">
+          <span class="quiz-product-card-price">$${p.price.toFixed(2)}</span>
+          <span class="quiz-product-card-view">View Details →</span>
+        </div>
+      </div>
+    </a>
+  `).join('');
+
+  // ─── 2. WHY THIS STACK WORKS — composition-aware narrative ────────
+  document.getElementById('quiz-why-text').innerHTML = buildQuizWhyText(products, skincare, supplements);
+
+  // ─── 3. WHAT TO EXPECT — 4-phase timeline ─────────────────────────
+  document.getElementById('quiz-timeline').innerHTML = buildQuizTimeline(skincare, supplements);
+
+  // ─── 4. RESEARCH — pull studies from the actives in the products ──
+  document.getElementById('quiz-studies').innerHTML = buildQuizStudies(products);
+
+  // ─── 5. DIRECTIONS — use the shared generateBundleDirections helper ─
+  // Build a synthetic bundle object with the right shape
+  if (typeof window.generateBundleDirections === 'function') {
+    const synthBundle = { slugs: products.map(p => p.slug), id: 'quiz-result', name: 'Your Personal Bundle' };
+    document.getElementById('quiz-directions').innerHTML = window.generateBundleDirections(synthBundle);
+  } else {
+    document.getElementById('quiz-directions').innerHTML = '<p style="color: var(--ink-soft); font-style: italic;">Directions will be included with your order.</p>';
+  }
+
+  // ─── 6. COMMON QUESTIONS — dynamic FAQs tailored to this bundle ──
+  document.getElementById('quiz-faq-list').innerHTML = buildQuizFAQs(products, skincare, supplements);
+
+  // Wire FAQ accordion clicks (one-time, since this only renders once per quiz)
+  document.querySelectorAll('#quiz-faq-list .quiz-faq-item').forEach(item => {
+    item.addEventListener('click', () => item.classList.toggle('open'));
+  });
+}
+
+/* ─── Why This Stack Works (composition-aware) ─────────────────────── */
+function buildQuizWhyText(products, skincare, supplements) {
+  const parts = [];
+  if (skincare.length && supplements.length) {
+    parts.push(`<p>Your routine pairs <strong>${skincare.length} skincare products</strong> (the topical half — barrier, hydration, treatment) with <strong>${supplements.length} supplements</strong> (the internal half — what skin and energy are built from). This pairing is the entire premise of Daniel's House: skin reflects what's happening inside, and supplements compound the visible effects of skincare. The two halves don't just coexist — they multiply each other.</p>`);
+  } else if (skincare.length) {
+    parts.push(`<p>Your stack is a focused <strong>${skincare.length}-product skincare protocol</strong>. Each product is positioned to do one job at one moment in the day — cleanser first, then thinnest-to-thickest treatments, sealed by moisturizer. The sequence matters as much as the ingredients.</p>`);
+  } else {
+    parts.push(`<p>Your stack is a focused <strong>${supplements.length}-supplement protocol</strong>. Distributed across the day, these handle the foundational gaps in modern diets and add the longevity/recovery layer that compounds with months of consistency.</p>`);
+  }
+
+  // Highlight notable actives by walking the product tags
+  const tagToActive = {
+    'Brightening':       'vitamin C + niacinamide',
+    'Anti-aging':        'retinol + peptides',
+    'Hydrating':         'multi-weight hyaluronic acid',
+    'Calming':           'panthenol + allantoin',
+    'Antioxidant':       'CoQ10 + resveratrol',
+    'Cognitive':         'lion\'s mane + alpha-GPC',
+    'Energy':            'B-complex + CoQ10',
+    'Sleep':             'magnesium glycinate + L-theanine',
+    'Joints':            'glucosamine + boswellia + MSM',
+    'Immune':            'vitamin D3 + zinc',
+    'Performance':       'creatine + L-citrulline + beetroot',
+    'Stress':            'KSM-66 ashwagandha'
+  };
+  const seen = new Set();
+  const activeMentions = [];
+  products.forEach(p => {
+    const tags = (p.tag || '').split('·').map(t => t.trim());
+    tags.forEach(t => {
+      if (tagToActive[t] && !seen.has(t)) {
+        seen.add(t);
+        activeMentions.push(`<strong>${t.toLowerCase()}</strong> (${tagToActive[t]})`);
+      }
+    });
+  });
+  if (activeMentions.length) {
+    parts.push(`<p>The actives we're putting to work for you: ${activeMentions.slice(0, 5).join(', ')}. Each one has strong clinical evidence at the dose Daniel uses — no fairy dust, no proprietary blends hiding amounts.</p>`);
+  }
+
+  parts.push(`<p>What makes a routine "work" isn't a single hero product — it's the compounding effect of doing the right small things consistently. This stack is what we'd recommend for your situation based on the quiz, but the real result comes from running it for 8–12 weeks and letting the math compound.</p>`);
+  return parts.join('');
+}
+
+/* ─── Timeline — 4 phases keyed to bundle composition ──────────────── */
+function buildQuizTimeline(skincare, supplements) {
+  const hasSkin = skincare.length > 0;
+  const hasSupp = supplements.length > 0;
+  const phases = [
+    {
+      week: 'Week 1',
+      text: hasSkin && hasSupp
+        ? 'Skin feels balanced; products absorb cleanly. Supplements begin to stabilize daily energy and digestion. Sleep quality often shifts within the first few nights.'
+        : hasSkin
+        ? 'Skin texture feels cleaner and more balanced. Layering becomes second nature; products absorb without conflict.'
+        : 'Daily energy starts to stabilize. Sleep quality often shifts within the first few nights as magnesium and adaptogens begin working.'
+    },
+    {
+      week: 'Week 4',
+      text: hasSkin && hasSupp
+        ? 'Visible skin changes — texture, hydration, tone. Supplement effects compound: deeper sleep, steadier mornings, faster recovery. Less inflammation overall.'
+        : hasSkin
+        ? 'Hydration holds through the day; tone evens. Retinol or peptide effects begin to surface as fine-line smoothing.'
+        : 'Vitamin and mineral stores normalize. Sustained energy through the afternoon; mood resilience improves.'
+    },
+    {
+      week: 'Week 8',
+      text: hasSkin && hasSupp
+        ? 'Skin firmness and brightness become noticeable to others, not just you. Cellular markers (CoQ10, NAD+, B-complex) baseline at higher levels. Stress resilience visibly improved.'
+        : hasSkin
+        ? 'Fine lines measurably softer. Pore appearance refines. Skin reflects light more evenly — what people call "glow" is mostly even tone and adequate hydration.'
+        : 'Joint comfort improves; recovery from workouts is faster. Longevity supplements (NAD+, omega-3) start showing their compounding effects.'
+    },
+    {
+      week: 'Week 12+',
+      text: 'The full compounding effect. ' + (hasSkin && hasSupp
+        ? 'Skin at multi-year baseline highs, sustained daily energy, deep cardiovascular and longevity markers in motion. The full-system effect Daniel built this around.'
+        : hasSkin
+        ? 'Durable skin baseline. Brighter tone, firmer texture, fewer breakouts — the compound effect of consistent actives properly sequenced.'
+        : 'Durable inside-out baseline. Sustained energy, mood resilience, recovery — the compound effect of the daily protocol.')
+    }
+  ];
+  return phases.map(p => `
+    <div class="quiz-phase">
+      <div class="quiz-phase-week">${p.week}</div>
+      <div class="quiz-phase-text">${p.text}</div>
+    </div>
+  `).join('');
+}
+
+/* ─── Research — pull studies from the actives in the products ────── */
+function buildQuizStudies(products) {
+  if (!window.INGREDIENTS) {
+    return '<p style="color: var(--ink-soft); font-style: italic;">Studies for your routine\'s actives are available on the <a href="studies.html" style="color: var(--gold);">Research Library →</a></p>';
+  }
+  // Find which ingredients are in any of the recommended products
+  const productSlugs = new Set(products.map(p => p.slug));
+  const matchedIngs = (window.INGREDIENTS || []).filter(ing =>
+    (ing.products || []).some(s => productSlugs.has(s))
+  );
+  if (!matchedIngs.length) {
+    return '<p style="color: var(--ink-soft); font-style: italic;">Browse the <a href="studies.html" style="color: var(--gold);">full research library →</a> for studies on every active in your routine.</p>';
+  }
+  // Sort strong-evidence first; take the top 4
+  matchedIngs.sort((a, b) => {
+    const score = (e) => e.evidence === 'strong' ? 2 : e.evidence === 'moderate' ? 1 : 0;
+    return score(b) - score(a);
+  });
+  const featured = matchedIngs.slice(0, 4);
+  // For each featured ingredient, take its first (most-cited) study
+  const studyCards = featured.map(ing => {
+    const study = (ing.studies || [])[0];
+    if (!study) return '';
+    const url = study.url || `https://scholar.google.com/scholar?q=${encodeURIComponent(study.title)}`;
+    return `
+      <article class="quiz-study-card">
+        <div class="quiz-study-active">${ing.name}${ing.alt ? ` <span class="quiz-study-alt">· ${ing.alt}</span>` : ''}</div>
+        <div class="quiz-study-type">${study.type}</div>
+        <div class="quiz-study-title">${study.title}</div>
+        <div class="quiz-study-meta">${study.authors} · <em>${study.journal}</em> · ${study.year}</div>
+        <p class="quiz-study-finding">${study.finding}</p>
+        <a class="quiz-study-link" href="${url}" target="_blank" rel="noopener noreferrer">View Original Source →</a>
+      </article>
+    `;
+  }).filter(Boolean);
+  const more = matchedIngs.length > 4
+    ? `<div class="quiz-studies-more"><a href="studies.html" class="quiz-studies-more-link">View all ${matchedIngs.length} actives + ${(matchedIngs.reduce((s, i) => s + (i.studies?.length || 0), 0))} studies in your routine →</a></div>`
+    : '';
+  return studyCards.join('') + more;
+}
+
+/* ─── Common Questions — generated FAQ entries tailored to the stack ─ */
+function buildQuizFAQs(products, skincare, supplements) {
+  const total = products.length;
+  const faqs = [
+    {
+      q: 'How long does one bundle last?',
+      a: 'Most products are 30-day supplies at recommended usage. A few last longer — skincare cleansers and toners typically run 60 days; eye creams, face oils, and vitamin D3 often last 90 days. <strong>Smart Refill</strong> is the easiest way to handle this — instead of receiving everything every month and stockpiling some products, Smart Refill ships each product on its actual usage cycle. Same routine, no stockpiling, no waste.'
+    }
+  ];
+  if (skincare.length && supplements.length) {
+    faqs.push({
+      q: 'Should I start everything at once or phase it in?',
+      a: `For most people, starting all ${total} products at once is fine — they're designed to work together and none of them are aggressive at our dosing. If you have very sensitive skin, you can introduce the retinol or acid treatments every other night for the first 2 weeks before going daily. Supplements can all start at once; just distribute them across the day rather than taking them all at breakfast.`
+    });
+  } else if (skincare.length) {
+    faqs.push({
+      q: 'Do I have to use every product every day?',
+      a: 'Most products are daily — cleanser, moisturizer, sunscreen-step. Treatments (retinol, exfoliating acids, masks) are typically 2–4 nights per week, alternating to avoid over-stimulating the barrier. The directions section above shows exactly when each product fits in your AM and PM routine.'
+    });
+  } else {
+    faqs.push({
+      q: 'Can I take all the supplements at once?',
+      a: 'You technically can, but absorption is better when you distribute them across the day. Foundation supplements (multi, vitamin D, omega-3, probiotic) work best with breakfast. Magnesium and adaptogens like ashwagandha are evening. Performance supplements (creatine, citrulline) go before or after your workout. The directions section above breaks down the timing.'
+    });
+  }
+  faqs.push({
+    q: 'Can I subscribe to this exact routine?',
+    a: 'Yes. Pick Subscribe in the purchase box above — you get an extra <strong>10% off on top of the 15% bundle discount</strong> (so 23.5% total off retail), and you can choose <strong>Monthly</strong>, <strong>Every 2 Months</strong>, <strong>Every 3 Months</strong>, or <strong>Smart Refill</strong> (each product ships on its actual runtime cycle). Cancel, pause, or swap products from your account anytime.'
+  });
+  faqs.push({
+    q: "What if I already have one of these products?",
+    a: 'You have two options: (1) skip the bundle and build a custom version with our <a href="routines.html#byo" style="color: var(--gold);">Build Your Own routine</a> tool — the discount tiers at 3, 6, and 9 products. Or (2) take the bundle anyway and gift the duplicate — the bundle discount usually still makes it the cheaper path even with one overlap.'
+  });
+  faqs.push({
+    q: 'What if it doesn\'t work for me?',
+    a: '<strong>Every order is backed by a 30-day money-back guarantee</strong> — even on opened products. Email <a href="mailto:daniel@danielshousewellness.com" style="color: var(--gold);">daniel@danielshousewellness.com</a> within 30 days of delivery and we\'ll process the refund. The subscription guarantee applies to every shipment, not just your first.'
+  });
+  return faqs.map(f => `
+    <div class="quiz-faq-item">
+      <div class="quiz-faq-q"><span>${f.q}</span><span class="quiz-faq-toggle">+</span></div>
+      <div class="quiz-faq-a">${f.a}</div>
+    </div>
+  `).join('');
+}
+
 
 // ═══════════════════════════════════════════════════════════════════
 // CURATED BUNDLE MATCH — if the user's recommended products overlap
