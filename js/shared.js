@@ -2102,10 +2102,39 @@
       ],
       // For concern bundles: ordered roughly by demand
       concerns: [
-        'anti-aging', 'sleep', 'energy', 'stress', 'acne',
-        'glow', 'brightening', 'hydration', 'sensitive-skin',
-        'immunity', 'gut-health', 'workout-recovery', 'focus',
-        'hormonal-balance', 'hair-nails'
+        'aging', 'sleep', 'energy', 'stress', 'acne',
+        'beauty', 'dullness', 'dryness', 'sensitivity',
+        'longevity', 'gut', 'strength', 'focus',
+        'pores', 'joints'
+      ],
+      // Combined best-sellers ranking across BOTH routines and concern bundles —
+      // composite keys disambiguate the 'longevity' id which exists in both lists.
+      // Order = predicted sales volume (low-price + broad need rises to the top).
+      bundleOrder: [
+        'routine:daniels-daily',  // foundational supplement stack — universal gateway
+        'concern:sleep',          // small bundle, universal need, affordable entry
+        'routine:am',             // skincare gateway
+        'concern:dryness',        // Hydration — fundamental, small price
+        'concern:aging',          // Anti-Aging — broad appeal
+        'concern:stress',         // Stress — trending, affordable
+        'concern:energy',         // Energy — universal need
+        'routine:pm',             // pairs with AM, repeat buy
+        'concern:beauty',         // Glow Bundle — beauty conversion magnet
+        'concern:dullness',       // Brightening — vitamin C, broad appeal
+        'routine:moms',           // focused persona conversion
+        'routine:workout',        // active segment
+        'routine:ultimate',       // premium statement, high AOV
+        'routine:glow',           // beauty stack
+        'concern:acne',           // Clear-Skin — concentrated demand
+        'concern:strength',       // performance niche
+        'concern:longevity',      // Cellular Bundle — premium longevity
+        'concern:sensitivity',    // Soothing — sensitive skin segment
+        'concern:pores',          // specific cosmetic concern
+        'concern:gut',            // trending gut health
+        'concern:focus',          // niche cognitive
+        'concern:joints',         // older demographic
+        'routine:longevity',      // premium niche routine
+        'routine:arianas'         // narrow persona
       ]
     };
 
@@ -2186,8 +2215,18 @@
         case 'bundles': {
           if (sortKey === 'featured')   return arr;
           if (sortKey === 'bestseller') {
-            const order = [...window.DH_BEST_SELLERS.bundles, ...window.DH_BEST_SELLERS.concerns];
-            return arr.sort((a, b) => rankIn(order, a.id) - rankIn(order, b.id));
+            // Use composite key (kind:id) to disambiguate when routine and concern
+            // share an id (e.g., both have a 'longevity' bundle). Falls back to the
+            // older per-collection lists for any bundle not in bundleOrder.
+            const composite = window.DH_BEST_SELLERS.bundleOrder || [];
+            const fallback  = [...(window.DH_BEST_SELLERS.bundles || []), ...(window.DH_BEST_SELLERS.concerns || [])];
+            function bundleRank(b) {
+              const kind = b._kind || (b.tab ? 'concern' : 'routine');
+              const compositeRank = rankIn(composite, `${kind}:${b.id}`);
+              if (compositeRank !== 999) return compositeRank;
+              return 1000 + rankIn(fallback, b.id); // fallback to legacy list
+            }
+            return arr.sort((a, b) => bundleRank(a) - bundleRank(b));
           }
           if (sortKey === 'price-asc')      return arr.sort((a, b) => bundleSalePrice(a) - bundleSalePrice(b));
           if (sortKey === 'price-desc')     return arr.sort((a, b) => bundleSalePrice(b) - bundleSalePrice(a));
