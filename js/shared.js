@@ -2362,25 +2362,72 @@
     // of a 12-month cycle. A product with runtime=N ships on months
     // 1, 1+N, 1+2N, ... (always month 1 to seed the customer, then again
     // when their previous shipment runs out).
+    //
+    // A $30 minimum-shipment rule applies: any month whose subscribed total
+    // would be under $30 gets ROLLED INTO the following month's shipment.
+    // The customer's annual product volume is unchanged — just consolidated
+    // into fewer, larger shipments. This protects margin on tiny refills.
+
+    const SHIPMENT_MIN = 30;
 
     function productRuntime(slug) {
       const p = (window.PRODUCTS || []).find(x => x.slug === slug);
       return (p && p.runtime) || 1;
     }
 
+    function priceForSlugs(slugs) {
+      return slugs.reduce((s, slug) => {
+        const p = (window.PRODUCTS || []).find(x => x.slug === slug);
+        return s + ((p && p.price) || 0);
+      }, 0);
+    }
+
     window.getSmartRefillSchedule = function(bundle, totalMonths) {
       totalMonths = totalMonths || 12;
       const slugs = (bundle && bundle.slugs) || [];
-      // For each month index 1..totalMonths, list the products that ship.
-      const months = [];
+      const discount = (bundle && bundle.discount) || 0;
+      const subBonus = 0.10;
+      // Step 1: build raw schedule based on each product's runtime
+      const raw = [];
       for (let m = 1; m <= totalMonths; m++) {
-        const products = slugs.filter(slug => {
-          const rt = productRuntime(slug);
-          return ((m - 1) % rt) === 0; // ships in month 1, 1+rt, 1+2rt, ...
-        });
-        months.push({ monthIndex: m, products });
+        const products = slugs.filter(slug => ((m - 1) % productRuntime(slug)) === 0);
+        raw.push(products);
       }
-      return months;
+      // Step 2: apply $30 minimum — roll any under-min month INTO the next month.
+      // Duplicates are intentional: if Tranquil rolls forward, the customer still
+      // gets 12 bottles per year (just delivered in 11 shipments instead of 12).
+      for (let i = 0; i < totalMonths; i++) {
+        const items = raw[i];
+        if (items.length === 0) continue;
+        const list = priceForSlugs(items);
+        const customerPrice = list * (1 - discount) * (1 - subBonus);
+        if (customerPrice < SHIPMENT_MIN && i + 1 < totalMonths) {
+          // Roll forward — append (allowing duplicates) so inventory math stays correct
+          raw[i + 1] = [...raw[i + 1], ...items];
+          raw[i] = [];
+        }
+      }
+      return raw.map((products, i) => ({ monthIndex: i + 1, products }));
+    };
+
+    // Smart Refill is mostly useless on pure-supplement bundles (where every product
+    // has runtime=1 anyway) and on weekly-use bundles (Reset Routine) where the
+    // small ship size erodes margin without retention upside. Disable it on those.
+    const SMART_REFILL_DISABLED = [
+      'routine:daniels-daily', // 10 supplements
+      'routine:workout',       // 5 supplements
+      'routine:foundation',    // 5 supplements
+      'routine:longevity',     // 5 supplements (NOT the Cellular Bundle concern)
+      'routine:weekly',        // The Reset Routine (2 skincare, weekly-use)
+      'concern:strength'       // 4 supplements
+    ];
+
+    window.bundleSmartRefillEligible = function(bundle) {
+      if (!bundle) return false;
+      // Concern bundles carry a `tab` field; routines do not. Use that to
+      // disambiguate the 'longevity' id collision (routine vs Cellular concern).
+      const kind = bundle.tab ? 'concern' : 'routine';
+      return !SMART_REFILL_DISABLED.includes(`${kind}:${bundle.id}`);
     };
 
     // Average per-month price under smart refill, with bundle + sub discount applied.
@@ -2453,6 +2500,19 @@
 
     window.dhBuildSubscribeToggle = function(bundle) {
       const id = bundle.id;
+      const smartEligible = window.bundleSmartRefillEligible(bundle);
+      // Smart Refill button only shows on bundles where the cadence variation
+      // actually helps the customer (mixed bundles, skincare-only bundles).
+      const smartBtnHTML = smartEligible ? `
+            <button type="button" class="cadence-btn cadence-btn-smart" data-cadence="smart">
+              <div class="cadence-name">Smart Refill</div>
+              <div class="cadence-meta">Only what you need</div>
+            </button>` : '';
+      const noSmartAttr = smartEligible ? '' : ' data-no-smart';
+      const smartNoteHTML = smartEligible ? `
+          <div class="cadence-note" data-smart-note hidden>
+            <strong>How Smart Refill works:</strong> Your first shipment is the full bundle. After that, each month ships only the products you actually need to replenish — supplements every month, most skincare every 2 months, eye creams &amp; oils every 3. Any shipment under $30 is bundled with the next month's delivery. You only pay for what arrives.
+          </div>` : '';
       return `
         <div class="bundle-subscribe-toggle" data-bundle-id="${id}" data-toggle>
           <button type="button" data-mode="once" class="active">
@@ -2464,7 +2524,7 @@
             <span class="toggle-meta">Save 10% · cancel anytime</span>
           </button>
         </div>
-        <div class="bundle-cadence" data-bundle-id="${id}" data-cadence-selector hidden>
+        <div class="bundle-cadence" data-bundle-id="${id}" data-cadence-selector hidden${noSmartAttr}>
           <div class="cadence-eyebrow">Shipment Frequency</div>
           <div class="cadence-grid">
             <button type="button" class="cadence-btn active" data-cadence="monthly">
@@ -2478,15 +2538,8 @@
             <button type="button" class="cadence-btn" data-cadence="quarterly">
               <div class="cadence-name">Every 3 Months</div>
               <div class="cadence-meta">Full bundle</div>
-            </button>
-            <button type="button" class="cadence-btn cadence-btn-smart" data-cadence="smart">
-              <div class="cadence-name">Smart Refill</div>
-              <div class="cadence-meta">Only what you need</div>
-            </button>
-          </div>
-          <div class="cadence-note" data-smart-note hidden>
-            <strong>How Smart Refill works:</strong> Your first shipment is the full bundle. After that, each month ships only the products you actually need to replenish — supplements every month, most skincare every 2 months, eye creams &amp; oils every 3. You only pay for what arrives in each shipment.
-          </div>
+            </button>${smartBtnHTML}
+          </div>${smartNoteHTML}
         </div>
       `;
     };
