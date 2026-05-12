@@ -523,7 +523,7 @@
 
 <script src="data/products.js"></script>
 <script src="data/bundle-details.js"></script>
-<script src="js/auth.js?v=1"></script><script src="js/shared.js?v=6"></script>
+<script src="js/auth.js?v=1"></script><script src="js/shared.js?v=7"></script>
 <script>
 (function() {
   const params = new URLSearchParams(window.location.search);
@@ -611,17 +611,18 @@
           <span class="bundle-price-save">Save $${savings.toFixed(2)} · ${discountPct}% off</span>
         </div>
 
-        <div class="bundle-purchase-toggle" id="purchase-toggle">
-          <button type="button" data-mode="once" class="active">
-            <div class="toggle-row"><span class="toggle-mark"></span><span>One-Time</span></div>
-            <span class="toggle-meta">Single delivery</span>
-          </button>
-          <button type="button" data-mode="subscribe">
-            <div class="toggle-row"><span class="toggle-mark"></span><span>Monthly</span></div>
-            <span class="toggle-meta">Cancel anytime</span>
-          </button>
-        </div>
-        <button class="bundle-cta-add" id="bundle-add-btn">Add Routine to Cart →</button>
+        ${typeof window.dhBuildSubscribeToggle === 'function' ? window.dhBuildSubscribeToggle(bundle) : `
+          <div class="bundle-purchase-toggle" id="purchase-toggle">
+            <button type="button" data-mode="once" class="active">
+              <div class="toggle-row"><span class="toggle-mark"></span><span>One-Time</span></div>
+              <span class="toggle-meta">Single delivery</span>
+            </button>
+            <button type="button" data-mode="subscribe">
+              <div class="toggle-row"><span class="toggle-mark"></span><span>Monthly</span></div>
+              <span class="toggle-meta">Cancel anytime</span>
+            </button>
+          </div>`}
+        <button class="bundle-cta-add" id="bundle-add-btn" data-bundle-add="${bundle.id}">Add Routine to Cart →</button>
       </div>
     </section>
 
@@ -698,21 +699,69 @@
     item.addEventListener('click', () => item.classList.toggle('open'));
   });
 
-  // Purchase toggle
+  // Purchase toggle — supports both the simple fallback toggle and the
+  // shared.js-generated dhBuildSubscribeToggle (which adds a cadence selector).
   let isSubscribe = false;
-  const toggleEl = document.getElementById('purchase-toggle');
-  toggleEl.addEventListener('click', e => {
-    const btn = e.target.closest('button');
-    if (!btn) return;
-    toggleEl.querySelectorAll('button').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    isSubscribe = btn.dataset.mode === 'subscribe';
-  });
+  function getActiveCadence() {
+    const sel = document.querySelector(`.bundle-cadence[data-bundle-id="${bundle.id}"]`);
+    if (!sel) return 'monthly';
+    const active = sel.querySelector('.cadence-btn.active');
+    return (active && active.dataset.cadence) || 'monthly';
+  }
+  // Subscribe/once toggle on the shared.js variant
+  const subToggle = document.querySelector(`.bundle-subscribe-toggle[data-bundle-id="${bundle.id}"]`);
+  if (subToggle) {
+    subToggle.addEventListener('click', e => {
+      const btn = e.target.closest('button');
+      if (!btn) return;
+      subToggle.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      isSubscribe = btn.dataset.mode === 'subscribe';
+      subToggle.classList.toggle('subscribe-mode', isSubscribe);
+      // Reveal/hide cadence selector
+      const cadenceSel = document.querySelector(`.bundle-cadence[data-bundle-id="${bundle.id}"]`);
+      if (cadenceSel) {
+        if (isSubscribe) cadenceSel.removeAttribute('hidden');
+        else cadenceSel.setAttribute('hidden', '');
+      }
+      // Update CTA label
+      const cta = document.getElementById('bundle-add-btn');
+      if (cta) cta.textContent = isSubscribe ? 'Subscribe to Routine →' : 'Add Routine to Cart →';
+    });
+  }
+  // Cadence button selection — controls which monthly cadence the subscription uses
+  const cadenceSel = document.querySelector(`.bundle-cadence[data-bundle-id="${bundle.id}"]`);
+  if (cadenceSel) {
+    cadenceSel.querySelectorAll('.cadence-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        cadenceSel.querySelectorAll('.cadence-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        // Show/hide the Smart Refill explainer note
+        const note = cadenceSel.querySelector('[data-smart-note]');
+        if (note) {
+          if (btn.dataset.cadence === 'smart') note.removeAttribute('hidden');
+          else note.setAttribute('hidden', '');
+        }
+      });
+    });
+  }
+  // Fallback toggle (kept for compatibility if dhBuildSubscribeToggle isn't loaded)
+  const legacyToggle = document.getElementById('purchase-toggle');
+  if (legacyToggle && !subToggle) {
+    legacyToggle.addEventListener('click', e => {
+      const btn = e.target.closest('button');
+      if (!btn) return;
+      legacyToggle.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      isSubscribe = btn.dataset.mode === 'subscribe';
+    });
+  }
 
-  // Add to cart
+  // Add to cart — pass cadence when subscribed
   document.getElementById('bundle-add-btn').addEventListener('click', () => {
     if (window.dhCart && window.dhCart.addBundle) {
-      window.dhCart.addBundle(bundle.slugs, bundle.name, discount, isSubscribe);
+      const cadence = isSubscribe ? getActiveCadence() : null;
+      window.dhCart.addBundle(bundle.slugs, bundle.name, discount, isSubscribe, { cadence });
     }
   });
 

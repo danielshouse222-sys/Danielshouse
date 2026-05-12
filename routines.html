@@ -8,8 +8,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css?v=3">
-<link rel="stylesheet" href="css/shared.css?v=10">
-<link rel="stylesheet" href="css/bundle-expand.css?v=2">
+<link rel="stylesheet" href="css/shared.css?v=12">
+<link rel="stylesheet" href="css/bundle-expand.css?v=3">
 <style>
   :root {
     --cream: #FAF6F0;
@@ -2579,6 +2579,7 @@
   // Marketing copy per bundle id — extracted from the previously hardcoded HTML
   const BLURBS = {
     'daniels-daily': "Everything Daniel takes, every single day. Five Foundation essentials paired with five Longevity actives — the complete daily supplement protocol, no skincare. For customers who already have a routine and want the inside-out half.",
+    'daniels-skincare': "Every product in the skincare line — fifteen formulations covering the AM ritual, PM ritual, targeted treatments (Eye, Clear), and the weekly reset. Same flat 18% discount as the Daily supplement stack. The complete topical half of the Ultimate Routine.",
     'am': "The full morning routine. Cleanse, tone, brighten, hydrate, defend, moisturize — six steps to start the day with a complete barrier and visible glow.",
     'pm': "The full evening routine. Resurface, firm, hydrate, treat the eyes, repair overnight, and seal it all in with the finishing oil. Wake up better.",
     'workout': "The full performance stack. Strength, output, recovery, nutrient density, and the metabolic edge. Five formulations for the days you put in real work.",
@@ -2596,6 +2597,7 @@
   // edge-case formats — handle each explicitly.
   function formatName(bundle) {
     if (bundle.id === 'daniels-daily') return `Daniel's <em>Daily</em> Routine`;
+    if (bundle.id === 'daniels-skincare') return `Daniel's Daily <em>Skincare</em>`;
     if (bundle.id === 'moms') return `The <em>Mom's</em> Routine`;
     if (bundle.id === 'arianas') return `The <em>Ariana's</em> Routine`;
     const m = bundle.name.match(/^The (.+) Routine$/);
@@ -2709,7 +2711,7 @@
     const grid = document.querySelector('.bundle-grid');
     if (!grid) return;
 
-    const defaultOrder = ['daniels-daily', 'am', 'pm', 'workout', 'foundation', 'longevity', 'glow', 'weekly', 'moms', 'arianas', 'ultimate'];
+    const defaultOrder = ['daniels-daily', 'daniels-skincare', 'am', 'pm', 'workout', 'foundation', 'longevity', 'glow', 'weekly', 'moms', 'arianas', 'ultimate'];
     grid.innerHTML = defaultOrder.map(id => window.renderCuratedBundleCard(id)).join('');
 
     // ── COLLAPSIBLE CARDS — single delegated handler, supports both the top
@@ -2821,8 +2823,8 @@
 })();
 </script>
 
-<script src="js/auth.js?v=1"></script><script src="js/shared.js?v=6"></script>
-<script src="js/bundle-expand.js?v=2"></script>
+<script src="js/auth.js?v=1"></script><script src="js/shared.js?v=7"></script>
+<script src="js/bundle-expand.js?v=3"></script>
 <script>
 // Bundle thumb clicks → open shared lightbox carousel
 (function() {
@@ -3253,6 +3255,7 @@
     const LIFESTYLE_MAP = {
       'ultimate':      ['anti-aging','beauty','busy-pro'],
       'daniels-daily': ['busy-pro','beginner','active'],
+      'daniels-skincare': ['anti-aging','beauty','busy-pro'],
       'am':            ['beauty','beginner'],
       'pm':            ['anti-aging','beauty'],
       'workout':       ['active'],

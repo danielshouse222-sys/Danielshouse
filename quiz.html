@@ -121,6 +121,75 @@
     font-style: italic;
     margin-bottom: 20px;
   }
+  /* Multi-select options — grid layout, multiple selectable, no auto-advance */
+  .quiz-options-multi {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  @media (max-width: 640px) {
+    .quiz-options-multi { grid-template-columns: 1fr; }
+  }
+  .quiz-options-multi .quiz-option {
+    position: relative;
+    padding-left: 56px;
+  }
+  .quiz-options-multi .quiz-option::before {
+    content: '';
+    position: absolute;
+    left: 22px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    border: 1.5px solid var(--rule);
+    background: var(--cream);
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .quiz-options-multi .quiz-option.selected::before {
+    background: var(--gold);
+    border-color: var(--gold);
+  }
+  .quiz-options-multi .quiz-option.selected::after {
+    content: '';
+    position: absolute;
+    left: 28px;
+    top: 50%;
+    transform: translateY(-65%) rotate(45deg);
+    width: 5px;
+    height: 10px;
+    border-right: 2px solid var(--cream);
+    border-bottom: 2px solid var(--cream);
+  }
+  /* Skip button for multi-select questions */
+  .quiz-option-skip {
+    display: block;
+    width: 100%;
+    margin-top: 18px;
+    padding: 14px 22px;
+    background: transparent;
+    border: 1px dashed var(--rule);
+    color: var(--ink-soft);
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+    cursor: pointer;
+    transition: border-color 0.3s, color 0.3s, background 0.3s;
+    text-align: center;
+  }
+  .quiz-option-skip:hover {
+    border-color: var(--gold);
+    color: var(--ink);
+    background: var(--cream-warm);
+  }
+  .quiz-option-skip.selected {
+    border-style: solid;
+    border-color: var(--gold);
+    background: rgba(184, 153, 104, 0.08);
+    color: var(--ink);
+  }
 
   /* Buttons */
   .quiz-actions {
@@ -188,6 +257,104 @@
   .result-product-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 500; margin-bottom: 6px; }
   .result-product-name em { font-style: italic; color: var(--sage); }
   .result-product-price { font-family: 'Cormorant Garamond', serif; font-size: 17px; color: var(--ink-soft); }
+  /* Why-this rationale chips on each product card */
+  .result-product-why {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 8px;
+    justify-content: center;
+  }
+  .result-why-chip {
+    font-family: 'Poppins', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    background: var(--cream-warm);
+    color: var(--ink-soft);
+    border: 1px solid var(--rule);
+    padding: 3px 8px;
+    border-radius: 2px;
+    line-height: 1.3;
+    font-weight: 500;
+  }
+  .result-product:hover .result-why-chip {
+    border-color: var(--gold);
+    color: var(--ink);
+  }
+
+  /* Curated bundle match — "or try this proven set" callout */
+  .result-curated-match {
+    max-width: 540px;
+    margin: 0 auto 36px;
+    text-align: center;
+    background: var(--cream-warm);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--sage);
+    padding: 28px 32px;
+    position: relative;
+  }
+  .result-curated-eyebrow {
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--sage);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .result-curated-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 1.05;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .result-curated-name em { font-style: italic; color: var(--sage); }
+  .result-curated-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ink-soft);
+    margin-bottom: 16px;
+  }
+  .result-curated-pricing {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 12px;
+    padding: 12px 0 18px;
+    margin-bottom: 4px;
+  }
+  .result-curated-pricing .rb-was {
+    font-size: 14px;
+    color: var(--ink-soft);
+    text-decoration: line-through;
+  }
+  .result-curated-pricing .rb-now {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .result-curated-cta {
+    display: inline-block;
+    padding: 14px 28px;
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--ink);
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: background 0.3s, color 0.3s;
+  }
+  .result-curated-cta:hover {
+    background: var(--ink);
+    color: var(--cream);
+  }
 
   /* Quiz-generated bundle — pricing block, subscribe toggle, primary CTA */
   .result-bundle {
@@ -467,15 +634,15 @@
 
 
 <section class="quiz-hero">
-  <div class="quiz-eyebrow">2-Minute Routine Builder</div>
+  <div class="quiz-eyebrow">Advanced Routine Builder</div>
   <h1 class="quiz-title">Find your <em>routine.</em></h1>
-  <p class="quiz-tagline">Answer 7 questions. We'll recommend the products and routine built for you.</p>
+  <p class="quiz-tagline">Eleven questions, three minutes, one routine sized to your budget. Answer honestly — we'll match what you actually need.</p>
 </section>
 
 <div class="quiz-progress">
   <div class="progress-info">
-    <span id="progress-text">Question 1 of 7</span>
-    <span id="progress-pct">14%</span>
+    <span id="progress-text">Question 1 of 9</span>
+    <span id="progress-pct">11%</span>
   </div>
   <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
 </div>
@@ -487,11 +654,12 @@
     <h2 class="quiz-q">What's your <em>primary goal?</em></h2>
     <p class="quiz-help">Pick the one that matters most. We'll prioritize it.</p>
     <div class="quiz-options">
-      <button class="quiz-option" data-q="goal" data-v="skin"><em>Skin</em> — better tone, texture, fewer fine lines<span class="quiz-option-sub">Lead with skincare</span></button>
-      <button class="quiz-option" data-q="goal" data-v="energy"><em>Energy</em> — more sustainable mental and physical output<span class="quiz-option-sub">Lead with foundational supplements</span></button>
-      <button class="quiz-option" data-q="goal" data-v="sleep"><em>Sleep</em> — deeper rest, less stress, calmer baseline<span class="quiz-option-sub">Lead with Calm + Tranquil</span></button>
-      <button class="quiz-option" data-q="goal" data-v="performance"><em>Performance</em> — strength, recovery, workout gains<span class="quiz-option-sub">Lead with workout stack</span></button>
-      <button class="quiz-option" data-q="goal" data-v="overall"><em>Overall</em> — total wellness, the full house<span class="quiz-option-sub">Recommends Ultimate Routine</span></button>
+      <button class="quiz-option" data-q="goal" data-v="skin"><em>Skin</em> — better tone, texture, fewer fine lines<span class="quiz-option-sub">Skincare-heavy routine</span></button>
+      <button class="quiz-option" data-q="goal" data-v="energy"><em>Energy</em> — sustainable mental and physical output<span class="quiz-option-sub">Foundation supplements first</span></button>
+      <button class="quiz-option" data-q="goal" data-v="sleep"><em>Sleep & Calm</em> — deeper rest, less stress<span class="quiz-option-sub">Calm + Tranquil + adaptogen stack</span></button>
+      <button class="quiz-option" data-q="goal" data-v="performance"><em>Performance</em> — strength, recovery, gains<span class="quiz-option-sub">Workout stack + recovery</span></button>
+      <button class="quiz-option" data-q="goal" data-v="longevity"><em>Longevity</em> — age better, live longer<span class="quiz-option-sub">NAD+ + Vitality + Restore + Collagen</span></button>
+      <button class="quiz-option" data-q="goal" data-v="overall"><em>Overall</em> — the complete house<span class="quiz-option-sub">Balanced across all categories</span></button>
     </div>
   </div>
 
@@ -505,19 +673,21 @@
       <button class="quiz-option" data-q="skin" data-v="combo"><em>Combination</em> — oily T-zone, dry cheeks</button>
       <button class="quiz-option" data-q="skin" data-v="sensitive"><em>Sensitive</em> — reactive, easily irritated</button>
       <button class="quiz-option" data-q="skin" data-v="normal"><em>Normal</em> — generally balanced</button>
+      <button class="quiz-option" data-q="skin" data-v="skip"><em>Not focused on skincare</em> — keep my routine supplements-only</button>
     </div>
   </div>
 
   <!-- Q3: Skin concern -->
   <div class="quiz-step" data-step="3">
     <h2 class="quiz-q">Top skin <em>concern?</em></h2>
-    <p class="quiz-help">What you'd most want to fix.</p>
+    <p class="quiz-help">What you'd most want to fix. If you picked "supplements-only," choose any — we'll skip skincare anyway.</p>
     <div class="quiz-options">
       <button class="quiz-option" data-q="concern" data-v="aging"><em>Aging</em> — fine lines, firmness, elasticity</button>
       <button class="quiz-option" data-q="concern" data-v="acne"><em>Acne</em> — breakouts, clogged pores</button>
       <button class="quiz-option" data-q="concern" data-v="dullness"><em>Dullness</em> — uneven tone, lack of glow</button>
       <button class="quiz-option" data-q="concern" data-v="dryness"><em>Dryness</em> — flaking, tight feeling</button>
       <button class="quiz-option" data-q="concern" data-v="sensitivity"><em>Sensitivity</em> — redness, reactive skin</button>
+      <button class="quiz-option" data-q="concern" data-v="pores"><em>Pores & Texture</em> — enlarged pores, rough texture</button>
     </div>
   </div>
 
@@ -536,44 +706,101 @@
   <!-- Q5: Lifestyle -->
   <div class="quiz-step" data-step="5">
     <h2 class="quiz-q">How active is your <em>lifestyle?</em></h2>
-    <p class="quiz-help">Helps determine if workout supplements fit.</p>
+    <p class="quiz-help">Decides whether the workout stack belongs in your routine.</p>
     <div class="quiz-options">
-      <button class="quiz-option" data-q="active" data-v="high"><em>High</em> — train 4+ times/week, lift, run, perform</button>
+      <button class="quiz-option" data-q="active" data-v="athlete"><em>Athlete</em> — daily training, performance is everything</button>
+      <button class="quiz-option" data-q="active" data-v="high"><em>High</em> — train 4+ times/week, lift or run regularly</button>
       <button class="quiz-option" data-q="active" data-v="medium"><em>Medium</em> — train 2-3 times/week consistently</button>
       <button class="quiz-option" data-q="active" data-v="low"><em>Low</em> — daily walks, casual movement</button>
     </div>
   </div>
 
-  <!-- Q6: Stress level -->
+  <!-- Q6: Stress + Sleep (combined) -->
   <div class="quiz-step" data-step="6">
-    <h2 class="quiz-q">How would you rate your <em>stress?</em></h2>
-    <p class="quiz-help">Honest answer — adaptogens make a real difference.</p>
+    <h2 class="quiz-q">How are your <em>stress and sleep?</em></h2>
+    <p class="quiz-help">Adaptogens and magnesium make a real difference. Honest answer.</p>
     <div class="quiz-options">
-      <button class="quiz-option" data-q="stress" data-v="high"><em>High</em> — frequently anxious, can't shut off</button>
-      <button class="quiz-option" data-q="stress" data-v="medium"><em>Medium</em> — manageable but always present</button>
-      <button class="quiz-option" data-q="stress" data-v="low"><em>Low</em> — generally calm, occasional spikes</button>
+      <button class="quiz-option" data-q="stress" data-v="high"><em>Both rough</em> — anxious often, can't shut off, poor sleep<span class="quiz-option-sub">Calm + Tranquil are non-negotiable</span></button>
+      <button class="quiz-option" data-q="stress" data-v="medium-stress"><em>Stress is the bigger issue</em> — sleep is OK<span class="quiz-option-sub">Tranquil + Mask ritual</span></button>
+      <button class="quiz-option" data-q="stress" data-v="medium-sleep"><em>Sleep is the bigger issue</em> — stress is manageable<span class="quiz-option-sub">Calm before bed</span></button>
+      <button class="quiz-option" data-q="stress" data-v="low"><em>Both are fine</em> — generally calm, sleep well<span class="quiz-option-sub">No specific add-ons</span></button>
     </div>
   </div>
 
-  <!-- Q7: Budget -->
+  <!-- Q7: Other priorities (MULTI-SELECT) -->
   <div class="quiz-step" data-step="7">
-    <h2 class="quiz-q">Comfortable <em>monthly</em> spend?</h2>
-    <p class="quiz-help">We'll match the recommendation to your budget.</p>
+    <h2 class="quiz-q">Any <em>other priorities?</em></h2>
+    <p class="quiz-help">Pick any that apply, or skip. We'll add the right product for each.</p>
+    <div class="quiz-options quiz-options-multi" data-multi="priorities">
+      <button class="quiz-option" data-q="priorities" data-v="immunity"><em>Immunity</em> — get sick less<span class="quiz-option-sub">Sunshine (D3) + Multi</span></button>
+      <button class="quiz-option" data-q="priorities" data-v="gut"><em>Gut health</em> — bloating, digestion<span class="quiz-option-sub">Biome + Seal</span></button>
+      <button class="quiz-option" data-q="priorities" data-v="joints"><em>Joints</em> — stiffness, recovery<span class="quiz-option-sub">Collagen + Restore</span></button>
+      <button class="quiz-option" data-q="priorities" data-v="beauty"><em>Hair, skin, nails</em> — visible glow<span class="quiz-option-sub">Radiance + Collagen</span></button>
+      <button class="quiz-option" data-q="priorities" data-v="focus"><em>Focus & cognition</em> — sharper edge<span class="quiz-option-sub">Synapse + NAD+</span></button>
+      <button class="quiz-option" data-q="priorities" data-v="cardio"><em>Heart & brain</em> — long-term protection<span class="quiz-option-sub">Flow (omega-3) + Defense</span></button>
+    </div>
+    <button class="quiz-option-skip" data-q="priorities" data-v="none">Skip — none of these apply right now →</button>
+  </div>
+
+  <!-- Q8: Routine experience -->
+  <div class="quiz-step" data-step="8">
+    <h2 class="quiz-q">Your <em>routine experience?</em></h2>
+    <p class="quiz-help">We tune the complexity to match. Simpler routines are easier to actually stick to.</p>
     <div class="quiz-options">
-      <button class="quiz-option" data-q="budget" data-v="low"><em>Under $75</em> — start small, build later</button>
-      <button class="quiz-option" data-q="budget" data-v="medium"><em>$75-150</em> — solid starter routine</button>
-      <button class="quiz-option" data-q="budget" data-v="high"><em>$150-250</em> — full curated routine</button>
-      <button class="quiz-option" data-q="budget" data-v="ultimate"><em>$250+</em> — go all in, the full house</button>
+      <button class="quiz-option" data-q="experience" data-v="new"><em>New to this</em> — start me with the essentials</button>
+      <button class="quiz-option" data-q="experience" data-v="some"><em>Some experience</em> — I take 1-2 things already</button>
+      <button class="quiz-option" data-q="experience" data-v="advanced"><em>Full routine already</em> — give me the optimized stack</button>
+    </div>
+  </div>
+
+  <!-- Q9: Routine complexity / time commitment -->
+  <div class="quiz-step" data-step="9">
+    <h2 class="quiz-q">How much <em>time</em> on routine?</h2>
+    <p class="quiz-help">A simpler routine is one you'll actually stick to. We'll match the complexity to your commitment.</p>
+    <div class="quiz-options">
+      <button class="quiz-option" data-q="complexity" data-v="minimal"><em>Two minutes max</em> — give me the absolute essentials, nothing more<span class="quiz-option-sub">3-4 hero products, hits the biggest wins</span></button>
+      <button class="quiz-option" data-q="complexity" data-v="balanced"><em>Five minutes morning + night</em> — willing to do AM + PM properly<span class="quiz-option-sub">Standard routine, balanced AM/PM coverage</span></button>
+      <button class="quiz-option" data-q="complexity" data-v="full"><em>I enjoy the ritual</em> — give me the full experience<span class="quiz-option-sub">Layered routine with serums, treatments, weekly resets</span></button>
+    </div>
+  </div>
+
+  <!-- Q10: Diet & product preferences (MULTI-SELECT) -->
+  <div class="quiz-step" data-step="10">
+    <h2 class="quiz-q">Any <em>preferences</em> we should know?</h2>
+    <p class="quiz-help">Pick any that apply, or skip. We'll filter our recommendations accordingly.</p>
+    <div class="quiz-options quiz-options-multi" data-multi="preferences">
+      <button class="quiz-option" data-q="preferences" data-v="caffeine-free"><em>Caffeine-sensitive</em> — skip the stimulants<span class="quiz-option-sub">No Burn or pre-workout-style picks</span></button>
+      <button class="quiz-option" data-q="preferences" data-v="gentle-actives"><em>New to actives</em> — go gentle with retinol &amp; acids<span class="quiz-option-sub">We'll favor peptides over retinol initially</span></button>
+      <button class="quiz-option" data-q="preferences" data-v="protein-focused"><em>Building muscle</em> — protein synthesis matters<span class="quiz-option-sub">Collagen + Power get a boost</span></button>
+      <button class="quiz-option" data-q="preferences" data-v="travel-friendly"><em>Travel often</em> — TSA-friendly, fewer bottles<span class="quiz-option-sub">We'll trim to absolute essentials</span></button>
+      <button class="quiz-option" data-q="preferences" data-v="evening-only"><em>Evening-routine person</em> — I'm not a morning skincare type<span class="quiz-option-sub">PM-weighted skincare picks</span></button>
+    </div>
+    <button class="quiz-option-skip" data-q="preferences" data-v="none">Skip — no specific preferences →</button>
+  </div>
+
+  <!-- Q11: Budget (5 tiers — drives product count) -->
+  <div class="quiz-step" data-step="11">
+    <h2 class="quiz-q">Comfortable <em>monthly</em> spend?</h2>
+    <p class="quiz-help">This is the key one — it determines how many products we recommend. We'll size the routine to your budget.</p>
+    <div class="quiz-options">
+      <button class="quiz-option" data-q="budget" data-v="essentials"><em>Under $75</em> — just the absolute essentials<span class="quiz-option-sub">2-3 hero products</span></button>
+      <button class="quiz-option" data-q="budget" data-v="starter"><em>$75-150</em> — solid starter routine<span class="quiz-option-sub">4-6 products</span></button>
+      <button class="quiz-option" data-q="budget" data-v="full"><em>$150-250</em> — full curated routine<span class="quiz-option-sub">7-10 products</span></button>
+      <button class="quiz-option" data-q="budget" data-v="premium"><em>$250-400</em> — premium full stack<span class="quiz-option-sub">11-15 products</span></button>
+      <button class="quiz-option" data-q="budget" data-v="ultimate"><em>$400+</em> — go all in, the Ultimate Routine<span class="quiz-option-sub">15+ products, full coverage</span></button>
     </div>
   </div>
 
   <!-- Result -->
-  <div class="quiz-step" data-step="8">
+  <div class="quiz-step" data-step="12">
     <div class="quiz-result">
       <div class="result-eyebrow" id="result-eyebrow">Your Routine</div>
       <h2 class="result-title" id="result-title">Built for <em>you.</em></h2>
       <p class="result-blurb" id="result-blurb">Based on your answers, here's what we'd recommend.</p>
       <div class="result-products" id="result-products"></div>
+
+      <!-- Curated bundle match callout — populated if the recommendation set overlaps with an existing curated bundle -->
+      <div class="result-curated-match" id="result-curated-match" style="display:none;"></div>
 
       <!-- Quiz-generated bundle: products as a discounted bundle with +10% subscribe option -->
       <div class="result-bundle" id="result-bundle">
@@ -683,11 +910,15 @@
 </div>
 
 <script src="data/products.js"></script>
-<script src="js/auth.js?v=1"></script><script src="js/shared.js?v=6"></script>
+<script src="js/auth.js?v=1"></script><script src="js/shared.js?v=7"></script>
 <script>
-const TOTAL_STEPS = 7;
+const TOTAL_STEPS = 11;
 let currentStep = 1;
-const answers = {};
+const answers = {
+  // priorities + preferences are multi-select — stored as Sets
+  priorities: new Set(),
+  preferences: new Set()
+};
 
 function updateProgress() {
   const pct = (currentStep / TOTAL_STEPS) * 100;
@@ -696,9 +927,29 @@ function updateProgress() {
   document.getElementById('progress-pct').textContent = Math.round(pct) + '%';
 }
 
+function isStepAnswered(step) {
+  const stepEl = document.querySelector(`[data-step="${step}"]`);
+  if (!stepEl) return false;
+  const opts = stepEl.querySelectorAll('.quiz-option, .quiz-option-skip');
+  for (const o of opts) {
+    const q = o.dataset.q;
+    if (!q) continue;
+    // priorities + preferences are multi-select; answered if user picked any or clicked skip
+    if (q === 'priorities') {
+      if (answers.priorities.size > 0 || answers.prioritiesAnswered) return true;
+    } else if (q === 'preferences') {
+      if (answers.preferences.size > 0 || answers.preferencesAnswered) return true;
+    } else if (answers[q]) {
+      return true;
+    }
+  }
+  return false;
+}
+
 function showStep(step) {
   document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
-  document.querySelector(`[data-step="${step}"]`).classList.add('active');
+  const target = document.querySelector(`[data-step="${step}"]`);
+  if (target) target.classList.add('active');
   currentStep = step;
 
   const backBtn = document.getElementById('back-btn');
@@ -713,26 +964,61 @@ function showStep(step) {
 
   backBtn.style.visibility = step > 1 ? 'visible' : 'hidden';
   nextBtn.textContent = step === TOTAL_STEPS ? 'Get My Routine →' : 'Next →';
-
-  // Check if this step has been answered
-  const stepEl = document.querySelector(`[data-step="${step}"]`);
-  const q = stepEl.querySelector('.quiz-option')?.dataset.q;
-  nextBtn.disabled = !answers[q];
+  nextBtn.disabled = !isStepAnswered(step);
 
   updateProgress();
 }
 
+// ── Wire single-select options
 document.querySelectorAll('.quiz-option').forEach(opt => {
+  // Skip the multi-select options — they get their own handler below
+  if (opt.closest('.quiz-options-multi')) return;
   opt.addEventListener('click', () => {
     const q = opt.dataset.q;
     const v = opt.dataset.v;
     answers[q] = v;
 
-    // Visually mark selection
     const stepEl = opt.closest('.quiz-step');
     stepEl.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('selected'));
     opt.classList.add('selected');
+    document.getElementById('next-btn').disabled = false;
+  });
+});
 
+// ── Wire multi-select options (Q7 priorities + Q10 preferences)
+document.querySelectorAll('.quiz-options-multi .quiz-option').forEach(opt => {
+  opt.addEventListener('click', () => {
+    const v = opt.dataset.v;
+    const container = opt.closest('.quiz-options-multi');
+    const setName = container?.dataset.multi || 'priorities';
+    const set = answers[setName];
+    if (set.has(v)) {
+      set.delete(v);
+      opt.classList.remove('selected');
+    } else {
+      set.add(v);
+      opt.classList.add('selected');
+    }
+    // Clear skip selection when user picks any option
+    const skipBtn = document.querySelector(`.quiz-option-skip[data-q="${setName}"]`);
+    if (skipBtn) skipBtn.classList.remove('selected');
+    answers[setName + 'Answered'] = set.size > 0;
+    document.getElementById('next-btn').disabled = !answers[setName + 'Answered'];
+  });
+});
+
+// ── Wire skip buttons for multi-select (priorities + preferences)
+document.querySelectorAll('.quiz-option-skip').forEach(opt => {
+  opt.addEventListener('click', () => {
+    const setName = opt.dataset.q || 'priorities';
+    if (answers[setName] instanceof Set) answers[setName].clear();
+    answers[setName + 'Answered'] = true;
+    // Clear all multi-select selected states in this step
+    const stepEl = opt.closest('.quiz-step');
+    if (stepEl) stepEl.querySelectorAll('.quiz-options-multi .quiz-option').forEach(o => o.classList.remove('selected'));
+    // Also clear sibling skip buttons within step (only one active)
+    if (stepEl) stepEl.querySelectorAll('.quiz-option-skip').forEach(o => o.classList.remove('selected'));
+    opt.classList.add('selected');
     document.getElementById('next-btn').disabled = false;
   });
 });
@@ -741,7 +1027,6 @@ document.getElementById('next-btn').addEventListener('click', () => {
   if (currentStep < TOTAL_STEPS) {
     showStep(currentStep + 1);
   } else {
-    // Show result
     showStep(TOTAL_STEPS + 1);
   }
 });
@@ -750,97 +1035,334 @@ document.getElementById('back-btn').addEventListener('click', () => {
   if (currentStep > 1) showStep(currentStep - 1);
 });
 
+// ═══════════════════════════════════════════════════════════════════
+// RECOMMENDATION ENGINE (advanced)
+// 
+// 1. SCORING — every PRODUCT is scored 0–100 based on how well it matches
+//    the user's answers. Multiple answers contribute to the same product
+//    (e.g. someone with high stress + aging gets Tranquil for the stress
+//    AND Bounce for the aging).
+// 2. BUDGET SIZING — the answer to Q9 (budget) determines how many products
+//    the engine selects from the top-scored list:
+//      essentials  ($<75)    → 2 products  · target ~$60
+//      starter     ($75-150) → 5 products  · target ~$125
+//      full        ($150-250)→ 8 products  · target ~$200
+//      premium     ($250-400)→ 13 products · target ~$330
+//      ultimate    ($400+)   → 18 products · target ~$500
+//    The engine respects the budget cap — if adding the next product would
+//    exceed the cap, it stops.
+// 3. HERO LOCK — for budgets at $75+, certain "hero" products are forced
+//    into the recommendation regardless of score (Multi for everyone,
+//    Wash if any skincare is recommended). This prevents weird gaps.
+// ═══════════════════════════════════════════════════════════════════
+
+const BUDGET_PROFILES = {
+  essentials: { count:  2, cap:  75, label: 'Essentials',          tagline: 'The two non-negotiables, sized to your budget.' },
+  starter:    { count:  5, cap: 150, label: 'Starter Routine',     tagline: 'A solid first stack — built to make a real difference without overwhelming.' },
+  full:       { count:  8, cap: 250, label: 'Full Routine',        tagline: 'Your complete curated routine — skincare and supplements, properly stacked.' },
+  premium:    { count: 13, cap: 400, label: 'Premium Stack',       tagline: 'The premium full house. Everything you need to operate at your peak.' },
+  ultimate:   { count: 18, cap: 600, label: 'The Ultimate Routine',tagline: 'Going all in — the complete house, every category covered, the deepest care.' }
+};
+
+// Skin → which slugs to favor for that skin type
+const SKIN_PICKS = {
+  dry:       ['the-house-hyaluronic', 'the-house-soft', 'the-house-glow', 'the-house-hydration'],
+  oily:      ['the-house-clear', 'the-house-mask', 'the-house-boost', 'the-house-balance'],
+  combo:     ['the-house-balance', 'the-house-boost', 'the-house-soft', 'the-house-hyaluronic'],
+  sensitive: ['the-house-soft', 'the-house-balance', 'the-house-hydration', 'the-house-glow'],
+  normal:    ['the-house-wash', 'the-house-balance', 'the-house-boost', 'the-house-soft']
+};
+// Concern → favored skincare products
+const CONCERN_PICKS = {
+  aging:       ['the-house-bounce', 'the-house-firm', 'the-house-renewal', 'the-house-eye', 'the-house-collagen'],
+  acne:        ['the-house-clear', 'the-house-mask', 'the-house-boost', 'the-house-balance'],
+  dullness:    ['the-house-boost', 'the-house-defense', 'the-house-polish', 'the-house-radiance'],
+  dryness:     ['the-house-hyaluronic', 'the-house-soft', 'the-house-glow', 'the-house-hydration'],
+  sensitivity: ['the-house-soft', 'the-house-balance', 'the-house-hydration', 'the-house-glow'],
+  pores:       ['the-house-polish', 'the-house-mask', 'the-house-boost', 'the-house-clear']
+};
+// Multi-select priorities → favored slugs
+const PRIORITY_PICKS = {
+  immunity: ['the-house-sunshine', 'the-house-multi', 'the-house-vitality'],
+  gut:      ['the-house-biome', 'the-house-seal', 'the-house-greens'],
+  joints:   ['the-house-collagen', 'the-house-restore', 'the-house-flow'],
+  beauty:   ['the-house-radiance', 'the-house-collagen', 'the-house-glow'],
+  focus:    ['the-house-synapse', 'the-house-nad-plus', 'the-house-vitality'],
+  cardio:   ['the-house-flow', 'the-house-defense', 'the-house-restore']
+};
+
+function scoreProducts() {
+  const { goal, skin, concern, age, active, stress, experience, complexity } = answers;
+  const priorities = answers.priorities; // Set
+  const preferences = answers.preferences; // Set
+  const all = (window.PRODUCTS || []);
+  const scores = new Map(); // slug -> score
+  const reasons = new Map(); // slug -> [reason strings, max ~2]
+
+  // Initialize all products with a small baseline so ties resolve to category balance
+  all.forEach(p => scores.set(p.slug, 0));
+
+  function bump(slug, n, reason) {
+    if (!scores.has(slug)) return;
+    scores.set(slug, scores.get(slug) + n);
+    if (reason) {
+      const list = reasons.get(slug) || [];
+      // Keep just the top 2 highest-impact reasons (by point value embedded)
+      list.push({ text: reason, weight: n });
+      reasons.set(slug, list);
+    }
+  }
+
+  // ── GOAL (heavy weighting) — every bump carries a reason for the rationale
+  if (goal === 'skin') {
+    SKIN_PICKS[skin]?.forEach(s => bump(s, 18, `matched to ${skin} skin`));
+    CONCERN_PICKS[concern]?.forEach(s => bump(s, 16, `targets ${concern}`));
+    ['the-house-wash', 'the-house-boost'].forEach(s => bump(s, 6, 'skincare foundation'));
+  } else if (goal === 'energy') {
+    ['the-house-multi', 'the-house-vitality', 'the-house-sunshine', 'the-house-greens', 'the-house-nad-plus'].forEach(s => bump(s, 16, 'sustainable energy goal'));
+  } else if (goal === 'sleep') {
+    ['the-house-calm', 'the-house-tranquil', 'the-house-multi', 'the-house-mask'].forEach(s => bump(s, 18, 'sleep & calm goal'));
+  } else if (goal === 'performance') {
+    ['the-house-power', 'the-house-pump', 'the-house-burn', 'the-house-seal', 'the-house-greens', 'the-house-collagen'].forEach(s => bump(s, 16, 'performance goal'));
+  } else if (goal === 'longevity') {
+    ['the-house-nad-plus', 'the-house-vitality', 'the-house-restore', 'the-house-collagen', 'the-house-flow', 'the-house-multi'].forEach(s => bump(s, 16, 'longevity goal'));
+  } else if (goal === 'overall') {
+    ['the-house-multi', 'the-house-flow', 'the-house-wash', 'the-house-boost', 'the-house-soft',
+     'the-house-bounce', 'the-house-calm', 'the-house-sunshine'].forEach(s => bump(s, 8, 'overall foundation'));
+  }
+
+  // ── SKIN TYPE + CONCERN (only if skincare in scope)
+  if (skin !== 'skip') {
+    SKIN_PICKS[skin]?.forEach(s => bump(s, 8, `works on ${skin} skin`));
+    CONCERN_PICKS[concern]?.forEach(s => bump(s, 10, `addresses ${concern}`));
+    bump('the-house-wash', 5, 'every skincare routine starts here');
+  } else {
+    all.filter(p => p.category === 'skincare').forEach(p => scores.set(p.slug, -100));
+  }
+
+  // ── AGE
+  if (age === 'under25') {
+    ['the-house-wash', 'the-house-boost', 'the-house-balance', 'the-house-sunshine'].forEach(s => bump(s, 4, 'under-25 prevention focus'));
+  } else if (age === '25-35') {
+    ['the-house-bounce', 'the-house-boost', 'the-house-defense', 'the-house-nad-plus'].forEach(s => bump(s, 5, '25–35 early anti-aging'));
+  } else if (age === '35-50') {
+    ['the-house-bounce', 'the-house-firm', 'the-house-renewal', 'the-house-eye', 'the-house-collagen', 'the-house-nad-plus', 'the-house-restore'].forEach(s => bump(s, 7, '35–50 full anti-aging stack'));
+  } else if (age === '50plus') {
+    ['the-house-firm', 'the-house-bounce', 'the-house-eye', 'the-house-renewal', 'the-house-nad-plus', 'the-house-restore', 'the-house-collagen', 'the-house-vitality'].forEach(s => bump(s, 9, '50+ repair & longevity focus'));
+  }
+
+  // ── ACTIVITY LEVEL
+  if (active === 'athlete') {
+    ['the-house-power', 'the-house-pump', 'the-house-burn', 'the-house-seal', 'the-house-greens', 'the-house-collagen', 'the-house-restore'].forEach(s => bump(s, 12, 'athlete-tier training'));
+  } else if (active === 'high') {
+    ['the-house-power', 'the-house-seal', 'the-house-greens', 'the-house-collagen'].forEach(s => bump(s, 8, 'high-activity recovery'));
+  } else if (active === 'medium') {
+    ['the-house-greens', 'the-house-collagen'].forEach(s => bump(s, 4, 'consistent training support'));
+  }
+
+  // ── STRESS + SLEEP
+  if (stress === 'high') {
+    ['the-house-calm', 'the-house-tranquil', 'the-house-mask', 'the-house-balance'].forEach(s => bump(s, 12, 'high stress & poor sleep'));
+  } else if (stress === 'medium-stress') {
+    ['the-house-tranquil', 'the-house-mask'].forEach(s => bump(s, 8, 'stress management'));
+  } else if (stress === 'medium-sleep') {
+    ['the-house-calm'].forEach(s => bump(s, 8, 'sleep support'));
+  }
+
+  // ── PRIORITIES (multi-select bonus)
+  if (priorities && priorities.size > 0) {
+    const PRIORITY_LABELS = { immunity: 'immunity priority', gut: 'gut health priority', joints: 'joints priority', beauty: 'hair, skin & nails priority', focus: 'focus & cognition priority', cardio: 'heart & brain priority' };
+    priorities.forEach(p => {
+      PRIORITY_PICKS[p]?.forEach(s => bump(s, 9, PRIORITY_LABELS[p] || `priority: ${p}`));
+    });
+  }
+
+  // ── EXPERIENCE — adjusts simple vs advanced product picks
+  if (experience === 'new') {
+    ['the-house-multi', 'the-house-wash', 'the-house-boost', 'the-house-soft', 'the-house-calm', 'the-house-sunshine'].forEach(s => bump(s, 4, 'gentle for first-time routine'));
+    ['the-house-renewal', 'the-house-firm'].forEach(s => bump(s, -2));  // de-emphasize, no reason
+  } else if (experience === 'advanced') {
+    ['the-house-renewal', 'the-house-firm', 'the-house-bounce', 'the-house-nad-plus', 'the-house-synapse', 'the-house-eye'].forEach(s => bump(s, 4, 'advanced-user pick'));
+  }
+
+  // ── COMPLEXITY (Q9) — minimal vs balanced vs full ritual
+  if (complexity === 'minimal') {
+    // Hard-favor the hero products that hit broadest impact per bottle.
+    // De-emphasize the layered serums/creams/treatments.
+    ['the-house-multi', 'the-house-wash', 'the-house-soft', 'the-house-boost', 'the-house-calm'].forEach(s => bump(s, 10, 'minimal-routine hero'));
+    ['the-house-renewal', 'the-house-firm', 'the-house-mask', 'the-house-polish', 'the-house-eye', 'the-house-hyaluronic'].forEach(s => bump(s, -5));
+  } else if (complexity === 'balanced') {
+    // Default mid-tier — slight boost to balanced AM+PM products
+    ['the-house-wash', 'the-house-boost', 'the-house-soft', 'the-house-bounce', 'the-house-multi', 'the-house-flow'].forEach(s => bump(s, 4, 'balanced AM+PM routine'));
+  } else if (complexity === 'full') {
+    // Reward layered actives + weekly resets
+    ['the-house-renewal', 'the-house-firm', 'the-house-bounce', 'the-house-mask', 'the-house-polish', 'the-house-eye', 'the-house-hyaluronic', 'the-house-defense', 'the-house-glow'].forEach(s => bump(s, 8, 'full-ritual layered routine'));
+  }
+
+  // ── PREFERENCES (Q10 multi-select) — filters + tilts
+  if (preferences && preferences.size > 0) {
+    if (preferences.has('caffeine-free')) {
+      // Hard-suppress stimulant products
+      ['the-house-burn', 'the-house-pump'].forEach(s => scores.set(s, -100));
+    }
+    if (preferences.has('gentle-actives')) {
+      // De-emphasize hard actives, boost peptide-based picks
+      ['the-house-renewal'].forEach(s => bump(s, -8));
+      ['the-house-firm', 'the-house-bounce', 'the-house-soft', 'the-house-hyaluronic'].forEach(s => bump(s, 6, 'gentle peptide pick'));
+    }
+    if (preferences.has('protein-focused')) {
+      ['the-house-collagen', 'the-house-power', 'the-house-seal'].forEach(s => bump(s, 10, 'muscle-building support'));
+    }
+    if (preferences.has('travel-friendly')) {
+      // De-emphasize bulky / liquid-heavy items; favor smaller bottles
+      ['the-house-multi', 'the-house-flow', 'the-house-sunshine', 'the-house-soft', 'the-house-wash'].forEach(s => bump(s, 5, 'travel-friendly essential'));
+      ['the-house-mask', 'the-house-polish', 'the-house-pump'].forEach(s => bump(s, -3));
+    }
+    if (preferences.has('evening-only')) {
+      // Boost PM-skewed skincare, suppress AM-only picks
+      ['the-house-renewal', 'the-house-firm', 'the-house-bounce', 'the-house-hydration', 'the-house-eye', 'the-house-glow'].forEach(s => bump(s, 6, 'evening-routine pick'));
+      ['the-house-defense'].forEach(s => bump(s, -3));  // daytime antioxidant less critical if PM-only
+    }
+  }
+
+  // Attach reasons map to scores for retrieval after scoring
+  scores.__reasons = reasons;
+  return scores;
+}
+
+function pickProducts(scores, budgetKey) {
+  const profile = BUDGET_PROFILES[budgetKey] || BUDGET_PROFILES.starter;
+  const all = (window.PRODUCTS || []);
+  // Sort by score desc, but break ties by lower price (more accessible first)
+  const ranked = [...all]
+    .filter(p => (scores.get(p.slug) || 0) > 0)
+    .sort((a, b) => {
+      const sa = scores.get(a.slug) || 0;
+      const sb = scores.get(b.slug) || 0;
+      if (sb !== sa) return sb - sa;
+      return a.price - b.price;
+    });
+
+  const selected = [];
+  let runningPrice = 0;
+  const targetCount = profile.count;
+  const cap = profile.cap;
+
+  // Force-include heroes if budget allows
+  const heroSlugs = ['the-house-multi'];  // baseline foundation supplement
+  // Wash forced only if any skincare is in scope (skin != 'skip')
+  if (answers.skin !== 'skip' && profile.count >= 3) heroSlugs.push('the-house-wash');
+
+  for (const slug of heroSlugs) {
+    const prod = (window.getProductBySlug || (() => null))(slug);
+    if (!prod) continue;
+    if (runningPrice + prod.price > cap) continue;
+    if (selected.some(s => s.slug === slug)) continue;
+    selected.push(prod);
+    runningPrice += prod.price;
+  }
+
+  // Fill remaining slots from ranked list, respecting cap and target count
+  for (const prod of ranked) {
+    if (selected.length >= targetCount) break;
+    if (selected.some(s => s.slug === prod.slug)) continue;
+    if (runningPrice + prod.price > cap) {
+      // For ultimate tier, ignore strict cap once we have at least 12 items
+      if (budgetKey === 'ultimate' && selected.length >= 12) {
+        selected.push(prod);
+        runningPrice += prod.price;
+        continue;
+      }
+      continue;
+    }
+    selected.push(prod);
+    runningPrice += prod.price;
+  }
+
+  return { products: selected, totalPrice: runningPrice, profile };
+}
+
 function showResult() {
-  // Determine recommendation based on answers
-  const { goal, skin, concern, age, active, stress, budget } = answers;
+  const scores = scoreProducts();
+  const budgetKey = answers.budget || 'starter';
+  const { products, totalPrice, profile } = pickProducts(scores, budgetKey);
 
-  let recommendation = {
-    eyebrow: 'Your Routine',
-    title: 'Built for <em>you.</em>',
-    blurb: '',
-    productSlugs: []
-  };
+  // Build the result eyebrow + title + blurb
+  const { goal, skin, concern, age, active, stress } = answers;
+  let eyebrow = profile.label;
+  let title = 'Built for <em>you.</em>';
+  let blurb = profile.tagline;
 
-  // Big Ultimate Routine for "overall" goal or ultimate budget
-  if (goal === 'overall' || budget === 'ultimate') {
-    recommendation.eyebrow = 'The Full House';
-    recommendation.title = 'You\'re going <em>all in.</em>';
-    recommendation.blurb = 'You want the complete approach — everything Daniel takes, every day. The Ultimate Routine is built for exactly this.';
-    recommendation.productSlugs = ['the-house-multi', 'the-house-bounce', 'the-house-glow'];
-  }
-  // Skin-focused
-  else if (goal === 'skin') {
-    recommendation.eyebrow = 'Skin First';
-    if (concern === 'aging' || age === '35-50' || age === '50plus') {
-      recommendation.title = 'Anti-aging, <em>built right.</em>';
-      recommendation.blurb = 'Your routine should focus on retinol, peptides, and antioxidants — both topical and from within.';
-      recommendation.productSlugs = ['the-house-bounce', 'the-house-firm', 'the-house-collagen'];
-    } else if (concern === 'acne' || skin === 'oily') {
-      recommendation.title = 'Clear, <em>balanced skin.</em>';
-      recommendation.blurb = 'Salicylic acid, niacinamide, and oil-balancing actives. The clear-skin essentials.';
-      recommendation.productSlugs = ['the-house-clear', 'the-house-mask', 'the-house-boost'];
-    } else if (concern === 'dryness' || skin === 'dry') {
-      recommendation.title = 'Hydration, <em>compounded.</em>';
-      recommendation.blurb = 'Multi-weight HA, ceramide-supportive lipids, and barrier reinforcement. Skin that doesn\'t feel tight.';
-      recommendation.productSlugs = ['the-house-hyaluronic', 'the-house-soft', 'the-house-glow'];
-    } else if (concern === 'dullness') {
-      recommendation.title = 'Glow, <em>turned up.</em>';
-      recommendation.blurb = 'Vitamin C, niacinamide, and gentle exfoliation. Brightness with structure.';
-      recommendation.productSlugs = ['the-house-boost', 'the-house-defense', 'the-house-radiance'];
-    } else {
-      recommendation.title = 'A complete <em>skin routine.</em>';
-      recommendation.blurb = 'The AM Routine covers your morning routine with targeted actives. The PM Routine handles repair.';
-      recommendation.productSlugs = ['the-house-wash', 'the-house-boost', 'the-house-soft'];
-    }
-  }
-  // Energy
-  else if (goal === 'energy') {
-    recommendation.eyebrow = 'Sustainable Energy';
-    recommendation.title = 'Energy, <em>not stimulated.</em>';
-    recommendation.blurb = 'Foundational supplements that support energy at the cellular level. No crash, no jitter.';
-    if (active === 'high') {
-      recommendation.productSlugs = ['the-house-multi', 'the-house-vitality', 'the-house-greens'];
-    } else {
-      recommendation.productSlugs = ['the-house-multi', 'the-house-sunshine', 'the-house-vitality'];
-    }
-  }
-  // Sleep / stress
-  else if (goal === 'sleep' || stress === 'high') {
-    recommendation.eyebrow = 'Sleep & Stress';
-    recommendation.title = 'Calm, <em>compounded.</em>';
-    recommendation.blurb = 'Magnesium glycinate for sleep. KSM-66 ashwagandha for stress resilience. Together, the foundation of a calmer baseline.';
-    recommendation.productSlugs = ['the-house-calm', 'the-house-tranquil', 'the-house-multi'];
-  }
-  // Performance
-  else if (goal === 'performance' || active === 'high') {
-    recommendation.eyebrow = 'Workout & Recovery';
-    recommendation.title = 'Built for <em>training.</em>';
-    recommendation.blurb = 'Creatine, glutamine, greens — the workout essentials backed by real research. Not a stim-stack.';
-    recommendation.productSlugs = ['the-house-power', 'the-house-seal', 'the-house-greens'];
-  }
-  // Default
-  else {
-    recommendation.title = 'Start <em>here.</em>';
-    recommendation.blurb = 'A solid foundational routine — the best place for most people to start.';
-    recommendation.productSlugs = ['the-house-multi', 'the-house-calm', 'the-house-sunshine'];
+  // Tailor title to dominant theme
+  if (goal === 'overall' || budgetKey === 'ultimate') {
+    eyebrow = budgetKey === 'ultimate' ? 'The Ultimate Routine' : 'The Full House';
+    title = budgetKey === 'ultimate' ? 'Going <em>all in.</em>' : 'A complete <em>house.</em>';
+  } else if (goal === 'skin') {
+    eyebrow = 'Skin-First Routine';
+    if (concern === 'aging') title = 'Anti-aging, <em>built right.</em>';
+    else if (concern === 'acne') title = 'Clear, <em>balanced skin.</em>';
+    else if (concern === 'dryness') title = 'Hydration, <em>compounded.</em>';
+    else if (concern === 'dullness') title = 'Glow, <em>turned up.</em>';
+    else if (concern === 'sensitivity') title = 'Calm, <em>resilient skin.</em>';
+    else if (concern === 'pores') title = 'Refined, <em>polished texture.</em>';
+    else title = 'A complete <em>skin routine.</em>';
+  } else if (goal === 'energy') {
+    eyebrow = 'Sustainable Energy';
+    title = 'Energy, <em>not stimulated.</em>';
+  } else if (goal === 'sleep' || stress === 'high') {
+    eyebrow = 'Sleep & Calm';
+    title = 'Calm, <em>compounded.</em>';
+  } else if (goal === 'performance' || active === 'athlete' || active === 'high') {
+    eyebrow = 'Performance & Recovery';
+    title = 'Built for <em>training.</em>';
+  } else if (goal === 'longevity') {
+    eyebrow = 'Longevity Stack';
+    title = 'Built to <em>last.</em>';
   }
 
-  document.getElementById('result-eyebrow').textContent = recommendation.eyebrow;
-  document.getElementById('result-title').innerHTML = recommendation.title;
-  document.getElementById('result-blurb').textContent = recommendation.blurb;
+  // Compose blurb that explains the count
+  const productCount = products.length;
+  const categoryMix = (() => {
+    const skinCount = products.filter(p => p.category === 'skincare').length;
+    const suppCount = products.filter(p => p.category === 'supplement').length;
+    const parts = [];
+    if (skinCount > 0) parts.push(`${skinCount} skincare`);
+    if (suppCount > 0) parts.push(`${suppCount} supplement${suppCount > 1 ? 's' : ''}`);
+    return parts.join(' + ');
+  })();
 
-  const products = recommendation.productSlugs
-    .map(s => window.getProductBySlug(s))
-    .filter(Boolean);
+  blurb = `${profile.tagline} ${productCount} products selected · ${categoryMix} · matched to your answers.`;
 
-  document.getElementById('result-products').innerHTML = products.map(p => `
+  document.getElementById('result-eyebrow').textContent = eyebrow;
+  document.getElementById('result-title').innerHTML = title;
+  document.getElementById('result-blurb').textContent = blurb;
+
+  // Per-product rationale chips — pull top 2 highest-weight reasons from scoring engine
+  const reasonsMap = scores.__reasons || new Map();
+  function topReasons(slug, max = 2) {
+    const list = reasonsMap.get(slug) || [];
+    if (!list.length) return [];
+    return [...list].sort((a, b) => b.weight - a.weight).slice(0, max).map(r => r.text);
+  }
+
+  document.getElementById('result-products').innerHTML = products.map(p => {
+    const why = topReasons(p.slug);
+    const whyHTML = why.length
+      ? `<div class="result-product-why">${why.map(r => `<span class="result-why-chip">${r}</span>`).join('')}</div>`
+      : '';
+    return `
     <a href="product.html?slug=${p.slug}" class="result-product">
       <div class="result-product-img"><img src="${p.image}" alt="${p.name}"/></div>
       <div class="result-product-cat">${p.category === 'skincare' ? 'Skincare' : 'Supplement'}</div>
       <div class="result-product-name">The House <em>${p.name}</em></div>
       <div class="result-product-price">$${p.price.toFixed(2)}</div>
-    </a>
-  `).join('');
+      ${whyHTML}
+    </a>`;
+  }).join('');
+
+  // ── Curated-bundle match — does the recommendation set overlap heavily with
+  // one of the existing curated bundles? If so, surface it as an alternative.
+  renderCuratedBundleMatch(products);
 
   // ── Quiz-recommended bundle: 15% off as a set, +10% on top when subscribed ──
   const QUIZ_BUNDLE_DISCOUNT = 0.15;
@@ -853,8 +1375,8 @@ function showResult() {
   const saveEl = document.getElementById('rb-save');
 
   function refreshBundlePricing() {
-    const bundlePrice  = fullPrice * (1 - QUIZ_BUNDLE_DISCOUNT);
-    const finalPrice   = subscribed ? bundlePrice * (1 - SUB_BONUS) : bundlePrice;
+    const bundlePrice = fullPrice * (1 - QUIZ_BUNDLE_DISCOUNT);
+    const finalPrice  = subscribed ? bundlePrice * (1 - SUB_BONUS) : bundlePrice;
     const totalSavings = fullPrice - finalPrice;
     wasEl.textContent  = `$${fullPrice.toFixed(2)}`;
     nowEl.textContent  = `$${finalPrice.toFixed(2)}`;
@@ -878,8 +1400,9 @@ function showResult() {
   const cta = document.getElementById('result-bundle-cta');
   cta.addEventListener('click', () => {
     if (!window.dhCart || !window.dhCart.addBundle) return;
+    const recommendedSlugs = products.map(p => p.slug);
     window.dhCart.addBundle(
-      recommendation.productSlugs,
+      recommendedSlugs,
       'Your Personal Bundle',
       QUIZ_BUNDLE_DISCOUNT,
       subscribed
@@ -891,6 +1414,56 @@ function showResult() {
       cta.classList.remove('added');
     }, 2400);
   });
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// CURATED BUNDLE MATCH — if the user's recommended products overlap
+// substantially (>= 60%) with one of the existing curated bundles,
+// surface that bundle as an alternative "or try this proven set"
+// callout. Uses CURATED_BUNDLES from data/products.js.
+// ═══════════════════════════════════════════════════════════════════
+function renderCuratedBundleMatch(recommendedProducts) {
+  const container = document.getElementById('result-curated-match');
+  if (!container) return;
+  const recSlugs = new Set(recommendedProducts.map(p => p.slug));
+  const curatedList = window.CURATED_BUNDLES || [];
+  // Score each curated bundle by overlap ratio
+  let best = null;
+  curatedList.forEach(b => {
+    if (b.id === 'ultimate' && recSlugs.size < 12) return; // Don't suggest Ultimate unless user picked a premium+ budget
+    const bundleSlugs = b.slugs || [];
+    if (!bundleSlugs.length) return;
+    const overlap = bundleSlugs.filter(s => recSlugs.has(s)).length;
+    const ratio = overlap / bundleSlugs.length;
+    if (!best || ratio > best.ratio) {
+      best = { bundle: b, overlap, ratio };
+    }
+  });
+  // Hide if no decent match
+  if (!best || best.ratio < 0.6) { container.style.display = 'none'; return; }
+  const b = best.bundle;
+  const fullPrice = (b.slugs || []).reduce((s, slug) => {
+    const p = (window.getProductBySlug || (() => null))(slug);
+    return p ? s + p.price : s;
+  }, 0);
+  const discountPct = (b.bundleDiscount || 0.15) * 100;
+  const bundlePrice = fullPrice * (1 - (b.bundleDiscount || 0.15));
+  // Strip a leading "The " from the bundle name so the template doesn't double-prefix
+  const cleanName = (b.name || b.id).replace(/^The\s+/i, '');
+  // Strip a trailing " Routine" / " Stack" — we add it back in the template
+  const baseName = cleanName.replace(/\s+(Routine|Stack|Bundle)$/i, '');
+  const suffix = /(Routine|Stack|Bundle)$/i.test(cleanName) ? cleanName.match(/(Routine|Stack|Bundle)$/i)[0] : 'Routine';
+  container.innerHTML = `
+    <div class="result-curated-eyebrow">Or try this proven set — ${Math.round(best.ratio * 100)}% match</div>
+    <div class="result-curated-name">The <em>${baseName}</em> ${suffix}</div>
+    <div class="result-curated-sub">${b.slugs.length} products · curated by Daniel · ${Math.round(discountPct)}% off as a set</div>
+    <div class="result-curated-pricing">
+      <span class="rb-was">$${fullPrice.toFixed(2)}</span>
+      <span class="rb-now">$${bundlePrice.toFixed(2)}</span>
+    </div>
+    <a href="routine.html?slug=${b.id}" class="result-curated-cta">See the ${baseName} ${suffix} →</a>
+  `;
+  container.style.display = 'block';
 }
 
 updateProgress();

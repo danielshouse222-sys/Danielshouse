@@ -381,7 +381,7 @@
 
 <script src="data/products.js"></script>
 <script src="data/ingredients.js"></script>
-<script src="js/auth.js?v=1"></script><script src="js/shared.js?v=6"></script>
+<script src="js/auth.js?v=1"></script><script src="js/shared.js?v=7"></script>
 <script>
 (function() {
   // Read slug from URL
@@ -454,17 +454,23 @@
       return '<p style="color: var(--ink-soft); font-style: italic;">Studies pending publication.</p>';
     }
     return studies.map(s => {
-      // Build Google Scholar search URL from study title + first author
-      const firstAuthor = (s.authors || '').split(',')[0].trim();
-      const searchQuery = encodeURIComponent(`${s.title} ${firstAuthor}`);
-      const url = `https://scholar.google.com/scholar?q=${searchQuery}`;
+      // Prefer a direct source URL (PubMed / DOI / journal) when supplied on the study;
+      // fall back to a Google Scholar search built from title + first author.
+      let url = s.url;
+      let linkLabel = 'View Original Source →';
+      if (!url) {
+        const firstAuthor = (s.authors || '').split(',')[0].trim();
+        const searchQuery = encodeURIComponent(`${s.title} ${firstAuthor}`);
+        url = `https://scholar.google.com/scholar?q=${searchQuery}`;
+        linkLabel = 'View on Google Scholar →';
+      }
       return `
         <article class="study-card">
           <div class="study-type">${s.type}</div>
           <h3 class="study-title">${s.title}</h3>
           <div class="study-meta">${s.authors} · <span class="study-journal">${s.journal}</span> · ${s.year}</div>
           <p class="study-finding">${s.finding}</p>
-          <a class="study-link" href="${url}" target="_blank" rel="noopener noreferrer">View on Google Scholar →</a>
+          <a class="study-link" href="${url}" target="_blank" rel="noopener noreferrer">${linkLabel}</a>
         </article>`;
     }).join('');
   }

@@ -868,7 +868,7 @@
 <script src="data/products.js"></script>
 <script src="data/ingredients.js"></script>
 <script src="js/auth.js?v=1"></script>
-<script src="js/shared.js?v=6"></script>
+<script src="js/shared.js?v=7"></script>
 
 <script>
   // ─── Build the master list of studies (flat) ───
@@ -954,9 +954,16 @@
 
   // ─── Render a study entry ───
   function renderStudyEntry(s) {
-    const firstAuthor = (s.authors || '').split(',')[0].trim();
-    const searchQuery = encodeURIComponent(`${s.title} ${firstAuthor}`);
-    const scholarUrl  = `https://scholar.google.com/scholar?q=${searchQuery}`;
+    // Prefer a direct source URL (PubMed / DOI) when present on the study;
+    // fall back to a Google Scholar search built from title + first author.
+    let sourceUrl = s.url;
+    let sourceLabel = 'Original Source →';
+    if (!sourceUrl) {
+      const firstAuthor = (s.authors || '').split(',')[0].trim();
+      const searchQuery = encodeURIComponent(`${s.title} ${firstAuthor}`);
+      sourceUrl  = `https://scholar.google.com/scholar?q=${searchQuery}`;
+      sourceLabel = 'Google Scholar →';
+    }
     const evClass = (s.evidence === 'strong' || s.evidence === 'moderate') ? s.evidence : 'moderate';
     const evLabel = s.evidence === 'strong' ? 'Strong Evidence' : 'Moderate Evidence';
     const noStr   = String(s.idx).padStart(3, '0');
@@ -982,7 +989,7 @@
             <span class="study-ingredient-label">Ingredient</span>
             <span class="study-ingredient-name">${s.ingredientName}</span>
           </a>
-          <a class="study-scholar" href="${scholarUrl}" target="_blank" rel="noopener noreferrer">Google Scholar →</a>
+          <a class="study-scholar" href="${sourceUrl}" target="_blank" rel="noopener noreferrer">${sourceLabel}</a>
         </div>
       </article>
     `;
