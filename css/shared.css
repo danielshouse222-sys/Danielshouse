@@ -1430,6 +1430,8 @@ body.has-page-filter-modal {
 .bundle-subscribe-toggle.subscribe-mode::after {
   transform: translateX(100%);
 }
+/* Collapse the gap below the toggle when the cadence selector is anchored beneath it */
+.bundle-subscribe-toggle.subscribe-mode { margin-bottom: 0; }
 
 /* Vertical separator between the two options */
 .bundle-subscribe-toggle::before {
@@ -1583,6 +1585,122 @@ body.has-page-filter-modal {
 /* Very small phones — let the badge wrap below the label if needed */
 @media (max-width: 360px) {
   .bundle-subscribe-toggle .toggle-row { flex-direction: column; gap: 4px; }
+}
+
+/* ═══ BUNDLE CADENCE SELECTOR ═══ */
+/* Appears below the One-Time/Subscribe toggle ONLY when Subscribe is active.
+   2x2 grid of cadence options: Monthly / Every 2 Mo / Every 3 Mo / Smart Refill.
+   Smart Refill ships monthly with per-product replenishment based on product runtime. */
+.bundle-cadence {
+  margin: 0 0 14px;
+  padding: 18px 18px 16px;
+  background: var(--cream);
+  border: 1px solid var(--rule);
+  border-top: 0; /* visually anchors to the toggle above */
+  font-family: 'Poppins', sans-serif;
+  animation: cadence-fadein 0.35s ease both;
+}
+.bundle-cadence[hidden] { display: none; }
+@keyframes cadence-fadein {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.cadence-eyebrow {
+  font-family: 'Poppins', sans-serif;
+  font-size: 9.5px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 11px;
+  text-align: center;
+}
+.cadence-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.cadence-btn {
+  background: var(--cream-warm);
+  border: 1px solid var(--rule);
+  padding: 12px 10px 11px;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  position: relative;
+}
+.cadence-btn:hover { border-color: rgba(184, 153, 104, 0.45); background: var(--cream); }
+.cadence-btn.active {
+  border-color: var(--gold);
+  background: var(--cream);
+  box-shadow: inset 0 -3px 0 var(--gold);
+}
+.cadence-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: 0.02em;
+  text-align: center;
+  line-height: 1.2;
+}
+.cadence-meta {
+  font-size: 8.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  font-weight: 500;
+  text-align: center;
+  line-height: 1.2;
+}
+.cadence-btn.active .cadence-meta { color: var(--gold); }
+/* Smart Refill has a subtle "RECOMMENDED" feel — slightly different border */
+.cadence-btn-smart::after {
+  content: 'NEW';
+  position: absolute;
+  top: -7px;
+  right: 8px;
+  font-size: 7.5px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  background: var(--gold);
+  color: var(--cream);
+  padding: 2px 6px 1.5px;
+  border-radius: 2px;
+}
+.cadence-note {
+  margin-top: 12px;
+  padding: 12px 14px;
+  background: rgba(184, 153, 104, 0.08);
+  border-left: 3px solid var(--gold);
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--ink);
+}
+.cadence-note[hidden] { display: none; }
+.cadence-note strong {
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-size: 9.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 6px;
+}
+/* Mobile — smaller text in cadence buttons */
+@media (max-width: 480px) {
+  .bundle-cadence { padding: 16px 14px 14px; }
+  .cadence-btn { padding: 11px 8px 10px; }
+  .cadence-name { font-size: 11px; }
+  .cadence-meta { font-size: 7.5px; letter-spacing: 0.14em; }
+  .cadence-note { font-size: 13px; }
 }
 
 /* ═══ BUNDLE FOOTNOTE ═══ */
