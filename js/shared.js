@@ -1935,6 +1935,7 @@
           { href: 'index.html',        label: 'Home' },
           { href: 'about.html',        label: "Daniel's Story" },
           { href: 'ingredients.html',  label: 'Ingredient Glossary' },
+          { href: 'studies.html',      label: 'Research Library' },
           { href: 'blog.html',         label: 'Field Notes (Blog)' },
           { href: 'reviews.html',      label: 'Reviews' },
           { href: 'quiz.html',         label: 'Take the Quiz' },
@@ -2134,6 +2135,13 @@
         { key: 'name-desc',  label: 'Name: Z → A' },
         { key: 'category',   label: 'By Category' }
       ],
+      studies: [
+        { key: 'year-desc',   label: 'Most Recent' },
+        { key: 'year-asc',    label: 'Oldest First' },
+        { key: 'evidence',    label: 'Strongest Evidence' },
+        { key: 'type-rank',   label: 'By Study Type' },
+        { key: 'ingredient',  label: 'By Ingredient' }
+      ],
       pages: [
         { key: 'relevance',  label: 'Relevance' },
         { key: 'name-asc',   label: 'Name: A → Z' }
@@ -2210,6 +2218,33 @@
         case 'pages': {
           if (sortKey === 'relevance') return arr;
           if (sortKey === 'name-asc')  return arr.sort((a, b) => (a.title || '').localeCompare(b.title || ''));
+          return arr;
+        }
+        case 'studies': {
+          // Higher = stronger. RCTs/meta-analyses outrank reviews/mechanistic studies.
+          const TYPE_RANK = {
+            'Meta-Analysis': 100,
+            'Systematic Review': 95,
+            'Randomized Controlled Trial': 90,
+            'Multicenter Trial': 85,
+            'Long-term Trial': 82,
+            'Clinical Trial': 80,
+            'Clinical Study': 75,
+            'Pharmacokinetic Study': 70,
+            'Comparative Bioavailability Study': 68,
+            'Mechanistic Study': 60,
+            'Mechanistic Review': 58,
+            'Review': 50,
+            'Position Statement': 45,
+            'Consensus Statement': 45,
+            'Landmark Discovery': 40
+          };
+          const EV_RANK = { strong: 2, moderate: 1, emerging: 0 };
+          if (sortKey === 'year-desc')  return arr.sort((a, b) => (b.year || 0) - (a.year || 0));
+          if (sortKey === 'year-asc')   return arr.sort((a, b) => (a.year || 0) - (b.year || 0));
+          if (sortKey === 'type-rank')  return arr.sort((a, b) => (TYPE_RANK[b.type] || 0) - (TYPE_RANK[a.type] || 0) || (b.year || 0) - (a.year || 0));
+          if (sortKey === 'evidence')   return arr.sort((a, b) => (EV_RANK[b.evidence] || 0) - (EV_RANK[a.evidence] || 0) || (TYPE_RANK[b.type] || 0) - (TYPE_RANK[a.type] || 0));
+          if (sortKey === 'ingredient') return arr.sort((a, b) => (a.ingredientName || '').localeCompare(b.ingredientName || '') || (b.year || 0) - (a.year || 0));
           return arr;
         }
         default:
