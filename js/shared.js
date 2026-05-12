@@ -1900,7 +1900,25 @@
     const currentPath = (window.location.pathname || '').split('/').pop() || 'index.html';
 
     // Site map — keep in sync with footer link structure
+    const u = window.dhAuth ? window.dhAuth.getCurrentUser() : null;
+    const accountLinks = u ? [
+      { href: 'account.html#dashboard',     label: 'Dashboard' },
+      { href: 'account.html#profile',       label: 'Profile' },
+      { href: 'account.html#orders',        label: 'Orders' },
+      { href: 'account.html#past-orders',   label: 'Past Orders' },
+      { href: 'account.html#routine',       label: 'My Routine' },
+      { href: 'account.html#subscriptions', label: 'Subscriptions' },
+      { href: 'account.html#reviews',       label: 'My Reviews' },
+      { href: 'account.html#settings',      label: 'Settings' }
+    ] : [
+      { href: 'signin.html',         label: 'Sign In' },
+      { href: 'signin.html#signup',  label: 'Create Account' }
+    ];
     const sections = [
+      {
+        eyebrow: u ? `Hi, ${u.firstName || 'there'}` : 'Account',
+        links: accountLinks
+      },
       {
         eyebrow: 'Shop',
         links: [
