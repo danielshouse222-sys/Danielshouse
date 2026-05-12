@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Your Account — Daniel's House</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=2">
 <link rel="stylesheet" href="css/shared.css?v=4">
 <style>
   /* ═══ ACCOUNT PORTAL ═══ */
@@ -21,13 +25,25 @@
   .acct-sidebar {
     position: sticky;
     top: 100px;
-    background: var(--cream);
+    background: var(--cream-warm);
     border: 1px solid var(--rule);
-    padding: 32px 24px;
+    padding: 38px 26px 28px;
+    position: relative;
+  }
+  /* Gold accent line on top edge of sidebar */
+  .acct-sidebar::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 64px;
+    height: 1px;
+    background: var(--gold);
   }
   .acct-avatar {
-    width: 64px;
-    height: 64px;
+    width: 78px;
+    height: 78px;
     background: var(--ink);
     color: var(--cream);
     border-radius: 50%;
@@ -35,72 +51,110 @@
     align-items: center;
     justify-content: center;
     font-family: 'Cormorant Garamond', serif;
-    font-size: 26px;
+    font-style: italic;
+    font-size: 30px;
     font-weight: 400;
-    margin: 0 auto 16px;
+    margin: 0 auto 18px;
+    letter-spacing: 0.02em;
+    box-shadow: 0 0 0 4px var(--cream-warm), 0 0 0 5px rgba(184, 153, 104, 0.45);
   }
   .acct-name {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 22px;
+    font-size: 24px;
+    font-weight: 500;
     text-align: center;
     color: var(--ink);
     line-height: 1.15;
+    letter-spacing: -0.005em;
   }
   .acct-email {
     font-family: 'Poppins', sans-serif;
     font-size: 11px;
     color: var(--ink-soft);
     text-align: center;
-    margin-top: 4px;
+    margin-top: 6px;
     word-break: break-all;
+    letter-spacing: 0.015em;
   }
   .acct-sidebar-rule {
     height: 1px;
     background: var(--rule);
-    margin: 24px -24px;
+    margin: 26px -26px;
+    position: relative;
+  }
+  /* Decorative gold dot centered on the rule */
+  .acct-sidebar-rule::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--gold);
   }
   .acct-nav { list-style: none; padding: 0; margin: 0; }
   .acct-nav-item {
-    display: block;
-    padding: 12px 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 14px;
     font-family: 'Poppins', sans-serif;
-    font-size: 12px;
-    letter-spacing: 0.14em;
+    font-size: 11.5px;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     font-weight: 500;
     color: var(--ink-soft);
     background: transparent;
     border: none;
-    border-left: 2px solid transparent;
     width: 100%;
     text-align: left;
     cursor: pointer;
-    transition: color 0.2s, border-color 0.2s, background 0.2s;
+    transition: color 0.25s, background 0.25s;
+    position: relative;
+  }
+  /* Hidden gold dot indicator that appears on active state */
+  .acct-nav-item::before {
+    content: '';
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: transparent;
+    flex-shrink: 0;
+    transition: background 0.25s;
   }
   .acct-nav-item:hover {
     color: var(--ink);
-    background: var(--cream-warm);
+    background: var(--cream);
   }
+  .acct-nav-item:hover::before { background: rgba(184, 153, 104, 0.4); }
   .acct-nav-item.active {
     color: var(--ink);
-    border-left-color: var(--gold);
-    background: var(--cream-warm);
+    background: var(--cream);
+    font-weight: 600;
   }
+  .acct-nav-item.active::before { background: var(--gold); }
   .acct-signout {
-    margin-top: 20px;
-    padding: 12px;
+    margin-top: 22px;
+    padding: 13px 14px;
     font-family: 'Poppins', sans-serif;
-    font-size: 11px;
-    letter-spacing: 0.18em;
+    font-size: 10.5px;
+    letter-spacing: 0.24em;
     text-transform: uppercase;
+    font-weight: 600;
     color: var(--ink-soft);
     background: transparent;
     border: 1px solid var(--rule);
     width: 100%;
     cursor: pointer;
-    transition: color 0.2s, border-color 0.2s;
+    transition: color 0.25s, border-color 0.25s, background 0.25s;
   }
-  .acct-signout:hover { color: var(--ink); border-color: var(--ink); }
+  .acct-signout:hover {
+    color: var(--cream);
+    background: var(--ink);
+    border-color: var(--ink);
+  }
 
   /* ── Main content ── */
   .acct-main { min-width: 0; }
@@ -108,60 +162,99 @@
   .acct-section.active { display: block; }
 
   .acct-section-head {
-    margin-bottom: 36px;
+    margin-bottom: 44px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+  }
+  /* Decorative gold accent on left edge of section head */
+  .acct-section-head::before {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
   }
   .acct-eyebrow {
     font-family: 'Poppins', sans-serif;
     font-size: 10px;
-    letter-spacing: 0.32em;
+    letter-spacing: 0.4em;
     text-transform: uppercase;
     color: var(--gold);
-    font-weight: 600;
-    margin-bottom: 14px;
+    font-weight: 500;
+    margin-bottom: 18px;
+    display: inline-block;
   }
+  .acct-eyebrow::before { content: '[ '; opacity: 0.55; }
+  .acct-eyebrow::after  { content: ' ]'; opacity: 0.55; }
   .acct-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 52px;
+    font-size: 56px;
     font-weight: 400;
     line-height: 1;
     color: var(--ink);
-    margin-bottom: 12px;
+    margin: 0 0 14px;
+    letter-spacing: -0.012em;
   }
   .acct-title em { font-style: italic; color: var(--sage); }
   .acct-subtitle {
-    font-family: 'Poppins', sans-serif;
-    font-size: 14px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 17px;
     color: var(--ink-soft);
-    line-height: 1.6;
+    line-height: 1.55;
+    max-width: 600px;
   }
 
-  /* ── Stat tiles (dashboard) ── */
+  /* ── Stat tiles (dashboard) — credibility-quad style ── */
   .acct-stats {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-    margin-bottom: 40px;
+    gap: 0;
+    margin-bottom: 48px;
+    background: var(--cream-warm);
+    border: 1px solid var(--rule);
   }
   .acct-stat {
-    background: var(--cream);
-    border: 1px solid var(--rule);
-    padding: 24px 20px;
+    background: transparent;
+    border: none;
+    border-right: 1px solid var(--rule);
+    padding: 32px 22px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
+  .acct-stat:last-child { border-right: none; }
   .acct-stat-label {
     font-family: 'Poppins', sans-serif;
     font-size: 10px;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.28em;
     text-transform: uppercase;
     color: var(--ink-soft);
-    margin-bottom: 12px;
+    font-weight: 500;
+    margin-bottom: 0;
+    order: 2;
   }
   .acct-stat-value {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 38px;
-    color: var(--ink);
+    font-size: 44px;
+    font-weight: 500;
+    color: var(--sage);
     line-height: 1;
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+    order: 1;
   }
-  .acct-stat-value em { font-style: italic; color: var(--sage); font-size: 18px; }
+  .acct-stat-value em { font-style: italic; color: var(--gold); font-size: 0.5em; margin-left: 2px; }
+  @media (max-width: 720px) {
+    .acct-stats { grid-template-columns: 1fr; }
+    .acct-stat { border-right: none; border-bottom: 1px solid var(--rule); padding: 22px 18px; }
+    .acct-stat:last-child { border-bottom: none; }
+    .acct-stat-value { font-size: 40px; }
+  }
 
   /* ── Section cards ── */
   .acct-block {
@@ -670,8 +763,21 @@
 </head>
 <body>
 
-<nav class="top-nav">
-  <div class="top-nav-inner">
+<div class="shipping-bar">
+  <div class="shipping-bar-progress"></div>
+  <div class="shipping-bar-inner">
+    <div class="shipping-bar-text">Free shipping on orders over <strong>$75</strong></div>
+    <div class="shipping-bar-divider"></div>
+    <span class="shipping-bar-pill">30-Day Returns</span>
+    <div class="shipping-bar-divider"></div>
+    <span class="shipping-bar-pill">Cruelty-Free · Non-GMO</span>
+    <div class="shipping-bar-divider"></div>
+    <span class="shipping-bar-pill">Made in N.A.</span>
+  </div>
+</div>
+
+<nav>
+  <div class="nav-inner">
     <a href="index.html" class="logo">Daniel<span class="amp">'s</span> House</a>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
@@ -683,8 +789,7 @@
     </ul>
     <div style="display: flex; gap: 4px;">
       <button class="search-trigger" aria-label="Search">Search</button>
-      <a class="account-trigger" href="account.html">Sign In</a>
-      <button class="cart-trigger" aria-label="Open cart">Cart <span class="cart-trigger-count">0</span></button>
+      <a class="account-trigger" href="account.html">Sign In</a><button class="cart-trigger" aria-label="Open cart">Cart <span class="cart-trigger-count">0</span></button>
     </div>
   </div>
 </nav>
@@ -931,17 +1036,40 @@
   </div>
 </main>
 
-<footer class="site-footer">
-  <div class="footer-inner">
-    <div class="footer-col"><h4>Shop</h4><ul><li><a href="skincare.html">Skincare</a></li><li><a href="supplements.html">Supplements</a></li><li><a href="routines.html">Routines</a></li><li><a href="bundles.html">Bundles</a></li><li><a href="compare.html">Compare</a></li></ul></div>
-    <div class="footer-col"><h4>The House</h4><ul><li><a href="about.html">Daniel's Story</a></li><li><a href="ingredients.html">Ingredient Glossary</a></li><li><a href="studies.html">Research Library</a></li><li><a href="blog.html">Field Notes</a></li><li><a href="reviews.html">Reviews</a></li><li><a href="quiz.html">Take the Quiz</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
-    <div class="footer-col"><h4>Help</h4><ul><li><a href="faq.html#shipping">Shipping</a></li><li><a href="faq.html#returns">Returns</a></li><li><a href="faq.html#guarantee">30-Day Guarantee</a></li><li><a href="faq.html#contact">Contact</a></li></ul></div>
-    <div class="footer-col"><h4>Stay in Touch</h4><p style="font-family: 'Poppins', sans-serif; font-size: 12px; color: var(--ink-soft); line-height: 1.6;">Field notes from Daniel — once a month, never spam.</p></div>
+<footer>
+  <div class="footer-newsletter">
+    <div class="footer-newsletter-inner">
+      <div class="footer-newsletter-eyebrow">Letters from the House</div>
+      <div class="footer-newsletter-title">Get Daniel's actual <em>routine notes.</em></div>
+      <div class="footer-newsletter-blurb">First access to launches, ingredient deep-dives, and the rituals Daniel uses every week — sent twice a month, no spam.</div>
+      <form class="footer-newsletter-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent = '✓ Subscribed';">
+        <input type="email" placeholder="Your email" required />
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
   </div>
-  <div class="footer-rule"></div>
-  <div class="footer-bar">
-    <p>© 2026 Daniel's House. All rights reserved.</p>
-    <p><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="accessibility.html">Accessibility</a></p>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Daniel<span class="amp">'s</span> House</div>
+      <div class="footer-tag">Your home for premium wellness — built on real results, not marketing.</div>
+      <div class="footer-attr">
+        <span>Non-GMO</span>
+        <span>Cruelty-Free</span>
+        <span>Made in NA</span>
+      </div>
+      <a href="mailto:daniel@danielshousewellness.com" class="footer-email">daniel@danielshousewellness.com</a>
+    </div>
+    <div class="footer-col"><h4>Shop</h4><ul><li><a href="skincare.html">Skincare</a></li><li><a href="supplements.html">Supplements</a></li><li><a href="routines.html">Routines</a></li><li><a href="bundles.html">Bundles</a></li><li><a href="compare.html">Compare</a></li></ul></div>
+    <div class="footer-col"><h4>The House</h4><ul><li><a href="about.html">Daniel's Story</a></li><li><a href="ingredients.html">Ingredient Glossary</a></li><li><a href="studies.html">Research Library</a></li><li><a href="blog.html">Blog</a></li><li><a href="reviews.html">Reviews</a></li><li><a href="quiz.html">Take the Quiz</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
+    <div class="footer-col"><h4>Help</h4><ul><li><a href="faq.html#shipping">Shipping</a></li><li><a href="faq.html#returns">Returns Policy →</a></li><li><a href="faq.html#returns">30-Day Guarantee</a></li><li><a href="faq.html">Contact</a></li></ul></div>
+  </div>
+  <div class="footer-credit">
+    <div class="footer-credit-left">© 2026 Daniel's House. Premium wellness, built on real results.</div>
+    <div class="footer-credit-right">
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="accessibility.html">Accessibility</a>
+    </div>
   </div>
 </footer>
 

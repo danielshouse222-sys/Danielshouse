@@ -4,64 +4,116 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sign In — Daniel's House</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=2">
 <link rel="stylesheet" href="css/shared.css?v=4">
 <style>
-  /* ═══ SIGN-IN PAGE ═══ */
+  /* ═══ SIGN-IN PAGE — editorial treatment matching routines / studies pages ═══ */
+  body { background: var(--cream); }
+
   .auth-page {
-    min-height: 70vh;
-    padding: 80px 22px;
+    min-height: 78vh;
+    padding: 80px 22px 100px;
     display: flex;
     align-items: flex-start;
     justify-content: center;
+    background: var(--cream);
   }
   .auth-card {
     width: 100%;
-    max-width: 460px;
-    background: var(--cream);
+    max-width: 500px;
+    background: var(--cream-warm);
     border: 1px solid var(--rule);
-    padding: 56px 48px 48px;
+    padding: 64px 52px 52px;
+    position: relative;
   }
+  /* Decorative gold rule on top edge of card */
+  .auth-card::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90px;
+    height: 1px;
+    background: var(--gold);
+  }
+
   .auth-brand {
     text-align: center;
-    margin-bottom: 36px;
+    margin-bottom: 40px;
   }
   .auth-eyebrow {
     font-family: 'Poppins', sans-serif;
     font-size: 10px;
-    letter-spacing: 0.32em;
+    letter-spacing: 0.42em;
     text-transform: uppercase;
     color: var(--gold);
-    font-weight: 600;
-    margin-bottom: 14px;
+    font-weight: 500;
+    margin-bottom: 22px;
+    display: inline-block;
   }
+  .auth-eyebrow::before { content: '[ '; opacity: 0.55; }
+  .auth-eyebrow::after  { content: ' ]'; opacity: 0.55; }
+
   .auth-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 42px;
-    line-height: 1.05;
+    font-size: 52px;
+    line-height: 1.0;
     color: var(--ink);
     font-weight: 400;
+    margin: 0 0 22px;
+    letter-spacing: -0.01em;
   }
   .auth-title em { font-style: italic; color: var(--sage); }
+
+  /* Centered ornament: thin lines flanking a single gold dot */
+  .auth-ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin: 0 auto;
+    max-width: 180px;
+  }
+  .auth-ornament::before,
+  .auth-ornament::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.4;
+  }
+  .auth-ornament-dot {
+    width: 5px;
+    height: 5px;
+    background: var(--gold);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
 
   /* Tabs */
   .auth-tabs {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    border: 1px solid var(--rule);
-    margin-bottom: 32px;
+    border: 1px solid var(--ink);
+    margin-bottom: 36px;
+    background: var(--cream);
   }
   .auth-tab {
     font-family: 'Poppins', sans-serif;
-    font-size: 11px;
-    letter-spacing: 0.22em;
+    font-size: 10.5px;
+    letter-spacing: 0.24em;
     text-transform: uppercase;
-    font-weight: 500;
-    padding: 14px 8px;
+    font-weight: 600;
+    padding: 15px 8px;
     background: transparent;
     border: none;
     color: var(--ink-soft);
     cursor: pointer;
-    transition: background 0.2s, color 0.2s;
+    transition: background 0.25s, color 0.25s;
   }
   .auth-tab:hover { color: var(--ink); }
   .auth-tab.active {
@@ -73,128 +125,179 @@
   .auth-form { display: none; }
   .auth-form.active { display: block; }
 
-  .auth-field { margin-bottom: 18px; }
+  .auth-field { margin-bottom: 22px; }
   .auth-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-bottom: 18px;
+    gap: 14px;
+    margin-bottom: 22px;
   }
   .auth-row .auth-field { margin-bottom: 0; }
   .auth-label {
     display: block;
     font-family: 'Poppins', sans-serif;
-    font-size: 10px;
-    letter-spacing: 0.22em;
+    font-size: 9.5px;
+    letter-spacing: 0.28em;
     text-transform: uppercase;
-    font-weight: 500;
-    color: var(--ink-soft);
-    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--gold);
+    margin-bottom: 10px;
   }
   .auth-input {
     width: 100%;
     box-sizing: border-box;
-    background: transparent;
+    background: var(--cream);
     border: 1px solid var(--rule);
-    padding: 14px 14px;
-    font-family: 'Poppins', sans-serif;
-    font-size: 14px;
+    padding: 16px 16px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
     color: var(--ink);
-    transition: border-color 0.2s;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    outline: none;
   }
-  .auth-input:focus { outline: none; border-color: var(--gold); }
+  .auth-input::placeholder {
+    color: var(--ink-soft);
+    opacity: 0.55;
+    font-style: italic;
+  }
+  .auth-input:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 4px rgba(184, 153, 104, 0.10);
+  }
+
+  .auth-forgot {
+    text-align: right;
+    margin: -12px 0 22px;
+  }
+  .auth-forgot a {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 1px;
+    transition: color 0.3s, border-color 0.3s;
+  }
+  .auth-forgot a:hover {
+    color: var(--gold);
+    border-bottom-color: var(--gold);
+  }
 
   .auth-cta {
     width: 100%;
     background: var(--ink);
     color: var(--cream);
-    border: none;
-    padding: 16px;
+    border: 1px solid var(--ink);
+    padding: 17px 16px;
     font-family: 'Poppins', sans-serif;
     font-size: 11px;
-    letter-spacing: 0.28em;
+    letter-spacing: 0.26em;
     text-transform: uppercase;
-    font-weight: 500;
+    font-weight: 600;
     cursor: pointer;
-    margin-top: 12px;
-    transition: background 0.2s;
+    transition: background 0.3s, border-color 0.3s;
+    margin-top: 4px;
   }
-  .auth-cta:hover { background: var(--sage); }
-  .auth-cta:disabled { opacity: 0.5; cursor: not-allowed; }
+  .auth-cta:hover { background: var(--sage); border-color: var(--sage); }
 
   .auth-aside {
-    font-family: 'Poppins', sans-serif;
-    font-size: 12px;
-    color: var(--ink-soft);
     text-align: center;
-    line-height: 1.7;
-    margin-top: 22px;
-  }
-  .auth-aside a { color: var(--gold); border-bottom: 1px solid var(--gold); }
-  .auth-aside a:hover { color: var(--ink); border-color: var(--ink); }
-
-  .auth-error {
-    background: rgba(196, 78, 78, 0.08);
-    border-left: 3px solid #c44e4e;
-    color: #8b2e2e;
-    font-family: 'Poppins', sans-serif;
-    font-size: 13px;
-    padding: 12px 14px;
-    margin-bottom: 18px;
-    display: none;
-  }
-  .auth-error.is-visible { display: block; }
-
-  .auth-success {
-    background: rgba(93, 110, 92, 0.10);
-    border-left: 3px solid var(--sage);
-    color: var(--sage);
-    font-family: 'Poppins', sans-serif;
-    font-size: 13px;
-    padding: 12px 14px;
-    margin-bottom: 18px;
-    display: none;
-  }
-  .auth-success.is-visible { display: block; }
-
-  .auth-disclaimer {
-    margin-top: 32px;
-    padding-top: 28px;
-    border-top: 1px solid var(--rule);
-    font-family: 'Poppins', sans-serif;
-    font-size: 11px;
+    margin: 26px 0 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 15px;
     color: var(--ink-soft);
-    line-height: 1.65;
-    text-align: center;
   }
-  .auth-disclaimer strong { color: var(--ink); font-weight: 500; }
-
-  /* Forgot password subtle link */
-  .auth-forgot {
-    text-align: right;
-    margin-top: -10px;
-    margin-bottom: 18px;
-  }
-  .auth-forgot a {
-    font-family: 'Poppins', sans-serif;
-    font-size: 11px;
+  .auth-aside a {
     color: var(--gold);
-    letter-spacing: 0.08em;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(184, 153, 104, 0.4);
+    padding-bottom: 1px;
+    transition: color 0.3s, border-color 0.3s;
   }
-  .auth-forgot a:hover { color: var(--ink); }
+  .auth-aside a:hover {
+    color: var(--ink);
+    border-bottom-color: var(--ink);
+  }
 
-  @media (max-width: 500px) {
-    .auth-card { padding: 42px 28px 36px; }
-    .auth-title { font-size: 34px; }
+  /* Error + success states */
+  .auth-error,
+  .auth-success {
+    display: none;
+    padding: 14px 18px;
+    margin-bottom: 22px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 15px;
+    line-height: 1.5;
+    border-left: 3px solid;
+  }
+  .auth-error { display: block; }
+  .auth-error:empty { display: none; }
+  .auth-error {
+    background: rgba(184, 153, 104, 0.08);
+    color: var(--ink);
+    border-left-color: var(--gold);
+  }
+  .auth-success.is-visible {
+    display: block;
+    background: rgba(93, 110, 92, 0.10);
+    color: var(--ink);
+    border-left-color: var(--sage);
+  }
+
+  /* Disclaimer bracketed ornament — matches studies page */
+  .auth-disclaimer {
+    max-width: 420px;
+    margin: 36px auto 0;
+    padding: 26px 28px 0;
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    position: relative;
+  }
+  .auth-disclaimer::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.5;
+  }
+
+  @media (max-width: 560px) {
+    .auth-page { padding: 50px 18px 70px; }
+    .auth-card { padding: 48px 28px 36px; }
+    .auth-title { font-size: 40px; }
     .auth-row { grid-template-columns: 1fr; gap: 0; }
-    .auth-row .auth-field { margin-bottom: 18px; }
+    .auth-row .auth-field { margin-bottom: 22px; }
   }
 </style>
 </head>
 <body>
 
-<nav class="top-nav">
-  <div class="top-nav-inner">
+<div class="shipping-bar">
+  <div class="shipping-bar-progress"></div>
+  <div class="shipping-bar-inner">
+    <div class="shipping-bar-text">Free shipping on orders over <strong>$75</strong></div>
+    <div class="shipping-bar-divider"></div>
+    <span class="shipping-bar-pill">30-Day Returns</span>
+    <div class="shipping-bar-divider"></div>
+    <span class="shipping-bar-pill">Cruelty-Free · Non-GMO</span>
+    <div class="shipping-bar-divider"></div>
+    <span class="shipping-bar-pill">Made in N.A.</span>
+  </div>
+</div>
+
+<nav>
+  <div class="nav-inner">
     <a href="index.html" class="logo">Daniel<span class="amp">'s</span> House</a>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
@@ -206,8 +309,7 @@
     </ul>
     <div style="display: flex; gap: 4px;">
       <button class="search-trigger" aria-label="Search">Search</button>
-      <a class="account-trigger" href="account.html">Sign In</a>
-      <button class="cart-trigger" aria-label="Open cart">Cart <span class="cart-trigger-count">0</span></button>
+      <a class="account-trigger" href="account.html">Sign In</a><button class="cart-trigger" aria-label="Open cart">Cart <span class="cart-trigger-count">0</span></button>
     </div>
   </div>
 </nav>
@@ -217,6 +319,9 @@
     <div class="auth-brand">
       <div class="auth-eyebrow">Daniel's House</div>
       <h1 class="auth-title" id="auth-headline">Welcome <em>back.</em></h1>
+      <div class="auth-ornament">
+        <span class="auth-ornament-dot"></span>
+      </div>
     </div>
 
     <div class="auth-tabs">
@@ -272,17 +377,40 @@
   </div>
 </main>
 
-<footer class="site-footer">
-  <div class="footer-inner">
-    <div class="footer-col"><h4>Shop</h4><ul><li><a href="skincare.html">Skincare</a></li><li><a href="supplements.html">Supplements</a></li><li><a href="routines.html">Routines</a></li><li><a href="bundles.html">Bundles</a></li><li><a href="compare.html">Compare</a></li></ul></div>
-    <div class="footer-col"><h4>The House</h4><ul><li><a href="about.html">Daniel's Story</a></li><li><a href="ingredients.html">Ingredient Glossary</a></li><li><a href="studies.html">Research Library</a></li><li><a href="blog.html">Field Notes</a></li><li><a href="reviews.html">Reviews</a></li><li><a href="quiz.html">Take the Quiz</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
-    <div class="footer-col"><h4>Help</h4><ul><li><a href="faq.html#shipping">Shipping</a></li><li><a href="faq.html#returns">Returns</a></li><li><a href="faq.html#guarantee">30-Day Guarantee</a></li><li><a href="faq.html#contact">Contact</a></li></ul></div>
-    <div class="footer-col"><h4>Stay in Touch</h4><p style="font-family: 'Poppins', sans-serif; font-size: 12px; color: var(--ink-soft); line-height: 1.6;">Field notes from Daniel — once a month, never spam.</p></div>
+<footer>
+  <div class="footer-newsletter">
+    <div class="footer-newsletter-inner">
+      <div class="footer-newsletter-eyebrow">Letters from the House</div>
+      <div class="footer-newsletter-title">Get Daniel's actual <em>routine notes.</em></div>
+      <div class="footer-newsletter-blurb">First access to launches, ingredient deep-dives, and the rituals Daniel uses every week — sent twice a month, no spam.</div>
+      <form class="footer-newsletter-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent = '✓ Subscribed';">
+        <input type="email" placeholder="Your email" required />
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
   </div>
-  <div class="footer-rule"></div>
-  <div class="footer-bar">
-    <p>© 2026 Daniel's House. All rights reserved.</p>
-    <p><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="accessibility.html">Accessibility</a></p>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Daniel<span class="amp">'s</span> House</div>
+      <div class="footer-tag">Your home for premium wellness — built on real results, not marketing.</div>
+      <div class="footer-attr">
+        <span>Non-GMO</span>
+        <span>Cruelty-Free</span>
+        <span>Made in NA</span>
+      </div>
+      <a href="mailto:daniel@danielshousewellness.com" class="footer-email">daniel@danielshousewellness.com</a>
+    </div>
+    <div class="footer-col"><h4>Shop</h4><ul><li><a href="skincare.html">Skincare</a></li><li><a href="supplements.html">Supplements</a></li><li><a href="routines.html">Routines</a></li><li><a href="bundles.html">Bundles</a></li><li><a href="compare.html">Compare</a></li></ul></div>
+    <div class="footer-col"><h4>The House</h4><ul><li><a href="about.html">Daniel's Story</a></li><li><a href="ingredients.html">Ingredient Glossary</a></li><li><a href="studies.html">Research Library</a></li><li><a href="blog.html">Blog</a></li><li><a href="reviews.html">Reviews</a></li><li><a href="quiz.html">Take the Quiz</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
+    <div class="footer-col"><h4>Help</h4><ul><li><a href="faq.html#shipping">Shipping</a></li><li><a href="faq.html#returns">Returns Policy →</a></li><li><a href="faq.html#returns">30-Day Guarantee</a></li><li><a href="faq.html">Contact</a></li></ul></div>
+  </div>
+  <div class="footer-credit">
+    <div class="footer-credit-left">© 2026 Daniel's House. Premium wellness, built on real results.</div>
+    <div class="footer-credit-right">
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="accessibility.html">Accessibility</a>
+    </div>
   </div>
 </footer>
 

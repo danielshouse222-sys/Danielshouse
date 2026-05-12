@@ -1155,7 +1155,7 @@ function renderConcernCard(bundle) {
   const discountPct = Math.round((bundle.discount || 0.07) * 100);
 
   return `
-    <div class="concern-card" data-bundle-id="${bundle.id}" data-product-slugs="${bundle.slugs.join(',')}" data-bundle-name="${bundle.name}">
+    <div class="concern-card" data-bundle-id="${bundle.id}" data-bundle-kind="concern" data-product-slugs="${bundle.slugs.join(',')}" data-bundle-name="${bundle.name}">
       <div class="concern-savings-ribbon">Save ${discountPct}%</div>
 
       <div class="concern-card-img-side">
@@ -1309,7 +1309,19 @@ function renderRoutineCard(bundle) {
 
 // Unified lookup — finds a bundle by id from either CURATED_BUNDLES or CONCERN_BUNDLES.
 // Returns { bundle, kind } or null.
-function lookupBundleAnyKind(bundleId) {
+function lookupBundleAnyKind(bundleId, kindHint) {
+  // When kindHint is set, prefer that collection first. Critical for disambiguating
+  // bundles that share an id across kinds (e.g., 'longevity' exists in both
+  // CURATED_BUNDLES as a routine and CONCERN_BUNDLES as the Cellular Bundle).
+  if (kindHint === 'concern') {
+    const concern = (window.CONCERN_BUNDLES || []).find(b => b.id === bundleId);
+    if (concern) return { bundle: concern, kind: 'concern' };
+  }
+  if (kindHint === 'routine') {
+    const curated = (window.CURATED_BUNDLES || []).find(b => b.id === bundleId);
+    if (curated) return { bundle: curated, kind: 'routine' };
+  }
+  // No hint: routines win first (legacy behavior preserved).
   const curated = (window.CURATED_BUNDLES || []).find(b => b.id === bundleId);
   if (curated) return { bundle: curated, kind: 'routine' };
   const concern = (window.CONCERN_BUNDLES || []).find(b => b.id === bundleId);
@@ -1345,35 +1357,80 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
-  // ═══ RENDER ALL ROUTINES + BUNDLES INTO ONE GRID ═══
-  // Routines come first (curated daily rituals), then targeted bundles (single-concern stacks).
-  const ROUTINE_ORDER = ['daniels-daily', 'am', 'pm', 'workout', 'longevity', 'glow', 'moms', 'arianas', 'ultimate'];
-  const routineObjs = ROUTINE_ORDER
-    .map(id => (window.CURATED_BUNDLES || []).find(b => b.id === id))
-    .filter(Boolean);
-  const routineCardsHTML = routineObjs.map(renderRoutineCard).join('');
-  const concernCardsHTML = window.CONCERN_BUNDLES.map(renderConcernCard).join('');
-  grid.innerHTML = routineCardsHTML + concernCardsHTML;
+  // ═══ SMART FEATURED ORDER ═══
+  // Interleaves routines and concern bundles by strategic merchandising rather
+  // than just dumping all routines first. Leads with the foundational gateway
+  // products (Daniel's Daily, AM Routine), pulls in universal needs (Sleep,
+  // Anti-Aging), positions the Ultimate as the flagship moment, and saves the
+  // niche personas (Mom's, Workout, Ariana's, Joints, Focus) for later. Each
+  // entry has {kind, id} so we can disambiguate the 'longevity' id collision
+  // (routine:longevity vs concern:longevity / Cellular Bundle).
+  const FEATURED_ORDER = [
+    { kind: 'routine', id: 'daniels-daily' }, // foundational supplement stack — universal entry
+    { kind: 'routine', id: 'am' },            // skincare gateway — daily ritual anchor
+    { kind: 'concern', id: 'sleep' },         // small bundle, universal wellness need
+    { kind: 'concern', id: 'aging' },         // top skin concern across demographics
+    { kind: 'routine', id: 'ultimate' },      // flagship — premium statement, max savings
+    { kind: 'concern', id: 'energy' },        // universal — broad supplement appeal
+    { kind: 'routine', id: 'pm' },            // pairs with AM, completes the ritual
+    { kind: 'concern', id: 'beauty' },        // Glow Bundle — beauty conversion magnet
+    { kind: 'routine', id: 'glow' },          // curated daily glow ritual
+    { kind: 'concern', id: 'dullness' },      // Brightening — vitamin C, alternate glow
+    { kind: 'concern', id: 'stress' },        // trending adaptogens market
+    { kind: 'concern', id: 'dryness' },       // Hydration — fundamental concern
+    { kind: 'routine', id: 'workout' },       // active/fitness persona
+    { kind: 'concern', id: 'strength' },      // performance supplements
+    { kind: 'routine', id: 'moms' },          // focused persona, strong segment conversion
+    { kind: 'concern', id: 'longevity' },     // Cellular Bundle — premium longevity
+    { kind: 'concern', id: 'gut' },           // trending gut-skin axis
+    { kind: 'concern', id: 'acne' },          // Clear-Skin — concentrated demand
+    { kind: 'concern', id: 'sensitivity' },   // Soothing — sensitive-skin segment
+    { kind: 'concern', id: 'pores' },         // specific cosmetic concern
+    { kind: 'concern', id: 'focus' },         // niche cognitive
+    { kind: 'concern', id: 'joints' },        // older demographic
+    { kind: 'routine', id: 'arianas' },       // narrow persona
+    { kind: 'routine', id: 'longevity' }      // premium niche routine
+  ];
 
-  const routineCount = routineObjs.length;
-  const concernCount = window.CONCERN_BUNDLES.length;
+  // ═══ RENDER GRID IN FEATURED ORDER ═══
+  const orderedCards = FEATURED_ORDER.map(entry => {
+    if (entry.kind === 'routine') {
+      const b = (window.CURATED_BUNDLES || []).find(x => x.id === entry.id);
+      return b ? renderRoutineCard(b) : '';
+    } else {
+      const b = (window.CONCERN_BUNDLES || []).find(x => x.id === entry.id);
+      return b ? renderConcernCard(b) : '';
+    }
+  }).filter(Boolean);
+  grid.innerHTML = orderedCards.join('');
+
+  const routineCount = FEATURED_ORDER.filter(e => e.kind === 'routine').length;
+  const concernCount = FEATURED_ORDER.filter(e => e.kind === 'concern').length;
   const totalCount = routineCount + concernCount;
-  console.log(`[bundles.html] Rendering ${routineCount} routines + ${concernCount} bundles = ${totalCount} total.`);
+  console.log(`[bundles.html] Rendering ${routineCount} routines + ${concernCount} bundles = ${totalCount} total in featured order.`);
 
   // ═══ SORT: reorder existing DOM cards in place ═══
-  // Works across routines and concerns — looks up each card's bundle from either source.
+  // Each card carries data-bundle-kind so collisions on bundle ID (e.g.
+  // 'longevity' exists in both kinds) resolve to the right bundle, and we tag
+  // each bundle object with _kind so the best-sellers sort can use a composite
+  // key (kind:id) to rank them independently.
   function reorderConcernGrid(sortKey) {
     const cards = Array.from(grid.querySelectorAll('.concern-card'));
     const bundles = cards
       .map(c => {
-        const hit = lookupBundleAnyKind(c.dataset.bundleId);
-        return hit ? hit.bundle : null;
+        const kind = c.dataset.bundleKind || 'routine';
+        const hit = lookupBundleAnyKind(c.dataset.bundleId, kind);
+        if (!hit) return null;
+        // Tag a non-enumerable copy of the bundle so we don't mutate the source
+        // arrays, and the sort fn can read _kind for composite ranking.
+        return Object.assign({}, hit.bundle, { _kind: hit.kind });
       })
       .filter(Boolean);
     const sorted = window.dhSortItems(bundles, 'bundles', sortKey || 'featured');
-    const cardById = new Map(cards.map(c => [c.dataset.bundleId, c]));
+    // Build a Map keyed by composite kind:id so collisions don't collapse.
+    const cardByKey = new Map(cards.map(c => [`${c.dataset.bundleKind || 'routine'}:${c.dataset.bundleId}`, c]));
     sorted.forEach(b => {
-      const card = cardById.get(b.id);
+      const card = cardByKey.get(`${b._kind}:${b.id}`);
       if (card) grid.appendChild(card);
     });
   }
