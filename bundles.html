@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css?v=4">
-<link rel="stylesheet" href="css/shared.css?v=4">
+<link rel="stylesheet" href="css/shared.css?v=6">
 <link rel="stylesheet" href="css/bundle-expand.css">
 <style>
   body { background: var(--cream); color: var(--ink); font-family: 'Poppins', sans-serif; margin: 0; }
@@ -1424,6 +1424,8 @@ function renderConcernCard(bundle) {
 
         ${smartTeaserHTML}
 
+        ${typeof window.generateBundleDirections === 'function' ? window.generateBundleDirections(bundle) : ''}
+
         ${window.dhBuildSubscribeToggle(bundle)}
 
         <div class="concern-actions">
@@ -1533,6 +1535,8 @@ function renderRoutineCard(bundle) {
         </div>
 
         ${smartTeaserHTML}
+
+        ${typeof window.generateBundleDirections === 'function' ? window.generateBundleDirections(bundle) : ''}
 
         ${window.dhBuildSubscribeToggle(bundle)}
 
@@ -1649,6 +1653,19 @@ document.addEventListener('DOMContentLoaded', () => {
   // routines.html. Smooth-scrolls the card top into view when collapsing so the
   // user isn't visually stranded mid-page after a tall card snaps shut.
   grid.addEventListener('click', (e) => {
+    // Routine directions tab — toggle independently from the parent card.
+    // Check this FIRST so the card-toggle handler below doesn't fire too.
+    const dirToggle = e.target.closest('[data-directions-toggle]');
+    if (dirToggle) {
+      const dirBlock = dirToggle.closest('.bundle-directions');
+      if (dirBlock) {
+        const wasCollapsed = dirBlock.classList.contains('is-collapsed');
+        dirBlock.classList.toggle('is-collapsed');
+        dirToggle.setAttribute('aria-expanded', wasCollapsed ? 'true' : 'false');
+      }
+      return;
+    }
+
     const toggler = e.target.closest('[data-card-toggle]');
     if (!toggler) return;
     const card = toggler.closest('.concern-card');

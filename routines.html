@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css?v=3">
-<link rel="stylesheet" href="css/shared.css?v=3">
+<link rel="stylesheet" href="css/shared.css?v=6">
 <link rel="stylesheet" href="css/bundle-expand.css">
 <style>
   :root {
@@ -2673,6 +2673,8 @@
 
           ${smartTeaserHTML}
 
+          ${typeof window.generateBundleDirections === 'function' ? window.generateBundleDirections(bundle) : ''}
+
           ${typeof window.dhBuildSubscribeToggle === 'function' ? window.dhBuildSubscribeToggle(bundle) : '<!-- subscribe toggle pending -->'}
 
           <div class="concern-actions">
@@ -2700,6 +2702,18 @@
     // ── COLLAPSIBLE CARDS — single delegated handler, supports both the top
     // collapsed-strip (expand) and the bottom "Collapse" button (collapse).
     grid.addEventListener('click', (e) => {
+      // Routine directions tab — toggle independently from the parent card.
+      const dirToggle = e.target.closest('[data-directions-toggle]');
+      if (dirToggle) {
+        const dirBlock = dirToggle.closest('.bundle-directions');
+        if (dirBlock) {
+          const wasCollapsed = dirBlock.classList.contains('is-collapsed');
+          dirBlock.classList.toggle('is-collapsed');
+          dirToggle.setAttribute('aria-expanded', wasCollapsed ? 'true' : 'false');
+        }
+        return;
+      }
+
       const toggler = e.target.closest('[data-card-toggle]');
       if (!toggler) return;
       const card = toggler.closest('.curated-card');
