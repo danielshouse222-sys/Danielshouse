@@ -1656,15 +1656,6 @@ window.CONCERN_BUNDLES = [
     slugs: ['the-house-power', 'the-house-pump', 'the-house-seal', 'the-house-collagen']
   },
   {
-    id: 'beauty',
-    discount: 0.1,
-    tab: 'goal',
-    icon: 'F.',
-    name: 'The Glow Bundle',
-    blurb: "Inside-out beauty: oral collagen and beauty vitamins meet topical vitamin C and the finishing glow oil. The compounded effect topical alone can't reach.",
-    slugs: ['the-house-radiance', 'the-house-collagen', 'the-house-boost', 'the-house-glow']
-  },
-  {
     id: 'longevity',
     discount: 0.12,
     tab: 'goal',

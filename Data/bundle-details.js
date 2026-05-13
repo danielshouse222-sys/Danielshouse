@@ -385,22 +385,6 @@ window.BUNDLE_DETAILS = {
         { q: 'Why collagen for strength training?', a: 'Joint and tendon health is the limiting factor for serious lifters. Collagen at 10g daily, especially paired with vitamin C, has clinical evidence supporting tendon and cartilage health.' }
       ]
     },
-    'beauty': {
-      eyebrow: 'Inside-Out Radiance · Oral + Topical Beauty Stack',
-      description: 'Five products — bovine collagen peptides and the beauty vitamin gummy for the internal foundation, plus topical vitamin C, antioxidant defense, and the finishing glow oil. The compounded inside-out beauty effect.',
-      whyThis: "Beauty results compound when topical and internal work together — neither alone reaches the same ceiling. Internally: Collagen at 10g daily provides amino acid substrates fibroblasts need; Radiance covers vitamins A/C/D/E, biotin, B-complex, zinc — the nutrient foundation for skin, hair, nails. Topically: Boost (vitamin C) brightens pigment irregularities and signals collagen synthesis at the surface; Defense protects from environmental dullness via niacinamide and antioxidants; Glow's facial oil seals it all with luminous finish. Each piece amplifies the others.",
-      timeline: [
-        { week: 'Week 1', text: 'Immediate skin freshness from vitamin C and oil. Hair and nails feel stronger from collagen.' },
-        { week: 'Week 4', text: 'Brightness visibly improves; skin reflects light more evenly. Hair growth accelerates.' },
-        { week: 'Week 8', text: 'Skin elasticity measurably improves (collagen effect). Glow baseline at a higher level.' },
-        { week: 'Week 12+', text: 'Sustained inside-out beauty. The compounded effect of topical + internal works as designed.' }
-      ],
-      faq: [
-        { q: 'When should I take Collagen and Radiance?', a: 'Collagen: any time daily — morning in coffee is the most popular ritual. Radiance: with food for fat-soluble vitamin absorption.' },
-        { q: 'How long until visible glow?', a: '1-2 weeks for surface freshness from topical actives. 4-6 weeks for collagen + Radiance effects on hair, nails, and early skin response. 8-12 weeks for full inside-out compounding.' },
-        { q: 'Is Collagen vegan?', a: 'No — Collagen is bovine-sourced. Radiance contains marine collagen (pescatarian-friendly).' }
-      ]
-    },
     'longevity': {
       eyebrow: 'Cellular Health + Visible Anti-Aging',
       description: 'Five products — NAD+ precursor stack with resveratrol, CoQ10 for mitochondrial function, and curcumin-based joint complex for inflammation, paired with retinol and peptides where aging visibly shows.',
