@@ -256,7 +256,7 @@ window.PRODUCTS = [
       { actor: 'Copper-Containing Skincare', finding: 'Topical copper complexes demonstrate measurable effects on extracellular matrix proteins including collagen and elastin in dermatological research spanning two decades.', source: 'International Journal of Molecular Sciences, 2022' }
         ],
     faq: [
-      { q: 'Does the retinyl palmitate count as a real retinol step?', a: 'No — retinyl palmitate is the gentlest vitamin A ester and is more about supporting skin renewal than driving visible anti-aging change. For real retinoid work, Bounce (encapsulated retinol) is the dedicated treatment step. Soft\'s vitamin A is a daily-use, low-irritation supportive dose.' },
+      { q: 'Does the retinyl palmitate count as a real retinol step?', a: 'No — retinyl palmitate is the gentlest vitamin A ester and is more about supporting skin renewal than driving visible anti-aging change. For real retinoid work, Bounce (0.05% retinol stacked with peptides, vitamin C, and HA) is the dedicated treatment step. Soft\'s vitamin A is a daily-use, low-irritation supportive dose.' },
       { q: 'Is this rich enough for dry skin?', a: 'For most skin types, yes — the avocado oil and copper ferment give it real richness. Very dry skin in winter may want to layer Glow on top.' },
       { q: 'Will it work under makeup?', a: 'Yes — give it 90 seconds to absorb before foundation. The avocado oil grounds the formula but it finishes clean.' },
       { q: 'AM or PM?', a: 'Both. Some people split: Hydration (gel-cream) in the AM for under-SPF, Soft (richer) in the PM. Both work either time.' },
@@ -400,7 +400,7 @@ window.PRODUCTS = [
       { q: 'Will my skin peel?', a: 'Some mild flaking is normal in the first 2-3 weeks as the cell-turnover cycle accelerates ("retinization"). If severe, reduce frequency. The buffering actives in this formula (HA, peptides, Vit C) make the retinization phase noticeably gentler than a pure-retinol product.' },
       { q: 'Can I use this if I\'m pregnant?', a: 'No — retinol is not recommended during pregnancy or breastfeeding. Use Soft (which contains gentler retinyl palmitate) or skip the retinol step entirely until after. The Eye cream (bakuchiol) is the pregnancy-safe retinol-alternative for the face.' },
       { q: 'How is this different from Renewal?', a: 'Renewal is a triple-acid AHA/BHA treatment cleanse (chemical exfoliation) — used 2-3 nights/week. Bounce is the retinol serum (cell-turnover and collagen) — used 3-4 nights/week. They\'re both treatment nights, but never on the same evening (over-exfoliation). Standard rotation: Bounce 3 nights, Renewal 2 nights, rest nights for the other 2.' },
-      { q: 'Why 0.05% retinol — that seems low?', a: 'Honestly, 0.05% encapsulated retinol with peptides and Vit C is more effective than 0.5% retinol alone for most users. Higher percentages cause more irritation and the drop-out rate is huge — most people quit before they see results. Lower-percentage-but-tolerated beats higher-percentage-but-abandoned every time. After 6-12 months at this level your skin\'s tolerance builds and we can recommend stepping up to a higher % if you want.' }
+      { q: 'Why 0.05% retinol — that seems low?', a: 'Honestly, 0.05% retinol with peptides and Vit C is more effective than 0.5% retinol alone for most users. Higher percentages cause more irritation and the drop-out rate is huge — most people quit before they see results. Lower-percentage-but-tolerated beats higher-percentage-but-abandoned every time. After 6-12 months at this level your skin\'s tolerance builds and we can recommend stepping up to a higher % if you want.' }
         ],
     relatedSlugs: ['the-house-renewal', 'the-house-firm', 'the-house-eye', 'the-house-shield'],
     resultsTimeline: [
@@ -1726,7 +1726,7 @@ window.CONCERN_BUNDLES = [
     tab: 'goal',
     icon: 'H.',
     name: 'The Gut Bundle',
-    blurb: "Gut-foundation supplements that downstream improve nearly everything else, plus the niacinamide serum for when the gut-skin axis shows up on your face. The foundation makes everything else work better.",
+    blurb: "Gut-foundation supplements that downstream improve nearly everything else, plus the three-form vitamin C serum for when the gut-skin axis shows up on your face as dullness or post-inflammation marks. The foundation makes everything else work better.",
     slugs: ['the-house-biome', 'the-house-seal', 'the-house-greens', 'the-house-boost']
   },
   {
