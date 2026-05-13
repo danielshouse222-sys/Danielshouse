@@ -2166,7 +2166,7 @@
           { name: "Defense", note: "Morning, after Boost. Antioxidant heavy hitter that protects the brightening work from being undone by UV and pollution." }
         ],
         pm: [
-          { name: "Glow",   note: "Evening, as the final step. Six-oil blend — rosehip is the brightness ingredient (high in vitamin A precursors)." },
+          { name: "Glow",   note: "Evening, as the final step. Hyaluronic spheres suspended in squalane — multi-weight HA delivered in a lightweight lipid carrier." },
           { name: "Mask",   note: "1-2 nights/week. Charcoal + clay detox that reveals brighter skin underneath. Skip on nights you use Glow." }
         ],
         supplements: [
