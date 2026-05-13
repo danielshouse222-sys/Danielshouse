@@ -137,7 +137,7 @@ window.DH_FAQ_DATA = [
     "cat": "Ingredients & Safety",
     "cat_id": 3,
     "q": "Can I use products if I'm pregnant or nursing?",
-    "a": "For skincare, avoid retinol-containing products (Bounce, Renewal). Pregnancy-safe alternatives include Hydration, Soft, Hyaluronic, Defense, and Eye. For supplements, consult your healthcare provider before starting any new supplement during pregnancy or nursing."
+    "a": "For skincare, avoid retinol (Bounce) and the triple-acid resurfacing treatments (Renewal, Mask, Clear) which contain salicylic acid at treatment concentrations. Soft contains low-dose retinyl palmitate — most providers consider it safe during pregnancy, but confirm with yours. Fully pregnancy-safe alternatives include Wash, Balance (peeling pads are debated — confirm with provider), Boost (gentle Vit C derivatives), Hyaluronic, Defense (confirm with provider), Hydration (the safest moisturizer choice — no vitamin A), Eye (bakuchiol — the popular pregnancy-safe retinol-alternative), Glow, Polish, and Shield (mineral SPF — pregnancy-essential). For supplements, consult your healthcare provider before starting any new supplement during pregnancy or nursing."
   },
   {
     "cat": "Ingredients & Safety",
