@@ -1907,20 +1907,21 @@
       ultimate: {
         intro: "Daniel's complete protocol — inside and out. Every product he uses every day, layered in the order they work best. <em>Skincare and supplements aren't separate problems; they're one system.</em> Twenty-two bottles, twelve daily steps, ten daily supplements, one box. The biggest discount on the site because this is what the line was built to do.",
         am: [
-          { name: "Wash",       note: "The protein-based cleanser that resets the skin without stripping it." },
-          { name: "Balance",    note: "Witch hazel, aloe, and white tea prep the skin to receive actives — not a five-alarm astringent." },
-          { name: "Boost",      note: "Vitamin C, niacinamide, and panthenol. The triple-vitamin serum that brightens and evens tone." },
-          { name: "Hyaluronic", note: "Multi-weight hyaluronic acid pulls moisture deep; glycerin keeps it there." },
-          { name: "Defense",    note: "The antioxidant heavy hitter. Stable vit C, soy protein, squalane, caffeine — protection layer for the day." },
-          { name: "Soft",       note: "Multi-weight HA + aloe seals the AM stack with hydration." }
+          { name: "Wash",       note: "The botanical cleanser — rose hip seed oil, geranium, and Irish moss in a silky, fragrance-free lather." },
+          { name: "Balance",    note: "Tri-acid peeling pads (salicylic, lactic, mandelic) — the toner step upgraded to daily exfoliation." },
+          { name: "Boost",      note: "Three stable forms of vitamin C for sustained brightening without the sting of L-ascorbic acid." },
+          { name: "Hyaluronic", note: "Pure water + sodium hyaluronate. Minimalist hydration that layers cleanly with every product after it." },
+          { name: "Defense",    note: "The CE Ferulic antioxidant shield. L-ascorbic acid + ferulic acid + niacinamide + B5 + vitamin E — the SkinCeuticals-tier architecture." },
+          { name: "Soft",       note: "All-in-One Cream with hyaluronic acid, avocado oil, copper ferment, niacinamide, and gentle retinyl palmitate." },
+          { name: "Shield",     note: "Mineral SPF 30 — non-nano zinc oxide + titanium dioxide. The most important product in any anti-aging routine." }
         ],
         pm: [
-          { name: "Bounce",    note: "The PM cornerstone. Retinol, hydrolyzed collagen, and HA in one elegant step." },
-          { name: "Renewal",   note: "2-3 nights/week only. Glycolic acid resurfaces overnight; retinyl palmitate supports collagen." },
-          { name: "Firm",      note: "Peptides, cucumber, and chrysin for fine lines — concentrated where Bounce leaves off." },
-          { name: "Hydration", note: "Glycerin mimics the skin's own moisture pathway; cassia obtusifolia adds antioxidant defense." },
-          { name: "Eye",       note: "Peptide cream targets the orbital area both AM and PM." },
-          { name: "Glow",      note: "The finishing oil. Rosehip, hemp, and grape seed in a six-oil blend — locks in the routine." }
+          { name: "Bounce",    note: "The PM cornerstone. 0.05% retinol + 0.5% vitamin C + 0.1% hyaluronic acid + Matrixyl peptides + botanical skin-tightening trio. Alternating nights with Renewal." },
+          { name: "Renewal",   note: "2-3 nights/week, alternating with Bounce. Triple-acid treatment cleanse — glycolic, lactic, salicylic — for deep resurfacing." },
+          { name: "Firm",      note: "Six-peptide complex — Argireline, SNAP-8, Pentapeptide-18, Syn-Ake, and Matrixyl Tripeptide-1 and Tetrapeptide-7." },
+          { name: "Hydration", note: "Glacier gel-cream powered by snow algae, cloudberry, and a sugar-derived moisture complex. Cool, light, layers under Glow." },
+          { name: "Eye",       note: "Bakuchiol (plant retinol alternative) + triple-peptide complex targets the orbital area both AM and PM." },
+          { name: "Glow",      note: "The lipid seal — squalane and ceramide-family glycosphingolipids. Absorbs cleanly without residue, locks in the routine." }
         ],
         supplements: [
           { name: "Multi",     note: "Foundation nutrition, with breakfast." },
@@ -1977,46 +1978,47 @@
         }
       },
       am: {
-        intro: "Six steps to start the day with a complete barrier and visible glow. <em>Cleanse, tone, brighten, hydrate, defend, moisturize.</em> Each product layers cleanly into the next — no balling, no pilling, no waiting between steps. Ten minutes the first week, four minutes once you have the order down.",
+        intro: "Seven steps to start the day with a complete barrier, visible glow, and full UV protection. <em>Cleanse, prep, brighten, hydrate, defend, moisturize, shield.</em> Each product layers cleanly into the next — no balling, no pilling, no waiting between steps. Ten minutes the first week, four minutes once you have the order down.",
         am: [
-          { name: "Wash",       note: "The protein-based cleanser. Resets the skin without stripping it — sets the canvas for everything that follows." },
-          { name: "Balance",    note: "Witch hazel, aloe, white tea, and cucumber prep the skin to receive actives. Not a five-alarm astringent." },
-          { name: "Boost",      note: "Vitamin C (stable derivative), niacinamide, and panthenol. The triple-vitamin serum — brightens, evens tone, strengthens the barrier." },
-          { name: "Hyaluronic", note: "Multi-weight hyaluronic acid pulls moisture into deeper layers. Glycerin keeps it there. Six ingredients total — pure, layerable hydration." },
-          { name: "Defense",    note: "The antioxidant heavy hitter. Stable vit C, hydrolyzed soy protein, squalane, caffeine — protects collagen from environmental damage." },
-          { name: "Soft",       note: "Multi-weight HA + aloe + a silky non-greasy finish. The moisturizer that doesn't make you choose between hydration and texture." }
+          { name: "Wash",       note: "The botanical cleanser — rose hip seed oil, geranium, Irish moss. Lifts oil without stripping the barrier." },
+          { name: "Balance",    note: "Tri-acid peeling pads — salicylic, lactic, mandelic. Replaces a passive toner with daily gentle exfoliation." },
+          { name: "Boost",      note: "Three stable forms of vitamin C — sodium ascorbyl phosphate, ascorbyl glucoside, magnesium ascorbyl phosphate. Sustained brightening without the sting." },
+          { name: "Hyaluronic", note: "Pure water + sodium hyaluronate. Holds 1,000x its weight in water and layers cleanly with every other product." },
+          { name: "Defense",    note: "The CE Ferulic shield. L-ascorbic acid + ferulic acid + niacinamide + B5 + vitamin E. Gold-standard antioxidant defense." },
+          { name: "Soft",       note: "All-in-One Cream with hyaluronic acid, avocado oil, copper ferment, and gentle retinyl palmitate. Multi-action daily moisturizer." },
+          { name: "Shield",     note: "Mineral SPF 30 — non-nano zinc oxide + titanium dioxide with coffee fruit, ferulic acid, and niacinamide. The most important product in any anti-aging routine." }
         ],
         whyItWorks: {
-          lead: "Morning skincare has two jobs: protect what you have, and start visible results. This bundle delivers both with the highest-evidence daytime actives — antioxidants for protection, niacinamide and vitamin C for results.",
+          lead: "Morning skincare has two jobs: protect what you have, and start visible results. This bundle delivers both with the highest-evidence daytime actives — the CE Ferulic antioxidant architecture, three-form vitamin C, and broad-spectrum mineral SPF for non-negotiable UV defense.",
           mechanisms: [
-            { problem: "Environmental damage", solution: "Boost + Defense layer two complementary antioxidants for full-spectrum protection" },
-            { problem: "Dullness/uneven tone", solution: "Vitamin C derivatives + niacinamide brighten over 4-6 weeks" },
+            { problem: "Environmental damage", solution: "Boost + Defense + Shield layer three forms of photoprotection — antioxidants and physical UV block" },
+            { problem: "Dullness/uneven tone", solution: "Multi-form vitamin C + niacinamide + ferulic acid brighten over 4-6 weeks" },
             { problem: "Dehydration",          solution: "Hyaluronic + Soft create a deep hydration layer that lasts through the day" },
-            { problem: "Barrier weakness",     solution: "Wash + Balance + panthenol in Boost support and don't disrupt the barrier" }
+            { problem: "Photoaging risk",      solution: "Daily SPF is the single most-evidenced anti-aging intervention in dermatology" }
           ]
         },
         whoItsFor: {
           yes: "You want a complete morning routine that takes under five minutes once you have it dialed. You believe in protection-first skincare and want visible brightness without a 12-step Korean routine.",
-          no: "You only have time for a 2-step routine (just Wash + Soft works as a minimum). Or you want PM repair work too — the PM Routine is the natural complement."
+          no: "You only have time for a 2-step routine (just Wash + Soft works as a minimum, plus Shield). Or you want PM repair work too — the PM Routine is the natural complement."
         }
       },
       pm: {
-        intro: "Six steps to wake up better skin. <em>Retinol resurfaces, peptides firm, hyaluronic plumps, glycolic renews, oil seals.</em> The repair work happens while you sleep — this is what gives it material to work with. PM is where visible anti-aging actually compounds.",
+        intro: "Six steps to wake up better skin. <em>Treatment alternates, peptides firm, hyaluronic plumps, eye repairs, oil seals.</em> The repair work happens while you sleep — this is what gives it material to work with. PM is where visible anti-aging actually compounds.",
         pm: [
-          { name: "Bounce",    note: "The PM cornerstone. Retinol stimulates cell turnover and collagen production; hydrolyzed collagen plumps; HA hydrates. Three of the most clinically proven anti-aging actives in one bottle." },
-          { name: "Renewal",   note: "2-3 nights/week only. Glycolic acid resurfaces overnight; retinyl palmitate supports collagen; squalane keeps you from waking up tight." },
-          { name: "Firm",      note: "Peptides, cucumber, chrysin in an oil-free formula. Targets fine lines and the orbital area — concentrated where Bounce leaves off." },
-          { name: "Hydration", note: "Glycerin mimics the skin's own moisture process; cassia obtusifolia adds antioxidant defense. Layers cleanly with the actives above and below." },
-          { name: "Eye",       note: "Peptide cream with cucumber, aloe, safflower oil. Peptides do their best work overnight." },
-          { name: "Glow",      note: "Rosehip, hemp seed, grape seed in a six-oil blend. The finishing layer that locks in everything underneath." }
+          { name: "Bounce",    note: "The retinol cornerstone. 0.05% retinol + stable vitamin C + hyaluronic acid + Matrixyl peptides + botanical skin-tightening trio. Alternating nights with Renewal." },
+          { name: "Renewal",   note: "2-3 nights/week, alternating with Bounce. Triple-acid treatment cleanse — glycolic + lactic + salicylic — for deep resurfacing." },
+          { name: "Firm",      note: "Six-peptide complex — Argireline, SNAP-8, Pentapeptide-18, Syn-Ake, plus Matrixyl Tripeptide-1 and Tetrapeptide-7. Collagen signaling from multiple angles." },
+          { name: "Hydration", note: "Snow algae + cloudberry + sugar-derived moisture complex. Cool, light, layers cleanly under Glow." },
+          { name: "Eye",       note: "Bakuchiol (plant retinol alternative) + triple-peptide complex. Works overnight on the thin under-eye area." },
+          { name: "Glow",      note: "Squalane + ceramide-family glycosphingolipids. The lipid seal that locks in the whole routine." }
         ],
         whyItWorks: {
-          lead: "Sleep is when skin does its repair work — cell turnover peaks, growth hormone releases, collagen synthesis fires. This bundle gives that process the actives it needs: retinol for turnover, peptides for collagen signaling, hyaluronic for hydration, oil to seal.",
+          lead: "Sleep is when skin does its repair work — cell turnover peaks, growth hormone releases, collagen synthesis fires. This bundle gives that process the actives it needs: retinol for turnover, six peptides for collagen signaling, hyaluronic for hydration, lipids to seal.",
           mechanisms: [
-            { problem: "Slowed cell turnover", solution: "Bounce's retinol + Renewal's glycolic acid (alternating nights) accelerate renewal" },
-            { problem: "Collagen breakdown",   solution: "Peptides in Firm + Eye signal for fibroblast activity overnight" },
+            { problem: "Slowed cell turnover", solution: "Bounce's retinol + Renewal's triple-acid blend (alternating nights) accelerate renewal" },
+            { problem: "Collagen breakdown",   solution: "Six peptides in Firm + triple-peptide complex in Eye signal for fibroblast activity overnight" },
             { problem: "Loss of plumpness",    solution: "Hyaluronic acid in Bounce + Hydration restores volume" },
-            { problem: "Barrier weakness",     solution: "Glow's six-oil blend seals everything and supports the lipid layer" }
+            { problem: "Barrier weakness",     solution: "Glow's squalane + ceramide lipid seal reinforces the barrier overnight" }
           ]
         },
         whoItsFor: {
@@ -2123,14 +2125,14 @@
       weekly: {
         intro: "Two treatments. <em>One night a week, you mask. Another night, you polish.</em> Never both — these aren't daily steps. They're the deeper resets that give the daily routine more to work with. The clinical-grade weekly intervention the rest of the line is built around.",
         pm: [
-          { name: "Mask",   note: "1 night/week. Charcoal + sodium bicarbonate + kaolin clay — activated by warm water for a spa-night detox. Five minutes, then gentle massage off." },
-          { name: "Polish", note: "1 night/week (different night from Mask). Plant-cellulose physical exfoliant with a clean menthol cool. Removes dead surface layer so daily actives can actually do their job." }
+          { name: "Mask",   note: "1 night/week. Bentonite clay + colloidal sulfur + salicylic acid + zinc oxide — the dermatologist-prescribed combination for detoxifying congested skin. Tightens pores as it dries." },
+          { name: "Polish", note: "1 night/week (different night from Mask). Real strawberry seeds and biodegradable jojoba beads gently lift dead surface skin. Goji and ginseng nourish and support resilience." }
         ],
         whyItWorks: {
           lead: "Daily skincare maintains. Weekly treatments reset. The skin barrier accumulates dead cells, pore congestion, and trapped sebum over the course of a week — the daily routine doesn't address that. These two products do, without disrupting the barrier.",
           mechanisms: [
-            { problem: "Pore congestion",      solution: "Mask's charcoal + clay pull oil and impurities from deep in the pore" },
-            { problem: "Dead cell buildup",    solution: "Polish's cellulose particles physically remove the dull surface layer" },
+            { problem: "Pore congestion",      solution: "Mask's bentonite + sulfur + salicylic combination pulls oil and impurities from deep in the pore" },
+            { problem: "Dead cell buildup",    solution: "Polish's strawberry seeds + jojoba beads physically remove the dull surface layer" },
             { problem: "Stalled daily results", solution: "Both treatments clear the runway so daily actives can actually penetrate and work" }
           ]
         },
@@ -2143,14 +2145,14 @@
         intro: "The bundle for parents who want visible anti-aging results <em>and</em> take the long view on aging. Named for the season of life it supports — works just as well for dads. Five skincare layers built around the highest-evidence topical actives — retinol overnight, antioxidants by day, peptides around the eyes — paired with five longevity-grade supplements that work the cellular layer: <em>NAD+ for mitochondrial energy, collagen building blocks, antioxidant support, and the sleep aid that turns nights into real repair time.</em>",
         am: [
           { name: "Wash",    note: "Gentle cleanser that doesn't strip the skin's natural oils — the daily reset before the actives." },
-          { name: "Defense", note: "The daytime antioxidant heavy hitter. Stable vitamin C (tetrahexyldecyl ascorbate), hydrolyzed soy protein, squalane, and caffeine — protects existing collagen from breaking down throughout the day." },
-          { name: "Eye",     note: "Peptide cream firms and brightens the orbital area before moisturizer locks it in. Cucumber and aloe depuff." },
-          { name: "Soft",    note: "Multi-weight hyaluronic acid + aloe seals everything with deep hydration — a non-negotiable step for aging skin." }
+          { name: "Defense", note: "The CE Ferulic antioxidant shield — L-ascorbic acid + ferulic acid + niacinamide + B5 + vitamin E. The gold-standard daytime architecture for protecting existing collagen from breaking down." },
+          { name: "Eye",     note: "Bakuchiol + triple-peptide complex firms and brightens the orbital area. Cucumber and squalane depuff." },
+          { name: "Soft",    note: "All-in-One Cream with HA, avocado oil, copper ferment, and gentle retinyl palmitate. Deep hydration with mild renewal — a non-negotiable step for aging skin." }
         ],
         pm: [
           { name: "Wash",    note: "Gentle cleanser removes the day without compromising the barrier." },
-          { name: "Bounce",  note: "The cornerstone. Retinol stimulates cell turnover and collagen production; hydrolyzed collagen plumps; hyaluronic acid hydrates. Three of the most clinically proven anti-aging actives in one bottle." },
-          { name: "Eye",     note: "Peptides do their best work overnight — same product, second application." },
+          { name: "Bounce",  note: "The cornerstone. 0.05% retinol + stable vitamin C + hyaluronic acid + Matrixyl peptides + botanical skin-tightening trio. Multi-active retinol that compounds in your favor." },
+          { name: "Eye",     note: "Bakuchiol does its best work overnight — same product, second application." },
           { name: "Soft",    note: "Locks in the actives while skin does its repair work overnight." }
         ],
         supplements: [
