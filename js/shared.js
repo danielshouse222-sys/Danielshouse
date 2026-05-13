@@ -12,13 +12,18 @@
   // ═══ CART STATE ═══
   // In-memory only. Production would sync to Shopify cart API.
   const cart = {
-    items: [], // [{ slug, name, price, image, qty, subscribe, bundleName, bundleDiscount }]
+    items: [], // [{ slug, name, price, image, qty, subscribe, cadence, bundleName, bundleDiscount }]
 
     add(product, opts = {}) {
       const bundleName = opts.bundleName || null;
+      // Cadence: 'monthly' for standard subscribe, 'smart' for Smart Refill, null when one-time.
+      // We keep cart line items for the same product/subscribe state but DIFFERENT cadence
+      // separate, so customers can see (and edit) the cadence per line item.
+      const cadence = opts.subscribe ? (opts.cadence || 'monthly') : null;
       const existing = this.items.find(i =>
         i.slug === product.slug &&
         i.subscribe === !!opts.subscribe &&
+        (i.cadence || null) === cadence &&
         i.bundleName === bundleName
       );
       if (existing) {
@@ -31,6 +36,7 @@
           image: product.image,
           qty: opts.qty || 1,
           subscribe: !!opts.subscribe,
+          cadence: cadence,
           bundleName: bundleName,
           bundleDiscount: opts.bundleDiscount || 0
         });
@@ -875,6 +881,12 @@
   // quiz result (via window._quizState), and the BYO builder.
   function resolveBundleProducts(bundleId) {
     if (!bundleId) return [];
+    // Single-product projection — id format: "product:slug"
+    if (typeof bundleId === 'string' && bundleId.startsWith('product:')) {
+      const slug = bundleId.slice('product:'.length);
+      const p = window.getProductBySlug ? window.getProductBySlug(slug) : null;
+      return p ? [p] : [];
+    }
     // Quiz result — lives in window._quizState exposed by quiz.html
     if (bundleId === 'quiz-result' && window._quizState && window._quizState.getProducts) {
       return window._quizState.getProducts();
@@ -925,6 +937,8 @@
 
   // Look up the bundle discount (so the projection is priced correctly).
   function bundleDiscountFor(bundleId) {
+    // Single product — no bundle discount, just the subscribe stack (10%)
+    if (typeof bundleId === 'string' && bundleId.startsWith('product:')) return 0;
     if (bundleId === 'quiz-result') return 0.15;
     if (bundleId === 'byo') {
       const b = (typeof window.dhGetByoBundle === 'function') ? window.dhGetByoBundle() : null;
@@ -939,6 +953,13 @@
 
   // Friendly bundle title for the popup
   function bundleTitleFor(bundleId, productCount) {
+    // Single product — title with the product name
+    if (typeof bundleId === 'string' && bundleId.startsWith('product:')) {
+      const slug = bundleId.slice('product:'.length);
+      const p = window.getProductBySlug ? window.getProductBySlug(slug) : null;
+      const name = p?.name || 'Your product';
+      return `The House <em>${name}</em> · projection.`;
+    }
     if (bundleId === 'quiz-result') return 'Your personal <em>routine.</em>';
     if (bundleId === 'byo') return 'Your custom <em>routine.</em>';
     const curated = window.getCuratedBundleById && window.getCuratedBundleById(bundleId);
@@ -972,31 +993,51 @@
     const titleEl = popup.querySelector('#smart-projection-popup-title');
     const subEl   = popup.querySelector('#smart-projection-popup-sub');
 
+    const isProduct = typeof bundleId === 'string' && bundleId.startsWith('product:');
+
     if (grid) {
-      grid.innerHTML = months.map((amt, i) => `
-        <div class="proj-cell${i === 0 ? ' proj-cell-first' : ''}">
+      grid.innerHTML = months.map((amt, i) => {
+        const shipped = amt > 0.01;
+        const tagText = i === 0
+          ? (isProduct ? 'first shipment' : 'full bundle')
+          : (shipped ? 'refill' : 'no shipment');
+        return `
+        <div class="proj-cell${i === 0 ? ' proj-cell-first' : ''}${!shipped ? ' proj-cell-empty' : ''}">
           <span class="proj-m">Month ${i + 1}</span>
-          <span class="proj-amt">$${amt.toFixed(2)}</span>
-          ${i === 0 ? '<span class="proj-tag">full bundle</span>' : ''}
-        </div>
-      `).join('');
+          <span class="proj-amt">${shipped ? '$' + amt.toFixed(2) : '—'}</span>
+          <span class="proj-tag">${tagText}</span>
+        </div>`;
+      }).join('');
     }
     if (totalEl) totalEl.textContent = '$' + total.toFixed(2);
     if (cmpEl) cmpEl.textContent = '$' + compare.toFixed(2);
     if (saveEl) {
       if (savings > 0.5) {
         const pct = Math.round((savings / compare) * 100);
-        saveEl.innerHTML = `You save <strong>$${savings.toFixed(2)}</strong> over 6 months — <em>about ${pct}% less than buying the full bundle every month.</em>`;
+        const comparator = isProduct
+          ? 'buying the bottle every month on subscribe'
+          : 'buying the full bundle every month';
+        saveEl.innerHTML = `You save <strong>$${savings.toFixed(2)}</strong> over 6 months — <em>about ${pct}% less than ${comparator}.</em>`;
+      } else if (isProduct) {
+        saveEl.innerHTML = `<em>This product ships every month at its natural cadence — Smart Refill is the same as Subscribe Monthly for this one.</em>`;
       } else {
         saveEl.textContent = '';
       }
     }
     if (titleEl) titleEl.innerHTML = bundleTitleFor(bundleId, products.length);
     if (subEl) {
-      const skin = products.filter(p => p.category === 'skincare').length;
-      const supp = products.filter(p => p.category === 'supplement').length;
-      const mix = [skin && `${skin} skincare`, supp && `${supp} supplement${supp>1?'s':''}`].filter(Boolean).join(' + ');
-      subEl.textContent = `${products.length} products · ${mix} · only what you've actually run out of ships each month.`;
+      if (isProduct) {
+        const p = products[0];
+        const rt = p?.runtime || 1;
+        const shipments = months.filter(m => m > 0.01).length;
+        const cadence = rt === 1 ? 'every month' : `every ${rt} months`;
+        subEl.textContent = `${p?.name || 'Product'} ships ${cadence} — ${shipments} shipments over 6 months at its natural runtime.`;
+      } else {
+        const skin = products.filter(p => p.category === 'skincare').length;
+        const supp = products.filter(p => p.category === 'supplement').length;
+        const mix = [skin && `${skin} skincare`, supp && `${supp} supplement${supp>1?'s':''}`].filter(Boolean).join(' + ');
+        subEl.textContent = `${products.length} products · ${mix} · only what you've actually run out of ships each month.`;
+      }
     }
 
     _lastFocus = document.activeElement;
@@ -1121,51 +1162,74 @@
     });
 
     // Global cadence-button click handler — works for any `.bundle-cadence` on any page.
-    // Highlights the active cadence and toggles the Smart Refill explainer note + projection trigger.
+    // Highlights the active cadence and toggles the Smart Refill explainer note.
+    // The "See your 6-month projection" trigger now lives OUTSIDE the cadence selector
+    // (injected by dhEnhanceBundleToggles or the dhInjectProjectionTrigger helper below)
+    // so it's always visible — not gated behind the Subscribe → Smart Refill clicks.
     document.querySelectorAll('.bundle-cadence').forEach(cadenceSel => {
-      // Inject the "View 6-month projection" trigger button into this cadence selector.
-      // It lives right after the cadence-note and is only visible when Smart Refill is active.
-      // The shared popup (`#smart-projection-popup`) handles the rendering.
-      if (!cadenceSel.querySelector('.cadence-projection-trigger')) {
-        const bundleId = cadenceSel.dataset.bundleId || '';
-        const trigger = document.createElement('button');
-        trigger.type = 'button';
-        trigger.className = 'cadence-projection-trigger';
-        trigger.setAttribute('hidden', '');
-        trigger.setAttribute('data-projection-trigger', '');
-        trigger.dataset.bundleId = bundleId;
-        trigger.innerHTML = '<span class="cpt-icon" aria-hidden="true">📈</span><span class="cpt-text">See your 6-month projection</span><span class="cpt-arrow" aria-hidden="true">→</span>';
-        // Place it after the note if present, otherwise at the end of the cadence selector
-        const note = cadenceSel.querySelector('[data-smart-note]');
-        if (note && note.parentNode === cadenceSel) {
-          note.insertAdjacentElement('afterend', trigger);
-        } else {
-          cadenceSel.appendChild(trigger);
-        }
-        trigger.addEventListener('click', (e) => {
-          e.preventDefault();
-          if (window.dhShowProjection) window.dhShowProjection(bundleId);
-        });
-      }
-
       cadenceSel.querySelectorAll('.cadence-btn').forEach(btn => {
         btn.addEventListener('click', () => {
           cadenceSel.querySelectorAll('.cadence-btn').forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
           const note = cadenceSel.querySelector('[data-smart-note]');
-          const trigger = cadenceSel.querySelector('[data-projection-trigger]');
           const isSmart = btn.dataset.cadence === 'smart';
           if (note) {
             if (isSmart) note.removeAttribute('hidden');
             else note.setAttribute('hidden', '');
           }
-          if (trigger) {
-            if (isSmart) trigger.removeAttribute('hidden');
-            else trigger.setAttribute('hidden', '');
-          }
         });
       });
     });
+
+    // ─── Always-Visible Projection Trigger Injector ──────────────────────
+    //
+    // For every bundle purchase area on the page (anywhere a
+    // .bundle-subscribe-toggle lives), append a "See your 6-month projection"
+    // trigger right next to or below it — always visible regardless of which
+    // mode (One-Time, Subscribe, Smart Refill) is currently selected.
+    // Clicking opens the shared smart-projection-popup for that bundle.
+    window.dhInjectProjectionTrigger = function(root) {
+      const scope = root || document;
+      const toggles = scope.querySelectorAll('.bundle-subscribe-toggle[data-bundle-id]:not([data-projection-injected])');
+      toggles.forEach(toggle => {
+        toggle.setAttribute('data-projection-injected', '1');
+        const bundleId = toggle.dataset.bundleId;
+        if (!bundleId) return;
+        // Idempotency: if a trigger already exists for this bundle ID anywhere in
+        // the document (from a previous scan, before toggle was enhanced),
+        // remove it so we don't end up with duplicates.
+        document
+          .querySelectorAll(`.projection-trigger-inline[data-bundle-id="${bundleId}"]`)
+          .forEach(el => el.remove());
+        // Build the trigger; styled as a subtle in-flow link.
+        const trigger = document.createElement('button');
+        trigger.type = 'button';
+        trigger.className = 'projection-trigger-inline';
+        trigger.setAttribute('data-projection-trigger', '');
+        trigger.dataset.bundleId = bundleId;
+        trigger.innerHTML = '<span class="ptl-icon" aria-hidden="true">📈</span><span class="ptl-text">See your 6-month projection</span><span class="ptl-arrow" aria-hidden="true">→</span>';
+        trigger.addEventListener('click', (e) => {
+          e.preventDefault();
+          if (window.dhShowProjection) window.dhShowProjection(bundleId);
+        });
+        // Placement priority:
+        //   1) Right after the .bundle-cadence selector if present
+        //   2) Otherwise right after the .bundle-subscribe-toggle
+        const cadence = document.querySelector(`.bundle-cadence[data-bundle-id="${bundleId}"]`);
+        if (cadence && cadence.parentElement) {
+          cadence.insertAdjacentElement('afterend', trigger);
+        } else {
+          toggle.insertAdjacentElement('afterend', trigger);
+        }
+      });
+    };
+    // Run on load and after a tick (to catch JS-rendered toggles)
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => window.dhInjectProjectionTrigger());
+    } else {
+      window.dhInjectProjectionTrigger();
+    }
+    setTimeout(() => window.dhInjectProjectionTrigger && window.dhInjectProjectionTrigger(), 300);
 
     // Build the Smart Refill projection popup once and append it to the body so it can
     // overlay any page. Reuses the same .proj-cell math used to live on quiz.html.
@@ -3003,6 +3067,98 @@
         </div>
       `;
     };
+
+    // ─── Auto-Enhance Static Bundle Toggles ──────────────────────────────
+    //
+    // Pages can include a static `<div class="bundle-subscribe-toggle"
+    // data-bundle-id="...">` with just One-Time / Subscribe buttons.
+    // On DOM ready, this scanner finds those toggles, looks up the
+    // matching bundle, and (if smart-refill eligible) replaces the
+    // markup with the full Subscribe + Cadence-selector UI from
+    // dhBuildSubscribeToggle. Also wires the click handlers so the
+    // toggles actually function. Idempotent — marks elements with
+    // data-toggle-enhanced to prevent double-enhancement.
+    //
+    // This means every bundle purchase box on the site automatically
+    // gains the Smart Refill option without per-page markup changes.
+    window.dhEnhanceBundleToggles = function() {
+      const toggles = document.querySelectorAll(
+        '.bundle-subscribe-toggle[data-bundle-id]:not([data-toggle-enhanced])'
+      );
+      toggles.forEach(toggle => {
+        const id = toggle.dataset.bundleId;
+        if (!id) return;
+        // Look up bundle from CURATED or CONCERN sets
+        const bundle = (window.CURATED_BUNDLES || []).find(b => b.id === id) ||
+                       (window.CONCERN_BUNDLES || []).find(b => b.id === id);
+        if (!bundle) {
+          // No bundle data — leave the static toggle as-is, but still wire
+          // its click behavior so One-Time / Subscribe buttons toggle active.
+          toggle.setAttribute('data-toggle-enhanced', '1');
+          toggle.addEventListener('click', e => {
+            const btn = e.target.closest('button');
+            if (!btn) return;
+            toggle.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+          });
+          return;
+        }
+        // Replace with full smart-refill toggle markup
+        const html = window.dhBuildSubscribeToggle(bundle);
+        const wrapper = document.createElement('div');
+        wrapper.innerHTML = html.trim();
+        const newToggle = wrapper.querySelector('.bundle-subscribe-toggle');
+        const newCadence = wrapper.querySelector('.bundle-cadence');
+        if (!newToggle) return;
+        newToggle.setAttribute('data-toggle-enhanced', '1');
+        // Preserve any inline style or special classes from the original
+        if (toggle.getAttribute('style')) newToggle.setAttribute('style', toggle.getAttribute('style'));
+        toggle.replaceWith(newToggle);
+        if (newCadence) newToggle.insertAdjacentElement('afterend', newCadence);
+        // Wire toggle: One-Time / Subscribe
+        newToggle.addEventListener('click', e => {
+          const btn = e.target.closest('button');
+          if (!btn) return;
+          newToggle.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const isSub = btn.dataset.mode === 'subscribe';
+          newToggle.classList.toggle('subscribe-mode', isSub);
+          if (newCadence) {
+            if (isSub) newCadence.removeAttribute('hidden');
+            else newCadence.setAttribute('hidden', '');
+          }
+          // Update sibling CTA label if present
+          const card = newToggle.closest('.bundle-footnote-inner, .bundle-hero-meta, .featured-inner') || newToggle.parentElement;
+          if (card) {
+            const cta = card.querySelector('[data-bundle-add], .bundle-footnote-cta, .bundle-cta-add');
+            if (cta) cta.textContent = isSub ? 'Subscribe to Routine →' : 'Add Routine to Cart →';
+          }
+        });
+        // Wire cadence buttons
+        if (newCadence) {
+          newCadence.querySelectorAll('.cadence-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+              newCadence.querySelectorAll('.cadence-btn').forEach(b => b.classList.remove('active'));
+              btn.classList.add('active');
+              const note = newCadence.querySelector('[data-smart-note]');
+              if (note) {
+                if (btn.dataset.cadence === 'smart') note.removeAttribute('hidden');
+                else note.setAttribute('hidden', '');
+              }
+            });
+          });
+        }
+      });
+    };
+    // Run on DOMContentLoaded — and also after a tick in case CURATED_BUNDLES
+    // is still loading.
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => window.dhEnhanceBundleToggles());
+    } else {
+      window.dhEnhanceBundleToggles();
+    }
+    // Re-scan after a short delay to catch any toggles inserted by other scripts
+    setTimeout(() => window.dhEnhanceBundleToggles && window.dhEnhanceBundleToggles(), 250);
 
     // ─── Bundle Directions Generator ────────────────────────────────────
     //
