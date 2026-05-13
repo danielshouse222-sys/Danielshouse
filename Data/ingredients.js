@@ -48,8 +48,8 @@ const INGREDIENTS = [
     slug: 'vitamin-c',
     name: 'Vitamin C', alt: 'Ascorbic acid, ascorbyl phosphate', cat: 'skincare', evidence: 'strong',
     tags: ['brightening','protecting'],
-    body: 'Brightens dull skin, supports collagen synthesis, neutralizes free radicals from environmental damage. Used across the line in two forms: pure L-ascorbic acid (the gold-standard in Defense, paired with ferulic acid in the CE Ferulic architecture) and three stable derivatives in Boost — sodium ascorbyl phosphate, ascorbyl glucoside, and magnesium ascorbyl phosphate — that brighten without the irritation of L-ascorbic acid. Bounce also includes 0.5% sodium ascorbyl phosphate to amplify the retinol mechanism.',
-    products: ['the-house-boost', 'the-house-defense', 'the-house-bounce'],
+    body: 'Brightens dull skin, supports collagen synthesis, neutralizes free radicals from environmental damage. The flagship in our line is Defense — pure L-ascorbic acid paired with ferulic acid in the CE Ferulic architecture, with vitamin E and niacinamide on top for environmental defense and brightening. Bounce also includes 0.5% sodium ascorbyl phosphate to amplify the retinol mechanism.',
+    products: ['the-house-defense', 'the-house-bounce'],
     studies: [
       { type: 'Review', title: 'Cutaneous photodamage, oxidative stress, and topical antioxidant protection', authors: 'Pinnell SR', journal: 'Journal of the American Academy of Dermatology', year: 2003, finding: 'Foundational review establishing that topical vitamin C at 10-20% provides photoprotection beyond what sunscreen alone delivers and supports collagen synthesis as a required cofactor.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Cutaneous%20photodamage%2C%20oxidative%20stress%2C%20and%20topical%20antioxidant%20protection' },
       { type: 'Randomized Controlled Trial', title: 'Double-blind, half-face study comparing topical vitamin C and vehicle for rejuvenation of photodamage', authors: 'Fitzpatrick RE, Rostan EF', journal: 'Dermatologic Surgery', year: 2002, finding: 'Half-face design eliminating bias showed significant improvement in fine lines, roughness, and tone on the vitamin C side after 12 weeks vs. vehicle control.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Double-blind%2C%20half-face%20study%20comparing%20topical%20vitamin%20C%20and%20vehicle%20for%20rejuvenation%20of%20photodamage' },
@@ -84,7 +84,7 @@ const INGREDIENTS = [
     slug: 'peptides',
     name: 'Peptides', alt: 'Matrixyl, Argireline, SNAP-8, Syn-Ake', cat: 'skincare', evidence: 'moderate',
     tags: ['firming','anti-aging'],
-    body: 'Short chains of amino acids that signal collagen production and relax expression lines. Matrixyl family (Palmitoyl Tripeptide-1, Tetrapeptide-7) stimulates collagen synthesis. Argireline (Acetyl Hexapeptide-8) softens dynamic wrinkles. SNAP-8 (Acetyl Octapeptide-3) extends Argireline\'s mechanism. Syn-Ake (Dipeptide Diaminobutyroyl Benzylamide Diacetate) smooths the surface. Used across Firm (six-peptide complex), Eye (triple-peptide), and Bounce (Matrixyl pair stacked with retinol). Visible results compound over 8-12 weeks.',
+    body: 'Short chains of amino acids that signal collagen production and relax expression lines. Matrixyl family (Palmitoyl Tripeptide-1, Tetrapeptide-7) stimulates collagen synthesis. Argireline (Acetyl Hexapeptide-8) softens dynamic wrinkles. SNAP-8 (Acetyl Octapeptide-3) extends Argireline\'s mechanism. Syn-Ake (Dipeptide Diaminobutyroyl Benzylamide Diacetate) smooths the surface. Used across Firm (advanced peptide complex), Eye (triple-peptide with DCX), Boost (bio-peptide growth factor serum), and Bounce (Matrixyl pair stacked with retinol). Visible results compound over 8-12 weeks.',
     products: ['the-house-firm', 'the-house-eye', 'the-house-bounce'],
     studies: [
       { type: 'Review', title: 'Cosmeceutical peptides', authors: 'Lupo MP, Cole AL', journal: 'Dermatologic Therapy', year: 2007, finding: 'Foundational review categorizing peptides into signal, carrier, and neurotransmitter-inhibitor groups — established the mechanistic basis for their use in firming and anti-aging formulations.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Cosmeceutical%20peptides' },
@@ -108,7 +108,7 @@ const INGREDIENTS = [
     slug: 'caffeine',
     name: 'Caffeine', alt: 'Trimethylxanthine', cat: 'skincare', evidence: 'moderate',
     tags: ['energizing','brightening'],
-    body: 'Topical caffeine acts as an antioxidant, refreshes dull skin, and supports microcirculation — measurable de-puffing effects. Used in Hydration (Glacier Gel Cream) where it pairs with snow algae and cloudberry for a cool, energizing daily moisturizer.',
+    body: 'Topical caffeine acts as an antioxidant, refreshes dull skin, and supports microcirculation — measurable de-puffing effects. Common in eye and de-puffing formulations across the skincare category.',
     products: ['the-house-hydration'],
     studies: [
       { type: 'Review', title: "Caffeine's mechanisms of action and its cosmetic use", authors: 'Herman A, Herman AP', journal: 'Skin Pharmacology and Physiology', year: 2013, finding: 'Mechanistic review establishing topical caffeine as a vasoconstrictor that reduces erythema and edema, an antioxidant that protects from UV damage, and a lipolysis stimulator with potential cellulite-modulating effects.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Caffeine' },
@@ -204,14 +204,14 @@ const INGREDIENTS = [
   },
   {
     slug: 'ashwagandha',
-    name: 'KSM-66 Ashwagandha', alt: 'Withania somnifera', cat: 'supplement', evidence: 'strong',
+    name: 'Ashwagandha', alt: 'Withania somnifera (root extract)', cat: 'supplement', evidence: 'strong',
     tags: ['stress','sleep'],
-    body: 'The most-studied standardized ashwagandha extract — 24+ randomized controlled trials. Reduces cortisol, supports stress resilience, improves sleep markers. Adaptogenic without sedation.',
+    body: 'One of the most-studied adaptogens — 24+ randomized controlled trials. Reduces cortisol, supports stress resilience, improves sleep markers. Adaptogenic without sedation.',
     products: ['the-house-tranquil'],
     studies: [
-      { type: 'Randomized Controlled Trial', title: 'A prospective, randomized double-blind, placebo-controlled study of safety and efficacy of a high-concentration full-spectrum extract of Ashwagandha root in reducing stress and anxiety in adults', authors: 'Chandrasekhar K, Kapoor J, Anishetty S', journal: 'Indian Journal of Psychological Medicine', year: 2012, finding: 'Foundational KSM-66 trial — 60-day supplementation reduced serum cortisol by 27.9% and produced significant improvement on perceived stress scale and depression-anxiety-stress scale measurements.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=A%20prospective%2C%20randomized%20double-blind%2C%20placebo-controlled%20study%20of%20safety%20and%20efficacy%20of%20a%20high-concentration%20full-spectrum%20extract%20of%20Ashwagandha%20root%20in%20reducing%20stress%20and%20anxiety%20in%20adults' },
+      { type: 'Randomized Controlled Trial', title: 'A prospective, randomized double-blind, placebo-controlled study of safety and efficacy of a high-concentration full-spectrum extract of Ashwagandha root in reducing stress and anxiety in adults', authors: 'Chandrasekhar K, Kapoor J, Anishetty S', journal: 'Indian Journal of Psychological Medicine', year: 2012, finding: 'Foundational ashwagandha trial — 60-day supplementation reduced serum cortisol by 27.9% and produced significant improvement on perceived stress scale and depression-anxiety-stress scale measurements.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=A%20prospective%2C%20randomized%20double-blind%2C%20placebo-controlled%20study%20of%20safety%20and%20efficacy%20of%20a%20high-concentration%20full-spectrum%20extract%20of%20Ashwagandha%20root%20in%20reducing%20stress%20and%20anxiety%20in%20adults' },
       { type: 'Randomized Controlled Trial', title: 'An investigation into the stress-relieving and pharmacological actions of an ashwagandha extract', authors: 'Lopresti AL, Smith SJ, Malvi H, Kodgule R', journal: 'Medicine', year: 2019, finding: 'Double-blind RCT in 60 adults found 240mg ashwagandha extract daily reduced stress hormones (cortisol, DHEA-S) and improved sleep quality measures over 60 days vs. placebo.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=An%20investigation%20into%20the%20stress-relieving%20and%20pharmacological%20actions%20of%20an%20ashwagandha%20extract' },
-      { type: 'Randomized Controlled Trial', title: 'Adaptogenic and Anxiolytic Effects of Ashwagandha Root Extract in Healthy Adults', authors: 'Salve J, Pate S, Debnath K, Langade D', journal: 'Cureus', year: 2019, finding: '8-week RCT in 60 healthy adults demonstrated 250mg or 600mg/day KSM-66 significantly reduced morning cortisol and stress scores — dose-dependent effects support both lower and higher dosing regimens.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Adaptogenic%20and%20Anxiolytic%20Effects%20of%20Ashwagandha%20Root%20Extract%20in%20Healthy%20Adults' }
+      { type: 'Randomized Controlled Trial', title: 'Adaptogenic and Anxiolytic Effects of Ashwagandha Root Extract in Healthy Adults', authors: 'Salve J, Pate S, Debnath K, Langade D', journal: 'Cureus', year: 2019, finding: '8-week RCT in 60 healthy adults demonstrated 250mg or 600mg/day standardized ashwagandha extract significantly reduced morning cortisol and stress scores — dose-dependent effects support both lower and higher dosing regimens.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Adaptogenic%20and%20Anxiolytic%20Effects%20of%20Ashwagandha%20Root%20Extract%20in%20Healthy%20Adults' }
     ]
   },
   {
@@ -242,7 +242,7 @@ const INGREDIENTS = [
     slug: 'probiotics',
     name: 'Probiotic Strains', alt: 'L. acidophilus, B. lactis, etc.', cat: 'supplement', evidence: 'strong',
     tags: ['gut','immunity','daily'],
-    body: 'Multi-strain probiotic blends support gut diversity, digestive health, immune function, and the gut-brain axis. MAKTREK Bi-Pass technology ensures probiotics survive stomach acid for delivery to the gut.',
+    body: 'Multi-strain probiotic blends support gut diversity, digestive health, immune function, and the gut-brain axis. Enteric delivery technology ensures probiotics survive stomach acid for delivery to the gut.',
     products: ['the-house-biome'],
     studies: [
       { type: 'Consensus Statement', title: 'The International Scientific Association for Probiotics and Prebiotics consensus statement', authors: 'Hill C, Guarner F, Reid G, et al.', journal: 'Nature Reviews Gastroenterology & Hepatology', year: 2014, finding: 'Authoritative consensus document defining probiotics as "live microorganisms that, when administered in adequate amounts, confer a health benefit on the host" — establishes evidence thresholds for clinical probiotic claims still used today.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=The%20International%20Scientific%20Association%20for%20Probiotics%20and%20Prebiotics%20consensus%20statement' },
@@ -362,14 +362,14 @@ const INGREDIENTS = [
   },
   {
     slug: 'caffeine-egcg',
-    name: 'Caffeine + EGCG', alt: 'Green tea + caffeine', cat: 'supplement', evidence: 'moderate',
-    tags: ['energy','focus'],
-    body: 'Caffeine paired with green tea catechins demonstrates measurable thermogenic effects. The clean-energy combo for sustained mental and physical output.',
+    name: 'Caffeine + L-Theanine (Green Tea)', alt: 'Caffeine + green tea catechins', cat: 'supplement', evidence: 'strong',
+    tags: ['energy','focus','cognitive-performance'],
+    body: 'Caffeine paired with L-theanine (naturally present in green tea) produces a smoother, more focused energy curve than caffeine alone. The combination is the most-studied nootropic stack — better attention, better reaction time, less jitter and post-stimulant crash.',
     products: ['the-house-burn'],
     studies: [
-      { type: 'Meta-Analysis', title: 'The effects of green tea on weight loss and weight maintenance: a meta-analysis', authors: 'Hursel R, Viechtbauer W, Westerterp-Plantenga MS', journal: 'International Journal of Obesity', year: 2009, finding: 'Meta-analysis of 11 studies covering 1500+ participants — green tea catechins with caffeine produced significant modest weight loss and improved weight maintenance vs. placebo.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=The%20effects%20of%20green%20tea%20on%20weight%20loss%20and%20weight%20maintenance%3A%20a%20meta-analysis' },
-      { type: 'Randomized Controlled Trial', title: 'Efficacy of a green tea extract rich in catechin polyphenols and caffeine in increasing 24-h energy expenditure and fat oxidation in humans', authors: 'Dulloo AG, Duret C, Rohrer D, et al.', journal: 'American Journal of Clinical Nutrition', year: 1999, finding: 'Foundational metabolic study — green tea extract with caffeine increased 24-hour energy expenditure by 4% and fat oxidation by 17% beyond the effect of caffeine alone.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Efficacy%20of%20a%20green%20tea%20extract%20rich%20in%20catechin%20polyphenols%20and%20caffeine%20in%20increasing%2024-h%20energy%20expenditure%20and%20fat%20oxidation%20in%20humans' },
-      { type: 'Mechanistic Study', title: 'Body weight loss and weight maintenance in relation to habitual caffeine intake and green tea supplementation', authors: 'Westerterp-Plantenga MS, Lejeune MP, Kovacs EM', journal: 'Obesity Research', year: 2005, finding: 'Established that thermogenic effects of green tea + caffeine remain present even in habitual caffeine consumers — countering the assumption that tolerance eliminates the effect.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Body%20weight%20loss%20and%20weight%20maintenance%20in%20relation%20to%20habitual%20caffeine%20intake%20and%20green%20tea%20supplementation' }
+      { type: 'Randomized Controlled Trial', title: 'The combined effects of L-theanine and caffeine on cognitive performance and mood', authors: 'Owen GN, Parnell H, De Bruin EA, Rycroft JA', journal: 'Nutritional Neuroscience', year: 2008, finding: 'The combination of L-theanine and caffeine produced measurable improvements in attention and reaction time compared with either compound alone — with reduced subjective jitter.', url: 'https://pubmed.ncbi.nlm.nih.gov/18681988/' },
+      { type: 'Meta-Analysis', title: 'L-theanine, a natural constituent in tea, and its effect on mental state', authors: 'Nobre AC, Rao A, Owen GN', journal: 'Asia Pacific Journal of Clinical Nutrition', year: 2008, finding: 'Review confirmed L-theanine modulates alpha brain wave activity associated with relaxed alertness; combined with caffeine, supports sustained focus without nervous activation.', url: 'https://pubmed.ncbi.nlm.nih.gov/18296328/' },
+      { type: 'Clinical Study', title: 'Acute effects of tea constituents L-theanine, caffeine, and epigallocatechin gallate on cognitive function', authors: 'Camfield DA, Stough C, Farrimond J, Scholey AB', journal: 'Nutrition Reviews', year: 2014, finding: 'Systematic review confirmed L-theanine plus caffeine improves performance on attention-switching tasks and reduces susceptibility to distraction.', url: 'https://pubmed.ncbi.nlm.nih.gov/24946991/' }
     ]
   },
   {
@@ -401,8 +401,8 @@ const INGREDIENTS = [
     slug: 'bakuchiol',
     name: 'Bakuchiol', alt: 'Psoralea corylifolia extract', cat: 'skincare', evidence: 'moderate',
     tags: ['anti-aging','calming'],
-    body: 'A plant-derived alternative to retinol with comparable anti-aging mechanisms but better tolerability — no sun sensitivity, no irritation in most users. Extracted from the seeds of Psoralea corylifolia. Activates the same retinoic acid receptors as retinol without the side-effect profile. Used in Eye for the thin under-eye skin, where it delivers retinol-like renewal benefits without the sensitivity issues that affect that delicate area.',
-    products: ['the-house-eye'],
+    body: 'A plant-derived alternative to retinol with comparable anti-aging mechanisms but better tolerability — no sun sensitivity, no irritation in most users. Extracted from the seeds of Psoralea corylifolia. Activates the same retinoic acid receptors as retinol without the side-effect profile. Not currently in our active product line but profiled here as an educational reference for those seeking pregnancy-safe retinoid alternatives.',
+    products: [],
     studies: [
       { type: 'Randomized Controlled Trial', title: 'Prospective, randomized, double-blind assessment of topical bakuchiol and retinol for facial photoaging', authors: 'Dhaliwal S, Rybak I, Ellis SR, et al.', journal: 'British Journal of Dermatology', year: 2019, finding: '12-week split-face trial in 44 patients — bakuchiol and retinol both significantly reduced wrinkle surface area and hyperpigmentation, with bakuchiol producing less scaling and stinging than retinol.', url: 'https://pubmed.ncbi.nlm.nih.gov/29947134/' },
       { type: 'Mechanistic Study', title: 'Bakuchiol: a retinol-like functional compound revealed by gene expression profiling and clinically proven to have anti-aging effects', authors: 'Chaudhuri RK, Bojanowski K', journal: 'International Journal of Cosmetic Science', year: 2014, finding: 'Gene-expression analysis demonstrated bakuchiol upregulates the same anti-aging gene set as retinol (Types I, III, IV collagen genes; aquaporin 3) without the irritant side-effects.', url: 'https://pubmed.ncbi.nlm.nih.gov/24471735/' },

@@ -11,7 +11,7 @@ window.DH_FAQ_DATA = [
     "cat": "Pricing & Value",
     "cat_id": 5,
     "q": "How does Daniel's House compare to brands like SkinCeuticals, Drunk Elephant, Sunday Riley, or Glossier?",
-    "a": "We sit in the same formulation tier and underprice the brand-name luxury comparison. The clearest example: Defense uses the C E Ferulic architecture — L-ascorbic acid + ferulic acid + vitamin E at the concentrations validated in the foundational 2005 Duke University study. SkinCeuticals owns that name and charges $185 for it. Drunk Elephant's equivalent (C-Firma) is $80. Defense is $74 with niacinamide and panthenol added on top. Bounce stacks five actives (retinol + Vit C + HA + Matrixyl peptides + botanical complex) where Drunk Elephant's A-Passioni is a single-active 1% retinol at $74. Sunday Riley's flagship lactic acid treatment (Good Genes) is $85; our Renewal triple-acid resurfacing treatment is $48. Glossier's positioning is different — they sell a lifestyle aesthetic at a more accessible price point, but their formulations are simpler and the marketing-spend-to-ingredient-spend ratio is higher than ours. Where we save money is not on the formulas — it's on the brand-marketing markup that adds 50-100% to luxury skincare prices and the lifestyle-positioning markup that adds 30-50% to category-defining DTC brands."
+    "a": "We sit in the same formulation tier and underprice the brand-name luxury comparison. The clearest example: Defense uses the C E Ferulic architecture — L-ascorbic acid + ferulic acid + vitamin E at the concentrations validated in the foundational 2005 Duke University study. SkinCeuticals owns that name and charges $185 for it. Drunk Elephant's equivalent (C-Firma) is $80. Defense is $74 with niacinamide and panthenol added on top. Bounce stacks five actives (retinol + Vit C + HA + Matrixyl peptides + botanical complex) where Drunk Elephant's A-Passioni is a single-active 1% retinol at $74. Sunday Riley's flagship lactic acid treatment (Good Genes) is $85; our Renewal multi-action peeling pads are $48. Glossier's positioning is different — they sell a lifestyle aesthetic at a more accessible price point, but their formulations are simpler and the marketing-spend-to-ingredient-spend ratio is higher than ours. Where we save money is not on the formulas — it's on the brand-marketing markup that adds 50-100% to luxury skincare prices and the lifestyle-positioning markup that adds 30-50% to category-defining DTC brands."
   },
   {
     "cat": "Pricing & Value",
@@ -29,7 +29,7 @@ window.DH_FAQ_DATA = [
     "cat": "Pricing & Value",
     "cat_id": 5,
     "q": "What's the savings if I buy a bundle vs individual products?",
-    "a": "Curated routines (AM Routine, PM Routine, Daniel's Daily Skincare, Ultimate, Mom's, etc.) all save 15% off the list price. Targeted bundles (Acne, Dryness, Anti-Aging, Sensitivity, etc.) save 10% off. Build Your Own routines are tiered: pick 3+ and save 10%, pick 6+ and save 12%, pick 9+ and save 15%. Subscribe to any bundle and stack an additional 10% off. For the AM Routine: list price $290, one-time bundle price $246.50 (15% off, save $43.50), subscribed price $221.85 (23.5% off, save $68.15). The PM Routine: list $296, one-time $251.60, subscribed $226.44. The savings get larger as the bundle grows."
+    "a": "Curated routines (AM Routine, PM Routine, Daniel's Daily Skincare, Ultimate, Mom's, etc.) all save 15% off the list price. Targeted bundles (Acne, Dryness, Anti-Aging, Sensitivity, etc.) save 10% off. Build Your Own routines are tiered: pick 3+ and save 10%, pick 6+ and save 12%, pick 9+ and save 15%. Subscribe to any bundle and stack an additional 10% off. For the AM Routine: list price $308, one-time bundle price $261.80 (15% off, save $46.20), subscribed price $235.62 (23.5% off, save $72.38). The PM Routine: list $282, one-time $239.70, subscribed $215.73. The savings get larger as the bundle grows."
   },
   {
     "cat": "Pricing & Value",
@@ -83,7 +83,7 @@ window.DH_FAQ_DATA = [
     "cat": "Returns & Guarantee",
     "cat_id": 1,
     "q": "Can I return a bundle — even just part of it?",
-    "a": "<strong>Yes — full or partial.</strong> Return the entire bundle for a complete refund of what you paid. Or return individual products from a bundle and get a <strong>prorated refund</strong> based on the bundle's per-unit price (not retail). Example: the AM Routine costs $246.50 for 7 products, so each is effectively $35.21. Return one for $35.21 back, two for $70.43, and so on. This way the bundle math stays fair: you keep the bundle discount on what you choose to keep, and don't get retail credit for items that came in at a bundled rate. The 30-day window starts when the bundle arrived."
+    "a": "<strong>Yes — full or partial.</strong> Return the entire bundle for a complete refund of what you paid. Or return individual products from a bundle and get a <strong>prorated refund</strong> based on the bundle's per-unit price (not retail). Example: the AM Routine costs $261.80 for 7 products, so each is effectively $37.40. Return one for $37.40 back, two for $74.80, and so on. This way the bundle math stays fair: you keep the bundle discount on what you choose to keep, and don't get retail credit for items that came in at a bundled rate. The 30-day window starts when the bundle arrived."
   },
   {
     "cat": "Returns & Guarantee",
@@ -131,7 +131,7 @@ window.DH_FAQ_DATA = [
     "cat": "Subscribe & Save",
     "cat_id": 2,
     "q": "Do routines and bundles work with Subscribe &amp; Save?",
-    "a": "Yes — every routine and bundle on the site can be subscribed to, and <strong>every subscription gets an extra 10% off</strong> on top of the routine or bundle discount. This includes the 10 curated routines (Daniel's Daily Supplements, Daniel's Daily Skincare, AM, PM, Foundation, Workout, Longevity, Mom's, Ariana's, Ultimate), the 20 targeted bundles, and the <strong>tiered Build Your Own routine</strong> you create from the picker (10% at Mix 3, 12% at Mix 6, 15% at Mix 9+). Example: a $290 AM Routine is $246.50 one-time (15% off), or $221.85 subscribed (15% routine + 10% subscribe = 23.5% total). Cancel or pause anytime."
+    "a": "Yes — every routine and bundle on the site can be subscribed to, and <strong>every subscription gets an extra 10% off</strong> on top of the routine or bundle discount. This includes the 10 curated routines (Daniel's Daily Supplements, Daniel's Daily Skincare, AM, PM, Foundation, Workout, Longevity, Mom's, Ariana's, Ultimate), the 20 targeted bundles, and the <strong>tiered Build Your Own routine</strong> you create from the picker (10% at Mix 3, 12% at Mix 6, 15% at Mix 9+). Example: a $308 AM Routine is $261.80 one-time (15% off), or $235.62 subscribed (15% routine + 10% subscribe = 23.5% total). Cancel or pause anytime."
   },
   {
     "cat": "Subscribe & Save",
@@ -179,7 +179,7 @@ window.DH_FAQ_DATA = [
     "cat": "Ingredients & Safety",
     "cat_id": 3,
     "q": "Can I use products if I'm pregnant or nursing?",
-    "a": "For skincare, avoid retinol (Bounce) and the triple-acid resurfacing treatments (Renewal, Mask, Clear) which contain salicylic acid at treatment concentrations. Soft contains low-dose retinyl palmitate — most providers consider it safe during pregnancy, but confirm with yours. Fully pregnancy-safe alternatives include Wash, Balance (peeling pads are debated — confirm with provider), Boost (gentle Vit C derivatives), Hyaluronic, Defense (confirm with provider), Hydration (the safest moisturizer choice — no vitamin A), Eye (bakuchiol — the popular pregnancy-safe retinol-alternative), Glow, Polish, and Shield (mineral SPF — pregnancy-essential). For supplements, consult your healthcare provider before starting any new supplement during pregnancy or nursing."
+    "a": "For skincare, avoid retinol (Bounce) and the resurfacing treatments — Renewal (multi-acid peeling pads) and Clear (2% salicylic). Mask contains salicylic acid at gentle weekly-treatment levels — most providers consider it acceptable but some advise against any salicylic during pregnancy. Fully pregnancy-safe alternatives include Wash, Balance (glycolic at 3.5% — confirm with provider; some recommend avoiding all AHAs), Boost (gentle peptides + hyaluronic), Hyaluronic, Defense (confirm with provider), Soft (multi-weight HA moisturizer — no retinoids), Hydration (pure HA mist — the safest choice), Eye (peptide + DCX complex — no retinol or vitamin-A derivatives), Glow (HA spheres in squalane), Polish (physical exfoliant), and Shield (mineral SPF — pregnancy-essential). For supplements, consult your healthcare provider before starting any new supplement during pregnancy or nursing."
   },
   {
     "cat": "Ingredients & Safety",
@@ -197,7 +197,7 @@ window.DH_FAQ_DATA = [
     "cat": "Ingredients & Safety",
     "cat_id": 3,
     "q": "How do I store products?",
-    "a": "Skincare: cool, dry place out of direct sunlight. Most products last 6-12 months after opening. Supplements: cool, dry place. No refrigeration required even for our probiotic (Biome uses MAKTREK technology for shelf stability)."
+    "a": "Skincare: cool, dry place out of direct sunlight. Most products last 6-12 months after opening. Supplements: cool, dry place. No refrigeration required even for our probiotic (Biome uses enteric delivery technology for shelf stability)."
   },
   {
     "cat": "Using the Products",
