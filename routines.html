@@ -3100,6 +3100,8 @@
         discount: tier ? tier.pct : 0
       };
     }
+    // Expose for the shared Smart Refill projection popup
+    window.dhGetByoBundle = getByoSyntheticBundle;
 
     // 3. Refresh the Smart Refill teaser amount based on current selection.
     //    Show only when: ≥3 items selected (eligible for tier), the user is in
