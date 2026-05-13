@@ -508,36 +508,45 @@
     line-height: 1.55;
   }
 
-  /* ─── What's Inside cards ─── */
+  /* ─── What's Inside cards · collapsible <details> with Smart Refill ─── */
   .quiz-products-detailed {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 18px;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 14px;
     text-align: left;
   }
   .quiz-product-card {
-    display: flex;
-    gap: 16px;
-    padding: 18px;
     background: var(--cream);
     border: 1px solid var(--rule);
-    text-decoration: none;
-    color: inherit;
-    transition: border-color 0.25s, transform 0.25s;
+    transition: border-color 0.25s;
+    overflow: hidden;
   }
+  .quiz-product-card[open],
   .quiz-product-card:hover {
     border-color: var(--gold);
-    transform: translateY(-2px);
   }
+  /* Hide native disclosure marker, use a custom chevron */
+  .quiz-product-card-summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 18px;
+    user-select: none;
+  }
+  .quiz-product-card-summary::-webkit-details-marker { display: none; }
+  .quiz-product-card-summary::marker { content: ''; display: none; }
   .quiz-product-card-img {
-    width: 84px;
-    height: 84px;
+    width: 64px;
+    height: 64px;
     flex-shrink: 0;
     background: var(--cream-warm);
     overflow: hidden;
+    border-radius: 2px;
   }
-  .quiz-product-card-img img { width: 100%; height: 100%; object-fit: cover; }
-  .quiz-product-card-body { flex: 1; min-width: 0; }
+  .quiz-product-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .quiz-product-card-summary-body { flex: 1; min-width: 0; }
   .quiz-product-card-cat {
     font-size: 9px;
     letter-spacing: 0.22em;
@@ -550,33 +559,90 @@
     font-family: 'Cormorant Garamond', serif;
     font-size: 20px;
     font-weight: 500;
+    line-height: 1.15;
     margin-bottom: 6px;
     color: var(--ink);
   }
   .quiz-product-card-name em { font-style: italic; color: var(--sage); }
-  .quiz-product-card-blurb {
-    font-size: 12px;
-    line-height: 1.5;
-    color: var(--ink-soft);
-    margin-bottom: 10px;
-  }
-  .quiz-product-card-foot {
+  .quiz-product-card-prices {
     display: flex;
-    justify-content: space-between;
     align-items: baseline;
-    font-size: 12px;
+    gap: 8px;
+    flex-wrap: wrap;
   }
   .quiz-product-card-price {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 16px;
+    font-size: 17px;
     color: var(--ink);
+    font-weight: 500;
   }
-  .quiz-product-card-view {
+  .quiz-product-card-price-sep {
+    color: var(--rule);
+    font-size: 12px;
+  }
+  .quiz-product-card-sr {
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: var(--gold);
+    font-weight: 600;
+  }
+  .quiz-product-card-chevron {
+    flex-shrink: 0;
+    font-size: 14px;
+    color: var(--ink-soft);
+    transition: transform 0.25s ease;
+    line-height: 1;
+    width: 20px;
+    text-align: center;
+  }
+  .quiz-product-card[open] .quiz-product-card-chevron {
+    transform: rotate(-180deg);
+    color: var(--gold);
+  }
+  /* Expanded body */
+  .quiz-product-card-expanded {
+    padding: 0 18px 18px 96px;
+    border-top: 1px solid var(--rule);
+    padding-top: 16px;
+    margin-top: 0;
+  }
+  .quiz-product-card-blurb {
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin-bottom: 12px;
+  }
+  .quiz-product-card-meta {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    font-weight: 500;
+    margin-bottom: 14px;
+    opacity: 0.85;
+  }
+  .quiz-product-card-view-link {
+    display: inline-block;
     color: var(--gold);
     font-size: 10px;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     font-weight: 600;
+    text-decoration: none;
+    padding: 8px 14px;
+    border: 1px solid var(--gold);
+    transition: background 0.2s, color 0.2s;
+  }
+  .quiz-product-card-view-link:hover {
+    background: var(--gold);
+    color: var(--cream);
+  }
+  @media (max-width: 640px) {
+    .quiz-product-card-summary { padding: 14px; gap: 12px; }
+    .quiz-product-card-img { width: 56px; height: 56px; }
+    .quiz-product-card-name { font-size: 18px; }
+    .quiz-product-card-expanded { padding-left: 14px; }
+    .quiz-product-card-sr { font-size: 10.5px; }
   }
 
   /* ─── Why This Stack Works ─── */
@@ -1853,21 +1919,48 @@ function renderQuizBundleDetail(products) {
   const skincare    = products.filter(p => p.category === 'skincare');
   const supplements = products.filter(p => p.category === 'supplement');
 
-  // ─── 1. WHAT'S INSIDE — detailed product cards ────────────────────
-  document.getElementById('quiz-products-detailed').innerHTML = products.map(p => `
-    <a href="product.html?slug=${p.slug}" class="quiz-product-card">
-      <div class="quiz-product-card-img"><img src="${p.image}" alt="${p.name}" loading="lazy"/></div>
-      <div class="quiz-product-card-body">
-        <div class="quiz-product-card-cat">${p.category === 'skincare' ? 'Skincare' : 'Supplement'} · ${(p.tag || '').split('·')[0].trim()}</div>
-        <div class="quiz-product-card-name">The House <em>${p.name}</em></div>
-        <div class="quiz-product-card-blurb">${p.blurb || ''}</div>
-        <div class="quiz-product-card-foot">
-          <span class="quiz-product-card-price">$${p.price.toFixed(2)}</span>
-          <span class="quiz-product-card-view">View Details →</span>
+  // ─── 1. WHAT'S INSIDE — collapsible product cards w/ Smart Refill pricing ──
+  // Smart Refill price per product assumes the customer subscribes to the
+  // whole quiz bundle (15% bundle discount + 10% subscribe bonus), then
+  // amortized over the year using the product's runtime cadence.
+  const SR_BUNDLE_DISC = 0.15;  // matches QUIZ_BUNDLE_DISCOUNT in showResults
+  const SR_SUB_BONUS   = 0.10;
+  function smartRefillMonthly(p) {
+    const rt = p.runtime || 1;
+    const shipmentsPerYear = Math.ceil(12 / rt);
+    const annualList = (p.price || 0) * shipmentsPerYear;
+    const annualNet  = annualList * (1 - SR_BUNDLE_DISC) * (1 - SR_SUB_BONUS);
+    return annualNet / 12;
+  }
+
+  document.getElementById('quiz-products-detailed').innerHTML = products.map(p => {
+    const srMo = smartRefillMonthly(p);
+    const tag  = (p.tag || '').split('·')[0].trim();
+    const desc = p.description || p.tagline || p.blurb || '';
+    return `
+    <details class="quiz-product-card">
+      <summary class="quiz-product-card-summary">
+        <div class="quiz-product-card-img"><img src="${p.image}" alt="${p.name}" loading="lazy"/></div>
+        <div class="quiz-product-card-summary-body">
+          <div class="quiz-product-card-cat">${p.category === 'skincare' ? 'Skincare' : 'Supplement'} · ${tag}</div>
+          <div class="quiz-product-card-name">The House <em>${p.name}</em></div>
+          <div class="quiz-product-card-prices">
+            <span class="quiz-product-card-price">$${p.price.toFixed(2)}</span>
+            <span class="quiz-product-card-price-sep">·</span>
+            <span class="quiz-product-card-sr">~$${srMo.toFixed(2)}/mo Smart Refill</span>
+          </div>
         </div>
+        <span class="quiz-product-card-chevron" aria-hidden="true">▾</span>
+      </summary>
+      <div class="quiz-product-card-expanded">
+        <div class="quiz-product-card-blurb">${desc}</div>
+        <div class="quiz-product-card-meta">
+          <span class="quiz-product-card-runtime">Runtime: ${p.runtime || 1} ${(p.runtime || 1) === 1 ? 'month' : 'months'} per bottle</span>
+        </div>
+        <a href="product.html?slug=${p.slug}" class="quiz-product-card-view-link">View Full Details →</a>
       </div>
-    </a>
-  `).join('');
+    </details>`;
+  }).join('');
 
   // ─── 2. WHY THIS STACK WORKS — composition-aware narrative ────────
   document.getElementById('quiz-why-text').innerHTML = buildQuizWhyText(products, skincare, supplements);
