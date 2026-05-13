@@ -1891,6 +1891,238 @@ body.has-page-filter-modal {
   .cadence-projection-foot { font-size: 12px; }
 }
 
+/* ═══ SMART REFILL PROJECTION — trigger button + popup ═══ */
+/* The trigger is injected into every .bundle-cadence by shared.js.
+   It only becomes visible when Smart Refill is the active cadence. */
+.cadence-projection-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+  padding: 10px 16px;
+  background: rgba(184, 153, 104, 0.08);
+  border: 1px solid rgba(184, 153, 104, 0.4);
+  color: var(--ink, #1F1B17);
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+  width: 100%;
+  justify-content: center;
+}
+.cadence-projection-trigger[hidden] { display: none; }
+.cadence-projection-trigger:hover {
+  background: rgba(184, 153, 104, 0.18);
+  border-color: var(--gold, #B89968);
+  transform: translateY(-1px);
+}
+.cadence-projection-trigger .cpt-icon {
+  font-size: 14px;
+  line-height: 1;
+}
+.cadence-projection-trigger .cpt-arrow {
+  font-size: 12px;
+  color: var(--gold, #B89968);
+  transition: transform 0.2s;
+}
+.cadence-projection-trigger:hover .cpt-arrow {
+  transform: translateX(3px);
+}
+
+/* The popup itself — fixed overlay rendered at the body level. */
+.smart-projection-popup {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: spp-fade-in 0.2s ease-out;
+}
+.smart-projection-popup[hidden] { display: none; }
+@keyframes spp-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.smart-projection-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(31, 27, 23, 0.55);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+}
+.smart-projection-card {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  max-height: calc(100vh - 48px);
+  background: var(--cream, #FAF6F0);
+  border: 1px solid var(--rule, #D4C9B6);
+  box-shadow: 0 30px 80px rgba(31, 27, 23, 0.3);
+  padding: 36px 36px 28px;
+  overflow-y: auto;
+  animation: spp-rise 0.22s ease-out;
+}
+@keyframes spp-rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.smart-projection-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: transparent;
+  border: 1px solid var(--rule, #D4C9B6);
+  width: 32px;
+  height: 32px;
+  font-size: 22px;
+  line-height: 1;
+  color: var(--ink-soft, #4A433B);
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+.smart-projection-close:hover {
+  border-color: var(--ink, #1F1B17);
+  color: var(--ink, #1F1B17);
+}
+.smart-projection-eyebrow {
+  font-family: 'Poppins', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--gold, #B89968);
+  font-weight: 600;
+  margin-bottom: 8px;
+  text-align: center;
+}
+.smart-projection-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 1.1;
+  text-align: center;
+  margin: 0 0 10px;
+  color: var(--ink, #1F1B17);
+}
+.smart-projection-title em {
+  font-style: italic;
+  color: var(--sage, #5D6E5C);
+}
+.smart-projection-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 15px;
+  color: var(--ink-soft, #4A433B);
+  text-align: center;
+  margin: 0 0 22px;
+  line-height: 1.45;
+}
+/* The grid reuses .cadence-projection-grid styles for visual consistency,
+   but the popup gives it more breathing room. */
+.smart-projection-popup .cadence-projection-grid {
+  margin-bottom: 18px;
+  gap: 6px;
+}
+.smart-projection-popup .cadence-projection-grid .proj-cell {
+  padding: 10px 6px 8px;
+}
+.smart-projection-popup .cadence-projection-grid .proj-amt {
+  font-size: 14px;
+}
+.smart-projection-summary {
+  background: rgba(184, 153, 104, 0.08);
+  border: 1px solid rgba(184, 153, 104, 0.22);
+  padding: 14px 18px;
+  margin-bottom: 16px;
+  border-radius: 3px;
+}
+.smart-projection-total-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(184, 153, 104, 0.22);
+  margin-bottom: 8px;
+}
+.smart-projection-total-label {
+  font-family: 'Poppins', sans-serif;
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--ink, #1F1B17);
+}
+.smart-projection-total-amt {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--ink, #1F1B17);
+}
+.smart-projection-compare-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  font-family: 'Poppins', sans-serif;
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--ink-soft, #4A433B);
+}
+.smart-projection-compare-row .spp-strike {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  letter-spacing: 0;
+  text-decoration: line-through;
+  text-transform: none;
+  color: var(--ink-soft, #4A433B);
+  font-weight: 400;
+}
+.smart-projection-savings {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 14px;
+  text-align: center;
+  color: var(--sage, #5D6E5C);
+  margin-top: 10px;
+  line-height: 1.4;
+}
+.smart-projection-savings strong {
+  font-style: normal;
+  font-weight: 600;
+  color: var(--ink, #1F1B17);
+}
+.smart-projection-savings em {
+  font-style: italic;
+  color: var(--ink-soft, #4A433B);
+}
+.smart-projection-foot {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 12.5px;
+  color: var(--ink-soft, #4A433B);
+  text-align: center;
+  line-height: 1.5;
+  padding-top: 4px;
+}
+/* Lock body scroll when popup is open */
+body.spp-open { overflow: hidden; }
+
+@media (max-width: 600px) {
+  .smart-projection-popup { padding: 12px; }
+  .smart-projection-card { padding: 28px 22px 22px; }
+  .smart-projection-title { font-size: 24px; }
+  .smart-projection-sub { font-size: 14px; margin-bottom: 18px; }
+  .smart-projection-total-amt { font-size: 20px; }
+  .smart-projection-popup .cadence-projection-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 /* ═══ SMART REFILL ANNUAL SAVINGS TEASER ═══ */
 /* Editorial line above the subscribe toggle that telegraphs how much customers
    save per year by picking Smart Refill. Hidden when savings are $0 (all-monthly bundles). */
@@ -6208,3 +6440,4 @@ body.byo-popup-open .cart-floating {
 @media (max-width: 720px) {
   .bundle-footnote-blurb { font-size: 14.5px; }
 }
+
