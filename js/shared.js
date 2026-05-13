@@ -1030,9 +1030,12 @@
   // Lets any page use .bundle-subscribe-toggle and [data-bundle-add] without
   // duplicating wiring code. (Bundles.html has its own scoped version too.)
 
-  /* Computes pricing for a bundle id — used by banner decoration and reactive price updates. */
+  /* Computes pricing for a bundle id — used by banner decoration and reactive price updates.
+     Searches CURATED_BUNDLES first, then falls back to CONCERN_BUNDLES so concern bundles
+     can use the shared .bundle-subscribe-toggle + [data-bundle-add] wiring too. */
   function getBundlePricing(bundleId) {
-    const bundle = window.getCuratedBundleById?.(bundleId);
+    const bundle = window.getCuratedBundleById?.(bundleId)
+                || (window.CONCERN_BUNDLES || []).find(b => b.id === bundleId);
     if (!bundle) return null;
     const products = bundle.slugs
       .map(s => window.getProductBySlug?.(s))
@@ -1249,13 +1252,15 @@
 
     // Add Bundle to Cart — reads bundle by id, checks subscribe state, adds to cart
     // (and forwards the active cadence when a `.bundle-cadence` selector is present).
+    // Resolves both curated routines AND concern bundles so any page can wire a CTA.
     document.querySelectorAll('[data-bundle-add]').forEach(btn => {
       // Skip if routines.html scoped handler already wired it (it gets to run first)
       if (btn._dhBundleAddWired) return;
       btn._dhBundleAddWired = true;
       btn.addEventListener('click', () => {
         const bundleId = btn.dataset.bundleAdd;
-        const bundle = window.getCuratedBundleById?.(bundleId);
+        const bundle = window.getCuratedBundleById?.(bundleId)
+                    || (window.CONCERN_BUNDLES || []).find(b => b.id === bundleId);
         if (!bundle) return;
         const toggle = document.querySelector(`.bundle-subscribe-toggle[data-bundle-id="${bundleId}"]`);
         const subscribe = toggle?.querySelector('button.active')?.dataset.mode === 'subscribe';
@@ -2862,7 +2867,7 @@
     };
 
     // Smart Refill is mostly useless on pure-supplement bundles (where every product
-    // has runtime=1 anyway) and on weekly-use bundles (Reset Routine) where the
+    // has runtime=1 anyway) and on weekly-use bundles (Reset Bundle) where the
     // small ship size erodes margin without retention upside. Disable it on those.
     // NOTE: Daniel's Daily IS enabled — its 10 supplements have mixed runtimes
     // (Multi/NAD+/Vitality/Synapse/Restore/Tranquil 1mo; Flow/Biome/Calm 2mo;
