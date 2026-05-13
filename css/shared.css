@@ -1932,6 +1932,63 @@ body.has-page-filter-modal {
   transform: translateX(3px);
 }
 
+/* New always-visible inline projection trigger — used site-wide.
+   Lighter visual weight than the (now-deprecated) .cadence-projection-trigger
+   so it doesn't compete with primary purchase CTAs. */
+.projection-trigger-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 0 14px;
+  padding: 8px 14px;
+  background: transparent;
+  border: 1px dashed rgba(184, 153, 104, 0.55);
+  border-radius: 4px;
+  color: var(--ink, #1F1B17);
+  font-family: 'Poppins', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+  width: auto;
+}
+.projection-trigger-inline:hover {
+  background: rgba(184, 153, 104, 0.1);
+  border-color: var(--gold, #B89968);
+  border-style: solid;
+}
+.projection-trigger-inline .ptl-icon { font-size: 13px; line-height: 1; }
+.projection-trigger-inline .ptl-arrow {
+  font-size: 11px; color: var(--gold, #B89968);
+  transition: transform 0.2s;
+}
+.projection-trigger-inline:hover .ptl-arrow { transform: translateX(3px); }
+/* Dark-background context (PM ritual column, hero on dark) */
+.ritual.pm .projection-trigger-inline,
+.bundle-hero .projection-trigger-inline,
+.featured .projection-trigger-inline {
+  color: var(--cream, #F2EBDD);
+  border-color: rgba(196, 164, 124, 0.55);
+}
+.ritual.pm .projection-trigger-inline:hover,
+.bundle-hero .projection-trigger-inline:hover,
+.featured .projection-trigger-inline:hover {
+  background: rgba(196, 164, 124, 0.18);
+  border-color: var(--gold, #C4A47C);
+}
+
+/* Empty-month styling for product-level projection (months with no shipment) */
+.smart-projection-popup .proj-cell-empty,
+.cadence-projection-grid .proj-cell-empty {
+  opacity: 0.42;
+}
+.smart-projection-popup .proj-cell-empty .proj-tag,
+.cadence-projection-grid .proj-cell-empty .proj-tag {
+  font-style: italic;
+}
+
 /* The popup itself — fixed overlay rendered at the body level. */
 .smart-projection-popup {
   position: fixed;
