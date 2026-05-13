@@ -864,6 +864,168 @@
   };
   window.dhLightbox = lightbox;
 
+  // ═══ SMART REFILL PROJECTION — popup UI + math + resolver ═══
+  // Computes projected month-by-month payments under Smart Refill: month 1
+  // ships the full bundle, then each subsequent month only ships products
+  // whose runtime has elapsed. Used by the popup that opens from the
+  // .cadence-projection-trigger button on any .bundle-cadence selector.
+
+  // Resolve a bundle ID → array of full product objects. Handles curated
+  // routines (CURATED_BUNDLES), concern bundles (CONCERN_BUNDLES), the live
+  // quiz result (via window._quizState), and the BYO builder.
+  function resolveBundleProducts(bundleId) {
+    if (!bundleId) return [];
+    // Quiz result — lives in window._quizState exposed by quiz.html
+    if (bundleId === 'quiz-result' && window._quizState && window._quizState.getProducts) {
+      return window._quizState.getProducts();
+    }
+    // BYO builder — lives in window.dhGetByoBundle exposed by routines.html
+    if (bundleId === 'byo' && typeof window.dhGetByoBundle === 'function') {
+      const byo = window.dhGetByoBundle();
+      return (byo.slugs || [])
+        .map(s => window.getProductBySlug ? window.getProductBySlug(s) : null)
+        .filter(Boolean);
+    }
+    // Curated routine (Ultimate, Foundation, Glow, etc.)
+    const curated = window.getCuratedBundleById && window.getCuratedBundleById(bundleId);
+    if (curated && curated.slugs) {
+      return curated.slugs
+        .map(s => window.getProductBySlug ? window.getProductBySlug(s) : null)
+        .filter(Boolean);
+    }
+    // Concern bundle (Anti-Aging, Sleep, Energy, etc.)
+    const concern = (window.CONCERN_BUNDLES || []).find(b => b.id === bundleId);
+    if (concern && concern.slugs) {
+      return concern.slugs
+        .map(s => window.getProductBySlug ? window.getProductBySlug(s) : null)
+        .filter(Boolean);
+    }
+    return [];
+  }
+  window.dhResolveBundleProducts = resolveBundleProducts;
+
+  // Build the 6-month projection given an array of products. Discount math
+  // matches the bundle: 15% bundle + 10% subscribe by default, but the caller
+  // can override (Ultimate is 25%, concern bundles vary 10-12%).
+  function buildSmartProjectionData(products, bundleDiscount) {
+    const SR_BUNDLE_DISC = (typeof bundleDiscount === 'number') ? bundleDiscount : 0.15;
+    const SR_SUB_BONUS   = 0.10;
+    const months = [0, 0, 0, 0, 0, 0];
+    (products || []).forEach(p => {
+      const rt = Math.max(1, p.runtime || 1);
+      const net = (p.price || 0) * (1 - SR_BUNDLE_DISC) * (1 - SR_SUB_BONUS);
+      for (let m = 1; m <= 6; m += rt) months[m - 1] += net;
+    });
+    const total = months.reduce((s, v) => s + v, 0);
+    const fullBundleNet = (products || []).reduce((s, p) => s + (p.price || 0), 0) * (1 - SR_BUNDLE_DISC) * (1 - SR_SUB_BONUS);
+    const compare = fullBundleNet * 6;
+    return { months, total, compare, savings: Math.max(0, compare - total) };
+  }
+  window.dhBuildSmartProjection = buildSmartProjectionData;
+
+  // Look up the bundle discount (so the projection is priced correctly).
+  function bundleDiscountFor(bundleId) {
+    if (bundleId === 'quiz-result') return 0.15;
+    if (bundleId === 'byo') {
+      const b = (typeof window.dhGetByoBundle === 'function') ? window.dhGetByoBundle() : null;
+      return (b && typeof b.discount === 'number') ? b.discount : 0.10;
+    }
+    const curated = window.getCuratedBundleById && window.getCuratedBundleById(bundleId);
+    if (curated && typeof curated.discount === 'number') return curated.discount;
+    const concern = (window.CONCERN_BUNDLES || []).find(b => b.id === bundleId);
+    if (concern && typeof concern.discount === 'number') return concern.discount;
+    return 0.15;
+  }
+
+  // Friendly bundle title for the popup
+  function bundleTitleFor(bundleId, productCount) {
+    if (bundleId === 'quiz-result') return 'Your personal <em>routine.</em>';
+    if (bundleId === 'byo') return 'Your custom <em>routine.</em>';
+    const curated = window.getCuratedBundleById && window.getCuratedBundleById(bundleId);
+    if (curated && curated.name) {
+      const name = curated.name.replace(/^The\s+/i, '').replace(/\s+(Routine|Stack|Bundle)$/i, '');
+      return `${name} · <em>projection.</em>`;
+    }
+    const concern = (window.CONCERN_BUNDLES || []).find(b => b.id === bundleId);
+    if (concern && concern.name) {
+      const name = concern.name.replace(/^The\s+/i, '').replace(/\s+(Routine|Stack|Bundle)$/i, '');
+      return `${name} · <em>projection.</em>`;
+    }
+    return 'Your <em>projection.</em>';
+  }
+
+  let _lastFocus = null;
+
+  window.dhShowProjection = function(bundleId) {
+    const popup = document.getElementById('smart-projection-popup');
+    if (!popup) return;
+    const products = resolveBundleProducts(bundleId);
+    if (!products.length) return;
+    const discount = bundleDiscountFor(bundleId);
+    const { months, total, compare, savings } = buildSmartProjectionData(products, discount);
+
+    // Fill content
+    const grid = popup.querySelector('#spp-grid');
+    const totalEl = popup.querySelector('#spp-total');
+    const cmpEl = popup.querySelector('#spp-compare');
+    const saveEl = popup.querySelector('#spp-savings');
+    const titleEl = popup.querySelector('#smart-projection-popup-title');
+    const subEl   = popup.querySelector('#smart-projection-popup-sub');
+
+    if (grid) {
+      grid.innerHTML = months.map((amt, i) => `
+        <div class="proj-cell${i === 0 ? ' proj-cell-first' : ''}">
+          <span class="proj-m">Month ${i + 1}</span>
+          <span class="proj-amt">$${amt.toFixed(2)}</span>
+          ${i === 0 ? '<span class="proj-tag">full bundle</span>' : ''}
+        </div>
+      `).join('');
+    }
+    if (totalEl) totalEl.textContent = '$' + total.toFixed(2);
+    if (cmpEl) cmpEl.textContent = '$' + compare.toFixed(2);
+    if (saveEl) {
+      if (savings > 0.5) {
+        const pct = Math.round((savings / compare) * 100);
+        saveEl.innerHTML = `You save <strong>$${savings.toFixed(2)}</strong> over 6 months — <em>about ${pct}% less than buying the full bundle every month.</em>`;
+      } else {
+        saveEl.textContent = '';
+      }
+    }
+    if (titleEl) titleEl.innerHTML = bundleTitleFor(bundleId, products.length);
+    if (subEl) {
+      const skin = products.filter(p => p.category === 'skincare').length;
+      const supp = products.filter(p => p.category === 'supplement').length;
+      const mix = [skin && `${skin} skincare`, supp && `${supp} supplement${supp>1?'s':''}`].filter(Boolean).join(' + ');
+      subEl.textContent = `${products.length} products · ${mix} · only what you've actually run out of ships each month.`;
+    }
+
+    _lastFocus = document.activeElement;
+    popup.removeAttribute('hidden');
+    popup.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('spp-open');
+    const closeBtn = popup.querySelector('.smart-projection-close');
+    if (closeBtn) setTimeout(() => closeBtn.focus(), 60);
+  };
+
+  window.dhHideProjection = function() {
+    const popup = document.getElementById('smart-projection-popup');
+    if (!popup) return;
+    popup.setAttribute('hidden', '');
+    popup.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('spp-open');
+    if (_lastFocus && _lastFocus.focus) {
+      try { _lastFocus.focus(); } catch (e) {}
+    }
+  };
+
+  // If the projection popup is currently visible and the underlying bundle's
+  // product list changes (e.g., the quiz add/remove flow), re-render in place.
+  window.dhRefreshProjectionIfOpen = function(bundleId) {
+    const popup = document.getElementById('smart-projection-popup');
+    if (!popup || popup.hasAttribute('hidden')) return;
+    if (window.dhShowProjection) window.dhShowProjection(bundleId);
+  };
+
   // ═══ GLOBAL BUNDLE SUBSCRIBE TOGGLE + ADD-BUNDLE WIRING ═══
   // Lets any page use .bundle-subscribe-toggle and [data-bundle-add] without
   // duplicating wiring code. (Bundles.html has its own scoped version too.)
@@ -956,20 +1118,98 @@
     });
 
     // Global cadence-button click handler — works for any `.bundle-cadence` on any page.
-    // Highlights the active cadence and toggles the Smart Refill explainer note.
+    // Highlights the active cadence and toggles the Smart Refill explainer note + projection trigger.
     document.querySelectorAll('.bundle-cadence').forEach(cadenceSel => {
+      // Inject the "View 6-month projection" trigger button into this cadence selector.
+      // It lives right after the cadence-note and is only visible when Smart Refill is active.
+      // The shared popup (`#smart-projection-popup`) handles the rendering.
+      if (!cadenceSel.querySelector('.cadence-projection-trigger')) {
+        const bundleId = cadenceSel.dataset.bundleId || '';
+        const trigger = document.createElement('button');
+        trigger.type = 'button';
+        trigger.className = 'cadence-projection-trigger';
+        trigger.setAttribute('hidden', '');
+        trigger.setAttribute('data-projection-trigger', '');
+        trigger.dataset.bundleId = bundleId;
+        trigger.innerHTML = '<span class="cpt-icon" aria-hidden="true">📈</span><span class="cpt-text">See your 6-month projection</span><span class="cpt-arrow" aria-hidden="true">→</span>';
+        // Place it after the note if present, otherwise at the end of the cadence selector
+        const note = cadenceSel.querySelector('[data-smart-note]');
+        if (note && note.parentNode === cadenceSel) {
+          note.insertAdjacentElement('afterend', trigger);
+        } else {
+          cadenceSel.appendChild(trigger);
+        }
+        trigger.addEventListener('click', (e) => {
+          e.preventDefault();
+          if (window.dhShowProjection) window.dhShowProjection(bundleId);
+        });
+      }
+
       cadenceSel.querySelectorAll('.cadence-btn').forEach(btn => {
         btn.addEventListener('click', () => {
           cadenceSel.querySelectorAll('.cadence-btn').forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
           const note = cadenceSel.querySelector('[data-smart-note]');
+          const trigger = cadenceSel.querySelector('[data-projection-trigger]');
+          const isSmart = btn.dataset.cadence === 'smart';
           if (note) {
-            if (btn.dataset.cadence === 'smart') note.removeAttribute('hidden');
+            if (isSmart) note.removeAttribute('hidden');
             else note.setAttribute('hidden', '');
+          }
+          if (trigger) {
+            if (isSmart) trigger.removeAttribute('hidden');
+            else trigger.setAttribute('hidden', '');
           }
         });
       });
     });
+
+    // Build the Smart Refill projection popup once and append it to the body so it can
+    // overlay any page. Reuses the same .proj-cell math used to live on quiz.html.
+    if (!document.getElementById('smart-projection-popup')) {
+      const popup = document.createElement('div');
+      popup.id = 'smart-projection-popup';
+      popup.className = 'smart-projection-popup';
+      popup.setAttribute('hidden', '');
+      popup.setAttribute('aria-hidden', 'true');
+      popup.setAttribute('role', 'dialog');
+      popup.setAttribute('aria-modal', 'true');
+      popup.setAttribute('aria-labelledby', 'smart-projection-popup-title');
+      popup.innerHTML = `
+        <div class="smart-projection-backdrop" data-spp-close></div>
+        <div class="smart-projection-card" role="document">
+          <button type="button" class="smart-projection-close" data-spp-close aria-label="Close projection">×</button>
+          <div class="smart-projection-eyebrow">Smart Refill · 6-Month Projection</div>
+          <h2 class="smart-projection-title" id="smart-projection-popup-title">Your projected <em>payments.</em></h2>
+          <p class="smart-projection-sub" id="smart-projection-popup-sub">Only the products you've actually run out of ship each month.</p>
+          <div class="cadence-projection-grid" id="spp-grid"></div>
+          <div class="smart-projection-summary">
+            <div class="smart-projection-total-row">
+              <span class="smart-projection-total-label">6-month total</span>
+              <span class="smart-projection-total-amt" id="spp-total">$0.00</span>
+            </div>
+            <div class="smart-projection-compare-row">
+              <span>vs. full bundle every month</span>
+              <span class="spp-strike" id="spp-compare">$0.00</span>
+            </div>
+            <div class="smart-projection-savings" id="spp-savings"></div>
+          </div>
+          <div class="smart-projection-foot">
+            <span>Supplements ship every 1–3 months depending on the bottle, most skincare every 2 months, oils &amp; eye cream every 3. Shipments under $30 fold into the next month.</span>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(popup);
+      // Close handlers
+      popup.querySelectorAll('[data-spp-close]').forEach(el => {
+        el.addEventListener('click', () => { window.dhHideProjection && window.dhHideProjection(); });
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !popup.hasAttribute('hidden')) {
+          window.dhHideProjection && window.dhHideProjection();
+        }
+      });
+    }
 
     // Apply initial pricing pass to every bundle container
     document.querySelectorAll('.bundle-card, .bundle-footnote, .hero-bundle').forEach(container => {
