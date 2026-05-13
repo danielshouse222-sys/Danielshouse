@@ -2330,7 +2330,6 @@
         'concern:stress',         // Stress — trending, affordable
         'concern:energy',         // Energy — universal need
         'routine:pm',             // pairs with AM, repeat buy
-        'concern:beauty',         // Glow Bundle — beauty conversion magnet
         'concern:dullness',       // Brightening — vitamin C, broad appeal
         'routine:moms',           // focused persona conversion
         'routine:workout',        // active segment
@@ -2761,7 +2760,8 @@
     // sub-routine based on its slug.
     //
     // Returns HTML markup (or '' if the bundle has no products).
-    window.generateBundleDirections = function(bundle) {
+    window.generateBundleDirections = function(bundle, options) {
+      options = options || {};
       if (!bundle || !Array.isArray(bundle.slugs)) return '';
       const products = bundle.slugs
         .map(s => window.getProductBySlug && window.getProductBySlug(s))
@@ -2943,6 +2943,13 @@
           ${suppSteps.map(renderStep).join('')}
         </div>
       ` : '';
+
+      // If caller is providing its own collapsible wrapper (e.g. quiz.html
+      // wraps the whole Directions section in a <details>), skip the inner
+      // collapse button and return the section contents directly.
+      if (options.skipWrapper) {
+        return `${skincareSection}${suppSection}`;
+      }
 
       // Wrapper is collapsible — starts collapsed, tap header to expand.
       return `
