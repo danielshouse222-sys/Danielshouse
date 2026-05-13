@@ -115,7 +115,7 @@ window.PRODUCTS = [
       { name: 'sh-Polypeptide-1 (TGF-beta mimic)', what: 'Activates fibroblast pathways involved in tissue repair and skin resilience.' },
       { name: 'sh-Polypeptide-9 (VEGF mimic)', what: 'Supports microcirculation and oxygen delivery into the skin — a less-discussed but important factor in visible glow.' },
       { name: 'sh-Polypeptide-11 (FGF mimic)', what: 'Fibroblast growth factor mimic — directly signals collagen synthesis pathways.' },
-      { name: 'Hydration boosters', what: 'Light humectants that keep the serum absorbable and prevent the post-peptide tight feeling.' }
+      { name: 'Mist boosters', what: 'Light humectants that keep the serum absorbable and prevent the post-peptide tight feeling.' }
     ],
     howToUse: 'Morning or evening, after Balance and before heavier creams: Apply 2-3 drops to clean skin. Press in gently with fingertips. Wait 30 seconds before next step. Pairs well with Defense (AM), Bounce (PM), and Firm.',
     bestFor: ['anti-aging', 'fine-lines', 'firmness', 'cellular-renewal', 'all-skin-types'],
@@ -130,7 +130,7 @@ window.PRODUCTS = [
       { q: 'Pregnant-safe?', a: 'Yes — these biomimetic peptides are routinely used during pregnancy. No retinoids, salicylic acid, or hydroquinone. Confirm with your provider as you would with any product.' },
       { q: 'Is "growth factor" the same as the controversial growth factor products from human cells?', a: 'No — these are biomimetic peptides synthesized to mimic the signaling action of growth factors. They\'re plant-derived/synthetic, not from human or animal cells, and they\'ve been used safely in topical formulations for over a decade.' }
         ],
-    relatedSlugs: ['the-house-firm', 'the-house-defense', 'the-house-bounce', 'the-house-eye'],
+    relatedSlugs: ['the-house-firm', 'the-house-defense', 'the-house-bounce', 'the-house-awake'],
     resultsTimeline: [
       { week: 'Week 2', text: 'Subtle improvements in skin smoothness; slightly plumper feel.' },
       { week: 'Week 4', text: 'Visible smoothing of surface fine lines; barrier resilience improves.' },
@@ -142,15 +142,15 @@ window.PRODUCTS = [
     daniels_note: 'Five biomimetic peptides is more than what\'s in most peptide serums at three times this price. The growth-factor-mimic approach is the cutting edge of where peptide research has gone — and Bio-Peptide formulas are now the foundation of premium anti-aging.'
   },
   {
-    slug: 'the-house-hyaluronic',
-    name: 'Hyaluronic',
+    slug: 'the-house-plump',
+    name: 'Plump',
     category: 'skincare',
     sub: 'am',
     step: 4,
     routine: 'AM',
     price: 28,
     runtime: 2,
-    image: 'images/hyaluronic.jpeg',
+    image: 'images/plump.jpeg',
     tag: 'Hydrate · Plump · Smooth',
     tagline: 'The simplest hydration that actually works.',
     description: 'A minimalist hyaluronic acid serum — water, sodium hyaluronate, and a clean preservative. Nothing else. The pure form of HA holds up to 1,000 times its weight in water and tailors its absorption to your skin\'s current hydration needs, drop by drop. The simplicity is the point: it layers cleanly under every other product in the line. Apply to damp skin for maximum binding.',
@@ -171,7 +171,7 @@ window.PRODUCTS = [
       { q: 'Why so few ingredients?', a: 'Because hyaluronic acid is the active. Everything else in most HA serums is filler. A minimalist formula reduces reaction risk and stacks cleanly under any other product in your routine.' },
       { q: 'Will it pill under sunscreen?', a: 'No — let it absorb 60 seconds before applying SPF or moisturizer. The minimalist formula is specifically built not to pill or interfere with downstream layers.' }
         ],
-    relatedSlugs: ['the-house-soft', 'the-house-hydration', 'the-house-glow'],
+    relatedSlugs: ['the-house-soft', 'the-house-mist', 'the-house-glow'],
     resultsTimeline: [
       { week: 'Day 1', text: 'Immediate plumpness and bounce.' },
       { week: 'Week 1', text: 'Lasting hydration; lines look softer by midday.' },
@@ -259,11 +259,11 @@ window.PRODUCTS = [
     faq: [
       { q: 'Is this rich enough for dry skin?', a: 'For most skin types, yes — the multi-weight HA system plus barrier-supportive emollients deliver real, lasting hydration. Very dry skin in winter may want to layer Glow on top as an overnight finishing step.' },
       { q: 'Will it work under makeup?', a: 'Yes — give it 60-90 seconds to absorb before foundation. The formula is lightweight enough to layer under SPF and makeup without pilling.' },
-      { q: 'AM or PM?', a: 'Both. Some people split: Hydration mist for daytime refreshment, Soft as the AM and PM moisturizer. Both work either time.' },
+      { q: 'AM or PM?', a: 'Both. Some people split: Mist for daytime refreshment, Soft as the AM and PM moisturizer. Both work either time.' },
       { q: 'Will it clog pores?', a: 'No — formulated to be non-comedogenic. Lightweight texture suitable for all skin types including oily and combination skin.' },
       { q: 'Is this pregnancy-safe?', a: 'Yes — no retinoids, no salicylic acid, no actives that pregnancy guidance typically restricts. Confirm with your provider for your specific situation.' }
         ],
-    relatedSlugs: ['the-house-hyaluronic', 'the-house-hydration', 'the-house-eye', 'the-house-shield'],
+    relatedSlugs: ['the-house-plump', 'the-house-mist', 'the-house-awake', 'the-house-shield'],
     resultsTimeline: [
       { week: 'Day 1', text: 'Hydrated, comfortable, no greasy finish. Skin feels plumped and softer.' },
       { week: 'Week 2', text: 'Stronger barrier; less afternoon dryness. Makeup sits flatter.' },
@@ -390,7 +390,7 @@ window.PRODUCTS = [
       { name: 'Phospholipids', what: 'Lipid carriers that enhance penetration of the active ingredients into the upper epidermis.' },
       { name: 'Leuconostoc/Radish Root Ferment Filtrate', what: 'A naturally derived antimicrobial that replaces traditional preservatives. The clean-label preservation choice.' }
     ],
-    howToUse: 'Evening only, on alternating nights with Renewal: Apply 3-4 drops to clean, dry skin. Avoid the orbital eye area (use Eye instead there). Wait 60 seconds for absorption before next step. Follow with Firm, Eye, Hydration or Soft, then Glow. Start 2 nights per week, build to 3-4 nights as your skin builds tolerance over 6-8 weeks. Always use SPF the next morning — this is non-negotiable with retinol.',
+    howToUse: 'Evening only, on alternating nights with Renewal: Apply 3-4 drops to clean, dry skin. Avoid the orbital eye area (use Awake instead there). Wait 60 seconds for absorption before next step. Follow with Firm, Awake, Mist or Soft, then Glow. Start 2 nights per week, build to 3-4 nights as your skin builds tolerance over 6-8 weeks. Always use SPF the next morning — this is non-negotiable with retinol.',
     bestFor: ['anti-aging', 'cell-turnover', 'fine-lines', 'uneven-tone', 'collagen-support'],
     studies: [
       { actor: 'Topical Retinol Evidence', finding: 'Topical retinoids have multi-decade clinical evidence for reducing fine lines, improving skin texture, evening pigmentation, and stimulating dermal collagen production — the most-validated single ingredient in anti-aging dermatology.', source: 'Journal of the American Academy of Dermatology, 1986-present reviews' },
@@ -399,11 +399,11 @@ window.PRODUCTS = [
     faq: [
       { q: 'When should I start using retinol?', a: 'Most people benefit from starting in their late 20s or early 30s, when natural collagen production begins declining. If you\'re younger, focus on Defense (CE Ferulic antioxidant) and SPF first — those build the foundation retinol later compounds on top of.' },
       { q: 'Will my skin peel?', a: 'Some mild flaking is normal in the first 2-3 weeks as the cell-turnover cycle accelerates ("retinization"). If severe, reduce frequency. The buffering actives in this formula (HA, peptides, Vit C) make the retinization phase noticeably gentler than a pure-retinol product.' },
-      { q: 'Can I use this if I\'m pregnant?', a: 'No — retinol is not recommended during pregnancy or breastfeeding. Skip the retinol step entirely until after; the Eye serum (peptides + DCX complex, no retinoids) is pregnancy-safe for the under-eye, and Soft (multi-weight HA cream) is pregnancy-safe for daily moisture.' },
+      { q: 'Can I use this if I\'m pregnant?', a: 'No — retinol is not recommended during pregnancy or breastfeeding. Skip the retinol step entirely until after; the Awake serum (peptides + DCX complex, no retinoids) is pregnancy-safe for the under-eye, and Soft (multi-weight HA cream) is pregnancy-safe for daily moisture.' },
       { q: 'How is this different from Renewal?', a: 'Renewal is a triple-acid AHA/BHA treatment cleanse (chemical exfoliation) — used 2-3 nights/week. Bounce is the retinol serum (cell-turnover and collagen) — used 3-4 nights/week. They\'re both treatment nights, but never on the same evening (over-exfoliation). Standard rotation: Bounce 3 nights, Renewal 2 nights, rest nights for the other 2.' },
       { q: 'Why 0.05% retinol — that seems low?', a: 'Honestly, 0.05% retinol with peptides and Vit C is more effective than 0.5% retinol alone for most users. Higher percentages cause more irritation and the drop-out rate is huge — most people quit before they see results. Lower-percentage-but-tolerated beats higher-percentage-but-abandoned every time. After 6-12 months at this level your skin\'s tolerance builds and we can recommend stepping up to a higher % if you want.' }
         ],
-    relatedSlugs: ['the-house-renewal', 'the-house-firm', 'the-house-eye', 'the-house-shield'],
+    relatedSlugs: ['the-house-renewal', 'the-house-firm', 'the-house-awake', 'the-house-shield'],
     resultsTimeline: [
       { week: 'Week 2', text: 'Cell turnover begins; possible mild flaking ("retinization phase") — pass through it slowly.' },
       { week: 'Week 4', text: 'Texture smooths; pores look refined; tone starts to even.' },
@@ -437,16 +437,16 @@ window.PRODUCTS = [
     bestFor: ['firming', 'anti-aging', 'expression-lines', 'fine-lines', 'all-skin-types'],
     studies: [
       { actor: 'Multi-Peptide Topical Formulas', finding: 'Combination peptide formulations targeting multiple collagen and elastin pathways demonstrate additive effects on wrinkle depth and skin firmness over 8-12 weeks vs. single-peptide formulations.', source: 'International Journal of Cosmetic Science, 2022' },
-      { actor: 'Peptide + Hyaluronic Synergy', finding: 'Peptide serums layered with hyaluronic acid demonstrate enhanced peptide absorption and improved hydration retention compared to peptide-only or HA-only controls.', source: 'Journal of Cosmetic Dermatology, 2023' }
+      { actor: 'Peptide + Plump Synergy', finding: 'Peptide serums layered with hyaluronic acid demonstrate enhanced peptide absorption and improved hydration retention compared to peptide-only or HA-only controls.', source: 'Journal of Cosmetic Dermatology, 2023' }
         ],
     faq: [
       { q: 'How does this compare to retinol?', a: 'Peptides and retinol work via different mechanisms — peptides signal collagen production via the skin\'s own pathways; retinol accelerates cell turnover. Both have decades of evidence. The strongest anti-aging protocols use them together: Bounce on retinol nights, Firm on alternating nights, both as part of a long-term stack.' },
-      { q: 'Can I use this around my eyes?', a: 'Yes — Firm is safe around the orbital bone, but not directly on the eyelid or waterline. Many users use Firm under-eye as well as the dedicated Eye serum.' },
+      { q: 'Can I use this around my eyes?', a: 'Yes — Firm is safe around the orbital bone, but not directly on the eyelid or waterline. Many users use Firm under-eye as well as the dedicated Awake serum.' },
       { q: 'Pregnant-safe?', a: 'Yes — Firm contains no retinoids, salicylic acid, or hydroquinone. Peptides are routinely used during pregnancy. Confirm with your provider.' },
       { q: 'Do I need to use this every day?', a: 'Peptides build up best with consistent use — 5-7 nights a week. Daily is fine; peptides don\'t exfoliate, so they won\'t overload your barrier.' },
       { q: 'When should I expect to see results?', a: 'Subtle smoothing from hyaluronic acid + seaweed can appear in 2-4 weeks. Collagen-signaling effects from the peptide complex build over 8-12 weeks with consistent nightly use.' }
         ],
-    relatedSlugs: ['the-house-eye', 'the-house-bounce', 'the-house-boost'],
+    relatedSlugs: ['the-house-awake', 'the-house-bounce', 'the-house-boost'],
     resultsTimeline: [
       { week: 'Week 2', text: 'Surface plumping from hyaluronic acid + seaweed; skin looks fresher.' },
       { week: 'Week 4', text: 'Fine lines around eyes and forehead look softer.' },
@@ -458,15 +458,15 @@ window.PRODUCTS = [
     daniels_note: 'Peptide serums are the unsexy backbone of anti-aging. They\'re not glamorous like retinol, but they work consistently, build over time, and don\'t fight with any of the other actives in the routine.'
   },
   {
-    slug: 'the-house-hydration',
-    name: 'Hydration',
+    slug: 'the-house-mist',
+    name: 'Mist',
     category: 'skincare',
     sub: 'pm',
     step: 2,
     routine: 'PM',
     price: 30,
     runtime: 2,
-    image: 'images/hydration.jpeg',
+    image: 'images/mist.jpeg',
     tag: 'Hydrate · Refresh · Mist',
     tagline: 'A hyaluronic acid mist for face and body.',
     description: 'A fine-mist hydrating spray powered by sodium hyaluronate and sodium lactate — two of the skin\'s natural moisture-binding molecules. Layered with rosa centifolia (cabbage rose) hydrosol and glycerin for an instant refresh that lasts. The ultra-fine nozzle delivers a cloud-like spray that absorbs cleanly without dripping. Use after cleansing as a hydrating prep step, throughout the day for a refresh over makeup, or post-workout to cool and rehydrate. Vegan, paraben-free, cruelty-free, gluten-free, non-GMO, phthalate-free.',
@@ -482,16 +482,16 @@ window.PRODUCTS = [
     bestFor: ['daily-hydration', 'travel', 'midday-refresh', 'post-workout', 'all-skin-types'],
     studies: [
       { actor: 'Topical Hyaluronic Acid', finding: 'Topical hyaluronic acid significantly improves skin hydration, elasticity, and reduces appearance of fine lines in clinical dermatoporosis research.', source: 'Sci Reports, 2024' },
-      { actor: 'Hyaluronic Mists & Sprays', finding: 'Hyaluronic-based hydrating mists demonstrate measurable improvements in skin hydration levels for 60-90 minutes post-application, making them effective both as routine steps and as throughout-the-day refreshers.', source: 'Journal of Cosmetic Dermatology, 2023' }
+      { actor: 'Plump Mists & Sprays', finding: 'Plump-based hydrating mists demonstrate measurable improvements in skin hydration levels for 60-90 minutes post-application, making them effective both as routine steps and as throughout-the-day refreshers.', source: 'Journal of Cosmetic Dermatology, 2023' }
         ],
     faq: [
-      { q: 'How is this different from Hyaluronic (the serum)?', a: 'Hyaluronic is a concentrated 1 oz serum — applied once, layered into your routine. Hydration is a 4 oz mist — used throughout the day, over makeup, post-workout, on the body. Different use cases, complementary. Many people use both.' },
+      { q: 'How is this different from Plump (the serum)?', a: 'Plump is a concentrated 1 oz serum — applied once, layered into your routine. Mist is a 4 oz mist — used throughout the day, over makeup, post-workout, on the body. Different use cases, complementary. Many people use both.' },
       { q: 'Will it ruin my makeup?', a: 'No — the ultra-fine spray pattern is designed to refresh without dripping. Hold 8-10 inches away, do 2-3 short bursts, pat gently with fingertips if needed.' },
       { q: 'Can I use this on my body?', a: 'Yes — that\'s actually part of the formula\'s design. Use post-shower or post-workout for body hydration. Especially good for neck, décolleté, and arms in dry climates.' },
       { q: 'Is the fragrance an issue for sensitive skin?', a: 'The light floral note comes from rose hydrosol — a gentle natural ingredient. Most users tolerate it well, but spot-test if you\'re reactive to fragrance.' },
       { q: 'Pregnant-safe?', a: 'Yes — no retinoids, salicylic acid, or hydroquinone. Safe during pregnancy and nursing.' }
         ],
-    relatedSlugs: ['the-house-hyaluronic', 'the-house-soft', 'the-house-shield'],
+    relatedSlugs: ['the-house-plump', 'the-house-soft', 'the-house-shield'],
     resultsTimeline: [
       { week: 'Day 1', text: 'Immediate cool, refreshed skin; cloud-fine mist absorbs without dripping.' },
       { week: 'Week 1', text: 'Sustained hydration throughout the day, especially with mid-afternoon refresh.' },
@@ -503,15 +503,15 @@ window.PRODUCTS = [
     daniels_note: 'A hydrating mist is the unsexy backbone of a real skincare routine — the step you actually use throughout the day. Sodium lactate (an NMF component) plus sodium hyaluronate is a smarter combination than the rose-water-only mists most brands sell at the same price.'
   },
   {
-    slug: 'the-house-eye',
-    name: 'Eye',
+    slug: 'the-house-awake',
+    name: 'Awake',
     category: 'skincare',
     sub: 'pm',
     step: 4,
     routine: 'PM',
     price: 48,
     runtime: 3,
-    image: 'images/eye.jpeg',
+    image: 'images/awake.jpeg',
     tag: 'Brighten · Firm · De-puff',
     tagline: 'Peptides + DCX complex for the under-eye area.',
     description: 'A multi-targeted under-eye serum that works on three concerns at once — peptides for fine lines and firmness, the DCX complex for dark circles and uneven pigmentation, and seaweed extract for de-puffing minerals and antioxidants. The lightweight serum format absorbs faster than traditional eye creams and layers cleanly under makeup or other products. Hydrators round out the formula to keep the delicate eye area comfortable. Apply morning and evening with the gentlest possible press around the orbital bone.',
@@ -525,13 +525,13 @@ window.PRODUCTS = [
     howToUse: 'Morning and night: Tap a rice-grain amount under each eye and along the orbital bone using your ring finger. Press, never rub. Allow 30 seconds before applying makeup or other products.',
     bestFor: ['under-eye', 'dark-circles', 'fine-lines', 'crow\'s-feet', 'puffiness'],
     studies: [
-      { actor: 'Peptide Eye Treatments', finding: 'Combination peptide formulas demonstrate measurable reduction in periorbital wrinkle depth and expression-line appearance over 8-12 weeks of consistent daily application.', source: 'Journal of Cosmetic Dermatology, 2022' },
+      { actor: 'Peptide Awake Treatments', finding: 'Combination peptide formulas demonstrate measurable reduction in periorbital wrinkle depth and expression-line appearance over 8-12 weeks of consistent daily application.', source: 'Journal of Cosmetic Dermatology, 2022' },
       { actor: 'Topical Treatments for Periorbital Pigmentation', finding: 'Targeted active complexes formulated for the under-eye area show significant improvements in pigmentation and tone uniformity vs. placebo controls when used consistently over 8-12 weeks.', source: 'International Journal of Dermatology, 2023' }
         ],
     faq: [
-      { q: 'How much should I use?', a: 'A rice-grain amount per eye is plenty. Eye serums are concentrated and the under-eye skin doesn\'t need much product to absorb a full dose.' },
+      { q: 'How much should I use?', a: 'A rice-grain amount per eye is plenty. Awake serums are concentrated and the under-eye skin doesn\'t need much product to absorb a full dose.' },
       { q: 'Will this fix dark circles caused by genetics?', a: 'Partially. True genetic dark circles are largely pigmentation and shadow — the DCX complex helps with pigmentation specifically. Vascular puffiness and surface dullness also improve. For deep hereditary shadows, results require dermatology procedures, not topicals.' },
-      { q: 'Can I use it with my retinol?', a: 'Yes — apply Eye first, then Bounce around the rest of the face (avoiding the under-eye). The peptides in Eye complement retinol\'s renewal mechanism.' },
+      { q: 'Can I use it with my retinol?', a: 'Yes — apply Awake first, then Bounce around the rest of the face (avoiding the under-eye). The peptides in Awake complement retinol\'s renewal mechanism.' },
       { q: 'Pregnant-safe?', a: 'Yes — peptides and the DCX complex are routinely used during pregnancy. No retinoids, no salicylic acid. Confirm with your provider.' },
       { q: 'Will it work under concealer?', a: 'Yes — wait 30 seconds for full absorption before applying makeup. The serum texture is specifically designed not to disturb concealer.' }
         ],
@@ -544,7 +544,7 @@ window.PRODUCTS = [
         ],
     proTip: 'Tap, never rub. The under-eye is the thinnest skin on your face — friction creates more damage than product fixes.',
     freeFrom: ['Paraben-Free', 'Sulfate-Free', 'Phthalate-Free', 'Fragrance-Free', 'Color-Free', 'Cruelty-Free', 'Vegan', 'Made in USA', 'Third-Party Tested'],
-    daniels_note: 'Eye serums work harder than eye creams because the format absorbs faster into thin skin. The peptide + DCX combo is the right architecture for the three things people actually want to fix here: fatigue, pigment, and fine lines.'
+    daniels_note: 'Awake serums work harder than eye creams because the format absorbs faster into thin skin. The peptide + DCX combo is the right architecture for the three things people actually want to fix here: fatigue, pigment, and fine lines.'
   },
   {
     slug: 'the-house-renewal',
@@ -612,7 +612,7 @@ window.PRODUCTS = [
     bestFor: ['barrier-repair', 'overnight-seal', 'dryness', 'all-skin-types'],
     studies: [
       { actor: 'Squalane for Barrier Repair', finding: 'Plant-derived squalane mimics the composition of natural sebum and demonstrates measurable restoration of skin barrier function in compromised skin within 14 days of daily application.', source: 'Lipids in Health and Disease, 2023' },
-      { actor: 'Oil + Hyaluronic Combinations', finding: 'Two-phase formulations combining oil-based emollients with hyaluronic acid demonstrate enhanced hydration retention vs. either single-component approach, supporting both immediate and sustained moisture delivery.', source: 'Journal of Cosmetic Dermatology, 2022' }
+      { actor: 'Oil + Plump Combinations', finding: 'Two-phase formulations combining oil-based emollients with hyaluronic acid demonstrate enhanced hydration retention vs. either single-component approach, supporting both immediate and sustained moisture delivery.', source: 'Journal of Cosmetic Dermatology, 2022' }
         ],
     faq: [
       { q: 'How is this different from a traditional face oil?', a: 'Traditional face oils are plant-oil blends (rose hip, jojoba, argan). Glow is a two-phase formula: pure squalane (the most skin-mimicking single oil) + suspended hyaluronic acid spheres for water-binding hydration. You get oil and water in one step, which is rare in a single bottle.' },
@@ -621,7 +621,7 @@ window.PRODUCTS = [
       { q: 'Will it break me out?', a: 'For most skin types, no — squalane is non-comedogenic and the HA spheres are water-binding only. Acne-prone skin should patch-test first along the jawline for 3-5 nights.' },
       { q: 'Is this pregnancy-safe?', a: 'Yes — pure squalane and hyaluronic acid are routinely used during pregnancy. No retinoids or acids. Confirm with your provider.' }
         ],
-    relatedSlugs: ['the-house-soft', 'the-house-hydration', 'the-house-eye'],
+    relatedSlugs: ['the-house-soft', 'the-house-mist', 'the-house-awake'],
     resultsTimeline: [
       { week: 'Day 1', text: 'Immediately softer, suppler skin; sealed-in moisture overnight.' },
       { week: 'Week 1', text: 'Strengthened barrier; less afternoon tightness; previous-night actives held longer.' },
@@ -1255,13 +1255,13 @@ window.PRODUCTS = [
       { actor: 'Citrulline + Endurance', finding: '7-day L-citrulline supplementation (6g/day) improved oxygen uptake efficiency during high-intensity cycling and increased time to exhaustion by 12% vs. placebo.', source: 'Journal of Applied Physiology, 2015 (Bailey et al.)' }
     ],
     faq: [
-      { q: 'Does this contain caffeine?', a: 'No — Pump is stimulant-free. Pair with coffee or Burn if you want caffeine.' },
+      { q: 'Does this contain caffeine?', a: 'No — Pump is stimulant-free. Pair with coffee or Surge if you want caffeine.' },
       { q: 'Will it cause itching?', a: 'No — this is not beta-alanine. Pump is the smooth, non-tingly pre-workout option.' },
       { q: 'Can I stack this with creatine?', a: 'Yes — Pump pre-workout + Power post-workout is a classic combo.' },
       { q: 'When should I take it?', a: '30-45 minutes pre-workout for the pump effect. The nitric oxide pathway peaks 60-90 minutes post-ingestion. Can be stacked with creatine and caffeine.' },
       { q: 'Is it stimulant-free?', a: 'Yes — Pump works via nitric oxide and blood flow, not stimulants. Pairs cleanly with caffeine if you want stimulant kick, or works as a stim-free pre-workout on its own.' }
     ],
-    relatedSlugs: ['the-house-power', 'the-house-burn', 'the-house-greens'],
+    relatedSlugs: ['the-house-power', 'the-house-surge', 'the-house-greens'],
     resultsTimeline: [
       { week: 'Day 1', text: 'Immediate workout pump.' },
       { week: 'Week 2', text: 'Better training endurance; less between-set fatigue.' },
@@ -1365,13 +1365,13 @@ window.PRODUCTS = [
     daniels_note: 'On the days I don\'t eat my vegetables, Greens does the heavy lifting. 22 ingredients, one scoop, tastes like green apple.'
   },
   {
-    slug: 'the-house-burn',
-    name: 'Burn',
+    slug: 'the-house-surge',
+    name: 'Surge',
     category: 'supplement',
     sub: 'workout',
     price: 34,
     runtime: 1,
-    image: 'products/Burn.jpeg',
+    image: 'products/Surge.jpeg',
     tag: 'Energy · Focus · Cardio Support',
     tagline: 'Clean morning energy and metabolic support — caffeine + green tea + amino acids.',
     description: 'A daily energy and metabolic support capsule built around clinically-studied ingredients for sustained mental clarity, focus, and cardiovascular performance. Moderate-dose caffeine paired with L-theanine-rich green tea extract delivers the cleanest energy curve in the category — without the jitter, crash, or aggressive stimulants you find in most pre-workouts. L-tyrosine supports dopamine pathways for focus; L-carnitine and cayenne extract round out the cardiovascular and metabolic support story. Designed for daily morning use or 30 minutes pre-cardio.',
@@ -1392,10 +1392,10 @@ window.PRODUCTS = [
     ],
     faq: [
       { q: 'Will this make me jittery?', a: 'For most people, no — the L-theanine in green tea naturally smooths caffeine\'s edge, and L-tyrosine adds focus without anxiety. Less jitter than coffee at the same caffeine dose for most users. Start with 2 capsules if you\'re caffeine-sensitive.' },
-      { q: 'Can I take it with coffee?', a: 'Yes, but reduce coffee by half on Burn days to avoid over-caffeination. 200mg of caffeine in the capsules plus a full cup of coffee is more than most people want.' },
+      { q: 'Can I take it with coffee?', a: 'Yes, but reduce coffee by half on Surge days to avoid over-caffeination. 200mg of caffeine in the capsules plus a full cup of coffee is more than most people want.' },
       { q: 'Should I take it pre-workout?', a: 'Yes — that\'s a primary use case. Take 30-45 minutes before cardio or training for the energy and focus boost. Avoid taking within 6 hours of bed.' },
       { q: 'Is this safe long-term?', a: 'Yes for healthy adults. Some people cycle off after 8-12 weeks to maintain caffeine sensitivity. If you\'re pregnant, nursing, have heart conditions, or take medications, check with your provider first.' },
-      { q: 'How is this different from a pre-workout?', a: 'Burn is a daily capsule — moderate-dose, no aggressive stimulants, no proprietary blends. Most pre-workouts pack 300-400mg of caffeine plus beta-alanine, citrulline, and proprietary blends designed for the gym only. Burn is built for the morning and the cardio session, not for one-rep-max attempts.' }
+      { q: 'How is this different from a pre-workout?', a: 'Surge is a daily capsule — moderate-dose, no aggressive stimulants, no proprietary blends. Most pre-workouts pack 300-400mg of caffeine plus beta-alanine, citrulline, and proprietary blends designed for the gym only. Surge is built for the morning and the cardio session, not for one-rep-max attempts.' }
     ],
     relatedSlugs: ['the-house-pump', 'the-house-focus', 'the-house-greens'],
     resultsTimeline: [
@@ -1537,7 +1537,7 @@ window.PRODUCTS = [
       { q: 'Is this a stimulant?', a: 'No — it\'s a nootropic stack working via acetylcholine, GABA, and dopamine pathways. Pairs well with caffeine if you want both. Many users report a clean cognitive lift without the jitter of pure caffeine.' },
       { q: 'When does the effect kick in?', a: 'Alpha GPC and L-Tyrosine work acutely (30-60 min). Bacopa works on a multi-week buildup — meaningful effects appear after 4-8 weeks of daily use. The combination delivers same-day plus compounding benefits.' }
     ],
-    relatedSlugs: ['the-house-synapse', 'the-house-tranquil', 'the-house-burn'],
+    relatedSlugs: ['the-house-synapse', 'the-house-tranquil', 'the-house-surge'],
     resultsTimeline: [
       { week: 'Day 1', text: 'Clearer attention within 30-45 minutes.' },
       { week: 'Week 2', text: 'Sustained focus through long sessions.' },
@@ -1578,7 +1578,7 @@ window.CONCERN_BUNDLES = [
     icon: 'A.',
     name: 'The Anti-Aging Bundle',
     blurb: "Retinol and the five-peptide growth factor serum where age shows, daily mineral SPF that protects every gain, plus collagen and NAD+ for the cellular side. Anti-aging from every direction, because skin doesn't age in isolation from the body.",
-    slugs: ['the-house-bounce', 'the-house-firm', 'the-house-boost', 'the-house-shield', 'the-house-eye', 'the-house-collagen', 'the-house-nad-plus', 'the-house-radiance']
+    slugs: ['the-house-bounce', 'the-house-firm', 'the-house-boost', 'the-house-shield', 'the-house-awake', 'the-house-collagen', 'the-house-nad-plus', 'the-house-radiance']
   },
   {
     id: 'acne',
@@ -1595,8 +1595,8 @@ window.CONCERN_BUNDLES = [
     tab: 'skin',
     icon: 'C.',
     name: 'The Hydration Bundle',
-    blurb: "The hyaluronic acid serum and the hyaluronic face-and-body mist for layered surface hydration, the daily moisturizing cream for the seal, plus omega-3s that build the lipid matrix holding water in skin. Hydration that doesn't quit by mid-afternoon.",
-    slugs: ['the-house-hyaluronic', 'the-house-hydration', 'the-house-soft', 'the-house-flow']
+    blurb: "The hyaluronic acid serum and the hyaluronic face-and-body mist for layered surface hydration, the daily moisturizing cream for the seal, plus omega-3s that build the lipid matrix holding water in skin. Mist that doesn't quit by mid-afternoon.",
+    slugs: ['the-house-plump', 'the-house-mist', 'the-house-soft', 'the-house-flow']
   },
   {
     id: 'dullness',
@@ -1662,7 +1662,7 @@ window.CONCERN_BUNDLES = [
     icon: 'A.',
     name: 'The Sleep Bundle',
     blurb: "The wind-down stack: magnesium glycinate and ashwagandha for the nervous system, plus the overnight skincare that puts your routine to bed. Better sleep that visibly shows by morning.",
-    slugs: ['the-house-calm', 'the-house-tranquil', 'the-house-soft', 'the-house-eye']
+    slugs: ['the-house-calm', 'the-house-tranquil', 'the-house-soft', 'the-house-awake']
   },
   {
     id: 'energy',
@@ -1670,8 +1670,8 @@ window.CONCERN_BUNDLES = [
     tab: 'goal',
     icon: 'B.',
     name: 'The Energy Bundle',
-    blurb: "Cellular energy from the foundation (multivitamin, CoQ10, vitamin D) layered with the metabolic kick of Burn and the cognitive edge of Focus. Energy that lasts through the day.",
-    slugs: ['the-house-multi', 'the-house-vitality', 'the-house-sunshine', 'the-house-burn', 'the-house-focus']
+    blurb: "Cellular energy from the foundation (multivitamin, CoQ10, vitamin D) layered with the metabolic kick of Surge and the cognitive edge of Focus. Energy that lasts through the day.",
+    slugs: ['the-house-multi', 'the-house-vitality', 'the-house-sunshine', 'the-house-surge', 'the-house-focus']
   },
   {
     id: 'focus',
@@ -1679,8 +1679,8 @@ window.CONCERN_BUNDLES = [
     tab: 'goal',
     icon: 'C.',
     name: 'The Focus Bundle',
-    blurb: "Cognitive nootropics with Alpha GPC and Bacopa, the Lion's Mane mushroom complex, omega-3 phospholipids for brain structure, plus Burn for the metabolic + cognitive lift before deep work — and the eye treatment for the toll long focus sessions take on the orbital area. Sharp mind, present face.",
-    slugs: ['the-house-focus', 'the-house-synapse', 'the-house-burn', 'the-house-flow', 'the-house-eye']
+    blurb: "Cognitive nootropics with Alpha GPC and Bacopa, the Lion's Mane mushroom complex, omega-3 phospholipids for brain structure, plus Surge for the metabolic + cognitive lift before deep work — and the eye treatment for the toll long focus sessions take on the orbital area. Sharp mind, present face.",
+    slugs: ['the-house-focus', 'the-house-synapse', 'the-house-surge', 'the-house-flow', 'the-house-awake']
   },
   {
     id: 'stress',
@@ -1751,8 +1751,8 @@ window.CONCERN_BUNDLES = [
     tab: 'goal',
     icon: 'L.',
     name: 'The Metabolic Bundle',
-    blurb: "Daily energy and metabolic support from the foundation up — Burn for clean morning energy (caffeine + L-theanine + L-tyrosine for focus, L-carnitine for cellular energy support); Greens for the 22-ingredient nutrient density most diets miss; Biome for the gut microbiome that drives a meaningful share of metabolic and absorption health; Multi for the daily absorption baseline. Energy that runs on food and clean stimulation, not aggressive stimulants.",
-    slugs: ['the-house-burn', 'the-house-greens', 'the-house-biome', 'the-house-multi']
+    blurb: "Daily energy and metabolic support from the foundation up — Surge for clean morning energy (caffeine + L-theanine + L-tyrosine for focus, L-carnitine for cellular energy support); Greens for the 22-ingredient nutrient density most diets miss; Biome for the gut microbiome that drives a meaningful share of metabolic and absorption health; Multi for the daily absorption baseline. Energy that runs on food and clean stimulation, not aggressive stimulants.",
+    slugs: ['the-house-surge', 'the-house-greens', 'the-house-biome', 'the-house-multi']
   }
 ];
 
@@ -1785,9 +1785,9 @@ window.CURATED_BUNDLES = [
     discount: 0.25,
     slugs: [
       // 7 AM skincare (in routine order: cleanse → tone → serums → moisturize → SPF)
-      'the-house-wash','the-house-balance','the-house-boost','the-house-hyaluronic','the-house-defense','the-house-soft','the-house-shield',
+      'the-house-wash','the-house-balance','the-house-boost','the-house-plump','the-house-defense','the-house-soft','the-house-shield',
       // 6 PM skincare (treatments first, then serums, eye, oil)
-      'the-house-bounce','the-house-renewal','the-house-firm','the-house-hydration','the-house-eye','the-house-glow',
+      'the-house-bounce','the-house-renewal','the-house-firm','the-house-mist','the-house-awake','the-house-glow',
       // 9 morning/daily supplements (foundation → longevity)
       'the-house-multi','the-house-sunshine','the-house-flow','the-house-biome','the-house-calm',
       'the-house-nad-plus','the-house-vitality','the-house-synapse','the-house-restore',
@@ -1808,11 +1808,11 @@ window.CURATED_BUNDLES = [
     blurb: "Every product in the skincare line. AM ritual through PM ritual through the weekly reset — the complete skincare house in a single routine.",
     slugs: [
       // AM (cleanse → tone → vitamin C → HA → defense → moisturizer → SPF)
-      'the-house-wash','the-house-balance','the-house-boost','the-house-hyaluronic','the-house-defense','the-house-soft','the-house-shield',
+      'the-house-wash','the-house-balance','the-house-boost','the-house-plump','the-house-defense','the-house-soft','the-house-shield',
       // Targeted treatments
-      'the-house-clear','the-house-eye',
+      'the-house-clear','the-house-awake',
       // PM (peptide treatments → retinol → hydration → seal)
-      'the-house-bounce','the-house-renewal','the-house-firm','the-house-hydration','the-house-glow',
+      'the-house-bounce','the-house-renewal','the-house-firm','the-house-mist','the-house-glow',
       // Weekly reset
       'the-house-mask','the-house-polish'
     ]
@@ -1821,19 +1821,19 @@ window.CURATED_BUNDLES = [
     id: 'am',
     name: 'The AM Routine',
     discount: 0.15,
-    slugs: ['the-house-wash','the-house-balance','the-house-boost','the-house-hyaluronic','the-house-defense','the-house-soft','the-house-shield']
+    slugs: ['the-house-wash','the-house-balance','the-house-boost','the-house-plump','the-house-defense','the-house-soft','the-house-shield']
   },
   {
     id: 'pm',
     name: 'The PM Routine',
     discount: 0.15,
-    slugs: ['the-house-bounce','the-house-renewal','the-house-firm','the-house-hydration','the-house-eye','the-house-glow']
+    slugs: ['the-house-bounce','the-house-renewal','the-house-firm','the-house-mist','the-house-awake','the-house-glow']
   },
   {
     id: 'workout',
     name: 'The Workout Routine',
     discount: 0.15,
-    slugs: ['the-house-greens','the-house-burn','the-house-power','the-house-pump','the-house-restore']
+    slugs: ['the-house-greens','the-house-surge','the-house-power','the-house-pump','the-house-restore']
   },
   {
     id: 'foundation',
@@ -1851,13 +1851,13 @@ window.CURATED_BUNDLES = [
     id: 'moms',
     name: "The Mom's Routine",
     discount: 0.15,
-    slugs: ['the-house-wash','the-house-defense','the-house-bounce','the-house-eye','the-house-soft','the-house-multi','the-house-collagen','the-house-nad-plus','the-house-vitality','the-house-tranquil']
+    slugs: ['the-house-wash','the-house-defense','the-house-bounce','the-house-awake','the-house-soft','the-house-multi','the-house-collagen','the-house-nad-plus','the-house-vitality','the-house-tranquil']
   },
   {
     id: 'arianas',
     name: "The Ariana's Routine",
     discount: 0.15,
-    slugs: ['the-house-wash','the-house-boost','the-house-defense','the-house-renewal','the-house-eye','the-house-soft','the-house-multi','the-house-radiance','the-house-collagen']
+    slugs: ['the-house-wash','the-house-boost','the-house-defense','the-house-renewal','the-house-awake','the-house-soft','the-house-multi','the-house-radiance','the-house-collagen']
   }
 ];
 

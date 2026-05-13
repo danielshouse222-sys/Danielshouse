@@ -37,11 +37,11 @@ const INGREDIENTS = [
     name: 'Hyaluronic Acid', alt: 'Sodium hyaluronate', cat: 'skincare', evidence: 'strong',
     tags: ['hydrating'],
     body: 'A humectant that holds up to 1,000x its weight in water. Multi-weight formulations work at multiple skin depths — surface plumping plus deep hydration. Plumps fine lines and improves elasticity.',
-    products: ['the-house-hyaluronic', 'the-house-hydration', 'the-house-soft', 'the-house-boost', 'the-house-defense', 'the-house-bounce', 'the-house-firm', 'the-house-eye'],
+    products: ['the-house-plump', 'the-house-mist', 'the-house-soft', 'the-house-boost', 'the-house-defense', 'the-house-bounce', 'the-house-firm', 'the-house-awake'],
     studies: [
       { type: 'Randomized Controlled Trial', title: 'Efficacy of cream-based novel formulations of hyaluronic acid of different molecular weights in anti-wrinkle treatment', authors: 'Pavicic T, Gauglitz GG, Lersch P, et al.', journal: 'Journal of Drugs in Dermatology', year: 2011, finding: '8-week trial demonstrated 10-20% reduction in wrinkle depth using multi-molecular-weight hyaluronic acid versus single-weight formulations — confirming the multi-depth hydration mechanism.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Efficacy%20of%20cream-based%20novel%20formulations%20of%20hyaluronic%20acid%20of%20different%20molecular%20weights%20in%20anti-wrinkle%20treatment' },
-      { type: 'Review', title: 'Hyaluronic acid: A key molecule in skin aging', authors: 'Papakonstantinou E, Roth M, Karakiulakis G', journal: 'Dermato-Endocrinology', year: 2012, finding: 'Comprehensive review showing HA content in skin drops ~50% between ages 25 and 65; topical and dietary supplementation can partially restore skin hydration and elasticity markers.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Hyaluronic%20acid%3A%20A%20key%20molecule%20in%20skin%20aging' },
-      { type: 'Review', title: 'Hyaluronic acid: A versatile biomaterial in cosmetic applications', authors: 'Bukhari SNA, Roswandi NL, Waqas M, et al.', journal: 'International Journal of Biological Macromolecules', year: 2018, finding: 'Comprehensive review of clinical evidence supporting topical HA for skin hydration, elasticity, and wrinkle reduction across multiple molecular weights and delivery systems.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Hyaluronic%20acid%3A%20A%20versatile%20biomaterial%20in%20cosmetic%20applications' }
+      { type: 'Review', title: 'Hyaluronic acid: A key molecule in skin aging', authors: 'Papakonstantinou E, Roth M, Karakiulakis G', journal: 'Dermato-Endocrinology', year: 2012, finding: 'Comprehensive review showing HA content in skin drops ~50% between ages 25 and 65; topical and dietary supplementation can partially restore skin hydration and elasticity markers.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Plump%20acid%3A%20A%20key%20molecule%20in%20skin%20aging' },
+      { type: 'Review', title: 'Hyaluronic acid: A versatile biomaterial in cosmetic applications', authors: 'Bukhari SNA, Roswandi NL, Waqas M, et al.', journal: 'International Journal of Biological Macromolecules', year: 2018, finding: 'Comprehensive review of clinical evidence supporting topical HA for skin hydration, elasticity, and wrinkle reduction across multiple molecular weights and delivery systems.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Plump%20acid%3A%20A%20versatile%20biomaterial%20in%20cosmetic%20applications' }
     ]
   },
   {
@@ -84,8 +84,8 @@ const INGREDIENTS = [
     slug: 'peptides',
     name: 'Peptides', alt: 'Matrixyl, Argireline, SNAP-8, Syn-Ake', cat: 'skincare', evidence: 'moderate',
     tags: ['firming','anti-aging'],
-    body: 'Short chains of amino acids that signal collagen production and relax expression lines. Matrixyl family (Palmitoyl Tripeptide-1, Tetrapeptide-7) stimulates collagen synthesis. Argireline (Acetyl Hexapeptide-8) softens dynamic wrinkles. SNAP-8 (Acetyl Octapeptide-3) extends Argireline\'s mechanism. Syn-Ake (Dipeptide Diaminobutyroyl Benzylamide Diacetate) smooths the surface. Used across Firm (advanced peptide complex), Eye (triple-peptide with DCX), Boost (bio-peptide growth factor serum), and Bounce (Matrixyl pair stacked with retinol). Visible results compound over 8-12 weeks.',
-    products: ['the-house-firm', 'the-house-eye', 'the-house-bounce'],
+    body: 'Short chains of amino acids that signal collagen production and relax expression lines. Matrixyl family (Palmitoyl Tripeptide-1, Tetrapeptide-7) stimulates collagen synthesis. Argireline (Acetyl Hexapeptide-8) softens dynamic wrinkles. SNAP-8 (Acetyl Octapeptide-3) extends Argireline\'s mechanism. Syn-Ake (Dipeptide Diaminobutyroyl Benzylamide Diacetate) smooths the surface. Used across Firm (advanced peptide complex), Awake (triple-peptide with DCX), Boost (bio-peptide growth factor serum), and Bounce (Matrixyl pair stacked with retinol). Visible results compound over 8-12 weeks.',
+    products: ['the-house-firm', 'the-house-awake', 'the-house-bounce'],
     studies: [
       { type: 'Review', title: 'Cosmeceutical peptides', authors: 'Lupo MP, Cole AL', journal: 'Dermatologic Therapy', year: 2007, finding: 'Foundational review categorizing peptides into signal, carrier, and neurotransmitter-inhibitor groups — established the mechanistic basis for their use in firming and anti-aging formulations.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Cosmeceutical%20peptides' },
       { type: 'Review', title: 'Topical peptide treatments with effective anti-aging results', authors: 'Schagen SK', journal: 'Cosmetics', year: 2017, finding: 'Review of 25+ peptide studies confirmed that Matrixyl 3000 (palmitoyl tripeptide-1 + tetrapeptide-7) and Argireline (acetyl hexapeptide-8) produce measurable reductions in wrinkle depth over 8-12 week regimens.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Topical%20peptide%20treatments%20with%20effective%20anti-aging%20results' },
@@ -96,8 +96,8 @@ const INGREDIENTS = [
     slug: 'squalane',
     name: 'Squalane', alt: 'Plant-derived squalane', cat: 'skincare', evidence: 'moderate',
     tags: ['hydrating','calming'],
-    body: 'Plant-derived oil that mimics the skin\'s natural sebum. Deeply moisturizing without greasiness; non-comedogenic. Has a tiny molecular structure that allows it to absorb cleanly. Used in Eye (cushions the thin under-eye skin) and Glow (the lipid seal that locks in the PM routine).',
-    products: ['the-house-eye', 'the-house-glow'],
+    body: 'Plant-derived oil that mimics the skin\'s natural sebum. Deeply moisturizing without greasiness; non-comedogenic. Has a tiny molecular structure that allows it to absorb cleanly. Used in Awake (cushions the thin under-eye skin) and Glow (the lipid seal that locks in the PM routine).',
+    products: ['the-house-awake', 'the-house-glow'],
     studies: [
       { type: 'Review', title: 'Biological and pharmacological activities of squalene and related compounds', authors: 'Huang ZR, Lin YK, Fang JY', journal: 'Molecules', year: 2009, finding: 'Comprehensive review establishing squalane (the stable hydrogenated form of squalene) as an effective emollient that mimics human sebum composition and reduces transepidermal water loss.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Biological%20and%20pharmacological%20activities%20of%20squalene%20and%20related%20compounds' },
       { type: 'Review', title: 'Moisturizers: The slippery road', authors: 'Sethi A, Kaur T, Malhotra SK, et al.', journal: 'Indian Journal of Dermatology', year: 2016, finding: 'Clinical review categorizing moisturizing actives — squalane identified as one of the few oils with non-comedogenic profile suitable for acne-prone skin while providing barrier support.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Moisturizers%3A%20The%20slippery%20road' },
@@ -109,7 +109,7 @@ const INGREDIENTS = [
     name: 'Caffeine', alt: 'Trimethylxanthine', cat: 'skincare', evidence: 'moderate',
     tags: ['energizing','brightening'],
     body: 'Topical caffeine acts as an antioxidant, refreshes dull skin, and supports microcirculation — measurable de-puffing effects. Common in eye and de-puffing formulations across the skincare category.',
-    products: ['the-house-hydration'],
+    products: ['the-house-mist'],
     studies: [
       { type: 'Review', title: "Caffeine's mechanisms of action and its cosmetic use", authors: 'Herman A, Herman AP', journal: 'Skin Pharmacology and Physiology', year: 2013, finding: 'Mechanistic review establishing topical caffeine as a vasoconstrictor that reduces erythema and edema, an antioxidant that protects from UV damage, and a lipolysis stimulator with potential cellulite-modulating effects.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Caffeine' },
       { type: 'Clinical Study', title: 'A new genistein and caffeine formulation improves stretch marks and skin tone', authors: 'Pereira MR, Leite PE, Salermo VM', journal: 'Journal of Cosmetic Dermatology', year: 2014, finding: 'Topical formulation with caffeine improved skin firmness and stretch mark appearance in 12-week clinical trial — attributed to vasoconstrictive and microcirculation effects.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=A%20new%20genistein%20and%20caffeine%20formulation%20improves%20stretch%20marks%20and%20skin%20tone' },
@@ -333,7 +333,7 @@ const INGREDIENTS = [
     studies: [
       { type: 'Randomized Controlled Trial', title: 'Oral supplementation of specific collagen peptides has beneficial effects on human skin physiology', authors: 'Proksch E, Segger D, Degwert J, et al.', journal: 'Skin Pharmacology and Physiology', year: 2014, finding: '8-week double-blind placebo-controlled trial — collagen peptides 2.5-5g/day significantly improved skin elasticity in women aged 35-55, with effects persisting 4 weeks after stopping supplementation.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Oral%20supplementation%20of%20specific%20collagen%20peptides%20has%20beneficial%20effects%20on%20human%20skin%20physiology' },
       { type: 'Systematic Review', title: 'Oral Collagen Supplementation: A Systematic Review of Dermatological Applications', authors: 'Choi FD, Sung CT, Juhasz ML, Mesinkovsk NA', journal: 'Journal of Drugs in Dermatology', year: 2019, finding: 'Systematic review of 11 clinical studies covering 800+ patients — concluded oral collagen produces measurable improvements in skin hydration, elasticity, and wrinkle depth with consistent multi-week supplementation.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Oral%20Collagen%20Supplementation%3A%20A%20Systematic%20Review%20of%20Dermatological%20Applications' },
-      { type: 'Randomized Controlled Trial', title: 'A Collagen Supplement Improves Skin Hydration, Elasticity, Roughness, and Density', authors: 'Bolke L, Schlippe G, Gerß J, Voss W', journal: 'Nutrients', year: 2019, finding: '12-week placebo-controlled trial — 2.5g daily collagen peptides significantly improved skin hydration, elasticity, density, and roughness vs. placebo in healthy women.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=A%20Collagen%20Supplement%20Improves%20Skin%20Hydration%2C%20Elasticity%2C%20Roughness%2C%20and%20Density' }
+      { type: 'Randomized Controlled Trial', title: 'A Collagen Supplement Improves Skin Mist, Elasticity, Roughness, and Density', authors: 'Bolke L, Schlippe G, Gerß J, Voss W', journal: 'Nutrients', year: 2019, finding: '12-week placebo-controlled trial — 2.5g daily collagen peptides significantly improved skin hydration, elasticity, density, and roughness vs. placebo in healthy women.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=A%20Collagen%20Supplement%20Improves%20Skin%20Hydration%2C%20Elasticity%2C%20Roughness%2C%20and%20Density' }
     ]
   },
   {
@@ -365,7 +365,7 @@ const INGREDIENTS = [
     name: 'Caffeine + L-Theanine (Green Tea)', alt: 'Caffeine + green tea catechins', cat: 'supplement', evidence: 'strong',
     tags: ['energy','focus','cognitive-performance'],
     body: 'Caffeine paired with L-theanine (naturally present in green tea) produces a smoother, more focused energy curve than caffeine alone. The combination is the most-studied nootropic stack — better attention, better reaction time, less jitter and post-stimulant crash.',
-    products: ['the-house-burn'],
+    products: ['the-house-surge'],
     studies: [
       { type: 'Randomized Controlled Trial', title: 'The combined effects of L-theanine and caffeine on cognitive performance and mood', authors: 'Owen GN, Parnell H, De Bruin EA, Rycroft JA', journal: 'Nutritional Neuroscience', year: 2008, finding: 'The combination of L-theanine and caffeine produced measurable improvements in attention and reaction time compared with either compound alone — with reduced subjective jitter.', url: 'https://pubmed.ncbi.nlm.nih.gov/18681988/' },
       { type: 'Meta-Analysis', title: 'L-theanine, a natural constituent in tea, and its effect on mental state', authors: 'Nobre AC, Rao A, Owen GN', journal: 'Asia Pacific Journal of Clinical Nutrition', year: 2008, finding: 'Review confirmed L-theanine modulates alpha brain wave activity associated with relaxed alertness; combined with caffeine, supports sustained focus without nervous activation.', url: 'https://pubmed.ncbi.nlm.nih.gov/18296328/' },
@@ -414,7 +414,7 @@ const INGREDIENTS = [
     name: 'Allantoin', alt: 'Glyoxyldiureide', cat: 'skincare', evidence: 'moderate',
     tags: ['calming','hydrating'],
     body: 'A keratolytic and skin-soothing compound originally derived from comfrey root. Calms irritation, promotes hydration, and speeds healing of damaged skin. The reason "calming" formulas feel calmer.',
-    products: ['the-house-soft', 'the-house-balance', 'the-house-hydration'],
+    products: ['the-house-soft', 'the-house-balance', 'the-house-mist'],
     studies: [
       { type: 'Clinical Trial', title: 'Allantoin accelerates skin wound healing by enhancing extracellular matrix proteins', authors: 'Araújo LU, Grabe-Guimarães A, Mosqueira VC, et al.', journal: 'Acta Cirurgica Brasileira', year: 2010, finding: 'Topical allantoin sped wound closure by ~30% versus vehicle in animal models, with histology showing increased extracellular matrix protein deposition.', url: 'https://pubmed.ncbi.nlm.nih.gov/20668736/' },
       { type: 'Mechanistic Study', title: 'Allantoin in the topical treatment of atopic dermatitis: a randomized study', authors: 'Veraldi S, De Micheli P, Schianchi R, Lunardon L', journal: 'Journal of Dermatological Treatment', year: 2008, finding: 'Twice-daily 0.5% allantoin cream significantly improved itch, dryness, and erythema scores in 41 patients with mild-to-moderate atopic dermatitis over 8 weeks.', url: 'https://pubmed.ncbi.nlm.nih.gov/19031148/' },
@@ -426,7 +426,7 @@ const INGREDIENTS = [
     name: 'Panthenol', alt: 'Provitamin B5, D-Panthenol', cat: 'skincare', evidence: 'moderate',
     tags: ['hydrating','calming'],
     body: 'The provitamin form of B5 (pantothenic acid). Converts to pantothenic acid in skin, where it supports barrier function and binds water at multiple skin layers. Especially effective on damaged or sensitized skin.',
-    products: ['the-house-soft', 'the-house-balance', 'the-house-hydration', 'the-house-mask'],
+    products: ['the-house-soft', 'the-house-balance', 'the-house-mist', 'the-house-mask'],
     studies: [
       { type: 'Clinical Trial', title: 'Topical use of dexpanthenol in skin disorders', authors: 'Ebner F, Heller A, Rippke F, Tausch I', journal: 'American Journal of Clinical Dermatology', year: 2002, finding: 'Comprehensive review of 30+ clinical trials demonstrated dexpanthenol formulations consistently improved barrier function, reduced TEWL, and accelerated healing across multiple skin conditions.', url: 'https://pubmed.ncbi.nlm.nih.gov/12113648/' },
       { type: 'Mechanistic Study', title: 'Effects of dexpanthenol on cutaneous wound healing', authors: 'Heise R, Skazik C, Marquardt Y, et al.', journal: 'Skin Pharmacology and Physiology', year: 2012, finding: 'In vitro keratinocyte studies showed dexpanthenol upregulates genes involved in proliferation, migration, and stress response — the molecular basis for its barrier-repair effects.', url: 'https://pubmed.ncbi.nlm.nih.gov/22236471/' },
@@ -522,7 +522,7 @@ const INGREDIENTS = [
     name: 'Glycerin', alt: 'Glycerol', cat: 'skincare', evidence: 'strong',
     tags: ['hydrating'],
     body: 'The most-studied humectant in cosmetic science. Pulls water from deeper skin layers and the atmosphere into the stratum corneum. Found in the majority of well-formulated moisturizers because nothing else is as effective and well-tolerated.',
-    products: ['the-house-soft', 'the-house-hydration', 'the-house-balance', 'the-house-wash'],
+    products: ['the-house-soft', 'the-house-mist', 'the-house-balance', 'the-house-wash'],
     studies: [
       { type: 'Randomized Controlled Trial', title: 'Glycerol and the skin: holistic approach to its origin and functions', authors: 'Fluhr JW, Darlenski R, Surber C', journal: 'British Journal of Dermatology', year: 2008, finding: 'Comprehensive review of 50+ clinical studies confirmed glycerin\'s role in stratum corneum hydration, barrier function, and prevention of trans-epidermal water loss across virtually all skin types.', url: 'https://pubmed.ncbi.nlm.nih.gov/18510666/' },
       { type: 'Mechanistic Study', title: 'Aquaporin-3 mediates hydrogen peroxide-dependent responses', authors: 'Hara M, Verkman AS', journal: 'PNAS', year: 2003, finding: 'Established that glycerin functions through skin aquaporin-3 channels — the discovery that explains why topical glycerin produces hydration effects far beyond simple humectancy.', url: 'https://pubmed.ncbi.nlm.nih.gov/12724525/' },
@@ -596,7 +596,7 @@ const INGREDIENTS = [
     name: 'L-Tyrosine', alt: 'Tyrosine', cat: 'supplement', evidence: 'moderate',
     tags: ['focus','energy'],
     body: 'A precursor amino acid for dopamine, norepinephrine, and epinephrine. Supplementation supports working memory and decision-making under cognitive stress — the most-validated effect is preservation of executive function in sleep-deprived or stressed states.',
-    products: ['the-house-focus', 'the-house-burn'],
+    products: ['the-house-focus', 'the-house-surge'],
     studies: [
       { type: 'Randomized Controlled Trial', title: 'Effect of tyrosine supplementation on clinical and cognitive symptoms of stress', authors: 'Neri DF, Wiegmann D, Stanny RR, et al.', journal: 'Aviation, Space, and Environmental Medicine', year: 1995, finding: 'Crossover trial in military personnel during 4.5-hour cold-stress exposure — tyrosine (150mg/kg) preserved cognitive performance vs. placebo, with effects on attention and reaction time.', url: 'https://pubmed.ncbi.nlm.nih.gov/7794222/' },
       { type: 'Clinical Trial', title: 'Tyrosine improves working memory in a multitasking environment', authors: 'Thomas JR, Lockwood PA, Singh A, Deuster PA', journal: 'Pharmacology Biochemistry and Behavior', year: 1999, finding: 'RCT in healthy adults during multitasking stress — 100mg/kg L-tyrosine 1 hour pre-task improved working memory performance and reduced errors vs. placebo.', url: 'https://pubmed.ncbi.nlm.nih.gov/10593196/' },
@@ -608,7 +608,7 @@ const INGREDIENTS = [
     name: 'L-Carnitine', alt: 'L-Carnitine tartrate, ALCAR', cat: 'supplement', evidence: 'moderate',
     tags: ['performance','energy'],
     body: 'A naturally-occurring amino-acid derivative that transports long-chain fatty acids into the mitochondria for energy production. Supplementation supports fat metabolism, exercise recovery, and reduces post-exercise muscle damage markers.',
-    products: ['the-house-burn'],
+    products: ['the-house-surge'],
     studies: [
       { type: 'Randomized Controlled Trial', title: 'L-Carnitine L-tartrate supplementation favorably affects markers of recovery from exercise stress', authors: 'Kraemer WJ, Volek JS, French DN, et al.', journal: 'Metabolism', year: 2003, finding: '3-week L-carnitine tartrate (2g/day) supplementation reduced markers of muscle damage (CK, myoglobin) by 41-72% following resistance exercise vs. placebo.', url: 'https://pubmed.ncbi.nlm.nih.gov/12950105/' },
       { type: 'Clinical Trial', title: 'L-Carnitine supplementation and physical performance in healthy aged subjects', authors: 'Pistone G, Marino A, Leotta C, et al.', journal: 'Drugs & Aging', year: 2003, finding: '6-month L-carnitine supplementation (2g/day) in elderly subjects improved total mass, muscle mass, and reduced fat mass while improving physical and mental fatigue scores.', url: 'https://pubmed.ncbi.nlm.nih.gov/14584972/' },

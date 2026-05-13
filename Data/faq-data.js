@@ -35,7 +35,7 @@ window.DH_FAQ_DATA = [
     "cat": "Pricing & Value",
     "cat_id": 5,
     "q": "How long should one bottle last me?",
-    "a": "Most products are sized for a 2-3 month supply at standard daily use. Cleansers last 2-3 months at twice-daily use. Serums (Boost, Defense, Bounce, Firm) last 8-12 weeks at pea-size doses. Moisturizers (Soft, Hydration) last 2-3 months. Eye cream lasts 3-4 months. Shield sunscreen lasts 4-6 weeks at a properly-sized daily dose, so it's the SKU most worth subscribing for. Mask and Polish are weekly-use, so a single bottle lasts 4-6 months. Per-month effective cost across a full routine is lower than the list price suggests — at base subscription pricing, a complete AM routine costs about $74-87 per month."
+    "a": "Most products are sized for a 2-3 month supply at standard daily use. Cleansers last 2-3 months at twice-daily use. Serums (Boost, Defense, Bounce, Firm, Plump) last 8-12 weeks at pea-size doses. Moisturizers (Soft, Mist) last 2-3 months. Awake lasts 3-4 months. Shield sunscreen lasts 4-6 weeks at a properly-sized daily dose, so it's the SKU most worth subscribing for. Mask and Polish are weekly-use, so a single bottle lasts 4-6 months. Per-month effective cost across a full routine is lower than the list price suggests — at base subscription pricing, a complete AM routine costs about $74-87 per month."
   },
   {
     "cat": "Pricing & Value",
@@ -179,7 +179,7 @@ window.DH_FAQ_DATA = [
     "cat": "Ingredients & Safety",
     "cat_id": 3,
     "q": "Can I use products if I'm pregnant or nursing?",
-    "a": "For skincare, avoid retinol (Bounce) and the resurfacing treatments — Renewal (multi-acid peeling pads) and Clear (2% salicylic). Mask contains salicylic acid at gentle weekly-treatment levels — most providers consider it acceptable but some advise against any salicylic during pregnancy. Fully pregnancy-safe alternatives include Wash, Balance (glycolic at 3.5% — confirm with provider; some recommend avoiding all AHAs), Boost (gentle peptides + hyaluronic), Hyaluronic, Defense (confirm with provider), Soft (multi-weight HA moisturizer — no retinoids), Hydration (pure HA mist — the safest choice), Eye (peptide + DCX complex — no retinol or vitamin-A derivatives), Glow (HA spheres in squalane), Polish (physical exfoliant), and Shield (mineral SPF — pregnancy-essential). For supplements, consult your healthcare provider before starting any new supplement during pregnancy or nursing."
+    "a": "For skincare, avoid retinol (Bounce) and the resurfacing treatments — Renewal (multi-acid peeling pads) and Clear (2% salicylic). Mask contains salicylic acid at gentle weekly-treatment levels — most providers consider it acceptable but some advise against any salicylic during pregnancy. Fully pregnancy-safe alternatives include Wash, Balance (glycolic at 3.5% — confirm with provider; some recommend avoiding all AHAs), Boost (gentle peptides + hyaluronic), Plump, Defense (confirm with provider), Soft (multi-weight HA moisturizer — no retinoids), Mist (pure HA mist — the safest choice), Awake (peptide + DCX complex — no retinol or vitamin-A derivatives), Glow (HA spheres in squalane), Polish (physical exfoliant), and Shield (mineral SPF — pregnancy-essential). For supplements, consult your healthcare provider before starting any new supplement during pregnancy or nursing."
   },
   {
     "cat": "Ingredients & Safety",
@@ -203,7 +203,7 @@ window.DH_FAQ_DATA = [
     "cat": "Using the Products",
     "cat_id": 4,
     "q": "In what order should I apply skincare?",
-    "a": "Three rules cover almost everything: <strong>thinnest to thickest</strong>, <strong>water before oil</strong>, <strong>actives at night, antioxidants in the morning</strong>.<br><br><strong>AM:</strong> Wash → Balance (glycolic exfoliant) → Boost (peptide growth factor) → Hyaluronic (on damp skin) → Defense (CE Ferulic) → Soft (moisturizer) → Shield (mineral SPF).<br><br><strong>PM:</strong> Wash → Renewal (multi-acid peeling pads) <em>or</em> Bounce (5-active retinol) — pick one, alternate nights → Firm (peptides) → Hydration (HA mist) → Eye (peptide serum) → Glow (HA-in-squalane seal). Add Mask or Polish 1–2x/week, replacing your treatment that night.<br><br>Never stack retinol and AHA the same night — your barrier will tell you why."
+    "a": "Three rules cover almost everything: <strong>thinnest to thickest</strong>, <strong>water before oil</strong>, <strong>actives at night, antioxidants in the morning</strong>.<br><br><strong>AM:</strong> Wash → Balance (glycolic exfoliant) → Boost (peptide growth factor) → Plump (on damp skin) → Defense (CE Ferulic) → Soft (moisturizer) → Shield (mineral SPF).<br><br><strong>PM:</strong> Wash → Renewal (multi-acid peeling pads) <em>or</em> Bounce (5-active retinol) — pick one, alternate nights → Firm (peptides) → Mist (HA mist) → Awake (peptide serum) → Glow (HA-in-squalane seal). Add Mask or Polish 1–2x/week, replacing your treatment that night.<br><br>Never stack retinol and AHA the same night — your barrier will tell you why."
   },
   {
     "cat": "Using the Products",
@@ -215,7 +215,7 @@ window.DH_FAQ_DATA = [
     "cat": "Using the Products",
     "cat_id": 4,
     "q": "Can I combine multiple products?",
-    "a": "Yes — most are designed to be combined. Our routines and bundles are pre-built combinations Daniel actually uses. The main rules: don't double up on retinol products in skincare (Bounce + Renewal alternate, never together); follow caffeine cutoff times for stim-containing supplements like Burn."
+    "a": "Yes — most are designed to be combined. Our routines and bundles are pre-built combinations Daniel actually uses. The main rules: don't double up on retinol products in skincare (Bounce + Renewal alternate, never together); follow caffeine cutoff times for stim-containing supplements like Surge."
   },
   {
     "cat": "Using the Products",
