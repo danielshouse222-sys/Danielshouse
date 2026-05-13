@@ -212,7 +212,7 @@ window.PRODUCTS = [
         ],
     faq: [
       { q: 'How is this different from Boost?', a: 'Defense and Boost work on different mechanisms. Defense uses pure L-ascorbic acid + ferulic acid + vitamin E + niacinamide — the CE Ferulic antioxidant architecture for environmental defense and brightening. Boost is the bio-peptide growth factor serum — five biomimetic peptides for cellular renewal and skin resilience. They\'re complementary, not redundant. Most people use both: Defense AM (antioxidant shield), Boost AM after Defense (peptide signaling).' },
-      { q: 'Will pure L-ascorbic acid sting?', a: 'It can the first few applications. Most people acclimate within a week. If stinging persists, alternate with Boost (the gentler vitamin C) until your skin builds tolerance.' },
+      { q: 'Will pure L-ascorbic acid sting?', a: 'It can the first few applications. Most people acclimate within a week. If stinging persists, alternate days until your skin builds tolerance.' },
       { q: 'How long until I see results?', a: 'Antioxidant protection starts the moment you apply it. Visible brightening: 4-6 weeks. Visible firmness and tone improvement: 8-12 weeks. Long-term photoprotection compounds over years.' },
       { q: 'Can I use this with retinol?', a: 'Yes — Defense in the morning, Bounce (retinol) at night. They work in different mechanisms and stacking them across the day gives you the best long-term anti-aging protocol.' },
       { q: 'Does this replace SPF?', a: 'Absolutely not. Defense amplifies SPF protection but does not block UV. Always finish your morning with sunscreen.' },

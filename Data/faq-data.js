@@ -47,7 +47,7 @@ window.DH_FAQ_DATA = [
     "cat": "Shipping & Orders",
     "cat_id": 0,
     "q": "How fast does shipping arrive?",
-    "a": "Standard orders ship within 1-2 business days from our North American fulfillment center. Domestic delivery typically takes 3-5 business days. Free shipping on all orders over $75."
+    "a": "Standard orders ship within 1-2 business days from our USA fulfillment center. Domestic delivery typically takes 3-5 business days. Free shipping on all orders over $75."
   },
   {
     "cat": "Shipping & Orders",
@@ -167,7 +167,7 @@ window.DH_FAQ_DATA = [
     "cat": "Ingredients & Safety",
     "cat_id": 3,
     "q": "Where are products manufactured?",
-    "a": "All Daniel's House products are manufactured in FDA-registered, GMP-certified facilities in North America. Every batch is third-party tested for purity, potency, and contamination before it leaves the warehouse."
+    "a": "All Daniel's House products are manufactured in FDA-registered, GMP-certified facilities in the USA. Every batch is third-party tested for purity, potency, and contamination before it leaves the warehouse."
   },
   {
     "cat": "Ingredients & Safety",
@@ -203,7 +203,7 @@ window.DH_FAQ_DATA = [
     "cat": "Using the Products",
     "cat_id": 4,
     "q": "In what order should I apply skincare?",
-    "a": "Three rules cover almost everything: <strong>thinnest to thickest</strong>, <strong>water before oil</strong>, <strong>actives at night, antioxidants in the morning</strong>.<br><br><strong>AM:</strong> Wash → Balance (toner) → Boost (Vit C) → Hyaluronic (on damp skin) → Defense → Soft (moisturizer). End with SPF if you use one.<br><br><strong>PM:</strong> Wash → Balance → Renewal (resurfacing) <em>or</em> Bounce (combo treatment) — pick one, alternate nights → Firm (peptides) → Hydration → Eye → Glow (face oil, final seal). Add Mask or Polish 1–2x/week, replacing your treatment that night.<br><br>Never stack retinol and AHA the same night — your barrier will tell you why."
+    "a": "Three rules cover almost everything: <strong>thinnest to thickest</strong>, <strong>water before oil</strong>, <strong>actives at night, antioxidants in the morning</strong>.<br><br><strong>AM:</strong> Wash → Balance (glycolic exfoliant) → Boost (peptide growth factor) → Hyaluronic (on damp skin) → Defense (CE Ferulic) → Soft (moisturizer) → Shield (mineral SPF).<br><br><strong>PM:</strong> Wash → Renewal (multi-acid peeling pads) <em>or</em> Bounce (5-active retinol) — pick one, alternate nights → Firm (peptides) → Hydration (HA mist) → Eye (peptide serum) → Glow (HA-in-squalane seal). Add Mask or Polish 1–2x/week, replacing your treatment that night.<br><br>Never stack retinol and AHA the same night — your barrier will tell you why."
   },
   {
     "cat": "Using the Products",
