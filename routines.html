@@ -2585,8 +2585,6 @@
     'workout': "The full performance stack. Strength, output, recovery, nutrient density, and the metabolic edge. Five formulations for the days you put in real work.",
     'foundation': "The five foundational supplements every adult needs daily — multivitamin, vitamin D, omega-3, probiotic, and magnesium. The simple starting protocol that handles 80% of what most diets miss.",
     'longevity': "The five actives that pay off over years. Cellular energy, cognitive support, stress resilience, and joint mobility — daily, with the science behind each one.",
-    'glow': "The full glow protocol. Topical brightening + antioxidant defense + finishing oil + the weekly detox mask — paired with the beauty gummy and collagen peptides that build it from within.",
-    'weekly': "The reset ritual. The clarifying mask and gentle polish — used once or twice a week to clear buildup, brighten dull patches, and prime skin for everything else to work better.",
     'moms': "The needs that come with age are specific: skincare gentle enough for skin that's grown more reactive, paired with the actives that actually move the needle on visible aging — retinol overnight, peptides around the eyes, antioxidants by day. Steady energy as the body's rhythms change. Adaptogenic support for a nervous system that's carried decades of work and family life. This routine combines the gentle anti-aging skincare staples (Wash, Defense, Bounce, Eye, Soft) with the inside-out longevity stack (Multi, Collagen, NAD+, Vitality) plus Tranquil for evening recovery. Together they form a sustainable daily rhythm — not aspirational, not maximum, just the inside-out routine that compounds in your favor.",
     'arianas': "Built for my 25-year-old sister. Focused on inner-and-outer beauty, this stack pairs six skincare layers — cleanse, brighten, defend, renew, and protect the eyes — with three inner-beauty supplements that compound the glow from within: collagen, antioxidants, and the daily multi.",
     'ultimate': "Everything. Twelve skincare products — the full AM + PM rituals — plus ten daily supplements that handle the inside half. The complete protocol, twenty-two products, twenty-five percent off as a bundle. The most committed version of this brand."
@@ -2711,7 +2709,7 @@
     const grid = document.querySelector('.bundle-grid');
     if (!grid) return;
 
-    const defaultOrder = ['daniels-daily', 'daniels-skincare', 'am', 'pm', 'workout', 'foundation', 'longevity', 'glow', 'weekly', 'moms', 'arianas', 'ultimate'];
+    const defaultOrder = ['daniels-daily', 'daniels-skincare', 'am', 'pm', 'foundation', 'workout', 'longevity', 'moms', 'arianas', 'ultimate'];
     grid.innerHTML = defaultOrder.map(id => window.renderCuratedBundleCard(id)).join('');
 
     // ── COLLAPSIBLE CARDS — single delegated handler, supports both the top
@@ -3263,8 +3261,6 @@
       'workout':       ['active'],
       'foundation':    ['beginner','busy-pro'],
       'longevity':     ['anti-aging','busy-pro'],
-      'glow':          ['beauty','anti-aging'],
-      'weekly':        ['beauty','busy-pro'],
       'moms':          ['parent','sensitive'],
       'arianas':       ['beauty','busy-pro']
     };

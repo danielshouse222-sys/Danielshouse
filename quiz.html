@@ -2142,7 +2142,7 @@ const CONCERN_PICKS = {
   dullness:    ['the-house-boost', 'the-house-defense', 'the-house-polish', 'the-house-radiance'],
   dryness:     ['the-house-hyaluronic', 'the-house-soft', 'the-house-glow', 'the-house-hydration'],
   sensitivity: ['the-house-soft', 'the-house-balance', 'the-house-hydration', 'the-house-glow'],
-  pores:       ['the-house-polish', 'the-house-mask', 'the-house-boost', 'the-house-clear']
+  pores:       ['the-house-polish', 'the-house-renewal', 'the-house-mask', 'the-house-boost', 'the-house-biome']
 };
 // Multi-select priorities → favored slugs
 const PRIORITY_PICKS = {
@@ -2901,21 +2901,26 @@ updateProgress();
     dryness:     'Hydration',
     dullness:    'Brightening',
     sensitivity: 'Sensitive Skin',
-    pores:       'Pore Refinement',
+    pores:       'Texture',
+    glow:        'Glow',
     sleep:       'Sleep',
     energy:      'Energy',
     focus:       'Focus & Mood',
     stress:      'Stress Relief',
-    strength:    'Workout',
     longevity:   'Longevity',
     gut:         'Gut Health',
     joints:      'Joints & Recovery',
+    'hair-nails': 'Hair & Nails',
+    travel:      'Travel',
+    cycle:       'Cycle Support',
+    metabolic:   'Metabolic',
   };
   const CHIP_ORDER = [
     // Wellness/lifestyle first since people search by need
-    'energy', 'sleep', 'focus', 'stress', 'strength', 'longevity', 'gut', 'joints',
+    'energy', 'sleep', 'focus', 'stress', 'longevity', 'gut', 'joints',
+    'hair-nails', 'cycle', 'travel', 'metabolic',
     // Then skincare effects
-    'aging', 'dullness', 'dryness', 'acne', 'sensitivity', 'pores',
+    'aging', 'glow', 'dullness', 'dryness', 'acne', 'sensitivity', 'pores',
   ];
   const bundleBySlug = (() => {
     const map = new Map();

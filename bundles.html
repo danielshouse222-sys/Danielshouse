@@ -1354,10 +1354,14 @@ function renderConcernCard(bundle) {
   // Count skincare + supplement split — drives the new mix indicator pills
   const skinCount = products.filter(p => p.category === 'skincare').length;
   const suppCount = products.filter(p => p.category === 'supplement').length;
-  // Bundle names are "The X Bundle" — italicize the X (the meaningful word)
+  // Bundle names are "The X Bundle" — italicize the X (the meaningful word).
+  // Travel Stack is an exception (ends in "Stack" not "Bundle").
+  const stackMatch = bundle.name.match(/^The (.+) Stack$/);
   const nameMatch = bundle.name.match(/^The (.+) Bundle$/);
-  const meaningfulWord = nameMatch ? nameMatch[1] : bundle.name.split(' ')[0];
-  const formattedName = nameMatch ? `The <em>${meaningfulWord}</em> Bundle` : bundle.name;
+  const meaningfulWord = stackMatch ? stackMatch[1] : (nameMatch ? nameMatch[1] : bundle.name.split(' ')[0]);
+  const formattedName = stackMatch ? `The <em>${meaningfulWord}</em> Stack`
+                      : nameMatch  ? `The <em>${meaningfulWord}</em> Bundle`
+                      : bundle.name;
 
   // Discount percentage for the inline savings ribbon
   const discountPct = Math.round((bundle.discount || 0.07) * 100);
@@ -1623,19 +1627,24 @@ document.addEventListener('DOMContentLoaded', () => {
     { kind: 'concern', id: 'aging' },         // top skin concern across demographics
     { kind: 'routine', id: 'ultimate' },      // flagship — premium statement, max savings
     { kind: 'concern', id: 'energy' },        // universal — broad supplement appeal
+    { kind: 'concern', id: 'hair-nails' },    // Hair & Nails — beauty-from-within entry
+    { kind: 'concern', id: 'starter' },       // Skin Starter — skincare entry point
     { kind: 'routine', id: 'pm' },            // pairs with AM, completes the ritual
-    { kind: 'routine', id: 'glow' },          // curated daily glow ritual
+    { kind: 'concern', id: 'glow' },          // The Glow Bundle — inside-out glow
     { kind: 'concern', id: 'dullness' },      // Brightening — vitamin C, alternate glow
     { kind: 'concern', id: 'stress' },        // trending adaptogens market
+    { kind: 'concern', id: 'cycle' },         // women's wellness — monthly rhythm
     { kind: 'concern', id: 'dryness' },       // Hydration — fundamental concern
-    { kind: 'routine', id: 'workout' },       // active/fitness persona
-    { kind: 'concern', id: 'strength' },      // performance supplements
+    { kind: 'routine', id: 'workout' },       // active/fitness persona (sole workout bundle)
+    { kind: 'concern', id: 'metabolic' },     // Metabolic — foundation-first energy
     { kind: 'routine', id: 'moms' },          // focused persona, strong segment conversion
     { kind: 'concern', id: 'longevity' },     // Cellular Bundle — premium longevity
     { kind: 'concern', id: 'gut' },           // trending gut-skin axis
+    { kind: 'concern', id: 'travel' },        // Travel Stack — frequent flyer
     { kind: 'concern', id: 'acne' },          // Clear-Skin — concentrated demand
     { kind: 'concern', id: 'sensitivity' },   // Soothing — sensitive-skin segment
-    { kind: 'concern', id: 'pores' },         // specific cosmetic concern
+    { kind: 'concern', id: 'pores' },         // Texture — surface refinement
+    { kind: 'concern', id: 'reset' },         // Reset Bundle — weekly skincare complement
     { kind: 'concern', id: 'focus' },         // niche cognitive
     { kind: 'concern', id: 'joints' },        // older demographic
     { kind: 'routine', id: 'arianas' },       // narrow persona
@@ -1803,24 +1812,29 @@ document.addEventListener('DOMContentLoaded', () => {
     'dryness':     ['sensitive', 'beauty', 'beginner'],
     'dullness':    ['beauty', 'busy-pro'],
     'sensitivity': ['sensitive', 'parent', 'beginner'],
-    'pores':       ['beauty', 'beginner'],
+    'pores':       ['beauty', 'beginner'],          // The Texture Bundle — surface refinement
+    'glow':        ['beauty', 'anti-aging'],        // The Glow Bundle — inside-out glow
+    'starter':     ['beginner', 'sensitive', 'parent'], // The Skin Starter Bundle — entry-level
+    'reset':       ['beauty', 'busy-pro'],          // The Reset Bundle — weekly complement
     // WELLNESS-focused bundles
     'sleep':       ['parent', 'busy-pro', 'beginner'],
     'energy':      ['busy-pro', 'parent', 'beginner', 'active'],
     'focus':       ['busy-pro', 'active'],
     'stress':      ['busy-pro', 'parent', 'sensitive'],
-    'strength':    ['active'],
     'beauty':      ['beauty', 'anti-aging'],
     'longevity':   ['anti-aging', 'busy-pro'],
     'gut':         ['beginner', 'busy-pro', 'sensitive'],
     'joints':      ['active', 'anti-aging'],
+    'hair-nails':  ['beauty', 'anti-aging', 'parent'],   // beauty from within
+    'travel':      ['busy-pro', 'active', 'beginner'],   // frequent traveler
+    'cycle':       ['beauty', 'parent', 'sensitive'],    // women's wellness
+    'metabolic':   ['active', 'busy-pro', 'beginner'],   // foundation-first energy
     // CURATED ROUTINES (added so routine cards filter correctly)
     'daniels-daily':    ['busy-pro', 'anti-aging', 'beginner'],
     'daniels-skincare': ['anti-aging', 'beauty', 'busy-pro'],
     'am':            ['busy-pro', 'beauty', 'beginner'],
     'pm':            ['anti-aging', 'beauty'],
     'workout':       ['active'],
-    'glow':          ['beauty', 'anti-aging'],
     'moms':          ['parent', 'anti-aging', 'sensitive'],
     'arianas':       ['beauty', 'beginner'],
     'ultimate':      ['busy-pro', 'anti-aging', 'beauty', 'active']
