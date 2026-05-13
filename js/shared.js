@@ -371,7 +371,7 @@
       return haystack.includes(q);
     }).slice(0, 6);
 
-    // ── Concern bundles (Anti-Aging, Sleep, Hydration, etc.) ──
+    // ── Concern bundles (Anti-Aging, Sleep, Mist, etc.) ──
     const bundleMatches = (window.CONCERN_BUNDLES || []).filter(b => {
       const productInfo = (b.slugs || [])
         .map(s => window.getProductBySlug && window.getProductBySlug(s))
@@ -1759,7 +1759,24 @@
         </div>
 
         <button class="cf-place-order" type="button">Place order · $<span class="cf-final-total">${(subtotal + (subtotal >= FREE_SHIP ? 0 : 7.95) + subtotal * TAX_RATE).toFixed(2)}</span></button>
-        <div class="cf-trust-line"><span>●</span> Secure checkout · 256-bit encryption</div>
+        <div class="cf-trust-strip">
+          <div class="cf-trust-item">
+            <svg class="cf-trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+            <span>Secure 256-bit<br/>Checkout</span>
+          </div>
+          <div class="cf-trust-item">
+            <svg class="cf-trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h18M3 16h18M5 5v14M19 5v14"/><circle cx="12" cy="12" r="2.5"/></svg>
+            <span>Made<br/>in USA</span>
+          </div>
+          <div class="cf-trust-item">
+            <svg class="cf-trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
+            <span>30-Day<br/>Guarantee</span>
+          </div>
+          <div class="cf-trust-item">
+            <svg class="cf-trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s-7-4.5-7-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.5-7 11-7 11"/><circle cx="12" cy="9" r="1.2" fill="currentColor"/></svg>
+            <span>Cruelty-Free<br/>&amp; Vegan</span>
+          </div>
+        </div>
       `;
 
       // Wire up item controls
@@ -1974,7 +1991,7 @@
           { name: "Wash",       note: "The botanical cleanser — rose hip seed oil, geranium, and Irish moss in a silky, fragrance-free lather." },
           { name: "Balance",    note: "Tri-acid peeling pads (salicylic, lactic, mandelic) — the toner step upgraded to daily exfoliation." },
           { name: "Boost",      note: "Three stable forms of vitamin C for sustained brightening without the sting of L-ascorbic acid." },
-          { name: "Hyaluronic", note: "Pure water + sodium hyaluronate. Minimalist hydration that layers cleanly with every product after it." },
+          { name: "Plump", note: "Pure water + sodium hyaluronate. Minimalist hydration that layers cleanly with every product after it." },
           { name: "Defense",    note: "The CE Ferulic antioxidant shield. L-ascorbic acid + ferulic acid + niacinamide + B5 + vitamin E — the SkinCeuticals-tier architecture." },
           { name: "Soft",       note: "Advanced multi-weight HA moisturizing cream with niacinamide and barrier-supportive emollients." },
           { name: "Shield",     note: "Mineral SPF 30 — non-nano zinc oxide + titanium dioxide. The most important product in any anti-aging routine." }
@@ -1983,8 +2000,8 @@
           { name: "Bounce",    note: "The PM cornerstone. 0.05% retinol + 0.5% vitamin C + 0.1% hyaluronic acid + Matrixyl peptides + botanical skin-tightening trio. Alternating nights with Renewal." },
           { name: "Renewal",   note: "2-3 nights/week, alternating with Bounce. Multi-action peeling pads — glycolic, lactic, salicylic — for deep resurfacing." },
           { name: "Firm",      note: "Advanced peptide complex layered with hyaluronic acid and seaweed extract for collagen and elastin signaling." },
-          { name: "Hydration", note: "Featherweight hyaluronic face and body mist — HA + rose centifolia water + glycerin + sodium lactate. Refreshes anytime, layers cleanly." },
-          { name: "Eye",       note: "Triple-peptide complex with DCX complex (targeting under-eye pigmentation) and seaweed-derived minerals for the orbital area." },
+          { name: "Mist", note: "Featherweight hyaluronic face and body mist — HA + rose centifolia water + glycerin + sodium lactate. Refreshes anytime, layers cleanly." },
+          { name: "Awake",       note: "Triple-peptide complex with DCX complex (targeting under-eye pigmentation) and seaweed-derived minerals for the orbital area." },
           { name: "Glow",      note: "Hyaluronic spheres suspended in squalane — multi-weight HA delivery in a lipid carrier that absorbs cleanly without residue." }
         ],
         supplements: [
@@ -2047,7 +2064,7 @@
           { name: "Wash",       note: "The botanical cleanser — rose hip seed oil, geranium, Irish moss. Lifts oil without stripping the barrier." },
           { name: "Balance",    note: "Tri-acid peeling pads — salicylic, lactic, mandelic. Replaces a passive toner with daily gentle exfoliation." },
           { name: "Boost",      note: "Three stable forms of vitamin C — sodium ascorbyl phosphate, ascorbyl glucoside, magnesium ascorbyl phosphate. Sustained brightening without the sting." },
-          { name: "Hyaluronic", note: "Pure water + sodium hyaluronate. Holds 1,000x its weight in water and layers cleanly with every other product." },
+          { name: "Plump", note: "Pure water + sodium hyaluronate. Holds 1,000x its weight in water and layers cleanly with every other product." },
           { name: "Defense",    note: "The CE Ferulic shield. L-ascorbic acid + ferulic acid + niacinamide + B5 + vitamin E. Gold-standard antioxidant defense." },
           { name: "Soft",       note: "Advanced multi-weight HA moisturizing cream. The daily moisturizer for any skin type." },
           { name: "Shield",     note: "Mineral SPF 30 — non-nano zinc oxide + titanium dioxide with coffee fruit, ferulic acid, and niacinamide. The most important product in any anti-aging routine." }
@@ -2057,7 +2074,7 @@
           mechanisms: [
             { problem: "Environmental damage", solution: "Boost + Defense + Shield layer three forms of photoprotection — antioxidants and physical UV block" },
             { problem: "Dullness/uneven tone", solution: "Multi-form vitamin C + niacinamide + ferulic acid brighten over 4-6 weeks" },
-            { problem: "Dehydration",          solution: "Hyaluronic + Soft create a deep hydration layer that lasts through the day" },
+            { problem: "Dehydration",          solution: "Plump + Soft create a deep hydration layer that lasts through the day" },
             { problem: "Photoaging risk",      solution: "Daily SPF is the single most-evidenced anti-aging intervention in dermatology" }
           ]
         },
@@ -2072,16 +2089,16 @@
           { name: "Bounce",    note: "The retinol cornerstone. Five actives layered: retinol + stable vitamin C + hyaluronic acid + Matrixyl peptides + botanical skin-tightening trio. Alternating nights with Renewal." },
           { name: "Renewal",   note: "2-3 nights/week, alternating with Bounce. Multi-action peeling pads — glycolic + lactic + salicylic — for deep resurfacing." },
           { name: "Firm",      note: "Advanced peptide complex layered with hyaluronic acid and seaweed extract. Collagen signaling from multiple angles." },
-          { name: "Hydration", note: "Featherweight hyaluronic face and body mist — HA + rose centifolia water + glycerin + sodium lactate. Layers cleanly anytime in the routine." },
-          { name: "Eye",       note: "Triple-peptide complex with DCX complex (targeting under-eye pigmentation). Works overnight on the thin under-eye area." },
+          { name: "Mist", note: "Featherweight hyaluronic face and body mist — HA + rose centifolia water + glycerin + sodium lactate. Layers cleanly anytime in the routine." },
+          { name: "Awake",       note: "Triple-peptide complex with DCX complex (targeting under-eye pigmentation). Works overnight on the thin under-eye area." },
           { name: "Glow",      note: "Hyaluronic spheres suspended in squalane. Multi-weight HA delivery in a lipid carrier — absorbs cleanly without residue." }
         ],
         whyItWorks: {
           lead: "Sleep is when skin does its repair work — cell turnover peaks, growth hormone releases, collagen synthesis fires. This bundle gives that process the actives it needs: retinol for turnover, an advanced peptide complex for collagen signaling, hyaluronic for hydration, lipids to seal.",
           mechanisms: [
             { problem: "Slowed cell turnover", solution: "Bounce's retinol + Renewal's triple-acid blend (alternating nights) accelerate renewal" },
-            { problem: "Collagen breakdown",   solution: "Advanced peptide complex in Firm + triple-peptide complex in Eye signal for fibroblast activity overnight" },
-            { problem: "Loss of plumpness",    solution: "Hyaluronic acid in Bounce + Hydration restores volume" },
+            { problem: "Collagen breakdown",   solution: "Advanced peptide complex in Firm + triple-peptide complex in Awake signal for fibroblast activity overnight" },
+            { problem: "Loss of plumpness",    solution: "Hyaluronic acid in Bounce + Mist restores volume" },
             { problem: "Barrier weakness",     solution: "Glow's HA spheres in squalane finish reinforces the barrier overnight" }
           ]
         },
@@ -2094,7 +2111,7 @@
         intro: "Built around the gym window. <em>Creatine and protein for performance, electrolytes for recovery, magnesium for sleep, ashwagandha to manage cortisol.</em> A complete pre/intra/post stack — five supplements that do the work training alone can't.",
         supplements: [
           { name: "Greens",  note: "Morning or anytime, daily. Greens powder + adaptogens — nutrient density that food often misses." },
-          { name: "Burn",    note: "Morning, with food. Thermogenic blend for those running a cut — focus, metabolism, mood." },
+          { name: "Surge",    note: "Morning, with food. Thermogenic blend for those running a cut — focus, metabolism, mood." },
           { name: "Power",   note: "Pre-workout, 30-45 min before training. Creatine monohydrate at clinical dose — strength, output, lean mass." },
           { name: "Pump",    note: "Pre-workout, 20-30 min before. Citrulline + beetroot + caffeine — circulation, focus, the pump itself." },
           { name: "Seal",    note: "Post-workout, within 60 min. Whey isolate + glutamine + colostrum — protein synthesis and gut recovery." }
@@ -2110,7 +2127,7 @@
         },
         whoItsFor: {
           yes: "You train 3-5x/week and want the supplement stack that actually moves performance. You understand the role of each compound and won't waste the doses by being inconsistent.",
-          no: "You train casually (1-2x/week) — Power alone is enough. Or you want a fat-loss focused stack — Burn is the relevant single product."
+          no: "You train casually (1-2x/week) — Power alone is enough. Or you want a fat-loss focused stack — Surge is the relevant single product."
         }
       },
       longevity: {
@@ -2210,18 +2227,18 @@
         am: [
           { name: "Wash",    note: "Gentle cleanser that doesn't strip the skin's natural oils — the daily reset before the actives." },
           { name: "Defense", note: "The CE Ferulic antioxidant shield — L-ascorbic acid + ferulic acid + niacinamide + B5 + vitamin E. The gold-standard daytime architecture for protecting existing collagen from breaking down." },
-          { name: "Eye",     note: "Bakuchiol + triple-peptide complex firms and brightens the orbital area. Cucumber and squalane depuff." },
+          { name: "Awake",     note: "Bakuchiol + triple-peptide complex firms and brightens the orbital area. Cucumber and squalane depuff." },
           { name: "Soft",    note: "Advanced multi-weight HA moisturizing cream with niacinamide. Deep hydration with barrier support — a non-negotiable step for aging skin." }
         ],
         pm: [
           { name: "Wash",    note: "Gentle cleanser removes the day without compromising the barrier." },
           { name: "Bounce",  note: "The cornerstone. 0.05% retinol + stable vitamin C + hyaluronic acid + Matrixyl peptides + botanical skin-tightening trio. Multi-active retinol that compounds in your favor." },
-          { name: "Eye",     note: "Bakuchiol does its best work overnight — same product, second application." },
+          { name: "Awake",     note: "Bakuchiol does its best work overnight — same product, second application." },
           { name: "Soft",    note: "Locks in the actives while skin does its repair work overnight." }
         ],
         supplements: [
           { name: "Multi",    note: "Morning, with breakfast. Foundation nutrition — zinc, biotin, vitamins C, D, and B-complex. Skin renewal can't happen if any of these are running low at the cellular level." },
-          { name: "Collagen", note: "Morning, blend into coffee, smoothie, or warm water. Hydrolyzed peptides feed skin the building blocks for what Bounce and Eye are signaling for topically." },
+          { name: "Collagen", note: "Morning, blend into coffee, smoothie, or warm water. Hydrolyzed peptides feed skin the building blocks for what Bounce and Awake are signaling for topically." },
           { name: "NAD+",     note: "Morning, with food. The longevity hero — replenishes the cellular fuel that declines with age. Mitochondrial function powers cell renewal, including skin cell turnover. The most-studied longevity active there is." },
           { name: "Vitality", note: "Morning or midday, with food. Energy + antioxidant blend with sirtuin activators. Compounds the anti-aging effect from the inside — supports the same cellular pathways NAD+ targets." },
           { name: "Tranquil", note: "Evening, 30-60 minutes before bed. Sleep is the most underrated anti-aging tool — magnesium glycinate, L-theanine, and adaptogens deliver deep repair-quality sleep, which is when growth hormone, collagen synthesis, and cellular repair all peak." }
@@ -2229,7 +2246,7 @@
         whyItWorks: {
           lead: "Visible aging comes down to four things: collagen loss, oxidative damage, slowed cell turnover, and declining cellular energy. This bundle attacks all four with the most clinically validated actives — minimal steps, maximum efficacy, working from the surface and from inside the cell.",
           mechanisms: [
-            { problem: "Collagen loss",      solution: "Bounce's retinol + Eye's peptides topically · Collagen peptides + Multi internally" },
+            { problem: "Collagen loss",      solution: "Bounce's retinol + Awake's peptides topically · Collagen peptides + Multi internally" },
             { problem: "Oxidative damage",   solution: "Defense + Bounce antioxidants topically · Multi + Vitality internally" },
             { problem: "Slowed turnover",    solution: "Bounce nightly · NAD+ powers cellular energy for renewal · Multi feeds new cell production" },
             { problem: "Cellular fatigue",   solution: "NAD+ replenishes mitochondrial fuel · Tranquil ensures deep repair-quality sleep when growth hormone peaks" }
@@ -2246,25 +2263,25 @@
           { name: "Wash",    note: "Kale, carrot, and lemon proteins cleanse without stripping the barrier." },
           { name: "Boost",   note: "Vitamin C (stable derivative), niacinamide, and panthenol brighten and even tone." },
           { name: "Defense", note: "The heavy hitter — stable vitamin C, soy protein, squalane, caffeine. Layers of antioxidant protection that compound with Boost." },
-          { name: "Eye",     note: "Peptide cream around the orbital area before moisturizer locks everything in." },
+          { name: "Awake",     note: "Peptide cream around the orbital area before moisturizer locks everything in." },
           { name: "Soft",    note: "Multi-weight hyaluronic acid + aloe seals it all with hydration." }
         ],
         pm: [
           { name: "Wash",    note: "Same gentle cleanser, removes the day." },
           { name: "Renewal", note: "2-3 nights/week only. Multi-action peeling pads (glycolic + lactic + salicylic) for deep resurfacing while you sleep. This is where the real anti-aging work happens." },
-          { name: "Eye",     note: "Peptide cream — fine to use AM and PM." },
-          { name: "Soft",    note: "Locks in the actives. On off-nights, just Wash → Eye → Soft." }
+          { name: "Awake",     note: "Peptide cream — fine to use AM and PM." },
+          { name: "Soft",    note: "Locks in the actives. On off-nights, just Wash → Awake → Soft." }
         ],
         supplements: [
           { name: "Multi",    note: "The nutrient floor. Everything the skin and body need that food may not consistently deliver." },
           { name: "Radiance", note: "Beauty-targeted antioxidants. Compounds with topical Boost + Defense for amplified brightening." },
-          { name: "Collagen", note: "Hydrolyzed peptides. Skin gets the building blocks it needs to do what Renewal and Eye are signaling for." }
+          { name: "Collagen", note: "Hydrolyzed peptides. Skin gets the building blocks it needs to do what Renewal and Awake are signaling for." }
         ],
         whyItWorks: {
           lead: "The three vectors of visible aging are oxidative damage, collagen loss, and uneven turnover. This bundle hits all three from both sides — topically and internally — so you're attacking each problem from two angles simultaneously.",
           mechanisms: [
             { problem: "Oxidative damage", solution: "Defense + Boost topically · Radiance internally" },
-            { problem: "Collagen loss",    solution: "Renewal + Eye peptides topically · Collagen + Multi internally" },
+            { problem: "Collagen loss",    solution: "Renewal + Awake peptides topically · Collagen + Multi internally" },
             { problem: "Uneven turnover",  solution: "Renewal's glycolic acid resurfaces · supplements feed cell production" }
           ]
         },
@@ -2583,17 +2600,17 @@
         'the-house-tranquil',  // sleep-magnesium
         'the-house-wash',      // gateway skincare
         'the-house-collagen',  // top supplement
-        'the-house-eye',       // peptides
+        'the-house-awake',       // peptides
         'the-house-soft',      // moisturizer
         'the-house-vitality',  // longevity
         'the-house-glow',      // face oil
-        'the-house-hyaluronic',
+        'the-house-plump',
         'the-house-boost',
         'the-house-flow',
         'the-house-radiance',
         'the-house-firm',
         'the-house-renewal',
-        'the-house-hydration',
+        'the-house-mist',
         'the-house-balance',
         'the-house-calm',
         'the-house-biome',
@@ -2607,7 +2624,7 @@
         'the-house-pump',
         'the-house-seal',
         'the-house-greens',
-        'the-house-burn'
+        'the-house-surge'
       ],
       bundles: [
         'daniels-daily',
@@ -2637,7 +2654,7 @@
         'routine:daniels-skincare',  // foundational skincare stack — paired counterpart
         'concern:sleep',             // small bundle, universal need, affordable entry
         'routine:am',                // skincare gateway
-        'concern:dryness',           // Hydration — fundamental, small price
+        'concern:dryness',           // Mist — fundamental, small price
         'concern:aging',             // Anti-Aging — broad appeal
         'concern:starter',           // Skin Starter Bundle — entry-level skincare
         'concern:hair-nails',        // Hair & Nails — large search/beauty demand
@@ -3189,7 +3206,7 @@
         'the-house-balance':    2, // toner — AM only
         'the-house-boost':      3, // vitamin C — AM only
         'the-house-clear':      3, // acne treatment — both
-        'the-house-hyaluronic': 4, // HA serum — also PM
+        'the-house-plump': 4, // HA serum — also PM
         'the-house-defense':    5, // antioxidant — AM only
         'the-house-soft':       6  // moisturizer
       };
@@ -3199,38 +3216,38 @@
         'the-house-clear':      2, // acne treatment — both
         'the-house-bounce':     3, // peptide treatment — PM only
         'the-house-firm':       3, // peptide serum — PM only
-        'the-house-hyaluronic': 4, // HA serum — also AM
-        'the-house-eye':        5, // eye cream — PM only
-        'the-house-hydration':  6, // PM moisturizer
+        'the-house-plump': 4, // HA serum — also AM
+        'the-house-awake':        5, // eye cream — PM only
+        'the-house-mist':  6, // PM moisturizer
         'the-house-glow':       7  // face oil seal — PM only
       };
 
       // ── Moisturizer logic ──
-      // Soft and Hydration are interchangeable end-of-routine sealants.
+      // Soft and Mist are interchangeable end-of-routine sealants.
       // Every routine — AM or PM — needs a moisturizer. When a bundle has
-      // BOTH, Soft is the AM moisturizer and Hydration is the PM moisturizer
+      // BOTH, Soft is the AM moisturizer and Mist is the PM moisturizer
       // (each locked to its preferred time). When a bundle has only ONE,
       // that moisturizer fills both AM and PM slots so the user has a
       // sealing step in every routine.
       const hasSoft      = skincare.some(p => p.slug === 'the-house-soft');
-      const hasHydration = skincare.some(p => p.slug === 'the-house-hydration');
+      const hasHydration = skincare.some(p => p.slug === 'the-house-mist');
 
       if (hasSoft && !hasHydration) {
         SKIN_PM_ORDER['the-house-soft'] = 6; // Soft serves PM too
       }
       if (hasHydration && !hasSoft) {
-        SKIN_AM_ORDER['the-house-hydration'] = 6; // Hydration serves AM too
+        SKIN_AM_ORDER['the-house-mist'] = 6; // Mist serves AM too
       }
 
       // Time-exclusive products determine whether a bundle warrants an
       // AM section, PM section, or both. A product appearing in this set
       // means it's locked to that time of day.
       const AM_EXCLUSIVE = new Set(['the-house-balance', 'the-house-boost', 'the-house-defense']);
-      const PM_EXCLUSIVE = new Set(['the-house-renewal', 'the-house-bounce', 'the-house-firm', 'the-house-eye', 'the-house-glow']);
+      const PM_EXCLUSIVE = new Set(['the-house-renewal', 'the-house-bounce', 'the-house-firm', 'the-house-awake', 'the-house-glow']);
       // When both moisturizers are present, each becomes time-locked.
       if (hasSoft && hasHydration) {
         AM_EXCLUSIVE.add('the-house-soft');
-        PM_EXCLUSIVE.add('the-house-hydration');
+        PM_EXCLUSIVE.add('the-house-mist');
       }
 
       const SKIN_WEEKLY = new Set(['the-house-mask', 'the-house-polish']);
@@ -3238,7 +3255,7 @@
       // SUPPLEMENTS: bucketed by time-of-day based on each formula's purpose.
       const EVENING_SUPPS = new Set(['the-house-calm', 'the-house-tranquil']);
       const DINNER_SUPPS  = new Set(['the-house-restore', 'the-house-seal']);
-      const WORKOUT_SUPPS = new Set(['the-house-power', 'the-house-pump', 'the-house-burn']);
+      const WORKOUT_SUPPS = new Set(['the-house-power', 'the-house-pump', 'the-house-surge']);
 
       // ── Build skincare groups ──
       // Only show AM section if bundle has AM-exclusive products, and only show
@@ -3376,4 +3393,294 @@
     };
 
   })();
+
+/* ────────────────────────────────────────────────────────────────────
+ * STICKY ANNOUNCEMENT BANNER (top of page)
+ * Promo: 15% off first order + early access
+ * Dismissible, remembered in localStorage
+ * ──────────────────────────────────────────────────────────────────── */
+(function() {
+  const KEY = 'dh_banner_dismissed_v1';
+  if (localStorage.getItem(KEY)) return;
+
+  const banner = document.createElement('div');
+  banner.className = 'dh-banner';
+  banner.innerHTML = `
+    <div class="dh-banner-inner">
+      <span class="dh-banner-text">
+        <strong>Join the waitlist</strong> · Get <strong>15% off</strong> your first order + early access
+        <a href="#" class="dh-banner-cta" data-banner-cta>Sign up →</a>
+      </span>
+      <button class="dh-banner-close" aria-label="Dismiss" data-banner-close>×</button>
+    </div>
+  `;
+
+  const style = document.createElement('style');
+  style.textContent = `
+    .dh-banner {
+      position: sticky; top: 0; z-index: 200;
+      background: linear-gradient(90deg, #2a2520 0%, #3a322a 100%);
+      color: #f5efe6; font-family: 'Poppins', sans-serif;
+      font-size: 13px; line-height: 1.4;
+      animation: dhBannerSlide 0.4s ease-out;
+    }
+    @keyframes dhBannerSlide { from { transform: translateY(-100%); } to { transform: translateY(0); } }
+    .dh-banner-inner {
+      max-width: 1280px; margin: 0 auto;
+      padding: 10px 56px 10px 24px;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      position: relative; text-align: center;
+    }
+    .dh-banner-text { letter-spacing: 0.02em; }
+    .dh-banner-text strong { color: #d4af6e; font-weight: 600; letter-spacing: 0.04em; }
+    .dh-banner-cta {
+      color: #d4af6e; text-decoration: none; margin-left: 12px;
+      font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; font-size: 11px;
+      border-bottom: 1px solid currentColor; padding-bottom: 1px;
+      transition: color 0.2s;
+    }
+    .dh-banner-cta:hover { color: #f5efe6; }
+    .dh-banner-close {
+      position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
+      background: none; border: none; color: #f5efe6;
+      font-size: 22px; line-height: 1; padding: 4px 8px; cursor: pointer;
+      opacity: 0.6; transition: opacity 0.2s;
+    }
+    .dh-banner-close:hover { opacity: 1; }
+    @media (max-width: 640px) {
+      .dh-banner-inner { padding: 9px 44px 9px 14px; font-size: 12px; flex-direction: column; gap: 4px; }
+      .dh-banner-cta { margin-left: 0; }
+    }
+  `;
+  document.head.appendChild(style);
+  document.body.insertBefore(banner, document.body.firstChild);
+
+  banner.querySelector('[data-banner-close]')?.addEventListener('click', () => {
+    banner.style.display = 'none';
+    localStorage.setItem(KEY, '1');
+  });
+  banner.querySelector('[data-banner-cta]')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    document.querySelector('.dh-waitlist-modal')?.classList.add('open');
+  });
+})();
+
+/* ────────────────────────────────────────────────────────────────────
+ * WAITLIST / EMAIL CAPTURE MODAL
+ * 15% off first order + early access incentive
+ * ──────────────────────────────────────────────────────────────────── */
+(function() {
+  const modalHTML = `
+    <div class="dh-waitlist-modal" role="dialog" aria-modal="true" aria-labelledby="dh-wl-title">
+      <div class="dh-waitlist-backdrop" data-wl-close></div>
+      <div class="dh-waitlist-card">
+        <button class="dh-waitlist-close" data-wl-close aria-label="Close">×</button>
+        <div class="dh-waitlist-eyebrow">The House · Waitlist</div>
+        <h2 class="dh-waitlist-title" id="dh-wl-title">15% off your <em>first order.</em></h2>
+        <p class="dh-waitlist-tagline">Plus early access to launch, founder updates, and the kind of skincare and supplement content you'd actually want in your inbox.</p>
+        <form class="dh-waitlist-form" data-wl-form>
+          <input type="email" required placeholder="Your email" class="dh-waitlist-input" name="email">
+          <button type="submit" class="dh-waitlist-submit">Join the Waitlist</button>
+        </form>
+        <p class="dh-waitlist-fine">No spam. Unsubscribe anytime. Code arrives by email when we launch.</p>
+        <div class="dh-waitlist-success" hidden>
+          <div class="dh-waitlist-success-icon">✓</div>
+          <h3>You're on the list.</h3>
+          <p>Your 15% off code is on its way. Keep an eye out for the launch announcement — you'll get first access.</p>
+        </div>
+      </div>
+    </div>
+  `;
+
+  const style = document.createElement('style');
+  style.textContent = `
+    .dh-waitlist-modal {
+      position: fixed; inset: 0; z-index: 9999;
+      display: none; align-items: center; justify-content: center;
+      padding: 24px;
+    }
+    .dh-waitlist-modal.open { display: flex; }
+    .dh-waitlist-backdrop {
+      position: absolute; inset: 0;
+      background: rgba(42, 37, 32, 0.7); backdrop-filter: blur(4px);
+    }
+    .dh-waitlist-card {
+      position: relative; z-index: 1;
+      background: var(--cream, #f5efe6); color: var(--ink, #2a2520);
+      max-width: 460px; width: 100%;
+      padding: 56px 44px 40px; border-radius: 4px;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.25);
+      text-align: center; font-family: 'Poppins', sans-serif;
+    }
+    .dh-waitlist-close {
+      position: absolute; top: 12px; right: 14px;
+      background: none; border: none; cursor: pointer;
+      font-size: 28px; line-height: 1; padding: 6px 10px;
+      color: var(--ink-soft, #6b5f54); opacity: 0.7; transition: opacity 0.2s;
+    }
+    .dh-waitlist-close:hover { opacity: 1; }
+    .dh-waitlist-eyebrow {
+      font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase;
+      color: var(--gold, #d4af6e); font-weight: 600; margin-bottom: 16px;
+    }
+    .dh-waitlist-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 38px; font-weight: 400; line-height: 1.1;
+      margin: 0 0 14px;
+    }
+    .dh-waitlist-title em { font-style: italic; color: var(--sage, #6b7556); }
+    .dh-waitlist-tagline {
+      font-family: 'Cormorant Garamond', serif; font-style: italic;
+      font-size: 17px; line-height: 1.5; color: var(--ink-soft, #6b5f54);
+      margin: 0 0 28px;
+    }
+    .dh-waitlist-form {
+      display: flex; flex-direction: column; gap: 10px; margin-bottom: 18px;
+    }
+    .dh-waitlist-input {
+      padding: 14px 16px; border: 1px solid var(--rule, #d4cbbf);
+      background: white; font-size: 14px; font-family: 'Poppins', sans-serif;
+      border-radius: 2px; outline: none; transition: border-color 0.2s;
+    }
+    .dh-waitlist-input:focus { border-color: var(--gold, #d4af6e); }
+    .dh-waitlist-submit {
+      padding: 14px 16px; border: none; cursor: pointer;
+      background: var(--ink, #2a2520); color: var(--cream, #f5efe6);
+      font-family: 'Poppins', sans-serif; font-size: 11px;
+      letter-spacing: 0.24em; text-transform: uppercase; font-weight: 500;
+      border-radius: 2px; transition: background 0.2s;
+    }
+    .dh-waitlist-submit:hover { background: var(--gold, #d4af6e); color: var(--ink, #2a2520); }
+    .dh-waitlist-fine {
+      font-size: 11px; color: var(--ink-soft, #6b5f54); margin: 0; line-height: 1.5;
+    }
+    .dh-waitlist-success-icon {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: var(--sage, #6b7556); color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px; margin: 0 auto 20px;
+    }
+    .dh-waitlist-success h3 {
+      font-family: 'Cormorant Garamond', serif; font-size: 28px;
+      font-weight: 400; margin: 0 0 10px;
+    }
+    .dh-waitlist-success p {
+      font-size: 14px; color: var(--ink-soft, #6b5f54);
+      max-width: 320px; margin: 0 auto; line-height: 1.6;
+    }
+    @media (max-width: 480px) {
+      .dh-waitlist-card { padding: 48px 28px 32px; }
+      .dh-waitlist-title { font-size: 32px; }
+    }
+  `;
+  document.head.appendChild(style);
+
+  const wrapper = document.createElement('div');
+  wrapper.innerHTML = modalHTML;
+  document.body.appendChild(wrapper.firstElementChild);
+
+  document.querySelectorAll('[data-wl-close]').forEach(el => {
+    el.addEventListener('click', () => {
+      document.querySelector('.dh-waitlist-modal')?.classList.remove('open');
+    });
+  });
+  document.querySelector('[data-wl-form]')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    // In production: POST to Klaviyo/Mailchimp/your backend
+    console.log('Waitlist signup:', email);
+    try { localStorage.setItem('dh_waitlist_email', email); } catch(_) {}
+    e.target.style.display = 'none';
+    document.querySelector('.dh-waitlist-fine').style.display = 'none';
+    document.querySelector('.dh-waitlist-success').hidden = false;
+    setTimeout(() => {
+      document.querySelector('.dh-waitlist-modal')?.classList.remove('open');
+    }, 4000);
+  });
+
+  // Exit-intent trigger (desktop only — 3+ minutes on site or attempting to leave)
+  let exitShown = false;
+  function maybeShow() {
+    if (exitShown) return;
+    if (localStorage.getItem('dh_waitlist_email')) return;
+    if (localStorage.getItem('dh_waitlist_dismissed')) return;
+    exitShown = true;
+    document.querySelector('.dh-waitlist-modal')?.classList.add('open');
+    localStorage.setItem('dh_waitlist_dismissed', '1');
+  }
+  // Show after 60 seconds of engagement, OR on exit intent (desktop)
+  setTimeout(() => { if (!document.hidden) maybeShow(); }, 60000);
+  document.addEventListener('mouseleave', (e) => {
+    if (e.clientY <= 0) maybeShow();
+  });
+})();
+
+/* ────────────────────────────────────────────────────────────────────
+ * COOKIE CONSENT BANNER (GDPR/CCPA)
+ * Bottom-right, dismissible, remembered in localStorage
+ * ──────────────────────────────────────────────────────────────────── */
+(function() {
+  const KEY = 'dh_cookie_consent_v1';
+  if (localStorage.getItem(KEY)) return;
+
+  const banner = document.createElement('div');
+  banner.className = 'dh-cookie';
+  banner.innerHTML = `
+    <div class="dh-cookie-inner">
+      <p class="dh-cookie-text">
+        We use cookies to make the site work, remember your preferences, and understand how it's used.
+        See our <a href="privacy.html">privacy policy</a> for details.
+      </p>
+      <div class="dh-cookie-actions">
+        <button class="dh-cookie-btn dh-cookie-decline" data-cookie-decline>Essential only</button>
+        <button class="dh-cookie-btn dh-cookie-accept" data-cookie-accept>Accept all</button>
+      </div>
+    </div>
+  `;
+
+  const style = document.createElement('style');
+  style.textContent = `
+    .dh-cookie {
+      position: fixed; bottom: 20px; left: 20px; right: 20px;
+      max-width: 480px; z-index: 9998;
+      background: var(--ink, #2a2520); color: var(--cream, #f5efe6);
+      border-radius: 6px; box-shadow: 0 12px 32px rgba(0,0,0,0.25);
+      font-family: 'Poppins', sans-serif;
+      animation: dhCookieSlide 0.5s ease-out;
+    }
+    @keyframes dhCookieSlide { from { transform: translateY(120%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    .dh-cookie-inner { padding: 18px 22px; }
+    .dh-cookie-text { font-size: 13px; line-height: 1.55; margin: 0 0 14px; color: rgba(245,239,230,0.92); }
+    .dh-cookie-text a { color: var(--gold, #d4af6e); text-decoration: none; border-bottom: 1px solid currentColor; }
+    .dh-cookie-actions { display: flex; gap: 10px; justify-content: flex-end; }
+    .dh-cookie-btn {
+      padding: 9px 16px; border: 1px solid rgba(245,239,230,0.3);
+      background: transparent; color: var(--cream, #f5efe6);
+      font-family: 'Poppins', sans-serif; font-size: 11px;
+      letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500;
+      cursor: pointer; border-radius: 2px; transition: all 0.2s;
+    }
+    .dh-cookie-btn:hover { background: rgba(245,239,230,0.1); }
+    .dh-cookie-accept {
+      background: var(--gold, #d4af6e); color: var(--ink, #2a2520);
+      border-color: var(--gold, #d4af6e);
+    }
+    .dh-cookie-accept:hover { background: var(--cream, #f5efe6); }
+    @media (max-width: 480px) {
+      .dh-cookie { left: 10px; right: 10px; bottom: 10px; }
+      .dh-cookie-inner { padding: 14px 16px; }
+      .dh-cookie-text { font-size: 12px; }
+    }
+  `;
+  document.head.appendChild(style);
+  document.body.appendChild(banner);
+
+  const dismiss = (mode) => {
+    localStorage.setItem(KEY, mode);
+    banner.style.animation = 'dhCookieSlide 0.4s ease-in reverse';
+    setTimeout(() => banner.remove(), 400);
+  };
+  banner.querySelector('[data-cookie-accept]')?.addEventListener('click', () => dismiss('accept'));
+  banner.querySelector('[data-cookie-decline]')?.addEventListener('click', () => dismiss('decline'));
+})();
 

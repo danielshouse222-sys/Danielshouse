@@ -153,8 +153,8 @@
       status: 'active',
       startedAt: seventeenDaysAgo.toISOString()
     });
-    acc.savedRoutine.am = ['the-house-wash','the-house-balance','the-house-boost','the-house-hyaluronic','the-house-defense','the-house-soft'];
-    acc.savedRoutine.pm = ['the-house-renewal','the-house-eye','the-house-firm','the-house-soft'];
+    acc.savedRoutine.am = ['the-house-wash','the-house-balance','the-house-boost','the-house-plump','the-house-defense','the-house-soft'];
+    acc.savedRoutine.pm = ['the-house-renewal','the-house-awake','the-house-firm','the-house-soft'];
     acc.savedRoutine.daily = ['the-house-multi','the-house-collagen','the-house-flow'];
   }
 
