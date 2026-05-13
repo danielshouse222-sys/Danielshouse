@@ -1782,6 +1782,115 @@ body.has-page-filter-modal {
   .cadence-note { font-size: 13px; }
 }
 
+/* ═══ SMART REFILL · 6-MONTH PROJECTED PAYMENTS ═══ */
+/* Revealed alongside the cadence-note when Smart Refill is selected.
+   Shows the actual cash-out for each of the first 6 months and a total. */
+.cadence-projection {
+  margin-top: 10px;
+  padding: 14px 14px 12px;
+  background: rgba(184, 153, 104, 0.05);
+  border: 1px solid rgba(184, 153, 104, 0.22);
+  border-radius: 4px;
+}
+.cadence-projection[hidden] { display: none; }
+.cadence-projection-eyebrow {
+  font-family: 'Poppins', sans-serif;
+  font-size: 9.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--gold);
+  margin-bottom: 10px;
+  text-align: center;
+}
+.cadence-projection-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 4px;
+  margin-bottom: 12px;
+}
+.cadence-projection-grid .proj-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 8px 4px 7px;
+  background: #fff;
+  border-radius: 3px;
+  border: 1px solid rgba(0,0,0,0.06);
+}
+.cadence-projection-grid .proj-cell-first {
+  background: rgba(184, 153, 104, 0.10);
+  border-color: rgba(184, 153, 104, 0.35);
+}
+.cadence-projection-grid .proj-m {
+  font-family: 'Poppins', sans-serif;
+  font-size: 8.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--ink-soft, #6B6258);
+}
+.cadence-projection-grid .proj-amt {
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.cadence-projection-grid .proj-tag {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 9.5px;
+  color: var(--gold);
+  line-height: 1;
+}
+.cadence-projection-total {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 8px 10px 6px;
+  border-top: 1px solid rgba(0,0,0,0.08);
+  margin-top: 4px;
+}
+.cadence-projection-total-label {
+  font-family: 'Poppins', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--ink);
+}
+.cadence-projection-total-amt {
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.cadence-projection-foot {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 13px;
+  color: var(--ink-soft, #6B6258);
+  text-align: center;
+  margin-top: 4px;
+  line-height: 1.4;
+}
+.cadence-projection-foot span {
+  font-style: normal;
+  font-weight: 600;
+  color: var(--ink);
+}
+/* Mobile — stack to 3 columns × 2 rows so amounts stay legible */
+@media (max-width: 480px) {
+  .cadence-projection-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+  }
+  .cadence-projection-grid .proj-cell { padding: 8px 6px; }
+  .cadence-projection-grid .proj-amt { font-size: 13px; }
+  .cadence-projection-foot { font-size: 12px; }
+}
+
 /* ═══ SMART REFILL ANNUAL SAVINGS TEASER ═══ */
 /* Editorial line above the subscribe toggle that telegraphs how much customers
    save per year by picking Smart Refill. Hidden when savings are $0 (all-monthly bundles). */
