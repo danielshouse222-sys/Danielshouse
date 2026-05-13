@@ -353,12 +353,10 @@
     position: relative;
   }
   .featured-inner {
-    max-width: 1180px;
+    max-width: 920px;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1.1fr;
-    gap: 60px;
-    align-items: center;
+    display: block;
+    text-align: left;
   }
   .featured-eyebrow {
     font-size: 11px;
@@ -576,8 +574,9 @@
 
   .featured-mosaic {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 8px;
+    grid-template-columns: repeat(11, 1fr);
+    gap: 6px;
+    margin: 36px 0 40px;
   }
   .featured-prod {
     aspect-ratio: 1/1;
@@ -703,6 +702,7 @@
     .featured-mix { flex-direction: column; align-items: flex-start; gap: 16px; }
     .featured-mix-divider { width: 100%; height: 1px; }
     .featured-mix-num { font-size: 38px; }
+    .featured-mosaic { grid-template-columns: repeat(6, 1fr); gap: 4px; margin: 24px 0 32px; }
     .featured-pricing { padding: 14px 16px; }
     .featured-price-now { font-size: 22px; }
     .featured-price-line { gap: 10px; }
@@ -1011,6 +1011,32 @@
         </div>
       </div>
 
+      <!-- Product mosaic — all 22 in the routine, full-width strip -->
+      <div class="featured-mosaic">
+        <div class="featured-prod"><img src="images/wash.jpeg" alt="Wash"/></div>
+        <div class="featured-prod"><img src="images/balance.jpeg" alt="Balance"/></div>
+        <div class="featured-prod"><img src="images/boost.jpeg" alt="Boost"/></div>
+        <div class="featured-prod"><img src="images/hyaluronic.jpeg" alt="Hyaluronic"/></div>
+        <div class="featured-prod"><img src="images/defense.jpeg" alt="Defense"/></div>
+        <div class="featured-prod"><img src="images/soft.jpeg" alt="Soft"/></div>
+        <div class="featured-prod"><img src="images/bounce.jpeg" alt="Bounce"/></div>
+        <div class="featured-prod"><img src="images/hydration.jpeg" alt="Hydration"/></div>
+        <div class="featured-prod"><img src="images/firm.jpeg" alt="Firm"/></div>
+        <div class="featured-prod"><img src="images/eye.jpeg" alt="Eye"/></div>
+        <div class="featured-prod"><img src="images/renewal.jpeg" alt="Renewal"/></div>
+        <div class="featured-prod"><img src="images/glow.jpeg" alt="Glow"/></div>
+        <div class="featured-prod"><img src="products/Multi.jpeg" alt="Multi"/></div>
+        <div class="featured-prod"><img src="products/Calm.jpeg" alt="Calm"/></div>
+        <div class="featured-prod"><img src="products/Sunshine.jpeg" alt="Sunshine"/></div>
+        <div class="featured-prod"><img src="products/Flow.jpeg" alt="Flow"/></div>
+        <div class="featured-prod"><img src="products/Biome.jpeg" alt="Biome"/></div>
+        <div class="featured-prod"><img src="products/Nadplus.jpeg" alt="NAD+"/></div>
+        <div class="featured-prod"><img src="products/Vitality.jpeg" alt="Vitality"/></div>
+        <div class="featured-prod"><img src="products/Synapse.jpeg" alt="Synapse"/></div>
+        <div class="featured-prod"><img src="products/Tranquil.jpeg" alt="Tranquil"/></div>
+        <div class="featured-prod"><img src="products/Restore.jpeg" alt="Restore"/></div>
+      </div>
+
       <!-- Pricing block — three tiers side-by-side -->
       <div class="featured-pricing">
         <div class="featured-price-line">
@@ -1062,31 +1088,6 @@
         <a href="routine.html?slug=ultimate" class="featured-btn secondary">View Full Details</a>
         <a href="routines.html#build-your-own" class="featured-btn secondary">Or Build Your Own</a>
       </div>
-    </div>
-
-    <div class="featured-mosaic">
-      <div class="featured-prod"><img src="images/wash.jpeg" alt="Wash"/></div>
-      <div class="featured-prod"><img src="images/balance.jpeg" alt="Balance"/></div>
-      <div class="featured-prod"><img src="images/boost.jpeg" alt="Boost"/></div>
-      <div class="featured-prod"><img src="images/hyaluronic.jpeg" alt="Hyaluronic"/></div>
-      <div class="featured-prod"><img src="images/defense.jpeg" alt="Defense"/></div>
-      <div class="featured-prod"><img src="images/soft.jpeg" alt="Soft"/></div>
-      <div class="featured-prod"><img src="images/bounce.jpeg" alt="Bounce"/></div>
-      <div class="featured-prod"><img src="images/hydration.jpeg" alt="Hydration"/></div>
-      <div class="featured-prod"><img src="images/firm.jpeg" alt="Firm"/></div>
-      <div class="featured-prod"><img src="images/eye.jpeg" alt="Eye"/></div>
-      <div class="featured-prod"><img src="images/renewal.jpeg" alt="Renewal"/></div>
-      <div class="featured-prod"><img src="images/glow.jpeg" alt="Glow"/></div>
-      <div class="featured-prod"><img src="products/Multi.jpeg" alt="Multi"/></div>
-      <div class="featured-prod"><img src="products/Calm.jpeg" alt="Calm"/></div>
-      <div class="featured-prod"><img src="products/Sunshine.jpeg" alt="Sunshine"/></div>
-      <div class="featured-prod"><img src="products/Flow.jpeg" alt="Flow"/></div>
-      <div class="featured-prod"><img src="products/Biome.jpeg" alt="Biome"/></div>
-      <div class="featured-prod"><img src="products/Nadplus.jpeg" alt="NAD+"/></div>
-      <div class="featured-prod"><img src="products/Vitality.jpeg" alt="Vitality"/></div>
-      <div class="featured-prod"><img src="products/Synapse.jpeg" alt="Synapse"/></div>
-      <div class="featured-prod"><img src="products/Tranquil.jpeg" alt="Tranquil"/></div>
-      <div class="featured-prod"><img src="products/Restore.jpeg" alt="Restore"/></div>
     </div>
   </div>
 </section>
