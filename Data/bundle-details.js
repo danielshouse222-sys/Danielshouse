@@ -21,7 +21,7 @@ window.BUNDLE_DETAILS = {
         { week: 'Week 12+', text: 'The full compounding effect: skin elasticity at multi-year baseline highs, sustained daily energy, deep cardiovascular and longevity markers in motion. The full-system effect Daniel built this around.' }
       ],
       faq: [
-        { q: 'Is this just every product packaged together?', a: 'Yes — 22 bottles, the entire AM/PM skincare routine plus the complete Daily supplement stack. The pricing reflects the buying-it-all discount (25% off retail) rather than a different formulation.' },
+        { q: 'Is this just every product packaged together?', a: 'Yes — 23 bottles, the entire AM/PM skincare routine plus the complete Daily supplement stack. The pricing reflects the buying-it-all discount (25% off retail) rather than a different formulation.' },
         { q: 'Can I subscribe to the Ultimate?', a: "Yes — and most customers do. Monthly delivery at the same 25% off price, with the option to skip, pause, or cancel any month. The subscribe price doesn't stack additional discount on top, since the Ultimate is already at the deepest savings on the site." },
         { q: 'What if I already have some of these products?', a: 'You can build a custom version using BYO (Build Your Own) on the Routines page — that gives tiered discounts at 3, 6, and 9 products. For 10+ overlapping products, the Ultimate is usually still better even with duplicates.' }
       ]
@@ -44,25 +44,25 @@ window.BUNDLE_DETAILS = {
     },
     'daniels-skincare': {
       eyebrow: "Founder's Stack · Skincare Only",
-      description: "Every product in the skincare line — AM ritual through PM ritual through the weekly reset. Fifteen formulations, the same discount Daniel gets on his daily supplement stack, the complete topical half of the Ultimate Routine. For customers who already have their supplement game figured out and want the full skincare house.",
-      whyThis: "The skincare half of the Ultimate, without the supplements. The 7 AM steps (Wash, Balance, Boost, Hyaluronic, Defense, Soft, Shield) prep, protect, and shield the skin every morning — botanical cleanser, tri-acid pads, three-form vitamin C, pure HA, CE Ferulic antioxidant architecture, multi-action moisturizer with copper ferment, and broad-spectrum mineral SPF. The 5 PM steps (Bounce, Renewal, Firm, Hydration, Glow) work at night when active ingredients aren't fighting UV — multi-active retinol, triple-acid resurfacing, six-peptide complex, snow algae gel-cream, and a squalane-and-ceramide lipid seal. Eye and Clear handle the targeted spots (orbital skin, breakouts) wherever they show up. Mask and Polish are the weekly reset that compounds everything else. Together it's the full topical protocol, layered for compounding effect.",
+      description: "Every product in the skincare line — AM ritual through PM ritual through the weekly reset. Sixteen formulations, the same deep discount Daniel's Daily Supplements get, the complete topical half of the Ultimate Routine. For customers who already have their supplement game figured out and want the full skincare house.",
+      whyThis: "The skincare half of the Ultimate, without the supplements. The 7 AM steps (Wash, Balance, Boost, Hyaluronic, Defense, Soft, Shield) prep, protect, and shield the skin every morning — botanical cleanser, tri-acid pads, three-form vitamin C, pure HA, CE Ferulic antioxidant architecture, multi-action moisturizer with copper ferment, and broad-spectrum mineral SPF. The 6 PM steps (Bounce, Renewal, Firm, Hydration, Eye, Glow) work at night when active ingredients aren't fighting UV — multi-active retinol, triple-acid resurfacing, six-peptide complex, snow-algae gel-cream, bakuchiol triple-peptide eye treatment, and a squalane-and-ceramide lipid seal. Clear handles targeted spot treatment (active breakouts), Mask and Polish are the weekly reset that compounds everything else. Together it's the full topical protocol, layered for compounding effect.",
       timeline: [
         { week: 'Week 1', text: 'Texture feels cleaner and more balanced. Less midday shine; product layering becomes second nature.' },
         { week: 'Week 4', text: 'Hydration holds through the day; pore appearance refines. The retinol + peptide nightly routine starts showing visible smoothing.' },
         { week: 'Week 8', text: 'Tone evens out; fine lines soften measurably. Weekly mask + polish ritual produces visible "post-treatment" glow.' },
-        { week: 'Week 12+', text: 'Durable skin baseline. Brighter tone, firmer texture, fewer breakouts, the compound effect of fifteen actives working together properly sequenced.' }
+        { week: 'Week 12+', text: 'Durable skin baseline. Brighter tone, firmer texture, fewer breakouts, the compound effect of sixteen actives working together properly sequenced.' }
       ],
       faq: [
-        { q: 'Do I really use all 15 products?', a: "Not every product every day. AM and PM rituals run daily (11 products). Eye and Clear go on as needed (eyes daily if you have an eye-cream habit, Clear only where active breakouts appear). Mask and Polish are weekly. Most days you'll use 10–12 of the 15." },
-        { q: 'What order do I apply them in?', a: 'AM: Wash → Balance → Boost (Vit C) → Hyaluronic → Defense → Soft → sunscreen. PM: Wash → Renewal OR Bounce (alternate nights) → Firm → Hyaluronic → Hydration → Eye → Glow (oil seal). Mask + Polish are weekly add-ons.' },
-        { q: 'Can I subscribe to all 15?', a: 'Yes — and Smart Refill is the right cadence here. The skincare line has products on 1, 2, and 3-month cycles. Smart Refill ships each bottle only when its cadence comes due, so you don\'t end up stockpiling 6 unused bottles of Renewal while you blow through Wash. Same discount, smarter shipments.' },
-        { q: 'How is this different from buying AM + PM + Reset separately?', a: "Buying AM + PM + Reset as three separate routines totals about 14% off (15% on each minus the smaller piece sizes). This routine pairs all 15 at a flat 18% — the same discount Daniel's Daily supplement stack gets — plus the targeted treatments (Eye, Clear) that don't fit cleanly into either AM or PM." }
+        { q: 'Do I really use all 16 products?', a: "Not every product every day. AM and PM rituals run daily (13 products). Clear goes on as needed (only where active breakouts appear). Mask and Polish are weekly. Most days you'll use 11–13 of the 16." },
+        { q: 'What order do I apply them in?', a: 'AM: Wash → Balance → Boost (Vit C) → Hyaluronic → Defense → Soft → Shield (SPF). PM: Wash → Renewal OR Bounce (alternate nights) → Firm → Hydration → Eye → Glow (oil seal). Clear is spot-applied at any point; Mask + Polish are weekly add-ons.' },
+        { q: 'Can I subscribe to all 16?', a: 'Yes — and Smart Refill is the right cadence here. The skincare line has products on 1, 2, and 3-month cycles. Smart Refill ships each bottle only when its cadence comes due, so you don\'t end up stockpiling unused bottles of Renewal while you blow through Wash. Same discount, smarter shipments.' },
+        { q: 'How is this different from buying AM + PM + Reset separately?', a: "Buying AM + PM + Reset as three separate routines totals about 14% off (15% on each, applied to smaller bundle totals). This routine pairs all 16 at a flat 18% — the same discount Daniel's Daily supplement stack gets — plus the targeted treatments (Eye, Clear) that don't fit cleanly into either AM or PM." }
       ]
     },
     'am': {
       eyebrow: 'Morning Skincare Ritual',
-      description: 'The full morning routine. Cleanse, tone, brighten, hydrate, defend, moisturize — six steps to start the day with a complete barrier and visible glow.',
-      whyThis: "Morning skincare has three jobs: prep, protect, and shield. Wash removes overnight residue and excess oil without stripping (rose hip seed oil + geranium + Irish moss). Balance gently exfoliates and primes with tri-acid peeling pads (salicylic + lactic + mandelic). Boost delivers three forms of vitamin C — the most-studied morning antioxidant and brightener — without the sting of L-ascorbic acid. Hyaluronic layers pure water-and-sodium-hyaluronate for plumping hydration. Defense provides the CE Ferulic antioxidant architecture (L-ascorbic acid + ferulic acid + niacinamide + B5 + vitamin E) against pollution and free radicals. Soft seals everything with the multi-action All-in-One Cream. Shield finishes with mineral SPF 30 — the most important product in any morning routine. Each step compounds the next: clean skin absorbs serums better, hydrated skin holds antioxidants longer, sealed skin holds hydration through the day, and SPF protects every gain.",
+      description: 'The full morning routine. Cleanse, tone, brighten, hydrate, defend, moisturize, shield — seven steps to start the day with a complete barrier and visible glow.',
+      whyThis: "Morning skincare has three jobs: prep, protect, and shield. Wash removes overnight residue and excess oil without stripping (rose hip seed oil + geranium + Irish moss). Balance gently exfoliates and primes with tri-acid peeling pads (salicylic + lactic + mandelic). Boost delivers three forms of vitamin C — the most-studied morning antioxidant and brightener — without the sting of L-ascorbic acid. Hyaluronic layers pure water-and-sodium-hyaluronate for plumping hydration. Defense provides the CE Ferulic antioxidant architecture (L-ascorbic acid + ferulic acid + niacinamide + B5 + vitamin E) against pollution and free radicals. Soft seals everything with the multi-action All-in-One Cream. Shield finishes with broad-spectrum mineral SPF 30 — the most important product in any morning routine. Each step compounds the next: clean skin absorbs serums better, hydrated skin holds antioxidants longer, sealed skin holds hydration through the day, and SPF protects every gain.",
       timeline: [
         { week: 'Week 1', text: 'Skin feels cleaner and more balanced. Less midday shine; better foundation application.' },
         { week: 'Week 4', text: 'Visible brightness improvement. Hydration holds through the day; barrier feels stronger.' },
@@ -70,25 +70,25 @@ window.BUNDLE_DETAILS = {
         { week: 'Week 12+', text: 'Durable morning-routine baseline. Skin starts the day strong and protected.' }
       ],
       faq: [
-        { q: 'What order do I use these in?', a: 'In order: Wash, Balance (toner), Boost (vitamin C), Hyaluronic (serum), Defense (antioxidant), Soft (moisturizer). Apply each before the next is fully absorbed — thinnest to thickest.' },
-        { q: 'Do I need all six?', a: "If you're tight on time, the minimum is Wash + Boost + Soft + sunscreen. The full 6-step gets the most compounding benefit, but a streamlined version still works." },
-        { q: 'Where does sunscreen fit in?', a: 'After Soft, before makeup. We don\'t include SPF in this routine so you can use whatever sunscreen you prefer — but daily SPF is non-negotiable, especially with vitamin C in the routine.' }
+        { q: 'What order do I use these in?', a: 'In order: Wash, Balance (toner), Boost (vitamin C), Hyaluronic (serum), Defense (antioxidant), Soft (moisturizer), Shield (SPF). Apply each before the next is fully absorbed — thinnest to thickest, SPF always last.' },
+        { q: 'Do I need all seven?', a: "If you're tight on time, the absolute minimum is Wash + Boost + Soft + Shield. The full 7-step gets the most compounding benefit, but a streamlined version still works — just never skip the SPF." },
+        { q: 'Is Shield enough sun protection on its own?', a: 'Yes — Shield is broad-spectrum SPF 30 with non-nano zinc oxide and titanium dioxide (the two FDA-cleared mineral filters), reef-friendly, and 40-min water resistant. It pairs with the Defense antioxidant step underneath to compound photoprotection: ferulic acid + vitamin C below, mineral filters on top. Reapply every 2 hours if outdoors for extended periods.' }
       ]
     },
     'pm': {
       eyebrow: 'Evening Skincare Ritual',
       description: 'The full nighttime routine. Treatment, resurface, firm, hydrate, eye, overnight — six steps designed for sleep, when skin repair runs at its strongest.',
-      whyThis: "Nighttime is when actives go to work without UV interference. Bounce delivers retinol — the most-validated anti-aging active in dermatology. Renewal uses glycolic acid (alternated with retinol) to resurface and brighten. Firm delivers peptides for collagen signaling. Hydration applies ceramide moisturizer to seal the actives. Eye Cream handles the thinner orbital skin. Glow's facial oil seals it all in — the overnight occlusive that locks in everything below it. The combination produces visible firming, smoothing, and brightening over 8-12 weeks.",
+      whyThis: "Nighttime is when actives go to work without UV interference. Bounce delivers a five-active retinol serum (retinol + stable vitamin C + HA + Matrixyl peptides + botanical skin-tightening trio) — the most-validated anti-aging architecture in dermatology, layered for tolerance. Renewal uses a triple-acid blend (glycolic + lactic + salicylic) alternated with Bounce to resurface and brighten. Firm delivers six clinically-validated peptides for collagen signaling from multiple angles. Hydration applies a featherweight gel-cream (snow algae + cloudberry + sugar-derived moisture complex) to seal the actives without weight. Eye uses bakuchiol with a triple-peptide complex for the thin orbital skin. Glow's squalane-and-ceramide lipid blend seals it all in — the overnight occlusive that locks in everything below it. The combination produces visible firming, smoothing, and brightening over 8-12 weeks.",
       timeline: [
         { week: 'Week 1', text: 'Initial acclimation — possible mild dryness from retinol. Skin feels softer after Eye and Glow.' },
-        { week: 'Week 4', text: 'Texture noticeably smoother; surface refinement from glycolic. Fine lines around eyes soften.' },
+        { week: 'Week 4', text: 'Texture noticeably smoother; surface refinement from the triple-acid blend. Fine lines around eyes soften.' },
         { week: 'Week 8', text: 'Skin firmness measurably improved. Tone evenness builds. Foundation sits differently.' },
         { week: 'Week 12+', text: 'Visible anti-aging effect — skin density, elasticity, and clarity at higher baseline. Maintain with consistency.' }
       ],
       faq: [
-        { q: 'How do I alternate retinol and glycolic?', a: 'Use Bounce (retinol) one night, Renewal (glycolic) the next night when starting out. After 4-6 weeks of tolerance building, you can use them on alternating nights regularly — never the same night.' },
+        { q: 'How do I alternate retinol and the triple-acid treatment?', a: 'Use Bounce (retinol) one night, Renewal (glycolic + lactic + salicylic) the next night when starting out. After 4-6 weeks of tolerance building, you can use them on alternating nights regularly — never the same night.' },
         { q: 'I have sensitive skin — is this too much?', a: 'Start slow. Use Bounce 1-2 nights weekly for 2-3 weeks, then build up. Renewal is gentler — start 2 nights weekly. The other 4 products (Firm, Hydration, Eye, Glow) are gentle enough for daily use from day one.' },
-        { q: 'Order to apply?', a: "Wash first (use your AM cleanser). Then in order: Renewal OR Bounce (treatment night) → Firm (peptides) → Hydration (moisturizer) → Eye → Glow (sealing oil). Patience between steps." }
+        { q: 'Order to apply?', a: "Wash first (use your AM cleanser). Then in order: Renewal OR Bounce (treatment night) → Firm (peptides) → Hydration (gel-cream moisturizer) → Eye → Glow (sealing lipid blend). Patience between steps." }
       ]
     },
     'workout': {
@@ -167,7 +167,7 @@ window.BUNDLE_DETAILS = {
         { week: 'Week 12+', text: "The streamlined routine that works. Built to be sustainable, not aspirational." }
       ],
       faq: [
-        { q: 'How is this different from the Ultimate?', a: "Half the products (9 vs 22), same logic. Ariana's is the streamlined version: skincare essentials + daily wellness + beauty support, without the deep longevity layer or the full AM/PM symmetry. For users who want effective + simple." },
+        { q: 'How is this different from the Ultimate?', a: "Half the products (9 vs 23), same logic. Ariana's is the streamlined version: skincare essentials + daily wellness + beauty support, without the deep longevity layer or the full AM/PM symmetry. For users who want effective + simple." },
         { q: 'Can I add to this later?', a: "Yes — easily. Start with Ariana's, then add Tranquil for stress, Calm for sleep, or NAD+ for the longevity layer as desired. Build at your own pace." },
         { q: 'When should I take the supplements?', a: 'All three (Multi, Radiance, Collagen) in the morning with breakfast. Simplest stack to remember: coffee, supplements, go.' }
       ]
@@ -177,8 +177,8 @@ window.BUNDLE_DETAILS = {
   concern: {
     'aging': {
       eyebrow: 'Anti-Aging · Topical + Cellular',
-      description: 'Six targeted products — retinol, peptides, and the eye treatment for the surface plus collagen, NAD+, and beauty vitamins for the cellular foundation. The complete inside-out anti-aging protocol, working at the four levels visible aging actually shows.',
-      whyThis: "Aging skin reflects aging cells. The strongest anti-aging protocols address both. Topically: Bounce (retinol) stimulates collagen and cell turnover at the dermis; Firm (peptides) signals collagen synthesis at the surface; Eye Cream addresses the thin orbital skin where peptides have outsized effect. Internally: Collagen at 10g daily provides the amino acid substrates fibroblasts need to actually build new collagen; NAD+ supports the cellular energy and sirtuin pathways central to longevity research; Radiance covers the daily A/C/E/biotin/zinc baseline skin needs to function. Each side without the other hits a ceiling. Together they compound.",
+      description: 'Seven targeted products — retinol, peptides, broad-spectrum mineral SPF, and the eye treatment for the surface plus collagen, NAD+, and beauty vitamins for the cellular foundation. The complete inside-out anti-aging protocol, working at the four levels visible aging actually shows.',
+      whyThis: "Aging skin reflects aging cells. The strongest anti-aging protocols address both. Topically: Bounce (retinol) stimulates collagen and cell turnover at the dermis; Firm (peptides) signals collagen synthesis at the surface; Shield (broad-spectrum mineral SPF 30) protects every gain from the UV damage that drives 80% of visible aging; Eye Cream addresses the thin orbital skin where peptides have outsized effect. Internally: Collagen at 10g daily provides the amino acid substrates fibroblasts need to actually build new collagen; NAD+ supports the cellular energy and sirtuin pathways central to longevity research; Radiance covers the daily A/C/E/biotin/zinc baseline skin needs to function. Each side without the other hits a ceiling. Together they compound — and without daily SPF, the topical work goes backwards every afternoon.",
       timeline: [
         { week: 'Week 1', text: 'Skin acclimates to retinol; mild dryness possible. Collagen and NAD+ begin to load.' },
         { week: 'Week 4', text: 'Texture noticeably smoother; surface refinement from retinol. Hair and nails respond to collagen.' },
@@ -209,24 +209,25 @@ window.BUNDLE_DETAILS = {
     },
     'dryness': {
       eyebrow: 'Lasting Hydration · Topical + Lipid Matrix',
-      description: 'Five hydration-focused products — multi-weight hyaluronic, ceramide moisturizer, and overnight cream for surface hydration, plus collagen and omega-3s that build the lipid matrix that holds water in skin.',
-      whyThis: "Lasting hydration requires three things: humectants (HA), emollients (ceramides), and the structural support that keeps moisture from escaping. Topically: Hyaluronic delivers multi-weight HA at multiple depths; Hydration moisturizer restores the ceramide matrix; Soft does deep overnight barrier repair. Internally: Flow's omega-3 EPA/DHA are precursors to skin ceramides — your barrier literally builds from dietary fatty acids; Collagen at 10g daily improves skin's water-binding capacity in clinical trials. Topical alone is corrective; pairing with internal nutrient support is preventive and durable.",
+      description: 'Four hydration-focused products — multi-weight hyaluronic plus the snow-algae gel-cream and the multi-action overnight cream for surface hydration, plus omega-3s that build the lipid matrix that holds water in skin.',
+      whyThis: "Lasting hydration requires three things: humectants (HA), emollients (gel-cream + barrier-supportive lipids), and the structural support that keeps moisture from escaping. Topically: Hyaluronic delivers a clean, multi-weight HA serum at multiple depths; Hydration is the featherweight snow-algae and cloudberry gel-cream that layers cleanly under SPF and makeup; Soft does the deep multi-action overnight repair with hyaluronic acid, avocado oil, copper ferment, niacinamide, and a gentle retinyl palmitate. Internally: Flow's omega-3 EPA/DHA are precursors to skin ceramides — your barrier literally builds from dietary fatty acids. Topical alone is corrective; pairing with internal nutrient support is preventive and durable. (For lipid-seal occlusion on top, add Glow — squalane and ceramide-family glycosphingolipids — as an overnight final step.)",
       timeline: [
         { week: 'Week 1', text: 'Immediate plump-and-glow effect from layered hyaluronic. Skin feels softer to the touch.' },
         { week: 'Week 4', text: 'Barrier visibly stronger; less reactivity, less afternoon dullness.' },
-        { week: 'Week 8', text: 'Sustained all-day hydration; collagen effect on water-binding kicks in.' },
+        { week: 'Week 8', text: 'Sustained all-day hydration; omega-3 effect on the skin lipid barrier compounds.' },
         { week: 'Week 12+', text: 'Durable, deep hydration that compounds. The "thirsty skin" baseline resets durably.' }
       ],
       faq: [
-        { q: 'Can I layer all the topical products every day?', a: "Yes — that's the design. Thinnest to thickest: Hyaluronic (serum) → Hydration (moisturizer) → Soft (overnight cream). All daily-safe." },
-        { q: 'Why omega-3 and collagen for dry skin?', a: "Skin barrier integrity depends on dietary lipids — omega-3 EPA/DHA are direct ceramide precursors. Collagen peptides improve skin hydration markers in multiple RCTs at 8-12 weeks. Both compound with topical hydration." },
+        { q: 'Can I layer all the topical products every day?', a: "Yes — that's the design. Thinnest to thickest: Hyaluronic (serum) → Hydration (snow-algae gel-cream) → Soft (overnight cream). All daily-safe." },
+        { q: 'Why omega-3 for dry skin?', a: "Skin barrier integrity depends on dietary lipids — omega-3 EPA/DHA are direct ceramide precursors. Your barrier literally builds from dietary fatty acids, which means topical hydration without the internal fat-acid foundation hits a ceiling. Flow's EPA/DHA at the dose where clinical effect shows is the under-recognized half of any dry-skin protocol." },
+        { q: 'When would I add Collagen or Glow on top?', a: "Add Glow (squalane + ceramide-family lipid seal) as a nightly overnight occlusive if your dryness wakes you up. Add Collagen (10g daily peptides) for the inside-out hydration story — RCTs show measurable skin water-binding improvements at 8-12 weeks. The four products in this bundle are the foundation; Glow and Collagen are the next layers if needed." },
         { q: 'Is this enough for very dry/cracked skin?', a: 'For seasonal dryness, yes. For chronic eczema or severe atopic conditions, pair with clinical-grade barrier cream and consult a dermatologist.' }
       ]
     },
     'dullness': {
       eyebrow: 'Brightness · Topical Antioxidants + Internal Beauty Stack',
-      description: 'Five brightening products — topical vitamin C, antioxidant defense, and gentle resurfacing acids paired with oral collagen and the full beauty vitamin stack. The inside-out approach to measurable luminosity.',
-      whyThis: "Dull skin has three causes: surface buildup, pigment irregularities, and oxidative damage. Topical alone addresses the first two. Adding internal nutrient support pushes through the ceiling. Topically: Boost (vitamin C) brightens pigment irregularities and inhibits melanin transfer; Defense neutralizes free-radical damage; Renewal accelerates surface turnover to reveal fresh skin. Internally: Radiance covers daily vitamins A/C/E/biotin — the nutrient foundation for skin function; Collagen improves skin elasticity, hydration, and the way light reflects off the surface. Together they produce visible brightness that surface-only protocols can't match.",
+      description: 'Four brightening products — topical vitamin C, antioxidant defense, and gentle resurfacing acids paired with the full beauty vitamin stack. The inside-out approach to measurable luminosity.',
+      whyThis: "Dull skin has three causes: surface buildup, pigment irregularities, and oxidative damage. Topical alone addresses the first two. Adding internal nutrient support pushes through the ceiling. Topically: Boost (three-form vitamin C) brightens pigment irregularities and inhibits melanin transfer; Defense's CE Ferulic architecture neutralizes free-radical damage; Renewal's triple-acid blend accelerates surface turnover to reveal fresh skin. Internally: Radiance covers daily vitamins A/C/E/biotin/zinc — the nutrient foundation skin needs to function and reflect light evenly. Together they produce visible brightness that surface-only protocols can't match.",
       timeline: [
         { week: 'Week 1', text: 'Immediate freshness from Renewal exfoliation; vitamin C antioxidant baseline begins.' },
         { week: 'Week 4', text: 'Skin reflects light more evenly. Hyperpigmentation and post-acne marks start to fade.' },
@@ -235,13 +236,13 @@ window.BUNDLE_DETAILS = {
       ],
       faq: [
         { q: 'Will vitamin C make my skin sun-sensitive?', a: "Counterintuitively, no — vitamin C enhances sunscreen's photoprotection. Always wear SPF daily (especially when using glycolic acid in Renewal)." },
-        { q: 'When will I see brighter skin?', a: 'Subtle freshness in 1-2 weeks from topical resurfacing. Visible tone improvement in 6-8 weeks. Internal stack (Collagen + Radiance) takes 8-12 weeks for full inside-out effect.' },
+        { q: 'When will I see brighter skin?', a: 'Subtle freshness in 1-2 weeks from topical resurfacing. Visible tone improvement in 6-8 weeks. Radiance vitamins take 8-12 weeks to fill in nutrient stores for the full inside-out effect.' },
         { q: 'Can I pair this with prescription brighteners?', a: 'Yes — niacinamide and vitamin C work alongside hydroquinone and other prescription brighteners. The combined mechanism is stronger than monotherapy.' }
       ]
     },
     'sensitivity': {
       eyebrow: 'Calm & Resilient · Topical + Systemic Inflammation',
-      description: 'Six reactive-skin essentials — gentle botanical cleanser, pure hyaluronic acid, and multi-action overnight cream for the surface, plus probiotics and omega-3s for the systemic inflammation often behind sensitive skin.',
+      description: 'Five reactive-skin essentials — gentle botanical cleanser, pure hyaluronic acid, and multi-action overnight cream for the surface, plus probiotics and omega-3s for the systemic inflammation often behind sensitive skin.',
       whyThis: "Reactive skin often has a systemic-inflammation component that surface-only protocols miss. Topically: Wash is fragrance-free and barrier-respecting (rose hip seed oil, geranium, Irish moss); Hyaluronic is a minimalist water-and-HA serum that delivers pure barrier-supporting hydration without potentially-irritating extras; Soft does multi-action overnight repair with copper ferment and gentle retinyl palmitate. Internally: Biome's probiotic addresses the gut-skin axis — reactive skin often correlates with gut dysbiosis; Flow's omega-3 EPA/DHA actively resolves inflammation systemically. Together they heal the barrier from both sides instead of perpetuating the reactive cycle.",
       timeline: [
         { week: 'Week 1', text: 'Reactivity reduces; less redness after washing. Gut may briefly adjust to probiotic.' },
@@ -424,8 +425,8 @@ window.BUNDLE_DETAILS = {
     },
     'joints': {
       eyebrow: 'Joint Comfort · Internal Anti-Inflammation + Topical EFAs',
-      description: 'Five products — the curcumin-based joint complex, omega-3 EPA/DHA, bovine collagen peptides, and CoQ10, plus the omega-rich facial oil that pairs internally and topically for whole-body inflammation resolution.',
-      whyThis: "Joint health depends on three things: controlling inflammation, supporting joint structure, and aiding recovery from wear and tear. This bundle delivers all three internally — and the topical oil completes the omega-rich, anti-inflammatory theme. Restore is the daily anti-inflammatory: 95% curcumin with BioPerine (2,000% absorption boost), glucosamine, boswellia, chondroitin, MSM. Flow's omega-3 supports inflammation resolution via resolvins. Collagen provides amino acid substrates joints use to maintain cartilage. Vitality (CoQ10) supports the cellular energy joints need to recover. Glow (facial oil) is the topical complement — omega-rich plant oils for skin's anti-inflammatory pathway.",
+      description: 'Four products — the curcumin-based joint complex, omega-3 EPA/DHA, and bovine collagen peptides for inflammation and structural support, plus the squalane-and-ceramide lipid seal that pairs internally and topically for whole-body inflammation resolution.',
+      whyThis: "Joint health depends on three things: controlling inflammation, supporting joint structure, and aiding recovery from wear and tear. This bundle delivers all three internally — and the topical lipid seal completes the omega-rich, anti-inflammatory theme. Restore is the daily anti-inflammatory: 95% curcumin with BioPerine (2,000% absorption boost), glucosamine, boswellia, chondroitin, MSM. Flow's omega-3 supports inflammation resolution via resolvins. Collagen provides amino acid substrates joints use to maintain cartilage. Glow (squalane + ceramide-family glycosphingolipids) is the topical complement — barrier-restoring lipids that calm visible inflammation on the surface. For deeper mitochondrial support to power joint recovery, add Vitality (CoQ10) — but the four products here cover the core anti-inflammatory protocol on their own.",
       timeline: [
         { week: 'Week 1', text: 'Subtle morning stiffness reduction. Skin feels softer from Glow.' },
         { week: 'Week 4', text: 'Joint comfort noticeably better; morning stiffness markedly reduced.' },
@@ -434,7 +435,7 @@ window.BUNDLE_DETAILS = {
       ],
       faq: [
         { q: 'How is this different from OTC joint supplements?', a: 'Most OTC joint products are under-dosed glucosamine alone. This uses clinical-dose curcumin with BioPerine, 10g daily collagen, EPA/DHA omega-3, and CoQ10. The combined mechanism is much stronger.' },
-        { q: 'When should I take each?', a: 'Restore: with a meal containing fat. Flow: any meal with fat. Collagen: any time. Vitality: with breakfast or lunch. Glow: nightly as the final skincare step.' },
+        { q: 'When should I take each?', a: 'Restore: with a meal containing fat. Flow: any meal with fat. Collagen: any time (morning in coffee works well). Glow: nightly as the final skincare step.' },
         { q: 'How long until joint improvement?', a: 'Mild improvement in 1-2 weeks. Significant joint comfort builds over 4-8 weeks. Curcumin works upstream on inflammation rather than masking pain — slower onset, more durable effect.' }
       ]
     },
@@ -457,18 +458,18 @@ window.BUNDLE_DETAILS = {
     },
     'travel': {
       eyebrow: 'Built for the Road · TSA-Friendly Coverage',
-      description: 'Five products that fit in any carry-on — barrier-respecting cleanser, the foundational multi, omega-3 for airplane meals, magnesium for time-zone resets, and vitamin D for the days you do not see the sun. The bare-minimum travel protocol that actually holds.',
-      whyThis: "Travel breaks every routine that depends on environment — bad sleep, dry plane air, restaurant meals, unfamiliar water, missed sun exposure. This bundle covers what you can't outsource. Wash is the only skincare product you can't compromise on: gentle enough for hotel-water rinses, strong enough to clean off a day of dirt and recycled cabin air, sulfate-free so your barrier survives the trip. Multi and Flow handle the nutrient gap from restaurant food and airplane meals. Calm is the magnesium glycinate that resets your nervous system across time zones — particularly effective for the first three nights after a long flight. Sunshine (D3) covers the vitamin D deficit from days spent indoors, in transit, or in low-sun destinations. Five bottles, every base covered.",
+      description: 'Six products that fit in any carry-on — barrier-respecting cleanser, broad-spectrum mineral SPF, the foundational multi, omega-3 for airplane meals, magnesium for time-zone resets, and vitamin D for the days you do not see the sun. The bare-minimum travel protocol that actually holds.',
+      whyThis: "Travel breaks every routine that depends on environment — bad sleep, dry plane air, restaurant meals, unfamiliar water, missed sun exposure, and new-climate UV your skin isn't acclimated to. This bundle covers what you can't outsource. Wash is the only cleanser you can't compromise on: gentle enough for hotel-water rinses, strong enough to clean off a day of dirt and recycled cabin air. Shield is the broad-spectrum mineral SPF 30 — non-nano zinc oxide and titanium dioxide, reef-friendly, 40-minute water resistant — the one travel product nothing else replaces. Multi and Flow handle the nutrient gap from restaurant food and airplane meals. Calm is the magnesium glycinate that resets your nervous system across time zones — particularly effective for the first three nights after a long flight. Sunshine (D3) covers the vitamin D deficit from days spent indoors, in transit, or in low-sun destinations. Six bottles, every base covered.",
       timeline: [
-        { week: 'Day 1', text: 'Calm helps you sleep on a new schedule from the first night. Wash makes hotel-water skin feel normal.' },
+        { week: 'Day 1', text: 'Calm helps you sleep on a new schedule from the first night. Wash makes hotel-water skin feel normal. Shield protects from new-climate UV from the first morning.' },
         { week: 'Week 1 on a trip', text: 'Foundation nutrients hold off the cumulative deficit travel creates. Less travel fatigue, less digestion disruption.' },
         { week: 'Multi-trip', text: 'The stack becomes the muscle memory — same routine works in any hotel, any time zone, any duration.' },
         { week: 'Year-round', text: 'For frequent travelers, this becomes the everyday minimum. The Travel Stack and being home stop being different routines.' }
       ],
       faq: [
-        { q: 'How does this fit TSA / carry-on rules?', a: 'All five products are well under 3.4 oz / 100 ml each. Wash is 4 oz so check labels of the actual current bottle — newer travel-sized formats may be split. Supplements are bottles of capsules/softgels, no liquid restriction.' },
-        { q: 'Why this list specifically?', a: "These five are the highest-leverage products for the things travel breaks — sleep, skin barrier, nutrient gaps, vitamin D. The skincare line is deliberately minimal (just Wash) because hotel sinks and airplane air are bad places to do a full routine. If you want full skincare on the road, layer the rest of your routine on top of this baseline." },
-        { q: 'Is the cadence here Smart Refill?', a: "Yes — Smart Refill is the right cadence for this bundle. Wash and Flow ship every 2 months, Calm every 2, Sunshine every 3, Multi monthly. Different cadences = exactly what Smart Refill is for. Saves about $40/year vs flat monthly." },
+        { q: 'How does this fit TSA / carry-on rules?', a: 'All six products are well under 3.4 oz / 100 ml each (Shield is exactly 3.4 oz). Wash is 4 oz so check the label of the actual current bottle — newer travel-sized formats may be split. Supplements are bottles of capsules/softgels, no liquid restriction.' },
+        { q: 'Why this list specifically?', a: "These six are the highest-leverage products for the things travel breaks — sleep, skin barrier, sun protection, nutrient gaps, vitamin D. The skincare line is deliberately minimal (just Wash + Shield) because hotel sinks and airplane air are bad places to do a full routine, but SPF on the road is non-negotiable. If you want full skincare on the road, layer the rest of your routine on top of this baseline." },
+        { q: 'Is the cadence here Smart Refill?', a: "Yes — Smart Refill is the right cadence for this bundle. Wash, Flow, and Shield ship every 2 months, Calm every 2, Sunshine every 3, Multi monthly. Different cadences = exactly what Smart Refill is for. Saves about $40/year vs flat monthly." },
         { q: 'What about jet lag specifically?', a: 'Calm 30-60 minutes before bed in the new time zone for the first 3 nights makes a meaningful difference. Sunshine in the morning helps your circadian rhythm reset. Multi covers the nutrient depletion that compounds the disruption.' }
       ]
     },

@@ -129,7 +129,7 @@ window.PRODUCTS = [
       { q: 'How long until I see results?', a: 'Brightness shifts visible in 2-3 weeks. Full results compound over 8-12 weeks of consistent use.' },
       { q: 'Does this replace SPF?', a: 'Never. Vitamin C amplifies the effectiveness of SPF, but it does NOT block UV on its own. Always finish your morning routine with sunscreen.' }
         ],
-    relatedSlugs: ['the-house-defense', 'the-house-hyaluronic', 'the-house-balance'],
+    relatedSlugs: ['the-house-defense', 'the-house-hyaluronic', 'the-house-balance', 'the-house-shield'],
     resultsTimeline: [
       { week: 'Week 2', text: 'Subtle brightness; complexion looks clearer.' },
       { week: 'Week 4', text: 'More even pigment, dark spots beginning to fade.' },
@@ -217,7 +217,7 @@ window.PRODUCTS = [
       { q: 'Does this replace SPF?', a: 'Absolutely not. Defense amplifies SPF protection but does not block UV. Always finish your morning with sunscreen.' },
       { q: 'Is this safe during pregnancy?', a: 'Yes — Defense contains no retinoids, hydroquinone, or salicylic acid. Vitamin C, B-vitamins, vitamin E, ferulic acid, and hyaluronic acid are all routinely used during pregnancy. Confirm with your provider.' }
         ],
-    relatedSlugs: ['the-house-boost', 'the-house-firm', 'the-house-bounce'],
+    relatedSlugs: ['the-house-boost', 'the-house-firm', 'the-house-bounce', 'the-house-shield'],
     resultsTimeline: [
       { week: 'Day 1', text: 'Immediate antioxidant protection at the cellular level (invisible to you, real on UV exposure).' },
       { week: 'Week 4', text: 'Visible brightness; even tone; less environmental reactivity.' },
@@ -262,7 +262,7 @@ window.PRODUCTS = [
       { q: 'AM or PM?', a: 'Both. Some people split: Hydration (gel-cream) in the AM for under-SPF, Soft (richer) in the PM. Both work either time.' },
       { q: 'Is the retinyl palmitate safe during pregnancy?', a: 'Retinyl palmitate is a gentler vitamin A derivative, but high-dose topical vitamin A in pregnancy is generally a confirm-with-your-provider question. For pregnancy, The House Hydration is the safer choice — vitamin A free.' }
         ],
-    relatedSlugs: ['the-house-hyaluronic', 'the-house-hydration', 'the-house-eye'],
+    relatedSlugs: ['the-house-hyaluronic', 'the-house-hydration', 'the-house-eye', 'the-house-shield'],
     resultsTimeline: [
       { week: 'Day 1', text: 'Hydrated, comfortable, no greasy finish.' },
       { week: 'Week 2', text: 'Stronger barrier; less afternoon dryness.' },
@@ -376,7 +376,7 @@ window.PRODUCTS = [
     runtime: 2,
     image: 'images/bounce.jpeg',
     tag: 'Renew · Firm · Plump',
-    tagline: 'The four-active overnight retinol serum.',
+    tagline: 'The five-active overnight retinol serum.',
     description: 'A multi-active retinol serum that does more than just resurface. Retinol drives the cell turnover and collagen signaling that anti-aging routines are built around — but most retinol products stop there. This one adds a stable Vitamin C derivative for antioxidant defense, Matrixyl peptides for collagen signaling, sodium hyaluronate for plumping hydration, and a botanical Skin-Tightening Trio (watermelon, lentil, apple) for surface firmness. The buffering actives mean your skin tolerates the retinol more cleanly. The PM treatment step that earns its place at the top of the routine.',
     size: '1 fl oz / 30 ml',
     ingredients: [
@@ -1606,7 +1606,7 @@ window.CONCERN_BUNDLES = [
     tab: 'skin',
     icon: 'C.',
     name: 'The Hydration Bundle',
-    blurb: "Multi-weight hyaluronic and ceramide moisturizers for surface hydration, paired with omega-3s that support the lipid barrier holding water in skin. Hydration that doesn't quit by mid-afternoon.",
+    blurb: "Multi-weight hyaluronic plus the snow-algae gel-cream and the multi-action All-in-One overnight cream for surface hydration, paired with omega-3s that build the lipid matrix holding water in skin. Hydration that doesn't quit by mid-afternoon.",
     slugs: ['the-house-hyaluronic', 'the-house-hydration', 'the-house-soft', 'the-house-flow']
   },
   {
