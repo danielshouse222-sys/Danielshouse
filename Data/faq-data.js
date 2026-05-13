@@ -89,7 +89,7 @@ window.DH_FAQ_DATA = [
     "cat": "Subscribe & Save",
     "cat_id": 2,
     "q": "Do routines and bundles work with Subscribe &amp; Save?",
-    "a": "Yes — every routine and bundle on the site can be subscribed to, and <strong>every subscription gets an extra 10% off</strong> on top of the routine or bundle discount. This includes the 9 curated routines (Daniel's Daily, AM, PM, Workout, Longevity, Glow, Mom's, Ariana's, Ultimate), the 15 targeted bundles, and the <strong>tiered Build Your Own routine</strong> you create from the picker (10% at Mix 3, 12% at Mix 6, 15% at Mix 9+). Example: a $182 AM Routine is $155 one-time (15% off), or $139.50 subscribed (15% routine + 10% subscribe = 23.5% total). Cancel or pause anytime."
+    "a": "Yes — every routine and bundle on the site can be subscribed to, and <strong>every subscription gets an extra 10% off</strong> on top of the routine or bundle discount. This includes the 10 curated routines (Daniel's Daily Supplements, Daniel's Daily Skincare, AM, PM, Foundation, Workout, Longevity, Mom's, Ariana's, Ultimate), the 20 targeted bundles, and the <strong>tiered Build Your Own routine</strong> you create from the picker (10% at Mix 3, 12% at Mix 6, 15% at Mix 9+). Example: a $182 AM Routine is $155 one-time (15% off), or $139.50 subscribed (15% routine + 10% subscribe = 23.5% total). Cancel or pause anytime."
   },
   {
     "cat": "Subscribe & Save",
@@ -119,7 +119,7 @@ window.DH_FAQ_DATA = [
     "cat": "Subscribe & Save",
     "cat_id": 2,
     "q": "Which routines work with Smart Refill?",
-    "a": "Most routines and concern bundles support Smart Refill — including the AM Routine, PM Routine, Glow Routine, Longevity Routine, Mom's Routine, Ariana's Routine, the Ultimate Routine, and any Build Your Own routine you create. A few of the tightly-packed routines (Daniel's Daily, the Foundation supplement stack, the Workout stack, the Weekly Reset) ship all products on the same cadence by design and don't offer Smart Refill — for those, Monthly Subscribe is the right option. The product page will show whichever cadence options apply to that routine."
+    "a": "Most routines and bundles support Smart Refill — including Daniel's Daily Supplements, Daniel's Daily Skincare, the AM Routine, PM Routine, Mom's Routine, Ariana's Routine, the Ultimate Routine, and nearly every concern bundle (Sleep, Energy, Stress, Anti-Aging, Glow, Hair &amp; Nails, Travel, Cycle, Metabolic, and most others), plus any Build Your Own routine you create. A handful of bundles whose products all ship on the same cadence don't offer Smart Refill — the Workout Routine, Foundation Routine, Longevity Routine (all-supplement, all-monthly), and the Reset Bundle and Skin Starter Bundle (small skincare bundles on the same cycle). For those, Monthly Subscribe is the right option. The product page will show whichever cadence options apply."
   },
   {
     "cat": "Ingredients & Safety",
