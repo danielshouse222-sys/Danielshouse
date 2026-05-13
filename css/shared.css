@@ -3952,6 +3952,41 @@ body.spp-open { overflow: hidden; }
 }
 .cf-trust-line span { color: var(--gold); }
 
+/* Cart Trust Strip - 4 icons below place order */
+.cf-trust-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-top: 18px;
+  padding: 16px 8px;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.cf-trust-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+  font-size: 9.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  font-weight: 500;
+  line-height: 1.35;
+}
+.cf-trust-icon {
+  width: 22px;
+  height: 22px;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+@media (max-width: 480px) {
+  .cf-trust-strip { gap: 4px; padding: 14px 4px; }
+  .cf-trust-item { font-size: 9px; gap: 5px; }
+  .cf-trust-icon { width: 20px; height: 20px; }
+}
+
 /* Mobile tweaks */
 @media (max-width: 600px) {
   .page-filter {
