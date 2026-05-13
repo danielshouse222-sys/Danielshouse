@@ -2,6 +2,48 @@
    Each entry: { cat, cat_id, q, a }. Auto-loaded by js/chatbot.js. */
 window.DH_FAQ_DATA = [
   {
+    "cat": "Pricing & Value",
+    "cat_id": 5,
+    "q": "Why are Daniel's House products priced higher than drugstore skincare?",
+    "a": "Because the formulas are different. Drugstore products are built around a target retail price — the formula gets engineered backward from that price, which usually means under-dosing the actives, substituting cheaper ingredient forms, and padding the bottle with fillers. Daniel's House is built the other way around: we pick clinically-validated active forms at the doses used in the original studies, source them from a top FDA-registered manufacturer (Cosmetic Solutions Innovation Labs in Boca Raton, FL — the same facility used by major DTC skincare brands), and the price reflects what that costs. A $14 drugstore vitamin C serum and our $34 Boost aren't the same product at different prices — they're different products. The price gap is the active-ingredient cost gap."
+  },
+  {
+    "cat": "Pricing & Value",
+    "cat_id": 5,
+    "q": "How does Daniel's House compare to luxury skincare like SkinCeuticals or Drunk Elephant?",
+    "a": "We sit in the same formulation tier and underprice the brand-name luxury comparison. The clearest example: Defense uses the C E Ferulic architecture — L-ascorbic acid + ferulic acid + vitamin E at the concentrations validated in the foundational 2005 Duke University study. SkinCeuticals owns that name and charges $185 for it. Drunk Elephant's equivalent (C-Firma) is $80. Defense is $74 with niacinamide and panthenol added on top. The Bounce serum stacks five actives (retinol + Vit C + HA + Matrixyl peptides + botanical complex) where Drunk Elephant's $74 A-Passioni is a single-active retinol. Where we save money is not on the formulas — it's on the brand-marketing markup that adds 50-100% to luxury skincare prices."
+  },
+  {
+    "cat": "Pricing & Value",
+    "cat_id": 5,
+    "q": "How is the most expensive product (Defense at $74) different from a $30 vitamin C serum?",
+    "a": "Three things. (1) Active form: Defense uses 15% pure L-ascorbic acid — the gold-standard vitamin C form that's been clinically validated since the 1990s. Most $30 serums use cheaper derivatives (ascorbyl palmitate, sodium ascorbyl phosphate) which are more stable in formula but don't deliver the same photoprotection. (2) Stabilization architecture: Defense includes 0.5% ferulic acid, which doubles the photoprotection of vitamin C and vitamin E according to the foundational research. Most affordable vitamin C serums skip the ferulic acid because it's expensive. (3) Supporting actives: Defense adds 4% niacinamide, 1% vitamin E, and 1% panthenol — three additional clinically-validated actives at clinical doses. A $30 vitamin C serum is one active at an uncertain dose; Defense is four actives at validated doses. The price difference is the ingredient cost difference."
+  },
+  {
+    "cat": "Pricing & Value",
+    "cat_id": 5,
+    "q": "If I can only afford one or two products, where do I start?",
+    "a": "The most cost-effective entry to the line is the Skin Starter Bundle ($108 for three products: Wash + Balance + Soft, with the 10% bundle discount). Three products is a minimum-viable routine that won't compete with itself, and the bundle saves vs buying à la carte. If you want a single product to start with, Defense ($74) is the highest-leverage choice because daily antioxidant protection is the most-evidenced anti-aging intervention in dermatology — it does more long-term work than any other single product. Shield ($42) is a close second for the same reason. We'd rather you start small with two great products you'll use consistently than try a 12-product routine you can't sustain."
+  },
+  {
+    "cat": "Pricing & Value",
+    "cat_id": 5,
+    "q": "What's the savings if I buy a bundle vs individual products?",
+    "a": "Curated routines (AM Routine, PM Routine, Daniel's Daily Skincare, Ultimate, Mom's, etc.) all save 15% off the list price. Targeted bundles (Acne, Dryness, Anti-Aging, Sensitivity, etc.) save 10% off. Build Your Own routines are tiered: pick 3+ and save 10%, pick 6+ and save 12%, pick 9+ and save 15%. Subscribe to any bundle and stack an additional 10% off. For the AM Routine: list price $290, one-time bundle price $246.50 (15% off, save $43.50), subscribed price $221.85 (23.5% off, save $68.15). The PM Routine: list $296, one-time $251.60, subscribed $226.44. The savings get larger as the bundle grows."
+  },
+  {
+    "cat": "Pricing & Value",
+    "cat_id": 5,
+    "q": "How long should one bottle last me?",
+    "a": "Most products are sized for a 2-3 month supply at standard daily use. Cleansers last 2-3 months at twice-daily use. Serums (Boost, Defense, Bounce, Firm) last 8-12 weeks at pea-size doses. Moisturizers (Soft, Hydration) last 2-3 months. Eye cream lasts 3-4 months. Shield sunscreen lasts 4-6 weeks at a properly-sized daily dose, so it's the SKU most worth subscribing for. Mask and Polish are weekly-use, so a single bottle lasts 4-6 months. Per-month effective cost across a full routine is lower than the list price suggests — at base subscription pricing, a complete AM routine costs about $74-87 per month."
+  },
+  {
+    "cat": "Pricing & Value",
+    "cat_id": 5,
+    "q": "What if I don't like the products at the price I paid?",
+    "a": "Every order is backed by a 30-day money-back guarantee, no questions asked. Try it for a month. If it doesn't deliver what we said it would, return it and we'll refund the entire purchase — opened bottles, partial use, doesn't matter. Return shipping is on us. We'd rather you give an honest product a real shot and not love it than feel locked into something that doesn't fit."
+  },
+  {
     "cat": "Shipping & Orders",
     "cat_id": 0,
     "q": "How fast does shipping arrive?",
@@ -41,13 +83,13 @@ window.DH_FAQ_DATA = [
     "cat": "Returns & Guarantee",
     "cat_id": 1,
     "q": "Can I return a bundle — even just part of it?",
-    "a": "<strong>Yes — full or partial.</strong> Return the entire bundle for a complete refund of what you paid. Or return individual products from a bundle and get a <strong>prorated refund</strong> based on the bundle's per-unit price (not retail). Example: the AM Routine costs $155 for 6 products, so each is effectively $25.83. Return one for $25.83 back, two for $51.66, and so on. This way the bundle math stays fair: you keep the bundle discount on what you choose to keep, and don't get retail credit for items that came in at a bundled rate. The 30-day window starts when the bundle arrived."
+    "a": "<strong>Yes — full or partial.</strong> Return the entire bundle for a complete refund of what you paid. Or return individual products from a bundle and get a <strong>prorated refund</strong> based on the bundle's per-unit price (not retail). Example: the AM Routine costs $246.50 for 7 products, so each is effectively $35.21. Return one for $35.21 back, two for $70.43, and so on. This way the bundle math stays fair: you keep the bundle discount on what you choose to keep, and don't get retail credit for items that came in at a bundled rate. The 30-day window starts when the bundle arrived."
   },
   {
     "cat": "Returns & Guarantee",
     "cat_id": 1,
     "q": "How do returns work for Build Your Own routines?",
-    "a": "Build Your Own routines follow the <strong>same 30-day window and prorated rule</strong>, with one nuance: your discount tier is <strong>locked at purchase</strong>. If you ordered Mix 9 at 15% off and return 4 products, you keep your 15% discount on the 5 products you kept — we don't drop you back down to Mix 6's 12% retroactively. The refund is calculated on the prorated per-unit price you actually paid. Example: 9 products for $255 = $28.33/each. Return 4, get $113.32 back, keep the remaining 5 at $28.33/each. Same applies for partial returns on Mix 3 and Mix 6 tiers — your locked-in tier stays locked."
+    "a": "Build Your Own routines follow the <strong>same 30-day window and prorated rule</strong>, with one nuance: your discount tier is <strong>locked at purchase</strong>. If you ordered Mix 9 at 15% off and return 4 products, you keep your 15% discount on the 5 products you kept — we don't drop you back down to Mix 6's 12% retroactively. The refund is calculated on the prorated per-unit price you actually paid. Example: 9 products for $306 = $34.00/each. Return 4, get $136 back, keep the remaining 5 at $34.00/each. Same applies for partial returns on Mix 3 and Mix 6 tiers — your locked-in tier stays locked."
   },
   {
     "cat": "Returns & Guarantee",
@@ -89,13 +131,13 @@ window.DH_FAQ_DATA = [
     "cat": "Subscribe & Save",
     "cat_id": 2,
     "q": "Do routines and bundles work with Subscribe &amp; Save?",
-    "a": "Yes — every routine and bundle on the site can be subscribed to, and <strong>every subscription gets an extra 10% off</strong> on top of the routine or bundle discount. This includes the 10 curated routines (Daniel's Daily Supplements, Daniel's Daily Skincare, AM, PM, Foundation, Workout, Longevity, Mom's, Ariana's, Ultimate), the 20 targeted bundles, and the <strong>tiered Build Your Own routine</strong> you create from the picker (10% at Mix 3, 12% at Mix 6, 15% at Mix 9+). Example: a $248 AM Routine is $210.80 one-time (15% off), or $189.72 subscribed (15% routine + 10% subscribe = 23.5% total). Cancel or pause anytime."
+    "a": "Yes — every routine and bundle on the site can be subscribed to, and <strong>every subscription gets an extra 10% off</strong> on top of the routine or bundle discount. This includes the 10 curated routines (Daniel's Daily Supplements, Daniel's Daily Skincare, AM, PM, Foundation, Workout, Longevity, Mom's, Ariana's, Ultimate), the 20 targeted bundles, and the <strong>tiered Build Your Own routine</strong> you create from the picker (10% at Mix 3, 12% at Mix 6, 15% at Mix 9+). Example: a $290 AM Routine is $246.50 one-time (15% off), or $221.85 subscribed (15% routine + 10% subscribe = 23.5% total). Cancel or pause anytime."
   },
   {
     "cat": "Subscribe & Save",
     "cat_id": 2,
     "q": "How does the Build Your Own routine discount work?",
-    "a": "Pick more, save more — Build Your Own is tiered: <strong>Mix 3 saves 10%</strong>, <strong>Mix 6 saves 12%</strong>, and <strong>Mix 9 or more saves 15%</strong>. The discount applies to whatever combination of skincare and supplements you pick. Subscribe to stack an extra 10% on top of any tier. Example: pick 9 products totaling $300 → $255 one-time (15% off), or $229.50 subscribed (15% + 10% = 23.5% total). Curated routines (AM, PM, Mom's, Ariana's, etc.) all sit at 15% — so once you cross the 9-product line, you're at the same discount whether you pick yourself or use one of Daniel's routines."
+    "a": "Pick more, save more — Build Your Own is tiered: <strong>Mix 3 saves 10%</strong>, <strong>Mix 6 saves 12%</strong>, and <strong>Mix 9 or more saves 15%</strong>. The discount applies to whatever combination of skincare and supplements you pick. Subscribe to stack an extra 10% on top of any tier. Example: pick 9 products totaling $360 → $306 one-time (15% off), or $275.40 subscribed (15% + 10% = 23.5% total). Curated routines (AM, PM, Mom's, Ariana's, etc.) all sit at 15% — so once you cross the 9-product line, you're at the same discount whether you pick yourself or use one of Daniel's routines."
   },
   {
     "cat": "Subscribe & Save",
