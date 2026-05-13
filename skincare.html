@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="css/shared.css?v=21">
+<link rel="stylesheet" href="css/shared.css?v=8">
 <style>
   :root {
     --cream: #FAF6F0;
@@ -52,9 +52,11 @@
   /* SPLITSCREEN */
   .split { display: grid; grid-template-columns: 1fr 1fr; margin: 60px auto 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); position: relative; }
   .split::before { content: ""; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: var(--rule); z-index: 5; }
-  .ritual { padding: 70px 50px 80px; position: relative; }
+  .ritual { padding: 70px 50px 80px; position: relative; display: flex; flex-direction: column; }
   .ritual.am { background: var(--cream); color: var(--ink); }
   .ritual.pm { background: var(--night); color: var(--cream); }
+  /* Push the bundle-footnote to the bottom so AM (7 steps) and PM (6 steps) align horizontally */
+  .ritual .bundle-footnote { margin-top: auto; }
 
   .ritual-header { text-align: center; margin-bottom: 48px; padding-bottom: 28px; border-bottom: 1px solid; }
   .ritual.am .ritual-header { border-color: var(--rule); }
@@ -747,7 +749,7 @@
   <div class="weekly" style="padding-bottom: 0; border-bottom: none;">
     <div class="weekly-eyebrow">Morning &amp; Evening · Daily</div>
     <div class="weekly-title">The <em>Daily</em> Routine</div>
-    <div class="weekly-blurb">Twelve products. Two rituals. The brightening, hydrating, protecting work in the morning — the resurfacing, repairing, restoring work at night.</div>
+    <div class="weekly-blurb">Thirteen products. Two rituals. The brightening, defending, protecting work in the morning — the resurfacing, repairing, restoring work at night.</div>
   </div>
 
   <!-- SPLITSCREEN -->
@@ -923,7 +925,7 @@
         <div class="row-content">
           <div class="row-tag">Renew · Firm · Plump</div>
           <div class="row-name">The House <em>Bounce</em></div>
-          <div class="row-desc">A four-active retinol serum: 0.05% retinol + 0.5% stable vitamin C + 0.1% hyaluronic acid + Matrixyl peptides + a botanical skin-tightening trio. The buffering actives mean your skin tolerates the retinol cleanly.</div>
+          <div class="row-desc">A five-active retinol serum: 0.05% retinol + 0.5% stable vitamin C + 0.1% hyaluronic acid + Matrixyl peptides + a botanical skin-tightening trio. The buffering actives mean your skin tolerates the retinol cleanly — visible results without the irritation.</div>
         </div>
         <div class="row-shop">
           <div class="row-price">$62</div>
@@ -1311,7 +1313,7 @@
 </div>
 
 <script src="data/products.js?v=9"></script><script src="data/ingredients.js"></script>
-<script src="js/auth.js?v=1"></script><script src="js/shared.js?v=12"></script><script src="data/faq-data.js?v=6"></script><script src="js/chatbot.js?v=10"></script>
+<script src="js/auth.js?v=1"></script><script src="js/shared.js?v=14"></script><script src="data/faq-data.js?v=8"></script><script src="js/chatbot.js?v=10"></script>
 <script>
 // Wire up Add to Cart buttons on this page
 document.addEventListener('DOMContentLoaded', () => {

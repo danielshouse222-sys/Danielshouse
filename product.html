@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="css/shared.css?v=21">
+<link rel="stylesheet" href="css/shared.css?v=8">
 <style>
   body { background: var(--cream); color: var(--ink); font-family: 'Poppins', sans-serif; margin: 0; }
   a { color: inherit; }
@@ -186,6 +186,12 @@
     color: var(--ink-soft);
     text-decoration: line-through;
     margin-right: 6px;
+  }
+  .purchase-price-per {
+    font-size: 11px;
+    color: var(--ink-soft);
+    font-weight: 400;
+    margin-left: 2px;
   }
   .purchase-savings-tag {
     display: inline-block;
@@ -1207,7 +1213,7 @@
 
 <script src="data/products.js?v=9"></script>
 <script src="data/ingredients.js"></script>
-<script src="js/auth.js?v=1"></script><script src="js/shared.js?v=12"></script><script src="data/faq-data.js?v=6"></script><script src="js/chatbot.js?v=10"></script>
+<script src="js/auth.js?v=1"></script><script src="js/shared.js?v=14"></script><script src="data/faq-data.js?v=8"></script><script src="js/chatbot.js?v=10"></script>
 <script>
 (function() {
   // Get product slug from URL
@@ -1256,8 +1262,22 @@
   document.getElementById('rating-num').textContent = ratingNum;
   document.getElementById('rating-count').textContent = ratingCount;
 
-  // Pricing & subscribe options
+  // Pricing & subscribe options — three tiers: One-Time, Subscribe Monthly, Smart Refill
+  // Smart Refill ships at the product's natural runtime cadence (1, 2, or 3 months)
+  // so customers don't stockpile unused bottles on multi-month products.
   const subscribePrice = +(product.price * 0.90).toFixed(2);
+  const runtime = Math.max(1, product.runtime || 1);
+  const cadenceLabel = runtime === 1 ? 'every month' : `every ${runtime} months`;
+  // For runtime=1, Smart Refill is functionally equivalent to monthly subscribe.
+  // For runtime>1, Smart Refill saves real money by not over-shipping.
+  const shipmentsOver6Mo = Math.ceil(6 / runtime);
+  const monthlyCostOver6Mo = subscribePrice * 6;  // What you'd pay if you bought bottle every month
+  const smartCostOver6Mo = subscribePrice * shipmentsOver6Mo;
+  const smartSaves = Math.max(0, monthlyCostOver6Mo - smartCostOver6Mo);
+  const smartSavesCopy = runtime === 1
+    ? `Same cadence as monthly subscribe — no stockpiling either way.`
+    : `Ships ${cadenceLabel} (your natural runtime) — saves <strong>$${smartSaves.toFixed(2)}</strong> over 6 months vs monthly subscribe.`;
+
   const optionsEl = document.getElementById('purchase-options');
   optionsEl.innerHTML = `
     <div class="purchase-option" data-mode="once">
@@ -1268,7 +1288,7 @@
       </div>
       <div class="purchase-price">$${product.price.toFixed(2)}</div>
     </div>
-    <div class="purchase-option selected" data-mode="subscribe">
+    <div class="purchase-option" data-mode="subscribe">
       <div class="purchase-radio"></div>
       <div>
         <div class="purchase-label-main">Subscribe &amp; Save <span class="purchase-savings-tag">Save 10%</span></div>
@@ -1279,20 +1299,45 @@
         $${subscribePrice.toFixed(2)}
       </div>
     </div>
+    <div class="purchase-option selected" data-mode="smart">
+      <div class="purchase-radio"></div>
+      <div>
+        <div class="purchase-label-main">Smart Refill <span class="purchase-savings-tag">Save 10% · No Stockpile</span></div>
+        <div class="purchase-label-sub">${smartSavesCopy}</div>
+      </div>
+      <div class="purchase-price">
+        <span class="purchase-price-strike">$${product.price.toFixed(2)}</span>
+        $${subscribePrice.toFixed(2)}<span class="purchase-price-per">/shipment</span>
+      </div>
+    </div>
+    <button type="button" class="projection-trigger-inline" data-product-projection-trigger>
+      <span class="ptl-icon" aria-hidden="true">📈</span>
+      <span class="ptl-text">See your 6-month projection</span>
+      <span class="ptl-arrow" aria-hidden="true">→</span>
+    </button>
   `;
 
   optionsEl.addEventListener('click', e => {
     const opt = e.target.closest('.purchase-option');
-    if (!opt) return;
-    optionsEl.querySelectorAll('.purchase-option').forEach(o => o.classList.remove('selected'));
-    opt.classList.add('selected');
+    if (opt) {
+      optionsEl.querySelectorAll('.purchase-option').forEach(o => o.classList.remove('selected'));
+      opt.classList.add('selected');
+      return;
+    }
+    const projBtn = e.target.closest('[data-product-projection-trigger]');
+    if (projBtn) {
+      e.preventDefault();
+      if (window.dhShowProjection) window.dhShowProjection('product:' + product.slug);
+    }
   });
 
-  // Add to cart
+  // Add to cart — passes subscribe + cadence state so smart-refill orders are tracked separately
   document.getElementById('add-to-cart').addEventListener('click', () => {
     const selected = optionsEl.querySelector('.purchase-option.selected');
-    const subscribe = selected?.dataset.mode === 'subscribe';
-    window.dhCart.add(product, { subscribe });
+    const mode = selected?.dataset.mode || 'once';
+    const subscribe = mode === 'subscribe' || mode === 'smart';
+    const cadence = mode === 'smart' ? 'smart' : (subscribe ? 'monthly' : null);
+    window.dhCart.add(product, { subscribe, cadence });
   });
 
   // Ingredients — with auto-linking to the glossary (ingredient.html?slug=X)
