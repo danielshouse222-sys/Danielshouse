@@ -4,6 +4,14 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Product — Daniel's House</title>
+<meta name="description" content="Premium skincare and supplements at clinical doses. Made in USA, third-party tested, 30-day money-back guarantee.">
+<meta property="og:title" content="Product — Daniel's House">
+<meta property="og:description" content="Premium skincare and supplements at clinical doses. Made in USA, third-party tested, 30-day money-back guarantee.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Daniel's House">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Product — Daniel's House">
+<meta name="twitter:description" content="Premium skincare and supplements at clinical doses. Made in USA, third-party tested, 30-day money-back guarantee.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -687,7 +695,7 @@
           <button class="filter-chip" data-chip="recovery" data-group="goal">Recovery</button>
           <button class="filter-chip" data-chip="beauty" data-group="goal">Beauty</button>
           <button class="filter-chip" data-chip="anti-aging" data-group="goal">Anti-Aging</button>
-          <button class="filter-chip" data-chip="hydration" data-group="goal">Hydration</button>
+          <button class="filter-chip" data-chip="hydration" data-group="goal">Mist</button>
           <button class="filter-chip" data-chip="immune" data-group="goal">Immunity</button>
           <button class="filter-chip" data-chip="gut" data-group="goal">Gut Health</button>
           <button class="filter-chip" data-chip="daily" data-group="goal">Daily</button>
@@ -698,7 +706,7 @@
         <div class="page-filter-category-chips">
           <button class="filter-chip" data-chip="vitamin c" data-group="key ingredient">Vitamin C</button>
           <button class="filter-chip" data-chip="retinol" data-group="key ingredient">Retinol</button>
-          <button class="filter-chip" data-chip="hyaluronic" data-group="key ingredient">Hyaluronic</button>
+          <button class="filter-chip" data-chip="hyaluronic" data-group="key ingredient">Plump</button>
           <button class="filter-chip" data-chip="niacinamide" data-group="key ingredient">Niacinamide</button>
           <button class="filter-chip" data-chip="peptide" data-group="key ingredient">Peptides</button>
           <button class="filter-chip" data-chip="antioxidant" data-group="key ingredient">Antioxidants</button>
@@ -719,7 +727,7 @@
           <button class="filter-chip" data-chip="toner" data-group="type of product">Toner</button>
           <button class="filter-chip" data-chip="serum" data-group="type of product">Serum</button>
           <button class="filter-chip" data-chip="moisturizer" data-group="type of product">Moisturizer</button>
-          <button class="filter-chip" data-chip="eye" data-group="type of product">Eye Care</button>
+          <button class="filter-chip" data-chip="eye" data-group="type of product">Awake Care</button>
           <button class="filter-chip" data-chip="mask" data-group="type of product">Mask</button>
           <button class="filter-chip" data-chip="oil" data-group="type of product">Oil</button>
           <button class="filter-chip" data-chip="capsule" data-group="type of product">Capsule</button>
@@ -1168,7 +1176,7 @@
     </div>
     <div class="footer-col"><h4>Shop</h4><ul><li><a href="skincare.html">Skincare</a></li><li><a href="supplements.html">Supplements</a></li><li><a href="routines.html">Routines</a></li><li><a href="bundles.html">Bundles</a></li><li><a href="compare.html">Compare</a></li></ul></div>
     <div class="footer-col"><h4>The House</h4><ul><li><a href="about.html">Daniel's Story</a></li><li><a href="ingredients.html">Ingredient Glossary</a></li><li><a href="studies.html">Research Library</a></li><li><a href="blog.html">Blog</a></li><li><a href="reviews.html">Reviews</a></li><li><a href="quiz.html">Take the Quiz</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
-    <div class="footer-col"><h4>Help</h4><ul><li><a href="faq.html#shipping">Shipping</a></li><li><a href="faq.html#returns">Returns Policy →</a></li><li><a href="faq.html#returns">30-Day Guarantee</a></li><li><a href="faq.html">Contact</a></li></ul></div>
+    <div class="footer-col"><h4>Help</h4><ul><li><a href="shipping.html">Shipping</a></li><li><a href="returns.html">Returns</a></li><li><a href="guarantee.html">30-Day Guarantee</a></li><li><a href="faq.html">Contact</a></li></ul></div>
   </div>
   <div class="footer-credit">
     <div class="footer-credit-left">© 2026 Daniel's House. Premium wellness, built on real results.</div>
@@ -1231,6 +1239,59 @@
     `;
     return;
   }
+
+  // ─── JSON-LD PRODUCT SCHEMA (SEO rich results) ───
+  (function injectSchema() {
+    const imageUrl = (function() {
+      try { return new URL(product.image, window.location.origin).href; }
+      catch(_) { return product.image; }
+    })();
+    const schema = {
+      "@context": "https://schema.org/",
+      "@type": "Product",
+      "name": "The House " + product.name,
+      "description": (product.description || product.tagline || '').substring(0, 500),
+      "image": imageUrl,
+      "sku": product.slug,
+      "brand": { "@type": "Brand", "name": "Daniel's House" },
+      "category": product.category === 'skincare'
+        ? "Beauty & Personal Care > Skincare"
+        : "Health & Beauty > Vitamins & Supplements",
+      "offers": {
+        "@type": "Offer",
+        "url": window.location.href,
+        "price": String(product.price),
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "itemCondition": "https://schema.org/NewCondition",
+        "seller": { "@type": "Organization", "name": "Daniel's House" }
+      }
+    };
+    const tag = document.createElement('script');
+    tag.type = 'application/ld+json';
+    tag.textContent = JSON.stringify(schema);
+    document.head.appendChild(tag);
+
+    // Update meta tags dynamically for SEO + social sharing
+    let metaDesc = document.querySelector('meta[name="description"]');
+    if (!metaDesc) {
+      metaDesc = document.createElement('meta');
+      metaDesc.setAttribute('name', 'description');
+      document.head.appendChild(metaDesc);
+    }
+    metaDesc.setAttribute('content', (product.tagline || product.description || '').substring(0, 160));
+
+    function setOG(prop, val) {
+      let m = document.querySelector('meta[property="' + prop + '"]');
+      if (!m) { m = document.createElement('meta'); m.setAttribute('property', prop); document.head.appendChild(m); }
+      m.setAttribute('content', val);
+    }
+    setOG('og:title', 'The House ' + product.name + " — Daniel's House");
+    setOG('og:description', (product.tagline || '').substring(0, 200));
+    setOG('og:image', imageUrl);
+    setOG('og:type', 'product');
+    setOG('og:url', window.location.href);
+  })();
 
   // Update page title
   document.title = `The House ${product.name} — Daniel's House`;
@@ -1501,7 +1562,7 @@
       'uneven-tone': 'Uneven Tone',
       'dullness': 'Dullness',
       'pore-refinement': 'Pore Refinement',
-      'hydration': 'Hydration',
+      'hydration': 'Mist',
       'dryness': 'Dryness',
       'plumping': 'Plumping',
       'anti-aging': 'Anti-Aging',

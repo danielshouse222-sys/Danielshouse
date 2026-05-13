@@ -4,6 +4,14 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Daniel's House — Premium Wellness, Built on Real Results</title>
+<meta name="description" content="Premium skincare and supplements at clinical doses. Made in USA. 30-day money-back guarantee. The Daniel's House line — built by the founder for himself, opened to the people who want what he uses every day.">
+<meta property="og:title" content="Daniel's House — Premium Wellness, Built on Real Results">
+<meta property="og:description" content="Premium skincare and supplements at clinical doses. Made in USA. 30-day money-back guarantee. The Daniel's House line — built by the founder for himself, opened to the people who want what he uses every day.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Daniel's House">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Daniel's House — Premium Wellness, Built on Real Results">
+<meta name="twitter:description" content="Premium skincare and supplements at clinical doses. Made in USA. 30-day money-back guarantee. The Daniel's House line — built by the founder for himself, opened to the people who want what he uses every day.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -709,6 +717,10 @@
     .featured-trust { gap: 8px; font-size: 10.5px; }
     .featured-trust .dot { display: none; }
     .featured-btn { padding: 14px 22px; font-size: 10px; letter-spacing: 0.18em; }
+    /* Price Question — center card content on mobile to align with centered section header */
+    .price-grid { padding: 0 22px !important; gap: 20px !important; margin-top: 40px !important; }
+    .price-card { padding: 32px 24px !important; text-align: center !important; border-top-width: 2px !important; }
+    .price-card-eyebrow { display: inline-block; }
   }
 
   /* ═══ THE RESEARCH (study quote cards) ═══ */
@@ -822,7 +834,7 @@
           <button class="filter-chip" data-chip="recovery" data-group="goal">Recovery</button>
           <button class="filter-chip" data-chip="beauty" data-group="goal">Beauty</button>
           <button class="filter-chip" data-chip="anti-aging" data-group="goal">Anti-Aging</button>
-          <button class="filter-chip" data-chip="hydration" data-group="goal">Hydration</button>
+          <button class="filter-chip" data-chip="hydration" data-group="goal">Mist</button>
           <button class="filter-chip" data-chip="immune" data-group="goal">Immunity</button>
           <button class="filter-chip" data-chip="gut" data-group="goal">Gut Health</button>
           <button class="filter-chip" data-chip="daily" data-group="goal">Daily</button>
@@ -833,7 +845,7 @@
         <div class="page-filter-category-chips">
           <button class="filter-chip" data-chip="vitamin c" data-group="key ingredient">Vitamin C</button>
           <button class="filter-chip" data-chip="retinol" data-group="key ingredient">Retinol</button>
-          <button class="filter-chip" data-chip="hyaluronic" data-group="key ingredient">Hyaluronic</button>
+          <button class="filter-chip" data-chip="hyaluronic" data-group="key ingredient">Plump</button>
           <button class="filter-chip" data-chip="niacinamide" data-group="key ingredient">Niacinamide</button>
           <button class="filter-chip" data-chip="peptide" data-group="key ingredient">Peptides</button>
           <button class="filter-chip" data-chip="antioxidant" data-group="key ingredient">Antioxidants</button>
@@ -854,7 +866,7 @@
           <button class="filter-chip" data-chip="toner" data-group="type of product">Toner</button>
           <button class="filter-chip" data-chip="serum" data-group="type of product">Serum</button>
           <button class="filter-chip" data-chip="moisturizer" data-group="type of product">Moisturizer</button>
-          <button class="filter-chip" data-chip="eye" data-group="type of product">Eye Care</button>
+          <button class="filter-chip" data-chip="eye" data-group="type of product">Awake Care</button>
           <button class="filter-chip" data-chip="mask" data-group="type of product">Mask</button>
           <button class="filter-chip" data-chip="oil" data-group="type of product">Oil</button>
           <button class="filter-chip" data-chip="capsule" data-group="type of product">Capsule</button>
@@ -947,6 +959,145 @@
   </div>
 </div>
 
+<!-- WHERE TO START -->
+<section class="where-to-start">
+  <style>
+    .where-to-start {
+      padding: clamp(70px, 8vw, 100px) 24px;
+      background: var(--cream-warm);
+    }
+    .wts-header {
+      max-width: 720px; margin: 0 auto 56px; text-align: center;
+    }
+    .wts-eyebrow {
+      font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase;
+      color: var(--gold); font-weight: 600; margin-bottom: 18px;
+    }
+    .wts-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(40px, 5.5vw, 64px); font-weight: 400;
+      line-height: 1.02; margin: 0 0 16px; color: var(--ink);
+    }
+    .wts-title em { font-style: italic; color: var(--sage); }
+    .wts-blurb {
+      font-family: 'Cormorant Garamond', serif; font-style: italic;
+      font-size: clamp(17px, 2vw, 22px); color: var(--ink-soft);
+      line-height: 1.5; margin: 0;
+    }
+    .wts-cards {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    }
+    .wts-card {
+      background: var(--cream); padding: 40px 32px;
+      border-top: 3px solid var(--sage);
+      display: flex; flex-direction: column;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .wts-card:hover { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(0,0,0,0.08); }
+    .wts-card-num {
+      font-family: 'Poppins', sans-serif; font-size: 10px;
+      letter-spacing: 0.32em; text-transform: uppercase;
+      color: var(--gold); font-weight: 600; margin-bottom: 16px;
+    }
+    .wts-card-title {
+      font-family: 'Cormorant Garamond', serif; font-size: 28px;
+      font-weight: 500; color: var(--ink); margin: 0 0 12px; line-height: 1.15;
+    }
+    .wts-card-title em { font-style: italic; color: var(--sage); }
+    .wts-card-blurb {
+      font-size: 14px; line-height: 1.65; color: var(--ink-soft);
+      margin: 0 0 24px; flex-grow: 1;
+    }
+    .wts-card-pricing {
+      font-family: 'Cormorant Garamond', serif; font-size: 22px;
+      color: var(--ink); margin-bottom: 14px;
+    }
+    .wts-card-pricing strong { color: var(--gold); }
+    .wts-card-pricing s { color: var(--ink-soft); opacity: 0.6; font-size: 16px; margin-right: 8px; }
+    .wts-card-link {
+      display: inline-block; padding: 12px 24px;
+      border: 1px solid var(--ink); color: var(--ink);
+      text-decoration: none; font-size: 11px; font-weight: 500;
+      letter-spacing: 0.24em; text-transform: uppercase;
+      text-align: center; transition: all 0.2s;
+    }
+    .wts-card-link:hover { background: var(--ink); color: var(--cream); }
+    .wts-quiz-cta {
+      max-width: 800px; margin: 56px auto 0; padding: 32px 36px;
+      background: var(--ink); color: var(--cream);
+      display: flex; align-items: center; justify-content: space-between; gap: 24px;
+      border-radius: 4px;
+    }
+    .wts-quiz-text { flex: 1; }
+    .wts-quiz-eyebrow {
+      font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase;
+      color: var(--gold); font-weight: 600; margin-bottom: 8px;
+    }
+    .wts-quiz-title {
+      font-family: 'Cormorant Garamond', serif; font-size: 28px;
+      font-weight: 400; line-height: 1.15; margin: 0 0 6px;
+    }
+    .wts-quiz-title em { font-style: italic; color: var(--gold); }
+    .wts-quiz-blurb {
+      font-size: 13px; color: rgba(245,239,230,0.78); margin: 0; line-height: 1.5;
+    }
+    .wts-quiz-btn {
+      flex-shrink: 0;
+      padding: 14px 28px; background: var(--gold); color: var(--ink);
+      text-decoration: none; font-size: 11px; font-weight: 600;
+      letter-spacing: 0.24em; text-transform: uppercase;
+      border-radius: 2px; transition: all 0.2s;
+    }
+    .wts-quiz-btn:hover { background: var(--cream); }
+    @media (max-width: 900px) {
+      .wts-cards { grid-template-columns: 1fr; gap: 20px; max-width: 460px; }
+      .wts-quiz-cta { flex-direction: column; text-align: center; padding: 28px 24px; }
+    }
+  </style>
+
+  <div class="wts-header">
+    <div class="wts-eyebrow">New to Daniel's House</div>
+    <h2 class="wts-title">Where to <em>start.</em></h2>
+    <p class="wts-blurb">Thirty-four products is a lot. Here's the easiest entry point — pick the side that matches what you want to fix, or take the quiz and we'll match it for you.</p>
+  </div>
+
+  <div class="wts-cards">
+    <div class="wts-card">
+      <div class="wts-card-num">01 · Skincare First</div>
+      <h3 class="wts-card-title">The <em>AM Routine.</em></h3>
+      <p class="wts-card-blurb">Seven AM steps — cleanse, exfoliate, peptide serum, hyaluronic, CE Ferulic antioxidant, moisturizer, mineral SPF. The morning protocol that protects every gain.</p>
+      <div class="wts-card-pricing"><s>$308</s> <strong>$261.80</strong></div>
+      <a href="routine.html?id=am" class="wts-card-link">See the AM Routine →</a>
+    </div>
+
+    <div class="wts-card">
+      <div class="wts-card-num">02 · Supplements First</div>
+      <h3 class="wts-card-title">The <em>Foundation.</em></h3>
+      <p class="wts-card-blurb">Five daily foundations — multivitamin, vitamin D3 + K2, omega-3, multi-strain probiotic, and triple-form magnesium. The daily nutrient floor that everything else builds on.</p>
+      <div class="wts-card-pricing"><s>$133</s> <strong>$113.05</strong></div>
+      <a href="routine.html?id=foundation" class="wts-card-link">See the Foundation →</a>
+    </div>
+
+    <div class="wts-card">
+      <div class="wts-card-num">03 · Both Sides</div>
+      <h3 class="wts-card-title">The <em>Ultimate.</em></h3>
+      <p class="wts-card-blurb">Twenty-three products — every AM and PM skincare step plus the full daily supplement stack. The complete inside-out protocol Daniel runs himself.</p>
+      <div class="wts-card-pricing"><s>$895</s> <strong>$671.25</strong></div>
+      <a href="routine.html?id=ultimate" class="wts-card-link">See the Ultimate →</a>
+    </div>
+  </div>
+
+  <div class="wts-quiz-cta">
+    <div class="wts-quiz-text">
+      <div class="wts-quiz-eyebrow">Not sure which?</div>
+      <h3 class="wts-quiz-title">Take the <em>2-minute quiz.</em></h3>
+      <p class="wts-quiz-blurb">Six questions about your skin, goals, and routine. We'll match the products and routine that actually fit.</p>
+    </div>
+    <a href="quiz.html" class="wts-quiz-btn">Start Quiz →</a>
+  </div>
+</section>
+
 <!-- TWO CATEGORIES -->
 <section class="sec">
   <div class="sec-header">
@@ -1016,14 +1167,14 @@
         <div class="featured-prod"><img src="images/wash.jpeg" alt="Wash"/></div>
         <div class="featured-prod"><img src="images/balance.jpeg" alt="Balance"/></div>
         <div class="featured-prod"><img src="images/boost.jpeg" alt="Boost"/></div>
-        <div class="featured-prod"><img src="images/hyaluronic.jpeg" alt="Hyaluronic"/></div>
+        <div class="featured-prod"><img src="images/plump.jpeg" alt="Plump"/></div>
         <div class="featured-prod"><img src="images/defense.jpeg" alt="Defense"/></div>
         <div class="featured-prod"><img src="images/soft.jpeg" alt="Soft"/></div>
         <div class="featured-prod"><img src="images/shield.jpeg" alt="Shield"/></div>
         <div class="featured-prod"><img src="images/bounce.jpeg" alt="Bounce"/></div>
-        <div class="featured-prod"><img src="images/hydration.jpeg" alt="Hydration"/></div>
+        <div class="featured-prod"><img src="images/mist.jpeg" alt="Mist"/></div>
         <div class="featured-prod"><img src="images/firm.jpeg" alt="Firm"/></div>
-        <div class="featured-prod"><img src="images/eye.jpeg" alt="Eye"/></div>
+        <div class="featured-prod"><img src="images/awake.jpeg" alt="Awake"/></div>
         <div class="featured-prod"><img src="images/renewal.jpeg" alt="Renewal"/></div>
         <div class="featured-prod"><img src="images/glow.jpeg" alt="Glow"/></div>
         <div class="featured-prod"><img src="products/Multi.jpeg" alt="Multi"/></div>
@@ -1126,27 +1277,33 @@
 
 <!-- THE PRICE QUESTION -->
 <section class="sec" style="background: var(--cream-warm); padding-top: clamp(80px, 9vw, 110px); padding-bottom: clamp(80px, 9vw, 110px);">
+  <style>
+    @media (max-width: 768px) {
+      .price-card { text-align: center; }
+      .price-card .price-card-eyebrow { display: block; }
+    }
+  </style>
   <div class="sec-header">
     <div class="sec-eyebrow">The Price Question</div>
     <h2 class="sec-title">What you're actually <em>paying for.</em></h2>
     <p class="sec-blurb">Premium pricing should buy premium formulations — not premium marketing. Here's what the prices actually fund.</p>
   </div>
 
-  <div style="max-width: 1200px; margin: 60px auto 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; padding: 0 40px;">
-    <div style="background: var(--cream); padding: 36px 32px; border-top: 3px solid var(--sage);">
-      <div style="font-family: 'Poppins', sans-serif; font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--sage); font-weight: 600; margin-bottom: 14px;">01 · The Formulas</div>
+  <div class="price-grid" style="max-width: 1200px; margin: 60px auto 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; padding: 0 40px;">
+    <div class="price-card" style="background: var(--cream); padding: 36px 32px; border-top: 3px solid var(--sage);">
+      <div class="price-card-eyebrow" style="font-family: 'Poppins', sans-serif; font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--sage); font-weight: 600; margin-bottom: 14px;">01 · The Formulas</div>
       <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 28px; line-height: 1.15; color: var(--ink); margin-bottom: 16px; font-weight: 500;">Benchmark architectures, not bargain copies.</h3>
       <p style="font-size: 15px; line-height: 1.65; color: var(--ink-soft);">The House Defense uses the same C E Ferulic architecture — L-ascorbic acid + ferulic acid + vitamin E — that <strong>SkinCeuticals sells at $185</strong>. Ours is $74. The House Firm uses an advanced peptide blend where the cult-status DTC peptide serums at Sephora rely on three peptides at lower doses. Bounce stacks five actives where the most-Googled premium retinol — a single-active formula at $74 — uses just one. On the supplement side: clinical-grade ashwagandha (the form behind every cortisol study), magnesium glycinate (the chelated form that actually absorbs), multi-strain probiotics with enteric delivery for stomach-acid survival. Every formula is built to compound.</p>
     </div>
 
-    <div style="background: var(--cream); padding: 36px 32px; border-top: 3px solid var(--sage);">
-      <div style="font-family: 'Poppins', sans-serif; font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--sage); font-weight: 600; margin-bottom: 14px;">02 · The Ingredients</div>
+    <div class="price-card" style="background: var(--cream); padding: 36px 32px; border-top: 3px solid var(--sage);">
+      <div class="price-card-eyebrow" style="font-family: 'Poppins', sans-serif; font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--sage); font-weight: 600; margin-bottom: 14px;">02 · The Ingredients</div>
       <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 28px; line-height: 1.15; color: var(--ink); margin-bottom: 16px; font-weight: 500;">Clinical doses, no fairy-dust.</h3>
       <p style="font-size: 15px; line-height: 1.65; color: var(--ink-soft);">Most brands cut margins by under-dosing their hero actives. We don't. Skincare: niacinamide at clinically-validated concentrations, L-ascorbic acid at the CE Ferulic levels, retinol at concentrations matched to a buffering complex so tolerance is built in. Supplements: ashwagandha at the doses validated in cortisol-reduction trials, omega-3 at therapeutic EPA/DHA levels, NAD+ at a dose that actually moves cellular biomarkers, vitamin D3 paired with K2 for absorption synergy. Trace amounts on the label aren't on the price tag here.</p>
     </div>
 
-    <div style="background: var(--cream); padding: 36px 32px; border-top: 3px solid var(--sage);">
-      <div style="font-family: 'Poppins', sans-serif; font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--sage); font-weight: 600; margin-bottom: 14px;">03 · The Manufacturing</div>
+    <div class="price-card" style="background: var(--cream); padding: 36px 32px; border-top: 3px solid var(--sage);">
+      <div class="price-card-eyebrow" style="font-family: 'Poppins', sans-serif; font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--sage); font-weight: 600; margin-bottom: 14px;">03 · The Manufacturing</div>
       <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 28px; line-height: 1.15; color: var(--ink); margin-bottom: 16px; font-weight: 500;">The facility tier you'd expect from luxury brands.</h3>
       <p style="font-size: 15px; line-height: 1.65; color: var(--ink-soft);">Skincare is manufactured at FDA-registered, GMP-certified cosmetic CMs in Florida and Texas — the same caliber of facility that produces formulas for the premium DTC brands stocked at Sephora. Supplements are produced at an FDA-registered, cGMP-certified facility in Florida, with a documented NSF/ANSI 455-2 graduation path planned for hero SKUs in Year 2. The factories are the same caliber the premium brands use. The markup we're not charging is what you don't have to pay.</p>
     </div>
@@ -1260,7 +1417,7 @@
     </div>
     <div class="footer-col"><h4>Shop</h4><ul><li><a href="skincare.html">Skincare</a></li><li><a href="supplements.html">Supplements</a></li><li><a href="routines.html">Routines</a></li><li><a href="bundles.html">Bundles</a></li><li><a href="compare.html">Compare</a></li></ul></div>
     <div class="footer-col"><h4>The House</h4><ul><li><a href="about.html">Daniel's Story</a></li><li><a href="ingredients.html">Ingredient Glossary</a></li><li><a href="studies.html">Research Library</a></li><li><a href="blog.html">Blog</a></li><li><a href="reviews.html">Reviews</a></li><li><a href="quiz.html">Take the Quiz</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
-    <div class="footer-col"><h4>Help</h4><ul><li><a href="faq.html#shipping">Shipping</a></li><li><a href="faq.html#returns">Returns Policy →</a></li><li><a href="faq.html#returns">30-Day Guarantee</a></li><li><a href="faq.html">Contact</a></li></ul></div>
+    <div class="footer-col"><h4>Help</h4><ul><li><a href="shipping.html">Shipping</a></li><li><a href="returns.html">Returns</a></li><li><a href="guarantee.html">30-Day Guarantee</a></li><li><a href="faq.html">Contact</a></li></ul></div>
   </div>
   <div class="footer-credit">
     <div class="footer-credit-left">© 2026 Daniel's House. Premium wellness, built on real results.</div>

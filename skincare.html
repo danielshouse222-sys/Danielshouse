@@ -4,6 +4,14 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Skincare — Daniel's House</title>
+<meta name="description" content="Sixteen-product skincare line built on benchmark architectures, not bargain copies. CE Ferulic antioxidant serum, 5-active retinol, bio-peptide growth factor, mineral SPF. Filter by skin type, pregnancy-safe, sensitive, mature.">
+<meta property="og:title" content="Skincare — Daniel's House">
+<meta property="og:description" content="Sixteen-product skincare line built on benchmark architectures, not bargain copies. CE Ferulic antioxidant serum, 5-active retinol, bio-peptide growth factor, mineral SPF. Filter by skin type, pregnancy-safe, sensitive, mature.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Daniel's House">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Skincare — Daniel's House">
+<meta name="twitter:description" content="Sixteen-product skincare line built on benchmark architectures, not bargain copies. CE Ferulic antioxidant serum, 5-active retinol, bio-peptide growth factor, mineral SPF. Filter by skin type, pregnancy-safe, sensitive, mature.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -565,7 +573,7 @@
           <button class="filter-chip" data-chip="recovery" data-group="goal">Recovery</button>
           <button class="filter-chip" data-chip="beauty" data-group="goal">Beauty</button>
           <button class="filter-chip" data-chip="anti-aging" data-group="goal">Anti-Aging</button>
-          <button class="filter-chip" data-chip="hydration" data-group="goal">Hydration</button>
+          <button class="filter-chip" data-chip="hydration" data-group="goal">Mist</button>
           <button class="filter-chip" data-chip="immune" data-group="goal">Immunity</button>
           <button class="filter-chip" data-chip="gut" data-group="goal">Gut Health</button>
           <button class="filter-chip" data-chip="daily" data-group="goal">Daily</button>
@@ -576,7 +584,7 @@
         <div class="page-filter-category-chips">
           <button class="filter-chip" data-chip="vitamin c" data-group="key ingredient">Vitamin C</button>
           <button class="filter-chip" data-chip="retinol" data-group="key ingredient">Retinol</button>
-          <button class="filter-chip" data-chip="hyaluronic" data-group="key ingredient">Hyaluronic</button>
+          <button class="filter-chip" data-chip="hyaluronic" data-group="key ingredient">Plump</button>
           <button class="filter-chip" data-chip="niacinamide" data-group="key ingredient">Niacinamide</button>
           <button class="filter-chip" data-chip="peptide" data-group="key ingredient">Peptides</button>
           <button class="filter-chip" data-chip="antioxidant" data-group="key ingredient">Antioxidants</button>
@@ -597,7 +605,7 @@
           <button class="filter-chip" data-chip="toner" data-group="type of product">Toner</button>
           <button class="filter-chip" data-chip="serum" data-group="type of product">Serum</button>
           <button class="filter-chip" data-chip="moisturizer" data-group="type of product">Moisturizer</button>
-          <button class="filter-chip" data-chip="eye" data-group="type of product">Eye Care</button>
+          <button class="filter-chip" data-chip="eye" data-group="type of product">Awake Care</button>
           <button class="filter-chip" data-chip="mask" data-group="type of product">Mask</button>
           <button class="filter-chip" data-chip="oil" data-group="type of product">Oil</button>
           <button class="filter-chip" data-chip="capsule" data-group="type of product">Capsule</button>
@@ -725,7 +733,7 @@
             <li><em>Wash</em><small>Cleanse</small></li>
             <li><em>Balance</em><small>Daily exfoliating treatment (3.5% glycolic)</small></li>
             <li><em>Boost</em><small>Bio-peptide growth factor serum</small></li>
-            <li><em>Hyaluronic</em><small>On damp skin — pulls in moisture</small></li>
+            <li><em>Plump</em><small>On damp skin — pulls in moisture</small></li>
             <li><em>Defense</em><small>CE Ferulic antioxidant serum</small></li>
             <li><em>Soft</em><small>Daily moisturizer, seal it in</small></li>
             <li><em>Shield</em><small>Mineral SPF 30 — the final, non-negotiable step</small></li>
@@ -737,14 +745,132 @@
             <li><em>Renewal</em><small>Multi-acid peeling pads — alternate w/ Bounce</small></li>
             <li><em>Bounce</em><small>Five-active retinol serum</small></li>
             <li><em>Firm</em><small>Peptide treatment serum</small></li>
-            <li><em>Hydration</em><small>HA face & body mist — refresh anywhere</small></li>
-            <li><em>Eye</em><small>Triple-peptide eye serum</small></li>
+            <li><em>Mist</em><small>HA face & body mist — refresh anywhere</small></li>
+            <li><em>Awake</em><small>Triple-peptide eye serum</small></li>
             <li><em>Glow</em><small>HA spheres in squalane — lipid seal</small></li>
           </ol>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- SKIN-TYPE FILTERS -->
+  <div class="skin-filters">
+    <style>
+      .skin-filters {
+        max-width: 1200px; margin: 60px auto 30px; padding: 0 40px;
+        text-align: center;
+      }
+      .skin-filters-label {
+        font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase;
+        color: var(--ink-soft); margin-bottom: 18px; font-weight: 500;
+      }
+      .skin-filter-chips {
+        display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;
+      }
+      .skin-chip {
+        padding: 9px 18px; border: 1px solid var(--rule);
+        background: var(--cream); color: var(--ink);
+        font-family: 'Poppins', sans-serif; font-size: 12px;
+        letter-spacing: 0.06em; font-weight: 500;
+        cursor: pointer; border-radius: 24px;
+        transition: all 0.2s;
+      }
+      .skin-chip:hover { border-color: var(--gold); color: var(--gold); }
+      .skin-chip.active { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+      .skin-filter-clear {
+        margin-top: 14px; font-size: 11px; letter-spacing: 0.18em;
+        text-transform: uppercase; color: var(--gold); text-decoration: none;
+        border-bottom: 1px solid currentColor; padding-bottom: 1px;
+        display: none;
+      }
+      .skin-filter-clear.visible { display: inline-block; }
+      .row.filter-hidden { display: none !important; }
+      @media (max-width: 640px) {
+        .skin-filters { padding: 0 20px; margin: 40px auto 20px; }
+        .skin-chip { padding: 8px 14px; font-size: 11px; }
+      }
+    </style>
+    <div class="skin-filters-label">Filter by Skin Type or Concern</div>
+    <div class="skin-filter-chips" data-skin-filter-bar>
+      <button class="skin-chip" data-filter="pregnancy-safe">Pregnancy-Safe</button>
+      <button class="skin-chip" data-filter="sensitive">Sensitive</button>
+      <button class="skin-chip" data-filter="oily-acne">Oily / Acne-Prone</button>
+      <button class="skin-chip" data-filter="dry">Dry</button>
+      <button class="skin-chip" data-filter="mature">Mature</button>
+      <button class="skin-chip" data-filter="vegan">Vegan</button>
+      <button class="skin-chip" data-filter="fragrance-free">Fragrance-Free</button>
+    </div>
+    <a href="#" class="skin-filter-clear" data-skin-filter-clear>Clear filter ×</a>
+  </div>
+
+  <script>
+    (function() {
+      // Filter logic: each product row gets tagged via data-add-slug; we maintain a slug → tags map
+      // Tags are derived from product attributes (no-retinol = pregnancy-safe, low-active = sensitive, etc.)
+      const slugTags = {
+        // Pregnancy-safe: no retinol/retinoid, no salicylic acid, no high-% AHA
+        'the-house-wash': ['pregnancy-safe','sensitive','vegan','fragrance-free'],
+        'the-house-balance': ['oily-acne','mature'],
+        'the-house-boost': ['pregnancy-safe','mature','vegan'],
+        'the-house-plump': ['pregnancy-safe','sensitive','dry','vegan','fragrance-free'],
+        'the-house-defense': ['mature','pregnancy-safe'],
+        'the-house-soft': ['pregnancy-safe','sensitive','dry','vegan'],
+        'the-house-shield': ['pregnancy-safe','sensitive','vegan','fragrance-free'],
+        'the-house-clear': ['oily-acne'],
+        'the-house-bounce': ['mature'],
+        'the-house-firm': ['pregnancy-safe','mature','vegan'],
+        'the-house-mist': ['pregnancy-safe','sensitive','dry','vegan','fragrance-free'],
+        'the-house-awake': ['pregnancy-safe','mature','sensitive','vegan'],
+        'the-house-renewal': ['oily-acne','mature'],
+        'the-house-glow': ['pregnancy-safe','dry','vegan'],
+        'the-house-mask': ['oily-acne'],
+        'the-house-polish': ['pregnancy-safe','vegan']
+      };
+
+      const chips = document.querySelectorAll('[data-skin-filter-bar] .skin-chip');
+      const clearBtn = document.querySelector('[data-skin-filter-clear]');
+      let activeFilter = null;
+
+      function applyFilter() {
+        document.querySelectorAll('.row').forEach(row => {
+          const btn = row.querySelector('[data-add-slug]');
+          if (!btn) return;
+          const slug = btn.getAttribute('data-add-slug');
+          const tags = slugTags[slug] || [];
+          if (!activeFilter || tags.includes(activeFilter)) {
+            row.classList.remove('filter-hidden');
+          } else {
+            row.classList.add('filter-hidden');
+          }
+        });
+        clearBtn.classList.toggle('visible', !!activeFilter);
+      }
+
+      chips.forEach(chip => {
+        chip.addEventListener('click', () => {
+          const filter = chip.getAttribute('data-filter');
+          if (activeFilter === filter) {
+            activeFilter = null;
+            chip.classList.remove('active');
+          } else {
+            activeFilter = filter;
+            chips.forEach(c => c.classList.remove('active'));
+            chip.classList.add('active');
+          }
+          applyFilter();
+        });
+      });
+
+      clearBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        activeFilter = null;
+        chips.forEach(c => c.classList.remove('active'));
+        applyFilter();
+      });
+    })();
+  </script>
+  </div>
 
   <!-- DAILY ROUTINE -->
   <div class="weekly" style="padding-bottom: 0; border-bottom: none;">
@@ -811,16 +937,16 @@
 
       <div class="row">
         <div class="step-badge"><em>Step</em> 04</div>
-        <div class="row-img"><img src="images/hyaluronic.jpeg" alt="The House Hyaluronic" /></div>
+        <div class="row-img"><img src="images/plump.jpeg" alt="The House Plump" /></div>
         <div class="row-content">
           <div class="row-tag">Hydrate · Plump · Smooth</div>
-          <div class="row-name">The House <em>Hyaluronic</em></div>
+          <div class="row-name">The House <em>Plump</em></div>
           <div class="row-desc">A minimalist hyaluronic acid serum — water, sodium hyaluronate, clean preservative. Nothing else. Pure HA holds 1,000x its weight in water and layers cleanly with every other product in the line.</div>
         </div>
         <div class="row-shop">
           <div class="row-price">$28</div>
-          <a href="product.html?slug=the-house-hyaluronic" class="row-view-link">View Details →</a>
-          <button class="row-add-cart" data-add-slug="the-house-hyaluronic">Add to Cart →</button>
+          <a href="product.html?slug=the-house-plump" class="row-view-link">View Details →</a>
+          <button class="row-add-cart" data-add-slug="the-house-plump">Add to Cart →</button>
         </div>
       </div>
 
@@ -952,31 +1078,31 @@
 
       <div class="row">
         <div class="step-badge"><em>Step</em> 04</div>
-        <div class="row-img"><img src="images/hydration.jpeg" alt="The House Hydration" /></div>
+        <div class="row-img"><img src="images/mist.jpeg" alt="The House Mist" /></div>
         <div class="row-content">
           <div class="row-tag">Hydrate · Refresh · Defend</div>
-          <div class="row-name">The House <em>Hydration</em></div>
+          <div class="row-name">The House <em>Mist</em></div>
           <div class="row-desc">A featherweight hyaluronic face and body mist — hyaluronic acid + rose centifolia water + glycerin + sodium lactate. Layers cleanly under or over moisturizer for instant hydration on the go. Paraben-free, cruelty-free, vegan.</div>
         </div>
         <div class="row-shop">
           <div class="row-price">$30</div>
-          <a href="product.html?slug=the-house-hydration" class="row-view-link">View Details →</a>
-          <button class="row-add-cart" data-add-slug="the-house-hydration">Add to Cart →</button>
+          <a href="product.html?slug=the-house-mist" class="row-view-link">View Details →</a>
+          <button class="row-add-cart" data-add-slug="the-house-mist">Add to Cart →</button>
         </div>
       </div>
 
       <div class="row">
         <div class="step-badge"><em>Step</em> 05</div>
-        <div class="row-img"><img src="images/eye.jpeg" alt="The House Eye" /></div>
+        <div class="row-img"><img src="images/awake.jpeg" alt="The House Awake" /></div>
         <div class="row-content">
           <div class="row-tag">Brighten · Firm · De-puff</div>
-          <div class="row-name">The House <em>Eye</em></div>
+          <div class="row-name">The House <em>Awake</em></div>
           <div class="row-desc">Bakuchiol (the plant-derived retinol alternative) plus a triple-peptide complex — Argireline, SNAP-8, Syn-Ake — for firming. Cucumber, squalane, and vitamin E hydrate and protect the thin under-eye area.</div>
         </div>
         <div class="row-shop">
           <div class="row-price">$48</div>
-          <a href="product.html?slug=the-house-eye" class="row-view-link">View Details →</a>
-          <button class="row-add-cart" data-add-slug="the-house-eye">Add to Cart →</button>
+          <a href="product.html?slug=the-house-awake" class="row-view-link">View Details →</a>
+          <button class="row-add-cart" data-add-slug="the-house-awake">Add to Cart →</button>
         </div>
       </div>
 
@@ -1157,15 +1283,15 @@
           <div class="study-actor">Peptides + <em>Vitamin C</em></div>
           <div class="study-finding">A clinical study of a peptide and vitamin C formulation showed measurable wrinkle reduction after 28–29 days: <strong>crow's-feet decreased 9%, forehead wrinkles 11%</strong>, and 3D analysis showed an <strong>11.5% overall reduction in wrinkles</strong>. 65–79% of subjects reported visible smoothing and brightness.</div>
           <div class="study-source">Source: International Journal of Cosmetic Science (Escobar et al., 2021).</div>
-          <div class="study-products">Found in: The House Firm · The House Eye · The House Defense · The House Boost</div>
+          <div class="study-products">Found in: The House Firm · The House Awake · The House Defense · The House Boost</div>
         </div>
 
         <div class="study">
           <div class="study-marker">Study 04</div>
-          <div class="study-actor"><em>Hyaluronic</em> Acid</div>
+          <div class="study-actor"><em>Plump</em> Acid</div>
           <div class="study-finding">Topical hyaluronic acid is clinically proven to <strong>increase skin hydration, restore epidermal thickness, and reduce p16 senescence markers</strong> in the dermis. Effects are most pronounced when multiple molecular weights are combined — exactly what's used across this line.</div>
           <div class="study-source">Source: Scientific Reports, 2024; multiple peer-reviewed studies on dermatoporosis patients.</div>
-          <div class="study-products">Found in: The House Hyaluronic · The House Soft · The House Bounce · The House Eye</div>
+          <div class="study-products">Found in: The House Plump · The House Soft · The House Bounce · The House Awake</div>
         </div>
 
         <div class="study">
@@ -1270,7 +1396,7 @@
     </div>
     <div class="footer-col"><h4>Shop</h4><ul><li><a href="skincare.html">Skincare</a></li><li><a href="supplements.html">Supplements</a></li><li><a href="routines.html">Routines</a></li><li><a href="bundles.html">Bundles</a></li><li><a href="compare.html">Compare</a></li></ul></div>
     <div class="footer-col"><h4>The House</h4><ul><li><a href="about.html">Daniel's Story</a></li><li><a href="ingredients.html">Ingredient Glossary</a></li><li><a href="studies.html">Research Library</a></li><li><a href="blog.html">Blog</a></li><li><a href="reviews.html">Reviews</a></li><li><a href="quiz.html">Take the Quiz</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
-    <div class="footer-col"><h4>Help</h4><ul><li><a href="faq.html#shipping">Shipping</a></li><li><a href="faq.html#returns">Returns Policy →</a></li><li><a href="faq.html#returns">30-Day Guarantee</a></li><li><a href="faq.html">Contact</a></li></ul></div>
+    <div class="footer-col"><h4>Help</h4><ul><li><a href="shipping.html">Shipping</a></li><li><a href="returns.html">Returns</a></li><li><a href="guarantee.html">30-Day Guarantee</a></li><li><a href="faq.html">Contact</a></li></ul></div>
   </div>
   <div class="footer-credit">
     <div class="footer-credit-left">© 2026 Daniel's House. Premium wellness, built on real results.</div>
