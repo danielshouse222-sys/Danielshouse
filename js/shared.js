@@ -2553,9 +2553,10 @@
       // For concern bundles: ordered roughly by demand
       concerns: [
         'aging', 'sleep', 'energy', 'stress', 'acne',
-        'beauty', 'dullness', 'dryness', 'sensitivity',
-        'longevity', 'gut', 'strength', 'focus',
-        'pores', 'joints'
+        'glow', 'starter', 'dullness', 'dryness', 'sensitivity',
+        'hair-nails', 'cycle', 'travel', 'metabolic',
+        'longevity', 'gut', 'focus',
+        'pores', 'reset', 'joints'
       ],
       // Combined best-sellers ranking across BOTH routines and concern bundles —
       // composite keys disambiguate the 'longevity' id which exists in both lists.
@@ -2565,26 +2566,31 @@
         'routine:daniels-skincare',  // foundational skincare stack — paired counterpart
         'concern:sleep',             // small bundle, universal need, affordable entry
         'routine:am',                // skincare gateway
-        'concern:dryness',        // Hydration — fundamental, small price
-        'concern:aging',          // Anti-Aging — broad appeal
-        'concern:stress',         // Stress — trending, affordable
-        'concern:energy',         // Energy — universal need
-        'routine:pm',             // pairs with AM, repeat buy
-        'concern:dullness',       // Brightening — vitamin C, broad appeal
-        'routine:moms',           // focused persona conversion
-        'routine:workout',        // active segment
-        'routine:ultimate',       // premium statement, high AOV
-        'routine:glow',           // beauty stack
-        'concern:acne',           // Clear-Skin — concentrated demand
-        'concern:strength',       // performance niche
-        'concern:longevity',      // Cellular Bundle — premium longevity
-        'concern:sensitivity',    // Soothing — sensitive skin segment
-        'concern:pores',          // specific cosmetic concern
-        'concern:gut',            // trending gut health
-        'concern:focus',          // niche cognitive
-        'concern:joints',         // older demographic
-        'routine:longevity',      // premium niche routine
-        'routine:arianas'         // narrow persona
+        'concern:dryness',           // Hydration — fundamental, small price
+        'concern:aging',             // Anti-Aging — broad appeal
+        'concern:starter',           // Skin Starter Bundle — entry-level skincare
+        'concern:hair-nails',        // Hair & Nails — large search/beauty demand
+        'concern:stress',            // Stress — trending, affordable
+        'concern:energy',            // Energy — universal need
+        'concern:cycle',             // Cycle — women's wellness segment
+        'routine:pm',                // pairs with AM, repeat buy
+        'concern:glow',              // The Glow Bundle — inside-out glow
+        'concern:dullness',          // Brightening — vitamin C, broad appeal
+        'concern:metabolic',         // Metabolic — foundation-first energy
+        'routine:moms',              // focused persona conversion
+        'routine:workout',           // active segment
+        'concern:travel',            // Travel Stack — frequent flyer segment
+        'routine:ultimate',          // premium statement, high AOV
+        'concern:acne',              // Clear-Skin — concentrated demand
+        'concern:longevity',         // Cellular Bundle — premium longevity
+        'concern:sensitivity',       // Soothing — sensitive skin segment
+        'concern:pores',             // Texture — surface refinement
+        'concern:reset',             // Reset Bundle — weekly complement
+        'concern:gut',               // trending gut health
+        'concern:focus',             // niche cognitive
+        'concern:joints',            // older demographic
+        'routine:longevity',         // premium niche routine
+        'routine:arianas'            // narrow persona
       ]
     };
 
@@ -2865,8 +2871,8 @@
       'routine:workout',       // 5 supplements
       'routine:foundation',    // 5 supplements (subset of daniels-daily)
       'routine:longevity',     // 5 supplements (subset of daniels-daily)
-      'routine:weekly',        // The Reset Routine (2 skincare, weekly-use)
-      'concern:strength'       // 4 supplements
+      'concern:reset',         // 2 skincare, weekly-use
+      'concern:starter'        // 3 skincare, all 2-month cycles
     ];
 
     window.bundleSmartRefillEligible = function(bundle) {

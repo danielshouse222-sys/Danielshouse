@@ -403,8 +403,12 @@
       'gut':     ['gut', 'stomach', 'digestion', 'bloating'],
       'joints':  ['joint', 'inflammation', 'arthritis', 'pain', 'mobility'],
       'immune':  ['immune', 'immunity', 'cold', 'flu', 'sick'],
-      'strength':['workout', 'training', 'gym', 'performance', 'strength'],
-      'beauty':  ['glow', 'beauty', 'brighten', 'brightening', 'dull'],
+      'strength':['workout', 'training', 'gym', 'performance', 'strength', 'lift', 'lifting', 'muscle', 'recovery'],
+      'hair-nails':['hair', 'nails', 'nail', 'biotin', 'thinning', 'shedding', 'brittle', 'thicker'],
+      'travel':  ['travel', 'traveling', 'flying', 'flight', 'trip', 'hotel', 'jet lag', 'jetlag', 'carry-on'],
+      'cycle':   ['cycle', 'pms', 'period', 'hormones', 'hormonal', 'menstrual', 'luteal'],
+      'metabolic':['metabolic', 'metabolism', 'burn fat', 'fat loss', 'weight', 'pre-workout', 'carnitine'],
+      'glow':    ['glow', 'beauty', 'brighten', 'brightening', 'luminous', 'luminosity', 'radiance'],
       'dullness':['dull', 'dullness'],
       'sensitivity':['sensitive', 'sensitivity', 'reactive', 'redness']
     };
@@ -648,8 +652,12 @@
       'joints':  ['longevity'],
       'immune':  ['foundation'],
       'strength': ['workout'],
-      'beauty':  ['glow'],
-      'dullness': ['glow']
+      'hair-nails': ['arianas', 'daniels-skincare'],
+      'travel': ['foundation', 'am'],
+      'cycle': ['moms', 'foundation'],
+      'metabolic': ['workout', 'daniels-daily'],
+      'glow':    ['arianas', 'daniels-skincare'],
+      'dullness': ['am']
     };
     const relatedRoutineIds = concernRoutineMap[concern] || [];
     const relatedRoutines = routines.filter(r => relatedRoutineIds.includes(r.id));
