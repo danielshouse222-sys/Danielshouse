@@ -139,38 +139,6 @@ window.BUNDLE_DETAILS = {
         { q: 'When should I take each?', a: 'NAD+, Synapse, Vitality: morning with breakfast. Restore: with meal containing fat. Tranquil: morning or split AM/PM.' }
       ]
     },
-    'glow': {
-      eyebrow: 'Visible Glow · Inside + Out',
-      description: 'Six glow-focused products — vitamin C, antioxidant defense, overnight oil, weekly mask, plus beauty vitamins and collagen. Topical + internal beauty stack.',
-      whyThis: "Visible glow comes from combining topical and internal strategies. Topically: Boost (vitamin C) brightens; Defense (niacinamide + antioxidants) protects from environmental dullness; Glow (facial oil) seals everything with luminous finish; Mask (weekly charcoal/clay) decongests skin every 3-7 days. Internally: Radiance delivers the daily vitamin foundation for skin/hair/nails; Collagen provides 10g daily peptides for skin elasticity. Topical alone hits a ceiling — adding internal nutrient support pushes through it.",
-      timeline: [
-        { week: 'Week 1', text: 'Immediate fresh-skin effect from vitamin C and oil. Hair and nails feel stronger from collagen.' },
-        { week: 'Week 4', text: 'Brightness visibly improves; skin reflects light more evenly. Hair growth accelerates.' },
-        { week: 'Week 8', text: 'Skin elasticity measurably improves (collagen kicks in). Glow baseline at higher level.' },
-        { week: 'Week 12+', text: 'Sustained inside-out glow. The compounded effect of topical + internal works as designed.' }
-      ],
-      faq: [
-        { q: 'How often should I use the mask?', a: 'Once a week — twice if your skin is congested. More often causes over-exfoliation. Less is more with weekly treatments.' },
-        { q: 'When should I take Collagen and Radiance?', a: 'Collagen: any time daily — morning in coffee is the most popular ritual. Radiance: with food for fat-soluble vitamin absorption.' },
-        { q: 'How long until visible glow?', a: '1-2 weeks for surface freshness from topical actives. 4-6 weeks for collagen + Radiance internal effects. 8-12 weeks for full inside-out compounding.' }
-      ]
-    },
-    'weekly': {
-      eyebrow: 'Weekly Reset · Skincare Treatments',
-      description: 'Two weekly treatments — charcoal-clay mask and physical polish. The deep-clean reset that complements any daily routine.',
-      whyThis: "Daily skincare maintains; weekly treatments reset. Mask (kaolin + bentonite + charcoal) draws out accumulated oil, dirt, and surface buildup that daily cleansers can't reach — best used once a week. Polish (physical exfoliation with pumice + jojoba beads) smooths surface texture and primes skin to better absorb actives. Used together (mask one night, polish another, never the same night), they keep skin clear, smooth, and primed for daily routines to work their best.",
-      timeline: [
-        { week: 'Week 1', text: 'Immediate freshness and smoothness after first use. Pores feel cleaner.' },
-        { week: 'Week 4', text: 'Sustained surface refinement; texture noticeably smoother. Less buildup between treatments.' },
-        { week: 'Week 8', text: 'Daily products absorb better. Skin clarity improves as weekly reset becomes habit.' },
-        { week: 'Week 12+', text: 'Sustained weekly-reset baseline. The complement that makes daily skincare work harder.' }
-      ],
-      faq: [
-        { q: 'How often should I use these?', a: 'Each: once a week, on different nights. So you\'re doing some kind of weekly treatment twice per week. Skin doesn\'t need more than that.' },
-        { q: 'Can I use these on sensitive skin?', a: "Polish: be gentle — light pressure, no scrubbing. Mask: tolerated by most sensitive skin but patch-test first. If you have active breakouts or irritation, skip until it resolves." },
-        { q: 'Do I need to change my routine on treatment nights?', a: "Yes — after Mask or Polish, skip strong actives that night (retinol, glycolic). Go straight to gentle hydrators and moisturizer. Your skin is more permeable right after treatments — easy does it." }
-      ]
-    },
     'moms': {
       eyebrow: "For the Tired but Glowing",
       description: "Ten products built for the season of life when needs shift — gentle but effective skincare, energy and immunity support, calm-down magnesium, and the longevity-grade collagen and cellular stack. Named for the parents who built the protocol, but truly for anyone whose skin and body have grown more reactive with the years.",
@@ -288,19 +256,70 @@ window.BUNDLE_DETAILS = {
       ]
     },
     'pores': {
-      eyebrow: 'Pore Refinement · Topical + Gut-Sebum Connection',
-      description: 'Five targeted products — niacinamide, salicylic acid, physical polish, and the weekly charcoal mask for the surface, plus the probiotic that addresses the gut-sebum connection most pore products ignore.',
-      whyThis: "Pore appearance is genetic, but pore appearance is highly modifiable. Visible pores look bigger when they're clogged, when texture is uneven, and when sebum production is high. Topically: Boost (niacinamide) reduces sebum and refines pore appearance; Clear (salicylic) dissolves the oil plugs that visually enlarge pores; Polish smooths surface texture; Mask weekly draws out impurities. Internally: Biome's probiotic supports the gut microbiome that influences sebum production — a connection emerging strongly in dermatology research.",
+      eyebrow: 'Refined Texture · Resurfacing + Gut-Skin Axis',
+      description: 'Five products built around smoothness, not breakouts — physical polish, glycolic resurfacing, and weekly charcoal detox for visible texture, plus niacinamide for tone refinement and the probiotic that drives the gut-skin axis behind surface bumps and uneven texture.',
+      whyThis: "Texture issues — visible pores, surface bumps, uneven tone, micro-roughness — come from three places: surface buildup, slow cell turnover, and inflammation upstream of the skin. The Texture Bundle works on all three. Polish (physical exfoliation with pumice + jojoba beads) smooths the surface and primes absorption. Renewal (glycolic acid + lactic) accelerates cell turnover for refined texture without harshness. Mask (charcoal + bentonite, weekly) draws out the accumulated buildup that makes pores look bigger. Boost (niacinamide) reduces sebum, evens tone, and visibly refines pore appearance. Internally: Biome's probiotic supports the gut microbiome that influences sebum and inflammation — a connection that quietly drives chronic texture issues most surface protocols ignore. Together: smoother skin, less visible pore appearance, no acne-grade actives needed.",
       timeline: [
-        { week: 'Week 1', text: 'Pores feel cleaner; skin immediately smoother after Polish or Mask.' },
-        { week: 'Week 4', text: 'Less visible oil throughout the day. Pore appearance softens in T-zone.' },
-        { week: 'Week 8', text: 'Niacinamide effect on sebum production compounds. Surface texture noticeably smoother.' },
-        { week: 'Week 12+', text: 'Durable refined-skin baseline. Less day-long shine; foundation sits more evenly.' }
+        { week: 'Week 1', text: 'Immediate smoothness after Polish or Mask. Skin feels cleaner and more even.' },
+        { week: 'Week 4', text: 'Glycolic effect compounds — texture noticeably refined. Pore appearance softens in the T-zone.' },
+        { week: 'Week 8', text: 'Niacinamide effect on sebum production kicks in. Surface uniformity becomes the new baseline.' },
+        { week: 'Week 12+', text: 'Durable refined-skin baseline. Makeup and SPF sit more evenly; light reflects more uniformly off the skin.' }
       ],
       faq: [
-        { q: 'Will my pores actually get smaller?', a: 'Pore size is genetic — but pore appearance can shrink significantly with sustained protocol. Most users see visible reduction at 8-12 weeks.' },
-        { q: 'How does the probiotic help pores?', a: "Sebum production is influenced by hormonal and inflammatory signals — both modulated by the gut microbiome. Adding the probiotic addresses an upstream lever most pore products skip." },
-        { q: 'How often should I use Polish and Mask?', a: 'Polish: 1-2x per week. Mask: 1x per week. Daily physical exfoliation triggers rebound oil. Less is more.' }
+        { q: 'How is this different from the Clear-Skin Bundle?', a: "Clear-Skin is acne-focused — salicylic acid into pores, charcoal mask, the gut probiotic. Texture is smoothness-focused — glycolic acid for resurfacing, physical polish for surface, niacinamide for tone, mask for buildup. Different actives, different angle. Use Clear-Skin if you're treating active breakouts; use Texture if your skin is mostly clear but feels rough or looks uneven." },
+        { q: 'Can sensitive skin handle this?', a: "Yes, with cadence control. Polish: light pressure, 1-2x per week max. Renewal: start at 2 nights a week, build up. Mask: 1x per week. The probiotic and niacinamide are gentle daily. Skin that's actively irritated should pause topicals until calm." },
+        { q: 'Will my pores actually get smaller?', a: 'Pore size is genetic — but pore appearance is highly modifiable. Cleaning out the buildup that visually enlarges pores, evening surface texture, and reducing sebum production over time produces a measurable refining effect. Most users see visible improvement in 8-12 weeks.' },
+        { q: 'How often should I use Polish and Renewal together?', a: 'Never the same night. Alternate: Polish one night, Renewal another. Both stimulate cell turnover; doing them together over-exfoliates and triggers reactivity.' }
+      ]
+    },
+    'glow': {
+      eyebrow: 'Visible Glow · Inside + Out',
+      description: 'Six glow-focused products — topical vitamin C, antioxidant defense, the omega-rich overnight oil, weekly charcoal mask, plus daily beauty vitamins and 10g of collagen. The full inside-out beauty stack.',
+      whyThis: "Visible glow comes from combining topical and internal strategies. Topically: Boost (vitamin C) brightens pigment irregularities; Defense (niacinamide + antioxidants) protects from environmental dullness; Glow (facial oil) seals everything with a luminous finish; Mask (weekly charcoal/clay) decongests skin every 3-7 days so light reflects more evenly. Internally: Radiance delivers the daily vitamin A/C/E/biotin foundation skin/hair/nails are literally built from; Collagen provides 10g daily peptides for skin elasticity and the water-binding capacity that produces a 'lit from within' look. Topical alone hits a ceiling — adding internal nutrient support pushes through it.",
+      timeline: [
+        { week: 'Week 1', text: 'Immediate fresh-skin effect from vitamin C and the overnight oil. Hair and nails feel stronger from collagen.' },
+        { week: 'Week 4', text: 'Brightness visibly improves; skin reflects light more evenly. Hair growth accelerates.' },
+        { week: 'Week 8', text: 'Skin elasticity measurably improves (collagen kicks in). Glow baseline at higher level.' },
+        { week: 'Week 12+', text: 'Sustained inside-out glow. The compounded effect of topical + internal works as designed.' }
+      ],
+      faq: [
+        { q: 'How is this different from the Brightening Bundle?', a: "Brightening is a 4-product focused stack for tone and pigment correction (Boost, Defense, Renewal, Radiance). The Glow Bundle is broader and more luminance-focused — it adds the overnight oil seal, the weekly mask, and 10g of collagen to push past the ceiling that topical-only protocols hit. Use Brightening if pigment irregularities are the issue; use Glow if you want overall luminosity." },
+        { q: 'How often should I use the mask?', a: 'Once a week — twice if your skin is congested. More often causes over-exfoliation. Less is more with weekly treatments.' },
+        { q: 'When should I take Collagen and Radiance?', a: 'Collagen: any time daily — morning in coffee is the most popular ritual. Radiance: with food for fat-soluble vitamin absorption.' },
+        { q: 'How long until visible glow?', a: '1-2 weeks for surface freshness from topical actives. 4-6 weeks for collagen + Radiance internal effects. 8-12 weeks for full inside-out compounding.' }
+      ]
+    },
+    'starter': {
+      eyebrow: 'Three Steps · The Entry Point',
+      description: 'Three products. Cleanse, tone, moisturize. The minimum effective skincare routine for someone who has never had one — or wants to start over with the basics done right.',
+      whyThis: "Most people's first skincare routine fails for the same reason: too many products, too many actives, too soon. The Skin Starter Bundle is the opposite. Wash is a non-stripping, barrier-respecting cleanser — sulfate-free, plant-protein based, gentle enough for daily use. Balance is a witch-hazel-and-aloe toner that prepares skin without astringency. Soft is a daily ceramide moisturizer that locks in hydration and keeps the barrier strong. No retinol, no acids, no vitamin C — those come later, once the foundation is in place. Run this for 6-8 weeks before adding anything else. You'll know it's working when your skin no longer feels tight after cleansing and your makeup or SPF sits flat all day.",
+      timeline: [
+        { week: 'Week 1', text: 'Skin no longer tight after cleansing. Toner adds a calming pause in the routine.' },
+        { week: 'Week 4', text: 'Barrier feels balanced. Less reactivity, more even tone, fewer mid-day shine episodes.' },
+        { week: 'Week 8', text: 'A reliable baseline. Skin tolerates makeup, SPF, and weather changes without complaint.' },
+        { week: 'Week 12+', text: 'Ready to layer. With a strong barrier you can now add vitamin C (Boost), or treatments like Renewal — without flare-ups.' }
+      ],
+      faq: [
+        { q: 'I have problem skin — is this really enough?', a: "For the first 6-8 weeks, yes. Most reactive, breakout-prone, or sensitive skin gets worse from too many actives, not too few. Run the foundation properly first, then add targeted treatments once you know how your skin responds." },
+        { q: "I'm 25 / 35 / 45 — should I be using more?", a: "Not necessarily, and not at first. Age isn't the variable; barrier health is. Once these three are running and your skin feels resilient, layer Boost (vitamin C) in the morning and Bounce (retinol) at night — that's the natural next step." },
+        { q: "What order do I use them in?", a: "Morning and night, same order each time: Wash → Balance → Soft. Apply Balance with your hands or a cotton round to damp skin, let it absorb for 20 seconds, then Soft on top. The whole routine takes under two minutes." },
+        { q: "Is this safe during pregnancy?", a: "Yes — none of these three contain ingredients flagged for pregnancy concerns. Wash, Balance, and Soft are pregnancy- and breastfeeding-safe routinely. (Always confirm with your provider for your specific case.)" }
+      ]
+    },
+    'reset': {
+      eyebrow: 'Weekly Reset · The Skincare Complement',
+      description: 'Two weekly treatments — charcoal-clay mask and physical polish. The deep-clean reset that complements any daily routine.',
+      whyThis: "Daily skincare maintains; weekly treatments reset. Mask (kaolin + bentonite + charcoal) draws out accumulated oil, dirt, and surface buildup that daily cleansers can't reach — best used once a week. Polish (physical exfoliation with pumice + jojoba beads) smooths surface texture and primes skin to better absorb actives. Used together (mask one night, polish another, never the same night), they keep skin clear, smooth, and primed for daily routines to work their best.",
+      timeline: [
+        { week: 'Week 1', text: 'Immediate freshness and smoothness after first use. Pores feel cleaner.' },
+        { week: 'Week 4', text: 'Sustained surface refinement; texture noticeably smoother. Less buildup between treatments.' },
+        { week: 'Week 8', text: 'Daily products absorb better. Skin clarity improves as weekly reset becomes habit.' },
+        { week: 'Week 12+', text: 'Sustained weekly-reset baseline. The complement that makes daily skincare work harder.' }
+      ],
+      faq: [
+        { q: 'How often should I use these?', a: 'Each: once a week, on different nights. So you\'re doing some kind of weekly treatment twice per week. Skin doesn\'t need more than that.' },
+        { q: 'Can I use these on sensitive skin?', a: "Polish: be gentle — light pressure, no scrubbing. Mask: tolerated by most sensitive skin but patch-test first. If you have active breakouts or irritation, skip until it resolves." },
+        { q: 'Do I need to change my routine on treatment nights?', a: "Yes — after Mask or Polish, skip strong actives that night (retinol, glycolic). Go straight to gentle hydrators and moisturizer. Your skin is more permeable right after treatments — easy does it." }
       ]
     },
 
@@ -322,34 +341,36 @@ window.BUNDLE_DETAILS = {
     },
     'energy': {
       eyebrow: 'Daily Energy · Cellular Inside + Visible Outside',
-      description: 'Five products — multivitamin, CoQ10, and vitamin D3 for foundational cellular energy, plus topical vitamin C and antioxidant defense for the surface effects of fatigue.',
-      whyThis: "Sustainable energy is a foundational nutrient and mitochondrial-function problem — not a stimulant problem. This bundle addresses both the cellular energy and the way energy (or lack of it) shows on your face. Multi covers daily B-complex, iron, zinc — what cells need for ATP production. Vitality (CoQ10) supports mitochondrial function — the actual energy factories. Sunshine (D3) addresses one of the most common modern deficiencies, with well-documented mood and energy effects. Defense neutralizes the oxidative damage that makes tired skin look dull. Boost (vitamin C) brightens the dullness fatigue produces. The inside-out energy stack.",
+      description: 'Six products — multivitamin, CoQ10, and vitamin D3 for foundational cellular energy, Burn for the metabolic and pre-task lift, the Focus nootropic for the mental side of energy, and topical vitamin C for the surface effects of fatigue.',
+      whyThis: "Sustainable energy isn't one thing — it's foundational nutrients, mitochondrial function, metabolic flexibility, and cognitive engagement all working together. This bundle covers all four. Multi delivers the B-complex, iron, and zinc cells need for ATP production. Vitality (CoQ10) supports mitochondrial energy — the actual factories. Sunshine (vitamin D3) addresses one of the most common modern deficiencies, with documented mood and energy effects. Burn adds caffeine-and-amino-acid metabolic support for the days that need a clean lift without jitter. Focus (Alpha GPC + L-Tyrosine + Bacopa) handles the cognitive side — the mental energy that makes physical energy feel useful. And Boost (topical vitamin C) brightens the dullness fatigue puts on the surface. Inside-out, all-day energy.",
       timeline: [
-        { week: 'Week 1', text: 'Topical vitamin C provides immediate skin freshness. Foundation supplements begin to fill in.' },
-        { week: 'Week 4', text: 'Daily energy stabilizes; afternoon crashes less pronounced. Skin reflects more evenly.' },
-        { week: 'Week 8', text: 'CoQ10 effect on mitochondrial energy markedly improved, particularly in adults 40+.' },
-        { week: 'Week 12+', text: 'Sustained foundational energy that visibly shows. Less reliance on caffeine; more steady output.' }
+        { week: 'Week 1', text: 'Burn and Focus deliver same-day acute energy and mental clarity. Boost provides immediate skin freshness.' },
+        { week: 'Week 4', text: 'Foundation nutrients fill in. Daily energy stabilizes; afternoon crashes less pronounced. Skin reflects more evenly.' },
+        { week: 'Week 8', text: "CoQ10 effect on mitochondrial energy markedly improved (particularly in adults 40+). Bacopa's compound cognitive effect begins to show." },
+        { week: 'Week 12+', text: 'Sustained foundational energy that visibly shows. Less reliance on caffeine; more steady output, sharper mental engagement.' }
       ],
       faq: [
-        { q: 'Should I take all the supplements daily?', a: 'Yes — Multi, Vitality, Sunshine: daily with breakfast (fat-soluble vitamins absorb best with food).' },
-        { q: 'How is this different from coffee?', a: 'Caffeine works on the surface (alertness via adenosine blockade). This stack works on the foundation (cellular energy via mitochondria + nutrient repletion). Combine them — daily foundation + occasional caffeine — for the strongest result.' },
-        { q: 'When will I notice energy changes?', a: 'Skin freshness from vitamin C: 1-2 weeks. Daily energy stabilization: 4-6 weeks as nutrient stores fill in. Full CoQ10 effect: 8-12 weeks.' }
+        { q: 'When should I take each supplement?', a: 'Morning with breakfast: Multi, Vitality, Sunshine (fat-soluble vitamins absorb best with food). Pre-task: Burn and Focus, 30 minutes before deep work or training. Boost (topical) goes on cleansed AM skin, before moisturizer.' },
+        { q: 'Is Burn a stimulant? Will it stack with coffee?', a: "Burn contains caffeine plus L-carnitine, green tea, and B-vitamins — moderate stimulation with the metabolic and mood layer added. Yes, it stacks with coffee, but most users do well taking Burn instead of (not on top of) a second cup. Don't take after 2 PM if you're sleep-sensitive." },
+        { q: 'How is this different from drinking more coffee?', a: 'Caffeine works on the surface — short-acting alertness via adenosine blockade. This stack works on the foundation: cellular energy via mitochondria, nutrient repletion of common deficiencies, metabolic support, plus the cognitive nootropic that turns physical energy into useful output.' },
+        { q: 'When will I notice changes?', a: 'Same-day from Burn and Focus and the topical vitamin C. Daily energy stabilization at 4-6 weeks as nutrient stores fill in. Full CoQ10 + Bacopa effects at 8-12 weeks.' }
       ]
     },
     'focus': {
       eyebrow: 'Mental Clarity · Cognitive Stack + Eye Recovery',
-      description: 'Four products — nootropics with Alpha GPC and Bacopa, the 10-mushroom Lion\'s Mane complex, omega-3 for brain structure, plus the eye treatment for the toll long focus sessions take.',
-      whyThis: "Focus work compounds in two places: the cognitive stack that supports it, and the orbital area that bears the visible toll. Focus delivers acute cognitive support via Alpha GPC (acetylcholine precursor), L-Tyrosine (dopamine precursor), Bacopa (compound buildup over 4-6 weeks). Synapse's mushroom complex — particularly Lion's Mane — supports nerve growth factor and long-term cognitive resilience. Flow's omega-3 EPA/DHA supplies the DHA your brain needs as structural material. Eye Cream addresses the strain, puffiness, and dark circles that show after long thinking sessions. The stack for serious mental work.",
+      description: "Five products — the Focus nootropic with Alpha GPC and Bacopa, Synapse's 10-mushroom Lion's Mane complex, omega-3 for brain structure, Burn for the metabolic + cognitive lift before deep work, plus the eye treatment for the toll long focus sessions take.",
+      whyThis: "Focus work compounds in two places: the cognitive stack that supports it, and the orbital area that bears the visible toll. This bundle covers both. Focus delivers acute cognitive support via Alpha GPC (acetylcholine precursor), L-Tyrosine (dopamine precursor), Bacopa (compounding memory effect over 4-6 weeks). Synapse's mushroom complex — particularly Lion's Mane — supports nerve growth factor and long-term cognitive resilience. Burn adds caffeine-and-L-carnitine for the pre-deep-work metabolic lift. Flow's omega-3 EPA/DHA supplies the DHA your brain literally builds itself out of. Eye Cream addresses the strain, puffiness, and dark circles that show after long thinking sessions. The stack for serious mental work.",
       timeline: [
-        { week: 'Week 1', text: 'Alpha GPC and L-Tyrosine work acutely — focus from first dose. Eye Cream reduces strain look.' },
-        { week: 'Week 4', text: 'Bacopa effect begins to compound; memory consolidation improves.' },
+        { week: 'Week 1', text: 'Alpha GPC, L-Tyrosine, and Burn work acutely — sharper focus and metabolic lift from first dose. Eye Cream reduces strain look.' },
+        { week: 'Week 4', text: "Bacopa effect begins to compound; memory consolidation improves. Burn's metabolic effect becomes steady, not stimulatory." },
         { week: 'Week 8', text: "Lion's Mane NGF effect builds; mental endurance noticeably better through long thinking work." },
         { week: 'Week 12+', text: 'Sustained cognitive baseline. The compounded effect becomes the new default.' }
       ],
       faq: [
-        { q: 'Is Focus a stimulant?', a: 'No — nootropic stack working on acetylcholine, dopamine, and GABA pathways. Pairs cleanly with caffeine if you want stimulant kick.' },
-        { q: 'When should I take each?', a: 'Focus: morning or pre-thinking work. Synapse: morning with breakfast (daily). Flow: with any meal containing fat. Eye Cream: AM + PM.' },
-        { q: 'How long until cognitive effects?', a: 'Focus works same-day. Synapse and Flow take 4-8 weeks for compounding effects.' }
+        { q: 'Is Focus a stimulant?', a: 'No — nootropic stack working on acetylcholine, dopamine, GABA, and choline pathways. Pairs cleanly with caffeine if you want a stimulant kick — and Burn is in the bundle for exactly that.' },
+        { q: 'Is the Burn in here for the caffeine, or something else?', a: "Both. The caffeine provides acute alertness; the L-carnitine and green tea provide metabolic energy substrate so the kick is paired with fuel. The B-complex in Burn also helps neurotransmitter synthesis the rest of the stack depends on." },
+        { q: 'When should I take each?', a: 'Focus and Burn: morning or 30 minutes pre-deep-work (not after 2 PM if you sleep-sensitive). Synapse: morning with breakfast. Flow: with any meal containing fat. Eye Cream: AM + PM as last skincare step.' },
+        { q: 'How long until cognitive effects?', a: 'Focus and Burn work same-day. Synapse and Flow take 4-8 weeks for compounding effects.' }
       ]
     },
     'stress': {
@@ -367,22 +388,6 @@ window.BUNDLE_DETAILS = {
         { q: 'How does stress affect skin?', a: 'Cortisol increases sebum production, slows wound healing, and weakens the skin barrier. Reducing systemic cortisol — through ashwagandha and magnesium — visibly improves skin in stressed populations.' },
         { q: 'Why frame skincare as self-care here?', a: 'Because the act itself matters. The 30 seconds of misting Balance onto your face, the ten minutes with the Mask on — these are deliberate pauses in a day that doesn\u2019t otherwise give you any. The cortisol benefit isn\u2019t just from the witch hazel; it\u2019s from the ritual.' },
         { q: 'Can I take all three supplements daily?', a: 'Yes. Tranquil in the morning, Greens with breakfast or as a smoothie base, Calm at night.' }
-      ]
-    },
-    'strength': {
-      eyebrow: 'Performance & Recovery · Training Stack + Post-Workout Skin',
-      description: 'Five products — pharmaceutical-grade creatine, nitric oxide-boosting L-citrulline, gut-repairing L-glutamine, and collagen for connective tissue, plus the gentle cleanser for the post-workout skin reset.',
-      whyThis: "Training hard demands both internal recovery and a skincare routine that handles sweat without stripping. Power delivers 5g pharmaceutical-grade creatine — the most-studied supplement in sports nutrition. Pump (L-citrulline) raises plasma arginine and supports nitric-oxide-driven blood flow. Seal (L-glutamine) addresses gut barrier integrity and post-training recovery — plasma glutamine drops 20-30% after intense work. Collagen at 10g daily supports connective tissue, joints, and the cartilage that takes a beating in training. Wash is the sulfate-free, barrier-respecting cleanser for post-workout face — strong enough for sweat, gentle enough for daily use.",
-      timeline: [
-        { week: 'Week 1', text: 'Visible vascular pump from Pump pre-workout. Slight intramuscular fullness from creatine.' },
-        { week: 'Week 4', text: 'Lift performance increases — better volume, more reps. Recovery accelerates.' },
-        { week: 'Week 8', text: 'Muscle volume visibly increased. Joint comfort improves (collagen effect).' },
-        { week: 'Week 12+', text: 'Sustained strength baseline. The most-validated training stack working as intended.' }
-      ],
-      faq: [
-        { q: 'When should I take each?', a: 'Power: post-workout. Pump: 30-45 min pre-workout. Seal: post-workout or pre-bed. Collagen: any time daily. Wash: post-workout to remove sweat.' },
-        { q: 'Do I need a loading phase for creatine?', a: 'No — 5g daily reaches muscle saturation in 3-4 weeks. Loading is faster, not better.' },
-        { q: 'Why collagen for strength training?', a: 'Joint and tendon health is the limiting factor for serious lifters. Collagen at 10g daily, especially paired with vitamin C, has clinical evidence supporting tendon and cartilage health.' }
       ]
     },
     'longevity': {
@@ -431,6 +436,75 @@ window.BUNDLE_DETAILS = {
         { q: 'How is this different from OTC joint supplements?', a: 'Most OTC joint products are under-dosed glucosamine alone. This uses clinical-dose curcumin with BioPerine, 10g daily collagen, EPA/DHA omega-3, and CoQ10. The combined mechanism is much stronger.' },
         { q: 'When should I take each?', a: 'Restore: with a meal containing fat. Flow: any meal with fat. Collagen: any time. Vitality: with breakfast or lunch. Glow: nightly as the final skincare step.' },
         { q: 'How long until joint improvement?', a: 'Mild improvement in 1-2 weeks. Significant joint comfort builds over 4-8 weeks. Curcumin works upstream on inflammation rather than masking pain — slower onset, more durable effect.' }
+      ]
+    },
+    'hair-nails': {
+      eyebrow: 'Beauty From Within · The Hair, Skin, and Nail Stack',
+      description: 'Four products — Radiance for the biotin-and-vitamin foundation, marine collagen for hair-shaft and nail-bed strength, the multivitamin for the absorption baseline, and the probiotic that drives the keratin and growth side of the gut-skin axis.',
+      whyThis: "Hair and nails reflect what you feed them. The foundation matters more than the trendy ingredients on the front of any bottle. Radiance delivers the biotin, vitamins A/C/E, zinc, and silica that hair and nails are literally built from — a deficiency anywhere in this stack shows up as breakage, slow growth, or brittleness within weeks. Collagen provides type I and III peptides for hair-shaft structural protein and the nail bed where nails actually grow from; multiple RCTs show measurable improvements in hair thickness and nail growth rate at 8-16 weeks with 10g daily. Multi handles the broader vitamin and mineral baseline — without it, the other targeted nutrients have nothing to compound on. Biome supports the gut microbiome that drives a meaningful share of keratin metabolism and hair-loss-related inflammation. Inside-out hair and nails, no topical noise needed.",
+      timeline: [
+        { week: 'Week 1', text: 'Foundation nutrients begin loading. No visible change yet — hair and nails grow on slow cycles.' },
+        { week: 'Week 4', text: 'Nail growth visibly faster; brittle edges reduce. Hair feels stronger in the brush.' },
+        { week: 'Week 8', text: 'Hair thickness and shine measurably improve. Collagen effect on growth rate becomes clear.' },
+        { week: 'Week 12+', text: 'Sustained inside-out baseline. The hair-and-nail clinical RCTs typically read out their full effect here.' }
+      ],
+      faq: [
+        { q: 'How fast will I see results?', a: 'Nails grow ~3 mm/month and hair ~1 cm/month. Visible improvement requires multiple growth cycles. Expect noticeable change at 8-12 weeks, full effect at 16-24 weeks.' },
+        { q: 'Is this just biotin?', a: "No — biotin alone is overhyped. Most hair-and-nail issues come from broader deficiencies (iron, zinc, vitamin D, protein), inflammation, or the gut. This bundle covers all four levers — that's why it works when standalone biotin doesn't." },
+        { q: 'When should I take everything?', a: 'Morning with breakfast: Multi, Radiance, Collagen (collagen in coffee works well). Biome: empty stomach in the morning, or with food. All together is fine; spreading aids absorption a little.' },
+        { q: "I'm dealing with shedding or thinning — will this fix it?", a: "It supports the foundation that drives healthy growth. For active shedding (telogen effluvium, hormonal, etc.) or pattern hair loss, see a dermatologist for diagnosis — this bundle pairs well with clinical treatment, but isn't a substitute for it." }
+      ]
+    },
+    'travel': {
+      eyebrow: 'Built for the Road · TSA-Friendly Coverage',
+      description: 'Five products that fit in any carry-on — barrier-respecting cleanser, the foundational multi, omega-3 for airplane meals, magnesium for time-zone resets, and vitamin D for the days you do not see the sun. The bare-minimum travel protocol that actually holds.',
+      whyThis: "Travel breaks every routine that depends on environment — bad sleep, dry plane air, restaurant meals, unfamiliar water, missed sun exposure. This bundle covers what you can't outsource. Wash is the only skincare product you can't compromise on: gentle enough for hotel-water rinses, strong enough to clean off a day of dirt and recycled cabin air, sulfate-free so your barrier survives the trip. Multi and Flow handle the nutrient gap from restaurant food and airplane meals. Calm is the magnesium glycinate that resets your nervous system across time zones — particularly effective for the first three nights after a long flight. Sunshine (D3) covers the vitamin D deficit from days spent indoors, in transit, or in low-sun destinations. Five bottles, every base covered.",
+      timeline: [
+        { week: 'Day 1', text: 'Calm helps you sleep on a new schedule from the first night. Wash makes hotel-water skin feel normal.' },
+        { week: 'Week 1 on a trip', text: 'Foundation nutrients hold off the cumulative deficit travel creates. Less travel fatigue, less digestion disruption.' },
+        { week: 'Multi-trip', text: 'The stack becomes the muscle memory — same routine works in any hotel, any time zone, any duration.' },
+        { week: 'Year-round', text: 'For frequent travelers, this becomes the everyday minimum. The Travel Stack and being home stop being different routines.' }
+      ],
+      faq: [
+        { q: 'How does this fit TSA / carry-on rules?', a: 'All five products are well under 3.4 oz / 100 ml each. Wash is 4 oz so check labels of the actual current bottle — newer travel-sized formats may be split. Supplements are bottles of capsules/softgels, no liquid restriction.' },
+        { q: 'Why this list specifically?', a: "These five are the highest-leverage products for the things travel breaks — sleep, skin barrier, nutrient gaps, vitamin D. The skincare line is deliberately minimal (just Wash) because hotel sinks and airplane air are bad places to do a full routine. If you want full skincare on the road, layer the rest of your routine on top of this baseline." },
+        { q: 'Is the cadence here Smart Refill?', a: "Yes — Smart Refill is the right cadence for this bundle. Wash and Flow ship every 2 months, Calm every 2, Sunshine every 3, Multi monthly. Different cadences = exactly what Smart Refill is for. Saves about $40/year vs flat monthly." },
+        { q: 'What about jet lag specifically?', a: 'Calm 30-60 minutes before bed in the new time zone for the first 3 nights makes a meaningful difference. Sunshine in the morning helps your circadian rhythm reset. Multi covers the nutrient depletion that compounds the disruption.' }
+      ]
+    },
+    'cycle': {
+      eyebrow: 'Cycle Support · Across the Month',
+      description: 'Five products — KSM-66 ashwagandha for hormonal-balance modulation, magnesium glycinate for PMS-week tension and sleep, vitamin D for mood through the luteal dip, the gut probiotic for the cycle-skin axis, and omega-3 for the inflammation side. The protocol for women whose energy, skin, and mood track the month.',
+      whyThis: "The menstrual cycle drives meaningful weekly changes in mood, energy, skin, sleep, and inflammation — and most general wellness protocols ignore this. This bundle addresses each axis with what the clinical literature actually supports. Tranquil (KSM-66 ashwagandha at 600mg) is the most-studied adaptogen for cortisol modulation, with particular evidence in women for stress, sleep, and hormonal balance support. Calm (magnesium glycinate) addresses the magnesium deficit that worsens PMS symptoms — cramping, irritability, sleep disruption, and headaches all respond to consistent supplementation in clinical trials. Sunshine (vitamin D3) supports mood through the luteal phase where vitamin D status is meaningfully correlated with PMS severity. Biome covers the cycle-influenced gut microbiome — hormonal shifts change gut function, and the gut-skin axis is the upstream driver of mid-cycle and pre-period breakouts. Flow's omega-3 EPA/DHA reduces the inflammation that drives cramping and the breakouts that often track the luteal phase. Five products, addressing the four levers cycle-aware women actually feel.",
+      timeline: [
+        { week: 'Cycle 1', text: 'Calm reduces PMS-week tension and improves sleep on first cycle. Tranquil begins loading.' },
+        { week: 'Cycle 2', text: 'Magnesium effects on cramping and sleep compound. Cycle-tracking breakouts visibly reduce.' },
+        { week: 'Cycle 3', text: 'Ashwagandha cortisol modulation becomes consistent. Luteal-phase mood feels meaningfully steadier.' },
+        { week: 'Cycle 4+', text: 'Sustained cycle-aware baseline. Energy, mood, and skin track the month with much less amplitude.' }
+      ],
+      faq: [
+        { q: 'When should I take each?', a: 'Tranquil: morning with breakfast (daily). Calm: 30-60 minutes before bed (especially PMS week). Sunshine, Flow, Biome: morning with food. Daily, all month — none of these are cycle-phase-specific. Consistency over the whole month is what produces the effect.' },
+        { q: 'Will this help PCOS or endometriosis?', a: 'These conditions need medical management; supplements alone are not a substitute. That said, the components here (ashwagandha for stress/cortisol, magnesium for cramping, omega-3 for inflammation, probiotic for gut-hormone axis) are commonly used alongside clinical care. Talk to your provider about adding this protocol.' },
+        { q: "I'm pregnant or trying — is this safe?", a: 'Ashwagandha (Tranquil) is not recommended during pregnancy. Skip Tranquil. Magnesium glycinate, vitamin D, omega-3, and probiotic are all generally pregnancy-safe — but always confirm with your provider during pregnancy or breastfeeding. The Mom\'s Routine is built for that season.' },
+        { q: "What if I'm on hormonal birth control?", a: "These supplements are compatible with hormonal contraceptives — but birth control already smooths a lot of cycle variation, so you may feel less acute benefit from cycle-tracking effects. The foundational support (mood, sleep, skin, gut, inflammation) is still meaningful." },
+        { q: 'How does this differ from the Sleep Bundle or Stress Bundle?', a: "Sleep is acute (wind-down + magnesium + overnight skincare). Stress is broad cortisol response. The Cycle Bundle is the monthly-rhythm protocol — overlaps with both but specifically tracks luteal-phase mood, PMS cramping, cycle-related skin patterns, and the hormonal-balance side of adaptogens. Use Sleep when sleep is the problem, Stress when stress is the problem, Cycle when the pattern is monthly." }
+      ]
+    },
+    'metabolic': {
+      eyebrow: 'Metabolic Health · Foundation-First Energy',
+      description: 'Four supplements — Burn for the metabolic and pre-task lift, Greens for nutrient density, Biome for the gut microbiome that drives a meaningful share of metabolism, and Multi for the absorption baseline. Metabolism that runs on food, not just stimulation.',
+      whyThis: "Metabolic health is rarely a stimulant problem — it's a fuel, gut, and micronutrient problem. This bundle works that foundation. Burn delivers L-carnitine (which shuttles fatty acids into mitochondria for energy), green tea EGCG (with documented metabolic effects), and B-vitamins (cofactors for nearly every enzyme that turns food into ATP). Greens layers in 22 plant-based ingredients including fiber, polyphenols, prebiotics, and adaptogens — the nutrient density most diets fall short on. Biome supports the gut microbiome that influences metabolism via short-chain fatty acid production, bile acid metabolism, and inflammation regulation. Multi covers the broader vitamin and mineral baseline that lets the other three actually work. Inside-out metabolic support, no crash, no withdrawal.",
+      timeline: [
+        { week: 'Week 1', text: 'Acute lift from Burn from day one. Digestion begins to normalize.' },
+        { week: 'Week 4', text: 'Nutrient gaps fill in. Cravings settle as the gut and blood sugar stabilize.' },
+        { week: 'Week 8', text: 'Metabolic flexibility improves — more consistent energy between meals, less afternoon crash.' },
+        { week: 'Week 12+', text: 'Sustained metabolic baseline. The compounded effect of foundational support compounds without the stimulant cycle.' }
+      ],
+      faq: [
+        { q: 'Is this a weight-loss bundle?', a: "No — this is a metabolic-health bundle. The components are designed to support how your body produces and uses energy, not to suppress appetite or trigger fat loss directly. Sustained metabolic health is the foundation weight goals work on, but this isn't a diet aid." },
+        { q: 'How is this different from the Energy Bundle?', a: "Energy is broader (cellular energy via mitochondria, vitamin D, vitamin C for tired skin, cognitive nootropic). Metabolic is narrower and gut-first (Burn for the metabolic lift, Greens for nutrient density, Biome for the microbiome, Multi for absorption). Use Energy if your issue is daily fatigue across all axes; use Metabolic if your issue is specifically about how your body processes food into energy." },
+        { q: 'Is Burn safe daily?', a: 'Yes at recommended dose. Burn contains caffeine — about a small cup of coffee per serving — plus L-carnitine, green tea, and B-vitamins. Stack it with coffee with caution; sensitive sleepers should take it before 2 PM.' },
+        { q: 'When should I take each?', a: 'Burn: morning or 30 minutes before deep work / training. Greens: with breakfast or as a smoothie base. Biome: empty stomach in the morning works best for most. Multi: with food (fat-soluble vitamins absorb better that way).' }
       ]
     }
   }

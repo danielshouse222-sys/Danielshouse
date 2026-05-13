@@ -1603,9 +1603,36 @@ window.CONCERN_BUNDLES = [
     discount: 0.12,
     tab: 'skin',
     icon: 'F.',
-    name: 'The Pore Bundle',
-    blurb: "Topical pore-refining actives plus the probiotic that addresses the gut-sebum connection most pore products ignore. Smoother, refined skin without compromising the moisture barrier.",
-    slugs: ['the-house-boost', 'the-house-clear', 'the-house-polish', 'the-house-mask', 'the-house-biome']
+    name: 'The Texture Bundle',
+    blurb: "Physical polish, glycolic acid resurfacing, and weekly charcoal detox for visible smoothness, plus niacinamide and the probiotic that addresses the gut-skin axis behind pore appearance and surface bumps. Texture refinement, inside and out — without the acne-heavy actives.",
+    slugs: ['the-house-polish', 'the-house-renewal', 'the-house-mask', 'the-house-boost', 'the-house-biome']
+  },
+  {
+    id: 'glow',
+    discount: 0.15,
+    tab: 'skin',
+    icon: 'G.',
+    name: 'The Glow Bundle',
+    blurb: "The inside-out glow protocol. Topical vitamin C and antioxidant defense for the surface, the weekly charcoal mask that primes everything, the omega-rich oil seal at night — paired with the daily beauty vitamins and 10g of collagen that build glow from within. Visible luminosity in 6-8 weeks.",
+    slugs: ['the-house-boost', 'the-house-defense', 'the-house-glow', 'the-house-mask', 'the-house-radiance', 'the-house-collagen']
+  },
+  {
+    id: 'starter',
+    discount: 0.15,
+    tab: 'skin',
+    icon: 'H.',
+    name: 'The Skin Starter Bundle',
+    blurb: "Three products, two minutes. Cleanse, tone, moisturize — the minimum effective skincare routine for someone who has never had one, or wants to start over with the basics done right. Run this for six to eight weeks before adding anything else.",
+    slugs: ['the-house-wash', 'the-house-balance', 'the-house-soft']
+  },
+  {
+    id: 'reset',
+    discount: 0.15,
+    tab: 'skin',
+    icon: 'I.',
+    name: 'The Reset Bundle',
+    blurb: "The weekly skincare reset. Charcoal-clay detox mask and the gentle physical polish — used once or twice a week to clear buildup, brighten dull patches, and prime skin so everything else works harder. The complement to any daily routine.",
+    slugs: ['the-house-mask', 'the-house-polish']
   },
 
   // ═══ WELLNESS GOALS — primary concern is systemic,
@@ -1621,21 +1648,21 @@ window.CONCERN_BUNDLES = [
   },
   {
     id: 'energy',
-    discount: 0.1,
+    discount: 0.12,
     tab: 'goal',
     icon: 'B.',
     name: 'The Energy Bundle',
-    blurb: "Cellular energy from inside (multivitamin, CoQ10, D3) plus the topical vitamin C that keeps tired skin from showing it. Energy that lasts through the day and shows on your face.",
-    slugs: ['the-house-multi', 'the-house-vitality', 'the-house-sunshine', 'the-house-boost']
+    blurb: "Cellular energy from the foundation (multivitamin, CoQ10, vitamin D) layered with the metabolic kick of Burn and the cognitive edge of Focus — plus the topical vitamin C that keeps tired skin from showing it. Energy that lasts through the day, mentally and visibly.",
+    slugs: ['the-house-multi', 'the-house-vitality', 'the-house-sunshine', 'the-house-burn', 'the-house-focus', 'the-house-boost']
   },
   {
     id: 'focus',
-    discount: 0.1,
+    discount: 0.12,
     tab: 'goal',
     icon: 'C.',
     name: 'The Focus Bundle',
-    blurb: "Cognitive nootropics and omega-3 phospholipids for sustained thinking work, plus the eye treatment for the toll long focus sessions take on the orbital area. Sharp mind, present face.",
-    slugs: ['the-house-focus', 'the-house-synapse', 'the-house-flow', 'the-house-eye']
+    blurb: "Cognitive nootropics with Alpha GPC and Bacopa, the Lion's Mane mushroom complex, omega-3 phospholipids for brain structure, plus Burn for the metabolic + cognitive lift before deep work — and the eye treatment for the toll long focus sessions take on the orbital area. Sharp mind, present face.",
+    slugs: ['the-house-focus', 'the-house-synapse', 'the-house-burn', 'the-house-flow', 'the-house-eye']
   },
   {
     id: 'stress',
@@ -1647,13 +1674,13 @@ window.CONCERN_BUNDLES = [
     slugs: ['the-house-tranquil', 'the-house-calm', 'the-house-greens', 'the-house-balance', 'the-house-mask']
   },
   {
-    id: 'strength',
-    discount: 0.1,
+    id: 'hair-nails',
+    discount: 0.12,
     tab: 'goal',
     icon: 'E.',
-    name: 'The Strength Bundle',
-    blurb: "The clinically-dosed performance stack — creatine, citrulline, glutamine — plus collagen for connective tissue. Built for people who train.",
-    slugs: ['the-house-power', 'the-house-pump', 'the-house-seal', 'the-house-collagen']
+    name: 'The Hair & Nails Bundle',
+    blurb: "Beauty from within — the biotin-and-vitamin A/C/E foundation in Radiance, marine collagen for hair shaft and nail bed strength, the multivitamin baseline so the whole stack actually absorbs, and the probiotic that quietly drives the keratin-and-hair-growth side of the gut-skin axis.",
+    slugs: ['the-house-radiance', 'the-house-collagen', 'the-house-multi', 'the-house-biome']
   },
   {
     id: 'longevity',
@@ -1681,6 +1708,33 @@ window.CONCERN_BUNDLES = [
     name: 'The Joint Bundle',
     blurb: "The joint-comfort protocol — curcumin, omega-3, collagen — plus the omega-rich facial oil that pairs internally and topically for whole-body inflammation resolution.",
     slugs: ['the-house-restore', 'the-house-flow', 'the-house-collagen', 'the-house-glow']
+  },
+  {
+    id: 'travel',
+    discount: 0.15,
+    tab: 'goal',
+    icon: 'J.',
+    name: 'The Travel Stack',
+    blurb: "TSA-friendly bottles, fewer pieces, full coverage. The barrier-respecting cleanser for hotel-water faces, the multivitamin and omega-3 that handle airplane meals, magnesium for the time-zone reset, and vitamin D for the days you don't see the sun. Built to go where you go.",
+    slugs: ['the-house-wash', 'the-house-multi', 'the-house-flow', 'the-house-calm', 'the-house-sunshine']
+  },
+  {
+    id: 'cycle',
+    discount: 0.12,
+    tab: 'goal',
+    icon: 'K.',
+    name: 'The Cycle Bundle',
+    blurb: "Cycle-aware support across the month — KSM-66 ashwagandha for hormonal-balance modulation, magnesium glycinate for PMS-week tension and sleep, vitamin D for mood through the luteal dip, the gut probiotic that the cycle-skin axis runs on, and omega-3 for the inflammation side. The protocol for women whose energy, skin, and mood track the month.",
+    slugs: ['the-house-tranquil', 'the-house-calm', 'the-house-sunshine', 'the-house-biome', 'the-house-flow']
+  },
+  {
+    id: 'metabolic',
+    discount: 0.12,
+    tab: 'goal',
+    icon: 'L.',
+    name: 'The Metabolic Bundle',
+    blurb: "Metabolic support from the foundation up — Burn for the L-carnitine, green tea, and B-vitamin metabolic and pre-task lift; Greens for the 22-ingredient nutrient density most diets miss; Biome for the gut microbiome that drives a meaningful share of metabolism; Multi for the absorption baseline. Energy and metabolism that runs on food, not just stimulation.",
+    slugs: ['the-house-burn', 'the-house-greens', 'the-house-biome', 'the-house-multi']
   }
 ];
 
@@ -1774,18 +1828,6 @@ window.CURATED_BUNDLES = [
     name: 'The Longevity Routine',
     discount: 0.15,
     slugs: ['the-house-nad-plus','the-house-vitality','the-house-synapse','the-house-restore','the-house-tranquil']
-  },
-  {
-    id: 'glow',
-    name: 'The Glow Routine',
-    discount: 0.15,
-    slugs: ['the-house-boost','the-house-defense','the-house-glow','the-house-mask','the-house-radiance','the-house-collagen']
-  },
-  {
-    id: 'weekly',
-    name: 'The Reset Routine',
-    discount: 0.15,
-    slugs: ['the-house-mask','the-house-polish']
   },
   {
     id: 'moms',
