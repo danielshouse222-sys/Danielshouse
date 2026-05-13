@@ -6071,3 +6071,31 @@ body.byo-popup-open .cart-floating {
   color: var(--ink);
   border-color: var(--gold);
 }
+
+/* Daniel's Daily Skincare — combined AM+PM+Weekly purchase box on skincare page */
+.bundle-footnote-combined {
+  margin-top: 32px;
+  margin-bottom: 32px;
+}
+.bundle-footnote-combined .bundle-footnote-inner {
+  /* Slightly elevated treatment vs. the AM/PM boxes — same palette, more presence */
+  border-color: var(--gold);
+  background: linear-gradient(to bottom, var(--cream-warm) 0%, var(--cream) 100%);
+  box-shadow: 0 12px 32px rgba(31, 27, 23, 0.08);
+}
+.bundle-footnote-combined .bundle-footnote-name {
+  font-size: clamp(32px, 3.4vw, 42px);
+  margin-bottom: 12px;
+}
+.bundle-footnote-blurb {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  max-width: 540px;
+  margin: 0 auto 22px;
+}
+@media (max-width: 720px) {
+  .bundle-footnote-blurb { font-size: 14.5px; }
+}
