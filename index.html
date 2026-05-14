@@ -18,8 +18,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=202605140158">
-<link rel="stylesheet" href="css/shared.css?v=202605140158">
+<link rel="stylesheet" href="styles.css?v=202605140205">
+<link rel="stylesheet" href="css/shared.css?v=202605140205">
 <style>
   body { background: var(--cream); color: var(--ink); font-family: 'Poppins', sans-serif; margin: 0; }
   a { color: inherit; }
@@ -781,7 +781,6 @@
 
       <li><a href="routines.html">Routines</a></li>
       <li><a href="bundles.html">Bundles</a></li>
-      <li><a href="gifts.html">Gifts</a></li>
     </ul>
     <div style="display: flex; gap: 4px;">
       <button class="search-trigger" aria-label="Search">Search</button>
@@ -1375,6 +1374,236 @@
   </div>
 </section>
 
+<!-- GIFTS / GIFT QUIZ PROMO -->
+<section class="home-gifts">
+  <style>
+    .home-gifts {
+      background: var(--ink);
+      color: var(--cream);
+      padding: clamp(80px, 9vw, 120px) 40px;
+      overflow: hidden;
+      position: relative;
+    }
+    .home-gifts-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: clamp(48px, 7vw, 96px);
+      align-items: center;
+    }
+    .home-gifts-eyebrow {
+      font-family: 'Poppins', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.34em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 22px;
+    }
+    .home-gifts-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(40px, 5.6vw, 68px);
+      font-weight: 400;
+      line-height: 1.0;
+      margin: 0 0 22px;
+      color: var(--cream);
+    }
+    .home-gifts-title em { font-style: italic; color: var(--gold); }
+    .home-gifts-blurb {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(17px, 1.9vw, 22px);
+      line-height: 1.5;
+      color: rgba(250, 246, 240, 0.82);
+      max-width: 520px;
+      margin: 0 0 28px;
+    }
+    .home-gifts-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .home-gifts-btn {
+      display: inline-block;
+      padding: 16px 32px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-weight: 500;
+      text-decoration: none;
+      border: 1px solid;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+    .home-gifts-btn.primary {
+      background: var(--gold);
+      color: var(--ink);
+      border-color: var(--gold);
+    }
+    .home-gifts-btn.primary:hover {
+      background: var(--cream);
+      border-color: var(--cream);
+    }
+    .home-gifts-btn.secondary {
+      background: transparent;
+      color: var(--cream);
+      border-color: rgba(250, 246, 240, 0.55);
+    }
+    .home-gifts-btn.secondary:hover {
+      background: rgba(250, 246, 240, 0.08);
+      border-color: var(--cream);
+    }
+    .home-gifts-meta {
+      display: flex;
+      gap: 24px;
+      margin-top: 28px;
+      flex-wrap: wrap;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(250, 246, 240, 0.6);
+      font-weight: 500;
+    }
+    .home-gifts-meta span::before {
+      content: '✓';
+      color: var(--gold);
+      margin-right: 8px;
+    }
+
+    /* ─── Visual side: gift card mock ────────────────────────────────── */
+    .home-gifts-visual {
+      position: relative;
+      aspect-ratio: 1.45 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .home-gifts-card {
+      width: 100%;
+      max-width: 460px;
+      aspect-ratio: 1.6 / 1;
+      background: linear-gradient(135deg, var(--gold) 0%, #C4A47C 100%);
+      position: relative;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+      transform: rotate(-3deg);
+      transition: transform 0.5s ease;
+    }
+    .home-gifts-card:hover { transform: rotate(-1deg) translateY(-4px); }
+    .home-gifts-card::before {
+      content: '';
+      position: absolute;
+      inset: 18px;
+      border: 1px solid rgba(31, 27, 23, 0.4);
+      pointer-events: none;
+    }
+    .home-gifts-card-inner {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      text-align: center;
+      color: var(--ink);
+    }
+    .home-gifts-card-mark {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 12px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: rgba(31, 27, 23, 0.72);
+      margin-bottom: 14px;
+    }
+    .home-gifts-card-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 3.2vw, 38px);
+      font-weight: 400;
+      line-height: 1.05;
+      margin-bottom: 12px;
+    }
+    .home-gifts-card-name em { font-style: italic; }
+    .home-gifts-card-amount {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 4.4vw, 52px);
+      font-weight: 500;
+      line-height: 1;
+    }
+    .home-gifts-card-shimmer {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, 0.25) 50%, transparent 70%);
+      pointer-events: none;
+      animation: hg-shimmer 5s linear infinite;
+    }
+    @keyframes hg-shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+    /* Faint floating tag underneath the card */
+    .home-gifts-tag {
+      position: absolute;
+      bottom: -8px;
+      right: 8%;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 14px;
+      color: rgba(250, 246, 240, 0.5);
+      letter-spacing: 0.08em;
+      transform: rotate(-2deg);
+    }
+
+    @media (max-width: 880px) {
+      .home-gifts-inner {
+        grid-template-columns: 1fr;
+        gap: 50px;
+        text-align: center;
+      }
+      .home-gifts-blurb { margin-left: auto; margin-right: auto; }
+      .home-gifts-actions { justify-content: center; }
+      .home-gifts-meta { justify-content: center; }
+      .home-gifts-visual { order: -1; }
+      .home-gifts-card { max-width: 380px; }
+    }
+    @media (max-width: 480px) {
+      .home-gifts { padding: 70px 22px; }
+      .home-gifts-actions { flex-direction: column; align-items: stretch; }
+      .home-gifts-btn { text-align: center; }
+    }
+  </style>
+  <div class="home-gifts-inner">
+    <div class="home-gifts-text">
+      <div class="home-gifts-eyebrow">Gifts · Shopping for someone else?</div>
+      <h2 class="home-gifts-title">The <em>thoughtful</em> gift.</h2>
+      <p class="home-gifts-blurb">Premium wellness, beautifully packaged. Skincare and supplements someone will actually use — not the third candle they didn't need. Answer five questions and we'll match a set to their vibe, your budget, and the occasion.</p>
+      <div class="home-gifts-actions">
+        <a href="gift-quiz.html" class="home-gifts-btn primary">Take the 2-Minute Gift Quiz →</a>
+        <a href="gifts.html" class="home-gifts-btn secondary">Browse Gifts &amp; Sets</a>
+      </div>
+      <div class="home-gifts-meta">
+        <span>Gift wrap included</span>
+        <span>Hand-written card</span>
+        <span>Scheduled delivery</span>
+      </div>
+    </div>
+
+    <a href="gifts.html#gift-cards" class="home-gifts-visual" aria-label="Send a Daniel's House gift card">
+      <div class="home-gifts-card">
+        <div class="home-gifts-card-shimmer"></div>
+        <div class="home-gifts-card-inner">
+          <div class="home-gifts-card-mark">Daniel's House · Gift Card</div>
+          <div class="home-gifts-card-name">The <em>House</em> Gift</div>
+          <div class="home-gifts-card-amount">$100</div>
+        </div>
+      </div>
+      <div class="home-gifts-tag">…or send a card</div>
+    </a>
+  </div>
+</section>
+
 <!-- CLOSING CTA -->
 <section style="background: var(--cream-warm); padding: clamp(80px, 9vw, 110px) 40px; text-align: center;">
   <div style="max-width: 720px; margin: 0 auto;">
@@ -1455,7 +1684,7 @@
   </div>
 </div>
 
-<script src="data/products.js?v=202605140158"></script><script src="data/ingredients.js?v=202605140158"></script>
-<script src="js/auth.js?v=202605140158"></script><script src="js/shared.js?v=202605140158"></script><script src="data/faq-data.js?v=202605140158"></script><script src="js/chatbot.js?v=202605140158"></script>
+<script src="data/products.js?v=202605140205"></script><script src="data/ingredients.js?v=202605140205"></script>
+<script src="js/auth.js?v=202605140205"></script><script src="js/shared.js?v=202605140205"></script><script src="data/faq-data.js?v=202605140205"></script><script src="js/chatbot.js?v=202605140205"></script>
 </body>
 </html>
