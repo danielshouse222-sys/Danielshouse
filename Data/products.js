@@ -1,6 +1,6 @@
 /**
  * Daniel's House — Product Data
- * Single source of truth for all 34 products.
+ * Single source of truth for all 40 products.
  * Used by product.html, bundles.html, search, related products, etc.
  */
 window.PRODUCTS = [
@@ -1085,7 +1085,10 @@ window.PRODUCTS = [
       { week: 'Week 4', text: 'Daily users typically report steadier cognitive performance, easier focus through long work sessions.' },
       { week: 'Week 8', text: 'NGF effect compounds; cognitive endurance noticeably improved.' },
       { week: 'Week 12+', text: 'Full clinical-research timeline reached. The cumulative neuroplasticity effect Lion\'s Mane is studied for.' }
-    ]
+    ],
+    proTip: 'Take both capsules in the morning with breakfast — Lion\'s Mane doesn\'t stimulate, so PM dosing is fine, but front-loading aligns the effect with your deep-work window. Pair with Flow (omega-3) for additive brain-structure support.',
+    freeFrom: ['Gluten-Free', 'Vegan', 'Non-GMO', '3rd-Party Tested', 'No Artificial Colors', 'No Fillers', 'Made in USA', 'Third-Party Tested'],
+    daniels_note: 'Lion\'s Mane at 1,000 mg — the dose where the cognitive research begins, in a clean single-ingredient capsule. The mushroom I take when the work is going to be hard for weeks at a stretch. Effects compound; don\'t judge it before week 4.'
   },
   {
     slug: 'the-house-still',
@@ -1124,7 +1127,10 @@ window.PRODUCTS = [
       { week: 'Week 4', text: 'Sleep quality improvements compound; deeper non-REM sleep reported in research populations.' },
       { week: 'Week 8', text: 'Adaptogenic baseline established; daily stress resilience improved.' },
       { week: 'Week 12+', text: 'Full Cochrane-review timeline reached. The compounding effect Reishi is traditionally and clinically studied for.' }
-    ]
+    ],
+    proTip: 'Take both capsules 1-2 hours before bed for sleep-architecture applications, or with breakfast for daytime stress modulation. Reishi isn\'t sedative — the evening preference is about aligning the sleep-quality effect, not avoiding daytime drowsiness.',
+    freeFrom: ['Gluten-Free', 'Vegan', 'Non-GMO', '3rd-Party Tested', 'No Artificial Colors', 'No Fillers', 'Made in USA', 'Third-Party Tested'],
+    daniels_note: 'Reishi at 500 mg — the entry clinical dose, double up if needed. Two thousand years of traditional use, a Cochrane review behind it. The mushroom I reach for when stress is grinding on sleep specifically. Tranquil for the morning, Still for the evening.'
   },
   {
     slug: 'the-house-forge',
@@ -1163,7 +1169,10 @@ window.PRODUCTS = [
       { week: 'Week 3', text: 'Hirsch 2017 RCT timeline — VO2 max and time-to-exhaustion improvements measurable at this point.' },
       { week: 'Week 6', text: 'Cellular energy baseline noticeably improved; sustained energy through training and long days.' },
       { week: 'Week 12+', text: 'Full mitochondrial adaptation timeline. The compounding endurance effect Cordyceps is traditionally and clinically studied for.' }
-    ]
+    ],
+    proTip: 'Take both capsules 30-60 minutes pre-workout for endurance sessions, or with breakfast on rest days. Cordyceps works through mitochondrial adaptation, not acute stimulation — there\'s no jitter, no crash. Stack with Surge if you want the acute lift on top of the underlying adaptation.',
+    freeFrom: ['Gluten-Free', 'Vegan', 'Non-GMO', '3rd-Party Tested', 'No Artificial Colors', 'No Fillers', 'Made in USA', 'Third-Party Tested'],
+    daniels_note: 'Cordyceps militaris at 500 mg — the clinical-trial dose, not the cheaper sinensis fillers most brands use. The mushroom that earned its reputation in the Hirsch RCT for VO2 max and time-to-exhaustion. The endurance compound that adapts mitochondria over weeks, not the stimulant that wires you up for 90 minutes.'
   },
   {
     slug: 'the-house-synapse',
@@ -1665,6 +1674,133 @@ window.PRODUCTS = [
     proTip: 'Take 30 minutes before deep work. Don\'t combine with caffeine — the GABA + caffeine combo creates a paradoxical fog.',
     freeFrom: ['Gluten-Free', 'Non-GMO', '3rd-Party Tested', 'No Artificial Colors', 'No Fillers', 'Made in USA', 'Third-Party Tested'],
     daniels_note: 'The cognitive stack I run on heavy thinking days. GABA plus Tyrosine plus Bacopa — alert and calm at the same time.'
+  },
+  // ═══════════════════════════════════════════════════════════
+  // SUPPLEMENTS — CYCLE SUPPORT (women's wellness)
+  // ═══════════════════════════════════════════════════════════
+  {
+    slug: 'the-house-steady',
+    name: 'Steady',
+    category: 'supplement',
+    sub: 'beauty',
+    price: 22,
+    runtime: 1,
+    image: 'products/Steady.jpeg',
+    tag: 'B6 · Mood · Luteal Phase',
+    tagline: 'Active B6 for the luteal-phase dip.',
+    description: 'Pyridoxal-5-Phosphate (P-5-P) — the active, pre-converted form of vitamin B6 — delivered as a single-ingredient capsule. B6 is a required cofactor for the synthesis of serotonin, GABA, and dopamine, which is why deficiency tracks so closely with luteal-phase mood symptoms. P-5-P is used directly by enzymes without the liver conversion step that pyridoxine HCl requires — meaningful for the 30%+ of people with reduced conversion capacity.',
+    size: '60 capsules · 60 servings',
+    ingredients: [
+      { name: 'Pyridoxal-5-Phosphate (P-5-P) — 50mg', dose: 'Active B6 form', what: 'The active, coenzymated form of vitamin B6 — used directly by neurotransmitter synthesis enzymes without requiring liver conversion. Supports serotonin, GABA, and dopamine production from dietary precursors.' },
+      { name: 'Vegetarian capsule', dose: '—', what: 'Plant-based capsule shell. No animal products, no unnecessary excipients.' }
+    ],
+    howToUse: 'Take 1 capsule daily with breakfast, throughout the cycle. Daily consistency matters more than timing — B6 works as a cofactor pool, not an acute dose.',
+    bestFor: ['pms-support', 'mood-support', 'cycle-support', 'luteal-phase'],
+    studies: [
+      { actor: 'B6 + Premenstrual Symptoms', finding: 'Systematic review of randomized trials of vitamin B6 (pyridoxine) for premenstrual syndrome found significant benefit over placebo for overall premenstrual symptoms and premenstrual depressive symptoms at doses up to 100mg/day.', source: 'BMJ (British Medical Journal)' },
+      { actor: 'P-5-P Bioavailability', finding: 'Reviews of B6 metabolism note that pyridoxal-5-phosphate is the coenzymatically active form, and that hepatic conversion of pyridoxine to P-5-P can be impaired in subsets of the population — providing rationale for direct P-5-P supplementation.', source: 'Journal of Nutrition' },
+      { actor: 'B6 Neurotransmitter Role', finding: 'B6 is an obligate cofactor for aromatic L-amino acid decarboxylase and glutamate decarboxylase — the enzymes producing serotonin, dopamine, and GABA from dietary precursors. Status correlates with mood-symptom measures in observational cohorts.', source: 'Nutritional Neuroscience' }
+    ],
+    faq: [
+      { q: 'Why P-5-P instead of regular B6?', a: 'P-5-P is the form your body actually uses. Standard pyridoxine HCl has to be converted in the liver first, and that conversion is impaired in a meaningful slice of the population. P-5-P skips that step.' },
+      { q: 'Is 50mg safe daily?', a: 'Yes — 50mg is well within the long-term safety range for B6. The concern with B6 is sustained intakes above ~200mg/day over months, which has been linked to reversible nerve symptoms. Steady is dosed deliberately below that threshold.' },
+      { q: 'Do I take it only during PMS week?', a: 'No — take it daily through the cycle. B6 acts as a cofactor pool, not an acute intervention. Symptom-week-only dosing under-delivers.' },
+      { q: 'Can I take it with Rhythm and Bloom?', a: 'Yes — Steady, Rhythm, and Bloom are designed to stack as the cycle-support trio. They work on different mechanisms: neurotransmitter cofactor, prolactin modulation, and prostaglandin balance respectively.' },
+      { q: 'Will it interact with hormonal birth control?', a: 'Hormonal contraceptives can lower B6 status, which is part of why people on the pill sometimes benefit more from supplementation. If you take prescription medications, check with your provider before starting any new supplement.' }
+    ],
+    relatedSlugs: ['the-house-rhythm', 'the-house-bloom', 'the-house-tranquil', 'the-house-calm'],
+    resultsTimeline: [
+      { week: 'Week 1', text: 'Subtle — B6 builds a cofactor pool; first cycle is when most users notice.' },
+      { week: 'Cycle 1', text: 'Luteal-phase mood feels less reactive; PMS-week tearfulness softens.' },
+      { week: 'Cycle 2-3', text: 'Sustained smoothing of premenstrual mood symptoms; less luteal-phase irritability.' },
+      { week: 'Cycle 3+', text: 'Steady baseline — the cofactor pool stays topped up, the cycle feels less dramatic.' }
+    ],
+    proTip: 'Pair with breakfast that has some protein — B6 works on amino acid precursors, and giving it tryptophan and tyrosine to act on amplifies the effect.',
+    freeFrom: ['Gluten-Free', 'Vegan', 'Non-GMO', '3rd-Party Tested', 'No Artificial Colors', 'No Fillers', 'Made in USA', 'Third-Party Tested'],
+    daniels_note: 'B6 is the most-studied single nutrient for PMS mood symptoms — and P-5-P is the form the research suggests actually does the work. Single ingredient, clean form, daily dose.'
+  },
+  {
+    slug: 'the-house-rhythm',
+    name: 'Rhythm',
+    category: 'supplement',
+    sub: 'beauty',
+    price: 28,
+    runtime: 1,
+    image: 'products/Rhythm.jpeg',
+    tag: 'Chasteberry · Cycle Regularity · PMS',
+    tagline: 'Standardized Vitex for cycle support.',
+    description: 'Standardized Vitex agnus-castus (chasteberry) fruit extract — the herbal supplement with the strongest published evidence base for premenstrual symptoms and cycle support. Chasteberry acts on dopamine D2 receptors in the anterior pituitary, modulating prolactin secretion. Multiple double-blind randomized trials show significant improvement in PMS symptom scores versus placebo at the dose range used here.',
+    size: '30 capsules · 30 servings',
+    ingredients: [
+      { name: 'Chasteberry (Vitex agnus-castus) fruit extract — 40mg', dose: 'Standardized to 0.6% casticin', what: 'The standardized Vitex extract used in clinical PMS trials. Works via dopamine D2 receptors in the pituitary to modulate prolactin — the mechanism behind its effects on cycle regularity and luteal symptoms.' },
+      { name: 'Vegetarian capsule', dose: '—', what: 'Plant-based capsule shell. No animal products, no unnecessary excipients.' }
+    ],
+    howToUse: 'Take 1 capsule daily in the morning with food. Take consistently across the whole cycle — chasteberry works cumulatively over 2-3 cycles, not acutely. Most clinical trials measure outcomes at the 3-month mark.',
+    bestFor: ['pms-support', 'cycle-regularity', 'hormonal-balance', 'breast-tenderness', 'luteal-phase'],
+    studies: [
+      { actor: 'Chasteberry vs. Placebo (Foundational RCT)', finding: 'Double-blind, placebo-controlled trial of women with premenstrual syndrome — standardized Vitex agnus-castus extract produced significant reductions in PMS symptom score versus placebo over three cycles, with the largest effects on irritability, mood, headache, and breast fullness.', source: 'BMJ (British Medical Journal)' },
+      { actor: 'Vitex Meta-Analysis', finding: 'Systematic reviews of randomized trials of Vitex agnus-castus for premenstrual syndrome conclude that standardized extracts produce clinically meaningful improvements in PMS symptoms versus placebo, with a favorable tolerability profile across trials.', source: 'Planta Medica' },
+      { actor: 'Mechanism — Prolactin Modulation', finding: 'Pharmacology reviews describe Vitex constituents (diterpenes including rotundifuran) as dopamine D2 receptor agonists in the anterior pituitary, providing a coherent mechanism for the observed effects on luteal-phase symptoms and cyclical mastalgia.', source: 'Phytomedicine' }
+    ],
+    faq: [
+      { q: 'How long until I notice anything?', a: 'Plan on 2-3 full cycles. Chasteberry works cumulatively through the pituitary — most trials measure outcomes at month 3. Single-cycle judgments will under-call it.' },
+      { q: 'Can I take it with hormonal birth control?', a: 'The evidence on this combination is limited and theoretically there could be interactions through the dopaminergic pathway. If you\'re on hormonal contraception, check with your provider before starting Rhythm.' },
+      { q: 'Is it safe long-term?', a: 'Standardized Vitex extracts have favorable tolerability in trials lasting up to 6 months. Long-term real-world use is common in European herbal medicine. Discontinue if pregnant or trying to conceive — chasteberry alters prolactin and is not for use in pregnancy.' },
+      { q: 'Do I cycle off it?', a: 'Most people don\'t. Continuous daily use across cycles is how the trials were structured and how the benefit is sustained.' },
+      { q: 'Can I take it with Steady and Bloom?', a: 'Yes — the cycle-support trio is designed to be stacked. Steady covers neurotransmitter cofactor support, Rhythm modulates the hormonal side via prolactin, and Bloom delivers GLA for prostaglandin balance. Different mechanisms, complementary effects.' }
+    ],
+    relatedSlugs: ['the-house-steady', 'the-house-bloom', 'the-house-calm', 'the-house-tranquil'],
+    resultsTimeline: [
+      { week: 'Cycle 1', text: 'Minimal — chasteberry is cumulative; first cycle is mostly the body adjusting.' },
+      { week: 'Cycle 2', text: 'PMS symptom score begins to drop — irritability and breast tenderness most commonly first.' },
+      { week: 'Cycle 3', text: 'Clinical-trial endpoint — measurable improvement in overall PMS symptom score for most responders.' },
+      { week: 'Cycle 6+', text: 'Sustained baseline — cycles feel more predictable, luteal phase less symptomatic.' }
+    ],
+    proTip: 'Take it at the same time every day — morning works best for most people. The benefit shows up over cycles, not days. Don\'t judge it before month 3.',
+    freeFrom: ['Gluten-Free', 'Vegan', 'Non-GMO', '3rd-Party Tested', 'No Artificial Colors', 'No Fillers', 'Made in USA', 'Third-Party Tested'],
+    daniels_note: 'The single herbal supplement with the most published RCT evidence for PMS. Standardized extract, clinical-trial dose, daily use across the cycle. Patience is the protocol — give it three months.'
+  },
+  {
+    slug: 'the-house-bloom',
+    name: 'Bloom',
+    category: 'supplement',
+    sub: 'beauty',
+    price: 24,
+    runtime: 1,
+    image: 'products/Bloom.jpeg',
+    tag: 'GLA · Breast Comfort · Prostaglandin Balance',
+    tagline: 'Cold-pressed evening primrose for the symptom side.',
+    description: 'Cold-pressed evening primrose oil (Oenothera biennis), delivered as softgels and standardized for gamma-linolenic acid (GLA) content. GLA is an omega-6 fatty acid the body converts into anti-inflammatory series-1 prostaglandins via dihomo-gamma-linolenic acid. The strongest evidence base is for cyclical breast tenderness (mastalgia), where it has been used as a first-line option in clinical practice for decades.',
+    size: '60 softgels · 30 servings',
+    ingredients: [
+      { name: 'Evening primrose oil (Oenothera biennis) — 1,300mg', dose: 'Standardized to 10% GLA (130mg GLA)', what: 'Cold-pressed seed oil — the richest plant source of gamma-linolenic acid (GLA). The body converts GLA to dihomo-gamma-linolenic acid and then to anti-inflammatory series-1 prostaglandins, the mechanism behind effects on cyclical breast tenderness and skin barrier support.' },
+      { name: 'Mixed tocopherols (Vitamin E)', dose: '5 IU', what: 'Antioxidant blend that stabilizes the polyunsaturated GLA in the softgel and supports its oxidative stability through the shelf life.' },
+      { name: 'Vegetarian softgel', dose: '—', what: 'Plant-based softgel shell — no bovine or porcine gelatin.' }
+    ],
+    howToUse: 'Take 2 softgels daily with a meal that contains some fat — evening primrose oil is fat-soluble and absorption tracks meal composition. Daily through the cycle, not just symptom week.',
+    bestFor: ['breast-tenderness', 'pms-support', 'cycle-support', 'skin-barrier'],
+    studies: [
+      { actor: 'GLA + Cyclical Mastalgia', finding: 'Reviews of trials in cyclical mastalgia (premenstrual breast pain) describe evening primrose oil as a long-standing first-line option in clinical practice, with favorable tolerability versus pharmaceutical alternatives. Trial results on PMS more broadly are mixed, with the strongest signal concentrated on the breast-pain endpoint.', source: 'Cochrane Database of Systematic Reviews' },
+      { actor: 'GLA Pharmacology', finding: 'Pharmacology reviews of evening primrose oil note that GLA is metabolized to dihomo-gamma-linolenic acid and then to series-1 prostaglandins (notably PGE1), which have vasodilatory and anti-inflammatory actions. This pathway is the proposed mechanism for cyclical breast pain effects.', source: 'Prostaglandins, Leukotrienes and Essential Fatty Acids' },
+      { actor: 'GLA + Skin Barrier', finding: 'Trials in atopic and dry skin conditions document modest improvements in transepidermal water loss and barrier function with sustained GLA supplementation, consistent with GLA\'s role in ceramide and skin lipid synthesis.', source: 'International Journal of Cosmetic Science' }
+    ],
+    faq: [
+      { q: 'What\'s the evidence actually strongest for?', a: 'Cyclical breast tenderness (mastalgia). The PMS literature more broadly is mixed — some trials show benefit, others don\'t. If your dominant premenstrual symptom is breast pain or fullness, Bloom has the most direct evidence. For mood symptoms, Steady is the better fit.' },
+      { q: 'How long until I notice?', a: 'Most users report measurable change in breast tenderness within 2-3 cycles. GLA needs time to shift the prostaglandin balance — it\'s not an acute effect.' },
+      { q: 'Can I take it with omega-3 (Flow)?', a: 'Yes — they\'re complementary. Flow delivers EPA/DHA (omega-3); Bloom delivers GLA (omega-6). The series-1 and series-3 prostaglandin pathways both depend on adequate substrate. Many people benefit from stacking them.' },
+      { q: 'Will it cause weight gain?', a: 'No — 2 softgels deliver about 25 calories total. Concerns about evening primrose and weight come from old anecdotes, not the trial literature.' },
+      { q: 'Do I take it only on symptom days?', a: 'No — daily through the cycle. The benefit comes from sustained shifts in fatty acid pools and prostaglandin balance, which take weeks to build. Symptom-week-only dosing under-delivers.' }
+    ],
+    relatedSlugs: ['the-house-flow', 'the-house-rhythm', 'the-house-steady', 'the-house-calm'],
+    resultsTimeline: [
+      { week: 'Cycle 1', text: 'Minimal — GLA needs time to incorporate into membrane fatty acid pools.' },
+      { week: 'Cycle 2', text: 'Cyclical breast tenderness begins to soften for most users.' },
+      { week: 'Cycle 3', text: 'Measurable change on the breast-pain endpoint; skin barrier improvements may also show up.' },
+      { week: 'Cycle 6+', text: 'Sustained shift — the symptom most consistently improved is cyclical mastalgia.' }
+    ],
+    proTip: 'Take with the fattiest meal of your day — dinner usually wins. GLA absorption tracks meal fat content. Skipping the food cuts the dose effectively in half.',
+    freeFrom: ['Gluten-Free', 'Vegan', 'Non-GMO', '3rd-Party Tested', 'No Artificial Colors', 'No Fillers', 'Made in USA', 'Third-Party Tested'],
+    daniels_note: 'Evening primrose has the strongest evidence base of any supplement for cyclical breast tenderness — that\'s the symptom to expect change on. Cold-pressed, standardized for GLA, dosed at the clinical-trial level. Pair it with Flow for both sides of the essential fatty acid equation.'
   }
 ];
 
@@ -1859,8 +1995,8 @@ window.CONCERN_BUNDLES = [
     tab: 'goal',
     icon: 'K.',
     name: 'The Cycle Bundle',
-    blurb: "Symptom-side support across the month — KSM-66 ashwagandha at the cortisol-trial dose for stress modulation, magnesium glycinate at 400mg total for PMS-week tension and sleep, D3 5,000 IU for mood through the luteal dip, the multi-strain probiotic for the gut-hormone axis, and omega-3 for systemic inflammation. Built on the supplements with the strongest published evidence for PMS symptoms — magnesium, ashwagandha, vitamin D, and omega-3.",
-    slugs: ['the-house-tranquil', 'the-house-calm', 'the-house-sunshine', 'the-house-biome', 'the-house-flow']
+    blurb: "Symptom-side support across the month — KSM-66 ashwagandha at the cortisol-trial dose for stress modulation, magnesium glycinate at 400mg total for PMS-week tension and sleep, D3 5,000 IU for mood through the luteal dip, the multi-strain probiotic for the gut-hormone axis, omega-3 for systemic inflammation, plus the dedicated cycle-support trio: active B6 (P-5-P) for the luteal-phase mood dip, standardized Vitex for cycle regularity and PMS, and cold-pressed evening primrose oil (GLA) for cyclical breast tenderness. Built on the supplements with the strongest published evidence for PMS symptoms — magnesium, ashwagandha, vitamin D, omega-3, B6, chasteberry, and GLA.",
+    slugs: ['the-house-tranquil', 'the-house-calm', 'the-house-sunshine', 'the-house-biome', 'the-house-flow', 'the-house-steady', 'the-house-rhythm', 'the-house-bloom']
   },
   {
     id: 'metabolic',
