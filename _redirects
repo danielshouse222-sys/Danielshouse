@@ -1,0 +1,16 @@
+# Daniel's House — Cloudflare Pages redirects
+# Read natively by Cloudflare Pages. Same syntax as Netlify _redirects.
+# Format: <from> <to> <status>
+#   200 = rewrite (URL stays the same, different content served)
+#   301 = permanent redirect
+#   404 = not found fallback
+
+# Trailing-slash normalization
+/skincare/    /skincare.html       200
+/supplements/ /supplements.html    200
+
+# HTTPS is handled by Cloudflare's "Always Use HTTPS" setting at the
+# edge — no rewrite rule needed here.
+
+# 404 fallback (must be LAST — catches everything else)
+/*    /404.html    404
