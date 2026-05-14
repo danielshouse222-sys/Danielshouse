@@ -18,8 +18,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=202605140025">
-<link rel="stylesheet" href="css/shared.css?v=202605140025">
+<link rel="stylesheet" href="styles.css?v=202605140120">
+<link rel="stylesheet" href="css/shared.css?v=202605140120">
 <style>
   :root {
     --cream: #FAF6F0;
@@ -757,123 +757,8 @@
     </div>
   </section>
 
-  <!-- SKIN-TYPE FILTERS -->
-  <div class="skin-filters">
-    <style>
-      .skin-filters {
-        max-width: 1200px; margin: 60px auto 30px; padding: 0 40px;
-        text-align: center;
-      }
-      .skin-filters-label {
-        font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase;
-        color: var(--ink-soft); margin-bottom: 18px; font-weight: 500;
-      }
-      .skin-filter-chips {
-        display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;
-      }
-      .skin-chip {
-        padding: 9px 18px; border: 1px solid var(--rule);
-        background: var(--cream); color: var(--ink);
-        font-family: 'Poppins', sans-serif; font-size: 12px;
-        letter-spacing: 0.06em; font-weight: 500;
-        cursor: pointer; border-radius: 24px;
-        transition: all 0.2s;
-      }
-      .skin-chip:hover { border-color: var(--gold); color: var(--gold); }
-      .skin-chip.active { background: var(--ink); color: var(--cream); border-color: var(--ink); }
-      .skin-filter-clear {
-        margin-top: 14px; font-size: 11px; letter-spacing: 0.18em;
-        text-transform: uppercase; color: var(--gold); text-decoration: none;
-        border-bottom: 1px solid currentColor; padding-bottom: 1px;
-        display: none;
-      }
-      .skin-filter-clear.visible { display: inline-block; }
-      .row.filter-hidden { display: none !important; }
-      @media (max-width: 640px) {
-        .skin-filters { padding: 0 20px; margin: 40px auto 20px; }
-        .skin-chip { padding: 8px 14px; font-size: 11px; }
-      }
-    </style>
-    <div class="skin-filters-label">Filter by Skin Type or Concern</div>
-    <div class="skin-filter-chips" data-skin-filter-bar>
-      <button class="skin-chip" data-filter="pregnancy-safe">Pregnancy-Safe</button>
-      <button class="skin-chip" data-filter="sensitive">Sensitive</button>
-      <button class="skin-chip" data-filter="oily-acne">Oily / Acne-Prone</button>
-      <button class="skin-chip" data-filter="dry">Dry</button>
-      <button class="skin-chip" data-filter="mature">Mature</button>
-      <button class="skin-chip" data-filter="vegan">Vegan</button>
-      <button class="skin-chip" data-filter="fragrance-free">Fragrance-Free</button>
-    </div>
-    <a href="#" class="skin-filter-clear" data-skin-filter-clear>Clear filter ×</a>
-  </div>
-
-  <script>
-    (function() {
-      // Filter logic: each product row gets tagged via data-add-slug; we maintain a slug → tags map
-      // Tags are derived from product attributes (no-retinol = pregnancy-safe, low-active = sensitive, etc.)
-      const slugTags = {
-        // Pregnancy-safe: no retinol/retinoid, no salicylic acid, no high-% AHA
-        'the-house-wash': ['pregnancy-safe','sensitive','vegan','fragrance-free'],
-        'the-house-balance': ['oily-acne','mature'],
-        'the-house-boost': ['pregnancy-safe','mature','vegan'],
-        'the-house-plump': ['pregnancy-safe','sensitive','dry','vegan','fragrance-free'],
-        'the-house-defense': ['mature','pregnancy-safe'],
-        'the-house-soft': ['pregnancy-safe','sensitive','dry','vegan'],
-        'the-house-shield': ['pregnancy-safe','sensitive','vegan','fragrance-free'],
-        'the-house-clear': ['oily-acne'],
-        'the-house-bounce': ['mature'],
-        'the-house-firm': ['pregnancy-safe','mature','vegan'],
-        'the-house-mist': ['pregnancy-safe','sensitive','dry','vegan','fragrance-free'],
-        'the-house-awake': ['pregnancy-safe','mature','sensitive','vegan'],
-        'the-house-renewal': ['oily-acne','mature'],
-        'the-house-glow': ['pregnancy-safe','dry','vegan'],
-        'the-house-mask': ['oily-acne'],
-        'the-house-polish': ['pregnancy-safe','vegan']
-      };
-
-      const chips = document.querySelectorAll('[data-skin-filter-bar] .skin-chip');
-      const clearBtn = document.querySelector('[data-skin-filter-clear]');
-      let activeFilter = null;
-
-      function applyFilter() {
-        document.querySelectorAll('.row').forEach(row => {
-          const btn = row.querySelector('[data-add-slug]');
-          if (!btn) return;
-          const slug = btn.getAttribute('data-add-slug');
-          const tags = slugTags[slug] || [];
-          if (!activeFilter || tags.includes(activeFilter)) {
-            row.classList.remove('filter-hidden');
-          } else {
-            row.classList.add('filter-hidden');
-          }
-        });
-        clearBtn.classList.toggle('visible', !!activeFilter);
-      }
-
-      chips.forEach(chip => {
-        chip.addEventListener('click', () => {
-          const filter = chip.getAttribute('data-filter');
-          if (activeFilter === filter) {
-            activeFilter = null;
-            chip.classList.remove('active');
-          } else {
-            activeFilter = filter;
-            chips.forEach(c => c.classList.remove('active'));
-            chip.classList.add('active');
-          }
-          applyFilter();
-        });
-      });
-
-      clearBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        activeFilter = null;
-        chips.forEach(c => c.classList.remove('active'));
-        applyFilter();
-      });
-    })();
-  </script>
-  </div>
+  <!-- SKIN-TYPE FILTERS — moved into the site-wide Search & Filter modal.
+       Tap the search button (top-right) and use the "Skin Concern" chips. -->
 
   <!-- DAILY ROUTINE -->
   <div class="weekly" style="padding-bottom: 0; border-bottom: none;">
@@ -1442,8 +1327,8 @@
   </div>
 </div>
 
-<script src="data/products.js?v=202605140025"></script><script src="data/ingredients.js?v=202605140025"></script>
-<script src="js/auth.js?v=202605140025"></script><script src="js/shared.js?v=202605140025"></script><script src="data/faq-data.js?v=202605140025"></script><script src="js/chatbot.js?v=202605140025"></script>
+<script src="data/products.js?v=202605140120"></script><script src="data/ingredients.js?v=202605140120"></script>
+<script src="js/auth.js?v=202605140120"></script><script src="js/shared.js?v=202605140120"></script><script src="data/faq-data.js?v=202605140120"></script><script src="js/chatbot.js?v=202605140120"></script>
 <script>
 // Wire up Add to Cart buttons on this page
 document.addEventListener('DOMContentLoaded', () => {

@@ -1,0 +1,46 @@
+# Daniel's House — Netlify Cache Headers
+# Place this file at the root of your deploy.
+#
+# Strategy:
+#   HTML       → no-cache (always check for updates)
+#   Versioned  → cache 1 year (URL changes when ?v=... changes)
+#   Images     → cache 30 days (long, but reasonable)
+#   Fonts      → cache 1 year (rarely change)
+
+# All HTML — never cached
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+
+# Root index too
+/
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Static assets with ?v= query — cache forever (the URL changes on deploy)
+/*.css
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.js
+  Cache-Control: public, max-age=31536000, immutable
+
+/css/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/js/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/data/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Images — long cache, gets refreshed if filename changes
+/images/*
+  Cache-Control: public, max-age=2592000
+
+/products/*
+  Cache-Control: public, max-age=2592000
+
+# Fonts — cache forever
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable

@@ -18,8 +18,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=202605140025">
-<link rel="stylesheet" href="css/shared.css?v=202605140025">
+<link rel="stylesheet" href="styles.css?v=202605140120">
+<link rel="stylesheet" href="css/shared.css?v=202605140120">
 <style>
   body { background: var(--cream); color: var(--ink); font-family: 'Poppins', sans-serif; margin: 0; }
   a { color: inherit; }
@@ -1247,17 +1247,6 @@
   </div>
 </section>
 
-<!-- QUIZ CALLOUT -->
-<section class="quiz-callout">
-  <div class="quiz-callout-inner">
-    <div class="quiz-flourish"></div>
-    <div class="sec-eyebrow">Find Your Routine</div>
-    <h2 class="sec-title">Don't know <em>where to start?</em></h2>
-    <p class="sec-blurb" style="margin-bottom: 32px;">Seven questions, two minutes, one personalized routine. We'll match the products and routine that fit how you actually live.</p>
-    <a href="quiz.html" class="hero-btn primary">Take the 2-Minute Quiz →</a>
-  </div>
-</section>
-
 <!-- FOUNDER -->
 <section class="sec">
   <div class="founder">
@@ -1281,9 +1270,13 @@
 <!-- THE PRICE QUESTION -->
 <section class="sec" style="background: var(--cream-warm); padding-top: clamp(80px, 9vw, 110px); padding-bottom: clamp(80px, 9vw, 110px);">
   <style>
+    .price-grid { max-width: 1200px; margin: 60px auto 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; padding: 0 40px; box-sizing: border-box; }
+    .price-quote { max-width: 720px; margin: 48px auto 0; padding: 0 40px; text-align: center; box-sizing: border-box; }
     @media (max-width: 768px) {
       .price-card { text-align: center; }
       .price-card .price-card-eyebrow { display: block; }
+      .price-grid { padding: 0 20px; margin-top: 40px; gap: 20px; grid-template-columns: 1fr; max-width: 480px; }
+      .price-quote { padding: 0 20px; margin-top: 36px; }
     }
   </style>
   <div class="sec-header">
@@ -1292,7 +1285,7 @@
     <p class="sec-blurb">Premium pricing should buy premium formulations — not premium marketing. Here's what the prices actually fund.</p>
   </div>
 
-  <div class="price-grid" style="max-width: 1200px; margin: 60px auto 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; padding: 0 40px;">
+  <div class="price-grid">
     <div class="price-card" style="background: var(--cream); padding: 36px 32px; border-top: 3px solid var(--sage);">
       <div class="price-card-eyebrow" style="font-family: 'Poppins', sans-serif; font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--sage); font-weight: 600; margin-bottom: 14px;">01 · The Formulas</div>
       <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 28px; line-height: 1.15; color: var(--ink); margin-bottom: 16px; font-weight: 500;">Benchmark architectures, not bargain copies.</h3>
@@ -1308,11 +1301,11 @@
     <div class="price-card" style="background: var(--cream); padding: 36px 32px; border-top: 3px solid var(--sage);">
       <div class="price-card-eyebrow" style="font-family: 'Poppins', sans-serif; font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--sage); font-weight: 600; margin-bottom: 14px;">03 · The Manufacturing</div>
       <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 28px; line-height: 1.15; color: var(--ink); margin-bottom: 16px; font-weight: 500;">The facility tier you'd expect from luxury brands.</h3>
-      <p style="font-size: 15px; line-height: 1.65; color: var(--ink-soft);">Skincare is manufactured at FDA-registered, GMP-certified cosmetic CMs in Florida and Texas — the same caliber of facility that produces formulas for the premium DTC brands stocked at Sephora. Supplements are produced at an FDA-registered, cGMP-certified facility in Florida, with a documented NSF/ANSI 455-2 graduation path planned for hero SKUs in Year 2. The factories are the same caliber the premium brands use. The markup we're not charging is what you don't have to pay.</p>
+      <p style="font-size: 15px; line-height: 1.65; color: var(--ink-soft);">Skincare is manufactured at FDA-registered, GMP-certified cosmetic CMs in Florida and Texas — the same caliber of contract manufacturer that supplies the prestige skincare and clean-beauty brands you'd find on the shelves of America's top specialty beauty retailers. Supplements are produced at an FDA-registered, cGMP-certified facility in Florida whose other clients sit on the shelves of the country's leading natural-grocery chains, with a documented NSF/ANSI 455-2 graduation path planned for hero SKUs in Year 2. Same facilities, same standards, same third-party batch testing — without the retail markup that shelf placement requires. The markup we're not charging is what you don't have to pay.</p>
     </div>
   </div>
 
-  <div style="max-width: 720px; margin: 48px auto 0; padding: 0 40px; text-align: center;">
+  <div class="price-quote">
     <p style="font-family: 'Cormorant Garamond', serif; font-size: 22px; line-height: 1.5; color: var(--ink); font-style: italic;">"You're paying for what's in the bottle — not what's on the billboard."</p>
     <p style="font-family: 'Poppins', sans-serif; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-soft); margin-top: 12px;">— Daniel, Founder</p>
   </div>
@@ -1461,7 +1454,7 @@
   </div>
 </div>
 
-<script src="data/products.js?v=202605140025"></script><script src="data/ingredients.js?v=202605140025"></script>
-<script src="js/auth.js?v=202605140025"></script><script src="js/shared.js?v=202605140025"></script><script src="data/faq-data.js?v=202605140025"></script><script src="js/chatbot.js?v=202605140025"></script>
+<script src="data/products.js?v=202605140120"></script><script src="data/ingredients.js?v=202605140120"></script>
+<script src="js/auth.js?v=202605140120"></script><script src="js/shared.js?v=202605140120"></script><script src="data/faq-data.js?v=202605140120"></script><script src="js/chatbot.js?v=202605140120"></script>
 </body>
 </html>
