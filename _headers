@@ -31,8 +31,14 @@
 /js/*
   Cache-Control: public, max-age=31536000, immutable
 
+# Data files (products, bundles, FAQ, ingredients) — always revalidate.
+# These hold content that changes between deploys. Browsers and CDNs MAY
+# cache them, but MUST revalidate with the origin before reuse. Returns
+# 304 Not Modified on no-change (tiny response), 200 with fresh body on
+# change. Eliminates the "I updated content but it's not showing" problem
+# at the cost of a small revalidation round-trip per page load.
 /data/*
-  Cache-Control: public, max-age=31536000, immutable
+  Cache-Control: public, no-cache, must-revalidate
 
 # Images — long cache, gets refreshed if filename changes
 /images/*

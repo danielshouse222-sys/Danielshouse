@@ -19,6 +19,13 @@ server {
         add_header Cache-Control "public, max-age=0, must-revalidate";
     }
 
+    # ─── Data files (products, bundles, FAQ, ingredients) — always revalidate ───
+    # These hold content that changes between deploys. The `^~` prefix gives
+    # this prefix match higher priority than the regex .js match below.
+    location ^~ /data/ {
+        add_header Cache-Control "public, no-cache, must-revalidate";
+    }
+
     # ─── JS and CSS: cache forever (URL changes on deploy) ───
     location ~* \.(css|js)$ {
         add_header Cache-Control "public, max-age=31536000, immutable";
