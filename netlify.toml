@@ -1,0 +1,116 @@
+# Daniel's House — Netlify Configuration
+# ─────────────────────────────────────────────────────────────────
+# This file does three things:
+#   1. Runs bump-version.sh automatically on every Netlify build
+#      → cache stamps refresh on every push, no manual step needed
+#   2. Sets cache headers (HTML never cached, assets cached 1 year)
+#   3. Configures deploy previews for branches (optional)
+
+[build]
+  # The bump-version.sh runs first, then publish is the site root
+  command = "bash bump-version.sh"
+  publish = "."
+
+[build.environment]
+  # Force a Bash 5 environment with timezone for consistent timestamps
+  TZ = "America/New_York"
+
+# ─── Cache Headers ────────────────────────────────────────────────
+# HTML files: never cached (always fetch fresh)
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Root index
+[[headers]]
+  for = "/"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# CSS and JS with ?v=... query: cache forever (URL changes on deploy)
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/data/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Images: 30 days
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+
+[[headers]]
+  for = "/products/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+
+# Fonts: 1 year
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# ─── Deploy Contexts ───────────────────────────────────────────────
+# Production gets full SEO; branch previews get noindex so Google doesn't
+# index your work-in-progress deploys.
+
+[context.production]
+  [context.production.environment]
+    INDEXABLE = "true"
+
+[context.deploy-preview]
+  [context.deploy-preview.environment]
+    INDEXABLE = "false"
+
+[context.branch-deploy]
+  [context.branch-deploy.environment]
+    INDEXABLE = "false"
+
+# ─── Redirects ────────────────────────────────────────────────────
+# Force HTTPS (Netlify does this by default but explicit is good)
+[[redirects]]
+  from = "http://danielshousewellness.com/*"
+  to   = "https://danielshousewellness.com/:splat"
+  status = 301
+  force = true
+
+# Common trailing-slash normalization
+[[redirects]]
+  from = "/skincare/"
+  to   = "/skincare.html"
+  status = 200
+
+[[redirects]]
+  from = "/supplements/"
+  to   = "/supplements.html"
+  status = 200
+
+# 404 fallback (Netlify auto-handles this if 404.html exists)
+[[redirects]]
+  from = "/*"
+  to   = "/404.html"
+  status = 404
