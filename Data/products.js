@@ -1858,6 +1858,39 @@ window.CURATED_BUNDLES = [
     name: "The Ariana's Routine",
     discount: 0.15,
     slugs: ['the-house-wash','the-house-boost','the-house-defense','the-house-renewal','the-house-awake','the-house-soft','the-house-multi','the-house-radiance','the-house-collagen']
+  },
+  // ─── GIFT SETS ─────────────────────────────────────────────────────────
+  // Curated gift packages — same data shape as routines but flagged with
+  // kind: 'gift' so bundles.html renders them with a "Gift Set" pill and a
+  // gift-ready italicization. They are also surfaced on gifts.html and the
+  // gift-quiz result; the gifts.html cards and gift-quiz catalog reference
+  // these IDs so add-to-cart goes through the standard bundle pricing path.
+  {
+    id: 'gift-newcomer',
+    name: 'The Newcomer Set',
+    kind: 'gift',
+    discount: 0.15,
+    blurb: "For someone curious about premium skincare but new to the category. Four AM staples in one gift-ready box.",
+    slugs: ['the-house-wash','the-house-defense','the-house-soft','the-house-shield']
+  },
+  {
+    id: 'gift-skin-set',
+    name: 'The Skin Set',
+    kind: 'gift',
+    discount: 0.15,
+    blurb: "The full skincare ritual, gift-ready — AM and PM, every step. For the friend who takes their skin seriously, or wants to.",
+    slugs: [
+      'the-house-wash','the-house-balance','the-house-boost','the-house-plump','the-house-defense','the-house-soft','the-house-shield',
+      'the-house-bounce','the-house-firm','the-house-mist','the-house-awake','the-house-glow'
+    ]
+  },
+  {
+    id: 'gift-wellness',
+    name: 'The Wellness Set',
+    kind: 'gift',
+    discount: 0.15,
+    blurb: "The supplement foundation as a gift — multi, D3+K2, omega-3, probiotic, and Calm for the evening wind-down.",
+    slugs: ['the-house-multi','the-house-sunshine','the-house-flow','the-house-biome','the-house-calm']
   }
 ];
 

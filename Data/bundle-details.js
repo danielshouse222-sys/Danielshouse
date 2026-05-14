@@ -171,6 +171,58 @@ window.BUNDLE_DETAILS = {
         { q: 'Can I add to this later?', a: "Yes — easily. Start with Ariana's, then add Tranquil for stress, Calm for sleep, or NAD+ for the longevity layer as desired. Build at your own pace." },
         { q: 'When should I take the supplements?', a: 'All three (Multi, Radiance, Collagen) in the morning with breakfast. Simplest stack to remember: coffee, supplements, go.' }
       ]
+    },
+    // ─── GIFT SETS ─────────────────────────────────────────────────────
+    'gift-newcomer': {
+      eyebrow: 'Gift Set · Curious Newcomer',
+      description: "Four AM staples for someone curious about premium skincare but new to the category. Wash, the CE Ferulic antioxidant Defense, the advanced HA moisturizer Soft, and broad-spectrum mineral Shield. The cleanest entry into a real morning routine — gift-boxed with a hand-written card.",
+      whyThis: "Most starter skincare gifts are either too expensive (a full retinol-grade ritual the recipient won't use) or too thin (one moisturizer in a pretty box). This four-product gift hits the actual minimum for a real morning routine: clean the skin, defend it from oxidative stress, moisturize it, and shield it from UV. Wash uses rose-hip-seed oil and Irish moss to cleanse without stripping — gentle enough to encourage daily use. Defense is the CE Ferulic antioxidant architecture (L-ascorbic acid + ferulic acid + niacinamide + vitamin E) — the most-validated topical antioxidant formula in dermatology. Soft is the advanced multi-weight hyaluronic acid moisturizer that seals everything. Shield is the broad-spectrum mineral SPF 30 — the most important step in any anti-aging routine, full stop. Four steps, fifteen minutes, the foundation of every routine that actually works.",
+      timeline: [
+        { week: 'Week 1', text: 'Skin feels cleaner and more balanced. Less midday tightness; better foundation glide.' },
+        { week: 'Week 4', text: 'Visible brightness improvement from the daily antioxidant + SPF stack. Pores look refined.' },
+        { week: 'Week 8', text: 'Sustained even tone; skin reflects light more evenly. Recipient gets used to the ritual.' },
+        { week: 'Week 12+', text: "Becomes the recipient's daily AM baseline — easy to keep going, hard to give up." }
+      ],
+      faq: [
+        { q: 'What order do they use these?', a: 'In order: Wash (cleanse), Defense (antioxidant serum), Soft (moisturizer), Shield (SPF — always last). Two minutes morning, total.' },
+        { q: 'Is it appropriate for any skin type?', a: 'Yes — each product is formulated for daily use across skin types. Wash is gentle (no sulfates), Defense layers on any skin without irritation, Soft is non-comedogenic, Shield is mineral SPF (non-nano zinc + titanium) which works for sensitive skin too.' },
+        { q: 'What if they already have a routine?', a: "Then they'll have better versions of what they own. The CE Ferulic in Defense and the mineral SPF in Shield are both significantly upgraded vs drugstore equivalents. If they don't switch, the unused products can be returned within 30 days." },
+        { q: "How is this packaged?", a: "Gift-boxed in our cream-and-gold gift box, ribbon-tied, with a hand-written card included. No prices on the packing slip when the 'this is a gift' box is checked at checkout." }
+      ]
+    },
+    'gift-skin-set': {
+      eyebrow: 'Gift Set · Full Skincare Ritual',
+      description: "Twelve products — the complete AM and PM skincare ritual, gift-ready. For the friend who takes their skin seriously, or wants to. Cleanser through SPF in the morning, retinol through overnight oil at night.",
+      whyThis: "The biggest skincare gesture short of the Ultimate. The full ritual — every step the line offers across AM and PM, in one gift box. AM is the same seven-step morning routine Daniel runs: Wash, Balance (3.5% glycolic), Boost (bio-peptide growth factor), Plump (HA serum), Defense (CE Ferulic), Soft (HA moisturizer), Shield (mineral SPF). PM is the five-step evening complement: Bounce (5-active retinol), Firm (advanced peptide complex), Mist (HA gel-cream), Awake (triple-peptide eye), Glow (squalane + HA oil). The two routines compound — what the morning protects, the evening repairs. Twelve products at clinical doses, the same formulas used by people who pay $400+ for the equivalents at Sephora.",
+      timeline: [
+        { week: 'Week 1', text: 'Initial acclimation to retinol. Skin feels deeply hydrated from the AM serum stack and PM Mist + Glow.' },
+        { week: 'Week 4', text: 'Visible brightness; texture noticeably smoother. Bounce starts showing on fine lines around the eyes.' },
+        { week: 'Week 8', text: 'Tone evens out across the face. Recipient is asked what their secret is.' },
+        { week: 'Week 12+', text: 'Visible anti-aging effect — skin density, elasticity, and clarity at a measurably higher baseline.' }
+      ],
+      faq: [
+        { q: 'Is it too much for someone who is new to skincare?', a: "It's a lot of bottles, but each product is straightforward to use. The included card explains the order. If the recipient prefers, they can stick to AM only and bank the PM for later — the products keep for 18+ months sealed." },
+        { q: 'Order to use, AM and PM?', a: 'AM: Wash → Balance → Boost → Plump → Defense → Soft → Shield. PM: Wash (reuse) → Bounce OR Firm (alternate nights) → Mist → Awake → Glow.' },
+        { q: 'How does this compare to the Daniel\'s Daily Skincare routine?', a: 'Same building blocks, gift-packaged. Daniel\'s Daily includes the weekly reset products (Clear, Renewal, Mask, Polish) — this gift set focuses on the daily AM + PM rituals. For someone new to the line, this is the cleaner introduction.' },
+        { q: "How is this packaged?", a: "Gift-boxed in our cream-and-gold gift box, ribbon-tied, with a hand-written card explaining the routine. No prices on the packing slip when the 'this is a gift' box is checked." }
+      ]
+    },
+    'gift-wellness': {
+      eyebrow: 'Gift Set · Daily Supplement Foundation',
+      description: "Five supplements — the daily wellness foundation as a gift. Multivitamin, vitamin D3 + K2, omega-3, multi-strain probiotic, and magnesium glycinate for evening wind-down. The supplement set Daniel built for himself.",
+      whyThis: "If they take nothing else, take these five. Multi covers the daily B-complex, iron, zinc, and trace minerals most modern diets miss. Sunshine delivers 5,000 IU D3 with K2 — addressing one of the most common nutrient deficiencies in adults, with K2 to direct calcium where it belongs (bones, not arteries). Flow delivers EPA/DHA omega-3 at the clinically-validated 2,000mg dose for cardiovascular and inflammatory support. Biome is a multi-strain probiotic with enteric-coated delivery for stomach-acid survival. Calm provides chelated magnesium glycinate (the bioavailable form) for nervous-system support and evening wind-down. This is the supplement foundation — every other stack builds on having this floor in place.",
+      timeline: [
+        { week: 'Week 1', text: 'Digestion normalizes from the probiotic; evening wind-down feels easier from magnesium.' },
+        { week: 'Week 2-4', text: "Vitamin D and omega-3 levels begin to build (full saturation 4-6 weeks). Sleep quality noticeably improves." },
+        { week: 'Week 8', text: "Sustained energy through the day; recipient stops feeling 'low' in the afternoon." },
+        { week: 'Week 12+', text: "Becomes the daily baseline. Recipient feels measurably different on days they skip vs days they don't." }
+      ],
+      faq: [
+        { q: 'When should they take these?', a: 'All five with breakfast except Calm (which goes 30-60 minutes before bed with water). The Multi + Sunshine + Flow + Biome stack at breakfast is easy to remember: coffee, supplements, go.' },
+        { q: 'What if they already take a multivitamin?', a: "Our Multi is significantly upgraded from typical drugstore versions (methylated B12 and folate, chelated minerals, no synthetic dyes). Most users find an immediate difference. If they prefer their existing one, the unused bottle returns within 30 days." },
+        { q: 'Are these third-party tested?', a: 'Yes — every batch is tested for purity and potency in an FDA-registered facility. Heavy metals, microbials, label-claim verification. Certificates of analysis available on request.' },
+        { q: "How is this packaged?", a: "Gift-boxed in our cream-and-gold gift box, ribbon-tied, with a hand-written card explaining the supplement timing. No prices on the packing slip when the 'this is a gift' box is checked." }
+      ]
     }
   },
 
