@@ -376,6 +376,37 @@
     // Mark this CTA wired so we don't double-process
     wiredButtons.add(cta);
 
+    // Detail-page mode — when set on <body data-bundle-detail-page="1">, render
+    // the expansion ALWAYS-OPEN with no toggle button. Used by routine.html so
+    // every bundle's individual page shows the full View Details content inline
+    // by default, rather than hiding it behind a click. The expansion lands in
+    // a dedicated container (#bundle-expansion-target) so it sits below the
+    // bundle hero and above any related-bundles section.
+    const isDetailPage = !!(document.body && document.body.dataset.bundleDetailPage);
+    if (isDetailPage) {
+      const wrapper = document.createElement('div');
+      wrapper.innerHTML = buildExpansion(bundle, details);
+      const expansion = wrapper.firstElementChild;
+      // Force always-open state — no toggle to flip it closed
+      expansion.classList.add('is-open');
+      expansion.classList.add('is-detail-page-expansion');
+
+      // Land it in the dedicated target if present, else after the CTA's containing section
+      const target = document.getElementById('bundle-expansion-target');
+      if (target) {
+        target.appendChild(expansion);
+      } else {
+        const heroSection = cta.closest('section') || cta.parentNode;
+        heroSection.parentNode.insertBefore(expansion, heroSection.nextSibling);
+      }
+
+      // Wire only the per-section collapsibles + FAQ items + add-to-cart row buttons
+      wireFaqItems(expansion);
+      wireCollapsibleSections(expansion);
+      wireAddRowButtons(expansion);
+      return;
+    }
+
     // Build toggle button
     const toggle = document.createElement('button');
     toggle.type = 'button';
