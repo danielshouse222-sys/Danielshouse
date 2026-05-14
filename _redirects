@@ -1,16 +1,12 @@
-# Daniel's House — Cloudflare Pages redirects
-# Read natively by Cloudflare Pages. Same syntax as Netlify _redirects.
+# Daniel's House — Cloudflare Workers Static Assets redirects
 # Format: <from> <to> <status>
-#   200 = rewrite (URL stays the same, different content served)
+#   200 = rewrite (URL stays the same, different file served)
 #   301 = permanent redirect
-#   404 = not found fallback
+#
+# Cloudflare does NOT accept 404 here. The 404 fallback for missing
+# routes is handled by wrangler.jsonc's `not_found_handling: "404-page"`
+# setting, which auto-serves /404.html with a 404 status.
 
 # Trailing-slash normalization
 /skincare/    /skincare.html       200
 /supplements/ /supplements.html    200
-
-# HTTPS is handled by Cloudflare's "Always Use HTTPS" setting at the
-# edge — no rewrite rule needed here.
-
-# 404 fallback (must be LAST — catches everything else)
-/*    /404.html    404
