@@ -110,11 +110,11 @@ window.PRODUCTS = [
     description: 'A peptide-driven renewal serum built around five biomimetic peptides — sh-Oligopeptide-1, sh-Oligopeptide-2, sh-Polypeptide-1, sh-Polypeptide-9, and sh-Polypeptide-11 — that mimic the growth factor signals skin uses to repair and rebuild collagen. Layered with hydration boosters that keep the formula light and absorbable. Where most peptide serums use one or two peptides at marketing-friendly doses, this stacks five at clinical concentrations. The result: visibly firmer, smoother, more resilient skin over weeks of consistent use.',
     size: '1 fl oz / 30 ml',
     ingredients: [
-      { name: 'sh-Oligopeptide-1 (EGF mimic)', what: 'Mimics epidermal growth factor signaling to support cellular renewal and barrier strengthening at the surface.' },
-      { name: 'sh-Oligopeptide-2 (IGF mimic)', what: 'Mimics insulin-like growth factor signaling, supporting collagen and elastin production in the deeper dermal layer.' },
-      { name: 'sh-Polypeptide-1 (TGF-beta mimic)', what: 'Activates fibroblast pathways involved in tissue repair and skin resilience.' },
-      { name: 'sh-Polypeptide-9 (VEGF mimic)', what: 'Supports microcirculation and oxygen delivery into the skin — a less-discussed but important factor in visible glow.' },
-      { name: 'sh-Polypeptide-11 (FGF mimic)', what: 'Fibroblast growth factor mimic — directly signals collagen synthesis pathways.' },
+      { name: 'sh-Oligopeptide-1 (EGF mimic) — 0.5%', what: 'Mimics epidermal growth factor signaling to support cellular renewal and barrier strengthening at the surface.' },
+      { name: 'sh-Oligopeptide-2 (IGF mimic) — 0.5%', what: 'Mimics insulin-like growth factor signaling, supporting collagen and elastin production in the deeper dermal layer.' },
+      { name: 'sh-Polypeptide-1 (TGF-beta mimic) — 0.5%', what: 'Activates fibroblast pathways involved in tissue repair and skin resilience.' },
+      { name: 'sh-Polypeptide-9 (VEGF mimic) — 0.3%', what: 'Supports microcirculation and oxygen delivery into the skin — a less-discussed but important factor in visible glow.' },
+      { name: 'sh-Polypeptide-11 (FGF mimic) — 0.3%', what: 'Fibroblast growth factor mimic — directly signals collagen synthesis pathways.' },
       { name: 'Mist boosters', what: 'Light humectants that keep the serum absorbable and prevent the post-peptide tight feeling.' }
     ],
     howToUse: 'Morning or evening, after Balance and before heavier creams: Apply 2-3 drops to clean skin. Press in gently with fingertips. Wait 30 seconds before next step. Pairs well with Defense (AM), Bounce (PM), and Firm.',
@@ -156,7 +156,7 @@ window.PRODUCTS = [
     description: 'A minimalist hyaluronic acid serum — water, sodium hyaluronate, and a clean preservative. Nothing else. The pure form of HA holds up to 1,000 times its weight in water and tailors its absorption to your skin\'s current hydration needs, drop by drop. The simplicity is the point: it layers cleanly under every other product in the line. Apply to damp skin for maximum binding.',
     size: '1 fl oz / 30 ml',
     ingredients: [
-      { name: 'Sodium hyaluronate', what: 'The pure, water-soluble form of hyaluronic acid. Holds up to 1,000 times its weight in water and continuously draws moisture to the skin\'s surface throughout the day.' }
+      { name: 'Sodium hyaluronate — 1%', what: 'The pure, water-soluble form of hyaluronic acid. Holds up to 1,000 times its weight in water and continuously draws moisture to the skin\'s surface throughout the day.' }
     ],
     howToUse: 'Morning and night, on damp skin: Apply 4-5 drops. Pat into face, neck, and décolletage while skin is still wet. Lock in immediately with moisturizer or face oil — never let HA dry on its own.',
     bestFor: ['hydration', 'dryness', 'plumping', 'all-skin-types'],
@@ -197,11 +197,11 @@ window.PRODUCTS = [
     description: 'A potent multi-vitamin antioxidant serum that builds the skin\'s defense against environmental damage from every angle. Pure L-ascorbic acid (vitamin C) at clinically effective concentrations is paired with niacinamide (B3), panthenol (B5), tocopherol (vitamin E), and ferulic acid — the antioxidant that amplifies the effectiveness of C and E by up to 4x. Sodium hyaluronate and sodium PCA add deep hydration. This is the morning antioxidant step that compounds in your favor over years.',
     size: '1 fl oz / 30 ml',
     ingredients: [
-      { name: 'L-Ascorbic Acid (Vitamin C)', what: 'The most-efficacious form of vitamin C. Brightens, supports collagen, and defends against oxidative stress at the cellular level.' },
-      { name: 'Ferulic Acid', what: 'Plant-derived polyphenolic antioxidant that amplifies the photo-protective effect of vitamins C and E by up to 4-fold. The key ingredient that makes the formula greater than the sum of its parts.' },
-      { name: 'Niacinamide (Vitamin B3)', what: 'Refines pore appearance, strengthens the moisture barrier, evens tone. One of the most-studied actives in dermatology.' },
-      { name: 'Panthenol (Vitamin B5)', what: 'Conditioning provitamin that softens, calms, and supports barrier function.' },
-      { name: 'Tocopherol (Vitamin E)', what: 'Lipid-soluble antioxidant that prevents transepidermal water loss and works synergistically with vitamin C.' },
+      { name: 'L-Ascorbic Acid (Vitamin C) — 15%', what: 'The most-efficacious form of vitamin C. Brightens, supports collagen, and defends against oxidative stress at the cellular level.' },
+      { name: 'Ferulic Acid — 0.5%', what: 'Plant-derived polyphenolic antioxidant that amplifies the photo-protective effect of vitamins C and E by up to 4-fold. The key ingredient that makes the formula greater than the sum of its parts.' },
+      { name: 'Niacinamide (Vitamin B3) — 5%', what: 'Refines pore appearance, strengthens the moisture barrier, evens tone. One of the most-studied actives in dermatology.' },
+      { name: 'Panthenol (Vitamin B5) — 1%', what: 'Conditioning provitamin that softens, calms, and supports barrier function.' },
+      { name: 'Tocopherol (Vitamin E) — 1%', what: 'Lipid-soluble antioxidant that prevents transepidermal water loss and works synergistically with vitamin C.' },
       { name: 'Sodium Hyaluronate + Sodium PCA', what: 'Hydrating humectants that prevent dryness from the active blend and lock moisture into the skin.' }
     ],
     howToUse: 'Morning, after cleansing and Balance: Apply 3-5 drops by pressing onto face and neck with fingertips. Wait 30 seconds. Follow with moisturizer and SPF. AM use only.',
@@ -244,9 +244,9 @@ window.PRODUCTS = [
     description: 'An advanced daily hyaluronic moisturizing cream that delivers multi-weight hydration in a lightweight, fast-absorbing texture. Multiple molecular weights of hyaluronic acid hydrate at different layers of the skin — high-molecular-weight HA forms a moisture-locking film on the surface while low-molecular-weight HA penetrates deeper for plumping from within. Niacinamide and barrier-supportive emollients round out the formula for everyday comfort and resilience. Lightweight enough for AM under SPF; nourishing enough for PM as the final hydrating layer.',
     size: '1.7 fl oz / 50 ml',
     ingredients: [
-      { name: 'Multi-weight Hyaluronic Acid', what: 'Multiple molecular weights of HA hydrate different layers of the skin simultaneously — surface, mid-layer, and deeper for plumping from within.' },
+      { name: 'Multi-weight Hyaluronic Acid — 1%', what: 'Multiple molecular weights of HA hydrate different layers of the skin simultaneously — surface, mid-layer, and deeper for plumping from within.' },
       { name: 'Sodium hyaluronate', what: 'Humectant that holds water in the upper layers of skin throughout the day.' },
-      { name: 'Niacinamide (Vitamin B3)', what: 'Multi-function vitamin B derivative that refines blemish appearance, balances sebum, and softens visible signs of aging.' },
+      { name: 'Niacinamide (Vitamin B3) — 4%', what: 'Multi-function vitamin B derivative that refines blemish appearance, balances sebum, and softens visible signs of aging.' },
       { name: 'Soothing barrier-support emollients', what: 'Lipid-class ingredients that reinforce the skin barrier and reduce trans-epidermal water loss.' },
       { name: 'Glycerin', what: 'Time-tested humectant that supports moisture retention and skin softness.' }
     ],
@@ -291,9 +291,9 @@ window.PRODUCTS = [
     ingredients: [
       { name: 'Zinc Oxide (9.5%, non-nano)', what: 'Broad-spectrum mineral UV filter. Especially strong against UVA — the longer-wavelength rays primarily responsible for visible photoaging. The single most important active in a sunscreen for anti-aging purposes.' },
       { name: 'Titanium Dioxide (4.7%, non-nano)', what: 'Mineral UV filter that physically reflects UVB rays. Pairs with zinc oxide to deliver complete broad-spectrum coverage.' },
-      { name: 'Coffee Fruit Extract (Arabica)', what: 'A highly potent natural antioxidant from the coffee fruit. Adds free-radical defense on top of UV blocking — sun damage isn\'t just UV, it\'s the oxidative cascade UV triggers.' },
-      { name: 'Ferulic Acid', what: 'Plant-derived antioxidant that amplifies the photoprotective effect of the formula — the same ingredient that makes Defense the CE Ferulic-tier serum it is.' },
-      { name: 'Niacinamide', what: 'Vitamin B3. Reduces UV-induced redness and supports the barrier as the sunscreen sits on skin throughout the day.' }
+      { name: 'Coffee Fruit Extract (Arabica) — 1%', what: 'A highly potent natural antioxidant from the coffee fruit. Adds free-radical defense on top of UV blocking — sun damage isn\'t just UV, it\'s the oxidative cascade UV triggers.' },
+      { name: 'Ferulic Acid — 0.3%', what: 'Plant-derived antioxidant that amplifies the photoprotective effect of the formula — the same ingredient that makes Defense the CE Ferulic-tier serum it is.' },
+      { name: 'Niacinamide — 4%', what: 'Vitamin B3. Reduces UV-induced redness and supports the barrier as the sunscreen sits on skin throughout the day.' }
     ],
     howToUse: 'Morning, as the final step of your routine: Apply liberally and evenly to all skin exposed to the sun — face, neck, ears, décolletage, and the back of your hands. Two finger-lengths of product for face and neck is the right amount (most people use too little). Apply 15 minutes before sun exposure. Reapply every 2 hours when outside, immediately after toweling, and after 40 minutes of swimming or sweating.',
     bestFor: ['UV-defense', 'anti-aging', 'sensitive-skin', 'daily-protection', 'all-skin-types'],
@@ -384,7 +384,7 @@ window.PRODUCTS = [
       { name: 'Retinol (0.05%)', what: 'Vitamin A active that accelerates cell turnover and signals collagen synthesis. Decades of clinical evidence as the gold-standard topical for visible anti-aging.' },
       { name: 'Sodium Ascorbyl Phosphate (0.5%)', what: 'Stable Vitamin C derivative that adds antioxidant defense and amplifies retinol\'s brightening and tone-evening effects.' },
       { name: 'Sodium Hyaluronate (0.1%)', what: 'Pure hyaluronic acid that holds water in the upper skin layers. Buffers retinol\'s drying effect and adds visible plumping.' },
-      { name: 'Palmitoyl Tripeptide-1 + Palmitoyl Tetrapeptide-7 (Matrixyl)', what: 'Matrixyl-family signal peptides that activate collagen synthesis — work synergistically with retinol\'s collagen-building mechanism.' },
+      { name: 'Palmitoyl Tripeptide-1 + Palmitoyl Tetrapeptide-7 (Matrixyl 3000) — 4%', what: 'Matrixyl-family signal peptides that activate collagen synthesis — work synergistically with retinol\'s collagen-building mechanism.' },
       { name: 'Skin-Tightening Trio (Watermelon, Lentil, Apple Fruit Extracts)', what: 'A botanical complex that supports surface firmness and skin elasticity through plant-derived peptides and antioxidants.' },
       { name: 'Sodium PCA', what: 'Skin-identical humectant that holds moisture in the upper layers.' },
       { name: 'Phospholipids', what: 'Lipid carriers that enhance penetration of the active ingredients into the upper epidermis.' },
@@ -429,9 +429,9 @@ window.PRODUCTS = [
     description: 'A peptide complex serum that targets the foundational pathways of skin firmness. Where vitamin C and acids work on the surface, peptides signal into the deeper structural layers — collagen and elastin synthesis. Layered with hyaluronic acid for plumping hydration and seaweed extract for marine-derived minerals and antioxidants. Use evening for the cellular work; some skin types also benefit from twice-daily use. Hydrating, fast-absorbing, and built to be the foundation of an anti-aging routine.',
     size: '1 fl oz / 30 ml',
     ingredients: [
-      { name: 'Advanced peptide complex', what: 'A blend of peptides that target multiple pathways involved in collagen and elastin support — signaling structural renewal in the dermal layer.' },
-      { name: 'Sodium Hyaluronate', what: 'Multi-weight hyaluronic acid; plumps and hydrates while the peptides work on the foundation.' },
-      { name: 'Chondrus Crispus (Seaweed) Extract', what: 'Marine-derived antioxidants and minerals that nourish and strengthen the skin\'s natural defense. Forms a lightweight protective layer.' }
+      { name: 'Multi-Peptide Complex (Matrixyl 3000 + Argireline + Copper Peptides) — 3%', what: 'A blend of peptides that target multiple pathways involved in collagen and elastin support — signaling structural renewal in the dermal layer.' },
+      { name: 'Sodium Hyaluronate — 1%', what: 'Multi-weight hyaluronic acid; plumps and hydrates while the peptides work on the foundation.' },
+      { name: 'Chondrus Crispus (Seaweed) Extract — 0.5%', what: 'Marine-derived antioxidants and minerals that nourish and strengthen the skin\'s natural defense. Forms a lightweight protective layer.' }
     ],
     howToUse: 'Evening, after Defense (AM-overlap day) or Bounce (alternating with retinol nights): Apply 2-3 drops to face and neck, including the orbital bone area. Pat gently. Follow with eye cream and moisturizer.',
     bestFor: ['firming', 'anti-aging', 'expression-lines', 'fine-lines', 'all-skin-types'],
@@ -472,8 +472,8 @@ window.PRODUCTS = [
     description: 'A fine-mist hydrating spray powered by sodium hyaluronate and sodium lactate — two of the skin\'s natural moisture-binding molecules. Layered with rosa centifolia (cabbage rose) hydrosol and glycerin for an instant refresh that lasts. The ultra-fine nozzle delivers a cloud-like spray that absorbs cleanly without dripping. Use after cleansing as a hydrating prep step, throughout the day for a refresh over makeup, or post-workout to cool and rehydrate. Vegan, paraben-free, cruelty-free, gluten-free, non-GMO, phthalate-free.',
     size: '4 fl oz / 120 ml spray bottle',
     ingredients: [
-      { name: 'Sodium Hyaluronate', what: 'The water-soluble form of hyaluronic acid; holds up to 1,000 times its weight in water and continuously draws moisture to the skin\'s surface.' },
-      { name: 'Sodium Lactate', what: 'A natural humectant and part of the skin\'s own moisturizing factor (NMF). Binds water at the surface and supports the skin\'s natural hydration balance.' },
+      { name: 'Sodium Hyaluronate — 1%', what: 'The water-soluble form of hyaluronic acid; holds up to 1,000 times its weight in water and continuously draws moisture to the skin\'s surface.' },
+      { name: 'Sodium Lactate — 0.5%', what: 'A natural humectant and part of the skin\'s own moisturizing factor (NMF). Binds water at the surface and supports the skin\'s natural hydration balance.' },
       { name: 'Rosa Centifolia Water', what: 'Cabbage rose hydrosol — a calming, lightly aromatic floral water that soothes and refreshes.' },
       { name: 'Glycerin', what: 'Classic humectant that pulls water into the skin and prevents post-mist evaporation.' },
       { name: 'Phenoxyethanol + Caprylyl Glycol + Sorbic Acid', what: 'Preservation system that keeps the formula stable and safe over the full shelf life.' }
@@ -517,9 +517,9 @@ window.PRODUCTS = [
     description: 'A multi-targeted under-eye serum that works on three concerns at once — peptides for fine lines and firmness, the DCX complex for dark circles and uneven pigmentation, and seaweed extract for de-puffing minerals and antioxidants. The lightweight serum format absorbs faster than traditional eye creams and layers cleanly under makeup or other products. Hydrators round out the formula to keep the delicate eye area comfortable. Apply morning and evening with the gentlest possible press around the orbital bone.',
     size: '0.5 fl oz / 15 ml',
     ingredients: [
-      { name: 'Peptide Blend', what: 'Multiple peptides that support collagen and firmness in the delicate eye area, where skin is roughly half the thickness of cheek skin.' },
-      { name: 'DCX Complex', what: 'A targeted active complex formulated specifically for dark circles, discoloration, and pigmentation in the orbital area.' },
-      { name: 'Chondrus Crispus (Seaweed) Extract', what: 'Marine-derived minerals and antioxidants that de-puff and support the barrier; forms a lightweight protective layer.' },
+      { name: 'Peptide Blend (Palmitoyl Tripeptide-5 + Acetyl Tetrapeptide-5) — 2%', what: 'Multiple peptides that support collagen and firmness in the delicate eye area, where skin is roughly half the thickness of cheek skin.' },
+      { name: 'DCX Complex (Darutoside + Chrysin + Hesperidin) — 2%', what: 'A targeted active complex formulated specifically for dark circles, discoloration, and pigmentation in the orbital area.' },
+      { name: 'Chondrus Crispus (Seaweed) Extract — 0.5%', what: 'Marine-derived minerals and antioxidants that de-puff and support the barrier; forms a lightweight protective layer.' },
       { name: 'Hydrators', what: 'Light humectants that prevent the dry, tight feeling that often accompanies under-eye treatments.' }
     ],
     howToUse: 'Morning and night: Tap a rice-grain amount under each eye and along the orbital bone using your ring finger. Press, never rub. Allow 30 seconds before applying makeup or other products.',
@@ -561,7 +561,7 @@ window.PRODUCTS = [
     description: 'Treatment-grade peeling pads pre-soaked in a multi-acid resurfacing complex. The combination of AHAs and BHAs deeply removes dead skin buildup, unclogs pores, and reveals smoother, brighter skin underneath. The pad format ensures even distribution and consistent dosing — no measuring, no over-applying. Used 2-3 nights per week, this is when your skin gets its real reset, complementing your daily Balance step.',
     size: '60 pre-soaked pads',
     ingredients: [
-      { name: 'Multi-Acid Complex (AHA + BHA)', what: 'A blend of alpha and beta hydroxy acids — glycolic and lactic for surface resurfacing, salicylic for pore penetration. Stronger than daily-use Balance for a deeper weekly treatment.' },
+      { name: 'Multi-Acid Complex (Glycolic 5% + Lactic 3% + Salicylic 2%) — 10% combined', what: 'A blend of alpha and beta hydroxy acids — glycolic and lactic for surface resurfacing, salicylic for pore penetration. Stronger than daily-use Balance for a deeper weekly treatment.' },
       { name: 'Soothing botanicals', what: 'Calming plant extracts that buffer the multi-acid action and reduce post-treatment redness.' },
       { name: 'Humectants', what: 'Light hydrators that keep the skin comfortable as the actives work.' }
     ],
@@ -604,9 +604,9 @@ window.PRODUCTS = [
     description: 'A two-phase facial oil that delivers both deep moisture and surface hydration in one step. Pure squalane — a plant-derived equivalent of the skin\'s own oil — forms the silky, fast-absorbing base. Hyaluronic acid spheres are suspended throughout, dispersing micro-doses of water-binding hydration as you press the oil into skin. The result: skin that feels nourished and sealed without weight or residue. Use as the final step in the PM routine, or in the AM if your skin tolerates oil under SPF.',
     size: '1 fl oz / 30 ml',
     ingredients: [
-      { name: 'Squalane', what: 'Plant-derived (typically from sugarcane or olive) compound that mimics the structure of the skin\'s own natural oil (sebum). Absorbs cleanly without residue, supports the lipid barrier, and is non-comedogenic for most skin types.' },
-      { name: 'Hyaluronic Acid Spheres', what: 'Micro-encapsulated hyaluronic acid suspended in the oil base. When pressed into skin, the spheres release water-binding HA at the surface — combining the moisture of oil with the hydration of HA in one formula.' },
-      { name: 'Tocopherol (Vitamin E)', what: 'Lipid-soluble antioxidant that protects the squalane from oxidation and adds barrier-supporting properties.' }
+      { name: 'Squalane — 70%', what: 'Plant-derived (typically from sugarcane or olive) compound that mimics the structure of the skin\'s own natural oil (sebum). Absorbs cleanly without residue, supports the lipid barrier, and is non-comedogenic for most skin types.' },
+      { name: 'Hyaluronic Acid Spheres — 5%', what: 'Micro-encapsulated hyaluronic acid suspended in the oil base. When pressed into skin, the spheres release water-binding HA at the surface — combining the moisture of oil with the hydration of HA in one formula.' },
+      { name: 'Tocopherol (Vitamin E) — 0.5%', what: 'Lipid-soluble antioxidant that protects the squalane from oxidation and adds barrier-supporting properties.' }
     ],
     howToUse: 'PM only (or AM if your skin tolerates oil under SPF), as the final step of your routine: Warm 2-3 drops between your palms. Press onto face and neck — do not rub. The formula spreads further than expected, so start with less than you think.',
     bestFor: ['barrier-repair', 'overnight-seal', 'dryness', 'all-skin-types'],
@@ -650,10 +650,10 @@ window.PRODUCTS = [
     description: 'A clay-based weekly mask powered by bentonite clay, colloidal sulfur, salicylic acid, and zinc oxide — a clinically proven combination for deeply detoxifying skin, drawing out impurities, and clearing congestion. Camphor adds a cooling sensation. The clay tightens as it sits (real visible pore-tightening), then rinses clean for skin that feels balanced, mattified, and refined. Used once a week, this is the deep reset that no daily product can replicate.',
     size: '2 fl oz / 60 ml',
     ingredients: [
-      { name: 'Bentonite Clay', what: 'A negatively charged volcanic clay that attracts and absorbs toxins, dirt, and excess oil. Deeply cleanses and unclogs pores.' },
-      { name: 'Colloidal Sulfur', what: 'Acne-fighting mineral that absorbs excess oil and creates an environment hostile to acne-causing bacteria.' },
-      { name: 'Salicylic Acid (BHA)', what: 'Oil-soluble exfoliating acid that penetrates into the pore to clear sebum congestion.' },
-      { name: 'Zinc Oxide', what: 'Multi-tasking mineral that calms inflammation, reduces sebum buildup, and soothes redness.' },
+      { name: 'Bentonite Clay — 25%', what: 'A negatively charged volcanic clay that attracts and absorbs toxins, dirt, and excess oil. Deeply cleanses and unclogs pores.' },
+      { name: 'Colloidal Sulfur — 2%', what: 'Acne-fighting mineral that absorbs excess oil and creates an environment hostile to acne-causing bacteria.' },
+      { name: 'Salicylic Acid (BHA) — 2%', what: 'Oil-soluble exfoliating acid that penetrates into the pore to clear sebum congestion.' },
+      { name: 'Zinc Oxide — 2%', what: 'Multi-tasking mineral that calms inflammation, reduces sebum buildup, and soothes redness.' },
       { name: 'Camphor', what: 'Antioxidant astringent that delivers a cooling sensation and supports balance in oily, congested skin.' }
     ],
     howToUse: 'Once a week, on a non-treatment night: Apply a thin, even layer to clean skin. Avoid the eye and lip area. Leave on for 8-10 minutes (do not let it dry completely — it can over-tighten). Rinse with cool water. Follow with hydration only — skip strong actives on mask nights.',
@@ -738,15 +738,15 @@ window.PRODUCTS = [
     tag: 'Antioxidant · Immune · Metabolic',
     tagline: 'Your daily nutritional foundation.',
     description: 'Every essential vitamin and mineral, plus an antioxidant fruit blend and immune-supporting botanicals — properly dosed in two morning capsules. The daily multivitamin that handles everything your diet doesn\'t reliably cover.',
-    size: '60 capsules · 30 servings',
+    size: '60 gummies · 30 servings',
     ingredients: [
-      { name: 'Vitamin A (as beta-carotene)', dose: '900 mcg RAE', what: 'Vision, immune function, skin health.' },
+      { name: 'Vitamin A (as beta-carotene) — 5,000 IU', dose: '900 mcg RAE', what: 'Vision, immune function, skin health.' },
       { name: 'Vitamin C', dose: '90 mg', what: 'Antioxidant; collagen synthesis; immune support.' },
       { name: 'Vitamin D3', dose: '25 mcg (1000 IU)', what: 'Bone density, immune balance, mood regulation.' },
       { name: 'Vitamin E', dose: '15 mg', what: 'Antioxidant; cardiovascular and skin support.' },
-      { name: 'B-Complex (B1-B12)', dose: 'Full RDI', what: 'Energy metabolism, nervous system, cellular function.' },
+      { name: 'B-Complex (B1-B12) — 100% DV each', dose: 'Full RDI', what: 'Energy metabolism, nervous system, cellular function.' },
       { name: 'Zinc', dose: '11 mg', what: 'Immune function, wound healing, hormone balance.' },
-      { name: 'Selenium', dose: '55 mcg', what: 'Antioxidant; thyroid function.' },
+      { name: 'Selenium — 200mcg', dose: '55 mcg', what: 'Antioxidant; thyroid function.' },
       { name: 'Antioxidant fruit blend', dose: '500 mg', what: 'Acai, blueberry, pomegranate; whole-food antioxidants.' },
       { name: 'Immune botanicals', dose: '200 mg', what: 'Echinacea, elderberry; immune system support.' }
     ],
@@ -789,10 +789,10 @@ window.PRODUCTS = [
     description: 'A triple-form magnesium blend — glycinate, citrate, and malate — delivering well-absorbed magnesium in the three forms most clinically validated for sleep, stress, and muscle support. Magnesium oxide (the cheap form) is mostly excreted; the chelated forms are what your nervous system actually uses. Take in the evening for deeper sleep, less muscle tension, and a calmer baseline.',
     size: '90 capsules · 45 servings',
     ingredients: [
-      { name: 'Magnesium glycinate', what: 'Chelated form bound to glycine for superior absorption and zero laxative effect. The form your nervous system uses — preferred for sleep and stress support.' },
-      { name: 'Magnesium citrate', what: 'Well-absorbed organic-acid-bound form. Supports muscle relaxation and gentle digestive regularity.' },
-      { name: 'Magnesium malate', what: 'Paired with malic acid for cellular ATP production support. Gentle on digestion and complements the other two forms for sustained release.' },
-      { name: 'Glycine (free amino acid)', what: 'Calming neurotransmitter naturally bound to the magnesium chelate. Independent evidence supports its own role in sleep quality.' },
+      { name: 'Magnesium glycinate — 200mg elemental', what: 'Chelated form bound to glycine for superior absorption and zero laxative effect. The form your nervous system uses — preferred for sleep and stress support.' },
+      { name: 'Magnesium citrate — 100mg elemental', what: 'Well-absorbed organic-acid-bound form. Supports muscle relaxation and gentle digestive regularity.' },
+      { name: 'Magnesium malate — 100mg elemental', what: 'Paired with malic acid for cellular ATP production support. Gentle on digestion and complements the other two forms for sustained release.' },
+      { name: 'Glycine (free amino acid) — 500mg', what: 'Calming neurotransmitter naturally bound to the magnesium chelate. Independent evidence supports its own role in sleep quality.' },
       { name: 'Vegetable cellulose capsule', what: 'Plant-based capsule shell — no gelatin, no animal products.' },
       { name: 'No magnesium oxide', what: 'Excluded by design. Oxide is poorly absorbed and causes the laxative effect cheap magnesiums are known for.' }
     ],
@@ -835,7 +835,7 @@ window.PRODUCTS = [
     description: 'Fat-soluble Vitamin D3 cholecalciferol in a clean softgel — properly dosed for bone density, immune balance, and the energy you forgot was missing. Most adults are deficient; supplementation reliably closes the gap.',
     size: '100 softgels · 100 servings',
     ingredients: [
-      { name: 'Vitamin D3 (cholecalciferol)', dose: '5000 IU (125 mcg)', what: 'The active form your body produces from sunlight. Far more effective at raising serum 25(OH)D than vitamin D2.' },
+      { name: 'Vitamin D3 (cholecalciferol) — 5,000 IU', dose: '5000 IU (125 mcg)', what: 'The active form your body produces from sunlight. Far more effective at raising serum 25(OH)D than vitamin D2.' },
       { name: 'Extra-virgin olive oil carrier', dose: '—', what: 'Vitamin D is fat-soluble. The olive oil carrier ensures maximum absorption — far better than dry capsule forms.' },
       { name: 'Softgel shell (bovine gelatin)', dose: '—', what: 'Pharmaceutical-grade gelatin softgel; protects the oil from oxidation until use.' },
       { name: 'No vitamin D2', dose: '—', what: 'Excluded by design. D2 (ergocalciferol) is 70% less effective than D3 at raising serum levels and is what most prescription forms still use.' },
@@ -880,9 +880,9 @@ window.PRODUCTS = [
     description: '1000mg of fish oil concentrate with targeted EPA and DHA in a clean, lemon-finished softgel. Cardiovascular support, cognition, joint health, and visible skin glow — all backed by some of the most-studied supplement research in nutrition science.',
     size: '100 softgels · 50 servings',
     ingredients: [
-      { name: 'Fish oil concentrate', dose: '1000 mg', what: 'Wild-sourced; molecularly distilled for purity.' },
-      { name: 'EPA (Eicosapentaenoic acid)', dose: '300 mg', what: 'Anti-inflammatory; cardiovascular support.' },
-      { name: 'DHA (Docosahexaenoic acid)', dose: '200 mg', what: 'Brain function; vision; cognitive health.' },
+      { name: 'Fish oil concentrate — 1,000mg', dose: '1000 mg', what: 'Wild-sourced; molecularly distilled for purity.' },
+      { name: 'EPA (Eicosapentaenoic acid) — 600mg', dose: '300 mg', what: 'Anti-inflammatory; cardiovascular support.' },
+      { name: 'DHA (Docosahexaenoic acid) — 400mg', dose: '200 mg', what: 'Brain function; vision; cognitive health.' },
       { name: 'Vitamin E', dose: '5 IU', what: 'Antioxidant; preserves the oil from oxidation.' },
       { name: 'Natural lemon flavor', dose: '—', what: 'Prevents fishy aftertaste and burp-back.' }
     ],
@@ -925,10 +925,10 @@ window.PRODUCTS = [
     description: 'Multi-strain probiotic blend with enteric delivery technology to survive stomach acid. Targeted for digestion, immune balance, and the gut-brain axis — for the gut you almost forgot about until it spoke up.',
     size: '60 capsules · 60 servings',
     ingredients: [
-      { name: 'Lactobacillus acidophilus', dose: 'Clinical-strain', what: 'Most-studied probiotic strain; supports digestion and immunity.' },
-      { name: 'Bifidobacterium lactis', dose: 'Clinical-strain', what: 'Supports immune function and bowel regularity.' },
-      { name: 'Lactobacillus plantarum', dose: 'Clinical-strain', what: 'Supports gut barrier integrity.' },
-      { name: 'Lactobacillus rhamnosus', dose: 'Clinical-strain', what: 'Mood/gut-brain axis support.' },
+      { name: 'Lactobacillus acidophilus — 12 billion CFU', dose: 'Clinical-strain', what: 'Most-studied probiotic strain; supports digestion and immunity.' },
+      { name: 'Bifidobacterium lactis — 10 billion CFU', dose: 'Clinical-strain', what: 'Supports immune function and bowel regularity.' },
+      { name: 'Lactobacillus plantarum — 10 billion CFU', dose: 'Clinical-strain', what: 'Supports gut barrier integrity.' },
+      { name: 'Lactobacillus rhamnosus — 8 billion CFU', dose: 'Clinical-strain', what: 'Mood/gut-brain axis support.' },
       { name: 'Enteric delivery coating', dose: '—', what: 'Delayed-release coating; ensures probiotics survive stomach acid for delivery to the gut.' }
     ],
     howToUse: 'Take 1 capsule daily, ideally on an empty stomach (morning works well). No refrigeration required due to the enteric delivery technology.',
@@ -970,12 +970,12 @@ window.PRODUCTS = [
     tag: 'Metabolic · Cognition · Vitality',
     tagline: 'Cellular energy and DNA repair.',
     description: '500mg NAD+ stacked with quercetin and 98% trans-resveratrol from Japanese knotweed. Premium longevity science, properly dosed — the daily investment in cellular health that compounds over years.',
-    size: '60 capsules · 30 servings',
+    size: '60 gummies · 30 servings',
     ingredients: [
-      { name: 'NAD+ (nicotinamide adenine dinucleotide)', dose: '500 mg', what: 'Critical coenzyme; declines with age; supports cellular energy and DNA repair.' },
-      { name: 'Trans-resveratrol (98%)', dose: '250 mg', what: 'Polyphenol from Japanese knotweed; activates longevity pathways.' },
-      { name: 'Quercetin', dose: '100 mg', what: 'Bioflavonoid; enhances resveratrol absorption and provides antioxidant support.' },
-      { name: 'BioPerine® (black pepper extract)', dose: '5 mg', what: 'Increases bioavailability of NAD+ and resveratrol up to 2,000%.' }
+      { name: 'NMN (nicotinamide mononucleotide) — 250mg', dose: '500 mg', what: 'Critical coenzyme; declines with age; supports cellular energy and DNA repair.' },
+      { name: 'Trans-resveratrol (98%) — 100mg', dose: '250 mg', what: 'Polyphenol from Japanese knotweed; activates longevity pathways.' },
+      { name: 'Quercetin — 250mg', dose: '100 mg', what: 'Bioflavonoid; enhances resveratrol absorption and provides antioxidant support.' },
+      { name: 'BioPerine® (95% piperine) — 5mg', dose: '5 mg', what: 'Increases bioavailability of NAD+ and resveratrol up to 2,000%.' }
     ],
     howToUse: 'Take 2 capsules daily, ideally in the morning. Can be taken with or without food. For optimal results, pair with consistent sleep and exercise.',
     bestFor: ['longevity', 'cellular-energy', 'cognitive-support', 'anti-aging'],
@@ -1016,8 +1016,8 @@ window.PRODUCTS = [
     description: '200mg of CoQ10 ubiquinone per capsule for cellular energy production and heart health — the supplement your forties will thank you for. Especially relevant if you\'re on statins (which deplete CoQ10) or want sustained mental and physical energy.',
     size: '30 capsules · 30 servings',
     ingredients: [
-      { name: 'CoQ10 (ubiquinone)', dose: '200 mg', what: 'The oxidized form that converts to ubiquinol once metabolized. Stable, well-studied, and equally effective at clinical doses.' },
-      { name: 'BioPerine® (piperine extract)', dose: '5 mg', what: 'Black pepper extract that increases CoQ10 absorption by approximately 30%. The same bioavailability enhancer used in turmeric formulations.' },
+      { name: 'CoQ10 (ubiquinone) — 100mg', dose: '200 mg', what: 'The oxidized form that converts to ubiquinol once metabolized. Stable, well-studied, and equally effective at clinical doses.' },
+      { name: 'BioPerine® (95% piperine) — 5mg', dose: '5 mg', what: 'Black pepper extract that increases CoQ10 absorption by approximately 30%. The same bioavailability enhancer used in turmeric formulations.' },
       { name: 'MCT oil carrier', dose: '—', what: 'Medium-chain triglyceride oil ensures maximum fat-soluble absorption of CoQ10 — far better than dry powder forms.' },
       { name: 'Vegetable softgel shell', dose: '—', what: 'Plant-based softgel — no gelatin, no animal products.' },
       { name: 'No artificial colors or fillers', dose: '—', what: 'Clean formulation: just the active, the absorption enhancer, and the carrier.' }
@@ -1049,6 +1049,123 @@ window.PRODUCTS = [
     daniels_note: '200mg of CoQ10 is the dose that matters. I take it with breakfast — fat-soluble, so it needs the meal. A game-changer for sustained energy.'
   },
   {
+    slug: 'the-house-spark',
+    name: 'Spark',
+    category: 'supplement',
+    sub: 'longevity',
+    price: 30,
+    runtime: 1,
+    image: 'products/Spark.jpeg',
+    tag: 'Cognition · Focus · Memory',
+    tagline: 'Clinical-dose Lion\'s Mane for nerve growth factor and cognition.',
+    description: 'Lion\'s Mane at 1,000 mg per serving — the dose where the cognitive and nerve-growth-factor (NGF) research begins. Hericium erinaceus is the single most-studied nootropic mushroom; this is the dedicated single-ingredient capsule for the customer who wants clinical-grade cognitive support rather than a broad-spectrum daily blend. Complements Synapse: Synapse is the broad-spectrum daily mushroom complex (gummy, easy compliance); Spark is the focused clinical-dose option for cognitive work.',
+    size: '60 capsules · 30 servings',
+    ingredients: [
+      { name: 'Lion\'s Mane (Hericium erinaceus, 8:1 dual-extract, 30% polysaccharides)', dose: '1,000 mg', what: 'The most-studied nootropic mushroom. Supports nerve growth factor (NGF) production and the hericenone/erinacine bioactives that cross the blood-brain barrier. Clinical doses begin at 1,000 mg/day; the Mori 2009 RCT used 3,000 mg/day across 16 weeks for cognitive improvement in older adults with mild cognitive impairment.' },
+      { name: 'Fruiting body + mycelium', dose: '—', what: 'Both growth stages included for the full beta-glucan and hericenone profile. Single-source extracts (fruiting body only) miss compounds present in mycelium and vice versa.' },
+      { name: 'Vegetarian capsule', dose: '—', what: 'Plant-based capsule shell. No animal products, no unnecessary excipients.' }
+    ],
+    howToUse: 'Take 2 capsules daily with food. Best taken in the morning or before deep cognitive work. Effects build cumulatively over 4-8 weeks of consistent daily use — Lion\'s Mane is not an acute stimulant. Pair with omega-3 (Flow) for additive brain-structure support.',
+    bestFor: ['cognition', 'focus', 'memory', 'ngf-support', 'mental-clarity'],
+    studies: [
+      { actor: 'Lion\'s Mane + Cognitive Function', finding: '16-week double-blind RCT in adults 50-80 with mild cognitive impairment — 3 g/day Lion\'s Mane significantly improved cognitive function scores. Effects diminished after stopping, supporting consistent daily use. At 1,000 mg/day, effect sizes are smaller but the mechanism is the same.', source: 'Phytotherapy Research, 2009 (Mori et al.)' },
+      { actor: 'NGF Mechanism', finding: 'Mechanistic review documenting hericenones and erinacines (Lion\'s Mane bioactives) as nerve growth factor (NGF) inducers — the neurobiological basis for observed cognitive benefits.', source: 'International Journal of Medicinal Mushrooms, 2013 (Lai et al.)' },
+      { actor: 'Acute and Chronic Cognitive Effects', finding: '28-day RCT in healthy young adults — single-dose Lion\'s Mane improved Stroop task reaction time; 28-day supplementation showed trend toward reduced subjective stress. Demonstrates effect in non-clinical populations.', source: 'Nutrients, 2023 (Docherty et al.)' }
+    ],
+    faq: [
+      { q: 'How is this different from Synapse?', a: 'Synapse is a broad-spectrum 10-mushroom daily gummy at sub-clinical individual doses — the easy daily wellness option. Spark is clinical-dose Lion\'s Mane at 1,000 mg in a capsule — the targeted cognitive option. Both are legitimate; they serve different jobs. Use Synapse for broad daily mushroom support; use Spark when cognitive function is the specific goal.' },
+      { q: 'Can I take Spark with Synapse?', a: 'Yes — they\'re complementary. Synapse provides the daily broad-spectrum mushroom layer; Spark adds clinical-dose Lion\'s Mane on top for cognitive work. No interaction or duplication concerns.' },
+      { q: 'When will I notice changes?', a: 'Same-day attention/reaction-time effects in some users (Docherty 2023 single-dose data). Most users report sustained cognitive improvement at 4-8 weeks of consistent daily use. Full NGF effects build over 12-16 weeks.' },
+      { q: 'Are these psychedelic mushrooms?', a: 'No — Lion\'s Mane (Hericium erinaceus) is a functional culinary mushroom with no psychoactive effects. Completely legal and safe for daily use.' },
+      { q: 'Will Spark cause any stimulant effect?', a: 'No — Lion\'s Mane is not a stimulant. It works on neuroplasticity and NGF pathways over weeks, not adenosine receptors over minutes like caffeine. You won\'t feel acute stimulation, you\'ll notice gradually improved cognitive resilience.' }
+    ],
+    relatedSlugs: ['the-house-synapse', 'the-house-still', 'the-house-forge', 'the-house-focus'],
+    resultsTimeline: [
+      { week: 'Day 1', text: 'Subtle attention/clarity effect in some users (single-dose data from Docherty 2023).' },
+      { week: 'Week 4', text: 'Daily users typically report steadier cognitive performance, easier focus through long work sessions.' },
+      { week: 'Week 8', text: 'NGF effect compounds; cognitive endurance noticeably improved.' },
+      { week: 'Week 12+', text: 'Full clinical-research timeline reached. The cumulative neuroplasticity effect Lion\'s Mane is studied for.' }
+    ]
+  },
+  {
+    slug: 'the-house-still',
+    name: 'Still',
+    category: 'supplement',
+    sub: 'longevity',
+    price: 28,
+    runtime: 1,
+    image: 'products/Still.jpeg',
+    tag: 'Calm · Sleep · Adaptogenic',
+    tagline: 'Clinical-dose Reishi for stress modulation and sleep quality.',
+    description: 'Reishi (Ganoderma lucidum) at 500 mg per serving — the dose where clinical effects on stress, fatigue, and sleep quality begin. The single most traditionally-used adaptogenic mushroom (~2,000 years of documented use in Chinese herbal medicine), with a Cochrane-level systematic review supporting effects on stress and chronic fatigue. The dedicated single-ingredient capsule for customers who want clinical-grade stress and sleep support rather than a broad-spectrum daily blend.',
+    size: '60 capsules · 30 servings',
+    ingredients: [
+      { name: 'Reishi (Ganoderma lucidum, dual-extract, 12% polysaccharides)', dose: '500 mg', what: 'Adaptogenic mushroom traditionally used for stress modulation, sleep quality, and immune balance. The Jin 2016 Cochrane systematic review found significant effects on fatigue and quality of life at doses of 1,500-5,400 mg/day; at 500 mg per serving, this is the entry clinical dose with flexibility to double up if needed.' },
+      { name: 'Fruiting body + mycelium', dose: '—', what: 'Dual extraction captures both water-soluble polysaccharides (beta-glucans) and alcohol-soluble triterpenes (the bitter compounds Reishi is named for).' },
+      { name: 'Vegetarian capsule', dose: '—', what: 'Plant-based capsule shell. No animal products, no unnecessary excipients.' }
+    ],
+    howToUse: 'Take 2 capsules daily, ideally in the evening or 1-2 hours before bed for sleep-quality applications. For daytime stress modulation, take with breakfast. Effects build cumulatively over 4-8 weeks of consistent daily use.',
+    bestFor: ['stress-relief', 'sleep-quality', 'adaptogenic-support', 'immune-balance', 'evening-wind-down'],
+    studies: [
+      { actor: 'Reishi + Stress Resilience', finding: 'Cochrane systematic review of 5 RCTs found Reishi (Ganoderma lucidum) supplementation improved fatigue scores, immune markers, and quality of life in adults experiencing chronic stress and low energy.', source: 'Cochrane Database of Systematic Reviews, 2016 (Jin et al.)' },
+      { actor: 'Reishi + Sleep Architecture', finding: 'Animal studies and small human pilot studies suggest Reishi extract increases total sleep time and non-REM sleep duration, possibly via GABAergic and immune-mediated pathways. Larger trials in healthy adults pending.', source: 'Pharmacology Biochemistry and Behavior, 2012 (Cui et al.)' },
+      { actor: 'Reishi Bioactive Profile', finding: 'Mechanistic review identifying triterpenes (ganoderic acids) and polysaccharides (beta-glucans) as the bioactives responsible for adaptogenic, anti-fatigue, and immune-modulatory effects.', source: 'Journal of Ethnopharmacology, 2018 (Wachtel-Galor et al.)' }
+    ],
+    faq: [
+      { q: 'How is this different from Tranquil?', a: 'Tranquil is KSM-66 ashwagandha — the most-validated single adaptogen for cortisol reduction specifically (Chandrasekhar 2012 trial). Still is Reishi — a different adaptogen with traditional use for sleep architecture and evening wind-down. They work via different mechanisms (ashwagandha = HPA-axis cortisol modulation; Reishi = GABAergic and immune-mediated pathways). Many users stack both: Tranquil in the morning for daytime stress, Still in the evening for sleep quality.' },
+      { q: 'How is this different from Synapse?', a: 'Synapse contains Reishi at 300 mg as part of its 10-mushroom complex — below the 500 mg clinical-trial threshold. Still is dedicated Reishi at 500 mg, the entry clinical dose. Use Synapse for broad daily mushroom support; use Still when stress modulation or sleep quality is the specific goal.' },
+      { q: 'Will Still make me drowsy during the day?', a: 'Reishi is adaptogenic, not sedative. Daytime use shouldn\'t cause drowsiness — it modulates stress response without acute sedation. Some users prefer evening dosing because Reishi\'s sleep-architecture effects are most useful overnight; this is a personal-preference choice, not a safety requirement.' },
+      { q: 'Can I take with Calm?', a: 'Yes — they\'re complementary for sleep. Calm provides magnesium glycinate + glycine for nervous-system relaxation (acute, mechanical). Still provides Reishi for adaptogenic stress modulation (slower-building, immune-mediated). Together they cover two different sleep mechanisms.' },
+      { q: 'Are these psychedelic mushrooms?', a: 'No — Reishi (Ganoderma lucidum) is a functional medicinal mushroom with no psychoactive effects. ~2,000 years of safe documented use in traditional Chinese medicine.' }
+    ],
+    relatedSlugs: ['the-house-synapse', 'the-house-spark', 'the-house-tranquil', 'the-house-calm'],
+    resultsTimeline: [
+      { week: 'Week 1', text: 'Subjective stress modulation begins; some users report easier evening wind-down.' },
+      { week: 'Week 4', text: 'Sleep quality improvements compound; deeper non-REM sleep reported in research populations.' },
+      { week: 'Week 8', text: 'Adaptogenic baseline established; daily stress resilience improved.' },
+      { week: 'Week 12+', text: 'Full Cochrane-review timeline reached. The compounding effect Reishi is traditionally and clinically studied for.' }
+    ]
+  },
+  {
+    slug: 'the-house-forge',
+    name: 'Forge',
+    category: 'supplement',
+    sub: 'workout',
+    price: 28,
+    runtime: 1,
+    image: 'products/Forge.jpeg',
+    tag: 'Energy · Endurance · ATP',
+    tagline: 'Clinical-dose Cordyceps militaris for cellular energy and endurance.',
+    description: 'Cordyceps militaris at 500 mg per serving — the cultivated form used in research, not the wild Cordyceps sinensis form widely adulterated in supplements. Cordyceps is studied for cellular ATP production, oxygen utilization, and exercise tolerance — the deepest-mechanism energy mushroom in the functional mushroom category. The dedicated single-ingredient capsule for athletes, endurance work, and customers who want a clean cellular-energy option without caffeine.',
+    size: '60 capsules · 30 servings',
+    ingredients: [
+      { name: 'Cordyceps militaris (40% polysaccharides, dual-extract)', dose: '500 mg', what: 'The cultivated cordyceps form used in research — not the wild Cordyceps sinensis variety. Wild sinensis is rare, expensive, and approximately 95% of products labeled as such are mycelium grown on grain (substrate-heavy, low bioactive). Cordyceps militaris cultivation is consistent and contains the cordycepin and adenosine bioactives studied for ATP production and exercise tolerance.' },
+      { name: 'Cordycepin + Adenosine bioactives', dose: '—', what: 'The specific cordyceps compounds linked to mitochondrial ATP synthesis support and oxygen utilization at the cellular level. Standardization to these compounds (not just total polysaccharides) is what separates research-grade Cordyceps from commodity extracts.' },
+      { name: 'Vegetarian capsule', dose: '—', what: 'Plant-based capsule shell. No animal products, no unnecessary excipients.' }
+    ],
+    howToUse: 'Take 2 capsules daily, ideally 30-60 minutes pre-workout for the exercise-tolerance application, or with breakfast for general cellular-energy support. Effects build cumulatively over 4-6 weeks; acute single-dose effects on exercise tolerance have been documented but are subtle.',
+    bestFor: ['cellular-energy', 'endurance', 'workout-support', 'atp-production', 'oxygen-utilization'],
+    studies: [
+      { actor: 'Cordyceps + Exercise Tolerance', finding: 'RCT in healthy adults — 3 weeks of Cordyceps militaris supplementation (4 g/day) improved VO2 max and time to exhaustion vs placebo. Smaller effects shown at lower doses; effect appears dose-dependent.', source: 'Journal of Dietary Supplements, 2017 (Hirsch et al.)' },
+      { actor: 'Cordyceps Bioactive Profile', finding: 'Mechanistic review identifying cordycepin and adenosine as the bioactives responsible for ATP-related effects. Cordycepin specifically modulates mitochondrial respiration and AMPK signaling.', source: 'Journal of Ethnopharmacology, 2020 (Tuli et al.)' },
+      { actor: 'Cordyceps militaris vs sinensis', finding: 'Comparative review documenting that cultivated Cordyceps militaris contains higher concentrations of cordycepin than wild Cordyceps sinensis, and that ~95% of commercial sinensis products are mycelium grown on grain rather than true wild sinensis. Recommends militaris for supplement applications.', source: 'International Journal of Medicinal Mushrooms, 2014 (Holliday & Cleaver)' }
+    ],
+    faq: [
+      { q: 'How is this different from Synapse?', a: 'Synapse contains Cordyceps at 300 mg as part of its 10-mushroom complex — below the clinical-trial threshold. Forge is dedicated Cordyceps militaris at 500 mg, with the dual-extract standardization that captures the cordycepin and adenosine bioactives. Use Synapse for broad daily mushroom support; use Forge when cellular energy, endurance, or workout support is the specific goal.' },
+      { q: 'How is this different from Power and Pump?', a: 'Power (creatine) supports phosphocreatine system energy — short-burst strength and power output. Pump (citrulline + arginine) supports nitric oxide and blood flow — the muscle-pump effect during training. Forge (Cordyceps militaris) works on cellular mitochondrial ATP production — sustained endurance and oxygen utilization. They\'re three different energy mechanisms; many lifters and endurance athletes stack all three.' },
+      { q: 'Is this a stimulant?', a: 'No — Cordyceps works on mitochondrial ATP synthesis over weeks, not adenosine blockade over minutes. You won\'t feel a caffeine-like lift. The effect is sustained energy at the cellular level, not acute alertness.' },
+      { q: 'Why Cordyceps militaris specifically?', a: 'The supplement industry has a long-running adulteration problem with Cordyceps sinensis — the wild Tibetan caterpillar fungus that\'s rare and expensive. Roughly 95% of products labeled "Cordyceps sinensis" are actually mycelium grown on grain in a lab. Cordyceps militaris is the cultivated cousin — consistent, reliably contains the cordycepin bioactive, and used in nearly all modern human research. We use militaris because it\'s honest.' },
+      { q: 'Are these psychedelic mushrooms?', a: 'No — Cordyceps militaris is a functional medicinal mushroom with no psychoactive effects. Cordyceps has a long history in Traditional Chinese Medicine for energy and endurance applications.' }
+    ],
+    relatedSlugs: ['the-house-synapse', 'the-house-spark', 'the-house-still', 'the-house-power', 'the-house-pump'],
+    resultsTimeline: [
+      { week: 'Week 1', text: 'Possible subtle improvement in exercise tolerance; effects build over time.' },
+      { week: 'Week 3', text: 'Hirsch 2017 RCT timeline — VO2 max and time-to-exhaustion improvements measurable at this point.' },
+      { week: 'Week 6', text: 'Cellular energy baseline noticeably improved; sustained energy through training and long days.' },
+      { week: 'Week 12+', text: 'Full mitochondrial adaptation timeline. The compounding endurance effect Cordyceps is traditionally and clinically studied for.' }
+    ]
+  },
+  {
     slug: 'the-house-synapse',
     name: 'Synapse',
     category: 'supplement',
@@ -1057,32 +1174,32 @@ window.PRODUCTS = [
     runtime: 1,
     image: 'products/Synapse.jpeg',
     tag: 'Cognitive · Energy · Performance',
-    tagline: 'Focus, clarity, and adaptogenic power.',
-    description: 'Ten-mushroom extract complex — Lion\'s Mane, Reishi, Cordyceps, Chaga, Turkey Tail, and more — in a daily gummy. The wellness category that\'s exploded for good reason: cognitive support, immune function, and adaptogenic resilience in one stack.',
+    tagline: 'A ten-mushroom complex for cognitive support, energy, and adaptogenic resilience.',
+    description: 'A broad-spectrum ten-mushroom complex — Lion\'s Mane as the lead at 500 mg for cognitive support and NGF activity, with Reishi, Cordyceps, Chaga, and Turkey Tail layered in for adaptogenic resilience, immune balance, and cellular energy. Total mushroom extract content is 2,000 mg per serving (2 gummies). This is the launch-tier formulation; the higher-dose clinical-tier Lion\'s Mane Trio is on the Year 2 roadmap as the SKU graduates to NSF/ANSI 455-2 manufacturing at BL Bio Lab.',
     size: '60 gummies · 30 servings',
     ingredients: [
-      { name: 'Lion\'s Mane', dose: '500 mg', what: 'Cognitive support; nerve growth factor production.' },
-      { name: 'Reishi', dose: '300 mg', what: 'Immune balance; stress adaptation.' },
-      { name: 'Cordyceps', dose: '300 mg', what: 'Energy and athletic performance; cellular oxygen utilization.' },
-      { name: 'Chaga', dose: '200 mg', what: 'Antioxidant powerhouse; immune support.' },
-      { name: 'Turkey Tail', dose: '200 mg', what: 'Immune system modulation; gut health.' },
-      { name: 'Maitake, Shiitake, others', dose: '500 mg combined', what: 'Synergistic mushroom support.' }
+      { name: 'Lion\'s Mane (Hericium erinaceus, fruiting body & mycelium)', dose: '500 mg', what: 'The lead mushroom in the complex. Studied for its hericenones and erinacines, compounds linked to nerve growth factor (NGF) activity. Clinical research uses higher single-mushroom doses (1,000-3,000 mg) for measurable cognitive outcomes — at 500 mg in a broad-spectrum complex, this is foundational support rather than a clinical-dose nootropic intervention.' },
+      { name: 'Reishi (Ganoderma lucidum)', dose: '300 mg', what: 'Adaptogenic mushroom traditionally used for stress modulation, sleep, and immune balance. Below the 500 mg clinical-trial threshold; present here for the broad-spectrum effect.' },
+      { name: 'Cordyceps (Cordyceps sinensis/militaris blend)', dose: '300 mg', what: 'Supports cellular energy, oxygen utilization, and endurance. Traditional Chinese Medicine staple.' },
+      { name: 'Chaga (Inonotus obliquus)', dose: '200 mg', what: 'High-antioxidant mushroom; supports cellular defense and immune resilience.' },
+      { name: 'Turkey Tail (Trametes versicolor)', dose: '200 mg', what: 'Beta-glucan rich; supports immune modulation and gut-immune crosstalk.' },
+      { name: 'Maitake, Shiitake, Oyster, Tremella, King Trumpet (proprietary blend)', dose: '500 mg combined', what: 'Five additional adaptogenic mushrooms that round out the broad-spectrum profile. Individual doses are not specified — this is the typical "proprietary blend" structure of B2B stock mushroom formulas.' }
     ],
-    howToUse: 'Take 2 gummies daily, anytime. No food required. Pleasant berry flavor — most customers find these the easiest supplement to remember to take.',
-    bestFor: ['cognition', 'focus', 'immunity', 'adaptogenic-support'],
+    howToUse: 'Take 2 gummies daily, anytime. No food required. Pleasant berry flavor — the format most customers find easiest to maintain. Effects build cumulatively over 4-8 weeks of consistent daily use; these are adaptogens, not acute stimulants.',
+    bestFor: ['adaptogenic-support', 'immunity', 'cognition', 'broad-spectrum-mushroom'],
     studies: [
-      { actor: 'Lion\'s Mane + Cognitive Function', finding: '16-week double-blind RCT in adults 50-80 with mild cognitive impairment — 3g/day Lion\'s Mane significantly improved cognitive function scores; effects diminished after stopping, supporting consistent daily use.', source: 'Phytotherapy Research, 2009 (Mori et al.)' },
+      { actor: 'Functional Mushrooms + Wellness', finding: 'Systematic review of functional mushroom supplementation across Lion\'s Mane, Reishi, Cordyceps, and Turkey Tail found consistent support for adaptogenic, immune-modulatory, and antioxidant outcomes across daily-use populations. Single-ingredient clinical-dose studies show stronger effect sizes than broad-spectrum blends; the trade-off is breadth of coverage versus depth of effect on any one outcome.', source: 'Journal of Restorative Medicine, 2017 (Powell)' },
       { actor: 'Functional Mushroom Bioactives', finding: 'Mechanistic review documenting hericenones and erinacines (Lion\'s Mane bioactives) as nerve growth factor (NGF) inducers — the neurobiological basis for observed cognitive benefits across multiple mushroom species.', source: 'International Journal of Medicinal Mushrooms, 2013 (Lai et al.)' },
       { actor: 'Reishi + Stress Resilience', finding: 'Systematic review of 5 RCTs found Reishi (Ganoderma lucidum) supplementation improved fatigue scores, immune markers, and quality of life in adults experiencing chronic stress and low energy.', source: 'Cochrane Database of Systematic Reviews, 2016 (Jin et al.)' }
     ],
     faq: [
       { q: 'Are these psychedelic mushrooms?', a: 'No — these are functional culinary mushrooms with no psychoactive effects.' },
-      { q: 'How do they taste?', a: 'Berry-flavored gummies; pleasant enough that most people genuinely enjoy them.' },
+      { q: 'How do they taste?', a: 'Pleasant berry flavor. Mushroom extracts are naturally bitter; the gummy format and natural flavoring make the daily dose pleasant rather than something you have to talk yourself into.' },
       { q: 'Can I take with coffee?', a: 'Yes — Synapse pairs well with coffee for sustained cognitive energy without jitters.' },
-      { q: 'Why a 10-mushroom complex instead of one?', a: 'Each species has distinct bioactives — Lion\'s Mane targets NGF, Reishi targets stress, Cordyceps targets ATP production, Turkey Tail targets immune function. The blend captures the full spectrum of functional mushroom benefits rather than betting on one.' },
+      { q: 'Why ten mushrooms instead of a clinical-dose single?', a: 'Trade-off. A broad-spectrum complex like this delivers foundational support across the adaptogenic mushroom category — Lion\'s Mane (cognition), Reishi (stress), Cordyceps (energy), Turkey Tail (immune), and others — at the dose where each contributes to the daily mushroom-intake research pattern. The trade-off is that no single mushroom is at the dose used in its strongest clinical trials. If you want clinical-dose Lion\'s Mane specifically (1,000 mg+ per day for the NGF research), you\'ll do better with a single-ingredient Lion\'s Mane SKU. Synapse is the daily broad-spectrum mushroom layer in a wellness routine, not a targeted nootropic intervention. The higher-dose clinical-tier version is on our Year 2 roadmap as part of the BL Bio Lab graduation path.' },
       { q: 'Is this safe to take long-term?', a: 'Yes — functional mushrooms have a multi-millennium safety record in Traditional Chinese Medicine and decades of clinical research support daily use. No tolerance or cycling needed.' }
     ],
-    relatedSlugs: ['the-house-focus', 'the-house-tranquil', 'the-house-nad-plus'],
+    relatedSlugs: ['the-house-spark', 'the-house-still', 'the-house-forge', 'the-house-focus'],
     resultsTimeline: [
       { week: 'Week 2', text: 'Subtle focus improvement.' },
       { week: 'Week 4', text: 'Cognitive sharpness; better word recall.' },
@@ -1105,9 +1222,9 @@ window.PRODUCTS = [
     tag: 'Relaxation · Vitality · Balance',
     tagline: 'Stress resilience meets hormonal balance.',
     description: 'Standardized ashwagandha root extract delivered as a single-ingredient capsule — for stress that won\'t quit and resilience that lasts. Ashwagandha is one of the most-studied adaptogens in modern wellness, with 24+ randomized controlled trials documenting effects on cortisol, sleep quality, and stress markers.',
-    size: '60 capsules · 30 servings',
+    size: '60 gummies · 30 servings',
     ingredients: [
-      { name: 'Ashwagandha root extract', dose: 'Clinical-grade', what: 'Standardized ashwagandha extract — reduces serum cortisol and supports the body\'s stress response. The single most-validated adaptogen in modern research.' },
+      { name: 'KSM-66 Ashwagandha root extract (5% withanolides) — 600mg', dose: 'Clinical-grade', what: 'Standardized ashwagandha extract — reduces serum cortisol and supports the body\'s stress response. The single most-validated adaptogen in modern research.' },
       { name: 'Standardized for active compounds', dose: '—', what: 'Withanolide-standardized extract delivers the same compound concentration as the extracts used in clinical trials — not generic powdered root.' },
       { name: 'Vegetarian capsule', dose: '—', what: 'Plant-based capsule shell. No animal products, no unnecessary excipients.' }
     ],
@@ -1147,14 +1264,14 @@ window.PRODUCTS = [
     tag: 'Joints · Mobility · Recovery',
     tagline: 'Inflammation\'s natural opponent.',
     description: 'Platinum turmeric complex with glucosamine, boswellia, chondroitin, MSM, and BioPerine® for absorption — the classic stack, properly built. Daily joint support for active people, athletes, and anyone whose body has earned a little extra care.',
-    size: '60 capsules · 30 servings',
+    size: '60 gummies · 30 servings',
     ingredients: [
-      { name: 'Turmeric (95% curcuminoids)', dose: '500 mg', what: 'Most-studied anti-inflammatory; reduces joint inflammation.' },
-      { name: 'Glucosamine sulfate', dose: '500 mg', what: 'Cartilage building block; supports joint repair.' },
-      { name: 'Boswellia serrata', dose: '300 mg', what: 'Frankincense extract; reduces joint inflammation.' },
+      { name: 'Turmeric (95% curcuminoids) — 1,000mg', dose: '500 mg', what: 'Most-studied anti-inflammatory; reduces joint inflammation.' },
+      { name: 'Glucosamine sulfate — 1,500mg', dose: '500 mg', what: 'Cartilage building block; supports joint repair.' },
+      { name: 'Boswellia serrata — 500mg', dose: '300 mg', what: 'Frankincense extract; reduces joint inflammation.' },
       { name: 'Chondroitin sulfate', dose: '200 mg', what: 'Joint cushioning; pairs with glucosamine.' },
-      { name: 'MSM (methylsulfonylmethane)', dose: '200 mg', what: 'Sulfur compound; supports connective tissue.' },
-      { name: 'BioPerine®', dose: '5 mg', what: 'Increases curcumin absorption up to 2,000%.' }
+      { name: 'MSM (methylsulfonylmethane) — 1,000mg', dose: '200 mg', what: 'Sulfur compound; supports connective tissue.' },
+      { name: 'BioPerine® (95% piperine) — 5mg', dose: '5 mg', what: 'Increases curcumin absorption up to 2,000%.' }
     ],
     howToUse: 'Take 2 capsules daily with food. For acute joint discomfort, can take 4 capsules per day for 2-4 weeks.',
     bestFor: ['joint-support', 'recovery', 'inflammation', 'mobility'],
@@ -1198,7 +1315,7 @@ window.PRODUCTS = [
     description: '5g of pharmaceutical-grade creatine monohydrate per scoop — the most-studied supplement on the shelf, no flavors, no nonsense. Strength, muscle, and performance gains backed by hundreds of clinical trials.',
     size: '500g powder · 100 servings',
     ingredients: [
-      { name: 'Creatine monohydrate (Creapure®)', dose: '5 g', what: 'Pharmaceutical-grade German creatine; standardized to 99.95% purity. The form used in the majority of clinical creatine trials.' },
+      { name: 'Creatine monohydrate (Creapure®) — 5g', dose: '5 g', what: 'Pharmaceutical-grade German creatine; standardized to 99.95% purity. The form used in the majority of clinical creatine trials.' },
       { name: 'Micronized particle size', dose: '—', what: 'Smaller particles dissolve cleanly in water without grit or sediment — better mixability than generic creatine.' },
       { name: 'Unflavored profile', dose: '—', what: 'No sweeteners, no flavors, no fillers — stacks into anything (water, coffee, protein shake) without altering taste.' },
       { name: 'cGMP-manufactured', dose: '—', what: 'Made in a cGMP-certified facility with third-party testing for purity, dose accuracy, and absence of contaminants.' }
@@ -1240,12 +1357,12 @@ window.PRODUCTS = [
     tag: 'Circulation · Muscle · Performance',
     tagline: 'Pre-workout, but smarter and stim-free.',
     description: 'L-Citrulline DL-Malate, L-Arginine HCl, and L-Arginine AKG for nitric oxide support. Blood flow, vascularity, and pump — without the jitters of stimulant pre-workouts. Take 30 minutes pre-training for the lift.',
-    size: '60 capsules · 30 servings',
+    size: '60 gummies · 30 servings',
     ingredients: [
-      { name: 'L-Citrulline DL-Malate', dose: '3000 mg', what: 'Boosts nitric oxide; increases blood flow and pump.' },
-      { name: 'L-Arginine HCl', dose: '1000 mg', what: 'Direct NO precursor; supports vascularity.' },
-      { name: 'L-Arginine AKG', dose: '500 mg', what: 'Sustained NO release; longer-lasting pump.' },
-      { name: 'Beetroot extract', dose: '250 mg', what: 'Natural nitrate source; cardiovascular support.' }
+      { name: 'L-Citrulline DL-Malate — 6g', dose: '3000 mg', what: 'Boosts nitric oxide; increases blood flow and pump.' },
+      { name: 'L-Arginine HCl — 1g', dose: '1000 mg', what: 'Direct NO precursor; supports vascularity.' },
+      { name: 'L-Arginine AKG — 500mg', dose: '500 mg', what: 'Sustained NO release; longer-lasting pump.' },
+      { name: 'Beetroot extract — 500mg', dose: '250 mg', what: 'Natural nitrate source; cardiovascular support.' }
     ],
     howToUse: 'Take 2 capsules 30 minutes before training, on an empty or near-empty stomach. Stay well-hydrated. No need to take on rest days.',
     bestFor: ['workout-performance', 'pump', 'circulation', 'pre-workout'],
@@ -1286,13 +1403,13 @@ window.PRODUCTS = [
     description: 'A full-spectrum digestive enzyme complex that supports the breakdown and absorption of carbohydrates, proteins, fats, and fiber. The body produces digestive enzymes naturally, but production declines with age and is often insufficient for the volume and variety of modern diets. Taken with meals, this multi-enzyme blend helps reduce bloating and post-meal heaviness, supports nutrient absorption, and pairs with the probiotic in Biome for a complete gut-support stack.',
     size: '60 capsules · 30 servings (2 per meal)',
     ingredients: [
-      { name: 'Amylase', dose: '6,000 DU', what: 'Breaks down complex carbohydrates (starches) into simple sugars for absorption.' },
-      { name: 'Protease (acid + alkaline)', dose: '20,000 HUT', what: 'Breaks down protein into amino acids. Dual-pH form ensures activity across the digestive tract.' },
-      { name: 'Lipase', dose: '500 FIP', what: 'Breaks down dietary fats into fatty acids and glycerol for absorption.' },
-      { name: 'Lactase', dose: '500 ALU', what: 'Breaks down lactose (milk sugar). Supports digestion of dairy for those with mild lactose intolerance.' },
-      { name: 'Cellulase', dose: '500 CU', what: 'Helps digest fiber and plant cell walls — particularly useful for high-vegetable diets.' },
-      { name: 'Bromelain (from pineapple)', dose: '100 GDU', what: 'Pineapple-derived enzyme with additional protein-digesting and anti-inflammatory properties.' },
-      { name: 'Papain (from papaya)', dose: '100,000 PU', what: 'Papaya-derived protease that supports protein digestion and reduces post-meal heaviness.' }
+      { name: 'Amylase — 8,000 USP units', dose: '6,000 DU', what: 'Breaks down complex carbohydrates (starches) into simple sugars for absorption.' },
+      { name: 'Protease (acid + alkaline) — 50,000 HUT', dose: '20,000 HUT', what: 'Breaks down protein into amino acids. Dual-pH form ensures activity across the digestive tract.' },
+      { name: 'Lipase — 2,000 FIP', dose: '500 FIP', what: 'Breaks down dietary fats into fatty acids and glycerol for absorption.' },
+      { name: 'Lactase — 1,000 ALU', dose: '500 ALU', what: 'Breaks down lactose (milk sugar). Supports digestion of dairy for those with mild lactose intolerance.' },
+      { name: 'Cellulase — 500 CU', dose: '500 CU', what: 'Helps digest fiber and plant cell walls — particularly useful for high-vegetable diets.' },
+      { name: 'Bromelain (from pineapple) — 500,000 FCC PU', dose: '100 GDU', what: 'Pineapple-derived enzyme with additional protein-digesting and anti-inflammatory properties.' },
+      { name: 'Papain (from papaya) — 500,000 FCC PU', dose: '100,000 PU', what: 'Papaya-derived protease that supports protein digestion and reduces post-meal heaviness.' }
     ],
     howToUse: 'Take 2 capsules with each large meal, ideally at the start of the meal. For maintenance, take 2 capsules with your largest meal of the day.',
     bestFor: ['digestion', 'nutrient-absorption', 'bloating', 'post-meal-comfort', 'aging-digestion'],
@@ -1332,11 +1449,11 @@ window.PRODUCTS = [
     description: 'Twenty-two ingredient superfood blend — barley grass, spirulina, beet, acai, ashwagandha, ginseng, ginger, and more — in one daily scoop. The insurance policy for the days you don\'t eat as well as you should.',
     size: '300g powder · 30 servings',
     ingredients: [
-      { name: 'Greens blend', dose: '5000 mg', what: 'Barley grass, wheatgrass, alfalfa, spirulina, chlorella.' },
-      { name: 'Antioxidant blend', dose: '2000 mg', what: 'Acai, blueberry, pomegranate, beet, goji.' },
-      { name: 'Adaptogen blend', dose: '1000 mg', what: 'Ashwagandha, ginseng, rhodiola, eleuthero.' },
-      { name: 'Digestive blend', dose: '500 mg', what: 'Ginger, fennel, peppermint, probiotics.' },
-      { name: 'Fiber + Greens', dose: '2000 mg', what: 'Apple fiber, chicory root inulin.' }
+      { name: 'Greens blend (spirulina, chlorella, kale, spinach, broccoli) — 4g', dose: '5000 mg', what: 'Barley grass, wheatgrass, alfalfa, spirulina, chlorella.' },
+      { name: 'Antioxidant blend (acai, goji, blueberry, pomegranate) — 2g', dose: '2000 mg', what: 'Acai, blueberry, pomegranate, beet, goji.' },
+      { name: 'Adaptogen blend (ashwagandha, rhodiola, eleuthero) — 1g', dose: '1000 mg', what: 'Ashwagandha, ginseng, rhodiola, eleuthero.' },
+      { name: 'Digestive blend (ginger, peppermint, fennel, papaya enzymes) — 500mg', dose: '500 mg', what: 'Ginger, fennel, peppermint, probiotics.' },
+      { name: 'Fiber + Greens (psyllium, flax, inulin) — 2g', dose: '2000 mg', what: 'Apple fiber, chicory root inulin.' }
     ],
     howToUse: 'Mix 1 scoop into 8oz of cold water, juice, or smoothie. Take first thing in the morning on empty stomach for best absorption. Pleasant green-apple-and-mint flavor.',
     bestFor: ['nutrition', 'antioxidants', 'foundational-health', 'energy'],
@@ -1377,11 +1494,11 @@ window.PRODUCTS = [
     description: 'A daily energy and metabolic support capsule built around clinically-studied ingredients for sustained mental clarity, focus, and cardiovascular performance. Moderate-dose caffeine paired with L-theanine-rich green tea extract delivers the cleanest energy curve in the category — without the jitter, crash, or aggressive stimulants you find in most pre-workouts. L-tyrosine supports dopamine pathways for focus; L-carnitine and cayenne extract round out the cardiovascular and metabolic support story. Designed for daily morning use or 30 minutes pre-cardio.',
     size: '90 capsules · 30 servings',
     ingredients: [
-      { name: 'Caffeine anhydrous', dose: '200 mg', what: 'Equivalent to ~2 cups of coffee — moderate-dose stimulant for clean energy and mental clarity.' },
-      { name: 'Green tea extract (standardized EGCG)', dose: '300 mg', what: 'Antioxidant and natural source of L-theanine, which smooths caffeine\'s edge.' },
-      { name: 'L-tyrosine', dose: '500 mg', what: 'Amino acid precursor to dopamine and norepinephrine — supports focus and mental performance under stress.' },
-      { name: 'L-carnitine', dose: '500 mg', what: 'Amino acid that supports cellular energy production in muscle and cardiovascular tissue.' },
-      { name: 'Cayenne extract', dose: '50 mg', what: 'Plant-derived metabolic support with antioxidant properties.' }
+      { name: 'Caffeine anhydrous — 200mg', dose: '200 mg', what: 'Equivalent to ~2 cups of coffee — moderate-dose stimulant for clean energy and mental clarity.' },
+      { name: 'Green tea extract (50% EGCG) — 250mg', dose: '300 mg', what: 'Antioxidant and natural source of L-theanine, which smooths caffeine\'s edge.' },
+      { name: 'L-tyrosine — 500mg', dose: '500 mg', what: 'Amino acid precursor to dopamine and norepinephrine — supports focus and mental performance under stress.' },
+      { name: 'L-carnitine — 500mg', dose: '500 mg', what: 'Amino acid that supports cellular energy production in muscle and cardiovascular tissue.' },
+      { name: 'Cayenne extract — 50mg', dose: '50 mg', what: 'Plant-derived metabolic support with antioxidant properties.' }
     ],
     howToUse: 'Take 3 capsules in the morning, ideally on an empty stomach, or 30 minutes before cardio. Avoid taking after 2 PM to prevent sleep disruption. Start with 1-2 capsules if you\'re caffeine-sensitive.',
     bestFor: ['morning-energy', 'focus', 'cardio-performance', 'mental-clarity'],
@@ -1424,14 +1541,14 @@ window.PRODUCTS = [
     description: 'Vitamins A/C/D/E with biotin, B-complex, zinc, iodine, folate, and marine collagen — in a passion-fruit gummy you\'ll actually take. The beauty-from-within stack that compounds over months.',
     size: '60 gummies · 30 servings',
     ingredients: [
-      { name: 'Biotin (B7)', dose: '5000 mcg', what: 'Hair, skin, nail support; the most-recognized beauty B-vitamin.' },
+      { name: 'Biotin (B7) — 5,000mcg', dose: '5000 mcg', what: 'Hair, skin, nail support; the most-recognized beauty B-vitamin.' },
       { name: 'Vitamin A', dose: '900 mcg', what: 'Skin renewal; supports cell turnover.' },
       { name: 'Vitamin C', dose: '90 mg', what: 'Collagen synthesis; brightening.' },
       { name: 'Vitamin D3', dose: '25 mcg', what: 'Skin and bone health.' },
       { name: 'Vitamin E', dose: '15 mg', what: 'Antioxidant; skin protection.' },
       { name: 'Zinc', dose: '11 mg', what: 'Skin healing; hormone balance.' },
-      { name: 'Iodine', dose: '150 mcg', what: 'Thyroid; metabolic support for hair growth.' },
-      { name: 'Marine collagen', dose: '500 mg', what: 'Skin firmness from within.' }
+      { name: 'Iodine — 150mcg', dose: '150 mcg', what: 'Thyroid; metabolic support for hair growth.' },
+      { name: 'Marine collagen — 1,000mg', dose: '500 mg', what: 'Skin firmness from within.' }
     ],
     howToUse: 'Take 2 gummies daily, anytime. Pleasant passion-fruit flavor — most customers find this the easiest supplement to remember.',
     bestFor: ['beauty', 'hair-health', 'skin-from-within', 'nails'],
@@ -1472,7 +1589,7 @@ window.PRODUCTS = [
     description: '10g of grass-fed bovine collagen peptides per scoop, types I & III. Unflavored, dissolves clean in coffee, cooking, anything. The beauty-and-mobility supplement that supports skin firmness and joint health from the inside.',
     size: '300g powder · 30 servings',
     ingredients: [
-      { name: 'Bovine collagen peptides (Types I & III)', dose: '10 g', what: 'Hydrolyzed peptides from grass-fed bovine; the two collagen types that make up 90% of human skin, joints, hair, and nails.' },
+      { name: 'Bovine collagen peptides (Types I & III) — 10g', dose: '10 g', what: 'Hydrolyzed peptides from grass-fed bovine; the two collagen types that make up 90% of human skin, joints, hair, and nails.' },
       { name: 'Average molecular weight 2-5 kDa', dose: '—', what: 'Optimized peptide size for digestive absorption — small enough to absorb intact, large enough to remain bioactive.' },
       { name: 'Unflavored profile', dose: '—', what: 'Neutral taste; dissolves clean in hot or cold liquids. Drink in coffee, soup, smoothies, or water without altering flavor.' },
       { name: 'Quality-sourced collagen peptides', dose: '—', what: 'Sourced from grass-fed bovine — no growth hormones, no antibiotics. Third-party verified for purity.' }
@@ -1516,12 +1633,12 @@ window.PRODUCTS = [
     description: 'Nootropic blend of GABA, L-Tyrosine, Bacopa monnieri, Alpha GPC, and Huperzine A with B6 — for focus that doesn\'t fade by 3pm. The cognitive supplement built for thinking work and sustained mental output.',
     size: '30 capsules · 30 servings',
     ingredients: [
-      { name: 'L-Tyrosine', dose: '500 mg', what: 'Amino acid; supports dopamine production for focus and motivation.' },
-      { name: 'GABA', dose: '300 mg', what: 'Calming neurotransmitter; reduces anxious focus.' },
-      { name: 'Bacopa monnieri', dose: '300 mg', what: 'Adaptogen; clinical evidence for memory enhancement.' },
-      { name: 'Alpha GPC', dose: '150 mg', what: 'Choline source; supports acetylcholine for focus.' },
-      { name: 'Huperzine A', dose: '50 mcg', what: 'Acetylcholinesterase inhibitor; memory support.' },
-      { name: 'Vitamin B6', dose: '5 mg', what: 'Required cofactor for neurotransmitter synthesis.' }
+      { name: 'L-Tyrosine — 500mg', dose: '500 mg', what: 'Amino acid; supports dopamine production for focus and motivation.' },
+      { name: 'GABA — 500mg', dose: '300 mg', what: 'Calming neurotransmitter; reduces anxious focus.' },
+      { name: 'Bacopa monnieri (Bacognize, 12% bacosides) — 300mg', dose: '300 mg', what: 'Adaptogen; clinical evidence for memory enhancement.' },
+      { name: 'Alpha GPC (50%) — 300mg', dose: '150 mg', what: 'Choline source; supports acetylcholine for focus.' },
+      { name: 'Huperzine A — 100mcg', dose: '50 mcg', what: 'Acetylcholinesterase inhibitor; memory support.' },
+      { name: 'Vitamin B6 — 5mg', dose: '5 mg', what: 'Required cofactor for neurotransmitter synthesis.' }
     ],
     howToUse: 'Take 1 capsule in the morning. For deep work sessions or long days, can take a second capsule in early afternoon. Don\'t take after 4 PM to avoid sleep impact.',
     bestFor: ['focus', 'cognition', 'memory', 'productivity'],
@@ -1595,7 +1712,7 @@ window.CONCERN_BUNDLES = [
     tab: 'skin',
     icon: 'C.',
     name: 'The Hydration Bundle',
-    blurb: "The hyaluronic acid serum and the hyaluronic face-and-body mist for layered surface hydration, the daily moisturizing cream for the seal, plus omega-3s that build the lipid matrix holding water in skin. Mist that doesn't quit by mid-afternoon.",
+    blurb: "Three layers of hydration that work because each one does something different. Plump delivers 1% sodium hyaluronate into the upper layers as a serum step. Mist refreshes that same layer mid-day without disturbing the routine underneath. Soft seals it in with multi-weight HA + ceramides + niacinamide. And Flow at 600mg EPA + 400mg DHA builds the lipid matrix from inside — the half of skin hydration topicals can't reach.",
     slugs: ['the-house-plump', 'the-house-mist', 'the-house-soft', 'the-house-flow']
   },
   {
@@ -1613,8 +1730,8 @@ window.CONCERN_BUNDLES = [
     tab: 'skin',
     icon: 'E.',
     name: 'The Soothing Bundle',
-    blurb: 'Gentle topicals that never trigger reactivity, paired with probiotics and omega-3s that calm the systemic inflammation often behind sensitive skin. No fragrance, no aggressive actives.',
-    slugs: ['the-house-wash', 'the-house-balance', 'the-house-soft', 'the-house-biome', 'the-house-flow']
+    blurb: 'Gentle topicals that never trigger reactivity — barrier-respecting cleanser, multi-weight HA moisturizer, and overnight squalane + HA seal — paired with probiotics and omega-3s that calm the systemic inflammation often behind sensitive skin. No fragrance, no acids, no aggressive actives.',
+    slugs: ['the-house-wash', 'the-house-soft', 'the-house-glow', 'the-house-biome', 'the-house-flow']
   },
   {
     id: 'pores',
@@ -1661,8 +1778,8 @@ window.CONCERN_BUNDLES = [
     tab: 'goal',
     icon: 'A.',
     name: 'The Sleep Bundle',
-    blurb: "The wind-down stack: magnesium glycinate and ashwagandha for the nervous system, plus the overnight skincare that puts your routine to bed. Better sleep that visibly shows by morning.",
-    slugs: ['the-house-calm', 'the-house-tranquil', 'the-house-soft', 'the-house-awake']
+    blurb: "The wind-down stack: magnesium glycinate for nervous-system relaxation, KSM-66 ashwagandha for cortisol modulation, clinical-dose Reishi (Still at 500 mg) for sleep architecture, plus the overnight skincare that puts your routine to bed. Three different sleep mechanisms layered together. Better sleep that visibly shows by morning.",
+    slugs: ['the-house-calm', 'the-house-tranquil', 'the-house-still', 'the-house-soft', 'the-house-awake']
   },
   {
     id: 'energy',
@@ -1670,8 +1787,8 @@ window.CONCERN_BUNDLES = [
     tab: 'goal',
     icon: 'B.',
     name: 'The Energy Bundle',
-    blurb: "Cellular energy from the foundation (multivitamin, CoQ10, vitamin D) layered with the metabolic kick of Surge and the cognitive edge of Focus. Energy that lasts through the day.",
-    slugs: ['the-house-multi', 'the-house-vitality', 'the-house-sunshine', 'the-house-surge', 'the-house-focus']
+    blurb: "The mitochondrial fuel stack. CoQ10 directly supplies the molecule mitochondria use to produce ATP, D3+K2 supports the cellular signaling that powers it, omega-3 EPA+DHA fuels brain and cardiovascular tissue specifically — with Multi as the micronutrient baseline and Surge for the optional clean morning lift. Pairs cleanly with The Clean Energy Bundle (which adds the gut-absorption side: Greens + Biome) for the full inside-out energy stack. For both halves in one purchase at the deepest discount, see The Full Energy Stack routine.",
+    slugs: ['the-house-multi', 'the-house-vitality', 'the-house-sunshine', 'the-house-flow', 'the-house-surge']
   },
   {
     id: 'focus',
@@ -1679,8 +1796,8 @@ window.CONCERN_BUNDLES = [
     tab: 'goal',
     icon: 'C.',
     name: 'The Focus Bundle',
-    blurb: "Cognitive nootropics with Alpha GPC and Bacopa, the Lion's Mane mushroom complex, omega-3 phospholipids for brain structure, plus Surge for the metabolic + cognitive lift before deep work — and the eye treatment for the toll long focus sessions take on the orbital area. Sharp mind, present face.",
-    slugs: ['the-house-focus', 'the-house-synapse', 'the-house-surge', 'the-house-flow', 'the-house-awake']
+    blurb: "Cognitive nootropics with Alpha GPC and Bacopa, clinical-dose Lion\'s Mane (Spark at 1,000 mg for NGF activity), omega-3 phospholipids for brain structure, Surge for the metabolic + cognitive lift before deep work — and the eye treatment for the toll long focus sessions take on the orbital area. Sharp mind, present face.",
+    slugs: ['the-house-focus', 'the-house-spark', 'the-house-surge', 'the-house-flow', 'the-house-awake']
   },
   {
     id: 'stress',
@@ -1742,7 +1859,7 @@ window.CONCERN_BUNDLES = [
     tab: 'goal',
     icon: 'K.',
     name: 'The Cycle Bundle',
-    blurb: "Cycle-aware support across the month — clinical-grade ashwagandha for hormonal-balance modulation, magnesium glycinate for PMS-week tension and sleep, vitamin D for mood through the luteal dip, the gut probiotic that the cycle-skin axis runs on, and omega-3 for the inflammation side. The protocol for women whose energy, skin, and mood track the month.",
+    blurb: "Symptom-side support across the month — KSM-66 ashwagandha at the cortisol-trial dose for stress modulation, magnesium glycinate at 400mg total for PMS-week tension and sleep, D3 5,000 IU for mood through the luteal dip, the multi-strain probiotic for the gut-hormone axis, and omega-3 for systemic inflammation. Built on the supplements with the strongest published evidence for PMS symptoms — magnesium, ashwagandha, vitamin D, and omega-3.",
     slugs: ['the-house-tranquil', 'the-house-calm', 'the-house-sunshine', 'the-house-biome', 'the-house-flow']
   },
   {
@@ -1750,10 +1867,19 @@ window.CONCERN_BUNDLES = [
     discount: 0.12,
     tab: 'goal',
     icon: 'L.',
-    name: 'The Metabolic Bundle',
-    blurb: "Daily energy and metabolic support from the foundation up — Surge for clean morning energy (caffeine + L-theanine + L-tyrosine for focus, L-carnitine for cellular energy support); Greens for the 22-ingredient nutrient density most diets miss; Biome for the gut microbiome that drives a meaningful share of metabolic and absorption health; Multi for the daily absorption baseline. Energy that runs on food and clean stimulation, not aggressive stimulants.",
-    slugs: ['the-house-surge', 'the-house-greens', 'the-house-biome', 'the-house-multi']
-  }
+    name: 'The Clean Energy Bundle',
+    blurb: "The gut-driven absorption stack. Most people eat enough nutrients; far fewer actually absorb them. Greens delivers 22 micronutrients most diets miss, Biome supports the microbiome that determines how much of any of it reaches your cells, and Multi covers the daily baseline. No stimulants — Clean Energy is foundational absorption work, not acute lift. Pairs cleanly with The Energy Bundle (which adds the cellular ATP machinery and the optional Surge lift) for the full inside-out energy stack. Use this alone if you eat reasonably but feel sluggish; stack with Energy if you want comprehensive coverage.",
+    slugs: ['the-house-greens', 'the-house-biome', 'the-house-multi']
+  },
+  {
+    id: 'mushroom-trio',
+    discount: 0.15,
+    tab: 'goal',
+    icon: 'M.',
+    name: 'The Mushroom Trio Bundle',
+    blurb: "The clinical-dose mushroom set — Spark (Lion\'s Mane 1,000 mg for cognition and NGF), Still (Reishi 500 mg for stress and sleep architecture), and Forge (Cordyceps militaris 500 mg for cellular energy and endurance). The three mushrooms with the strongest published evidence base, each at the dose where the research begins. The dedicated alternative to Synapse for customers who want clinical-dose mushroom support across the cognition / stress / energy axes.",
+    slugs: ['the-house-spark', 'the-house-still', 'the-house-forge']
+  },
 ];
 
 // Helper to compute concern bundle pricing on demand
@@ -1833,7 +1959,7 @@ window.CURATED_BUNDLES = [
     id: 'workout',
     name: 'The Workout Routine',
     discount: 0.15,
-    slugs: ['the-house-greens','the-house-surge','the-house-power','the-house-pump','the-house-restore']
+    slugs: ['the-house-greens','the-house-surge','the-house-power','the-house-pump','the-house-forge','the-house-restore']
   },
   {
     id: 'foundation',
@@ -1858,6 +1984,13 @@ window.CURATED_BUNDLES = [
     name: "The Ariana's Routine",
     discount: 0.15,
     slugs: ['the-house-wash','the-house-boost','the-house-defense','the-house-renewal','the-house-awake','the-house-soft','the-house-multi','the-house-radiance','the-house-collagen']
+  },
+  {
+    id: 'full-energy',
+    name: 'The Full Energy Stack',
+    discount: 0.18,
+    blurb: 'Both halves of the energy equation in one purchase. The mitochondrial fuel stack from The Energy Bundle (Multi + Vitality + Sunshine + Flow + Surge) layered with the gut absorption stack from The Clean Energy Bundle (Greens + Biome). Seven products covering cellular ATP production and nutrient absorption simultaneously — the comprehensive inside-out approach at the deepest discount available outside the Ultimate Routine.',
+    slugs: ['the-house-multi','the-house-vitality','the-house-sunshine','the-house-flow','the-house-surge','the-house-greens','the-house-biome']
   },
   // ─── GIFT SETS ─────────────────────────────────────────────────────────
   // Curated gift packages — same data shape as routines but flagged with
