@@ -18,8 +18,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=202605140223">
-<link rel="stylesheet" href="css/shared.css?v=202605140223">
+<link rel="stylesheet" href="styles.css?v=202605141530">
+<link rel="stylesheet" href="css/shared.css?v=202605141530">
 <style>
   body { background: var(--cream); color: var(--ink); font-family: 'Poppins', sans-serif; margin: 0; }
 
@@ -902,6 +902,24 @@
     border-radius: 100px;
     font-weight: 500;
   }
+  .rb-sr-monthly {
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: var(--sage);
+    margin: -10px 0 22px;
+    letter-spacing: 0.01em;
+  }
+  .rb-sr-monthly strong {
+    font-weight: 600;
+    font-style: normal;
+    color: var(--ink);
+  }
+  .result-curated-pricing + .rb-sr-monthly {
+    margin: -2px 0 18px;
+    font-size: 15.5px;
+  }
   #result-bundle-toggle { margin-bottom: 18px; }
   .result-bundle-cta {
     display: inline-block;
@@ -1710,6 +1728,7 @@
           <span class="rb-now" id="rb-now">$0</span>
           <span class="rb-save" id="rb-save">Save $0</span>
         </div>
+        <div class="rb-sr-monthly" id="rb-sr-monthly">~$0/mo with Smart Refill</div>
 
         <div class="bundle-subscribe-toggle" id="result-bundle-toggle" data-bundle-id="quiz-result">
           <button type="button" data-mode="once" class="active">
@@ -1983,8 +2002,8 @@
   </div>
 </div>
 
-<script src="data/products.js?v=202605140223"></script><script src="data/ingredients.js?v=202605140223"></script>
-<script src="js/auth.js?v=202605140223"></script><script src="js/shared.js?v=202605140223"></script><script src="data/faq-data.js?v=202605140223"></script><script src="js/chatbot.js?v=202605140223"></script>
+<script src="data/products.js?v=202605141530"></script><script src="data/ingredients.js?v=202605141530"></script>
+<script src="js/auth.js?v=202605141530"></script><script src="js/shared.js?v=202605141530"></script><script src="data/faq-data.js?v=202605141530"></script><script src="js/chatbot.js?v=202605141530"></script>
 <script>
 const TOTAL_STEPS = 11;
 let currentStep = 1;
@@ -2456,6 +2475,7 @@ function showResult() {
   const wasEl  = document.getElementById('rb-was');
   const nowEl  = document.getElementById('rb-now');
   const saveEl = document.getElementById('rb-save');
+  const srEl   = document.getElementById('rb-sr-monthly');
 
   function refreshBundlePricing() {
     const fullPrice   = state.products.reduce((s, p) => s + p.price, 0);
@@ -2467,6 +2487,10 @@ function showResult() {
     saveEl.textContent = subscribed
       ? `Save $${totalSavings.toFixed(2)} · bundle + subscribe`
       : `Save $${totalSavings.toFixed(2)} as a bundle`;
+    if (srEl) {
+      const srMo = quizBundleSmartRefillMonthly(state.products, QUIZ_BUNDLE_DISCOUNT, SUB_BONUS);
+      srEl.innerHTML = `<strong>~$${srMo.toFixed(0)}/mo</strong> with Smart Refill`;
+    }
   }
   refreshBundlePricing();
 
@@ -2821,6 +2845,24 @@ function buildQuizFAQs(products, skincare, supplements) {
 // surface that bundle as an alternative "or try this proven set"
 // callout. Uses CURATED_BUNDLES from data/products.js.
 // ═══════════════════════════════════════════════════════════════════
+// ─── Bundle-level Smart Refill monthly cost ────────────────────────────
+// Used by both the quiz-result bundle (showResult / refreshBundlePricing)
+// and the curated bundle match (renderCuratedBundleMatch). Sums each
+// product's annualised cost — price × shipments/year × 15% bundle discount
+// × 10% subscribe bonus — then divides by 12. Mirrors smartRefillMonthly
+// inside renderQuizBundleDetail so the per-card prices and the bundle
+// total stay perfectly consistent.
+function quizBundleSmartRefillMonthly(products, bundleDiscount = 0.15, subBonus = 0.10) {
+  if (!products || !products.length) return 0;
+  return products.reduce((sum, p) => {
+    const rt = p.runtime || 1;
+    const shipmentsPerYear = Math.ceil(12 / rt);
+    const annualList = (p.price || 0) * shipmentsPerYear;
+    const annualNet  = annualList * (1 - bundleDiscount) * (1 - subBonus);
+    return sum + (annualNet / 12);
+  }, 0);
+}
+
 function renderCuratedBundleMatch(recommendedProducts) {
   const container = document.getElementById('result-curated-match');
   if (!container) return;
@@ -2859,12 +2901,14 @@ function renderCuratedBundleMatch(recommendedProducts) {
   // Hide if no match clears the 50% F1 threshold (typical good matches land at 55-78% F1)
   if (!best || best.f1 < 0.5) { container.style.display = 'none'; return; }
   const b = best.bundle;
-  const fullPrice = (b.slugs || []).reduce((s, slug) => {
-    const p = (window.getProductBySlug || (() => null))(slug);
-    return p ? s + p.price : s;
-  }, 0);
-  const discountPct = (b.bundleDiscount || b.discount || 0.15) * 100;
-  const bundlePrice = fullPrice * (1 - (b.bundleDiscount || b.discount || 0.15));
+  const bundleProducts = (b.slugs || [])
+    .map(slug => (window.getProductBySlug || (() => null))(slug))
+    .filter(Boolean);
+  const fullPrice = bundleProducts.reduce((s, p) => s + p.price, 0);
+  const discountRate = (b.bundleDiscount || b.discount || 0.15);
+  const discountPct = discountRate * 100;
+  const bundlePrice = fullPrice * (1 - discountRate);
+  const srMo = quizBundleSmartRefillMonthly(bundleProducts, discountRate, 0.10);
   // Strip a leading "The " from the bundle name so the template doesn't double-prefix
   const cleanName = (b.name || b.id).replace(/^The\s+/i, '');
   // Strip a trailing " Routine" / " Stack" — we add it back in the template
@@ -2878,6 +2922,7 @@ function renderCuratedBundleMatch(recommendedProducts) {
       <span class="rb-was">$${fullPrice.toFixed(2)}</span>
       <span class="rb-now">$${bundlePrice.toFixed(2)}</span>
     </div>
+    <div class="rb-sr-monthly"><strong>~$${srMo.toFixed(0)}/mo</strong> with Smart Refill</div>
     <a href="routine.html?slug=${b.id}" class="result-curated-cta">See the ${baseName} ${suffix} →</a>
   `;
   container.style.display = 'block';
