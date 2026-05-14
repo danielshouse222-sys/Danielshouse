@@ -17,8 +17,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=202605140205">
-<link rel="stylesheet" href="css/shared.css?v=202605140205">
+<link rel="stylesheet" href="styles.css?v=202605140223">
+<link rel="stylesheet" href="css/shared.css?v=202605140223">
 <style>
   body { background: var(--cream); color: var(--ink); font-family: 'Poppins', sans-serif; margin: 0; }
 
@@ -845,7 +845,7 @@
   <div class="gift-grid">
 
     <!-- The Newcomer -->
-    <article class="gift-card" data-occasions="birthday holiday mothers fathers just-because" data-budgets="under-100 100-200">
+    <article class="gift-card" data-occasions="birthday holiday mothers fathers just-because" data-budgets="100-200">
       <div class="gift-card-img cols-4">
         <div class="gift-thumb"><img src="images/wash.jpeg" alt="Wash" loading="lazy"/></div>
         <div class="gift-thumb"><img src="images/defense.jpeg" alt="Defense" loading="lazy"/></div>
@@ -861,8 +861,8 @@
           <strong>What's Inside</strong>
           Wash · Defense · Soft · Shield · Gift box · Hand-written card
         </div>
-        <div class="gift-card-price"><s>$108</s> $98</div>
-        <div class="bundle-subscribe-toggle" data-bundle-id="starter" data-toggle>
+        <div class="gift-card-price" data-gift-price="gift-newcomer">$&hellip;</div>
+        <div class="bundle-subscribe-toggle" data-bundle-id="gift-newcomer" data-toggle>
           <button type="button" data-mode="once" class="active">
             <div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">One-Time</span></div>
             <span class="toggle-meta">Single delivery</span>
@@ -873,14 +873,14 @@
           </button>
         </div>
         <div class="gift-card-actions">
-          <button class="gift-card-btn primary" data-bundle-add="starter">Add to Cart →</button>
-          <a class="gift-card-btn secondary" href="routine.html?id=am">See Details</a>
+          <button class="gift-card-btn primary" data-bundle-add="gift-newcomer">Add to Cart →</button>
+          <a class="gift-card-btn secondary" href="routine.html?slug=gift-newcomer">See Details</a>
         </div>
       </div>
     </article>
 
     <!-- The Skin Set -->
-    <article class="gift-card" data-occasions="birthday holiday mothers anniversary" data-budgets="100-200">
+    <article class="gift-card" data-occasions="birthday holiday mothers anniversary" data-budgets="400-plus">
       <div class="gift-card-img cols-5">
         <div class="gift-thumb"><img src="images/wash.jpeg" alt="Wash" loading="lazy"/></div>
         <div class="gift-thumb"><img src="images/balance.jpeg" alt="Balance" loading="lazy"/></div>
@@ -902,8 +902,8 @@
           <strong>What's Inside</strong>
           Wash · Balance · Boost · Plump · Defense · Soft · Shield · Bounce · Firm · Mist · Awake · Glow · Gift box · Hand-written card
         </div>
-        <div class="gift-card-price">$182</div>
-        <div class="bundle-subscribe-toggle" data-bundle-id="daniels-skincare" data-toggle>
+        <div class="gift-card-price" data-gift-price="gift-skin-set">$&hellip;</div>
+        <div class="bundle-subscribe-toggle" data-bundle-id="gift-skin-set" data-toggle>
           <button type="button" data-mode="once" class="active">
             <div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">One-Time</span></div>
             <span class="toggle-meta">Single delivery</span>
@@ -914,8 +914,8 @@
           </button>
         </div>
         <div class="gift-card-actions">
-          <button class="gift-card-btn primary" data-bundle-add="daniels-skincare">Add to Cart →</button>
-          <a class="gift-card-btn secondary" href="routine.html?id=daniels-skincare">See Details</a>
+          <button class="gift-card-btn primary" data-bundle-add="gift-skin-set">Add to Cart →</button>
+          <a class="gift-card-btn secondary" href="routine.html?slug=gift-skin-set">See Details</a>
         </div>
       </div>
     </article>
@@ -938,8 +938,8 @@
           <strong>What's Inside</strong>
           Multi · Sunshine · Flow · Biome · Calm · Gift box · Hand-written card
         </div>
-        <div class="gift-card-price">$128</div>
-        <div class="bundle-subscribe-toggle" data-bundle-id="foundation" data-toggle>
+        <div class="gift-card-price" data-gift-price="gift-wellness">$&hellip;</div>
+        <div class="bundle-subscribe-toggle" data-bundle-id="gift-wellness" data-toggle>
           <button type="button" data-mode="once" class="active">
             <div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">One-Time</span></div>
             <span class="toggle-meta">Single delivery</span>
@@ -950,8 +950,8 @@
           </button>
         </div>
         <div class="gift-card-actions">
-          <button class="gift-card-btn primary" data-bundle-add="foundation">Add to Cart →</button>
-          <a class="gift-card-btn secondary" href="routine.html?id=foundation">See Details</a>
+          <button class="gift-card-btn primary" data-bundle-add="gift-wellness">Add to Cart →</button>
+          <a class="gift-card-btn secondary" href="routine.html?slug=gift-wellness">See Details</a>
         </div>
       </div>
     </article>
@@ -1186,14 +1186,44 @@
   </div>
 </div>
 
-<script src="data/products.js?v=202605140205"></script>
-<script src="data/ingredients.js?v=202605140205"></script>
-<script src="js/auth.js?v=202605140205"></script>
-<script src="js/shared.js?v=202605140205"></script>
-<script src="data/faq-data.js?v=202605140205"></script>
-<script src="js/chatbot.js?v=202605140205"></script>
+<script src="data/products.js?v=202605140223"></script>
+<script src="data/ingredients.js?v=202605140223"></script>
+<script src="js/auth.js?v=202605140223"></script>
+<script src="js/shared.js?v=202605140223"></script>
+<script src="data/faq-data.js?v=202605140223"></script>
+<script src="js/chatbot.js?v=202605140223"></script>
 
 <script>
+// ═══════════════════════════════════════════════════════════════════════
+// GIFT PRICING — calculate real bundle pricing from products.js data
+// Each .gift-card-price[data-gift-price] gets populated with the actual
+// retail (strike), discounted price, and save chip. Done in JS so prices
+// stay in sync if product prices ever change in data/products.js.
+// ═══════════════════════════════════════════════════════════════════════
+(function renderGiftPrices() {
+  document.querySelectorAll('[data-gift-price]').forEach(el => {
+    const bundleId = el.dataset.giftPrice;
+    const bundle = window.getCuratedBundleById?.(bundleId)
+                || (window.CONCERN_BUNDLES || []).find(b => b.id === bundleId);
+    if (!bundle) {
+      console.warn('[gifts] Bundle not found for pricing:', bundleId);
+      el.textContent = '';
+      return;
+    }
+    const products = bundle.slugs
+      .map(s => window.getProductBySlug && window.getProductBySlug(s))
+      .filter(Boolean);
+    if (!products.length) return;
+    const retail = products.reduce((acc, p) => acc + p.price, 0);
+    const discount = typeof bundle.discount === 'number' ? bundle.discount : 0.15;
+    const final = retail * (1 - discount);
+    const save = retail - final;
+    const pct = Math.round(discount * 100);
+    el.innerHTML = `<s>$${retail.toFixed(0)}</s> $${final.toFixed(0)}` +
+      `<div style="margin-top:6px;font-family:'Poppins',sans-serif;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);font-weight:600;">Save $${save.toFixed(0)} · ${pct}% off</div>`;
+  });
+})();
+
 // ═══════════════════════════════════════════════════════════════════════
 // GIFT FILTERS — Occasion + Budget chips
 // ═══════════════════════════════════════════════════════════════════════

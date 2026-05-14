@@ -17,8 +17,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=202605140205">
-<link rel="stylesheet" href="css/shared.css?v=202605140205">
+<link rel="stylesheet" href="styles.css?v=202605140223">
+<link rel="stylesheet" href="css/shared.css?v=202605140223">
 <style>
   body { background: var(--cream); color: var(--ink); font-family: 'Poppins', sans-serif; margin: 0; }
 
@@ -569,9 +569,9 @@
   </div>
 </footer>
 
-<script src="data/products.js?v=202605140205"></script>
-<script src="js/auth.js?v=202605140205"></script>
-<script src="js/shared.js?v=202605140205"></script>
+<script src="data/products.js?v=202605140223"></script>
+<script src="js/auth.js?v=202605140223"></script>
+<script src="js/shared.js?v=202605140223"></script>
 
 <script>
 // ═══════════════════════════════════════════════════════════════════════
@@ -593,8 +593,8 @@ const stepHistory = [1];
 const GIFT_CATALOG = [
   {
     id: 'newcomer', name: 'The <em>Newcomer</em>', tier: '4 Products · Skincare',
-    bundleId: 'starter',
-    detailUrl: 'routine.html?id=am',
+    bundleId: 'gift-newcomer',
+    detailUrl: 'routine.html?slug=gift-newcomer',
     price: 98, original: 108,
     imgs: ['images/wash.jpeg','images/defense.jpeg','images/soft.jpeg','images/shield.jpeg'],
     includes: 'Wash · Defense · Soft · Shield · Gift box · Hand-written card',
@@ -603,8 +603,8 @@ const GIFT_CATALOG = [
   },
   {
     id: 'skinset', name: 'The <em>Skin Set</em>', tier: '12 Products · Full Skincare Ritual',
-    bundleId: 'daniels-skincare',
-    detailUrl: 'routine.html?id=daniels-skincare',
+    bundleId: 'gift-skin-set',
+    detailUrl: 'routine.html?slug=gift-skin-set',
     price: 182,
     imgs: ['images/wash.jpeg','images/balance.jpeg','images/defense.jpeg','images/soft.jpeg','images/shield.jpeg'],
     imgCols: 5,
@@ -614,8 +614,8 @@ const GIFT_CATALOG = [
   },
   {
     id: 'wellness', name: 'The <em>Wellness Set</em>', tier: '5 Products · Daily Supplements',
-    bundleId: 'foundation',
-    detailUrl: 'routine.html?id=foundation',
+    bundleId: 'gift-wellness',
+    detailUrl: 'routine.html?slug=gift-wellness',
     price: 128,
     imgs: ['products/Multi.jpeg','products/Sunshine.jpeg','products/Flow.jpeg','products/Biome.jpeg','products/Calm.jpeg'],
     imgCols: 5,
@@ -679,6 +679,38 @@ const GIFT_CATALOG = [
     tags: { vibe: ['supplements','wellness'], focus: ['supplements','surprise'], budget: ['100-200'], recipient: ['friend','partner','coworker','other'] }
   }
 ];
+
+// ═══════════════════════════════════════════════════════════════════════
+// REAL-BUNDLE PRICE SYNC
+// For each catalog entry whose bundleId matches an actual bundle in the
+// product data, recompute price + original + budget bucket from the live
+// bundle. This keeps the gift quiz in sync with real bundle pricing —
+// so the price the user sees in the quiz result is what they'll see in
+// the cart and on bundles.html.
+// ═══════════════════════════════════════════════════════════════════════
+(function syncCatalogToRealBundles() {
+  GIFT_CATALOG.forEach(entry => {
+    const bundle = window.getCuratedBundleById?.(entry.bundleId)
+                || (window.CONCERN_BUNDLES || []).find(b => b.id === entry.bundleId);
+    if (!bundle) return;
+    const products = bundle.slugs
+      .map(s => window.getProductBySlug && window.getProductBySlug(s))
+      .filter(Boolean);
+    if (!products.length) return;
+    const retail = products.reduce((acc, p) => acc + p.price, 0);
+    const discount = typeof bundle.discount === 'number' ? bundle.discount : 0.15;
+    const finalPrice = Math.round(retail * (1 - discount));
+    entry.price = finalPrice;
+    entry.original = Math.round(retail);
+    // Recompute budget bucket so the quiz scorer matches reality
+    let bucket;
+    if (finalPrice < 100) bucket = 'under-100';
+    else if (finalPrice < 200) bucket = '100-200';
+    else if (finalPrice < 400) bucket = '200-400';
+    else bucket = '400-plus';
+    entry.tags.budget = [bucket];
+  });
+})();
 
 // ═══════════════════════════════════════════════════════════════════════
 // SCORER — returns a sorted list of matches with a numeric score

@@ -18,9 +18,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=202605140205">
-<link rel="stylesheet" href="css/shared.css?v=202605140205">
-<link rel="stylesheet" href="css/bundle-expand.css?v=202605140205">
+<link rel="stylesheet" href="styles.css?v=202605140223">
+<link rel="stylesheet" href="css/shared.css?v=202605140223">
+<link rel="stylesheet" href="css/bundle-expand.css?v=202605140223">
 <style>
   body { background: var(--cream); color: var(--ink); font-family: 'Poppins', sans-serif; margin: 0; }
 
@@ -700,6 +700,19 @@
   .concern-card.routine-card {
     background: linear-gradient(180deg, var(--cream-warm) 0%, var(--cream) 60%);
   }
+  /* Gift Set variant — same routine-card layout but with a gold pill +
+     soft gold-tinged tint so gifters spot them instantly in the grid. */
+  .concern-card.gift-card-routine .routine-pill {
+    background: var(--gold);
+    color: var(--ink);
+  }
+  .concern-card.gift-card-routine .card-collapsed-kind {
+    background: var(--gold);
+    color: var(--ink);
+  }
+  .concern-card.gift-card-routine {
+    background: linear-gradient(180deg, #F5ECD9 0%, var(--cream) 65%);
+  }
 
   @media (max-width: 600px) {
     .routine-pill { top: 16px; left: 16px; font-size: 9px; padding: 6px 10px; }
@@ -1350,11 +1363,11 @@
   </div>
 </div>
 
-<script src="data/products.js?v=202605140205"></script>
-<script src="data/bundle-details.js?v=202605140205"></script>
-<script src="data/ingredients.js?v=202605140205"></script>
-<script src="js/auth.js?v=202605140205"></script><script src="js/shared.js?v=202605140205"></script><script src="data/faq-data.js?v=202605140205"></script><script src="js/chatbot.js?v=202605140205"></script>
-<script src="js/bundle-expand.js?v=202605140205"></script>
+<script src="data/products.js?v=202605140223"></script>
+<script src="data/bundle-details.js?v=202605140223"></script>
+<script src="data/ingredients.js?v=202605140223"></script>
+<script src="js/auth.js?v=202605140223"></script><script src="js/shared.js?v=202605140223"></script><script src="data/faq-data.js?v=202605140223"></script><script src="js/chatbot.js?v=202605140223"></script>
+<script src="js/bundle-expand.js?v=202605140223"></script>
 <script>
 function renderConcernCard(bundle) {
   const pricing = window.getConcernBundlePricing(bundle.id);
@@ -1484,10 +1497,20 @@ function renderRoutineCard(bundle) {
   else if (bundle.id === 'daniels-skincare') formattedName = `Daniel's Daily <em>Skincare</em>`;
   else if (bundle.id === 'moms')            formattedName = `The <em>Mom's</em> Routine`;
   else if (bundle.id === 'arianas')         formattedName = `The <em>Ariana's</em> Routine`;
+  else if (bundle.id === 'gift-newcomer')   formattedName = `The <em>Newcomer</em> Set`;
+  else if (bundle.id === 'gift-skin-set')   formattedName = `The <em>Skin</em> Set`;
+  else if (bundle.id === 'gift-wellness')   formattedName = `The <em>Wellness</em> Set`;
   else {
     const m = bundle.name.match(/^The (.+) Routine$/);
     formattedName = m ? `The <em>${m[1]}</em> Routine` : bundle.name;
   }
+
+  // Gift sets get a distinct pill + badge so they're identifiable in the grid.
+  // They still use the routine-card layout (pricing, View Details dropdown,
+  // subscribe toggle) — only the labels change.
+  const isGift = bundle.kind === 'gift';
+  const pillLabel = isGift ? 'Gift Set' : 'Routine';
+  const pillTitle = isGift ? 'Curated gift package' : 'Curated daily ritual';
 
   const discountPct = Math.round((bundle.discount || 0.15) * 100);
   const smartAnnualSave = window.computeSmartRefillAnnualSavings ? window.computeSmartRefillAnnualSavings(bundle) : 0;
@@ -1497,11 +1520,11 @@ function renderRoutineCard(bundle) {
 
 
   return `
-    <div class="concern-card routine-card is-collapsed" data-bundle-id="${bundle.id}" data-bundle-kind="routine" data-product-slugs="${bundle.slugs.join(',')}" data-bundle-name="${bundle.name}">
+    <div class="concern-card routine-card${isGift ? ' gift-card-routine' : ''} is-collapsed" data-bundle-id="${bundle.id}" data-bundle-kind="${isGift ? 'gift' : 'routine'}" data-product-slugs="${bundle.slugs.join(',')}" data-bundle-name="${bundle.name}">
 
       <button type="button" class="card-collapsed-strip" aria-label="Expand ${bundle.name}" data-card-toggle>
         <div class="card-collapsed-text">
-          <span class="card-collapsed-kind">Routine</span>
+          <span class="card-collapsed-kind">${pillLabel}</span>
           <div class="card-collapsed-name">${formattedName}</div>
           <div class="card-collapsed-meta">
             ${skinCount > 0 ? `<span class="card-collapsed-pill"><span class="dot"></span>${skinCount} Skincare</span>` : ''}
@@ -1516,7 +1539,7 @@ function renderRoutineCard(bundle) {
       </button>
 
       <div class="concern-savings-ribbon">Save ${discountPct}%</div>
-      <div class="routine-pill" title="Curated daily ritual">Routine</div>
+      <div class="routine-pill" title="${pillTitle}">${pillLabel}</div>
       <button type="button" class="card-close-top" data-card-toggle aria-label="Collapse ${bundle.name}">✕</button>
 
       <div class="concern-card-img-side">
@@ -1637,6 +1660,10 @@ document.addEventListener('DOMContentLoaded', () => {
     { kind: 'concern', id: 'sleep' },         // small bundle, universal wellness need
     { kind: 'concern', id: 'aging' },         // top skin concern across demographics
     { kind: 'routine', id: 'ultimate' },      // flagship — premium statement, max savings
+    // ─── Gift Sets — visible early so gifters land on them without scrolling ──
+    { kind: 'routine', id: 'gift-skin-set' },   // The Skin Set — full skincare ritual, gift-ready
+    { kind: 'routine', id: 'gift-wellness' },   // The Wellness Set — supplement foundation, gift-ready
+    { kind: 'routine', id: 'gift-newcomer' },   // The Newcomer Set — 4-product entry skincare gift
     { kind: 'concern', id: 'energy' },        // universal — broad supplement appeal
     { kind: 'concern', id: 'hair-nails' },    // Hair & Nails — beauty-from-within entry
     { kind: 'concern', id: 'starter' },       // Skin Starter — skincare entry point
