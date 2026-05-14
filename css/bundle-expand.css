@@ -797,3 +797,98 @@ button.bundle-exp-h.bundle-exp-toggle:hover .exp-h-icon { color: var(--ink); }
   .bundle-exp-faq-q { font-size: 15px; padding: 16px 0; }
   .bundle-exp-faq-a { font-size: 14px; line-height: 1.65; }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   DETAIL-PAGE EXPANSION — body[data-bundle-detail-page="1"]
+
+   When rendered on an individual bundle page (routine.html), the expansion
+   mounts inside #bundle-expansion-target and is always-open with no toggle
+   button. Override the card-context constraints (max-height transition,
+   thin top border) and give it a clean full-width treatment so the
+   "View Details" content reads as part of the page rather than a popout.
+   ═══════════════════════════════════════════════════════════════════════ */
+.bundle-expansion.is-detail-page-expansion {
+  max-height: none !important;       /* override the transition cap */
+  overflow: visible;                  /* let sticky/floating things escape */
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+
+/* Inside the #bundle-expansion-target wrapper (a .bundle-section), give the
+   expansion the same outer rhythm as other sections on routine.html. */
+#bundle-expansion-target {
+  padding: 0 !important;
+}
+#bundle-expansion-target .bundle-expansion.is-detail-page-expansion {
+  padding: 0;
+}
+
+/* Each top-level expansion section gets a clean header treatment that
+   matches the rest of routine.html — eyebrow above an italicized title. */
+.is-detail-page-expansion .bundle-exp-section {
+  margin-bottom: 56px;
+  padding: 0;
+}
+.is-detail-page-expansion .bundle-exp-section:last-child {
+  margin-bottom: 0;
+}
+.is-detail-page-expansion .bundle-exp-h {
+  /* Headers are buttons; on the detail page we don't need them collapsible,
+     but the wiring still toggles aria-expanded — leave that alone, just
+     remove the affordance that it's a button. */
+  cursor: default;
+  pointer-events: none;
+  background: none;
+  border: none;
+  padding: 0 0 8px;
+  width: 100%;
+  text-align: left;
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 24px;
+}
+.is-detail-page-expansion .bundle-exp-h .exp-h-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(28px, 3.6vw, 38px);
+  font-weight: 500;
+  line-height: 1.15;
+  color: var(--ink);
+}
+.is-detail-page-expansion .bundle-exp-h .exp-h-icon {
+  display: none;   /* hide the chevron — nothing to collapse on the detail page */
+}
+.is-detail-page-expansion .bundle-exp-section.is-collapsible {
+  /* Override any collapsed default */
+}
+.is-detail-page-expansion .bundle-exp-section.is-collapsible > .bundle-exp-content,
+.is-detail-page-expansion .bundle-exp-section.is-collapsible:not(.is-open) > .bundle-exp-content {
+  max-height: none !important;
+  opacity: 1 !important;
+  overflow: visible !important;
+  display: block !important;
+  margin-top: 0 !important;
+}
+
+/* Tighten internal blocks on the detail page so they sit in the page
+   rhythm (not inside a card). */
+.is-detail-page-expansion .bundle-exp-rows {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+.is-detail-page-expansion .bundle-exp-row {
+  background: var(--cream);
+  border: 1px solid var(--rule);
+}
+
+@media (max-width: 800px) {
+  .is-detail-page-expansion .bundle-exp-section {
+    margin-bottom: 40px;
+  }
+  .is-detail-page-expansion .bundle-exp-h .exp-h-label {
+    font-size: 24px;
+  }
+}
