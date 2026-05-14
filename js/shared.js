@@ -2530,7 +2530,7 @@
           { href: 'routines.html',      label: 'Routines' },
           { href: 'bundles.html',         label: 'Bundles' },
           { href: 'gifts.html',        label: 'Gifts' },
-          { href: 'gift-quiz.html',    label: 'Gift Quiz' },
+          { href: 'routines.html#build-your-own', label: 'Build Your Own' },
           { href: 'compare.html',      label: 'Compare' }
         ]
       },

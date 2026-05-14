@@ -377,32 +377,49 @@
     wiredButtons.add(cta);
 
     // Detail-page mode — when set on <body data-bundle-detail-page="1">, render
-    // the expansion ALWAYS-OPEN with no toggle button. Used by routine.html so
-    // every bundle's individual page shows the full View Details content inline
-    // by default, rather than hiding it behind a click. The expansion lands in
-    // a dedicated container (#bundle-expansion-target) so it sits below the
-    // bundle hero and above any related-bundles section.
+    // the expansion under a prominent "View Full Details ▾" toggle dropdown
+    // (instead of inlining it always-open). Used by routine.html so the detail
+    // sections (Why, Audience, Routine steps, Studies, FAQ) are available but
+    // don't push the related-bundles section off the screen by default.
     const isDetailPage = !!(document.body && document.body.dataset.bundleDetailPage);
     if (isDetailPage) {
+      // Build the prominent page-level toggle button — full-width, clear label
+      const toggle = document.createElement('button');
+      toggle.type = 'button';
+      toggle.className = 'bundle-details-toggle bundle-details-toggle-page';
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.innerHTML = `<span class="toggle-label">View Full Details</span><span class="toggle-icon">▾</span>`;
+
+      // Build expansion (starts COLLAPSED — no .is-open)
       const wrapper = document.createElement('div');
       wrapper.innerHTML = buildExpansion(bundle, details);
       const expansion = wrapper.firstElementChild;
-      // Force always-open state — no toggle to flip it closed
-      expansion.classList.add('is-open');
       expansion.classList.add('is-detail-page-expansion');
 
-      // Land it in the dedicated target if present, else after the CTA's containing section
+      // Mount in the dedicated target if present, else after the hero section
       const target = document.getElementById('bundle-expansion-target');
       if (target) {
+        target.appendChild(toggle);
         target.appendChild(expansion);
       } else {
         const heroSection = cta.closest('section') || cta.parentNode;
-        heroSection.parentNode.insertBefore(expansion, heroSection.nextSibling);
+        heroSection.parentNode.insertBefore(toggle, heroSection.nextSibling);
+        toggle.insertAdjacentElement('afterend', expansion);
       }
 
-      // Wire only the per-section collapsibles + FAQ items + add-to-cart row buttons
+      // Wire the toggle — flips is-open on both button + expansion, updates label
+      toggle.addEventListener('click', () => {
+        const isOpen = expansion.classList.toggle('is-open');
+        toggle.classList.toggle('is-open', isOpen);
+        toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        const label = toggle.querySelector('.toggle-label');
+        if (label) label.textContent = isOpen ? 'Hide Full Details' : 'View Full Details';
+      });
+
+      // Wire interior FAQ items + add-to-cart row buttons (sections themselves
+      // stay always-open inside the expansion — the outer toggle is the only
+      // collapse on the detail page).
       wireFaqItems(expansion);
-      wireCollapsibleSections(expansion);
       wireAddRowButtons(expansion);
       return;
     }
