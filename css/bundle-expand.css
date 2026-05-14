@@ -801,31 +801,76 @@ button.bundle-exp-h.bundle-exp-toggle:hover .exp-h-icon { color: var(--ink); }
 /* ═══════════════════════════════════════════════════════════════════════
    DETAIL-PAGE EXPANSION — body[data-bundle-detail-page="1"]
 
-   When rendered on an individual bundle page (routine.html), the expansion
-   mounts inside #bundle-expansion-target and is always-open with no toggle
-   button. Override the card-context constraints (max-height transition,
-   thin top border) and give it a clean full-width treatment so the
-   "View Details" content reads as part of the page rather than a popout.
+   On individual bundle pages (routine.html), the expansion mounts inside
+   #bundle-expansion-target as a "View Full Details ▾" dropdown. Default
+   state: collapsed. Click the toggle to expand. Interior sections stay
+   always-open inside the expansion (no nested collapse).
    ═══════════════════════════════════════════════════════════════════════ */
+
+/* The outer expansion respects .is-open via the base .bundle-expansion rules
+   (max-height: 0 → 50000px transition). The detail-page variant just removes
+   the inline-decoration that doesn't suit a full-width page context. */
 .bundle-expansion.is-detail-page-expansion {
-  max-height: none !important;       /* override the transition cap */
-  overflow: visible;                  /* let sticky/floating things escape */
   margin-top: 0;
-  padding-top: 0;
   border-top: none;
 }
+.bundle-expansion.is-detail-page-expansion.is-open {
+  padding-top: 36px;
+  padding-bottom: 12px;
+}
 
-/* Inside the #bundle-expansion-target wrapper (a .bundle-section), give the
-   expansion the same outer rhythm as other sections on routine.html. */
+/* The prominent page-level toggle button — full-width, clear, hard to miss */
+.bundle-details-toggle.bundle-details-toggle-page {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 22px 32px;
+  background: var(--cream-warm);
+  border: 1px solid var(--rule);
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background 0.25s, border-color 0.25s, color 0.25s;
+  margin: 0;
+}
+.bundle-details-toggle.bundle-details-toggle-page:hover {
+  background: var(--cream);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+.bundle-details-toggle.bundle-details-toggle-page .toggle-icon {
+  font-size: 14px;
+  transition: transform 0.3s ease;
+  line-height: 1;
+}
+.bundle-details-toggle.bundle-details-toggle-page.is-open .toggle-icon {
+  transform: rotate(180deg);
+}
+.bundle-details-toggle.bundle-details-toggle-page.is-open {
+  background: var(--ink);
+  color: var(--cream);
+  border-color: var(--ink);
+}
+
+/* The bundle-expansion-target section becomes a transparent wrapper — no
+   visual padding of its own, since the toggle button supplies the chrome. */
 #bundle-expansion-target {
   padding: 0 !important;
+  margin-bottom: 60px;
 }
 #bundle-expansion-target .bundle-expansion.is-detail-page-expansion {
-  padding: 0;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 /* Each top-level expansion section gets a clean header treatment that
-   matches the rest of routine.html — eyebrow above an italicized title. */
+   matches the rest of routine.html — italic title with a thin rule under it. */
 .is-detail-page-expansion .bundle-exp-section {
   margin-bottom: 56px;
   padding: 0;
@@ -834,9 +879,8 @@ button.bundle-exp-h.bundle-exp-toggle:hover .exp-h-icon { color: var(--ink); }
   margin-bottom: 0;
 }
 .is-detail-page-expansion .bundle-exp-h {
-  /* Headers are buttons; on the detail page we don't need them collapsible,
-     but the wiring still toggles aria-expanded — leave that alone, just
-     remove the affordance that it's a button. */
+  /* Interior section headers are still buttons in the source, but on the
+     detail page they don't collapse — remove the affordance. */
   cursor: default;
   pointer-events: none;
   background: none;
@@ -858,11 +902,12 @@ button.bundle-exp-h.bundle-exp-toggle:hover .exp-h-icon { color: var(--ink); }
   color: var(--ink);
 }
 .is-detail-page-expansion .bundle-exp-h .exp-h-icon {
-  display: none;   /* hide the chevron — nothing to collapse on the detail page */
+  display: none;   /* no chevron on internal section headers */
 }
-.is-detail-page-expansion .bundle-exp-section.is-collapsible {
-  /* Override any collapsed default */
-}
+
+/* Interior sections stay always-visible inside the expansion (the outer
+   toggle is the only collapse). Override the card-context "collapse each
+   section" rules with !important so they win regardless of .is-open state. */
 .is-detail-page-expansion .bundle-exp-section.is-collapsible > .bundle-exp-content,
 .is-detail-page-expansion .bundle-exp-section.is-collapsible:not(.is-open) > .bundle-exp-content {
   max-height: none !important;
@@ -885,6 +930,11 @@ button.bundle-exp-h.bundle-exp-toggle:hover .exp-h-icon { color: var(--ink); }
 }
 
 @media (max-width: 800px) {
+  .bundle-details-toggle.bundle-details-toggle-page {
+    padding: 18px 24px;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+  }
   .is-detail-page-expansion .bundle-exp-section {
     margin-bottom: 40px;
   }
