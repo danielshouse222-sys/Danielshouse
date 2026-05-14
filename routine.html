@@ -18,8 +18,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=202605140120">
-  <link rel="stylesheet" href="css/shared.css?v=202605140120">
+  <link rel="stylesheet" href="styles.css?v=202605140158">
+  <link rel="stylesheet" href="css/shared.css?v=202605140158">
+  <link rel="stylesheet" href="css/bundle-expand.css?v=202605140158">
 
 <style>
   body { background: var(--cream); }
@@ -455,17 +456,19 @@
   }
 </style>
 </head>
-<body>
+<body data-bundle-detail-page="1">
 
-<!-- Top strip -->
-<div class="top-strip">
-  <span>Free shipping on orders over <strong>$75</strong></span>
-  <span class="dot"></span>
-  <span>30-Day Returns</span>
-  <span class="dot"></span>
-  <span>Cruelty-Free · Non-GMO</span>
-  <span class="dot"></span>
-  <span>Made in USA</span>
+<div class="shipping-bar">
+  <div class="shipping-bar-progress"></div>
+  <div class="shipping-bar-inner">
+    <div class="shipping-bar-text">Free shipping on orders over <strong>$75</strong></div>
+    <div class="shipping-bar-divider"></div>
+    <span class="shipping-bar-pill">30-Day Returns</span>
+    <div class="shipping-bar-divider"></div>
+    <span class="shipping-bar-pill">Cruelty-Free · Non-GMO</span>
+    <div class="shipping-bar-divider"></div>
+    <span class="shipping-bar-pill">Made in USA</span>
+  </div>
 </div>
 
 <!-- Nav -->
@@ -480,6 +483,7 @@
 
       <li><a href="routines.html">Routines</a></li>
       <li><a href="bundles.html">Bundles</a></li>
+      <li><a href="gifts.html">Gifts</a></li>
     </ul>
     <div style="display: flex; gap: 4px;">
       <button class="search-trigger" aria-label="Search">Search</button>
@@ -532,9 +536,10 @@
   </div>
 </footer>
 
-<script src="data/products.js?v=202605140120"></script><script src="data/ingredients.js?v=202605140120"></script>
-<script src="data/bundle-details.js?v=202605140120"></script>
-<script src="js/auth.js?v=202605140120"></script><script src="js/shared.js?v=202605140120"></script><script src="data/faq-data.js?v=202605140120"></script><script src="js/chatbot.js?v=202605140120"></script>
+<script src="data/products.js?v=202605140158"></script><script src="data/ingredients.js?v=202605140158"></script>
+<script src="data/bundle-details.js?v=202605140158"></script>
+<script src="js/auth.js?v=202605140158"></script><script src="js/shared.js?v=202605140158"></script><script src="data/faq-data.js?v=202605140158"></script><script src="js/chatbot.js?v=202605140158"></script>
+<script src="js/bundle-expand.js?v=202605140158"></script>
 <script>
 (function() {
   const params = new URLSearchParams(window.location.search);
@@ -637,66 +642,15 @@
       </div>
     </section>
 
-    <!-- What's Inside -->
-    <section class="bundle-section">
-      <div class="bundle-section-eyebrow">What's Inside · Every Product</div>
-      <h2 class="bundle-section-title">The full <em>stack</em>.</h2>
-      <p class="bundle-section-blurb">Every product in this routine, with a direct link to the full detail page for each — ingredients, evidence, application, FAQ.</p>
-      <div class="bundle-products-grid">
-        ${products.map(p => `
-          <a class="bundle-product-card" href="product.html?slug=${p.slug}">
-            <div class="bundle-product-card-img">
-              <img src="${p.image}" alt="${p.name}" loading="lazy"/>
-            </div>
-            <div class="bundle-product-card-tag">${(p.tag || '').split('·')[0].trim() || (p.category === 'skincare' ? 'Skincare' : 'Supplement')}</div>
-            <div class="bundle-product-card-name">The House <em>${p.name}</em></div>
-            <div class="bundle-product-card-price">$${p.price.toFixed(2)}</div>
-            <div class="bundle-product-card-link">View Details →</div>
-          </a>
-        `).join('')}
-      </div>
-    </section>
-
-    ${details?.whyThis ? `
-      <section class="bundle-section">
-        <div class="bundle-section-eyebrow">Why This Stack Works</div>
-        <h2 class="bundle-section-title">The <em>logic</em>.</h2>
-        <div class="bundle-why-block">${details.whyThis}</div>
-      </section>
-    ` : ''}
-
-    ${details?.timeline && details.timeline.length ? `
-      <section class="bundle-section">
-        <div class="bundle-section-eyebrow">Realistic Expectations</div>
-        <h2 class="bundle-section-title">What to <em>expect</em>, week by week.</h2>
-        <div class="bundle-timeline">
-          ${details.timeline.map(t => `
-            <div class="bundle-timeline-item">
-              <div class="bundle-timeline-week">${t.week}</div>
-              <div class="bundle-timeline-text">${t.text}</div>
-            </div>
-          `).join('')}
-        </div>
-      </section>
-    ` : ''}
-
-    ${details?.faq && details.faq.length ? `
-      <section class="bundle-section">
-        <div class="bundle-section-eyebrow">FAQ</div>
-        <h2 class="bundle-section-title">Common <em>questions</em>.</h2>
-        <div class="bundle-faq-list" id="faq-list">
-          ${details.faq.map(f => `
-            <div class="bundle-faq-item">
-              <div class="bundle-faq-q">
-                <span>${f.q}</span>
-                <span class="bundle-faq-toggle">+</span>
-              </div>
-              <div class="bundle-faq-a">${f.a}</div>
-            </div>
-          `).join('')}
-        </div>
-      </section>
-    ` : ''}
+    <!--
+      Detailed bundle content is rendered into #bundle-expansion-target
+      by js/bundle-expand.js, which detects body[data-bundle-detail-page]
+      and auto-opens the expansion with no toggle. This gives us a single
+      source of truth for: What's Inside, Why This Stack Works, Who This
+      Is For, Daily Supplements, Skincare AM/PM, What to Expect, Research,
+      and FAQ — all visible by default on the detail page.
+    -->
+    <section class="bundle-section" id="bundle-expansion-target"></section>
 
     <section class="bundle-section">
       <div class="bundle-section-eyebrow">You May Also Like</div>
@@ -705,10 +659,8 @@
     </section>
   `;
 
-  // FAQ accordion behavior
-  document.querySelectorAll('.bundle-faq-item').forEach(item => {
-    item.addEventListener('click', () => item.classList.toggle('open'));
-  });
+  // (Native FAQ accordion removed — bundle-expand.js renders + wires its own
+  // FAQ section inside the always-open expansion.)
 
   // Purchase toggle — supports both the simple fallback toggle and the
   // shared.js-generated dhBuildSubscribeToggle (which adds a cadence selector).

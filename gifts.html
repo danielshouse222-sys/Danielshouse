@@ -7,44 +7,690 @@
 <meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Gifts — Daniel's House</title>
-<meta name="description" content="Gift cards and curated gift sets for skincare and supplements. The Newcomer, The Skin Set, and The Wellness Set — premium wellness, gift-ready.">
+<meta name="description" content="Premium wellness, gift-ready. Curated gift sets, the full bundle library, build-your-own routines, and gift cards. Take the 2-minute Gift Quiz to find the right set.">
 <meta property="og:title" content="Gifts — Daniel's House">
-<meta property="og:description" content="Gift cards and curated gift sets for skincare and supplements. The Newcomer, The Skin Set, and The Wellness Set — premium wellness, gift-ready.">
+<meta property="og:description" content="Premium wellness, gift-ready. Curated gift sets, the full bundle library, build-your-own routines, and gift cards.">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta property="og:image" content="https://usewellness.com/images/og-card.jpg">
-<meta name="twitter:title" content="Gifts & Gift Cards — Daniel's House">
-<meta name="twitter:description" content="Gift cards and curated gift sets. Give the gift of a daily wellness routine that actually compounds.">
+<meta name="twitter:title" content="Gifts — Daniel's House">
+<meta name="twitter:description" content="Premium wellness, gift-ready. Curated gift sets and gift cards from Daniel's House.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=202605140120">
-<link rel="stylesheet" href="css/shared.css?v=202605140120">
+<link rel="stylesheet" href="styles.css?v=202605140158">
+<link rel="stylesheet" href="css/shared.css?v=202605140158">
 <style>
   body { background: var(--cream); color: var(--ink); font-family: 'Poppins', sans-serif; margin: 0; }
-  .legal-hero { text-align: center; padding: 100px 40px 60px; border-bottom: 1px solid var(--rule); }
-  .legal-eyebrow { font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 20px; }
-  .legal-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(48px, 6.5vw, 76px); font-weight: 400; line-height: 0.98; margin-bottom: 18px; }
-  .legal-title em { font-style: italic; color: var(--sage); }
-  .legal-tagline { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(17px, 2vw, 22px); color: var(--ink-soft); max-width: 680px; margin: 0 auto; }
-  .legal-updated { font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); margin-top: 24px; font-weight: 500; }
-  .legal-content { max-width: 820px; margin: 80px auto; padding: 0 40px; font-size: 15px; line-height: 1.78; color: var(--ink-soft); }
-  .legal-content h2 { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 500; color: var(--ink); margin: 56px 0 8px; line-height: 1.15; }
-  .legal-content h2 em { font-style: italic; color: var(--sage); }
-  .legal-content h2:first-of-type { margin-top: 0; }
-  .legal-content .h2-rule { width: 60px; height: 1px; background: var(--gold); margin: 14px 0 26px; }
-  .legal-content h3 { font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 600; color: var(--ink); margin: 28px 0 10px; letter-spacing: 0.02em; }
-  .legal-content p { margin: 0 0 16px; }
-  .legal-content ul, .legal-content ol { margin: 0 0 18px; padding-left: 22px; }
-  .legal-content li { margin: 0 0 8px; }
-  .legal-content strong { color: var(--ink); font-weight: 600; }
-  .legal-content a { color: var(--gold); text-decoration: none; border-bottom: 1px solid currentColor; }
-  .legal-content a:hover { color: var(--sage); }
-  .legal-note { background: var(--cream-warm); padding: 22px 28px; border-left: 3px solid var(--gold); margin: 28px 0; font-size: 14px; }
-  .legal-cta { text-align: center; margin: 60px 0 0; }
-  .legal-cta-btn { display: inline-block; padding: 16px 36px; background: var(--ink); color: var(--cream); text-decoration: none; font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; font-weight: 500; border-radius: 2px; transition: all 0.2s; }
-  .legal-cta-btn:hover { background: var(--gold); color: var(--ink); }
-  @media (max-width: 800px) { .legal-hero { padding: 70px 22px 44px; } .legal-content { padding: 0 22px; margin: 56px auto; } .legal-content h2 { font-size: 28px; margin-top: 44px; } }
+
+  /* ═══ HERO ═══ */
+  .gift-hero {
+    text-align: center;
+    padding: clamp(80px, 9vw, 120px) 40px clamp(60px, 7vw, 80px);
+    background: var(--cream-warm);
+    border-bottom: 1px solid var(--rule);
+  }
+  .gift-eyebrow {
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+  .gift-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(48px, 7vw, 84px);
+    font-weight: 400;
+    line-height: 0.98;
+    margin: 0 0 18px;
+  }
+  .gift-title em { font-style: italic; color: var(--sage); }
+  .gift-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(18px, 2.2vw, 24px);
+    color: var(--ink-soft);
+    max-width: 680px;
+    margin: 0 auto 32px;
+    line-height: 1.5;
+  }
+  .gift-hero-actions {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .gift-btn {
+    display: inline-block;
+    padding: 16px 32px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+    text-decoration: none;
+    border: 1px solid;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: none;
+  }
+  .gift-btn.primary {
+    background: var(--ink);
+    color: var(--cream);
+    border-color: var(--ink);
+  }
+  .gift-btn.primary:hover { background: var(--gold); border-color: var(--gold); }
+  .gift-btn.secondary {
+    background: transparent;
+    color: var(--ink);
+    border-color: var(--ink);
+  }
+  .gift-btn.secondary:hover { background: var(--ink); color: var(--cream); }
+
+  /* ═══ QUICK-PATH TILES ═══ */
+  .gift-paths {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: clamp(60px, 8vw, 100px) 40px clamp(40px, 5vw, 60px);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .gift-path {
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    padding: 40px 32px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--ink);
+    transition: all 0.25s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+  }
+  .gift-path:hover {
+    border-color: var(--gold);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(31, 27, 23, 0.06);
+  }
+  .gift-path-icon {
+    font-size: 32px;
+    margin-bottom: 18px;
+    color: var(--gold);
+  }
+  .gift-path-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .gift-path-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 1.15;
+    margin: 0 0 10px;
+  }
+  .gift-path-title em { font-style: italic; color: var(--sage); }
+  .gift-path-desc {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    margin: 0 0 18px;
+  }
+  .gift-path-link {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--gold);
+    margin-top: auto;
+  }
+
+  /* ═══ SECTION HEADER ═══ */
+  .sec-header-gift {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 48px;
+    padding: 0 40px;
+  }
+  .sec-header-gift .gift-eyebrow { margin-bottom: 14px; }
+  .sec-header-gift h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 5vw, 52px);
+    font-weight: 400;
+    line-height: 1.05;
+    margin: 0 0 14px;
+  }
+  .sec-header-gift h2 em { font-style: italic; color: var(--sage); }
+  .sec-header-gift p {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(17px, 1.8vw, 21px);
+    color: var(--ink-soft);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* ═══ FILTER STRIP ═══ */
+  .gift-filters {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 24px 40px 0;
+  }
+  .gift-filter-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 14px;
+    justify-content: center;
+  }
+  .gift-filter-label {
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    font-weight: 600;
+    margin-right: 4px;
+  }
+  .gift-chip {
+    padding: 9px 18px;
+    border: 1px solid var(--rule);
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 24px;
+    transition: all 0.2s;
+  }
+  .gift-chip:hover { border-color: var(--gold); color: var(--gold); }
+  .gift-chip.active { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+  .gift-filter-clear {
+    margin-top: 8px;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 1px;
+    display: none;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .gift-filter-clear.visible { display: inline-block; }
+
+  /* ═══ GIFT SET CARDS ═══ */
+  .gift-grid {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 40px 40px 100px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  .gift-card {
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: all 0.3s;
+    position: relative;
+  }
+  .gift-card.is-hidden { display: none !important; }
+  .gift-card:hover {
+    border-color: var(--gold);
+    box-shadow: 0 16px 40px rgba(31, 27, 23, 0.08);
+  }
+  .gift-card-img {
+    aspect-ratio: 4 / 3;
+    background: var(--cream-warm);
+    padding: 24px;
+    display: grid;
+    gap: 6px;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+  }
+  .gift-card-img.cols-5 { grid-template-columns: repeat(5, 1fr); }
+  .gift-card-img.cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .gift-card-img .gift-thumb {
+    aspect-ratio: 1 / 1;
+    background: var(--cream);
+    overflow: hidden;
+  }
+  .gift-card-img .gift-thumb img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+  }
+  .gift-card-meta {
+    padding: 24px 28px 28px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .gift-card-tier {
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .gift-card-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 1.1;
+    margin: 0 0 8px;
+  }
+  .gift-card-name em { font-style: italic; color: var(--sage); }
+  .gift-card-sub {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 14px;
+  }
+  .gift-card-desc {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.65;
+    margin: 0 0 18px;
+    flex: 1;
+  }
+  .gift-card-includes {
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: var(--ink-soft);
+    margin: 0 0 18px;
+    line-height: 1.6;
+  }
+  .gift-card-includes strong {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .gift-card-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+  .gift-card-price s {
+    color: var(--ink-soft);
+    font-size: 18px;
+    margin-right: 8px;
+    opacity: 0.6;
+  }
+  .gift-card-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: auto;
+  }
+  .gift-card-btn {
+    width: 100%;
+    padding: 14px 18px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+    text-decoration: none;
+    text-align: center;
+    border: 1px solid;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: none;
+    font-family: inherit;
+  }
+  .gift-card-btn.primary {
+    background: var(--ink);
+    color: var(--cream);
+    border-color: var(--ink);
+  }
+  .gift-card-btn.primary:hover { background: var(--gold); border-color: var(--gold); }
+  .gift-card-btn.secondary {
+    background: transparent;
+    color: var(--ink);
+    border-color: var(--rule);
+  }
+  .gift-card-btn.secondary:hover { border-color: var(--ink); }
+
+  /* ═══ MORE OPTIONS CARD ═══ */
+  .gift-more {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 60px 40px 100px;
+  }
+  .gift-more-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .gift-more-card {
+    background: var(--cream-warm);
+    padding: 36px 32px;
+    text-decoration: none;
+    color: var(--ink);
+    transition: all 0.25s;
+    border: 1px solid transparent;
+    display: flex;
+    flex-direction: column;
+  }
+  .gift-more-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-3px);
+  }
+  .gift-more-card .gift-card-tier { color: var(--sage); }
+  .gift-more-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 500;
+    line-height: 1.15;
+    margin: 0 0 12px;
+  }
+  .gift-more-card h3 em { font-style: italic; color: var(--sage); }
+  .gift-more-card p {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.65;
+    margin: 0 0 16px;
+    flex: 1;
+  }
+  .gift-more-card .arrow {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--gold);
+  }
+
+  /* ═══ GIFT CARDS SECTION ═══ */
+  .gift-cards-section {
+    background: var(--ink);
+    color: var(--cream);
+    padding: clamp(80px, 9vw, 120px) 40px;
+  }
+  .gift-cards-inner {
+    max-width: 980px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .gift-cards-visual {
+    aspect-ratio: 1.6 / 1;
+    background: linear-gradient(135deg, var(--gold) 0%, #C4A47C 100%);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    text-align: center;
+  }
+  .gift-cards-visual::before {
+    content: '';
+    position: absolute;
+    inset: 16px;
+    border: 1px solid rgba(250, 246, 240, 0.4);
+    pointer-events: none;
+  }
+  .gift-cards-visual-inner {
+    position: relative;
+    color: var(--ink);
+  }
+  .gift-cards-visual-mark {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 14px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(31, 27, 23, 0.75);
+    margin-bottom: 14px;
+  }
+  .gift-cards-visual-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 4vw, 48px);
+    font-weight: 400;
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+  .gift-cards-visual-name em { font-style: italic; }
+  .gift-cards-visual-amount {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(48px, 5.5vw, 64px);
+    font-weight: 500;
+    line-height: 1;
+    color: var(--ink);
+  }
+  .gift-cards-form .gift-eyebrow { color: var(--gold); }
+  .gift-cards-form h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 4.5vw, 48px);
+    font-weight: 400;
+    line-height: 1.05;
+    margin: 0 0 14px;
+    color: var(--cream);
+  }
+  .gift-cards-form h2 em { font-style: italic; color: var(--gold); }
+  .gift-cards-form p.tag {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: rgba(250, 246, 240, 0.78);
+    line-height: 1.55;
+    margin: 0 0 24px;
+  }
+  .gift-card-denoms {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .gift-card-denom {
+    padding: 12px 8px;
+    background: transparent;
+    color: var(--cream);
+    border: 1px solid rgba(196, 164, 124, 0.5);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .gift-card-denom:hover { border-color: var(--gold); background: rgba(196, 164, 124, 0.12); }
+  .gift-card-denom.active {
+    background: var(--gold);
+    color: var(--ink);
+    border-color: var(--gold);
+  }
+  .gift-card-custom-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 22px;
+  }
+  .gift-card-custom-row label {
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(250, 246, 240, 0.7);
+  }
+  .gift-card-custom-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(196, 164, 124, 0.5);
+    padding: 8px 10px;
+    color: var(--cream);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    outline: none;
+  }
+  .gift-card-custom-input:focus { border-bottom-color: var(--gold); }
+  .gift-card-custom-input::placeholder { color: rgba(250, 246, 240, 0.35); }
+  .gift-card-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .gift-card-field {
+    display: flex;
+    flex-direction: column;
+  }
+  .gift-card-field label {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(250, 246, 240, 0.65);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .gift-card-field input,
+  .gift-card-field textarea {
+    background: transparent;
+    border: 1px solid rgba(196, 164, 124, 0.4);
+    padding: 10px 12px;
+    color: var(--cream);
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .gift-card-field input:focus,
+  .gift-card-field textarea:focus { border-color: var(--gold); }
+  .gift-card-field input::placeholder,
+  .gift-card-field textarea::placeholder { color: rgba(250, 246, 240, 0.3); }
+  .gift-card-field-full {
+    grid-column: 1 / -1;
+  }
+  .gift-card-field textarea {
+    resize: vertical;
+    min-height: 60px;
+    font-family: inherit;
+  }
+  .gift-card-submit {
+    width: 100%;
+    padding: 16px;
+    background: var(--gold);
+    color: var(--ink);
+    border: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 12px;
+  }
+  .gift-card-submit:hover { background: var(--cream); }
+  .gift-card-success {
+    display: none;
+    text-align: center;
+    padding: 24px;
+    background: rgba(196, 164, 124, 0.12);
+    border: 1px solid var(--gold);
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--cream);
+    margin-top: 16px;
+  }
+  .gift-card-success.show { display: block; }
+
+  /* ═══ GIFT OPTIONS INFO ═══ */
+  .gift-info {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: clamp(80px, 9vw, 110px) 40px clamp(60px, 7vw, 80px);
+  }
+  .gift-info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 36px 60px;
+    margin-top: 40px;
+  }
+  .gift-info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+  }
+  .gift-info-icon {
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
+    background: var(--cream-warm);
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+    font-size: 18px;
+  }
+  .gift-info-text h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0 0 6px;
+    color: var(--ink);
+  }
+  .gift-info-text p {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ═══ QUIZ CTA AT BOTTOM ═══ */
+  .gift-quiz-cta {
+    background: var(--cream-warm);
+    padding: clamp(70px, 8vw, 100px) 40px;
+    text-align: center;
+  }
+  .gift-quiz-cta-inner {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  /* ═══ MOBILE ═══ */
+  @media (max-width: 900px) {
+    .gift-paths { grid-template-columns: 1fr; gap: 16px; padding: 60px 20px 40px; }
+    .gift-grid { grid-template-columns: 1fr; gap: 24px; padding: 24px 20px 80px; max-width: 480px; }
+    .gift-more-grid { grid-template-columns: 1fr; gap: 16px; }
+    .gift-cards-inner { grid-template-columns: 1fr; gap: 36px; }
+    .gift-info-grid { grid-template-columns: 1fr; gap: 28px; }
+    .gift-filters { padding: 24px 20px 0; }
+  }
+  @media (max-width: 480px) {
+    .gift-hero { padding: 60px 20px 50px; }
+    .gift-hero-actions { flex-direction: column; align-items: stretch; max-width: 320px; margin: 0 auto; }
+    .gift-card-denoms { grid-template-columns: repeat(3, 1fr); }
+    .gift-card-fields { grid-template-columns: 1fr; }
+    .sec-header-gift { padding: 0 20px; }
+  }
 </style>
 </head>
 <body>
@@ -72,6 +718,7 @@
       <li><a href="supplements.html">Supplements</a></li>
       <li><a href="routines.html">Routines</a></li>
       <li><a href="bundles.html">Bundles</a></li>
+      <li><a href="gifts.html" class="active">Gifts</a></li>
     </ul>
     <div style="display: flex; gap: 4px;">
       <button class="search-trigger" aria-label="Search">Search</button>
@@ -80,72 +727,407 @@
   </div>
 </nav>
 
-<section class="legal-hero">
-  <div class="legal-eyebrow">The House · Gifts</div>
-  <h1 class="legal-title">The <em>thoughtful</em> gift.</h1>
-  <p class="legal-tagline">Premium wellness, beautifully packaged. Skincare and supplements someone will actually use.</p>
-  <div class="legal-updated">Last Updated · May 2026</div>
+<!-- Floating Search Button → Centered Modal Filter -->
+<div class="page-filter collapsed" data-filter-target=".gift-card" data-filter-noun="gifts">
+  <button class="page-filter-toggle" type="button" aria-label="Open search and filters">
+    <span class="page-filter-toggle-icon">⌕</span>
+    <span class="page-filter-toggle-badge"></span>
+  </button>
+  <div class="page-filter-overlay"></div>
+  <div class="page-filter-panel">
+    <div class="page-filter-head">
+      <div class="page-filter-head-title">Search &amp; Filter</div>
+      <button class="page-filter-close" type="button" aria-label="Close">✕</button>
+    </div>
+    <div class="page-filter-bar">
+      <span class="page-filter-icon">⌕</span>
+      <input type="text" class="page-filter-input" placeholder="Search gifts... press Enter for full results" />
+      <button class="page-filter-clear" type="button" aria-label="Clear">✕</button>
+    </div>
+    <div class="page-filter-categories">
+      <div class="page-filter-category">
+        <div class="page-filter-category-label">Category</div>
+        <div class="page-filter-category-chips">
+          <button class="filter-chip" data-chip="skincare" data-group="category">Skincare</button>
+          <button class="filter-chip" data-chip="supplement" data-group="category">Supplements</button>
+          <button class="filter-chip" data-chip="bundle" data-group="category">Bundles</button>
+        </div>
+      </div>
+      <div class="page-filter-category">
+        <div class="page-filter-category-label">Goal</div>
+        <div class="page-filter-category-chips">
+          <button class="filter-chip" data-chip="sleep" data-group="goal">Sleep</button>
+          <button class="filter-chip" data-chip="energy" data-group="goal">Energy</button>
+          <button class="filter-chip" data-chip="stress" data-group="goal">Stress</button>
+          <button class="filter-chip" data-chip="beauty" data-group="goal">Beauty</button>
+          <button class="filter-chip" data-chip="anti-aging" data-group="goal">Anti-Aging</button>
+          <button class="filter-chip" data-chip="daily" data-group="goal">Daily</button>
+        </div>
+      </div>
+    </div>
+    <div class="page-filter-results"></div>
+    <div class="page-filter-foot">
+      <span class="page-filter-count"></span>
+      <button class="page-filter-clear-all" type="button">Clear all</button>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="gift-hero">
+  <div class="gift-eyebrow">Gifts · Daniel's House</div>
+  <h1 class="gift-title">The <em>thoughtful</em> gift.</h1>
+  <p class="gift-tagline">Premium wellness, beautifully packaged. Skincare and supplements someone will actually use — not the third candle they didn't need.</p>
+  <div class="gift-hero-actions">
+    <a href="gift-quiz.html" class="gift-btn primary">Take the 2-Minute Gift Quiz →</a>
+    <a href="#gift-sets" class="gift-btn secondary">Browse Sets</a>
+  </div>
 </section>
 
-<div class="legal-content">
+<!-- QUICK-PATH TILES -->
+<section class="gift-paths">
+  <a href="gift-quiz.html" class="gift-path">
+    <div class="gift-path-icon">✦</div>
+    <div class="gift-path-eyebrow">01 · Not Sure Yet</div>
+    <h3 class="gift-path-title">Take the <em>Gift Quiz.</em></h3>
+    <p class="gift-path-desc">Five quick questions about the recipient. We'll match a set to their vibe, your budget, and the occasion.</p>
+    <span class="gift-path-link">Start the Quiz →</span>
+  </a>
 
-<h2>Give <em>Premium Wellness.</em></h2>
-<div class="h2-rule"></div>
-<p>Skincare and supplements are the rare gift category where premium feels generous but is actually used. Beautifully packaged. Stacked at clinical doses. Built to be the gift someone actually finishes.</p>
+  <a href="#gift-sets" class="gift-path">
+    <div class="gift-path-icon">❋</div>
+    <div class="gift-path-eyebrow">02 · Pick a Set</div>
+    <h3 class="gift-path-title">Curated <em>Gift Sets.</em></h3>
+    <p class="gift-path-desc">Three thoughtful sets, ready to gift. Or browse the full bundle library if you want something more specific.</p>
+    <span class="gift-path-link">Browse Sets →</span>
+  </a>
 
-<h2>Gift <em>Cards.</em></h2>
-<div class="h2-rule"></div>
-<p>The flexible option. Choose any amount from $25 to $500. Delivered by email, scheduled for any date. The recipient picks exactly what they want.</p>
-<div style="background: var(--cream-warm); padding: 32px; border-radius: 4px; text-align: center; margin: 24px 0;">
-  <p style="margin-bottom: 20px; font-size: 18px;">Available in $25, $50, $75, $100, $150, $250, $500 — or any custom amount.</p>
-  <a href="#gift-cards" class="legal-cta-btn">Shop Gift Cards</a>
-</div>
+  <a href="#gift-cards" class="gift-path">
+    <div class="gift-path-icon">✉</div>
+    <div class="gift-path-eyebrow">03 · Skip the Guessing</div>
+    <h3 class="gift-path-title">Send a <em>Gift Card.</em></h3>
+    <p class="gift-path-desc">$25 to $500 (or any custom amount). Delivered by email, scheduled for any date. They pick what they want.</p>
+    <span class="gift-path-link">Send a Card →</span>
+  </a>
+</section>
 
-<h2>Curated <em>Gift Sets.</em></h2>
-<div class="h2-rule"></div>
-<p>Three thoughtful sets for the gifting moments that come up. Each set includes a custom gift box, hand-written card (optional), and the option to schedule delivery for a specific date.</p>
+<!-- CURATED GIFT SETS -->
+<section id="gift-sets">
+  <div class="sec-header-gift">
+    <div class="gift-eyebrow">Curated · Three Sets</div>
+    <h2>The <em>gift sets.</em></h2>
+    <p>Three thoughtful sets for three common gifting moments — the newcomer, the skincare lover, the wellness seeker. Filter by occasion or budget to narrow it down.</p>
+  </div>
 
-<h3 style="font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 500; margin: 40px 0 8px; color: var(--ink);"><em>The Newcomer.</em> — $98</h3>
-<p>For the friend who's curious about premium skincare but hasn't found the right brand yet. Four AM staples — Wash, Defense (the CE Ferulic antioxidant), Soft (advanced HA moisturizer), and Shield (mineral SPF 30). The complete morning protocol, ready out of the box.</p>
-<p><strong>Includes:</strong> Wash · Defense · Soft · Shield · Gift box · Hand-written card</p>
+  <!-- FILTER STRIP -->
+  <div class="gift-filters">
+    <div class="gift-filter-row" data-filter-group="occasion">
+      <span class="gift-filter-label">Occasion</span>
+      <button class="gift-chip" data-occasion="birthday">Birthday</button>
+      <button class="gift-chip" data-occasion="holiday">Holiday</button>
+      <button class="gift-chip" data-occasion="mothers">Mother's Day</button>
+      <button class="gift-chip" data-occasion="fathers">Father's Day</button>
+      <button class="gift-chip" data-occasion="anniversary">Anniversary</button>
+      <button class="gift-chip" data-occasion="just-because">Just Because</button>
+    </div>
+    <div class="gift-filter-row" data-filter-group="budget">
+      <span class="gift-filter-label">Budget</span>
+      <button class="gift-chip" data-budget="under-100">Under $100</button>
+      <button class="gift-chip" data-budget="100-200">$100 – $200</button>
+      <button class="gift-chip" data-budget="200-400">$200 – $400</button>
+      <button class="gift-chip" data-budget="400-plus">$400+</button>
+    </div>
+    <div style="text-align: center;">
+      <button class="gift-filter-clear" type="button">Clear filters ×</button>
+    </div>
+  </div>
 
-<h3 style="font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 500; margin: 40px 0 8px; color: var(--ink);"><em>The Skin Set.</em> — $182</h3>
-<p>The full skincare ritual. AM and PM, every step, ready to go. For the friend who takes their skin seriously or wants to.</p>
-<p><strong>Includes:</strong> Wash · Balance · Boost · Plump · Defense · Soft · Shield · Bounce · Firm · Mist · Awake · Glow · Gift box · Hand-written card</p>
+  <!-- GIFT SET CARDS -->
+  <div class="gift-grid">
 
-<h3 style="font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 500; margin: 40px 0 8px; color: var(--ink);"><em>The Wellness Set.</em> — $128</h3>
-<p>The supplement foundation. Multi for daily nutrients, Sunshine for vitamin D, Flow for omega-3s, Biome for the gut microbiome, Calm for evening wind-down. Five products, the daily inside-out routine.</p>
-<p><strong>Includes:</strong> Multi · Sunshine · Flow · Biome · Calm · Gift box · Hand-written card</p>
+    <!-- The Newcomer -->
+    <article class="gift-card" data-occasions="birthday holiday mothers fathers just-because" data-budgets="under-100 100-200">
+      <div class="gift-card-img cols-4">
+        <div class="gift-thumb"><img src="images/wash.jpeg" alt="Wash" loading="lazy"/></div>
+        <div class="gift-thumb"><img src="images/defense.jpeg" alt="Defense" loading="lazy"/></div>
+        <div class="gift-thumb"><img src="images/soft.jpeg" alt="Soft" loading="lazy"/></div>
+        <div class="gift-thumb"><img src="images/shield.jpeg" alt="Shield" loading="lazy"/></div>
+      </div>
+      <div class="gift-card-meta">
+        <div class="gift-card-tier">Gift Set · 4 Products</div>
+        <h3 class="gift-card-name">The <em>Newcomer.</em></h3>
+        <div class="gift-card-sub">Skincare · Daily AM Set</div>
+        <p class="gift-card-desc">For the friend who's curious about premium skincare but hasn't found the right brand yet. Four AM staples — cleanser, the CE Ferulic antioxidant, advanced HA moisturizer, and mineral SPF.</p>
+        <div class="gift-card-includes">
+          <strong>What's Inside</strong>
+          Wash · Defense · Soft · Shield · Gift box · Hand-written card
+        </div>
+        <div class="gift-card-price"><s>$108</s> $98</div>
+        <div class="bundle-subscribe-toggle" data-bundle-id="starter" data-toggle>
+          <button type="button" data-mode="once" class="active">
+            <div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">One-Time</span></div>
+            <span class="toggle-meta">Single delivery</span>
+          </button>
+          <button type="button" data-mode="subscribe">
+            <div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">Subscribe</span></div>
+            <span class="toggle-meta">Save 10% · cancel anytime</span>
+          </button>
+        </div>
+        <div class="gift-card-actions">
+          <button class="gift-card-btn primary" data-bundle-add="starter">Add to Cart →</button>
+          <a class="gift-card-btn secondary" href="routine.html?id=am">See Details</a>
+        </div>
+      </div>
+    </article>
 
-<h2>Gift <em>Options.</em></h2>
-<div class="h2-rule"></div>
-<ul>
-  <li><strong>Custom gift message:</strong> Add a personal note at checkout — printed on a card inside the box</li>
-  <li><strong>Scheduled delivery:</strong> Pick the date the package arrives, up to 90 days out</li>
-  <li><strong>Gift wrap:</strong> All gift sets come in our cream-and-gold gift box. No extra fee.</li>
-  <li><strong>Skip the receipt:</strong> Pricing is never printed on the packing slip when "this is a gift" is checked at checkout</li>
-  <li><strong>Easy returns:</strong> Recipients can exchange any gift for any other product within 30 days, no questions</li>
-</ul>
+    <!-- The Skin Set -->
+    <article class="gift-card" data-occasions="birthday holiday mothers anniversary" data-budgets="100-200">
+      <div class="gift-card-img cols-5">
+        <div class="gift-thumb"><img src="images/wash.jpeg" alt="Wash" loading="lazy"/></div>
+        <div class="gift-thumb"><img src="images/balance.jpeg" alt="Balance" loading="lazy"/></div>
+        <div class="gift-thumb"><img src="images/defense.jpeg" alt="Defense" loading="lazy"/></div>
+        <div class="gift-thumb"><img src="images/soft.jpeg" alt="Soft" loading="lazy"/></div>
+        <div class="gift-thumb"><img src="images/shield.jpeg" alt="Shield" loading="lazy"/></div>
+        <div class="gift-thumb"><img src="images/bounce.jpeg" alt="Bounce" loading="lazy"/></div>
+        <div class="gift-thumb"><img src="images/firm.jpeg" alt="Firm" loading="lazy"/></div>
+        <div class="gift-thumb"><img src="images/mist.jpeg" alt="Mist" loading="lazy"/></div>
+        <div class="gift-thumb"><img src="images/awake.jpeg" alt="Awake" loading="lazy"/></div>
+        <div class="gift-thumb"><img src="images/glow.jpeg" alt="Glow" loading="lazy"/></div>
+      </div>
+      <div class="gift-card-meta">
+        <div class="gift-card-tier">Gift Set · 12 Products</div>
+        <h3 class="gift-card-name">The <em>Skin Set.</em></h3>
+        <div class="gift-card-sub">Skincare · Full AM + PM Ritual</div>
+        <p class="gift-card-desc">The full skincare ritual — AM and PM, every step, ready to go. For the friend who takes their skin seriously, or wants to.</p>
+        <div class="gift-card-includes">
+          <strong>What's Inside</strong>
+          Wash · Balance · Boost · Plump · Defense · Soft · Shield · Bounce · Firm · Mist · Awake · Glow · Gift box · Hand-written card
+        </div>
+        <div class="gift-card-price">$182</div>
+        <div class="bundle-subscribe-toggle" data-bundle-id="daniels-skincare" data-toggle>
+          <button type="button" data-mode="once" class="active">
+            <div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">One-Time</span></div>
+            <span class="toggle-meta">Single delivery</span>
+          </button>
+          <button type="button" data-mode="subscribe">
+            <div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">Subscribe</span></div>
+            <span class="toggle-meta">Save 10% · cancel anytime</span>
+          </button>
+        </div>
+        <div class="gift-card-actions">
+          <button class="gift-card-btn primary" data-bundle-add="daniels-skincare">Add to Cart →</button>
+          <a class="gift-card-btn secondary" href="routine.html?id=daniels-skincare">See Details</a>
+        </div>
+      </div>
+    </article>
 
-<h2>Need <em>Help</em> Choosing?</h2>
-<div class="h2-rule"></div>
-<p>If you're not sure which set fits, take the <a href="quiz.html">Recipient Quiz</a> with a few details about the person you're shopping for. We'll match the set to their skin type, goals, and routine.</p>
+    <!-- The Wellness Set -->
+    <article class="gift-card" data-occasions="birthday holiday fathers anniversary just-because" data-budgets="100-200">
+      <div class="gift-card-img cols-5">
+        <div class="gift-thumb"><img src="products/Multi.jpeg" alt="Multi" loading="lazy"/></div>
+        <div class="gift-thumb"><img src="products/Sunshine.jpeg" alt="Sunshine" loading="lazy"/></div>
+        <div class="gift-thumb"><img src="products/Flow.jpeg" alt="Flow" loading="lazy"/></div>
+        <div class="gift-thumb"><img src="products/Biome.jpeg" alt="Biome" loading="lazy"/></div>
+        <div class="gift-thumb"><img src="products/Calm.jpeg" alt="Calm" loading="lazy"/></div>
+      </div>
+      <div class="gift-card-meta">
+        <div class="gift-card-tier">Gift Set · 5 Products</div>
+        <h3 class="gift-card-name">The <em>Wellness Set.</em></h3>
+        <div class="gift-card-sub">Supplements · Daily Foundation</div>
+        <p class="gift-card-desc">The supplement foundation. Multi for daily nutrients, Sunshine for D3+K2, Flow for omega-3s, Biome for the gut microbiome, Calm for evening wind-down.</p>
+        <div class="gift-card-includes">
+          <strong>What's Inside</strong>
+          Multi · Sunshine · Flow · Biome · Calm · Gift box · Hand-written card
+        </div>
+        <div class="gift-card-price">$128</div>
+        <div class="bundle-subscribe-toggle" data-bundle-id="foundation" data-toggle>
+          <button type="button" data-mode="once" class="active">
+            <div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">One-Time</span></div>
+            <span class="toggle-meta">Single delivery</span>
+          </button>
+          <button type="button" data-mode="subscribe">
+            <div class="toggle-row"><span class="toggle-mark"></span><span class="toggle-name">Subscribe</span></div>
+            <span class="toggle-meta">Save 10% · cancel anytime</span>
+          </button>
+        </div>
+        <div class="gift-card-actions">
+          <button class="gift-card-btn primary" data-bundle-add="foundation">Add to Cart →</button>
+          <a class="gift-card-btn secondary" href="routine.html?id=foundation">See Details</a>
+        </div>
+      </div>
+    </article>
 
-<div class="legal-cta">
-  <a href="quiz.html" class="legal-cta-btn">Take the Quiz</a>
-</div>
+  </div>
+</section>
 
-</div>
+<!-- MORE GIFT OPTIONS -->
+<section class="gift-more">
+  <div class="sec-header-gift">
+    <div class="gift-eyebrow">More Gift Options</div>
+    <h2>Or build it <em>your way.</em></h2>
+    <p>Want something more specific? Pick from the full bundle library, gift a complete routine, or build a custom box.</p>
+  </div>
+
+  <div class="gift-more-grid">
+    <a href="bundles.html" class="gift-more-card">
+      <div class="gift-card-tier">Option 01</div>
+      <h3>The full <em>bundle library.</em></h3>
+      <p>Thirty curated bundles — by skin concern, supplement goal, or routine. Sleep, Energy, Anti-Aging, Glow, Mom's, Workout, and more. Any bundle can ship as a gift with a hand-written card.</p>
+      <span class="arrow">Browse All Bundles →</span>
+    </a>
+
+    <a href="routines.html" class="gift-more-card">
+      <div class="gift-card-tier">Option 02</div>
+      <h3>A full <em>routine.</em></h3>
+      <p>The bigger gesture. The Ultimate (23 products, AM + PM + supplements), Foundation, AM, PM, or any of the curated routines — gift-wrapped, ready to go.</p>
+      <span class="arrow">Browse All Routines →</span>
+    </a>
+
+    <a href="routines.html#build-your-own" class="gift-more-card">
+      <div class="gift-card-tier">Option 03</div>
+      <h3>Build a <em>custom box.</em></h3>
+      <p>Pick exactly which products go in the gift. Mix skincare and supplements, set the budget, add a custom message. The bundle discount still applies — 5%, 10%, or 15% off depending on how many you choose.</p>
+      <span class="arrow">Start Building →</span>
+    </a>
+  </div>
+</section>
+
+<!-- GIFT CARDS -->
+<section id="gift-cards" class="gift-cards-section">
+  <div class="gift-cards-inner">
+
+    <div class="gift-cards-visual">
+      <div class="gift-cards-visual-inner">
+        <div class="gift-cards-visual-mark">Daniel's House · Gift Card</div>
+        <div class="gift-cards-visual-name">The <em>House</em> Gift</div>
+        <div class="gift-cards-visual-amount" id="visual-amount">$100</div>
+      </div>
+    </div>
+
+    <div class="gift-cards-form">
+      <div class="gift-eyebrow">Gift Cards</div>
+      <h2>Skip the guessing. <em>Send a card.</em></h2>
+      <p class="tag">Choose any amount. Delivered by email, scheduled for any date. The recipient picks exactly what they want.</p>
+
+      <div class="gift-card-denoms" id="denoms">
+        <button class="gift-card-denom" data-amount="25">$25</button>
+        <button class="gift-card-denom" data-amount="50">$50</button>
+        <button class="gift-card-denom" data-amount="75">$75</button>
+        <button class="gift-card-denom active" data-amount="100">$100</button>
+        <button class="gift-card-denom" data-amount="150">$150</button>
+        <button class="gift-card-denom" data-amount="250">$250</button>
+        <button class="gift-card-denom" data-amount="500">$500</button>
+        <button class="gift-card-denom" data-amount="custom">Custom</button>
+      </div>
+
+      <div class="gift-card-custom-row" id="custom-row" style="display: none;">
+        <label for="custom-amount">$</label>
+        <input type="number" id="custom-amount" class="gift-card-custom-input" placeholder="Enter amount" min="10" max="2000" />
+      </div>
+
+      <form id="gift-card-form" onsubmit="return submitGiftCard(event);">
+        <div class="gift-card-fields">
+          <div class="gift-card-field">
+            <label for="recipient-name">Recipient Name</label>
+            <input type="text" id="recipient-name" placeholder="Alex Smith" required />
+          </div>
+          <div class="gift-card-field">
+            <label for="recipient-email">Recipient Email</label>
+            <input type="email" id="recipient-email" placeholder="alex@email.com" required />
+          </div>
+          <div class="gift-card-field">
+            <label for="sender-name">From</label>
+            <input type="text" id="sender-name" placeholder="Your name" required />
+          </div>
+          <div class="gift-card-field">
+            <label for="send-date">Delivery Date</label>
+            <input type="date" id="send-date" />
+          </div>
+          <div class="gift-card-field gift-card-field-full">
+            <label for="gift-message">Personal Message (optional)</label>
+            <textarea id="gift-message" placeholder="Happy birthday — thought you'd love this..." maxlength="400"></textarea>
+          </div>
+        </div>
+        <button type="submit" class="gift-card-submit">Add Gift Card to Cart →</button>
+        <div class="gift-card-success" id="gc-success">✓ Gift card added to your cart. Continue browsing or check out when ready.</div>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<!-- GIFT OPTIONS INFO -->
+<section class="gift-info">
+  <div class="sec-header-gift">
+    <div class="gift-eyebrow">How Gifting Works</div>
+    <h2>Every gift, <em>thoughtfully sent.</em></h2>
+    <p>Every order with the "this is a gift" box checked at checkout includes everything below — no extra fees.</p>
+  </div>
+
+  <div class="gift-info-grid">
+    <div class="gift-info-item">
+      <div class="gift-info-icon">✉</div>
+      <div class="gift-info-text">
+        <h4>Custom gift message</h4>
+        <p>Add a personal note at checkout — printed on a hand-finished card inside the box.</p>
+      </div>
+    </div>
+    <div class="gift-info-item">
+      <div class="gift-info-icon">📅</div>
+      <div class="gift-info-text">
+        <h4>Scheduled delivery</h4>
+        <p>Pick the date the package arrives. Schedule up to 90 days ahead so the box lands on the day.</p>
+      </div>
+    </div>
+    <div class="gift-info-item">
+      <div class="gift-info-icon">❋</div>
+      <div class="gift-info-text">
+        <h4>Gift wrap, included</h4>
+        <p>Every gift set arrives in our cream-and-gold gift box, ribbon-tied, no extra fee.</p>
+      </div>
+    </div>
+    <div class="gift-info-item">
+      <div class="gift-info-icon">$</div>
+      <div class="gift-info-text">
+        <h4>No prices on the slip</h4>
+        <p>When "this is a gift" is checked at checkout, the packing slip never shows what you paid.</p>
+      </div>
+    </div>
+    <div class="gift-info-item">
+      <div class="gift-info-icon">↩</div>
+      <div class="gift-info-text">
+        <h4>Easy gift returns</h4>
+        <p>Recipients can swap any gift for any other product within 30 days. No questions, no receipt needed.</p>
+      </div>
+    </div>
+    <div class="gift-info-item">
+      <div class="gift-info-icon">★</div>
+      <div class="gift-info-text">
+        <h4>Subscribe for them</h4>
+        <p>Want the gift to keep arriving? Gift a 3- or 6-month subscription to any routine. They get the box; you handle the rest.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ CTA AT BOTTOM -->
+<section class="gift-quiz-cta">
+  <div class="gift-quiz-cta-inner">
+    <div class="gift-eyebrow">Still Deciding?</div>
+    <h2 style="font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 5vw, 56px); font-weight: 400; line-height: 1.05; margin: 0 0 16px;">Take the <em style="font-style: italic; color: var(--sage);">Gift Quiz.</em></h2>
+    <p style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(17px, 1.8vw, 21px); color: var(--ink-soft); margin: 0 0 28px; line-height: 1.5;">Five questions about the person, two minutes, one matched set. We'll suggest the right gift for their vibe, your budget, and the occasion.</p>
+    <a href="gift-quiz.html" class="gift-btn primary">Take the Gift Quiz →</a>
+  </div>
+</section>
+
 <footer>
   <div class="footer-newsletter">
     <div class="footer-newsletter-inner">
-      <div class="footer-newsletter-text">
-        <div class="footer-newsletter-eyebrow">Join The House</div>
-        <h3>Stay in the routine.</h3>
-        <p>Early access, founder updates, the occasional skincare deep-dive.</p>
-      </div>
-      <form class="footer-newsletter-form">
-        <input type="email" placeholder="Your email" required>
+      <div class="footer-newsletter-eyebrow">Letters from the House</div>
+      <div class="footer-newsletter-title">Get Daniel's actual <em>routine notes.</em></div>
+      <div class="footer-newsletter-blurb">First access to launches, ingredient deep-dives, and the rituals Daniel uses every week — sent twice a month, no spam.</div>
+      <form class="footer-newsletter-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent = '✓ Subscribed';">
+        <input type="email" placeholder="Your email" required />
         <button type="submit">Subscribe</button>
       </form>
     </div>
@@ -154,11 +1136,15 @@
     <div>
       <div class="footer-brand">Daniel<span class="amp">'s</span> House</div>
       <div class="footer-tag">Your home for premium wellness — built on real results, not marketing.</div>
-      <div class="footer-attr"><span>Non-GMO</span><span>Cruelty-Free</span><span>Made in USA</span></div>
+      <div class="footer-attr">
+        <span>Non-GMO</span>
+        <span>Cruelty-Free</span>
+        <span>Made in USA</span>
+      </div>
       <a href="mailto:daniel@danielshousewellness.com" class="footer-email">daniel@danielshousewellness.com</a>
     </div>
     <div class="footer-col"><h4>Shop</h4><ul><li><a href="skincare.html">Skincare</a></li><li><a href="supplements.html">Supplements</a></li><li><a href="routines.html">Routines</a></li><li><a href="bundles.html">Bundles</a></li><li><a href="gifts.html">Gifts</a></li><li><a href="compare.html">Compare</a></li></ul></div>
-    <div class="footer-col"><h4>The House</h4><ul><li><a href="about.html">Daniel's Story</a></li><li><a href="ingredients.html">Ingredient Glossary</a></li><li><a href="studies.html">Research Library</a></li><li><a href="blog.html">Blog</a></li><li><a href="reviews.html">Reviews</a></li><li><a href="quiz.html">Take the Quiz</a></li><li><a href="refer.html">Refer a Friend</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
+    <div class="footer-col"><h4>The House</h4><ul><li><a href="about.html">Daniel's Story</a></li><li><a href="ingredients.html">Ingredient Glossary</a></li><li><a href="studies.html">Research Library</a></li><li><a href="blog.html">Blog</a></li><li><a href="reviews.html">Reviews</a></li><li><a href="quiz.html">Take the Quiz</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
     <div class="footer-col"><h4>Help</h4><ul><li><a href="shipping.html">Shipping</a></li><li><a href="returns.html">Returns</a></li><li><a href="guarantee.html">30-Day Guarantee</a></li><li><a href="faq.html">Contact</a></li></ul></div>
   </div>
   <div class="footer-credit">
@@ -171,7 +1157,195 @@
   </div>
 </footer>
 
-<script src="data/products.js?v=202605140120"></script><script src="data/ingredients.js?v=202605140120"></script>
-<script src="js/auth.js?v=202605140120"></script><script src="js/shared.js?v=202605140120"></script><script src="data/faq-data.js?v=202605140120"></script><script src="js/chatbot.js?v=202605140120"></script>
+<!-- Shared Lightbox / Product Carousel -->
+<div class="lightbox-overlay">
+  <div class="lightbox">
+    <div class="lightbox-header">
+      <div class="lightbox-title"></div>
+      <button class="lightbox-close" aria-label="Close">×</button>
+    </div>
+    <div class="lightbox-body">
+      <div class="lightbox-image-side">
+        <button class="lightbox-arrow prev" aria-label="Previous">←</button>
+        <img class="lightbox-image" src="" alt="" />
+        <button class="lightbox-arrow next" aria-label="Next">→</button>
+      </div>
+      <div class="lightbox-info-side">
+        <div class="lightbox-counter"></div>
+        <div class="lightbox-tag"></div>
+        <div class="lightbox-name"></div>
+        <div class="lightbox-tagline"></div>
+        <div class="lightbox-desc"></div>
+        <div class="lightbox-price-row">
+          <div class="lightbox-price"></div>
+          <div class="lightbox-size"></div>
+        </div>
+        <div class="lightbox-actions"></div>
+      </div>
+    </div>
+    <div class="lightbox-dots"></div>
+  </div>
+</div>
+
+<script src="data/products.js?v=202605140158"></script>
+<script src="data/ingredients.js?v=202605140158"></script>
+<script src="js/auth.js?v=202605140158"></script>
+<script src="js/shared.js?v=202605140158"></script>
+<script src="data/faq-data.js?v=202605140158"></script>
+<script src="js/chatbot.js?v=202605140158"></script>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════════
+// GIFT FILTERS — Occasion + Budget chips
+// ═══════════════════════════════════════════════════════════════════════
+(function() {
+  const cards = document.querySelectorAll('.gift-card');
+  const occasionChips = document.querySelectorAll('[data-occasion]');
+  const budgetChips = document.querySelectorAll('[data-budget]');
+  const clearBtn = document.querySelector('.gift-filter-clear');
+  let activeOccasion = null;
+  let activeBudget = null;
+
+  function applyFilters() {
+    cards.forEach(card => {
+      const occasions = (card.dataset.occasions || '').split(' ');
+      const budgets = (card.dataset.budgets || '').split(' ');
+      const matchOccasion = !activeOccasion || occasions.includes(activeOccasion);
+      const matchBudget = !activeBudget || budgets.includes(activeBudget);
+      card.classList.toggle('is-hidden', !(matchOccasion && matchBudget));
+    });
+    clearBtn.classList.toggle('visible', !!(activeOccasion || activeBudget));
+  }
+
+  function bindChips(chips, group) {
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        const val = chip.dataset[group];
+        if ((group === 'occasion' && activeOccasion === val) ||
+            (group === 'budget' && activeBudget === val)) {
+          // toggle off
+          if (group === 'occasion') activeOccasion = null;
+          else activeBudget = null;
+          chip.classList.remove('active');
+        } else {
+          chips.forEach(c => c.classList.remove('active'));
+          chip.classList.add('active');
+          if (group === 'occasion') activeOccasion = val;
+          else activeBudget = val;
+        }
+        applyFilters();
+      });
+    });
+  }
+
+  bindChips(occasionChips, 'occasion');
+  bindChips(budgetChips, 'budget');
+
+  clearBtn.addEventListener('click', () => {
+    activeOccasion = null;
+    activeBudget = null;
+    occasionChips.forEach(c => c.classList.remove('active'));
+    budgetChips.forEach(c => c.classList.remove('active'));
+    applyFilters();
+  });
+})();
+
+// ═══════════════════════════════════════════════════════════════════════
+// GIFT CARD AMOUNT SELECTOR — denomination chips + custom amount
+// ═══════════════════════════════════════════════════════════════════════
+(function() {
+  const denoms = document.querySelectorAll('.gift-card-denom');
+  const customRow = document.getElementById('custom-row');
+  const customInput = document.getElementById('custom-amount');
+  const visualAmount = document.getElementById('visual-amount');
+  let selectedAmount = 100;
+
+  function updateVisual(amount) {
+    visualAmount.textContent = '$' + (amount || '—');
+  }
+
+  denoms.forEach(btn => {
+    btn.addEventListener('click', () => {
+      denoms.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const v = btn.dataset.amount;
+      if (v === 'custom') {
+        customRow.style.display = 'flex';
+        customInput.focus();
+        selectedAmount = parseInt(customInput.value, 10) || 0;
+        updateVisual(selectedAmount);
+      } else {
+        customRow.style.display = 'none';
+        selectedAmount = parseInt(v, 10);
+        updateVisual(selectedAmount);
+      }
+    });
+  });
+
+  customInput.addEventListener('input', () => {
+    selectedAmount = parseInt(customInput.value, 10) || 0;
+    updateVisual(selectedAmount);
+  });
+
+  // Expose for the submit handler
+  window.__getGiftCardAmount = () => selectedAmount;
+})();
+
+// ═══════════════════════════════════════════════════════════════════════
+// GIFT CARD FORM SUBMIT — adds a synthetic gift-card line item to cart
+// ═══════════════════════════════════════════════════════════════════════
+function submitGiftCard(e) {
+  e.preventDefault();
+  const amount = window.__getGiftCardAmount();
+  if (!amount || amount < 10) {
+    alert('Please choose or enter a gift card amount of at least $10.');
+    return false;
+  }
+  const recipient = document.getElementById('recipient-name').value.trim();
+  const email = document.getElementById('recipient-email').value.trim();
+  const from = document.getElementById('sender-name').value.trim();
+  const date = document.getElementById('send-date').value;
+  const message = document.getElementById('gift-message').value.trim();
+
+  if (!recipient || !email || !from) {
+    alert('Please fill in recipient name, recipient email, and your name.');
+    return false;
+  }
+
+  // Add to cart as a virtual line item. The cart object on the site uses
+  // window.dhCart with .addItem(slug, name, price, qty) — we feed a
+  // synthetic slug so the gift card is uniquely identifiable downstream.
+  const giftSlug = 'gift-card-' + amount;
+  const giftName = `Gift Card · $${amount}` + (recipient ? ` (for ${recipient})` : '');
+  try {
+    if (window.dhCart && typeof window.dhCart.addItem === 'function') {
+      window.dhCart.addItem(giftSlug, giftName, amount, 1, {
+        type: 'gift-card',
+        amount: amount,
+        recipientName: recipient,
+        recipientEmail: email,
+        senderName: from,
+        sendDate: date || null,
+        message: message || null
+      });
+    } else {
+      // Cart not present — fall back to a friendly success message + console log
+      console.warn('[gifts] dhCart unavailable; gift card metadata:', {
+        amount, recipient, email, from, date, message
+      });
+    }
+    document.getElementById('gc-success').classList.add('show');
+    setTimeout(() => {
+      document.getElementById('gc-success').classList.remove('show');
+    }, 6000);
+    document.getElementById('gift-card-form').reset();
+  } catch (err) {
+    console.error('[gifts] Failed to add gift card to cart:', err);
+    alert('Sorry — something went wrong adding the gift card. Try again, or email daniel@danielshousewellness.com.');
+  }
+  return false;
+}
+</script>
+
 </body>
 </html>
