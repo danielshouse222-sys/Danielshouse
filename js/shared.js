@@ -522,6 +522,31 @@
     });
 
     // ═══ PAGE FILTER (floating button → centered modal with backdrop) ═══
+
+    // Skin concern tag map — used to inject "Skin Concern" filter chips into the
+    // global page-filter, replacing the old standalone skin-filter strip on the
+    // skincare page. Tags chosen so each is a single substring the filter logic
+    // can match against the haystack assembled from product fields.
+    const SKIN_CONCERN_BY_SLUG = {
+      'the-house-wash':    ['pregnancy-safe','sensitive','vegan','fragrance-free'],
+      'the-house-balance': ['oily-acne','mature'],
+      'the-house-boost':   ['pregnancy-safe','mature','vegan'],
+      'the-house-plump':   ['pregnancy-safe','sensitive','dry','vegan','fragrance-free'],
+      'the-house-defense': ['mature','pregnancy-safe'],
+      'the-house-soft':    ['pregnancy-safe','sensitive','dry','vegan'],
+      'the-house-shield':  ['pregnancy-safe','sensitive','vegan','fragrance-free'],
+      'the-house-clear':   ['oily-acne'],
+      'the-house-bounce':  ['mature'],
+      'the-house-firm':    ['pregnancy-safe','mature','vegan'],
+      'the-house-mist':    ['pregnancy-safe','sensitive','dry','vegan','fragrance-free'],
+      'the-house-awake':   ['pregnancy-safe','mature','sensitive','vegan'],
+      'the-house-renewal': ['oily-acne','mature'],
+      'the-house-glow':    ['pregnancy-safe','dry','vegan'],
+      'the-house-mask':    ['oily-acne'],
+      'the-house-polish':  ['pregnancy-safe','vegan']
+    };
+    window.DH_SKIN_CONCERN_BY_SLUG = SKIN_CONCERN_BY_SLUG;
+
     document.querySelectorAll('.page-filter').forEach(filterEl => {
       // Defensive inline-style positioning — guarantees the floating search is
       // always top-right of viewport regardless of any stylesheet conflict.
@@ -555,21 +580,60 @@
       const items = targetSel ? Array.from(document.querySelectorAll(targetSel)) : [];
       const total = items.length;
 
-      // Inject each filterable item's freeFrom tags as hidden text so the textContent-based
-      // filter logic catches dietary chips like "Vegan", "Gluten-Free", etc.
+      // Inject the "Skin Concern" chip group into the filter modal if it's not
+      // already there. We do this in JS so the markup stays in sync across the
+      // 10+ pages that include a page-filter without manually editing each one.
+      const categoriesEl = filterEl.querySelector('.page-filter-categories');
+      if (categoriesEl && !categoriesEl.querySelector('[data-group="skin concern"]')) {
+        const concernGroup = document.createElement('div');
+        concernGroup.className = 'page-filter-category';
+        concernGroup.innerHTML = `
+          <div class="page-filter-category-label">Skin Concern</div>
+          <div class="page-filter-category-chips">
+            <button class="filter-chip" data-chip="pregnancy-safe" data-group="skin concern">Pregnancy-Safe</button>
+            <button class="filter-chip" data-chip="sensitive" data-group="skin concern">Sensitive</button>
+            <button class="filter-chip" data-chip="oily-acne" data-group="skin concern">Oily / Acne-Prone</button>
+            <button class="filter-chip" data-chip="dry" data-group="skin concern">Dry</button>
+            <button class="filter-chip" data-chip="mature" data-group="skin concern">Mature</button>
+            <button class="filter-chip" data-chip="fragrance-free" data-group="skin concern">Fragrance-Free</button>
+          </div>`;
+        // Place it after Goal (or at the end if Goal isn't present) so the most
+        // skincare-relevant filters sit together.
+        const goalGroup = Array.from(categoriesEl.querySelectorAll('.page-filter-category'))
+          .find(cat => cat.querySelector('[data-group="goal"]'));
+        if (goalGroup) {
+          goalGroup.insertAdjacentElement('afterend', concernGroup);
+        } else {
+          categoriesEl.appendChild(concernGroup);
+        }
+      }
+
+      // Inject each filterable item's freeFrom tags AND skin-concern tags as
+      // hidden text so the textContent-based filter logic catches dietary chips
+      // ("Vegan", "Gluten-Free") and skin-concern chips ("pregnancy-safe", etc).
       items.forEach(item => {
         if (item.querySelector('.filter-tags-hidden')) return;
         const slug = item.dataset.addSlug
           || item.querySelector('[data-add-slug]')?.dataset.addSlug
           || item.querySelector('[data-slug]')?.dataset.slug;
-        if (!slug || !window.PRODUCTS) return;
-        const product = window.PRODUCTS.find(p => p.slug === slug);
-        if (!product || !product.freeFrom || !product.freeFrom.length) return;
+        if (!slug) return;
+        const tagPieces = [];
+        if (window.PRODUCTS) {
+          const product = window.PRODUCTS.find(p => p.slug === slug);
+          if (product && product.freeFrom && product.freeFrom.length) {
+            tagPieces.push(product.freeFrom.join(' '));
+          }
+        }
+        const concernTags = SKIN_CONCERN_BY_SLUG[slug];
+        if (concernTags && concernTags.length) {
+          tagPieces.push(concernTags.join(' '));
+        }
+        if (!tagPieces.length) return;
         const tagSpan = document.createElement('span');
         tagSpan.className = 'filter-tags-hidden';
         tagSpan.setAttribute('aria-hidden', 'true');
         tagSpan.style.cssText = 'position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;';
-        tagSpan.textContent = product.freeFrom.join(' ');
+        tagSpan.textContent = tagPieces.join(' ');
         item.appendChild(tagSpan);
       });
 
@@ -608,7 +672,9 @@
           const haystack = [
             p.name, p.tag, p.tagline, p.description, p.category, p.sub,
             ...(p.bestFor || []),
-            ...(p.ingredients || []).map(i => i.name).filter(Boolean)
+            ...(p.ingredients || []).map(i => i.name).filter(Boolean),
+            ...(p.freeFrom || []),
+            ...(SKIN_CONCERN_BY_SLUG[p.slug] || [])
           ].join(' ').toLowerCase();
           const textMatch = !q || haystack.includes(q);
           const chipMatch = groups.every(chips => chips.every(c => haystack.includes(c)));
@@ -1207,7 +1273,7 @@
         trigger.className = 'projection-trigger-inline';
         trigger.setAttribute('data-projection-trigger', '');
         trigger.dataset.bundleId = bundleId;
-        trigger.innerHTML = '<span class="ptl-icon" aria-hidden="true">📈</span><span class="ptl-text">See your 6-month projection</span><span class="ptl-arrow" aria-hidden="true">→</span>';
+        trigger.innerHTML = '<span class="ptl-icon" aria-hidden="true">📈</span><span class="ptl-text">See your refill schedule</span><span class="ptl-arrow" aria-hidden="true">→</span>';
         trigger.addEventListener('click', (e) => {
           e.preventDefault();
           if (window.dhShowProjection) window.dhShowProjection(bundleId);
