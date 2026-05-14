@@ -2529,6 +2529,8 @@
           { href: 'supplements.html',  label: 'Supplements' },
           { href: 'routines.html',      label: 'Routines' },
           { href: 'bundles.html',         label: 'Bundles' },
+          { href: 'gifts.html',        label: 'Gifts' },
+          { href: 'gift-quiz.html',    label: 'Gift Quiz' },
           { href: 'compare.html',      label: 'Compare' }
         ]
       },
