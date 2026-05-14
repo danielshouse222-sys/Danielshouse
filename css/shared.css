@@ -1938,16 +1938,16 @@ body.has-page-filter-modal {
 .projection-trigger-inline {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   margin: 10px 0 14px;
-  padding: 8px 14px;
-  background: transparent;
-  border: 1px dashed rgba(184, 153, 104, 0.55);
+  padding: 11px 18px;
+  background: rgba(184, 153, 104, 0.08);
+  border: 1px solid rgba(184, 153, 104, 0.85);
   border-radius: 4px;
   color: var(--ink, #1F1B17);
   font-family: 'Poppins', sans-serif;
-  font-size: 10px;
-  letter-spacing: 0.2em;
+  font-size: 11px;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   font-weight: 600;
   cursor: pointer;
@@ -1955,13 +1955,14 @@ body.has-page-filter-modal {
   width: auto;
 }
 .projection-trigger-inline:hover {
-  background: rgba(184, 153, 104, 0.1);
+  background: rgba(184, 153, 104, 0.18);
   border-color: var(--gold, #B89968);
-  border-style: solid;
+  transform: translateY(-1px);
 }
-.projection-trigger-inline .ptl-icon { font-size: 13px; line-height: 1; }
+.projection-trigger-inline .ptl-icon { font-size: 14px; line-height: 1; }
+.projection-trigger-inline .ptl-text { white-space: nowrap; }
 .projection-trigger-inline .ptl-arrow {
-  font-size: 11px; color: var(--gold, #B89968);
+  font-size: 12px; color: var(--gold, #B89968);
   transition: transform 0.2s;
 }
 .projection-trigger-inline:hover .ptl-arrow { transform: translateX(3px); }
@@ -1970,13 +1971,25 @@ body.has-page-filter-modal {
 .bundle-hero .projection-trigger-inline,
 .featured .projection-trigger-inline {
   color: var(--cream, #F2EBDD);
-  border-color: rgba(196, 164, 124, 0.55);
+  background: rgba(196, 164, 124, 0.14);
+  border-color: rgba(196, 164, 124, 0.85);
 }
 .ritual.pm .projection-trigger-inline:hover,
 .bundle-hero .projection-trigger-inline:hover,
 .featured .projection-trigger-inline:hover {
-  background: rgba(196, 164, 124, 0.18);
+  background: rgba(196, 164, 124, 0.26);
   border-color: var(--gold, #C4A47C);
+}
+/* Mobile: allow text to wrap rather than overflow so it stays readable */
+@media (max-width: 480px) {
+  .projection-trigger-inline {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 14px;
+    font-size: 10.5px;
+    letter-spacing: 0.16em;
+  }
+  .projection-trigger-inline .ptl-text { white-space: normal; }
 }
 
 /* Empty-month styling for product-level projection (months with no shipment) */
