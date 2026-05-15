@@ -1186,7 +1186,7 @@
     <button class="concern-search-clear" id="concern-search-clear" type="button" aria-label="Clear search">✕</button>
   </div>
   <div class="concern-search-meta">
-    <span class="concern-search-count" id="concern-search-count"><strong>11</strong> routines · <strong>20</strong> targeted bundles · <strong>3</strong> gift sets</span>
+    <span class="concern-search-count" id="concern-search-count"><strong>10</strong> routines · <strong>20</strong> targeted bundles · <strong>3</strong> gift sets</span>
     <span class="concern-search-hints">
       <span class="hint-label">Try:</span>
       <button class="concern-search-hint" data-hint="routine" type="button">routine</button>
@@ -1291,7 +1291,7 @@
     <div class="empty-eyebrow">Nothing matches</div>
     <h3 class="empty-title">Nothing for <em><span id="empty-query"></span></em>.</h3>
     <p class="empty-sub">Try a shorter term, or one of the suggestions below.</p>
-    <button class="empty-reset" id="empty-reset" type="button">Show all 34 routines &amp; bundles →</button>
+    <button class="empty-reset" id="empty-reset" type="button">Show all 33 routines &amp; bundles →</button>
   </div>
 </div>
 
@@ -1500,7 +1500,6 @@ function renderRoutineCard(bundle) {
   else if (bundle.id === 'gift-newcomer')   formattedName = `The <em>Newcomer</em> Set`;
   else if (bundle.id === 'gift-skin-set')   formattedName = `The <em>Skin</em> Set`;
   else if (bundle.id === 'gift-dad')        formattedName = `The <em>Dad</em> Set`;
-  else if (bundle.id === 'full-energy')     formattedName = `The Full <em>Energy</em> Stack`;
   else {
     const m = bundle.name.match(/^The (.+) Routine$/);
     formattedName = m ? `The <em>${m[1]}</em> Routine` : bundle.name;
@@ -1662,7 +1661,7 @@ document.addEventListener('DOMContentLoaded', () => {
     { kind: 'concern', id: 'aging' },         // top skin concern across demographics
     { kind: 'routine', id: 'ultimate' },      // flagship — premium statement, max savings
     { kind: 'concern', id: 'energy' },        // universal — broad supplement appeal
-    { kind: 'routine', id: 'full-energy' },   // Full Energy Stack — supplement stack at 18% off, sits with Energy themes
+    { kind: 'concern', id: 'full-energy' },   // Full Energy Stack — both halves combined, 18% off
     { kind: 'concern', id: 'hair-nails' },    // Hair & Nails — beauty-from-within entry
     { kind: 'concern', id: 'starter' },       // Skin Starter — skincare entry point
     { kind: 'routine', id: 'foundation' },    // 5-supplement starter — supplement entry point, pairs with Skin Starter
@@ -1673,7 +1672,6 @@ document.addEventListener('DOMContentLoaded', () => {
     { kind: 'concern', id: 'cycle' },         // women's wellness — monthly rhythm
     { kind: 'concern', id: 'dryness' },       // Mist — fundamental concern
     { kind: 'routine', id: 'workout' },       // active/fitness persona (sole workout bundle)
-    { kind: 'concern', id: 'metabolic' },     // Metabolic — foundation-first energy
     { kind: 'routine', id: 'moms' },          // focused persona, strong segment conversion
     { kind: 'concern', id: 'longevity' },     // Cellular Bundle — premium longevity
     { kind: 'concern', id: 'gut' },           // trending gut-skin axis
@@ -1870,7 +1868,6 @@ document.addEventListener('DOMContentLoaded', () => {
     'hair-nails':  ['beauty', 'anti-aging', 'parent'],   // beauty from within
     'travel':      ['busy-pro', 'active', 'beginner'],   // frequent traveler
     'cycle':       ['beauty', 'parent', 'sensitive'],    // women's wellness
-    'metabolic':   ['active', 'busy-pro', 'beginner'],   // foundation-first energy
     // CURATED ROUTINES (added so routine cards filter correctly)
     'daniels-daily':    ['busy-pro', 'anti-aging', 'beginner'],
     'daniels-skincare': ['anti-aging', 'beauty', 'busy-pro'],
