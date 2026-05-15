@@ -1232,7 +1232,48 @@
     // The "See your 6-month projection" trigger now lives OUTSIDE the cadence selector
     // (injected by dhEnhanceBundleToggles or the dhInjectProjectionTrigger helper below)
     // so it's always visible — not gated behind the Subscribe → Smart Refill clicks.
+
+    // Helper: populate a Smart Refill cadence button's meta with "(~$X/mo)"
+    // based on the parent .bundle-cadence's bundle ID. Resolves static bundles
+    // (routines, concern bundles, gift sets) as well as dynamic bundles
+    // (quiz-result, BYO).
+    function populateSmartRefillMonthly(cadenceSel) {
+      if (!cadenceSel) return;
+      const smartBtn = cadenceSel.querySelector('.cadence-btn[data-cadence="smart"]');
+      if (!smartBtn) return;
+      const meta = smartBtn.querySelector('.cadence-meta');
+      if (!meta) return;
+
+      const bundleId = cadenceSel.dataset.bundleId;
+      if (!bundleId || !window.computeSmartRefillAvgMonthly) return;
+
+      // Resolve bundle: static (routines / concerns / gifts) or dynamic (quiz / BYO).
+      let bundle = null;
+      if (typeof window.getCuratedBundleById === 'function') {
+        bundle = window.getCuratedBundleById(bundleId);
+      }
+      if (!bundle && window.CONCERN_BUNDLES) {
+        bundle = window.CONCERN_BUNDLES.find(b => b.id === bundleId);
+      }
+      if (!bundle && bundleId === 'quiz-result' && window._quizState && window._quizState.bundle) {
+        bundle = window._quizState.bundle;
+      }
+      if (!bundle && bundleId === 'byo' && typeof window.dhGetByoBundle === 'function') {
+        bundle = window.dhGetByoBundle();
+      }
+      if (!bundle) return;
+
+      const monthly = window.computeSmartRefillAvgMonthly(bundle);
+      if (!monthly || monthly < 1) return;
+      meta.textContent = `Only what you need · ~$${Math.round(monthly)}/mo`;
+    }
+    // Expose for pages that build dynamic bundles (quiz, BYO) so they can refresh
+    // the Smart Refill button's monthly amount when their bundle composition changes.
+    window.dhPopulateSmartRefillMonthly = populateSmartRefillMonthly;
+
     document.querySelectorAll('.bundle-cadence').forEach(cadenceSel => {
+      // Initial population so the monthly amount is visible BEFORE the user clicks.
+      populateSmartRefillMonthly(cadenceSel);
       cadenceSel.querySelectorAll('.cadence-btn').forEach(btn => {
         btn.addEventListener('click', () => {
           cadenceSel.querySelectorAll('.cadence-btn').forEach(b => b.classList.remove('active'));
@@ -1243,6 +1284,9 @@
             if (isSmart) note.removeAttribute('hidden');
             else note.setAttribute('hidden', '');
           }
+          // Refresh the Smart Refill monthly amount on every click — handles bundles
+          // where composition can change (BYO, quiz result) and keeps the value fresh.
+          populateSmartRefillMonthly(cadenceSel);
         });
       });
     });
@@ -2664,11 +2708,12 @@
         'the-house-multi',     // foundational best-seller
         'the-house-bounce',    // hero retinol product
         'the-house-defense',   // antioxidant heavy hitter
+        'the-house-shield',    // mineral SPF — most-evidenced skincare step
         'the-house-nad-plus',  // longevity hero
         'the-house-tranquil',  // sleep-magnesium
         'the-house-wash',      // gateway skincare
         'the-house-collagen',  // top supplement
-        'the-house-awake',       // peptides
+        'the-house-awake',     // peptides
         'the-house-soft',      // moisturizer
         'the-house-vitality',  // longevity
         'the-house-glow',      // face oil
@@ -2685,6 +2730,7 @@
         'the-house-sunshine',
         'the-house-restore',
         'the-house-synapse',
+        'the-house-clear',     // BHA — small but consistent demand
         'the-house-mask',
         'the-house-polish',
         'the-house-focus',
@@ -2692,7 +2738,13 @@
         'the-house-pump',
         'the-house-seal',
         'the-house-greens',
-        'the-house-surge'
+        'the-house-surge',
+        'the-house-spark',     // Lion's Mane — mushroom trio
+        'the-house-still',     // Reishi — mushroom trio
+        'the-house-forge',     // Cordyceps — mushroom trio
+        'the-house-steady',    // B6 — cycle stack
+        'the-house-rhythm',    // chasteberry — cycle stack
+        'the-house-bloom'      // evening primrose — cycle stack
       ],
       bundles: [
         'daniels-daily',
@@ -2702,9 +2754,14 @@
         'glow',
         'pm',
         'workout',
+        'foundation',           // 5-supplement entry stack
         'longevity',
         'moms',
-        'arianas'
+        'arianas',
+        // Gift sets last — they have a dedicated /gifts page for primary discovery
+        'gift-newcomer',
+        'gift-skin-set',
+        'gift-dad'
       ],
       // For concern bundles: ordered roughly by demand
       concerns: [
@@ -2725,6 +2782,7 @@
         'concern:dryness',           // Mist — fundamental, small price
         'concern:aging',             // Anti-Aging — broad appeal
         'concern:starter',           // Skin Starter Bundle — entry-level skincare
+        'routine:foundation',        // 5-supplement entry stack — pairs with Skin Starter
         'concern:hair-nails',        // Hair & Nails — large search/beauty demand
         'concern:stress',            // Stress — trending, affordable
         'concern:energy',            // Energy — universal need
@@ -2746,7 +2804,11 @@
         'concern:mushroom-trio',     // Mushroom Bundle — cognition/stress/energy
         'concern:joints',            // older demographic
         'routine:longevity',         // premium niche routine
-        'routine:arianas'            // narrow persona
+        'routine:arianas',           // narrow persona
+        // Gift sets — separate tier; have dedicated /gifts page for primary discovery
+        'routine:gift-newcomer',     // entry skincare gift
+        'routine:gift-skin-set',     // mid-tier skincare gift
+        'routine:gift-dad'           // themed gift
       ]
     };
 
@@ -3220,6 +3282,10 @@
         });
         // Wire cadence buttons
         if (newCadence) {
+          // Initial population for dynamically-injected cadence selectors
+          if (typeof window.dhPopulateSmartRefillMonthly === 'function') {
+            window.dhPopulateSmartRefillMonthly(newCadence);
+          }
           newCadence.querySelectorAll('.cadence-btn').forEach(btn => {
             btn.addEventListener('click', () => {
               newCadence.querySelectorAll('.cadence-btn').forEach(b => b.classList.remove('active'));
@@ -3228,6 +3294,9 @@
               if (note) {
                 if (btn.dataset.cadence === 'smart') note.removeAttribute('hidden');
                 else note.setAttribute('hidden', '');
+              }
+              if (typeof window.dhPopulateSmartRefillMonthly === 'function') {
+                window.dhPopulateSmartRefillMonthly(newCadence);
               }
             });
           });
