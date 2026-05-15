@@ -160,7 +160,7 @@ window.BUNDLE_DETAILS = {
     'arianas': {
       eyebrow: "Ariana's Picks · The Editor's Choice",
       description: "Nine products curated by Ariana — the streamlined effective routine, no fluff. Skincare essentials, daily wellness, beauty support. The 'I want what works' bundle.",
-      whyThis: "Ariana's routine is the streamlined version: nine products that cover the essentials without overcomplicating. Wash, Boost, Defense, Renewal, Awake, Soft = a complete cleansing-to-overnight skincare arc using the most-validated actives (bio-peptide growth factor serum, CE Ferulic antioxidant defense, multi-action peeling pads, triple-peptide eye serum with DCX complex). Multi, Radiance, Collagen = the daily nutrient foundation plus beauty support. It's intentionally smaller than the Ultimate — for users who want the high-confidence routine without 23 bottles to track.",
+      whyThis: "Ariana's routine is the streamlined version: nine products that cover the essentials without overcomplicating. Wash, Boost, Defense, Renewal, Awake, Soft = a complete cleansing-to-overnight skincare arc using the most-validated actives (bio-peptide growth factor serum, CE Ferulic antioxidant defense, multi-action peeling pads, dual-peptide eye serum with DCX complex). Multi, Radiance, Collagen = the daily nutrient foundation plus beauty support. It's intentionally smaller than the Ultimate — for users who want the high-confidence routine without 23 bottles to track.",
       timeline: [
         { week: 'Week 1', text: 'Skincare feels balanced; daily vitamins and collagen begin.' },
         { week: 'Week 4', text: 'Visible glow from vitamin C + Renewal; hair and nails respond to collagen.' },
