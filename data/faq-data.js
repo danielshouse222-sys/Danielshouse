@@ -149,7 +149,7 @@ window.DH_FAQ_DATA = [
     "cat": "Subscribe & Save",
     "cat_id": 2,
     "q": "What is Smart Refill?",
-    "a": "<strong>Smart Refill is the smarter way to subscribe to a mixed routine.</strong> A standard monthly subscription ships every product every month — but real products don't all run out at the same pace. A 3-month NAD+ bottle on a 30-day cadence means you stockpile two unused bottles a year. Smart Refill solves this: each product in your routine ships <em>only when you actually run out</em>. A 1-month Multi ships monthly, a 2-month Wash ships every 60 days, a 3-month NAD+ every 90 days. Same routine, no stockpiling, no waste — and on the Ultimate Routine alone, Smart Refill saves roughly <strong>$2,929 per year</strong> versus monthly delivery of everything."
+    "a": "<strong>Smart Refill is the smarter way to subscribe to a mixed routine.</strong> A standard monthly subscription ships every product every month — but real products don't all run out at the same pace. A 3-month NAD+ bottle on a 30-day cadence means you stockpile two unused bottles a year. Smart Refill solves this: each product in your routine ships <em>only when you actually run out</em>. A 1-month Multi ships monthly, a 2-month Wash ships every 60 days, a 3-month NAD+ every 90 days. Same routine, no stockpiling, no waste — and on the Ultimate Routine alone, Smart Refill saves roughly <strong>$2,939 per year</strong> versus monthly delivery of everything."
   },
   {
     "cat": "Subscribe & Save",
