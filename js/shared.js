@@ -1171,11 +1171,10 @@
     if (!p) return;
 
     const currentPrice = mode === 'subscribe' ? p.monthlyPrice : p.oneTimePrice;
-    const savings      = p.fullPrice - currentPrice;
     const pct          = mode === 'subscribe' ? p.monthlyPct : p.oncePct;
     const roundedWas   = Math.round(p.fullPrice);
-    const roundedNow   = Math.round(currentPrice);
-    const roundedSave  = Math.round(savings);
+    const roundedNow   = Math.ceil(currentPrice);     // round UP every discounted price
+    const roundedSave  = roundedWas - roundedNow;     // derive save from rounded values
 
     // .bundle-card style pricing (routines.html main cards)
     const bSave  = container.querySelector('.bundle-save');
@@ -1199,6 +1198,47 @@
   }
 
   document.addEventListener('DOMContentLoaded', () => {
+    // ─── Smart Refill price strike-through CSS injection ────────────────
+    // When Smart Refill is selected, the per-shipment price no longer
+    // represents what the user pays per month (cadence varies per product).
+    // Strike the per-shipment price and surface the amortized $/month next to it.
+    if (!document.getElementById('dh-smart-refill-styles')) {
+      const style = document.createElement('style');
+      style.id = 'dh-smart-refill-styles';
+      style.textContent = `
+        .smart-refill-active .bundle-footnote-now,
+        .smart-refill-active .bundle-card-price-now,
+        .smart-refill-active .hero-savings-amount,
+        .smart-refill-active .featured-price-now,
+        .smart-refill-active .concern-price-now,
+        .smart-refill-active .bundle-price-now,
+        .smart-refill-active .rb-now,
+        .smart-refill-active .result-bundle-price {
+          text-decoration: line-through;
+          text-decoration-thickness: 1.5px;
+          opacity: 0.6;
+        }
+        .smart-mo-suffix {
+          display: inline-block;
+          margin-left: 10px;
+          font-size: 0.78em;
+          font-weight: 600;
+          color: var(--sage, #7a8470);
+          letter-spacing: 0.02em;
+          white-space: nowrap;
+        }
+        .smart-mo-suffix-block {
+          display: block;
+          margin-top: 6px;
+          font-size: 13px;
+          font-weight: 600;
+          color: var(--sage, #7a8470);
+          letter-spacing: 0.02em;
+        }
+      `;
+      document.head.appendChild(style);
+    }
+
     // Toggle: One-Time / Monthly active state
     document.querySelectorAll('.bundle-subscribe-toggle').forEach(toggle => {
       toggle.querySelectorAll('button').forEach(btn => {
@@ -1236,16 +1276,15 @@
     // Helper: populate a Smart Refill cadence button's meta with "(~$X/mo)"
     // based on the parent .bundle-cadence's bundle ID. Resolves static bundles
     // (routines, concern bundles, gift sets) as well as dynamic bundles
-    // (quiz-result, BYO).
+    // (quiz-result, BYO). Also returns the computed monthly so callers can
+    // re-use it for strike-through suffix placement.
     function populateSmartRefillMonthly(cadenceSel) {
-      if (!cadenceSel) return;
+      if (!cadenceSel) return null;
       const smartBtn = cadenceSel.querySelector('.cadence-btn[data-cadence="smart"]');
-      if (!smartBtn) return;
-      const meta = smartBtn.querySelector('.cadence-meta');
-      if (!meta) return;
+      const meta = smartBtn && smartBtn.querySelector('.cadence-meta');
 
       const bundleId = cadenceSel.dataset.bundleId;
-      if (!bundleId || !window.computeSmartRefillAvgMonthly) return;
+      if (!bundleId || !window.computeSmartRefillAvgMonthly) return null;
 
       // Resolve bundle: static (routines / concerns / gifts) or dynamic (quiz / BYO).
       let bundle = null;
@@ -1261,19 +1300,86 @@
       if (!bundle && bundleId === 'byo' && typeof window.dhGetByoBundle === 'function') {
         bundle = window.dhGetByoBundle();
       }
-      if (!bundle) return;
+      if (!bundle) return null;
 
       const monthly = window.computeSmartRefillAvgMonthly(bundle);
-      if (!monthly || monthly < 1) return;
-      meta.textContent = `Only what you need · ~$${Math.round(monthly)}/mo`;
+      if (!monthly || monthly < 1) return null;
+      if (meta) meta.textContent = `Only what you need · ~$${Math.round(monthly)}/mo`;
+      return Math.round(monthly);
+    }
+
+    // Helper: when Smart Refill is the active cadence, find the bundle's
+    // outer container (whichever wrapper hosts the price display) and toggle
+    // a `.smart-refill-active` class on it. That class lights up the strike-
+    // through styling defined in the injected stylesheet above. Also injects
+    // a `.smart-mo-suffix` <span> populated with "($X/month)" alongside the
+    // struck price.
+    function findPriceContainer(cadenceSel) {
+      // Pick the closest meaningful wrapper. We prefer the bundle container
+      // that holds the price element. Multiple selectors handle the various
+      // page templates (skincare/supplements footnotes, routine cards, the
+      // Ultimate hero, the bundles grid, the quiz result card).
+      return (
+        cadenceSel.closest('.bundle-footnote') ||
+        cadenceSel.closest('.bundle-card') ||
+        cadenceSel.closest('.curated-card') ||
+        cadenceSel.closest('.hero-bundle, .hero-section') ||
+        cadenceSel.closest('.featured-bundle, .featured-card') ||
+        cadenceSel.closest('.result-bundle, .rb-card') ||
+        cadenceSel.parentElement
+      );
+    }
+    function applySmartRefillStrike(cadenceSel, isSmart, monthly) {
+      const container = findPriceContainer(cadenceSel);
+      if (!container) return;
+      // Locate the now-price element across templates.
+      const nowEl =
+        container.querySelector('.bundle-footnote-now') ||
+        container.querySelector('.bundle-card-price-now') ||
+        container.querySelector('.hero-savings-amount') ||
+        container.querySelector('.featured-price-now') ||
+        container.querySelector('.concern-price-now') ||
+        container.querySelector('.bundle-price-now') ||
+        container.querySelector('.rb-now') ||
+        container.querySelector('.result-bundle-price');
+
+      if (isSmart) {
+        container.classList.add('smart-refill-active');
+        if (nowEl && monthly != null) {
+          // Inject (or refresh) the (~$X/month) suffix right after the price.
+          let suffix = nowEl.parentElement.querySelector('.smart-mo-suffix');
+          if (!suffix) {
+            suffix = document.createElement('span');
+            suffix.className = 'smart-mo-suffix';
+            nowEl.insertAdjacentElement('afterend', suffix);
+          }
+          suffix.textContent = `(~$${monthly}/month)`;
+        }
+      } else {
+        container.classList.remove('smart-refill-active');
+        // Hide the suffix when Smart Refill is not active.
+        const suffix = container.querySelector('.smart-mo-suffix');
+        if (suffix) suffix.remove();
+      }
     }
     // Expose for pages that build dynamic bundles (quiz, BYO) so they can refresh
     // the Smart Refill button's monthly amount when their bundle composition changes.
-    window.dhPopulateSmartRefillMonthly = populateSmartRefillMonthly;
+    window.dhPopulateSmartRefillMonthly = function(cadenceSel) {
+      const monthly = populateSmartRefillMonthly(cadenceSel);
+      const activeBtn = cadenceSel && cadenceSel.querySelector('.cadence-btn.active');
+      const isSmart = activeBtn && activeBtn.dataset.cadence === 'smart';
+      applySmartRefillStrike(cadenceSel, !!isSmart, monthly);
+      return monthly;
+    };
 
     document.querySelectorAll('.bundle-cadence').forEach(cadenceSel => {
       // Initial population so the monthly amount is visible BEFORE the user clicks.
-      populateSmartRefillMonthly(cadenceSel);
+      // Also applies strike-through if Smart Refill happens to be the default active.
+      const initialMonthly = populateSmartRefillMonthly(cadenceSel);
+      const initialBtn = cadenceSel.querySelector('.cadence-btn.active');
+      const initialIsSmart = initialBtn && initialBtn.dataset.cadence === 'smart';
+      applySmartRefillStrike(cadenceSel, !!initialIsSmart, initialMonthly);
+
       cadenceSel.querySelectorAll('.cadence-btn').forEach(btn => {
         btn.addEventListener('click', () => {
           cadenceSel.querySelectorAll('.cadence-btn').forEach(b => b.classList.remove('active'));
@@ -1286,10 +1392,141 @@
           }
           // Refresh the Smart Refill monthly amount on every click — handles bundles
           // where composition can change (BYO, quiz result) and keeps the value fresh.
-          populateSmartRefillMonthly(cadenceSel);
+          const monthly = populateSmartRefillMonthly(cadenceSel);
+          // Toggle strike-through + (~$X/month) suffix on the bundle's price.
+          applySmartRefillStrike(cadenceSel, isSmart, monthly);
         });
       });
     });
+
+    // ─── Study Box Auto-Linker ──────────────────────────────────────────
+    //
+    // Static study boxes on landing pages (index.html, skincare.html,
+    // supplements.html, product.html) display research summaries as plain
+    // text — without clickable links. We auto-enhance every such box by
+    // converting the `.study-source` text to a deep-link, and by appending
+    // a "Read the study →" link to home-style `.study-finding-home` blocks
+    // that don't carry a `.study-source` of their own.
+    //
+    // Resolution order for the link target:
+    //   1) An ingredient-data study whose title/journal best matches the box
+    //      content — gives a direct PubMed / DOI link.
+    //   2) Google Scholar search built from the box's actor name + key tokens
+    //      pulled from the finding text.
+    //
+    // This way every research box on the site is one tap from the actual
+    // study and never leaves a visitor at a dead end.
+    function studyAutoLinker() {
+      const ingredientStudies = [];
+      (window.INGREDIENTS || []).forEach(ing => {
+        (ing.studies || []).forEach(s => {
+          const url = s.link || s.url;
+          if (!url) return;
+          ingredientStudies.push({
+            url,
+            title:   (s.title   || '').toLowerCase(),
+            journal: (s.journal || '').toLowerCase(),
+            ingredientName: (ing.name || '').toLowerCase(),
+            year: s.year
+          });
+        });
+      });
+
+      // Try to find the best-matching ingredient study for a given study box.
+      function findMatch(actor, sourceText, findingText) {
+        const a = (actor || '').toLowerCase();
+        const s = (sourceText || '').toLowerCase();
+        const f = (findingText || '').toLowerCase();
+        let best = null, bestScore = 0;
+        ingredientStudies.forEach(st => {
+          let score = 0;
+          if (a && st.ingredientName && a.includes(st.ingredientName)) score += 3;
+          if (a && st.ingredientName && st.ingredientName.includes(a.replace(/^\s+|\s+$/g, ''))) score += 2;
+          // Year match (e.g. "2024" in box + study.year === 2024)
+          if (st.year && (s.includes(String(st.year)) || f.includes(String(st.year)))) score += 2;
+          // Journal token overlap
+          if (st.journal) {
+            const tokens = st.journal.split(/\s+/).filter(t => t.length > 4);
+            tokens.forEach(t => { if (s.includes(t)) score += 1; });
+          }
+          if (score > bestScore) { bestScore = score; best = st; }
+        });
+        return bestScore >= 3 ? best : null;
+      }
+
+      function scholarUrlFor(actor, sourceText, findingText) {
+        // Build a Scholar query from actor + a few signal tokens from
+        // the source line — gives a clean direct-search fallback.
+        const actorClean = (actor || '').replace(/<[^>]*>/g, '').trim();
+        let signal = '';
+        // Pull a year out of source/finding if present
+        const yr = (sourceText + ' ' + findingText).match(/\b(19|20)\d{2}\b/);
+        if (yr) signal += ' ' + yr[0];
+        // Pull a journal name out of the source line ("Source: <name>...")
+        const jr = (sourceText || '').match(/Source:\s*([^,.;()—-]+)/i);
+        if (jr) signal += ' ' + jr[1].trim();
+        const q = encodeURIComponent((actorClean + signal).trim() || 'systematic review');
+        return 'https://scholar.google.com/scholar?q=' + q;
+      }
+
+      function wrapWithLink(sourceEl, url) {
+        if (!sourceEl || sourceEl.dataset.linked === '1') return;
+        const text = sourceEl.textContent;
+        sourceEl.innerHTML = '';
+        const a = document.createElement('a');
+        a.href = url;
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        a.textContent = text;
+        a.style.color = 'inherit';
+        a.style.textDecoration = 'underline';
+        a.style.textDecorationThickness = '1px';
+        a.style.textUnderlineOffset = '3px';
+        sourceEl.appendChild(a);
+        sourceEl.dataset.linked = '1';
+      }
+
+      function appendReadLink(parent, actorEl, findingEl, url) {
+        if (!parent || parent.querySelector('.study-read-link')) return;
+        const a = document.createElement('a');
+        a.href = url;
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        a.className = 'study-read-link';
+        a.textContent = 'Read the study →';
+        a.style.cssText = 'display:inline-block;margin-top:10px;font-size:12px;letter-spacing:0.06em;color:var(--sage,#7a8470);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;font-style:italic;';
+        parent.appendChild(a);
+      }
+
+      // 1) Every .study block with a `.study-source` text — convert source to a link.
+      document.querySelectorAll('.study, .study-entry-static').forEach(box => {
+        const sourceEl = box.querySelector('.study-source');
+        if (!sourceEl || sourceEl.querySelector('a')) return;
+        const actor   = box.querySelector('.study-actor, .study-actor-home, .study-title')?.textContent || '';
+        const finding = box.querySelector('.study-finding, .study-finding-home')?.textContent || '';
+        const match = findMatch(actor, sourceEl.textContent, finding);
+        const url = (match && match.url) || scholarUrlFor(actor, sourceEl.textContent, finding);
+        wrapWithLink(sourceEl, url);
+      });
+
+      // 2) Home-style `.study-finding-home` blocks — these don't always have a
+      // `.study-source`, so append a "Read the study →" link to the parent box.
+      document.querySelectorAll('.study-finding-home').forEach(fEl => {
+        const parent = fEl.parentElement;
+        if (!parent || parent.querySelector('.study-read-link')) return;
+        const actorEl = parent.querySelector('.study-actor-home');
+        const sourceTxt = parent.querySelector('.study-source')?.textContent || '';
+        const actor   = actorEl?.textContent || '';
+        const finding = fEl.textContent || '';
+        const match = findMatch(actor, sourceTxt, finding);
+        const url = (match && match.url) || scholarUrlFor(actor, sourceTxt, finding);
+        appendReadLink(parent, actorEl, fEl, url);
+      });
+    }
+    // Run the auto-linker on initial load, and again after a tick to catch
+    // any study boxes injected by other scripts.
+    studyAutoLinker();
+    setTimeout(studyAutoLinker, 250);
 
     // ─── Always-Visible Projection Trigger Injector ──────────────────────
     //
@@ -2207,7 +2444,7 @@
           lead: "Sleep is when skin does its repair work — cell turnover peaks, growth hormone releases, collagen synthesis fires. This bundle gives that process the actives it needs: retinol for turnover, an advanced peptide complex for collagen signaling, hyaluronic for hydration, lipids to seal.",
           mechanisms: [
             { problem: "Slowed cell turnover", solution: "Bounce's retinol + Renewal's triple-acid blend (alternating nights) accelerate renewal" },
-            { problem: "Collagen breakdown",   solution: "Advanced peptide complex in Firm + triple-peptide complex in Awake signal for fibroblast activity overnight" },
+            { problem: "Collagen breakdown",   solution: "Advanced peptide complex in Firm + dual-peptide complex in Awake signal for fibroblast activity overnight" },
             { problem: "Loss of plumpness",    solution: "Hyaluronic acid in Bounce + Mist restores volume" },
             { problem: "Barrier weakness",     solution: "Glow's HA spheres in squalane finish reinforces the barrier overnight" }
           ]
@@ -2337,13 +2574,13 @@
         am: [
           { name: "Wash",    note: "Gentle cleanser that doesn't strip the skin's natural oils — the daily reset before the actives." },
           { name: "Defense", note: "The CE Ferulic antioxidant shield — L-ascorbic acid + ferulic acid + niacinamide + B5 + vitamin E. The gold-standard daytime architecture for protecting existing collagen from breaking down." },
-          { name: "Awake",     note: "Bakuchiol + triple-peptide complex firms and brightens the orbital area. Cucumber and squalane depuff." },
+          { name: "Awake",     note: "Dual-peptide complex (Palmitoyl Tripeptide-5 + Acetyl Tetrapeptide-5) with the DCX complex (Darutoside + Chrysin + Hesperidin) for under-eye pigmentation. Seaweed extract for de-puffing minerals." },
           { name: "Soft",    note: "Advanced multi-weight HA moisturizing cream with niacinamide. Deep hydration with barrier support — a non-negotiable step for aging skin." }
         ],
         pm: [
           { name: "Wash",    note: "Gentle cleanser removes the day without compromising the barrier." },
           { name: "Bounce",  note: "The cornerstone. 0.05% retinol + stable vitamin C + hyaluronic acid + Matrixyl peptides + botanical skin-tightening trio. Multi-active retinol that compounds in your favor." },
-          { name: "Awake",     note: "Bakuchiol does its best work overnight — same product, second application." },
+          { name: "Awake",     note: "Peptides + DCX work overnight on the under-eye area while the skin's natural repair cycle peaks." },
           { name: "Soft",    note: "Locks in the actives while skin does its repair work overnight." }
         ],
         supplements: [
