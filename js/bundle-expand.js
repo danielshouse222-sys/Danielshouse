@@ -128,6 +128,108 @@
       .map(s => window.getProductBySlug ? window.getProductBySlug(s) : null)
       .filter(Boolean);
 
+    // ─── Correct-Order Product Sorting ──────────────────────────────────
+    //
+    // The default product order comes from the raw bundle.slugs array which
+    // may be in any order (often the order they were added). For the user-
+    // facing "What's Inside" list, sort products so they read in their
+    // ACTUAL use order:
+    //   1) Skincare AM products in routine order: cleanse → tone → serum →
+    //      moisturizer → SPF, with shared products (Wash, Plump, Clear)
+    //      slotted at their AM step.
+    //   2) Skincare PM products in routine order: cleanse → exfoliate →
+    //      retinol → peptide → eye → moisturizer → oil.
+    //   3) Weekly skincare treatments (Mask, Polish).
+    //   4) Daily supplements grouped by time of day: morning foundations →
+    //      morning targeted → workout/pre-workout → evening wind-down.
+    //
+    // This keeps "What's Inside" readable as a routine instead of an
+    // arbitrary list, and matches the order on the directions tabs and the
+    // skincare/supplements pages.
+    function sortProductsInUseOrder(prods) {
+      const SKIN_AM = {
+        'the-house-wash':       10,   // cleanse
+        'the-house-balance':    20,   // tone
+        'the-house-clear':      30,   // 2% salicylic clarifier — daily AM (also PM)
+        'the-house-boost':      40,   // vitamin C / growth-factor serum
+        'the-house-defense':    50,   // antioxidant serum (CE Ferulic)
+        'the-house-plump':      60,   // HA hydrating serum
+        'the-house-firm':       65,   // peptide serum (firm pairs AM too)
+        'the-house-soft':       70,   // daily moisturizer
+        'the-house-shield':     80    // mineral SPF — finishes AM
+      };
+      const SKIN_PM = {
+        'the-house-wash':       110,  // PM cleanse
+        'the-house-balance':    120,
+        'the-house-clear':      130,
+        'the-house-renewal':    140,  // glycolic resurfacing — PM only
+        'the-house-bounce':     145,  // retinol — PM only
+        'the-house-plump':      150,
+        'the-house-firm':       155,  // peptide serum
+        'the-house-awake':      160,  // eye cream
+        'the-house-mist':       170,  // PM moisturizer (HA cream)
+        'the-house-glow':       180   // face oil seal
+      };
+      const SKIN_WEEKLY = {
+        'the-house-mask':       200,
+        'the-house-polish':     210
+      };
+
+      // Supplements — bucketed by time of day. Lower number = earlier.
+      const SUPP_ORDER = {
+        // Morning daily foundations (with breakfast):
+        'the-house-multi':      310,
+        'the-house-sunshine':   320,
+        'the-house-flow':       330,
+        'the-house-biome':      340,
+        // Morning longevity stack:
+        'the-house-nad-plus':   350,
+        'the-house-vitality':   355,  // CoQ10
+        'the-house-synapse':    360,  // mushrooms (broad-spectrum)
+        // Targeted morning / midday:
+        'the-house-steady':     365,  // B6 (cycle)
+        'the-house-rhythm':     370,  // chasteberry (cycle)
+        'the-house-bloom':      375,  // GLA (cycle)
+        'the-house-radiance':   380,  // beauty / morning
+        'the-house-collagen':   385,
+        'the-house-greens':     390,
+        // Workout / pre-workout:
+        'the-house-spark':      410,  // lion's mane (cognition)
+        'the-house-forge':      415,  // cordyceps (energy)
+        'the-house-surge':      420,  // pre-workout
+        'the-house-pump':       425,  // pump
+        'the-house-power':      430,  // creatine
+        // With dinner / digestive:
+        'the-house-seal':       510,  // digestive enzymes
+        'the-house-restore':    520,  // joint / recovery
+        // Evening wind-down:
+        'the-house-still':      610,  // reishi
+        'the-house-calm':       620,  // magnesium
+        'the-house-tranquil':   630   // ashwagandha
+      };
+
+      function rank(p) {
+        const slug = p.slug;
+        // Skincare: prefer AM ordering when the product has an AM slot,
+        // else PM, else weekly.
+        if (p.category === 'skincare') {
+          if (SKIN_AM[slug] !== undefined) return SKIN_AM[slug];
+          if (SKIN_PM[slug] !== undefined) return SKIN_PM[slug];
+          if (SKIN_WEEKLY[slug] !== undefined) return SKIN_WEEKLY[slug];
+          return 250; // unranked skincare — between weekly and supplements
+        }
+        // Supplements
+        return SUPP_ORDER[slug] !== undefined ? SUPP_ORDER[slug] : 700;
+      }
+
+      // Stable sort by rank, preserving relative order within the same rank.
+      return prods
+        .map((p, i) => ({ p, i, r: rank(p) }))
+        .sort((a, b) => a.r - b.r || a.i - b.i)
+        .map(x => x.p);
+    }
+    const sortedProducts = sortProductsInUseOrder(products);
+
     // Detect: is this a curated routine or a targeted bundle?
     // Curated routines come from CURATED_BUNDLES (window.getCuratedBundleById).
     const isCurated = !!(window.getCuratedBundleById && window.getCuratedBundleById(bundle.id));
@@ -174,7 +276,9 @@
     }
 
     // ─── What's Inside ─────────────────────────────────────────────────────
-    const rowsHtml = products.map(p => {
+    // Renders the bundle's products in actual USE order (skincare AM/PM/weekly
+    // then supplements by time of day) so the list reads as a routine.
+    const rowsHtml = sortedProducts.map(p => {
       const tag = (p.tag || '').split('·')[0].trim() || (p.category === 'skincare' ? 'Skincare' : 'Supplement');
       const desc = p.blurb || p.tag || '';
       const italicName = `The House <em>${p.name}</em>`;
@@ -377,48 +481,41 @@
     wiredButtons.add(cta);
 
     // Detail-page mode — when set on <body data-bundle-detail-page="1">, render
-    // the expansion under a prominent "View Full Details ▾" toggle dropdown
-    // (instead of inlining it always-open). Used by routine.html so the detail
-    // sections (Why, Audience, Routine steps, Studies, FAQ) are available but
-    // don't push the related-bundles section off the screen by default.
+    // the expansion directly into the target with NO outer toggle. Every section
+    // starts expanded so visitors see everything immediately, and each section
+    // header is independently collapsible — click to skim, click again to expand.
+    // This gives every bundle detail page (routine.html?slug=...) the same
+    // consistent format.
     const isDetailPage = !!(document.body && document.body.dataset.bundleDetailPage);
     if (isDetailPage) {
-      // Build the prominent page-level toggle button — full-width, clear label
-      const toggle = document.createElement('button');
-      toggle.type = 'button';
-      toggle.className = 'bundle-details-toggle bundle-details-toggle-page';
-      toggle.setAttribute('aria-expanded', 'false');
-      toggle.innerHTML = `<span class="toggle-label">View Full Details</span><span class="toggle-icon">▾</span>`;
-
-      // Build expansion (starts COLLAPSED — no .is-open)
+      // Build expansion DOM
       const wrapper = document.createElement('div');
       wrapper.innerHTML = buildExpansion(bundle, details);
       const expansion = wrapper.firstElementChild;
-      expansion.classList.add('is-detail-page-expansion');
+      // Detail pages: expansion is always visible (no outer toggle gate).
+      expansion.classList.add('is-open', 'is-detail-page-expansion');
+
+      // Every section starts EXPANDED so all content is visible by default —
+      // users can click any section header to collapse it.
+      expansion.querySelectorAll('.bundle-exp-section.is-collapsible').forEach(section => {
+        section.classList.add('is-open');
+        const sectionToggle = section.querySelector('.bundle-exp-toggle');
+        if (sectionToggle) sectionToggle.setAttribute('aria-expanded', 'true');
+      });
 
       // Mount in the dedicated target if present, else after the hero section
       const target = document.getElementById('bundle-expansion-target');
       if (target) {
-        target.appendChild(toggle);
         target.appendChild(expansion);
       } else {
         const heroSection = cta.closest('section') || cta.parentNode;
-        heroSection.parentNode.insertBefore(toggle, heroSection.nextSibling);
-        toggle.insertAdjacentElement('afterend', expansion);
+        heroSection.parentNode.insertBefore(expansion, heroSection.nextSibling);
       }
 
-      // Wire the toggle — flips is-open on both button + expansion, updates label
-      toggle.addEventListener('click', () => {
-        const isOpen = expansion.classList.toggle('is-open');
-        toggle.classList.toggle('is-open', isOpen);
-        toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-        const label = toggle.querySelector('.toggle-label');
-        if (label) label.textContent = isOpen ? 'Hide Full Details' : 'View Full Details';
-      });
-
-      // Wire interior FAQ items + add-to-cart row buttons (sections themselves
-      // stay always-open inside the expansion — the outer toggle is the only
-      // collapse on the detail page).
+      // Wire individual section collapse, FAQ items, and add-to-cart buttons.
+      // No outer toggle on detail pages — the section headers are the only
+      // collapse controls.
+      wireCollapsibleSections(expansion);
       wireFaqItems(expansion);
       wireAddRowButtons(expansion);
       return;
