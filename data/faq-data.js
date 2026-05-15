@@ -131,7 +131,7 @@ window.DH_FAQ_DATA = [
     "cat": "Subscribe & Save",
     "cat_id": 2,
     "q": "Do routines and bundles work with Subscribe &amp; Save?",
-    "a": "Yes — every routine and bundle on the site can be subscribed to, and <strong>every subscription gets an extra 10% off</strong> on top of the routine or bundle discount. This includes the 11 curated routines (Daniel's Daily Supplements, Daniel's Daily Skincare, AM, PM, Foundation, Workout, Full Energy, Longevity, Mom's, Ariana's, Ultimate), the 20 targeted bundles, the 3 gift sets (Skin Set, Newcomer, Dad Set), and the <strong>tiered Build Your Own routine</strong> you create from the picker (10% at Mix 3, 12% at Mix 6, 15% at Mix 9+). Example: a $308 AM Routine is $261.80 one-time (15% off), or $235.62 subscribed (15% routine + 10% subscribe = 23.5% total). Cancel or pause anytime."
+    "a": "Yes — every routine and bundle on the site can be subscribed to, and <strong>every subscription gets an extra 10% off</strong> on top of the routine or bundle discount. This includes the 10 curated routines (Daniel's Daily Supplements, Daniel's Daily Skincare, AM, PM, Foundation, Workout, Longevity, Mom's, Ariana's, Ultimate), the 20 targeted bundles, the 3 gift sets (Skin Set, Newcomer, Dad Set), and the <strong>tiered Build Your Own routine</strong> you create from the picker (10% at Mix 3, 12% at Mix 6, 15% at Mix 9+). Example: a $308 AM Routine is $261.80 one-time (15% off), or $235.62 subscribed (15% routine + 10% subscribe = 23.5% total). Cancel or pause anytime."
   },
   {
     "cat": "Subscribe & Save",

@@ -1914,7 +1914,7 @@ window.CONCERN_BUNDLES = [
     tab: 'goal',
     icon: 'B.',
     name: 'The Energy Bundle',
-    blurb: "The mitochondrial fuel stack. CoQ10 directly supplies the molecule mitochondria use to produce ATP, D3+K2 supports the cellular signaling that powers it, omega-3 EPA+DHA fuels brain and cardiovascular tissue specifically — with Multi as the micronutrient baseline and Surge for the optional clean morning lift. Pairs cleanly with The Clean Energy Bundle (which adds the gut-absorption side: Greens + Biome) for the full inside-out energy stack. For both halves in one purchase at the deepest discount, see The Full Energy Stack routine.",
+    blurb: "The mitochondrial fuel stack. CoQ10 directly supplies the molecule mitochondria use to produce ATP, D3+K2 supports the cellular signaling that powers it, omega-3 EPA+DHA fuels brain and cardiovascular tissue specifically — with Multi as the micronutrient baseline and Surge for the optional clean morning lift. For both cellular fuel and gut absorption support in one purchase at the deepest discount, see The Full Energy Stack.",
     slugs: ['the-house-multi', 'the-house-vitality', 'the-house-sunshine', 'the-house-flow', 'the-house-surge']
   },
   {
@@ -1990,15 +1990,6 @@ window.CONCERN_BUNDLES = [
     slugs: ['the-house-tranquil', 'the-house-calm', 'the-house-sunshine', 'the-house-biome', 'the-house-flow', 'the-house-steady', 'the-house-rhythm', 'the-house-bloom']
   },
   {
-    id: 'metabolic',
-    discount: 0.12,
-    tab: 'goal',
-    icon: 'L.',
-    name: 'The Clean Energy Bundle',
-    blurb: "The gut-driven absorption stack. Most people eat enough nutrients; far fewer actually absorb them. Greens delivers 22 micronutrients most diets miss, Biome supports the microbiome that determines how much of any of it reaches your cells, and Multi covers the daily baseline. No stimulants — Clean Energy is foundational absorption work, not acute lift. Pairs cleanly with The Energy Bundle (which adds the cellular ATP machinery and the optional Surge lift) for the full inside-out energy stack. Use this alone if you eat reasonably but feel sluggish; stack with Energy if you want comprehensive coverage.",
-    slugs: ['the-house-greens', 'the-house-biome', 'the-house-multi']
-  },
-  {
     id: 'mushroom-trio',
     discount: 0.12,
     tab: 'goal',
@@ -2006,6 +1997,15 @@ window.CONCERN_BUNDLES = [
     name: 'The Mushroom Bundle',
     blurb: "The clinical-dose mushroom set — Spark (Lion's Mane 1,000 mg for cognition and NGF), Still (Reishi 500 mg for stress and sleep architecture), and Forge (Cordyceps militaris 500 mg for cellular energy and endurance). The three mushrooms with the strongest published evidence base, each at the dose where the research begins. Three mushrooms, three mechanisms — cognition, stress, endurance.",
     slugs: ['the-house-spark', 'the-house-still', 'the-house-forge']
+  },
+  {
+    id: 'full-energy',
+    discount: 0.18,
+    tab: 'goal',
+    icon: 'N.',
+    name: 'The Full Energy Stack',
+    blurb: 'Both halves of the energy equation in one purchase. The mitochondrial fuel stack from The Energy Bundle (Multi + Vitality + Sunshine + Flow + Surge) layered with the gut absorption stack (Greens + Biome). Seven products covering cellular ATP production and nutrient absorption simultaneously — the comprehensive inside-out approach at the deepest discount available outside the Ultimate Routine.',
+    slugs: ['the-house-multi','the-house-vitality','the-house-sunshine','the-house-flow','the-house-surge','the-house-greens','the-house-biome']
   },
 ];
 
@@ -2111,13 +2111,6 @@ window.CURATED_BUNDLES = [
     name: "The Ariana's Routine",
     discount: 0.15,
     slugs: ['the-house-wash','the-house-boost','the-house-defense','the-house-renewal','the-house-awake','the-house-soft','the-house-multi','the-house-radiance','the-house-collagen']
-  },
-  {
-    id: 'full-energy',
-    name: 'The Full Energy Stack',
-    discount: 0.18,
-    blurb: 'Both halves of the energy equation in one purchase. The mitochondrial fuel stack from The Energy Bundle (Multi + Vitality + Sunshine + Flow + Surge) layered with the gut absorption stack from The Clean Energy Bundle (Greens + Biome). Seven products covering cellular ATP production and nutrient absorption simultaneously — the comprehensive inside-out approach at the deepest discount available outside the Ultimate Routine.',
-    slugs: ['the-house-multi','the-house-vitality','the-house-sunshine','the-house-flow','the-house-surge','the-house-greens','the-house-biome']
   },
   // ─── GIFT SETS ─────────────────────────────────────────────────────────
   // Curated gift packages — same data shape as routines but flagged with
