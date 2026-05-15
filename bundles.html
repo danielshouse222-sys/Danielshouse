@@ -1186,7 +1186,7 @@
     <button class="concern-search-clear" id="concern-search-clear" type="button" aria-label="Clear search">✕</button>
   </div>
   <div class="concern-search-meta">
-    <span class="concern-search-count" id="concern-search-count"><strong>30</strong> routines &amp; bundles</span>
+    <span class="concern-search-count" id="concern-search-count"><strong>11</strong> routines · <strong>20</strong> targeted bundles · <strong>3</strong> gift sets</span>
     <span class="concern-search-hints">
       <span class="hint-label">Try:</span>
       <button class="concern-search-hint" data-hint="routine" type="button">routine</button>
@@ -1291,7 +1291,7 @@
     <div class="empty-eyebrow">Nothing matches</div>
     <h3 class="empty-title">Nothing for <em><span id="empty-query"></span></em>.</h3>
     <p class="empty-sub">Try a shorter term, or one of the suggestions below.</p>
-    <button class="empty-reset" id="empty-reset" type="button">Show all 35 routines &amp; bundles →</button>
+    <button class="empty-reset" id="empty-reset" type="button">Show all 34 routines &amp; bundles →</button>
   </div>
 </div>
 
@@ -1499,7 +1499,8 @@ function renderRoutineCard(bundle) {
   else if (bundle.id === 'arianas')         formattedName = `The <em>Ariana's</em> Routine`;
   else if (bundle.id === 'gift-newcomer')   formattedName = `The <em>Newcomer</em> Set`;
   else if (bundle.id === 'gift-skin-set')   formattedName = `The <em>Skin</em> Set`;
-  else if (bundle.id === 'gift-wellness')   formattedName = `The <em>Wellness</em> Set`;
+  else if (bundle.id === 'gift-dad')        formattedName = `The <em>Dad</em> Set`;
+  else if (bundle.id === 'full-energy')     formattedName = `The Full <em>Energy</em> Stack`;
   else {
     const m = bundle.name.match(/^The (.+) Routine$/);
     formattedName = m ? `The <em>${m[1]}</em> Routine` : bundle.name;
@@ -1661,6 +1662,7 @@ document.addEventListener('DOMContentLoaded', () => {
     { kind: 'concern', id: 'aging' },         // top skin concern across demographics
     { kind: 'routine', id: 'ultimate' },      // flagship — premium statement, max savings
     { kind: 'concern', id: 'energy' },        // universal — broad supplement appeal
+    { kind: 'routine', id: 'full-energy' },   // Full Energy Stack — supplement stack at 18% off, sits with Energy themes
     { kind: 'concern', id: 'hair-nails' },    // Hair & Nails — beauty-from-within entry
     { kind: 'concern', id: 'starter' },       // Skin Starter — skincare entry point
     { kind: 'routine', id: 'foundation' },    // 5-supplement starter — supplement entry point, pairs with Skin Starter
@@ -1686,8 +1688,8 @@ document.addEventListener('DOMContentLoaded', () => {
     { kind: 'routine', id: 'longevity' },     // premium niche routine
     // ─── Gift Sets — at the end, dedicated gifting tier (use the Gifts page for primary discovery) ──
     { kind: 'routine', id: 'gift-skin-set' },   // The Skin Set — full skincare ritual, gift-ready
-    { kind: 'routine', id: 'gift-wellness' },   // The Wellness Set — supplement foundation, gift-ready
-    { kind: 'routine', id: 'gift-newcomer' }    // The Newcomer Set — 4-product entry skincare gift
+    { kind: 'routine', id: 'gift-newcomer' },   // The Newcomer Set — 4-product entry skincare gift
+    { kind: 'routine', id: 'gift-dad' }         // The Dad Set — 4-product male starter gift (Father's Day)
   ];
 
   // ═══ RENDER GRID IN FEATURED ORDER ═══
@@ -1754,10 +1756,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  const routineCount = FEATURED_ORDER.filter(e => e.kind === 'routine').length;
+  const isGiftId = id => id === 'gift-skin-set' || id === 'gift-newcomer' || id === 'gift-dad';
+  const routineCount = FEATURED_ORDER.filter(e => e.kind === 'routine' && !isGiftId(e.id)).length;
+  const giftCount = FEATURED_ORDER.filter(e => e.kind === 'routine' && isGiftId(e.id)).length;
   const concernCount = FEATURED_ORDER.filter(e => e.kind === 'concern').length;
-  const totalCount = routineCount + concernCount;
-  console.log(`[bundles.html] Rendering ${routineCount} routines + ${concernCount} bundles = ${totalCount} total in featured order.`);
+  const totalCount = routineCount + concernCount + giftCount;
+  console.log(`[bundles.html] Rendering ${routineCount} routines + ${concernCount} bundles + ${giftCount} gift sets = ${totalCount} total in featured order.`);
 
   // ═══ HASH NAVIGATION ═══
   // When arriving from a search result like bundles.html#sleep or
@@ -1812,7 +1816,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const bar = window.dhBuildSortBar(
       'bundles',
       'featured',
-      `<strong>${routineCount}</strong> routines · <strong>${concernCount}</strong> targeted bundles`,
+      `<strong>${routineCount}</strong> routines · <strong>${concernCount}</strong> targeted bundles · <strong>${giftCount}</strong> gift sets`,
       (key) => reorderConcernGrid(key)
     );
     if (bar) {
@@ -2035,13 +2039,17 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Count visible routines vs concern bundles separately for the breakdown line
+    // Count visible routines, gift sets, and concern bundles separately for the breakdown line
+    const giftIds = new Set(['gift-skin-set', 'gift-newcomer', 'gift-dad']);
     let visibleRoutines = 0;
+    let visibleGifts = 0;
     let visibleBundles = 0;
     document.querySelectorAll('.concern-card:not(.is-hidden)').forEach(card => {
       // .concern-card uses data-bundle-kind="routine" or "concern" — see renderConcernCard / renderRoutineCard
       const kind = card.dataset.bundleKind;
-      if (kind === 'routine') visibleRoutines++;
+      const id = card.dataset.bundleId;
+      if (kind === 'routine' && giftIds.has(id)) visibleGifts++;
+      else if (kind === 'routine') visibleRoutines++;
       else if (kind === 'concern') visibleBundles++;
     });
 
@@ -2049,7 +2057,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const activeCount = totalActiveFilters();
     const hasAnyFilter = q.length > 0 || activeCount > 0;
     const breakdown = hasAnyFilter && visible > 0
-      ? `<span class="count-breakdown">${visibleRoutines} routines + ${visibleBundles} bundles</span>`
+      ? `<span class="count-breakdown">${visibleRoutines} routines + ${visibleBundles} bundles + ${visibleGifts} gift sets</span>`
       : '';
 
     let countHTML;

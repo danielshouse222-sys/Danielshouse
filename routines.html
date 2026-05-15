@@ -1988,7 +1988,7 @@
   <div class="sec-header">
     <div class="sec-eyebrow">The Routines · Daily Rituals</div>
     <div class="sec-title">The <em>Routines</em> Collection</div>
-    <div class="sec-blurb">Eleven routines — each built for a specific use, person, or moment in the day.</div>
+    <div class="sec-blurb">Eleven routines — each built for a specific use, person, or moment in the day. Plus three <a href="gifts.html" style="color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;">gift sets</a> on the Gifts page.</div>
   </div>
 
   <!-- SEARCH + FILTER FOR THE CURATED GRID -->
@@ -2103,7 +2103,7 @@
   <div class="bundles-sort-mount" style="max-width: 1200px; margin: 32px auto 0; padding: 0 40px;"></div>
 
   <div class="bundle-grid">
-    <!-- All 10 curated routines render here via renderCuratedBundleCard (including Ultimate). -->
+    <!-- All 11 curated routines render here via renderCuratedBundleCard (including Ultimate). -->
   
 
 
@@ -2722,7 +2722,7 @@
     const grid = document.querySelector('.bundle-grid');
     if (!grid) return;
 
-    const defaultOrder = ['daniels-daily', 'daniels-skincare', 'am', 'pm', 'foundation', 'workout', 'longevity', 'moms', 'arianas', 'ultimate'];
+    const defaultOrder = ['daniels-daily', 'daniels-skincare', 'am', 'pm', 'foundation', 'workout', 'full-energy', 'longevity', 'moms', 'arianas', 'ultimate'];
     grid.innerHTML = defaultOrder.map(id => window.renderCuratedBundleCard(id)).join('');
 
     // ── COLLAPSIBLE CARDS — single delegated handler, supports both the top
