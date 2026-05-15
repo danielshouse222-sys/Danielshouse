@@ -2962,6 +2962,10 @@
 
     // ── 2. Wire each Cadence button (Monthly / Bimonthly / Quarterly / Smart) ──
     document.querySelectorAll('.bundle-cadence').forEach(cadenceSel => {
+      // Initial population so the Smart Refill monthly amount is visible before clicking
+      if (typeof window.dhPopulateSmartRefillMonthly === 'function') {
+        window.dhPopulateSmartRefillMonthly(cadenceSel);
+      }
       cadenceSel.querySelectorAll('.cadence-btn').forEach(btn => {
         btn.addEventListener('click', () => {
           cadenceSel.querySelectorAll('.cadence-btn').forEach(b => b.classList.remove('active'));
@@ -2972,6 +2976,9 @@
           if (note) {
             if (isSmart) note.removeAttribute('hidden');
             else note.setAttribute('hidden', '');
+          }
+          if (typeof window.dhPopulateSmartRefillMonthly === 'function') {
+            window.dhPopulateSmartRefillMonthly(cadenceSel);
           }
           // Recompute price for the parent card's bundle
           const bundleId = cadenceSel.dataset.bundleId;

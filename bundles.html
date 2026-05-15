@@ -2241,6 +2241,10 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
     if (cadenceSel) {
+      // Initial population so users see the Smart Refill monthly amount before clicking
+      if (typeof window.dhPopulateSmartRefillMonthly === 'function') {
+        window.dhPopulateSmartRefillMonthly(cadenceSel);
+      }
       cadenceSel.querySelectorAll('.cadence-btn').forEach(btn => {
         btn.addEventListener('click', () => {
           cadenceSel.querySelectorAll('.cadence-btn').forEach(b => b.classList.remove('active'));
@@ -2251,6 +2255,9 @@ document.addEventListener('DOMContentLoaded', () => {
           if (note) {
             if (cadence === 'smart') note.removeAttribute('hidden');
             else note.setAttribute('hidden', '');
+          }
+          if (typeof window.dhPopulateSmartRefillMonthly === 'function') {
+            window.dhPopulateSmartRefillMonthly(cadenceSel);
           }
           refreshPricing();
         });
