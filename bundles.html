@@ -712,6 +712,11 @@
   }
   .concern-card.gift-card-routine {
     background: linear-gradient(180deg, #F5ECD9 0%, var(--cream) 65%);
+    /* Defensive: force gift cards to render at the end of the grid regardless
+       of DOM order or any future re-sorting. Gift sets are a separate tier
+       (dedicated /gifts page) and should never bubble to the top of the bundles
+       grid when filters are applied. */
+    order: 999;
   }
 
   @media (max-width: 600px) {
@@ -1605,9 +1610,10 @@ function lookupBundleAnyKind(bundleId, kindHint) {
     const concern = (window.CONCERN_BUNDLES || []).find(b => b.id === bundleId);
     if (concern) return { bundle: concern, kind: 'concern' };
   }
-  if (kindHint === 'routine') {
+  if (kindHint === 'routine' || kindHint === 'gift') {
+    // Gift bundles live in CURATED_BUNDLES alongside routines; same lookup path.
     const curated = (window.CURATED_BUNDLES || []).find(b => b.id === bundleId);
-    if (curated) return { bundle: curated, kind: 'routine' };
+    if (curated) return { bundle: curated, kind: kindHint === 'gift' ? 'gift' : 'routine' };
   }
   // No hint: routines win first (legacy behavior preserved).
   const curated = (window.CURATED_BUNDLES || []).find(b => b.id === bundleId);
@@ -1876,11 +1882,19 @@ document.addEventListener('DOMContentLoaded', () => {
     'workout':       ['active'],
     'moms':          ['parent', 'anti-aging', 'sensitive'],
     'arianas':       ['beauty', 'beginner'],
-    'ultimate':      ['busy-pro', 'anti-aging', 'beauty', 'active']
+    'foundation':    ['beginner', 'busy-pro'],
+    'longevity':     ['anti-aging', 'busy-pro', 'active'],  // routine (Cellular concern uses same id but different mapping above)
+    'ultimate':      ['busy-pro', 'anti-aging', 'beauty', 'active'],
+    // GIFT SETS — tag so they filter consistently with the rest of the catalog
+    'gift-newcomer':    ['beginner', 'beauty'],
+    'gift-skin-set':    ['beauty', 'anti-aging'],
+    'gift-dad':         ['active', 'beginner']
   };
 
   document.querySelectorAll('.concern-card').forEach(card => {
-    const isRoutine = card.dataset.bundleKind === 'routine';
+    // Treat gift cards as routines for metadata purposes — they live in CURATED_BUNDLES
+    // and share the same pricing/description path as regular routines.
+    const isRoutine = card.dataset.bundleKind === 'routine' || card.dataset.bundleKind === 'gift';
     // Find the bundle from the right list
     const hit = lookupBundleAnyKind(card.dataset.bundleId);
     if (!hit) return;
@@ -1920,10 +1934,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // Filter markers
     const markers = [];
 
-    // Focus: bundle.tab for concerns, derived for routines (most are general-purpose).
-    // Routines span both skincare + supplements, so they match either focus filter.
+    // Focus: derived from actual product mix.
+    // Skincare-only routines/gifts (Skin Set, AM Routine, PM Routine, etc.) get only __focus-skin__.
+    // Supplement-only routines (Foundation, Workout, etc.) get only __focus-goal__.
+    // Mixed routines (Ultimate, Mom's) get both.
+    // Concern bundles use their explicit bundle.tab.
     if (isRoutine) {
-      markers.push('__focus-skin__', '__focus-goal__');
+      const hasSkincare = products.some(p => p.category === 'skincare');
+      const hasSupplement = products.some(p => p.category === 'supplement');
+      if (hasSkincare) markers.push('__focus-skin__');
+      if (hasSupplement) markers.push('__focus-goal__');
     } else if (bundle.tab) {
       markers.push(`__focus-${bundle.tab}__`);
     }
@@ -1984,7 +2004,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       });
     }
-    matchedIngSlugs.forEach(slug => markers.push(`__ing-${slug}__`));
+    matchedIngSlugs.forEach(slug => markers.push(`__ingredient-${slug}__`));
 
     card.dataset.haystack = searchText + ' ' + markers.join(' ');
   });
@@ -2163,7 +2183,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ═══ WIRE UP CARD INTERACTIONS (subscribe toggle, preview, add) ═══
   document.querySelectorAll('.concern-card').forEach(card => {
-    const isRoutine = card.dataset.bundleKind === 'routine';
+    // Gifts share the same data shape and price path as routines (live in CURATED_BUNDLES).
+    const isRoutine = card.dataset.bundleKind === 'routine' || card.dataset.bundleKind === 'gift';
     const slugs = card.dataset.productSlugs.split(',');
     const bundleName = card.dataset.bundleName;   // Already the FULL name including " Bundle" or " Routine"
     const hit = lookupBundleAnyKind(card.dataset.bundleId);
