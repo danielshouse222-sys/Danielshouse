@@ -407,7 +407,6 @@
       'hair-nails':['hair', 'nails', 'nail', 'biotin', 'thinning', 'shedding', 'brittle', 'thicker'],
       'travel':  ['travel', 'traveling', 'flying', 'flight', 'trip', 'hotel', 'jet lag', 'jetlag', 'carry-on'],
       'cycle':   ['cycle', 'pms', 'period', 'hormones', 'hormonal', 'menstrual', 'luteal'],
-      'metabolic':['metabolic', 'metabolism', 'burn fat', 'fat loss', 'weight', 'pre-workout', 'carnitine'],
       'glow':    ['glow', 'beauty', 'brighten', 'brightening', 'luminous', 'luminosity', 'radiance'],
       'dullness':['dull', 'dullness'],
       'sensitivity':['sensitive', 'sensitivity', 'reactive', 'redness']
@@ -655,7 +654,6 @@
       'hair-nails': ['arianas', 'daniels-skincare'],
       'travel': ['foundation', 'am'],
       'cycle': ['moms', 'foundation'],
-      'metabolic': ['workout', 'daniels-daily'],
       'glow':    ['arianas', 'daniels-skincare'],
       'dullness': ['am']
     };

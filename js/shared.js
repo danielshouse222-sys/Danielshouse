@@ -2710,9 +2710,9 @@
       concerns: [
         'aging', 'sleep', 'energy', 'stress', 'acne',
         'glow', 'starter', 'dullness', 'dryness', 'sensitivity',
-        'hair-nails', 'cycle', 'travel', 'metabolic',
+        'hair-nails', 'cycle', 'travel',
         'longevity', 'gut', 'focus',
-        'spa', 'joints', 'mushroom-trio'
+        'spa', 'joints', 'mushroom-trio', 'full-energy'
       ],
       // Combined best-sellers ranking across BOTH routines and concern bundles —
       // composite keys disambiguate the 'longevity' id which exists in both lists.
@@ -2728,12 +2728,11 @@
         'concern:hair-nails',        // Hair & Nails — large search/beauty demand
         'concern:stress',            // Stress — trending, affordable
         'concern:energy',            // Energy — universal need
-        'routine:full-energy',       // Full Energy Stack — bigger supplement stack at 18% off
+        'concern:full-energy',       // Full Energy Stack — bigger supplement bundle at 18% off
         'concern:cycle',             // Cycle — women's wellness segment
         'routine:pm',                // pairs with AM, repeat buy
         'concern:glow',              // The Glow Bundle — inside-out glow
         'concern:dullness',          // Brightening — vitamin C, broad appeal
-        'concern:metabolic',         // Metabolic — foundation-first energy
         'routine:moms',              // focused persona conversion
         'routine:workout',           // active segment
         'concern:travel',            // Travel Stack — frequent flyer segment
