@@ -2052,7 +2052,7 @@
     // Bundles that only define `intro` render the basic panel (backward compat).
     const BUNDLE_DETAILS = {
       ultimate: {
-        intro: "Daniel's complete protocol — inside and out. Every product he uses every day, layered in the order they work best. <em>Skincare and supplements aren't separate problems; they're one system.</em> Twenty-two bottles, twelve daily steps, ten daily supplements, one box. The biggest discount on the site because this is what the line was built to do.",
+        intro: "Daniel's complete protocol — inside and out. Every product he uses every day, layered in the order they work best. <em>Skincare and supplements aren't separate problems; they're one system.</em> Twenty-three bottles, thirteen daily skincare steps, ten daily supplements, one box. The biggest discount on the site because this is what the line was built to do.",
         am: [
           { name: "Wash",       note: "The botanical cleanser — rose hip seed oil, geranium, and Irish moss in a silky, fragrance-free lather." },
           { name: "Balance",    note: "Tri-acid peeling pads (salicylic, lactic, mandelic) — the toner step upgraded to daily exfoliation." },
@@ -2712,7 +2712,7 @@
         'glow', 'starter', 'dullness', 'dryness', 'sensitivity',
         'hair-nails', 'cycle', 'travel', 'metabolic',
         'longevity', 'gut', 'focus',
-        'pores', 'reset', 'joints'
+        'spa', 'joints', 'mushroom-trio'
       ],
       // Combined best-sellers ranking across BOTH routines and concern bundles —
       // composite keys disambiguate the 'longevity' id which exists in both lists.
@@ -2740,10 +2740,10 @@
         'concern:acne',              // Clear-Skin — concentrated demand
         'concern:longevity',         // Cellular Bundle — premium longevity
         'concern:sensitivity',       // Soothing — sensitive skin segment
-        'concern:pores',             // Texture — surface refinement
-        'concern:reset',             // Reset Bundle — weekly complement
+        'concern:spa',               // Spa Bundle — weekly indulgence ritual
         'concern:gut',               // trending gut health
         'concern:focus',             // niche cognitive
+        'concern:mushroom-trio',     // Mushroom Bundle — cognition/stress/energy
         'concern:joints',            // older demographic
         'routine:longevity',         // premium niche routine
         'routine:arianas'            // narrow persona
@@ -3018,8 +3018,8 @@
     };
 
     // Smart Refill is mostly useless on pure-supplement bundles (where every product
-    // has runtime=1 anyway) and on weekly-use bundles (Reset Bundle) where the
-    // small ship size erodes margin without retention upside. Disable it on those.
+    // has runtime=1 anyway) and on small skincare bundles where the small ship size
+    // erodes margin without retention upside. Disable it on those.
     // NOTE: Daniel's Daily IS enabled — its 10 supplements have mixed runtimes
     // (Multi/NAD+/Vitality/Synapse/Restore/Tranquil 1mo; Flow/Biome/Calm 2mo;
     // Sunshine 3mo), so Smart Refill genuinely saves ~$484/yr vs flat monthly.
@@ -3027,7 +3027,6 @@
       'routine:workout',       // 5 supplements
       'routine:foundation',    // 5 supplements (subset of daniels-daily)
       'routine:longevity',     // 5 supplements (subset of daniels-daily)
-      'concern:reset',         // 2 skincare, weekly-use
       'concern:starter'        // 3 skincare, all 2-month cycles
     ];
 

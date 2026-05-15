@@ -497,7 +497,7 @@
     if (hit) return hit;
     hit = pool.find(e => e.title.toLowerCase().includes(n));
     if (hit) return hit;
-    const slugMap = { 'am': 'am', 'pm': 'pm', 'glow': 'glow', 'workout': 'workout', 'mom': 'moms', "mom's": 'moms', 'arianas': 'arianas', "ariana's": 'arianas', 'ariana': 'arianas', 'ultimate': 'ultimate', 'daily': 'daniels-daily', 'foundation': 'foundation', 'longevity': 'longevity', 'reset': 'weekly', 'weekly': 'weekly' };
+    const slugMap = { 'am': 'am', 'pm': 'pm', 'glow': 'glow', 'workout': 'workout', 'mom': 'moms', "mom's": 'moms', 'arianas': 'arianas', "ariana's": 'arianas', 'ariana': 'arianas', 'ultimate': 'ultimate', 'daily': 'daniels-daily', 'foundation': 'foundation', 'longevity': 'longevity', 'reset': 'spa', 'weekly': 'spa', 'spa': 'spa' };
     if (slugMap[n]) {
       hit = pool.find(e => e.slug === slugMap[n]);
       if (hit) return hit;
