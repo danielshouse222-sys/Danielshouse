@@ -2124,8 +2124,8 @@ window.CURATED_BUNDLES = [
     name: 'The Newcomer Set',
     kind: 'gift',
     discount: 0.15,
-    blurb: "For someone curious about premium skincare but new to the category. Four AM staples in one gift-ready box.",
-    slugs: ['the-house-wash','the-house-defense','the-house-soft','the-house-shield']
+    blurb: "For someone curious about wellness but new to building a routine. Three skincare staples plus the daily multivitamin foundation — inside and out, in one gift-ready box.",
+    slugs: ['the-house-wash','the-house-soft','the-house-shield','the-house-multi']
   },
   {
     id: 'gift-skin-set',
