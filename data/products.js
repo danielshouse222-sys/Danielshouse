@@ -1870,15 +1870,6 @@ window.CONCERN_BUNDLES = [
     slugs: ['the-house-wash', 'the-house-soft', 'the-house-glow', 'the-house-biome', 'the-house-flow']
   },
   {
-    id: 'pores',
-    discount: 0.12,
-    tab: 'skin',
-    icon: 'F.',
-    name: 'The Texture Bundle',
-    blurb: "Physical polish, multi-acid resurfacing pads, the weekly zinc-and-sulfur clay mask, and the peptide growth factor serum that smooths surface texture from the foundation up — plus the probiotic that addresses the gut-skin axis behind pore appearance and surface bumps. Texture refinement, inside and out.",
-    slugs: ['the-house-polish', 'the-house-renewal', 'the-house-mask', 'the-house-boost', 'the-house-biome']
-  },
-  {
     id: 'glow',
     discount: 0.15,
     tab: 'skin',
@@ -1897,13 +1888,13 @@ window.CONCERN_BUNDLES = [
     slugs: ['the-house-wash', 'the-house-balance', 'the-house-soft']
   },
   {
-    id: 'reset',
-    discount: 0.15,
+    id: 'spa',
+    discount: 0.12,
     tab: 'skin',
     icon: 'I.',
-    name: 'The Reset Bundle',
-    blurb: "The weekly skincare reset. The zinc-and-sulfur clay detox mask and the gentle berry-seed polish — used once or twice a week to clear buildup, brighten dull patches, and prime skin so everything else works harder. The complement to any daily routine.",
-    slugs: ['the-house-mask', 'the-house-polish']
+    name: 'The Spa Bundle',
+    blurb: "The weekly indulgence ritual. The zinc-and-sulfur clay detox mask and the gentle berry-seed polish for the resurfacing pair, the HA moisturizer that drinks it all in, the hyaluronic mist that turns any moment into a refresh, and the squalane-plus-HA-spheres lipid oil to seal it all. Five products built to make your bathroom feel like a hotel spa. Run the polish-then-mask combo once a week; the others daily as you wish.",
+    slugs: ['the-house-mask', 'the-house-polish', 'the-house-soft', 'the-house-mist', 'the-house-glow']
   },
 
   // ═══ WELLNESS GOALS — primary concern is systemic,
@@ -2009,11 +2000,11 @@ window.CONCERN_BUNDLES = [
   },
   {
     id: 'mushroom-trio',
-    discount: 0.15,
+    discount: 0.12,
     tab: 'goal',
     icon: 'M.',
-    name: 'The Mushroom Trio Bundle',
-    blurb: "The clinical-dose mushroom set — Spark (Lion\'s Mane 1,000 mg for cognition and NGF), Still (Reishi 500 mg for stress and sleep architecture), and Forge (Cordyceps militaris 500 mg for cellular energy and endurance). The three mushrooms with the strongest published evidence base, each at the dose where the research begins. The dedicated alternative to Synapse for customers who want clinical-dose mushroom support across the cognition / stress / energy axes.",
+    name: 'The Mushroom Bundle',
+    blurb: "The clinical-dose mushroom set — Spark (Lion's Mane 1,000 mg for cognition and NGF), Still (Reishi 500 mg for stress and sleep architecture), and Forge (Cordyceps militaris 500 mg for cellular energy and endurance). The three mushrooms with the strongest published evidence base, each at the dose where the research begins. Three mushrooms, three mechanisms — cognition, stress, endurance.",
     slugs: ['the-house-spark', 'the-house-still', 'the-house-forge']
   },
 ];

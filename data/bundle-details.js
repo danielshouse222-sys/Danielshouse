@@ -326,23 +326,6 @@ window.BUNDLE_DETAILS = {
         { q: 'Can I add retinol or vitamin C later?', a: 'After 4-8 weeks of consistent barrier rebuilding from both sides, yes — slowly. Start with niacinamide, then vitamin C, then retinol if desired.' }
       ]
     },
-    'pores': {
-      eyebrow: 'Refined Texture · Resurfacing + Gut-Skin Axis',
-      description: 'Five products built around smoothness, not breakouts — physical polish, multi-action peeling pads, and the weekly zinc & sulfur clay mask for visible texture, plus bio-peptide growth factor serum for renewal and the probiotic that drives the gut-skin axis behind surface bumps and uneven texture.',
-      whyThis: "Texture issues — visible pores, surface bumps, uneven tone, micro-roughness — come from three places: surface buildup, slow cell turnover, and inflammation upstream of the skin. The Texture Bundle works on all three. Polish (physical exfoliation with strawberry seeds + jojoba beads) smooths the surface and primes absorption. Renewal (multi-action peeling pads — glycolic + lactic + salicylic) accelerates cell turnover for refined texture without harshness. Mask (bentonite + colloidal sulfur + salicylic acid + zinc oxide, weekly) draws out the accumulated buildup that makes pores look bigger and tightens pore appearance as it dries. Boost (bio-peptide growth factor serum) accelerates the cellular renewal that turns over rough surface texture and fades the post-blemish marks that texture issues leave behind. Internally: Biome's probiotic supports the gut microbiome that influences sebum and inflammation — a connection that quietly drives chronic texture issues most surface protocols ignore. Together: smoother skin, less visible pore appearance, no acne-grade actives needed.",
-      timeline: [
-        { week: 'Week 1', text: 'Immediate smoothness after Polish or Mask. Skin feels cleaner and more even.' },
-        { week: 'Week 4', text: 'Glycolic effect compounds — texture noticeably refined. Pore appearance softens in the T-zone.' },
-        { week: 'Week 8', text: 'Niacinamide effect on sebum production kicks in. Surface uniformity becomes the new baseline.' },
-        { week: 'Week 12+', text: 'Durable refined-skin baseline. Makeup and SPF sit more evenly; light reflects more uniformly off the skin.' }
-      ],
-      faq: [
-        { q: 'How is this different from the Clear-Skin Bundle?', a: "Clear-Skin is acne-focused — colloidal sulfur spot treatment, zinc & sulfur mask, and the gut probiotic. Texture is smoothness-focused — triple-acid Renewal for resurfacing, physical Polish for surface, bio-peptide growth factor serum for tone, mask for buildup. Different actives, different angle. Use Clear-Skin if you're treating active breakouts; use Texture if your skin is mostly clear but feels rough or looks uneven." },
-        { q: 'Can sensitive skin handle this?', a: "Yes, with cadence control. Polish: light pressure, 1-2x per week max. Renewal: start at 2 nights a week, build up. Mask: 1x per week. The probiotic and niacinamide are gentle daily. Skin that's actively irritated should pause topicals until calm." },
-        { q: 'Will my pores actually get smaller?', a: 'Pore size is genetic — but pore appearance is highly modifiable. Cleaning out the buildup that visually enlarges pores, evening surface texture, and reducing sebum production over time produces a measurable refining effect. Most users see visible improvement in 8-12 weeks.' },
-        { q: 'How often should I use Polish and Renewal together?', a: 'Never the same night. Alternate: Polish one night, Renewal another. Both stimulate cell turnover; doing them together over-exfoliates and triggers reactivity.' }
-      ]
-    },
     'glow': {
       eyebrow: 'Visible Glow · Inside + Out',
       description: 'Six glow-focused products — topical bio-peptide growth factor serum, the CE Ferulic antioxidant shield, the squalane-and-HA-spheres overnight lipid seal, the weekly zinc & sulfur clay mask, plus daily beauty vitamins and 10g of collagen. The full inside-out beauty stack.',
@@ -377,20 +360,21 @@ window.BUNDLE_DETAILS = {
         { q: "Is this safe during pregnancy?", a: "Wash and Soft are pregnancy-safe. Balance contains glycolic acid at 3.5% daily-use concentration — most providers consider it acceptable during pregnancy, but some advise against any AHAs. For the strictest pregnancy-safe starter routine, swap Balance for The House Plump and you have a fully pregnancy-friendly daily foundation. Always confirm with your provider for your specific case." }
       ]
     },
-    'reset': {
-      eyebrow: 'Weekly Reset · The Skincare Complement',
-      description: 'Two weekly treatments — the zinc & sulfur clay mask and the berry-seed physical polish. The deep-clean reset that complements any daily routine.',
-      whyThis: "Daily skincare maintains; weekly treatments reset. Mask (bentonite clay + colloidal sulfur + salicylic acid + zinc oxide) draws out accumulated oil, dirt, and surface buildup that daily cleansers can't reach — best used once a week. Polish (real strawberry seeds + biodegradable jojoba beads + goji and ginseng extracts) smooths surface texture and primes skin to better absorb actives. Used together (mask one night, polish another, never the same night), they keep skin clear, smooth, and primed for daily routines to work their best.",
+    'spa': {
+      eyebrow: 'Weekly Indulgence · Bathroom-to-Hotel-Spa',
+      description: 'Five products built to make your bathroom feel like a spa visit. The weekly polish-then-mask resurfacing pair, the HA moisturizing cream that drinks in what the treatments unlock, the hyaluronic mist that turns any moment into a refresh, and the squalane-plus-HA-spheres lipid oil for the final glow seal.',
+      whyThis: "A spa visit works because of sequencing — exfoliate, treat, hydrate, finish. The Spa Bundle gives you the same ritual at home, once a week. Polish (real strawberry seeds + biodegradable jojoba beads + goji and ginseng extracts) is the physical exfoliation that clears surface dead skin and primes absorption. Mask (bentonite clay + colloidal sulfur + salicylic acid + zinc oxide) is the deep-pull treatment that draws out the week's accumulated oil, debris, and surface buildup. Soft (advanced HA moisturizing cream — multi-weight hyaluronic acid + niacinamide + barrier-supportive emollients) is the deep hydration that goes in beautifully on the now-receptive skin. Mist (hyaluronic acid in a fine refreshing spray) is the cooling sensory finish you can return to throughout the week. Glow (multi-weight HA spheres suspended in squalane) is the overnight lipid seal that leaves skin radiant by morning. Together: the closest thing to a hotel spa that lives in your bathroom.",
       timeline: [
-        { week: 'Week 1', text: 'Immediate freshness and smoothness after first use. Pores feel cleaner.' },
-        { week: 'Week 4', text: 'Sustained surface refinement; texture noticeably smoother. Less buildup between treatments.' },
-        { week: 'Week 8', text: 'Daily products absorb better. Skin clarity improves as weekly reset becomes habit.' },
-        { week: 'Week 12+', text: 'Sustained weekly-reset baseline. The complement that makes daily skincare work harder.' }
+        { week: 'Week 1', text: 'Immediate softness and luminosity after first session. Skin feels treated, not just cleansed.' },
+        { week: 'Week 4', text: 'Surface texture noticeably refined; pores visibly cleaner; consistent post-ritual glow.' },
+        { week: 'Week 8', text: 'Skin baseline shifts higher — what used to be your "good skin day" becomes the new normal.' },
+        { week: 'Week 12+', text: 'Sustained spa-day baseline. Daily products absorb better; skin holds hydration longer.' }
       ],
       faq: [
-        { q: 'How often should I use these?', a: 'Each: once a week, on different nights. So you\'re doing some kind of weekly treatment twice per week. Skin doesn\'t need more than that.' },
-        { q: 'Can I use these on sensitive skin?', a: "Polish: be gentle — light pressure, no scrubbing. Mask: tolerated by most sensitive skin but patch-test first. If you have active breakouts or irritation, skip until it resolves." },
-        { q: 'Do I need to change my routine on treatment nights?', a: "Yes — after Mask or Polish, skip strong actives that night (retinol, glycolic). Go straight to gentle hydrators and moisturizer. Your skin is more permeable right after treatments — easy does it." }
+        { q: 'How often is the full ritual?', a: 'Once a week for the polish-mask pair (do them the same evening, polish first, then mask). Soft can be your nightly moisturizer. Mist anytime you want a sensory refresh. Glow nightly as the last step, or save it for your spa nights only.' },
+        { q: 'Can I do Polish and Mask the same night?', a: 'Yes — that\'s actually the recommended ritual for this bundle. Polish first to clear the surface, then Mask to draw out what\'s underneath. Just skip retinol or strong acids that night; skin is more permeable post-treatment.' },
+        { q: 'Is this enough on its own, or do I need a daily routine?', a: 'This is the ritual layer — designed to complement a daily routine, not replace it. Pair it with your AM essentials (Wash, SPF) and any PM actives you use. If you\'re starting from scratch, the Skin Starter Bundle is the right foundation; the Spa Bundle is what you add on top once the foundation is in place.' },
+        { q: 'How is this different from the Reset?', a: "The Reset (no longer offered) was just two products — Polish and Mask. The Spa Bundle is the full ritual: the same weekly pair, plus the moisturizer, mist, and overnight oil that turn it into an actual experience." }
       ]
     },
 

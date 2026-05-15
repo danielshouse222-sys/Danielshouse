@@ -161,7 +161,7 @@ window.DH_FAQ_DATA = [
     "cat": "Subscribe & Save",
     "cat_id": 2,
     "q": "Which routines work with Smart Refill?",
-    "a": "Most routines and bundles support Smart Refill — including Daniel's Daily Supplements, Daniel's Daily Skincare, the AM Routine, PM Routine, Mom's Routine, Ariana's Routine, the Ultimate Routine, and nearly every concern bundle (Sleep, Energy, Stress, Anti-Aging, Glow, Hair &amp; Nails, Travel, Cycle, Metabolic, and most others), plus any Build Your Own routine you create. A handful of bundles whose products all ship on the same cadence don't offer Smart Refill — the Workout Routine, Foundation Routine, Longevity Routine (all-supplement, all-monthly), and the Reset Bundle and Skin Starter Bundle (small skincare bundles on the same cycle). For those, Monthly Subscribe is the right option. The product page will show whichever cadence options apply."
+    "a": "Most routines and bundles support Smart Refill — including Daniel's Daily Supplements, Daniel's Daily Skincare, the AM Routine, PM Routine, Mom's Routine, Ariana's Routine, the Ultimate Routine, and nearly every concern bundle (Sleep, Energy, Stress, Anti-Aging, Glow, Hair &amp; Nails, Travel, Cycle, Metabolic, and most others), plus any Build Your Own routine you create. A handful of bundles whose products all ship on the same cadence don't offer Smart Refill — the Workout Routine, Foundation Routine, Longevity Routine (all-supplement, all-monthly), and the Skin Starter Bundle (a small skincare bundle on the same cycle). For those, Monthly Subscribe is the right option. The product page will show whichever cadence options apply."
   },
   {
     "cat": "Ingredients & Safety",
