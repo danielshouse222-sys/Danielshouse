@@ -2728,6 +2728,7 @@
         'concern:hair-nails',        // Hair & Nails — large search/beauty demand
         'concern:stress',            // Stress — trending, affordable
         'concern:energy',            // Energy — universal need
+        'routine:full-energy',       // Full Energy Stack — bigger supplement stack at 18% off
         'concern:cycle',             // Cycle — women's wellness segment
         'routine:pm',                // pairs with AM, repeat buy
         'concern:glow',              // The Glow Bundle — inside-out glow
