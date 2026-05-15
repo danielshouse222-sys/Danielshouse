@@ -146,7 +146,7 @@ NOTES & KNOWN LIMITATIONS
 ─ Email popup form doesn't actually send to a service —
   shows confirmation only. Wire to Klaviyo/Mailchimp for
   production.
-─ All 18 supplement images are PIL-generated placeholders.
+─ All 24 supplement images are PIL-generated placeholders.
   Replace with real product photography before launch.
 
 ═══════════════════════════════════════════════════════════

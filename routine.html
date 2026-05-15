@@ -542,7 +542,7 @@
 <script>
 (function() {
   const params = new URLSearchParams(window.location.search);
-  const slug = params.get('slug');
+  const slug = params.get('slug') || params.get('id');
   const container = document.getElementById('bundle-content');
   const backLink = document.getElementById('back-link');
 
