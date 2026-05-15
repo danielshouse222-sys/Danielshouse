@@ -1884,8 +1884,8 @@ window.CONCERN_BUNDLES = [
     tab: 'skin',
     icon: 'H.',
     name: 'The Skin Starter Bundle',
-    blurb: "Three products, two minutes. Cleanse, tone, moisturize — the minimum effective skincare routine for someone who has never had one, or wants to start over with the basics done right. Run this for six to eight weeks before adding anything else.",
-    slugs: ['the-house-wash', 'the-house-balance', 'the-house-soft']
+    blurb: "Four products, three minutes. Cleanse, tone, moisturize, protect — the minimum effective skincare routine for someone who has never had one, or wants to start over with the basics done right. SPF every morning isn't optional; it's the most evidence-backed step in the whole protocol. Run this for six to eight weeks before adding anything else.",
+    slugs: ['the-house-wash', 'the-house-balance', 'the-house-soft', 'the-house-shield']
   },
   {
     id: 'spa',
@@ -2141,16 +2141,16 @@ window.CURATED_BUNDLES = [
     blurb: "The full skincare ritual, gift-ready — AM and PM, every step. For the friend who takes their skin seriously, or wants to.",
     slugs: [
       'the-house-wash','the-house-balance','the-house-boost','the-house-plump','the-house-defense','the-house-soft','the-house-shield',
-      'the-house-bounce','the-house-firm','the-house-mist','the-house-awake','the-house-glow'
+      'the-house-bounce','the-house-renewal','the-house-firm','the-house-mist','the-house-awake','the-house-glow'
     ]
   },
   {
-    id: 'gift-wellness',
-    name: 'The Wellness Set',
+    id: 'gift-dad',
+    name: 'The Dad Set',
     kind: 'gift',
     discount: 0.15,
-    blurb: "The supplement foundation as a gift — multi, D3+K2, omega-3, probiotic, and Calm for the evening wind-down.",
-    slugs: ['the-house-multi','the-house-sunshine','the-house-flow','the-house-biome','the-house-calm']
+    blurb: "Four products for the man who won't buy a routine for himself. Cleanser, SPF, daily multivitamin, and 5g creatine — the minimum-effective set, evidence-anchored, gift-ready. Father's Day, milestone birthday, the man who needs the nudge.",
+    slugs: ['the-house-wash','the-house-shield','the-house-multi','the-house-restore']
   }
 ];
 
