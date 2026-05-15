@@ -2130,11 +2130,10 @@ window.CURATED_BUNDLES = [
     id: 'gift-skin-set',
     name: 'The Skin Set',
     kind: 'gift',
-    discount: 0.18,
-    blurb: "The full skincare ritual, gift-ready — AM and PM, every step. For the friend who takes their skin seriously, or wants to.",
+    discount: 0.15,
+    blurb: "Five essentials for someone ready to take their skin seriously. Cleanser, CE Ferulic antioxidant, 5-active retinol, hydrating moisturizer, mineral SPF — the daily AM and PM routine in one gift. Sits between The Newcomer Set (first-time skincare) and Daniel's Daily Skincare (the complete 16-product ritual).",
     slugs: [
-      'the-house-wash','the-house-balance','the-house-boost','the-house-plump','the-house-defense','the-house-soft','the-house-shield',
-      'the-house-bounce','the-house-renewal','the-house-firm','the-house-mist','the-house-awake','the-house-glow'
+      'the-house-wash','the-house-defense','the-house-bounce','the-house-soft','the-house-shield'
     ]
   },
   {
