@@ -11,7 +11,7 @@ WHAT'S NEW IN THIS BUILD
 ═══════════════════════════════════════════════════════════
 
 CORE FEATURES ADDED:
-─ Product detail pages — all 33 products, single template
+─ Product detail pages — all 40 products, single template
   driven by JSON data in /data/products.js
 ─ Bundle product carousel — click any product image in any
   bundle to open a lightbox carousel of all bundle items
@@ -39,7 +39,7 @@ ECOMMERCE FEATURES ADDED:
   or wellness goal
 ─ About Daniel page — founder story, philosophy, principles
 ─ FAQ page — 24 common questions across 5 categories
-─ Ingredient glossary — 30 ingredients with evidence
+─ Ingredient glossary — 59 ingredients with evidence
   levels and product cross-references
 
 ═══════════════════════════════════════════════════════════
@@ -60,7 +60,7 @@ FILE STRUCTURE
   styles.css              — Global nav + footer + base styles
   css/shared.css          — Cart drawer + popup + search + shipping bar
   js/shared.js            — Cart logic + popup + search + drawer
-  data/products.js        — All 33 products' detail data
+  data/products.js        — All 40 products' detail data
 
   images/                 — Skincare product photos (15)
   products/               — Supplement bottle placeholders (18)
