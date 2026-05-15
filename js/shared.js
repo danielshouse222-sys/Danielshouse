@@ -2531,6 +2531,7 @@
           { href: 'bundles.html',         label: 'Bundles' },
           { href: 'gifts.html',        label: 'Gifts' },
           { href: 'routines.html#build-your-own', label: 'Build Your Own' },
+          { href: 'quiz.html',         label: 'Take the Quiz' },
           { href: 'compare.html',      label: 'Compare' }
         ]
       },
@@ -2543,7 +2544,6 @@
           { href: 'studies.html',      label: 'Research Library' },
           { href: 'blog.html',         label: 'Field Notes (Blog)' },
           { href: 'reviews.html',      label: 'Reviews' },
-          { href: 'quiz.html',         label: 'Take the Quiz' },
           { href: 'faq.html',          label: 'FAQ' }
         ]
       },
