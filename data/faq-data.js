@@ -23,13 +23,13 @@ window.DH_FAQ_DATA = [
     "cat": "Pricing & Value",
     "cat_id": 5,
     "q": "If I can only afford one or two products, where do I start?",
-    "a": "The most cost-effective entry to the line is the Skin Starter Bundle ($108 for three products: Wash + Balance + Soft, with the 10% bundle discount). Three products is a minimum-viable routine that won't compete with itself, and the bundle saves vs buying à la carte. If you want a single product to start with, Defense ($74) is the highest-leverage choice because daily antioxidant protection is the most-evidenced anti-aging intervention in dermatology — it does more long-term work than any other single product. Shield ($42) is a close second for the same reason. We'd rather you start small with two great products you'll use consistently than try a 12-product routine you can't sustain."
+    "a": "The most cost-effective entry to the line is the Skin Starter Bundle ($156 list, $132.60 with the 15% bundle discount — four products: Wash + Balance + Soft + Shield). Four products is a minimum-viable routine that covers cleansing, daily exfoliation, hydration, and SPF — the four steps every dermatologist agrees on, and the bundle saves vs buying à la carte. If you want a single product to start with, Defense ($74) is the highest-leverage choice because daily antioxidant protection is the most-evidenced anti-aging intervention in dermatology — it does more long-term work than any other single product. Shield ($48) is a close second because broad-spectrum SPF has the strongest evidence in all of skincare. We'd rather you start small with great products you'll use consistently than try a 12-product routine you can't sustain."
   },
   {
     "cat": "Pricing & Value",
     "cat_id": 5,
     "q": "What's the savings if I buy a bundle vs individual products?",
-    "a": "Curated routines (AM Routine, PM Routine, Daniel's Daily Skincare, Ultimate, Mom's, etc.) all save 15% off the list price. Targeted bundles (Acne, Dryness, Anti-Aging, Sensitivity, etc.) save 10% off. Build Your Own routines are tiered: pick 3+ and save 10%, pick 6+ and save 12%, pick 9+ and save 15%. Subscribe to any bundle and stack an additional 10% off. For the AM Routine: list price $308, one-time bundle price $261.80 (15% off, save $46.20), subscribed price $235.62 (23.5% off, save $72.38). The PM Routine: list $282, one-time $239.70, subscribed $215.73. The savings get larger as the bundle grows."
+    "a": "Discounts scale with bundle size and depth. Curated routines (AM, PM, Workout, Foundation, Longevity) save 15% off the list price. The flagship routines go deeper: Daniel's Daily Supplements, Daniel's Daily Skincare, Mom's Routine, and Ariana's Routine all save 18% off, and the Ultimate Routine saves 25% off — the biggest discount on the site. Gift sets: Newcomer and Dad Set save 15%; the Skin Set saves 18%. Targeted bundles range from 12% to 18% off depending on size (most concern bundles save 12%; the larger Anti-Aging, Glow, Skin Starter, and Travel Stack save 15%; the Full Energy Stack saves 18%). Every bundle on the site saves at least 12%. Build Your Own routines are tiered: pick 3+ and save 10%, pick 6+ and save 12%, pick 9+ and save 15%. Subscribe to any routine or bundle and stack an additional 10% off. For the AM Routine: list price $308, one-time bundle price $261.80 (15% off, save $46.20), subscribed price $235.62 (23.5% off, save $72.38). The savings get larger as the bundle grows."
   },
   {
     "cat": "Pricing & Value",
@@ -137,7 +137,7 @@ window.DH_FAQ_DATA = [
     "cat": "Subscribe & Save",
     "cat_id": 2,
     "q": "How does the Build Your Own routine discount work?",
-    "a": "Pick more, save more — Build Your Own is tiered: <strong>Mix 3 saves 10%</strong>, <strong>Mix 6 saves 12%</strong>, and <strong>Mix 9 or more saves 15%</strong>. The discount applies to whatever combination of skincare and supplements you pick. Subscribe to stack an extra 10% on top of any tier. Example: pick 9 products totaling $360 → $306 one-time (15% off), or $275.40 subscribed (15% + 10% = 23.5% total). Curated routines (AM, PM, Mom's, Ariana's, etc.) all sit at 15% — so once you cross the 9-product line, you're at the same discount whether you pick yourself or use one of Daniel's routines."
+    "a": "Pick more, save more — Build Your Own is tiered: <strong>Mix 3 saves 10%</strong>, <strong>Mix 6 saves 12%</strong>, and <strong>Mix 9 or more saves 15%</strong>. The discount applies to whatever combination of skincare and supplements you pick. Subscribe to stack an extra 10% on top of any tier. Example: pick 9 products totaling $360 → $306 one-time (15% off), or $275.40 subscribed (15% + 10% = 23.5% total). Curated routines (AM, PM, Workout, Foundation, Longevity) sit at 15%, and the flagship routines (Daniel's Daily, Mom's, Ariana's) go deeper at 18% — so a 9+ product Build Your Own matches the basic curated routines but the flagships still beat it on discount alone."
   },
   {
     "cat": "Subscribe & Save",
@@ -161,7 +161,7 @@ window.DH_FAQ_DATA = [
     "cat": "Subscribe & Save",
     "cat_id": 2,
     "q": "Which routines work with Smart Refill?",
-    "a": "Most routines and bundles support Smart Refill — including Daniel's Daily Supplements, Daniel's Daily Skincare, the AM Routine, PM Routine, Mom's Routine, Ariana's Routine, the Ultimate Routine, and nearly every concern bundle (Sleep, Energy, Stress, Anti-Aging, Glow, Hair &amp; Nails, Travel, Cycle, Metabolic, and most others), plus any Build Your Own routine you create. A handful of bundles whose products all ship on the same cadence don't offer Smart Refill — the Workout Routine, Foundation Routine, Longevity Routine (all-supplement, all-monthly), and the Skin Starter Bundle (a small skincare bundle on the same cycle). For those, Monthly Subscribe is the right option. The product page will show whichever cadence options apply."
+    "a": "Most routines and bundles support Smart Refill — including Daniel's Daily Supplements, Daniel's Daily Skincare, the AM Routine, PM Routine, Mom's Routine, Ariana's Routine, the Ultimate Routine, and nearly every concern bundle (Sleep, Energy, Stress, Anti-Aging, Glow, Hair &amp; Nails, Travel, Cycle, and most others), plus any Build Your Own routine you create. A handful of bundles whose products all ship on the same cadence don't offer Smart Refill — the Workout Routine, Foundation Routine, Longevity Routine (all-supplement, all-monthly), and the Skin Starter Bundle (a small skincare bundle on the same cycle). For those, Monthly Subscribe is the right option. The product page will show whichever cadence options apply."
   },
   {
     "cat": "Ingredients & Safety",

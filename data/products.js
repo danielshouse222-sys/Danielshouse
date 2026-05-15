@@ -1826,7 +1826,7 @@ window.CONCERN_BUNDLES = [
   //     paired with the supplements that drive the inside-out half ═══
   {
     id: 'aging',
-    discount: 0.12,
+    discount: 0.15,
     tab: 'skin',
     icon: 'A.',
     name: 'The Anti-Aging Bundle',
@@ -1844,7 +1844,7 @@ window.CONCERN_BUNDLES = [
   },
   {
     id: 'dryness',
-    discount: 0.1,
+    discount: 0.12,
     tab: 'skin',
     icon: 'C.',
     name: 'The Hydration Bundle',
@@ -1853,7 +1853,7 @@ window.CONCERN_BUNDLES = [
   },
   {
     id: 'dullness',
-    discount: 0.1,
+    discount: 0.12,
     tab: 'skin',
     icon: 'D.',
     name: 'The Brightening Bundle',
@@ -1901,7 +1901,7 @@ window.CONCERN_BUNDLES = [
   //     paired with the skincare that shows the result on the surface ═══
   {
     id: 'sleep',
-    discount: 0.1,
+    discount: 0.12,
     tab: 'goal',
     icon: 'A.',
     name: 'The Sleep Bundle',
@@ -1955,7 +1955,7 @@ window.CONCERN_BUNDLES = [
   },
   {
     id: 'gut',
-    discount: 0.1,
+    discount: 0.12,
     tab: 'goal',
     icon: 'H.',
     name: 'The Gut Bundle',
@@ -1964,7 +1964,7 @@ window.CONCERN_BUNDLES = [
   },
   {
     id: 'joints',
-    discount: 0.1,
+    discount: 0.12,
     tab: 'goal',
     icon: 'I.',
     name: 'The Joint Bundle',
@@ -2103,13 +2103,13 @@ window.CURATED_BUNDLES = [
   {
     id: 'moms',
     name: "The Mom's Routine",
-    discount: 0.15,
+    discount: 0.18,
     slugs: ['the-house-wash','the-house-defense','the-house-bounce','the-house-awake','the-house-soft','the-house-multi','the-house-collagen','the-house-nad-plus','the-house-vitality','the-house-tranquil']
   },
   {
     id: 'arianas',
     name: "The Ariana's Routine",
-    discount: 0.15,
+    discount: 0.18,
     slugs: ['the-house-wash','the-house-boost','the-house-defense','the-house-renewal','the-house-awake','the-house-soft','the-house-multi','the-house-radiance','the-house-collagen']
   },
   // ─── GIFT SETS ─────────────────────────────────────────────────────────
@@ -2130,7 +2130,7 @@ window.CURATED_BUNDLES = [
     id: 'gift-skin-set',
     name: 'The Skin Set',
     kind: 'gift',
-    discount: 0.15,
+    discount: 0.18,
     blurb: "The full skincare ritual, gift-ready — AM and PM, every step. For the friend who takes their skin seriously, or wants to.",
     slugs: [
       'the-house-wash','the-house-balance','the-house-boost','the-house-plump','the-house-defense','the-house-soft','the-house-shield',
