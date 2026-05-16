@@ -621,9 +621,9 @@
         <p class="bundle-hero-desc">${description}</p>
 
         <div class="bundle-pricing">
-          <span class="bundle-price-was">$${fullPrice.toFixed(2)}</span>
-          <span class="bundle-price-now">$${discountedPrice.toFixed(2)}</span>
-          <span class="bundle-price-save">Save $${savings.toFixed(2)} · ${discountPct}% off</span>
+          <span class="bundle-price-was">$${Math.round(fullPrice)}</span>
+          <span class="bundle-price-now">$${Math.ceil(discountedPrice)}</span>
+          <span class="bundle-price-save">Save $${Math.round(fullPrice) - Math.ceil(discountedPrice)} · ${discountPct}% off</span>
         </div>
 
         ${typeof window.dhBuildSubscribeToggle === 'function' ? window.dhBuildSubscribeToggle(bundle) : `

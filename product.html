@@ -792,7 +792,7 @@
       <button class="search-panel-close" aria-label="Close search">✕</button>
     </div>
     <div class="search-panel-results" id="search-panel-results">
-      <div class="search-panel-hint">Type to search across all 40 products.</div>
+      <div class="search-panel-hint">Type to search across all 45 products.</div>
     </div>
   </div>
 </div>
@@ -1347,7 +1347,7 @@
   // Pricing & subscribe options — three tiers: One-Time, Subscribe Monthly, Smart Refill
   // Smart Refill ships at the product's natural runtime cadence (1, 2, or 3 months)
   // so customers don't stockpile unused bottles on multi-month products.
-  const subscribePrice = +(product.price * 0.90).toFixed(2);
+  const subscribePrice = Math.ceil(product.price * 0.90);
   const runtime = Math.max(1, product.runtime || 1);
   const cadenceLabel = runtime === 1 ? 'every month' : `every ${runtime} months`;
   // For runtime=1, Smart Refill is functionally equivalent to monthly subscribe.
@@ -1358,7 +1358,7 @@
   const smartSaves = Math.max(0, monthlyCostOver6Mo - smartCostOver6Mo);
   const smartSavesCopy = runtime === 1
     ? `Same cadence as monthly subscribe — no stockpiling either way.`
-    : `Ships ${cadenceLabel} (your natural runtime) — saves <strong>$${smartSaves.toFixed(2)}</strong> over 6 months vs monthly subscribe.`;
+    : `Ships ${cadenceLabel} (your natural runtime) — saves <strong>$${Math.round(smartSaves)}</strong> over 6 months vs monthly subscribe.`;
 
   const optionsEl = document.getElementById('purchase-options');
   optionsEl.innerHTML = `
@@ -1368,7 +1368,7 @@
         <div class="purchase-label-main">One-Time Purchase</div>
         <div class="purchase-label-sub">Single order · ships once</div>
       </div>
-      <div class="purchase-price">$${product.price.toFixed(2)}</div>
+      <div class="purchase-price">$${product.price}</div>
     </div>
     <div class="purchase-option" data-mode="subscribe">
       <div class="purchase-radio"></div>
@@ -1377,8 +1377,8 @@
         <div class="purchase-label-sub">Delivered every 30 days · cancel anytime</div>
       </div>
       <div class="purchase-price">
-        <span class="purchase-price-strike">$${product.price.toFixed(2)}</span>
-        $${subscribePrice.toFixed(2)}
+        <span class="purchase-price-strike">$${product.price}</span>
+        $${Math.ceil(subscribePrice)}
       </div>
     </div>
     <div class="purchase-option selected" data-mode="smart">
@@ -1388,8 +1388,8 @@
         <div class="purchase-label-sub">${smartSavesCopy}</div>
       </div>
       <div class="purchase-price">
-        <span class="purchase-price-strike">$${product.price.toFixed(2)}</span>
-        $${subscribePrice.toFixed(2)}<span class="purchase-price-per">/shipment</span>
+        <span class="purchase-price-strike">$${product.price}</span>
+        $${Math.ceil(subscribePrice)}<span class="purchase-price-per">/shipment</span>
       </div>
     </div>
     <button type="button" class="projection-trigger-inline" data-product-projection-trigger>
@@ -1515,15 +1515,15 @@
             <a href="product.html?slug=${p.slug}" style="text-decoration: none; color: inherit;">
               <div class="fbt-product-img"><img src="${p.image}" alt="${p.name}"/></div>
               <div class="fbt-product-name">The House <em>${p.name}</em></div>
-              <div class="fbt-product-price">$${p.price.toFixed(2)}</div>
+              <div class="fbt-product-price">$${p.price}</div>
             </a>
           </div>
         `).join('<div class="fbt-plus" style="display: flex; align-items: center; justify-content: center;">+</div>')}
       </div>
       <div class="fbt-action">
         <div class="fbt-total-label">Bundle Total</div>
-        <div class="fbt-total">$${bundlePrice.toFixed(2)}</div>
-        <div class="fbt-savings">Save ${savings.toFixed(2)} buying all 3</div>
+        <div class="fbt-total">$${Math.ceil(bundlePrice)}</div>
+        <div class="fbt-savings">Save $${Math.round(savings)} buying all 3</div>
         <button class="fbt-add-btn" id="fbt-add">Add All 3 to Cart →</button>
       </div>
     `;
@@ -1559,7 +1559,7 @@
     <a href="product.html?slug=${p.slug}" class="related-card">
       <div class="related-img"><img src="${p.image}" alt="${p.name}"/></div>
       <div class="related-name">The House <em>${p.name}</em></div>
-      <div class="related-price">$${p.price.toFixed(2)}</div>
+      <div class="related-price">$${p.price}</div>
     </a>
   `).join('');
 

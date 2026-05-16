@@ -592,14 +592,14 @@ const stepHistory = [1];
 // in products.js so the add-to-cart button wires up automatically.
 const GIFT_CATALOG = [
   {
-    id: 'newcomer', name: 'The <em>Newcomer</em>', tier: '4 Products · Skincare',
+    id: 'newcomer', name: 'The <em>Newcomer</em>', tier: '4 Products · Inside + Out Starter',
     bundleId: 'gift-newcomer',
     detailUrl: 'routine.html?slug=gift-newcomer',
-    price: 98, original: 108,
-    imgs: ['images/wash.jpeg','images/defense.jpeg','images/soft.jpeg','images/shield.jpeg'],
-    includes: 'Wash · Defense · Soft · Shield · Gift box · Printed gift card',
-    why: 'For someone curious about premium skincare but new to the category. Four AM staples in one box — cleanser, the CE Ferulic antioxidant serum, advanced HA moisturizer, mineral SPF.',
-    tags: { vibe: ['curious', 'wellness'], focus: ['skincare', 'surprise'], budget: ['under-100', '100-200'], recipient: ['partner','parent','friend','coworker','self-care','other'] }
+    price: 128, original: 150,
+    imgs: ['images/wash.jpeg','images/soft.jpeg','images/shield.jpeg','products/Multi.jpeg'],
+    includes: 'Wash · Soft · Shield · Multi · Gift box · Printed gift card',
+    why: 'For someone curious about wellness but new to building a routine. Three skincare staples — cleanser, advanced HA moisturizer, mineral SPF — plus the daily multivitamin foundation. Inside and out, in one gift box.',
+    tags: { vibe: ['curious', 'wellness'], focus: ['skincare', 'supplements', 'both', 'surprise'], budget: ['under-100', '100-200'], recipient: ['partner','parent','friend','coworker','self-care','other'] }
   },
   {
     id: 'skinset', name: 'The <em>Skin Set</em>', tier: '5 Products · The Real Skincare Routine',
@@ -624,14 +624,14 @@ const GIFT_CATALOG = [
     tags: { vibe: ['curious','wellness','supplements'], focus: ['both','skincare','supplements','surprise'], budget: ['100-200'], recipient: ['parent','partner','friend','other'] }
   },
   {
-    id: 'sleep', name: 'The <em>Sleep Bundle</em>', tier: '3 Products · Rest & Recovery',
+    id: 'sleep', name: 'The <em>Sleep Bundle</em>', tier: '6 Products · Rest & Recovery',
     bundleId: 'sleep',
     detailUrl: 'routine.html?slug=sleep',
-    price: 78,
-    imgs: ['products/Calm.jpeg','products/Tranquil.jpeg','products/Restore.jpeg'],
-    imgCols: 3,
-    includes: 'Calm · Tranquil · Restore · Gift box · Printed gift card',
-    why: 'For the friend who keeps saying they "haven\'t been sleeping well." A nightly wind-down stack — magnesium glycinate, ashwagandha, and a turmeric anti-inflammatory.',
+    price: 187, original: 212,
+    imgs: ['products/Calm.jpeg','products/Tranquil.jpeg','products/Still.jpeg','products/Dream.jpeg' /* fallback ok */],
+    imgCols: 4,
+    includes: 'Calm · Tranquil · Still · Soft · Dream · Awake · Gift box · Printed gift card',
+    why: 'For the friend who keeps saying they "haven\'t been sleeping well." A nightly wind-down stack — magnesium glycinate, clinical-dose Reishi, KSM-66 ashwagandha — plus the overnight collagen sleep mask and skincare that put your routine to bed.',
     tags: { vibe: ['supplements','wellness','curious'], focus: ['supplements','surprise'], budget: ['under-100','100-200'], recipient: ['partner','parent','friend','self-care','coworker','other'] }
   },
   {
@@ -646,36 +646,36 @@ const GIFT_CATALOG = [
     tags: { vibe: ['skincare-pro','wellness'], focus: ['both','skincare','supplements','surprise'], budget: ['400-plus'], recipient: ['partner','parent','self-care'] }
   },
   {
-    id: 'aging', name: 'The <em>Anti-Aging Bundle</em>', tier: '4 Products · Skincare + Supplements',
+    id: 'aging', name: 'The <em>Anti-Aging Bundle</em>', tier: '9 Products · Skincare + Cellular',
     bundleId: 'aging',
     detailUrl: 'routine.html?slug=aging',
-    price: 198,
-    imgs: ['images/defense.jpeg','images/firm.jpeg','images/bounce.jpeg','products/Nadplus.jpeg'],
-    imgCols: 4,
-    includes: 'Defense · Firm · Bounce · NAD+ · Gift box · Printed gift card',
-    why: 'For someone serious about aging well. CE Ferulic antioxidant, advanced peptides, 5-active retinol, and NAD+ — topical and oral, working together.',
-    tags: { vibe: ['skincare-pro','wellness'], focus: ['skincare','both'], budget: ['100-200','200-400'], recipient: ['partner','parent','self-care'] }
+    price: 379, original: 446,
+    imgs: ['images/defense.jpeg','images/firm.jpeg','images/bounce.jpeg','images/lift.jpeg','products/Nadplus.jpeg'],
+    imgCols: 5,
+    includes: 'Bounce · Firm · Boost · Shield · Awake · Lift · Collagen · NAD+ · Radiance · Gift box · Printed gift card',
+    why: 'For someone serious about aging well. Retinol, peptides, growth-factor serum, mineral SPF, and the neck-firming cream most routines forget — paired with collagen, NAD+, and the beauty-vitamin foundation. Topical and oral, working together.',
+    tags: { vibe: ['skincare-pro','wellness'], focus: ['skincare','both'], budget: ['200-400','400-plus'], recipient: ['partner','parent','self-care'] }
   },
   {
-    id: 'glow', name: 'The <em>Glow Bundle</em>', tier: '4 Products · Inside-Out Radiance',
+    id: 'glow', name: 'The <em>Glow Bundle</em>', tier: '8 Products · Inside-Out Radiance',
     bundleId: 'glow',
     detailUrl: 'routine.html?slug=glow',
-    price: 142,
-    imgs: ['images/defense.jpeg','images/glow.jpeg','products/Radiance.jpeg','products/Collagen.jpeg'],
-    imgCols: 4,
-    includes: 'Defense · Glow · Radiance · Collagen · Gift box · Printed gift card',
-    why: 'For the friend who wants that visible, lit-from-within glow. Topical vitamin C and HA-in-squalane outside, marine collagen and a beauty blend inside.',
-    tags: { vibe: ['skincare-pro','wellness','curious'], focus: ['both','skincare'], budget: ['100-200'], recipient: ['partner','friend','parent','self-care'] }
+    price: 306, original: 360,
+    imgs: ['images/bright.jpeg','images/defense.jpeg','images/glow.jpeg','images/dream.jpeg','products/Collagen.jpeg'],
+    imgCols: 5,
+    includes: 'Boost · Defense · Bright · Glow · Mask · Dream · Radiance · Collagen · Gift box · Printed gift card',
+    why: 'For the friend who wants that visible, lit-from-within glow. The multi-pathway brightening serum, CE Ferulic antioxidant, HA-in-squalane overnight oil, and the overnight collagen sleep mask outside — paired with marine collagen and a daily beauty blend inside.',
+    tags: { vibe: ['skincare-pro','wellness','curious'], focus: ['both','skincare'], budget: ['200-400'], recipient: ['partner','friend','parent','self-care'] }
   },
   {
-    id: 'energy', name: 'The <em>Energy Bundle</em>', tier: '4 Products · Daily Output',
+    id: 'energy', name: 'The <em>Energy Bundle</em>', tier: '5 Products · Daily Output',
     bundleId: 'energy',
     detailUrl: 'routine.html?slug=energy',
-    price: 124,
-    imgs: ['products/Multi.jpeg','products/Vitality.jpeg','products/Synapse.jpeg','products/Surge.jpeg'],
-    imgCols: 4,
-    includes: 'Multi · Vitality · Synapse · Surge · Gift box · Printed gift card',
-    why: 'For the friend whose calendar runs them. Multivitamin, NAD+ + B12 vitality stack, nootropic blend, and a pre-workout — sustainable energy, not coffee jitters.',
+    price: 122, original: 139,
+    imgs: ['products/Multi.jpeg','products/Vitality.jpeg','products/Sunshine.jpeg','products/Flow.jpeg','products/Surge.jpeg'],
+    imgCols: 5,
+    includes: 'Multi · Vitality · Sunshine · Flow · Surge · Gift box · Printed gift card',
+    why: 'For the friend whose calendar runs them. Multivitamin baseline, CoQ10 mitochondrial fuel, D3+K2, omega-3, and clean morning energy — sustainable output, not coffee jitters.',
     tags: { vibe: ['supplements','wellness'], focus: ['supplements','surprise'], budget: ['100-200'], recipient: ['friend','partner','coworker','other'] }
   }
 ];

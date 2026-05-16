@@ -1141,7 +1141,7 @@
   });
 
   // ── Helpers ──
-  function fmt$(n) { return '$' + (n||0).toFixed(2); }
+  function fmt$(n) { return '$' + Math.ceil(n||0); }
   function fmtDate(iso) {
     if (!iso) return '—';
     const d = new Date(iso);

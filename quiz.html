@@ -1532,7 +1532,7 @@
       <button class="search-panel-close" aria-label="Close search">✕</button>
     </div>
     <div class="search-panel-results" id="search-panel-results">
-      <div class="search-panel-hint">Type to search across all 40 products.</div>
+      <div class="search-panel-hint">Type to search across all 45 products.</div>
     </div>
   </div>
 </div>
@@ -2214,7 +2214,7 @@ function scoreProducts() {
   } else if (goal === 'energy') {
     ['the-house-multi', 'the-house-vitality', 'the-house-sunshine', 'the-house-greens', 'the-house-nad-plus'].forEach(s => bump(s, 16, 'sustainable energy goal'));
   } else if (goal === 'sleep') {
-    ['the-house-calm', 'the-house-tranquil', 'the-house-multi', 'the-house-mask'].forEach(s => bump(s, 18, 'sleep & calm goal'));
+    ['the-house-calm', 'the-house-tranquil', 'the-house-multi', 'the-house-restore'].forEach(s => bump(s, 18, 'sleep & calm goal'));
   } else if (goal === 'performance') {
     ['the-house-power', 'the-house-pump', 'the-house-surge', 'the-house-seal', 'the-house-greens', 'the-house-collagen'].forEach(s => bump(s, 16, 'performance goal'));
   } else if (goal === 'longevity') {
@@ -2255,9 +2255,9 @@ function scoreProducts() {
 
   // ── STRESS + SLEEP
   if (stress === 'high') {
-    ['the-house-calm', 'the-house-tranquil', 'the-house-mask', 'the-house-balance'].forEach(s => bump(s, 12, 'high stress & poor sleep'));
+    ['the-house-calm', 'the-house-tranquil', 'the-house-still', 'the-house-balance'].forEach(s => bump(s, 12, 'high stress & poor sleep'));
   } else if (stress === 'medium-stress') {
-    ['the-house-tranquil', 'the-house-mask'].forEach(s => bump(s, 8, 'stress management'));
+    ['the-house-tranquil', 'the-house-still'].forEach(s => bump(s, 8, 'stress management'));
   } else if (stress === 'medium-sleep') {
     ['the-house-calm'].forEach(s => bump(s, 8, 'sleep support'));
   }
@@ -2451,7 +2451,7 @@ function showResult() {
         <div class="result-product-img"><img src="${p.image}" alt="${p.name}"/></div>
         <div class="result-product-cat">${p.category === 'skincare' ? 'Skincare' : 'Supplement'}</div>
         <div class="result-product-name">The House <em>${p.name}</em></div>
-        <div class="result-product-price">$${p.price.toFixed(2)}</div>
+        <div class="result-product-price">$${p.price}</div>
         ${whyHTML}
       </a>`;
     }).join('');
@@ -2482,11 +2482,11 @@ function showResult() {
     const bundlePrice = fullPrice * (1 - QUIZ_BUNDLE_DISCOUNT);
     const finalPrice  = subscribed ? bundlePrice * (1 - SUB_BONUS) : bundlePrice;
     const totalSavings = fullPrice - finalPrice;
-    wasEl.textContent  = `$${fullPrice.toFixed(2)}`;
-    nowEl.textContent  = `$${finalPrice.toFixed(2)}`;
+    wasEl.textContent  = `$${Math.round(fullPrice)}`;
+    nowEl.textContent  = `$${Math.ceil(finalPrice)}`;
     saveEl.textContent = subscribed
-      ? `Save $${totalSavings.toFixed(2)} · bundle + subscribe`
-      : `Save $${totalSavings.toFixed(2)} as a bundle`;
+      ? `Save $${Math.floor(totalSavings)} · bundle + subscribe`
+      : `Save $${Math.floor(totalSavings)} as a bundle`;
     if (srEl) {
       const srMo = quizBundleSmartRefillMonthly(state.products, QUIZ_BUNDLE_DISCOUNT, SUB_BONUS);
       srEl.innerHTML = `<strong>~$${srMo.toFixed(0)}/mo</strong> with Smart Refill`;
@@ -2615,9 +2615,9 @@ function renderQuizBundleDetail(products) {
           <div class="quiz-product-card-cat">${p.category === 'skincare' ? 'Skincare' : 'Supplement'} · ${tag}</div>
           <div class="quiz-product-card-name">The House <em>${p.name}</em></div>
           <div class="quiz-product-card-prices">
-            <span class="quiz-product-card-price">$${p.price.toFixed(2)}</span>
+            <span class="quiz-product-card-price">$${p.price}</span>
             <span class="quiz-product-card-price-sep">·</span>
-            <span class="quiz-product-card-sr">~$${srMo.toFixed(2)}/mo Smart Refill</span>
+            <span class="quiz-product-card-sr">~$${Math.ceil(srMo)}/mo Smart Refill</span>
           </div>
         </div>
         <span class="quiz-product-card-chevron" aria-hidden="true">▾</span>
@@ -2919,8 +2919,8 @@ function renderCuratedBundleMatch(recommendedProducts) {
     <div class="result-curated-name">The <em>${baseName}</em> ${suffix}</div>
     <div class="result-curated-sub">${b.slugs.length} products · curated by Daniel · ${Math.round(discountPct)}% off as a set</div>
     <div class="result-curated-pricing">
-      <span class="rb-was">$${fullPrice.toFixed(2)}</span>
-      <span class="rb-now">$${bundlePrice.toFixed(2)}</span>
+      <span class="rb-was">$${Math.round(fullPrice)}</span>
+      <span class="rb-now">$${Math.ceil(bundlePrice)}</span>
     </div>
     <div class="rb-sr-monthly"><strong>~$${srMo.toFixed(0)}/mo</strong> with Smart Refill</div>
     <a href="routine.html?slug=${b.id}" class="result-curated-cta">See the ${baseName} ${suffix} →</a>
@@ -3058,7 +3058,7 @@ updateProgress();
             <span class="picker-product-cat">${catLabel}</span>
             <span class="picker-product-name">The House <em>${p.name}</em></span>
             <span class="picker-product-tag">${tagText}</span>
-            <span class="picker-product-price">$${p.price.toFixed(2)}${(p.runtime && p.runtime > 1) ? ` · ${p.runtime}-mo supply` : ''}</span>
+            <span class="picker-product-price">$${p.price}${(p.runtime && p.runtime > 1) ? ` · ${p.runtime}-mo supply` : ''}</span>
           </div>
           <span class="picker-product-toggle" aria-hidden="true">${added ? '✓' : '+'}</span>
         </button>

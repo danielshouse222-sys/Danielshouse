@@ -7,14 +7,14 @@
 <meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Skincare — Daniel's House</title>
-<meta name="description" content="Sixteen-product skincare line built on benchmark architectures, not bargain copies. CE Ferulic antioxidant serum, 5-active retinol, bio-peptide growth factor, mineral SPF. Filter by skin type, pregnancy-safe, sensitive, mature.">
+<meta name="description" content="Twenty-one-product skincare line built on benchmark architectures, not bargain copies. CE Ferulic antioxidant serum, 5-active retinol, bio-peptide growth factor, mineral SPF. Filter by skin type, pregnancy-safe, sensitive, mature.">
 <meta property="og:title" content="Skincare — Daniel's House">
-<meta property="og:description" content="Sixteen-product skincare line built on benchmark architectures, not bargain copies. CE Ferulic antioxidant serum, 5-active retinol, bio-peptide growth factor, mineral SPF. Filter by skin type, pregnancy-safe, sensitive, mature.">
+<meta property="og:description" content="Twenty-one-product skincare line built on benchmark architectures, not bargain copies. CE Ferulic antioxidant serum, 5-active retinol, bio-peptide growth factor, mineral SPF. Filter by skin type, pregnancy-safe, sensitive, mature.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Daniel's House">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Skincare — Daniel's House">
-<meta name="twitter:description" content="Sixteen-product skincare line built on benchmark architectures, not bargain copies. CE Ferulic antioxidant serum, 5-active retinol, bio-peptide growth factor, mineral SPF. Filter by skin type, pregnancy-safe, sensitive, mature.">
+<meta name="twitter:description" content="Twenty-one-product skincare line built on benchmark architectures, not bargain copies. CE Ferulic antioxidant serum, 5-active retinol, bio-peptide growth factor, mineral SPF. Filter by skin type, pregnancy-safe, sensitive, mature.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -322,7 +322,8 @@
   .weekly-title { font-family: 'Cormorant Garamond', serif; font-size: 56px; font-weight: 400; line-height: 1; margin-bottom: 14px; }
   .weekly-title em { font-style: italic; color: var(--sage); }
   .weekly-blurb { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 17px; color: var(--ink-soft); max-width: 540px; margin: 0 auto 50px; line-height: 1.55; }
-  .weekly-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+  .weekly-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+  .targeted-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
   .weekly-card {
     background: var(--cream-warm);
     border: 1px solid var(--rule);
@@ -426,6 +427,9 @@
   .footer-col a { color: var(--cream-warm); text-decoration: none; font-size: 13.5px; transition: color 0.3s; }
   .footer-col a:hover { color: var(--gold); }
 
+  @media (max-width: 1200px) {
+    .weekly-grid { grid-template-columns: repeat(2, 1fr); }
+  }
   @media (max-width: 1000px) {
     .credibility { grid-template-columns: 1fr 1fr; gap: 30px 20px; }
     .split { grid-template-columns: 1fr; }
@@ -434,7 +438,7 @@
     .row { grid-template-columns: 70px 1fr 140px; gap: 16px; min-height: 140px; }
     .row-img { width: 70px; height: 70px; }
     .row-img { width: 70px; height: 70px; font-size: 28px; }
-    .weekly-grid, .study-grid { grid-template-columns: 1fr; }
+    .weekly-grid, .targeted-grid, .study-grid { grid-template-columns: 1fr; }
   }
   @media (max-width: 640px) {
 .credibility { grid-template-columns: 1fr 1fr; }
@@ -656,7 +660,7 @@
       <button class="search-panel-close" aria-label="Close search">✕</button>
     </div>
     <div class="search-panel-results" id="search-panel-results">
-      <div class="search-panel-hint">Type to search across all 40 products.</div>
+      <div class="search-panel-hint">Type to search across all 45 products.</div>
     </div>
   </div>
 </div>
@@ -676,7 +680,7 @@
 
 <section class="page">
   <div class="page-header">
-    <div class="page-header-eyebrow">The Skincare Line · 16 Products · 100% Vegan · Built on Research</div>
+    <div class="page-header-eyebrow">The Skincare Line · 21 Products · 100% Vegan · Built on Research</div>
     <h1>Daniel's Skin Transformation —<br><em>Now Available for Yours.</em></h1>
     <p>Every product in the Daniel's House skincare line earns its place by passing two tests: did Daniel see a real difference using it, and does the science back the actives inside it? If yes to both, it's here. If not, it didn't make the cut.</p>
   </div>
@@ -684,7 +688,7 @@
   <!-- Credibility strip -->
   <div class="credibility">
     <div class="cred-item">
-      <div class="cred-num">15<em>.</em></div>
+      <div class="cred-num">21<em>.</em></div>
       <div class="cred-label">Products in the line</div>
     </div>
     <div class="cred-item">
@@ -692,7 +696,7 @@
       <div class="cred-label">Made in USA</div>
     </div>
     <div class="cred-item">
-      <div class="cred-num">7<em>+</em></div>
+      <div class="cred-num">30<em>+</em></div>
       <div class="cred-label">Clinically-studied actives</div>
     </div>
     <div class="cred-item">
@@ -814,7 +818,7 @@
         <div class="row-content">
           <div class="row-tag">Brighten · Antioxidant · Hydrate</div>
           <div class="row-name">The House <em>Boost</em></div>
-          <div class="row-desc">A bio-peptide growth factor serum with five biomimetic peptides (sh-Oligopeptide-1/-2 + sh-Polypeptide-1/-9/-11) plus neuropeptides. Targets cellular renewal, surface plumping, and skin resilience. The AM peptide step that compounds over 8-12 weeks.</div>
+          <div class="row-desc">A bio-peptide growth factor serum with five biomimetic peptides (sh-Oligopeptide-1/-2 + sh-Polypeptide-1/-9/-11) that mimic EGF, IGF, TGF-β, VEGF, and FGF signaling. Targets cellular renewal, surface plumping, and skin resilience. The AM peptide step that compounds over 8-12 weeks.</div>
         </div>
         <div class="row-shop">
           <div class="row-price">$50</div>
@@ -888,8 +892,8 @@
     <div class="bundle-footnote-name">The <em>AM</em> Routine</div>
     <div class="bundle-footnote-pricing">
       <span class="bundle-footnote-was">$308</span>
-      <span class="bundle-footnote-now">$261.80</span>
-      <span class="bundle-footnote-savings">Save $46.20 · 15% off</span>
+      <span class="bundle-footnote-now">$262</span>
+      <span class="bundle-footnote-savings">Save $46 · 15% off</span>
     </div>
     <div class="bundle-subscribe-toggle" data-bundle-id="am">
       <button type="button" data-mode="once" class="active">
@@ -985,7 +989,7 @@
         <div class="row-content">
           <div class="row-tag">Brighten · Firm · De-puff</div>
           <div class="row-name">The House <em>Awake</em></div>
-          <div class="row-desc">Bakuchiol (the plant-derived retinol alternative) plus a triple-peptide complex — Argireline, SNAP-8, Syn-Ake — for firming. Cucumber, squalane, and vitamin E hydrate and protect the thin under-eye area.</div>
+          <div class="row-desc">Dual-peptide complex (Palmitoyl Tripeptide-5 + Acetyl Tetrapeptide-5) paired with the DCX complex (Darutoside + Chrysin + Hesperidin) for under-eye pigmentation. Seaweed extract delivers minerals and antioxidants for de-puffing the thin orbital skin.</div>
         </div>
         <div class="row-shop">
           <div class="row-price">$48</div>
@@ -1014,8 +1018,8 @@
     <div class="bundle-footnote-name">The <em>PM</em> Routine</div>
     <div class="bundle-footnote-pricing">
       <span class="bundle-footnote-was">$282</span>
-      <span class="bundle-footnote-now">$239.70</span>
-      <span class="bundle-footnote-savings">Save $42.30 · 15% off</span>
+      <span class="bundle-footnote-now">$240</span>
+      <span class="bundle-footnote-savings">Save $42 · 15% off</span>
     </div>
     <div class="bundle-subscribe-toggle" data-bundle-id="pm">
       <button type="button" data-mode="once" class="active">
@@ -1042,11 +1046,11 @@
     <div class="bundle-footnote-inner">
       <div class="bundle-footnote-eyebrow">Or get the complete line</div>
       <div class="bundle-footnote-name">Daniel's <em>Daily</em> Skincare</div>
-      <div class="bundle-footnote-blurb">Every product in the skincare line — AM through PM through Weekly Reset. 16 products, one complete routine, the entire skincare house.</div>
+      <div class="bundle-footnote-blurb">Every product in the skincare line — AM through PM through Weekly Reset, plus the new targeted treatments. 21 products, one complete routine, the entire skincare house.</div>
       <div class="bundle-footnote-pricing">
-        <span class="bundle-footnote-was">$682</span>
-        <span class="bundle-footnote-now">$559.24</span>
-        <span class="bundle-footnote-savings">Save $122.76 · 18% off</span>
+        <span class="bundle-footnote-was">$910</span>
+        <span class="bundle-footnote-now">$746</span>
+        <span class="bundle-footnote-savings">Save $164 · 18% off</span>
       </div>
       <div class="bundle-subscribe-toggle" data-bundle-id="daniels-skincare">
         <button type="button" data-mode="once" class="active">
@@ -1071,7 +1075,72 @@
       <div class="alt-banner-img"><img src="images/clear.jpeg" alt="The House Clear" /></div>
       <div class="alt-banner-text">
         <strong>Active breakouts or congested skin?</strong>
-        <a href="product.html?slug=the-house-clear">The House Clear</a> ($28) is the as-needed overnight spot treatment — colloidal sulfur, salicylic acid, and zinc oxide. Dab on individual spots at night, wake up to a flatter surface.
+        <a href="product.html?slug=the-house-clear">The House Clear</a> ($28) is the daily 2% salicylic acid clarifier — the OTC standard for acne, in a soothing botanical base built for daily use. Apply after cleansing AM and/or PM where breakouts cluster, or as an all-over treatment if your skin tolerates it.
+      </div>
+    </div>
+  </div>
+
+  <!-- TARGETED TREATMENTS — the specialty products that layer onto AM/PM rituals -->
+  <div class="weekly">
+    <div class="weekly-eyebrow">Targeted · As-Needed</div>
+    <div class="weekly-title">The <em>Targeted</em> Treatments</div>
+    <div class="weekly-blurb">Four products that layer onto the daily ritual when your skin asks for something more — brightening, neck-firming, barrier-rebuilding, or overnight spot treatment. Used as needed, not on schedule.</div>
+
+    <div class="targeted-grid">
+      <div class="weekly-card">
+        <div class="weekly-img"><img src="images/bright.jpeg" alt="The House Bright" /></div>
+        <div>
+          <div class="weekly-tag">Brighten · Even · Correct</div>
+          <div class="weekly-name">The House <em>Bright</em></div>
+          <div class="weekly-desc">A multi-pathway brightening serum for dark spots and uneven tone — 5% niacinamide, 2% alpha-arbutin, 1% licorice extract, and stable vitamin C. Attacks hyperpigmentation from four independent angles. Visible tone correction in 4-8 weeks without hydroquinone's irritation. AM and PM.</div>
+          <div class="weekly-foot">
+            <div class="weekly-price">$54</div>
+            <a href="product.html?slug=the-house-bright" class="weekly-view-link" target="_blank" rel="noopener">View Details →</a>
+            <button class="weekly-add-cart" data-add-slug="the-house-bright">Add to Cart →</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="weekly-card">
+        <div class="weekly-img"><img src="images/lift.jpeg" alt="The House Lift" /></div>
+        <div>
+          <div class="weekly-tag">Firm · Smooth · Lift</div>
+          <div class="weekly-name">The House <em>Lift</em></div>
+          <div class="weekly-desc">The neck-and-décolleté firming cream most routines forget. DMAE for visible muscle-tone tightening, Argireline + Matrixyl 3000 for expression lines, gentle retinyl palmitate for cell turnover. The neck shows aging faster than the face — calibrated specifically for the thinner skin below the jawline.</div>
+          <div class="weekly-foot">
+            <div class="weekly-price">$52</div>
+            <a href="product.html?slug=the-house-lift" class="weekly-view-link" target="_blank" rel="noopener">View Details →</a>
+            <button class="weekly-add-cart" data-add-slug="the-house-lift">Add to Cart →</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="weekly-card">
+        <div class="weekly-img"><img src="images/lipid.jpeg" alt="The House Lipid" /></div>
+        <div>
+          <div class="weekly-tag">Repair · Replenish · Calm</div>
+          <div class="weekly-name">The House <em>Lipid</em></div>
+          <div class="weekly-desc">The barrier-rebuild treatment for compromised skin. Ceramides, cholesterol, and free fatty acids at the 3:1:1 ratio dermatology research identifies as physiologically optimal — the three lipids the stratum corneum is literally made of. Use when over-exfoliated, post-procedure, or mid-flare.</div>
+          <div class="weekly-foot">
+            <div class="weekly-price">$52</div>
+            <a href="product.html?slug=the-house-lipid" class="weekly-view-link" target="_blank" rel="noopener">View Details →</a>
+            <button class="weekly-add-cart" data-add-slug="the-house-lipid">Add to Cart →</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="weekly-card">
+        <div class="weekly-img"><img src="images/spot.jpeg" alt="The House Spot" /></div>
+        <div>
+          <div class="weekly-tag">Dry · Calm · Clear</div>
+          <div class="weekly-name">The House <em>Spot</em></div>
+          <div class="weekly-desc">The classic apothecary drying lotion — calamine and colloidal sulfur sediment with salicylic acid in an alcohol carrier. Don't shake. Dip a cotton swab into the pink layer, dab on active blemishes before bed. Visibly flatter and drier by morning. The companion to Clear for the spots that need an overnight intervention.</div>
+          <div class="weekly-foot">
+            <div class="weekly-price">$26</div>
+            <a href="product.html?slug=the-house-spot" class="weekly-view-link" target="_blank" rel="noopener">View Details →</a>
+            <button class="weekly-add-cart" data-add-slug="the-house-spot">Add to Cart →</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1080,7 +1149,7 @@
   <div class="weekly">
     <div class="weekly-eyebrow">1-2× Weekly · Treatments</div>
     <div class="weekly-title">The <em>Weekly</em> Reset</div>
-    <div class="weekly-blurb">Two products that take your routine deeper, one or two nights a week. Use one or the other — never both on the same day.</div>
+    <div class="weekly-blurb">Three products that take your routine deeper, one to three nights a week. Mask and Polish are the resurfacing pair — use one or the other, never both the same night. Dream is the overnight collagen mask that works while you sleep.</div>
 
     <div class="weekly-grid">
       <div class="weekly-card">
@@ -1110,17 +1179,31 @@
           </div>
         </div>
       </div>
+
+      <div class="weekly-card">
+        <div class="weekly-img"><img src="images/dream.jpeg" alt="The House Dream" /></div>
+        <div>
+          <div class="weekly-tag">Overnight · Replenish · Plump</div>
+          <div class="weekly-name">The House <em>Dream</em></div>
+          <div class="weekly-desc">An overnight collagen sleep mask built around soluble marine collagen, multi-weight hyaluronic acid, and a peptide complex that works during the 10pm-2am skin repair window. Leave on overnight as the final PM step. Wake to plumper, more luminous skin.</div>
+          <div class="weekly-foot">
+            <div class="weekly-price">$44</div>
+            <a href="product.html?slug=the-house-dream" class="weekly-view-link" target="_blank" rel="noopener">View Details →</a>
+            <button class="weekly-add-cart" data-add-slug="the-house-dream">Add to Cart →</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <!-- SPA BUNDLE — Mask + Polish + Soft + Mist + Glow, weekly indulgence ritual -->
   <div class="bundle-footnote">
     <div class="bundle-footnote-inner">
       <div class="bundle-footnote-name">The <em>Spa</em> Bundle</div>
-      <div class="bundle-footnote-sub">Mask · Polish · Soft · Mist · Glow — The Weekly Indulgence Ritual</div>
+      <div class="bundle-footnote-sub">Mask · Polish · Dream · Soft · Mist · Glow — The Weekly Indulgence Ritual</div>
       <div class="bundle-footnote-pricing">
-        <span class="bundle-footnote-was">$172</span>
-        <span class="bundle-footnote-now">$151.36</span>
-        <span class="bundle-footnote-savings">Save $20.64 · 12% off</span>
+        <span class="bundle-footnote-was">$216</span>
+        <span class="bundle-footnote-now">$190</span>
+        <span class="bundle-footnote-savings">Save $26 · 12% off</span>
       </div>
       <div class="bundle-subscribe-toggle" data-bundle-id="spa">
         <button type="button" data-mode="once" class="active">
@@ -1209,7 +1292,7 @@
   <!-- CLOSING -->
   <div class="closing">
     <h2>Or — let us <em>build it for you.</em></h2>
-    <p>The Complete Skin System bundles the full 15-product line in the order you'll use them. One transformation. Boxed.</p>
+    <p>The Complete Skin System bundles the full 21-product line in the order you'll use them. One transformation. Boxed.</p>
     <a href="routines.html" class="closing-btn">Explore Routines →</a>
   </div>
 </section>

@@ -1159,7 +1159,7 @@
       <button class="search-panel-close" aria-label="Close search">✕</button>
     </div>
     <div class="search-panel-results" id="search-panel-results">
-      <div class="search-panel-hint">Type to search across all 40 products.</div>
+      <div class="search-panel-hint">Type to search across all 45 products.</div>
     </div>
   </div>
 </div>
@@ -1446,10 +1446,10 @@ function renderConcernCard(bundle) {
         <div class="concern-pricing">
           <div class="concern-price-stack">
             <div class="concern-price-line">
-              <span class="concern-price-was">$${fullPrice.toFixed(2)}</span>
-              <span class="concern-price-now">$${discountedPrice.toFixed(2)}</span>
+              <span class="concern-price-was">$${Math.round(fullPrice)}</span>
+              <span class="concern-price-now">$${Math.ceil(discountedPrice)}</span>
             </div>
-            <div class="concern-savings">Save $${savings.toFixed(2)} as a bundle</div>
+            <div class="concern-savings">Save $${Math.round(fullPrice) - Math.ceil(discountedPrice)} as a bundle</div>
           </div>
           <div class="concern-count">${productCount}<span>products</span></div>
         </div>
@@ -1570,10 +1570,10 @@ function renderRoutineCard(bundle) {
         <div class="concern-pricing">
           <div class="concern-price-stack">
             <div class="concern-price-line">
-              <span class="concern-price-was">$${fullPrice.toFixed(2)}</span>
-              <span class="concern-price-now">$${discountedPrice.toFixed(2)}</span>
+              <span class="concern-price-was">$${Math.round(fullPrice)}</span>
+              <span class="concern-price-now">$${Math.ceil(discountedPrice)}</span>
             </div>
-            <div class="concern-savings">Save $${savings.toFixed(2)} as a routine</div>
+            <div class="concern-savings">Save $${Math.round(fullPrice) - Math.ceil(discountedPrice)} as a routine</div>
           </div>
           <div class="concern-count">${productCount}<span>products</span></div>
         </div>
@@ -1880,7 +1880,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'longevity':     ['anti-aging', 'busy-pro', 'active'],  // routine (Cellular concern uses same id but different mapping above)
     'ultimate':      ['busy-pro', 'anti-aging', 'beauty', 'active'],
     // GIFT SETS — tag so they filter consistently with the rest of the catalog
-    'gift-newcomer':    ['beginner', 'beauty'],
+    'gift-newcomer':    ['beginner', 'beauty', 'busy-pro'],
     'gift-skin-set':    ['beauty', 'anti-aging'],
     'gift-dad':         ['active', 'beginner']
   };
@@ -2207,7 +2207,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const cadenceLabel = window.formatCadence ? window.formatCadence(cadence).name : 'Monthly';
       if (!subscribed) {
         displayPrice = baseDiscounted;
-        savingsCopy = `Save $${(fullPrice - displayPrice).toFixed(2)} as a ${noun}`;
+        savingsCopy = `Save $${Math.round(fullPrice) - Math.ceil(displayPrice)} as a ${noun}`;
       } else if (cadence === 'smart' && bundleObj && window.computeSmartRefillAvgMonthly) {
         // Smart Refill — show average monthly cost
         displayPrice = window.computeSmartRefillAvgMonthly(bundleObj);
@@ -2218,9 +2218,9 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         // Flat cadence — same per-shipment price, different cadence label
         displayPrice = baseDiscounted * (1 - SUB_BONUS);
-        savingsCopy = `Save $${(fullPrice - displayPrice).toFixed(2)} per shipment · ${cadenceLabel}`;
+        savingsCopy = `Save $${Math.round(fullPrice) - Math.ceil(displayPrice)} per shipment · ${cadenceLabel}`;
       }
-      if (priceNowEl) priceNowEl.textContent = `$${displayPrice.toFixed(2)}`;
+      if (priceNowEl) priceNowEl.textContent = `$${Math.ceil(displayPrice)}`;
       if (savingsEl)  savingsEl.textContent  = savingsCopy;
     }
 

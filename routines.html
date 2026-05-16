@@ -1810,7 +1810,7 @@
       <button class="search-panel-close" aria-label="Close search">✕</button>
     </div>
     <div class="search-panel-results" id="search-panel-results">
-      <div class="search-panel-hint">Type to search across all 40 products.</div>
+      <div class="search-panel-hint">Type to search across all 45 products.</div>
     </div>
   </div>
 </div>
@@ -2353,7 +2353,7 @@
       </div>
       <div class="builder-card-cat">${p.category === 'skincare' ? 'Skincare' : 'Supplement'}</div>
       <div class="builder-card-name">The House <em>${p.name}</em></div>
-      <div class="builder-card-price">$${p.price.toFixed(2)}</div>
+      <div class="builder-card-price">$${p.price}</div>
     `;
     card.addEventListener('click', () => toggle(p, card));
     grid.appendChild(card);
@@ -2396,9 +2396,9 @@
 
     // ─ Header / count ─
     document.getElementById('selectedCount').textContent = count;
-    document.getElementById('subtotal').textContent = '$' + subtotal.toFixed(2);
-    document.getElementById('savings').textContent = eligible ? '−$' + savings.toFixed(2) : '—';
-    document.getElementById('total').textContent = '$' + total.toFixed(2);
+    document.getElementById('subtotal').textContent = '$' + Math.ceil(subtotal);
+    document.getElementById('savings').textContent = eligible ? '−$' + Math.floor(savings) : '—';
+    document.getElementById('total').textContent = '$' + Math.ceil(total);
 
     // ─ Progress bar (denominator = 9, the max tier) ─
     const fillPct = Math.min(count / MAX_DISPLAY * 100, 100);
@@ -2475,15 +2475,15 @@
         <img src="${p.img}" alt="${p.name}" />
         <div class="summary-item-text">
           <div class="summary-item-name">The House <em>${p.name}</em></div>
-          <div class="summary-item-price">$${p.price.toFixed(2)}</div>
+          <div class="summary-item-price">$${p.price}</div>
         </div>
       </a>
     `).join('');
     document.getElementById('summarySub').textContent = `${selected.length} Products · ${tier.label} Off`;
-    document.getElementById('summarySubtotal').textContent = '$' + subtotal.toFixed(2);
+    document.getElementById('summarySubtotal').textContent = '$' + Math.ceil(subtotal);
     document.getElementById('summarySavingsLabel').textContent = `Save ${tier.label}`;
-    document.getElementById('summarySavings').textContent = '−$' + savings.toFixed(2);
-    document.getElementById('summaryTotal').textContent = '$' + total.toFixed(2);
+    document.getElementById('summarySavings').textContent = '−$' + Math.floor(savings);
+    document.getElementById('summaryTotal').textContent = '$' + Math.ceil(total);
     document.getElementById('summaryCode').textContent = tier.code;
   }
 
@@ -2592,14 +2592,14 @@
   // Marketing copy per bundle id — extracted from the previously hardcoded HTML
   const BLURBS = {
     'daniels-daily': "Everything Daniel takes, every single day. Five Foundation essentials paired with five Longevity actives — the complete daily supplement protocol, no skincare. For customers who already have a routine and want the inside-out half.",
-    'daniels-skincare': "Every product in the skincare line — sixteen formulations covering the AM ritual, PM ritual, targeted treatments (Awake, Clear), and the weekly reset. Same flat 18% discount as the Daily supplement stack. The complete topical half of the Ultimate Routine.",
+    'daniels-skincare': "Every product in the skincare line — twenty-one formulations covering the AM ritual, PM ritual, targeted treatments (Bright, Lift, Lipid, Clear, Spot, Awake), and the weekly reset (Mask, Polish, Dream). Same flat 18% discount as the Daily supplement stack. The complete topical half of the Ultimate Routine plus the new targeted layer.",
     'am': "The full morning routine. Cleanse, tone, brighten, hydrate, defend, moisturize — six steps to start the day with a complete barrier and visible glow.",
     'pm': "The full evening routine. Resurface, firm, hydrate, treat the eyes, repair overnight, and seal it all in with the finishing oil. Wake up better.",
     'workout': "The full performance stack. Strength, output, recovery, nutrient density, and the metabolic edge. Five formulations for the days you put in real work.",
     'foundation': "The five foundational supplements every adult needs daily — multivitamin, vitamin D, omega-3, probiotic, and magnesium. The simple starting protocol that handles 80% of what most diets miss.",
     'longevity': "The five actives that pay off over years. Cellular energy, cognitive support, stress resilience, and joint mobility — daily, with the science behind each one.",
-    'moms': "The needs that come with age are specific: skincare gentle enough for skin that's grown more reactive, paired with the actives that actually move the needle on visible aging — retinol overnight, peptides around the eyes for anti-aging, antioxidants by day. Steady energy as the body's rhythms change. Adaptogenic support for a nervous system that's carried decades of work and family life. This routine combines the gentle anti-aging skincare staples (Wash, Defense, Bounce, Awake, Soft) with the inside-out longevity stack (Multi, Collagen, NAD+, Vitality) plus Tranquil for evening recovery. Together they form a sustainable daily rhythm — not aspirational, not maximum, just the inside-out routine that compounds in your favor.",
-    'arianas': "Built for my 25-year-old sister. Focused on inner-and-outer beauty, this stack pairs six skincare layers — cleanse, brighten, defend, renew, and protect the eyes — with three inner-beauty supplements that compound the glow from within: collagen, antioxidants, and the daily multi.",
+    'moms': "The needs that come with age are specific: skincare gentle enough for skin that's grown more reactive, paired with the actives that actually move the needle on visible aging — retinol overnight, peptides around the eyes for anti-aging, antioxidants by day, and the neck-firming cream most routines stop short of. Steady energy as the body's rhythms change. Adaptogenic support for a nervous system that's carried decades of work and family life. This routine combines the gentle anti-aging skincare staples (Wash, Defense, Bounce, Awake, Lift, Soft) with the inside-out longevity stack (Multi, Collagen, NAD+, Vitality) plus Tranquil for evening recovery. Together they form a sustainable daily rhythm — not aspirational, not maximum, just the inside-out routine that compounds in your favor.",
+    'arianas': "Built for my 25-year-old sister. Focused on inner-and-outer beauty, this stack pairs seven skincare layers — cleanse, brighten, target dark spots, defend, renew, and protect the eyes — with three inner-beauty supplements that compound the glow from within: collagen, antioxidants, and the daily multi.",
     'ultimate': "Everything. Thirteen skincare products — the full AM + PM rituals — plus ten daily supplements that handle the inside half. The complete protocol, twenty-three products, twenty-five percent off as a bundle. The most committed version of this brand."
   };
 
@@ -2689,10 +2689,10 @@
           <div class="concern-pricing">
             <div class="concern-price-stack">
               <div class="concern-price-line">
-                <span class="concern-price-was">$${fullPrice.toFixed(2)}</span>
-                <span class="concern-price-now">$${discountedPrice.toFixed(2)}</span>
+                <span class="concern-price-was">$${Math.round(fullPrice)}</span>
+                <span class="concern-price-now">$${Math.ceil(discountedPrice)}</span>
               </div>
-              <div class="concern-savings">Save $${savings.toFixed(2)} as a routine</div>
+              <div class="concern-savings">Save $${Math.round(fullPrice) - Math.ceil(discountedPrice)} as a routine</div>
             </div>
             <div class="concern-count">${productCount}<span>products</span></div>
           </div>
@@ -3020,7 +3020,7 @@
         // One-time
         displayPrice = baseDiscounted;
         savingsAmount = fullPrice - baseDiscounted;
-        savingsCopy = `Save $${savingsAmount.toFixed(2)} as a ${kind === 'routine' ? (bundleId === 'ultimate' ? 'Ultimate' : 'routine') : 'bundle'}`;
+        savingsCopy = `Save $${Math.round(savingsAmount)} as a ${kind === 'routine' ? (bundleId === 'ultimate' ? 'Ultimate' : 'routine') : 'bundle'}`;
       } else if (cadence === 'smart') {
         // Smart refill — display avg/month
         displayPrice = window.computeSmartRefillAvgMonthly(bundle);
@@ -3033,7 +3033,7 @@
         // Monthly / Bimonthly / Quarterly — per-shipment price
         displayPrice = baseDiscounted * 0.90;
         savingsAmount = fullPrice - displayPrice;
-        savingsCopy = `Save $${savingsAmount.toFixed(2)} per shipment · ${cadenceLabel}`;
+        savingsCopy = `Save $${Math.round(savingsAmount)} per shipment · ${cadenceLabel}`;
       }
 
       // 1) Hero / legacy markup
@@ -3067,7 +3067,7 @@
       if (curatedCard) {
         const priceNowEl = curatedCard.querySelector('.concern-price-now');
         const savingsEl  = curatedCard.querySelector('.concern-savings');
-        if (priceNowEl) priceNowEl.textContent = `$${displayPrice.toFixed(2)}`;
+        if (priceNowEl) priceNowEl.textContent = `$${Math.ceil(displayPrice)}`;
         if (savingsEl) savingsEl.textContent = savingsCopy;
       }
     }

@@ -920,6 +920,11 @@
           journal: s.journal,
           year: s.year,
           finding: s.finding,
+          // Direct study URL — supports either `link` or `url` field on the
+          // source study so every entry on the page can deep-link to the
+          // actual PubMed/DOI/journal page. studies.html falls back to a
+          // Google Scholar search only if neither is present.
+          url: s.link || s.url || null,
           ingredientSlug: ing.slug,
           ingredientName: ing.name,
           ingredientAlt: ing.alt || '',
