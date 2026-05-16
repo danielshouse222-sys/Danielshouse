@@ -2107,6 +2107,15 @@ window.CONCERN_BUNDLES = [
     slugs: ['the-house-wash', 'the-house-soft', 'the-house-lipid', 'the-house-glow', 'the-house-biome', 'the-house-flow']
   },
   {
+    id: 'targeted',
+    discount: 0.12,
+    tab: 'skin',
+    icon: 'F.',
+    name: 'The Targeted Bundle',
+    blurb: "The four treatments your daily routine doesn't cover — the multi-pathway brightening serum for hyperpigmentation, the neck-firming cream for the area below the jawline, the clinical-grade ceramide-cholesterol-fatty-acid blend for barrier-stressed nights, and the overnight apothecary drying lotion for individual active blemishes. The targeted layer most people add on top of a working routine once they know what specific concerns are left.",
+    slugs: ['the-house-bright', 'the-house-lift', 'the-house-lipid', 'the-house-spot']
+  },
+  {
     id: 'glow',
     discount: 0.15,
     tab: 'skin',
@@ -2147,12 +2156,12 @@ window.CONCERN_BUNDLES = [
   },
   {
     id: 'energy',
-    discount: 0.12,
+    discount: 0.18,
     tab: 'goal',
     icon: 'B.',
     name: 'The Energy Bundle',
-    blurb: "The mitochondrial fuel stack. CoQ10 directly supplies the molecule mitochondria use to produce ATP, D3+K2 supports the cellular signaling that powers it, omega-3 EPA+DHA fuels brain and cardiovascular tissue specifically — with Multi as the micronutrient baseline and Surge for the optional clean morning lift. For both cellular fuel and gut absorption support in one purchase at the deepest discount, see The Full Energy Stack.",
-    slugs: ['the-house-multi', 'the-house-vitality', 'the-house-sunshine', 'the-house-flow', 'the-house-surge']
+    blurb: 'Both halves of the energy equation in one purchase. The mitochondrial fuel stack — CoQ10 (Vitality), D3+K2 (Sunshine), omega-3 EPA+DHA (Flow), Multi as the micronutrient baseline, Surge for the clean morning lift — layered with the gut absorption stack (Greens + Biome). Seven products covering cellular ATP production and nutrient absorption simultaneously. The deepest concern-bundle discount on the site — 18% off — for the comprehensive inside-out approach to daily energy.',
+    slugs: ['the-house-multi','the-house-vitality','the-house-sunshine','the-house-flow','the-house-surge','the-house-greens','the-house-biome']
   },
   {
     id: 'focus',
@@ -2235,15 +2244,6 @@ window.CONCERN_BUNDLES = [
     blurb: "The clinical-dose mushroom set — Spark (Lion's Mane 1,000 mg for cognition and NGF), Still (Reishi 500 mg for stress and sleep architecture), and Forge (Cordyceps militaris 500 mg for cellular energy and endurance). The three mushrooms with the strongest published evidence base, each at the dose where the research begins. Three mushrooms, three mechanisms — cognition, stress, endurance.",
     slugs: ['the-house-spark', 'the-house-still', 'the-house-forge']
   },
-  {
-    id: 'full-energy',
-    discount: 0.18,
-    tab: 'goal',
-    icon: 'N.',
-    name: 'The Full Energy Stack',
-    blurb: 'Both halves of the energy equation in one purchase. The mitochondrial fuel stack from The Energy Bundle (Multi + Vitality + Sunshine + Flow + Surge) layered with the gut absorption stack (Greens + Biome). Seven products covering cellular ATP production and nutrient absorption simultaneously — the comprehensive inside-out approach at the deepest discount available outside the Ultimate Routine.',
-    slugs: ['the-house-multi','the-house-vitality','the-house-sunshine','the-house-flow','the-house-surge','the-house-greens','the-house-biome']
-  },
 ];
 
 // Helper to compute concern bundle pricing on demand
@@ -2299,8 +2299,8 @@ window.CURATED_BUNDLES = [
     slugs: [
       // AM (cleanse → tone → vitamin C → HA → defense → moisturizer → SPF)
       'the-house-wash','the-house-balance','the-house-boost','the-house-plump','the-house-defense','the-house-soft','the-house-shield',
-      // Targeted treatments
-      'the-house-bright','the-house-lift','the-house-lipid','the-house-clear','the-house-spot','the-house-awake',
+      // Daily treatments that ship with the line (the new targeted set has its own bundle)
+      'the-house-clear','the-house-awake',
       // PM (peptide treatments → retinol → hydration → seal)
       'the-house-bounce','the-house-renewal','the-house-firm','the-house-mist','the-house-glow',
       // Weekly reset
@@ -2368,7 +2368,7 @@ window.CURATED_BUNDLES = [
     name: 'The Skin Set',
     kind: 'gift',
     discount: 0.15,
-    blurb: "Five essentials for someone ready to take their skin seriously. Cleanser, CE Ferulic antioxidant, 5-active retinol, hydrating moisturizer, mineral SPF — the daily AM and PM routine in one gift. Sits between The Newcomer Set (first-time skincare) and Daniel's Daily Skincare (the complete 21-product ritual).",
+    blurb: "Five essentials for someone ready to take their skin seriously. Cleanser, CE Ferulic antioxidant, 5-active retinol, hydrating moisturizer, mineral SPF — the daily AM and PM routine in one gift. Sits between The Newcomer Set (first-time skincare) and Daniel's Daily Skincare (the complete 17-product daily ritual).",
     slugs: [
       'the-house-wash','the-house-defense','the-house-bounce','the-house-soft','the-house-shield'
     ]
