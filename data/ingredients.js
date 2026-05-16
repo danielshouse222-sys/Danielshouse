@@ -13,7 +13,7 @@ const INGREDIENTS = [
     name: 'Niacinamide', alt: 'Vitamin B3', cat: 'skincare', evidence: 'strong',
     tags: ['brightening','protecting','calming'],
     body: 'Refines pore appearance, evens skin tone, strengthens the moisture barrier. One of the most-studied actives in dermatology — clinical evidence dating back decades. Most-effective at 2-5% concentrations.',
-    products: ['the-house-defense', 'the-house-soft', 'the-house-shield'],
+    products: ['the-house-defense', 'the-house-soft', 'the-house-shield', 'the-house-bright', 'the-house-dream'],
     studies: [
       { type: 'Randomized Controlled Trial', title: 'Niacinamide: A B vitamin that improves aging facial skin appearance', authors: 'Bissett DL, Oblong JE, Berge CA', journal: 'Dermatologic Surgery', year: 2005, finding: '12-week split-face trial at 5% niacinamide demonstrated significant improvement in hyperpigmentation, fine lines, sallowness, and red blotchiness compared to vehicle control.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Niacinamide%3A%20A%20B%20vitamin%20that%20improves%20aging%20facial%20skin%20appearance' },
       { type: 'Mechanistic Study', title: 'The effect of niacinamide on reducing cutaneous pigmentation and suppression of melanosome transfer', authors: 'Hakozaki T, Minwalla L, Zhuang J, et al.', journal: 'British Journal of Dermatology', year: 2002, finding: 'Niacinamide inhibited 35-68% of melanosome transfer from melanocytes to keratinocytes — the mechanism behind its brightening effect on uneven tone.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=The%20effect%20of%20niacinamide%20on%20reducing%20cutaneous%20pigmentation%20and%20suppression%20of%20melanosome%20transfer' },
@@ -37,7 +37,7 @@ const INGREDIENTS = [
     name: 'Hyaluronic Acid', alt: 'Sodium hyaluronate', cat: 'skincare', evidence: 'strong',
     tags: ['hydrating'],
     body: 'A humectant that holds up to 1,000x its weight in water. Multi-weight formulations work at multiple skin depths — surface plumping plus deep hydration. Plumps fine lines and improves elasticity.',
-    products: ['the-house-plump', 'the-house-mist', 'the-house-soft', 'the-house-boost', 'the-house-defense', 'the-house-bounce', 'the-house-firm', 'the-house-awake'],
+    products: ['the-house-plump', 'the-house-mist', 'the-house-soft', 'the-house-boost', 'the-house-defense', 'the-house-bounce', 'the-house-firm', 'the-house-awake', 'the-house-dream', 'the-house-lift'],
     studies: [
       { type: 'Randomized Controlled Trial', title: 'Efficacy of cream-based novel formulations of hyaluronic acid of different molecular weights in anti-wrinkle treatment', authors: 'Pavicic T, Gauglitz GG, Lersch P, et al.', journal: 'Journal of Drugs in Dermatology', year: 2011, finding: '8-week trial demonstrated 10-20% reduction in wrinkle depth using multi-molecular-weight hyaluronic acid versus single-weight formulations — confirming the multi-depth hydration mechanism.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Efficacy%20of%20cream-based%20novel%20formulations%20of%20hyaluronic%20acid%20of%20different%20molecular%20weights%20in%20anti-wrinkle%20treatment' },
       { type: 'Review', title: 'Hyaluronic acid: A key molecule in skin aging', authors: 'Papakonstantinou E, Roth M, Karakiulakis G', journal: 'Dermato-Endocrinology', year: 2012, finding: 'Comprehensive review showing HA content in skin drops ~50% between ages 25 and 65; topical and dietary supplementation can partially restore skin hydration and elasticity markers.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Plump%20acid%3A%20A%20key%20molecule%20in%20skin%20aging' },
@@ -49,7 +49,7 @@ const INGREDIENTS = [
     name: 'Vitamin C', alt: 'Ascorbic acid, ascorbyl phosphate', cat: 'skincare', evidence: 'strong',
     tags: ['brightening','protecting'],
     body: 'Brightens dull skin, supports collagen synthesis, neutralizes free radicals from environmental damage. The flagship in our line is Defense — pure L-ascorbic acid paired with ferulic acid in the CE Ferulic architecture, with vitamin E and niacinamide on top for environmental defense and brightening. Bounce also includes 0.5% sodium ascorbyl phosphate to amplify the retinol mechanism.',
-    products: ['the-house-defense', 'the-house-bounce'],
+    products: ['the-house-defense', 'the-house-bounce', 'the-house-bright'],
     studies: [
       { type: 'Review', title: 'Cutaneous photodamage, oxidative stress, and topical antioxidant protection', authors: 'Pinnell SR', journal: 'Journal of the American Academy of Dermatology', year: 2003, finding: 'Foundational review establishing that topical vitamin C at 10-20% provides photoprotection beyond what sunscreen alone delivers and supports collagen synthesis as a required cofactor.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Cutaneous%20photodamage%2C%20oxidative%20stress%2C%20and%20topical%20antioxidant%20protection' },
       { type: 'Randomized Controlled Trial', title: 'Double-blind, half-face study comparing topical vitamin C and vehicle for rejuvenation of photodamage', authors: 'Fitzpatrick RE, Rostan EF', journal: 'Dermatologic Surgery', year: 2002, finding: 'Half-face design eliminating bias showed significant improvement in fine lines, roughness, and tone on the vitamin C side after 12 weeks vs. vehicle control.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Double-blind%2C%20half-face%20study%20comparing%20topical%20vitamin%20C%20and%20vehicle%20for%20rejuvenation%20of%20photodamage' },
@@ -73,7 +73,7 @@ const INGREDIENTS = [
     name: 'Salicylic Acid', alt: 'BHA', cat: 'skincare', evidence: 'strong',
     tags: ['exfoliating','clarifying'],
     body: 'Beta hydroxy acid; oil-soluble so it penetrates pores. Dissolves the cellular and oil debris that causes blackheads and acne. The single most-validated topical for acne-prone skin.',
-    products: ['the-house-clear', 'the-house-balance', 'the-house-renewal', 'the-house-mask'],
+    products: ['the-house-clear', 'the-house-balance', 'the-house-renewal', 'the-house-mask', 'the-house-spot'],
     studies: [
       { type: 'Randomized Controlled Trial', title: 'Salicylic acid peels for the treatment of acne vulgaris in Asian patients', authors: 'Lee HS, Kim IH', journal: 'Dermatologic Surgery', year: 2003, finding: 'Bi-weekly 30% salicylic acid peels over 12 weeks reduced inflammatory and non-inflammatory acne lesions by approximately 47% with minimal side effects.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Salicylic%20acid%20peels%20for%20the%20treatment%20of%20acne%20vulgaris%20in%20Asian%20patients' },
       { type: 'Clinical Trial', title: 'Treatment of acne vulgaris with salicylic acid pads', authors: 'Zander E, Weisman S', journal: 'Clinical Therapeutics', year: 1992, finding: 'Foundational clinical trial demonstrating that 2% salicylic acid pads reduced acne lesions significantly more than benzoyl peroxide controls with better tolerability.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Treatment%20of%20acne%20vulgaris%20with%20salicylic%20acid%20pads' },
@@ -85,7 +85,7 @@ const INGREDIENTS = [
     name: 'Peptides', alt: 'Matrixyl, Argireline, SNAP-8, Syn-Ake', cat: 'skincare', evidence: 'moderate',
     tags: ['firming','anti-aging'],
     body: 'Short chains of amino acids that signal collagen production and relax expression lines. Matrixyl family (Palmitoyl Tripeptide-1, Tetrapeptide-7) stimulates collagen synthesis. Argireline (Acetyl Hexapeptide-8) softens dynamic wrinkles. SNAP-8 (Acetyl Octapeptide-3) extends Argireline\'s mechanism. Syn-Ake (Dipeptide Diaminobutyroyl Benzylamide Diacetate) smooths the surface. Used across Firm (advanced peptide complex), Awake (dual-peptide blend with DCX), Boost (bio-peptide growth factor serum), and Bounce (Matrixyl pair stacked with retinol). Visible results compound over 8-12 weeks.',
-    products: ['the-house-firm', 'the-house-awake', 'the-house-bounce'],
+    products: ['the-house-firm', 'the-house-awake', 'the-house-bounce', 'the-house-lift', 'the-house-dream'],
     studies: [
       { type: 'Review', title: 'Cosmeceutical peptides', authors: 'Lupo MP, Cole AL', journal: 'Dermatologic Therapy', year: 2007, finding: 'Foundational review categorizing peptides into signal, carrier, and neurotransmitter-inhibitor groups — established the mechanistic basis for their use in firming and anti-aging formulations.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Cosmeceutical%20peptides' },
       { type: 'Review', title: 'Topical peptide treatments with effective anti-aging results', authors: 'Schagen SK', journal: 'Cosmetics', year: 2017, finding: 'Review of 25+ peptide studies confirmed that Matrixyl 3000 (palmitoyl tripeptide-1 + tetrapeptide-7) and Argireline (acetyl hexapeptide-8) produce measurable reductions in wrinkle depth over 8-12 week regimens.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Topical%20peptide%20treatments%20with%20effective%20anti-aging%20results' },
@@ -97,7 +97,7 @@ const INGREDIENTS = [
     name: 'Squalane', alt: 'Plant-derived squalane', cat: 'skincare', evidence: 'moderate',
     tags: ['hydrating','calming'],
     body: 'Plant-derived oil that mimics the skin\'s natural sebum. Deeply moisturizing without greasiness; non-comedogenic. Has a tiny molecular structure that allows it to absorb cleanly. Used in Awake (cushions the thin under-eye skin) and Glow (the lipid seal that locks in the PM routine).',
-    products: ['the-house-awake', 'the-house-glow'],
+    products: ['the-house-awake', 'the-house-glow', 'the-house-lipid', 'the-house-dream'],
     studies: [
       { type: 'Review', title: 'Biological and pharmacological activities of squalene and related compounds', authors: 'Huang ZR, Lin YK, Fang JY', journal: 'Molecules', year: 2009, finding: 'Comprehensive review establishing squalane (the stable hydrogenated form of squalene) as an effective emollient that mimics human sebum composition and reduces transepidermal water loss.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Biological%20and%20pharmacological%20activities%20of%20squalene%20and%20related%20compounds' },
       { type: 'Review', title: 'Moisturizers: The slippery road', authors: 'Sethi A, Kaur T, Malhotra SK, et al.', journal: 'Indian Journal of Dermatology', year: 2016, finding: 'Clinical review categorizing moisturizing actives — squalane identified as one of the few oils with non-comedogenic profile suitable for acne-prone skin while providing barrier support.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Moisturizers%3A%20The%20slippery%20road' },
@@ -133,7 +133,7 @@ const INGREDIENTS = [
     name: 'Zinc Oxide', alt: 'Non-nano mineral UV filter', cat: 'skincare', evidence: 'strong',
     tags: ['protecting','calming'],
     body: 'A mineral UV filter that physically reflects both UVA and UVB rays. Especially effective against UVA — the longer-wavelength rays primarily responsible for visible photoaging. Also calms inflammation and absorbs excess oil, making it useful for acne-prone skin. Used in Shield (mineral SPF active), Clear (spot treatment), and Mask (clay reset).',
-    products: ['the-house-shield', 'the-house-clear', 'the-house-mask'],
+    products: ['the-house-shield', 'the-house-clear', 'the-house-mask', 'the-house-spot'],
     studies: [
       { type: 'Review', title: 'A review of sunscreen safety and efficacy', authors: 'Nash JF', journal: 'Photochemistry and Photobiology', year: 2006, finding: 'Comprehensive safety and efficacy review confirming zinc oxide as a broad-spectrum mineral UV filter with the longest safety record of any sunscreen active and the best UVA coverage of any single ingredient.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=A%20review%20of%20sunscreen%20safety%20and%20efficacy%20zinc%20oxide' },
       { type: 'Mechanistic Study', title: 'Topical zinc oxide in the management of acne vulgaris', authors: 'Gupta M, Mahajan VK, Mehta KS, et al.', journal: 'Dermatologic Therapy', year: 2014, finding: 'Topical zinc oxide demonstrated measurable anti-inflammatory and anti-bacterial effects on acne lesions, supporting its dual use as both UV filter and acne-supportive ingredient.', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=Topical%20zinc%20oxide%20acne' },
@@ -438,7 +438,7 @@ const INGREDIENTS = [
     name: 'Argireline', alt: 'Acetyl hexapeptide-8', cat: 'skincare', evidence: 'moderate',
     tags: ['anti-aging','firming'],
     body: 'A synthetic peptide that mimics the N-terminus of SNAP-25 — the protein involved in muscle contraction. Topical application relaxes the appearance of expression lines without injection. Often called "topical Botox" though the mechanism is genuinely different.',
-    products: ['the-house-firm'],
+    products: ['the-house-firm', 'the-house-lift'],
     studies: [
       { type: 'Randomized Controlled Trial', title: 'Anti-wrinkle effect of acetyl hexapeptide-8: a randomized, placebo-controlled, double-blind study', authors: 'Wang Y, Wang M, Xiao S, et al.', journal: 'International Journal of Cosmetic Science', year: 2013, finding: '4-week trial in 60 women — 10% argireline reduced wrinkle depth by ~30% measured by 3D imaging, with no irritation events.', url: 'https://pubmed.ncbi.nlm.nih.gov/23489052/' },
       { type: 'Mechanistic Study', title: 'Topical applications of an oil-in-water emulsion containing argireline reduce the depth of facial wrinkles', authors: 'Blanes-Mira C, Clemente J, Jodas G, et al.', journal: 'International Journal of Cosmetic Science', year: 2002, finding: 'Initial mechanism study established that topical argireline reduces wrinkle depth by 17% after 30 days through inhibition of SNARE complex formation in skin neuromuscular junctions.', url: 'https://pubmed.ncbi.nlm.nih.gov/18494895/' },
@@ -450,7 +450,7 @@ const INGREDIENTS = [
     name: 'Matrixyl 3000', alt: 'Palmitoyl tripeptide-1 + palmitoyl tetrapeptide-7', cat: 'skincare', evidence: 'moderate',
     tags: ['anti-aging','firming'],
     body: 'A peptide complex combining two matrikine signaling peptides. Signals fibroblasts to produce collagen, glycosaminoglycans, and fibronectin — essentially telling the skin to rebuild as if it were healing a wound. Strong clinical evidence for wrinkle reduction.',
-    products: ['the-house-bounce', 'the-house-firm'],
+    products: ['the-house-bounce', 'the-house-firm', 'the-house-lift'],
     studies: [
       { type: 'Randomized Controlled Trial', title: 'Multi-center clinical evaluation of a Matrixyl 3000-based anti-aging serum', authors: 'Robinson LR, Fitzgerald NC, Doughty DG, et al.', journal: 'International Journal of Cosmetic Science', year: 2005, finding: '12-week double-blind trial showed Matrixyl 3000 produced measurable improvements in wrinkle depth (17%), surface roughness, and skin elasticity vs. vehicle control.', url: 'https://pubmed.ncbi.nlm.nih.gov/18492178/' },
       { type: 'Mechanistic Study', title: 'Stimulation of cell renewal and collagen synthesis by matrikine peptides', authors: 'Maquart FX, Pasco S, Ramont L, et al.', journal: 'Pathologie Biologie', year: 2005, finding: 'In vitro studies established matrikines upregulate Type I collagen synthesis by 4x and hyaluronic acid by 3x in dermal fibroblasts — the mechanism behind their anti-aging effects.', url: 'https://pubmed.ncbi.nlm.nih.gov/15967158/' },
