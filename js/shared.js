@@ -3006,7 +3006,7 @@
         'glow', 'starter', 'dullness', 'dryness', 'sensitivity',
         'hair-nails', 'cycle', 'travel',
         'longevity', 'gut', 'focus',
-        'spa', 'joints', 'mushroom-trio', 'full-energy'
+        'spa', 'joints', 'targeted', 'mushroom-trio'
       ],
       // Combined best-sellers ranking across BOTH routines and concern bundles —
       // composite keys disambiguate the 'longevity' id which exists in both lists.
@@ -3022,8 +3022,7 @@
         'routine:foundation',        // 5-supplement entry stack — pairs with Skin Starter
         'concern:hair-nails',        // Hair & Nails — large search/beauty demand
         'concern:stress',            // Stress — trending, affordable
-        'concern:energy',            // Energy — universal need
-        'concern:full-energy',       // Full Energy Stack — bigger supplement bundle at 18% off
+        'concern:energy',            // Energy — universal need (7-product 18% off, the deepest concern-bundle discount)
         'concern:cycle',             // Cycle — women's wellness segment
         'routine:pm',                // pairs with AM, repeat buy
         'concern:glow',              // The Glow Bundle — inside-out glow
@@ -3038,7 +3037,8 @@
         'concern:spa',               // Spa Bundle — weekly indulgence ritual
         'concern:gut',               // trending gut health
         'concern:focus',             // niche cognitive
-        'concern:mushroom-trio',     // Mushroom Bundle — cognition/stress/energy
+        'concern:targeted',          // The Targeted Bundle — Bright, Lift, Lipid, Spot
+        'concern:mushroom-trio',     // Mushroom Bundle — clinical-dose mushrooms
         'concern:joints',            // older demographic
         'routine:longevity',         // premium niche routine
         'routine:arianas',           // narrow persona
