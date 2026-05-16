@@ -1,6 +1,6 @@
 /**
  * Daniel's House — Product Data
- * Single source of truth for all 45 products.
+ * Single source of truth for all 40 products.
  * Used by product.html, bundles.html, search, related products, etc.
  */
 window.PRODUCTS = [
@@ -723,242 +723,6 @@ window.PRODUCTS = [
     proTip: 'Apply to wet skin in gentle circular motions. The water is doing half the work — heavy pressure isn\'t the point. Rinse with cool water to close pores afterward.',
     freeFrom: ['Paraben-Free', 'Sulfate-Free', 'Phthalate-Free', 'Fragrance-Free', 'Cruelty-Free', 'Vegan', 'Made in USA', 'Third-Party Tested'],
     daniels_note: 'Real strawberry seeds in a scrub feel almost ridiculous until you smell them. There\'s no added fragrance — the berry note is just real fruit. Use it once a week, on a non-treatment night, and the morning after is one of the best skin days you\'ll have that week.'
-  },
-  // ═══════════════════════════════════════════════════════════
-  // SKINCARE — TARGETED TREATMENTS
-  // ═══════════════════════════════════════════════════════════
-  {
-    slug: 'the-house-bright',
-    name: 'Bright',
-    category: 'skincare',
-    sub: 'treatment',
-    step: 98,
-    routine: 'AM/PM',
-    price: 54,
-    runtime: 3,
-    image: 'images/bright.jpeg',
-    tag: 'Brighten · Even · Correct',
-    tagline: 'The multi-pathway brightening serum for dark spots and uneven tone.',
-    description: 'A clinical-grade brightening serum that attacks hyperpigmentation from four independent angles. Most brightening serums target one pathway and stall there. Bright stacks niacinamide (slows melanosome transfer from melanocyte to keratinocyte), alpha-arbutin (a stable tyrosinase inhibitor with the strongest safety record of any brightener), licorice root extract (a multi-tyrosinase brightening complex), and a stable vitamin C derivative (antioxidant + collagen cofactor) — together targeting both new pigment formation and existing surface unevenness. The result is visible tone correction in 4–8 weeks without the irritation or rebound darkening that plagues hydroquinone-based formulas. Use morning and night under serums and moisturizer.',
-    size: '1 fl oz / 30 ml',
-    ingredients: [
-      { name: 'Niacinamide (Vitamin B3) — 5%', what: 'The single most-validated brightener in dermatology. Slows the transfer of melanosomes (pigment packets) from melanocytes to surface keratinocytes — the final step before dark spots appear at the surface. Also strengthens the barrier and reduces redness as a side benefit.' },
-      { name: 'Alpha-Arbutin — 2%', what: 'A naturally-derived glycoside of hydroquinone that delivers tyrosinase-inhibiting brightening without hydroquinone\'s irritation or photosensitivity risks. Considered the safest direct tyrosinase inhibitor available over the counter.' },
-      { name: 'Licorice root extract (Glycyrrhiza glabra) — 1%', what: 'Standardized for glabridin, the active flavonoid that inhibits multiple steps in the melanin synthesis pathway. Also calms inflammation, which interrupts the inflammation-pigmentation feedback loop that drives post-inflammatory hyperpigmentation (PIH).' },
-      { name: 'Sodium Ascorbyl Phosphate (stable Vitamin C) — 2%', what: 'A stable, water-soluble vitamin C derivative that brightens without the oxidation issues of L-ascorbic acid in a daily-use formula. Also functions as a collagen cofactor and antioxidant.' },
-      { name: 'Lactic Acid — 1%', what: 'A gentle AHA at sub-resurfacing concentration that accelerates surface cell turnover so existing pigmented cells migrate off faster — exposing the brighter skin underneath the brighteners are already producing.' }
-    ],
-    howToUse: 'AM and PM, after cleansing and toning: Apply 4-5 drops, press onto face, neck, and any zones with hyperpigmentation. Wait 60 seconds before layering on Defense (AM) or Bounce (PM). Always wear SPF — brightening actives without sun protection is the most common reason hyperpigmentation gets worse, not better.',
-    bestFor: ['hyperpigmentation', 'dark-spots', 'uneven-tone', 'post-acne-marks', 'melasma', 'brightness'],
-    studies: [
-      { actor: 'Niacinamide for Hyperpigmentation', finding: 'Topical 5% niacinamide demonstrates significant reductions in hyperpigmentation and melasma over 8-week clinical trials, with efficacy comparable to 4% hydroquinone but without the irritation profile.', source: 'British Journal of Dermatology, 2022' },
-      { actor: 'Alpha-Arbutin Safety + Efficacy', finding: 'Topical alpha-arbutin shows measurable melanin reduction in randomized trials at 1-2% concentration, with safety profiles superior to hydroquinone and no rebound hyperpigmentation on discontinuation.', source: 'Journal of Cosmetic Dermatology, 2023' },
-      { actor: 'Stacked Brightening Actives', finding: 'Multi-pathway brightening formulations (niacinamide + arbutin + licorice + Vitamin C) consistently outperform single-active serums in head-to-head studies, with synergy across the tyrosinase, melanosome transfer, and antioxidant pathways.', source: 'International Journal of Dermatology, 2023' }
-    ],
-    faq: [
-      { q: 'How fast will I see results?', a: 'Surface brightness in 2-3 weeks. Visible reduction in dark spots in 4-8 weeks. Full effect on stubborn pigmentation (post-acne marks, sun damage, melasma) at 12+ weeks. Skin needs a full cell turnover cycle (~28 days) before topical brighteners show visible change.' },
-      { q: 'Can I use it with Defense (Vitamin C)?', a: 'Yes — they target different mechanisms. Defense (L-ascorbic acid + ferulic) is your antioxidant shield. Bright targets pigment formation specifically. Use Bright first (lighter texture), wait 60 seconds, then Defense.' },
-      { q: 'Will I get rebound darkening if I stop?', a: 'No — alpha-arbutin and niacinamide don\'t cause rebound hyperpigmentation the way prescription hydroquinone can. You can cycle Bright on and off without worrying about your spots returning darker than they started.' },
-      { q: 'Is it safe during pregnancy?', a: 'Niacinamide, alpha-arbutin, and licorice extract are generally considered low-risk during pregnancy. Lactic acid at 1% is below the threshold most providers flag. Confirm with your provider for your specific case.' },
-      { q: 'Can I use it on my body?', a: 'Yes — Bright works wherever pigmentation appears. Common targets: shoulders (sun damage), hands (age spots), inner thighs, underarms. The serum format absorbs cleanly into thinner-skinned body zones.' }
-    ],
-    relatedSlugs: ['the-house-defense', 'the-house-renewal', 'the-house-boost', 'the-house-shield'],
-    resultsTimeline: [
-      { week: 'Week 1', text: 'Skin tolerates the formula without irritation; subtle brightness from immediate niacinamide effects.' },
-      { week: 'Week 4', text: 'Visible reduction in surface unevenness; post-acne marks start to fade. SPF compliance becomes the gating factor — protect every gain.' },
-      { week: 'Week 8', text: 'Measurable lightening of established dark spots; tone evens out across the full face.' },
-      { week: 'Week 12+', text: 'Stubborn pigmentation (melasma, deep sun damage) responds; baseline skin tone is visibly brighter than before starting.' }
-    ],
-    proTip: 'Pair every Bright application with Shield (mineral SPF) in the morning. UV exposure is the single biggest driver of hyperpigmentation — using brighteners without sun protection is the most common reason people don\'t see results.',
-    freeFrom: ['Paraben-Free', 'Sulfate-Free', 'Phthalate-Free', 'Hydroquinone-Free', 'Fragrance-Free', 'Cruelty-Free', 'Vegan', 'Made in USA', 'Third-Party Tested'],
-    daniels_note: 'Hyperpigmentation is the most under-treated skin concern I see — most people just resign themselves to it. The truth is the right multi-pathway brightener handles it cleanly, without the harsh side effects of prescription bleaching. Niacinamide plus alpha-arbutin plus licorice plus stable vitamin C is what dermatologists prescribe when they want clinical results without the irritation. We put it all in one bottle.'
-  },
-  {
-    slug: 'the-house-lift',
-    name: 'Lift',
-    category: 'skincare',
-    sub: 'treatment',
-    step: 97,
-    routine: 'AM/PM',
-    price: 52,
-    runtime: 2,
-    image: 'images/lift.jpeg',
-    tag: 'Firm · Smooth · Lift',
-    tagline: 'The neck-and-décolleté firming cream most routines forget.',
-    description: 'The neck shows aging faster than the face — thinner skin, fewer sebaceous glands, more daily folding from screen-time posture. Most skincare routines stop at the jawline; aging doesn\'t. Lift is built specifically for the neck and décolleté: DMAE for visible muscle-tone tightening, acetyl hexapeptide-8 (Argireline) and Matrixyl 3000 for the expression-line and collagen pathways, retinyl palmitate for cell turnover without retinol-grade reactivity, and a multi-weight hyaluronic acid base for plumping and immediate-visible smoothing. The retinoid is gentle by design — the neck doesn\'t tolerate the same actives the face does. Daily AM and PM, sweeping upward from collarbone to jaw.',
-    size: '1.7 fl oz / 50 ml',
-    ingredients: [
-      { name: 'DMAE (Dimethylaminoethanol) — 3%', what: 'A cellular nutrient that supports acetylcholine signaling at the surface, producing an immediate visible tightening effect within minutes and a cumulative firming effect over 8-12 weeks of daily use. The mechanism behind the "instant lift" feel and the longer-term tone improvement.' },
-      { name: 'Acetyl Hexapeptide-8 (Argireline) — 5%', what: 'A SNAP-25 analog peptide that interferes with expression-line muscle contraction at the neuromuscular junction — the same mechanism as injectable neuromodulators, at a fraction of the intensity. Targets horizontal "necklace lines" specifically.' },
-      { name: 'Matrixyl 3000 (Palmitoyl Tripeptide-1 + Tetrapeptide-7) — 2%', what: 'A signaling peptide complex that stimulates collagen synthesis at the fibroblast level. Multiple RCTs document measurable wrinkle reduction in 8-12 weeks of daily application.' },
-      { name: 'Retinyl Palmitate — 0.5%', what: 'A gentle retinoid ester that converts to retinol in the skin over time. The slow conversion gives anti-aging benefit without the reactivity of direct retinol — critical for the thinner, more fragile neck skin.' },
-      { name: 'Multi-weight Hyaluronic Acid (high + low MW) — 2%', what: 'High molecular weight HA holds water at the surface for visible plumping; low molecular weight HA penetrates deeper for long-term hydration. The combination addresses both immediate smoothing and structural fill.' },
-      { name: 'Shea butter + Squalane', what: 'Lipid-rich emollients that match the neck\'s naturally lower sebum production. Provides the occlusion that retinoid-containing formulas typically need.' }
-    ],
-    howToUse: 'AM and PM, after moisturizer: Dispense a quarter-sized amount. Apply to the neck and décolleté in upward sweeping motions, from collarbone to jawline. Massage gently until absorbed. In the morning, follow with SPF on the neck — the most-skipped sun protection zone, and the one that shows it most.',
-    bestFor: ['neck-firming', 'décolleté', 'tech-neck', 'horizontal-lines', 'anti-aging', 'crepey-skin'],
-    studies: [
-      { actor: 'DMAE for Skin Firmness', finding: 'Topical 3% DMAE demonstrates measurable improvements in skin firmness and reduction in nasolabial fold appearance in 16-week controlled trials, with cumulative effect over 8+ weeks of daily use.', source: 'Journal of Cosmetic Dermatology, 2022' },
-      { actor: 'Peptides for Neck Aging', finding: 'Matrixyl 3000 demonstrates significant wrinkle depth reduction (43-50%) in 12-week clinical trials. Combined peptide complexes (Matrixyl + Argireline) show synergistic effects on expression lines.', source: 'International Journal of Cosmetic Science, 2023' },
-      { actor: 'Argireline + Expression Lines', finding: 'Topical 5-10% Argireline reduces depth of expression lines by 17-27% in 28-day clinical trials, with an effect profile that compounds over months of consistent use.', source: 'International Journal of Cosmetic Science, 2021' }
-    ],
-    faq: [
-      { q: 'How is this different from using my face moisturizer on my neck?', a: 'The neck has 60% fewer sebaceous glands than the face, thinner dermis, and different aging patterns (horizontal lines from posture, "tech neck"). Face moisturizers undertreat it. Lift is calibrated specifically for these conditions — heavier emollient base, peptide complexes targeted to muscle-driven expression lines, gentle retinoid the thin skin tolerates.' },
-      { q: 'When will I see results?', a: 'DMAE produces a visible tightening effect within 30 minutes (firm, smoother surface). Peptide and retinoid effects compound over 8-12 weeks. Horizontal "necklace lines" soften measurably at 8 weeks of consistent twice-daily use.' },
-      { q: 'Can I use it with Bounce (retinol)?', a: 'Yes — Lift contains retinyl palmitate (gentle retinoid ester), which doesn\'t stack into clinical-grade irritation territory. Bounce stays on the face; Lift extends below the jawline. Many users apply Bounce to the face and Lift to the neck simultaneously in the PM routine.' },
-      { q: 'Is it safe during pregnancy?', a: 'Retinyl palmitate is a retinoid — most providers advise avoiding all topical retinoids during pregnancy. Skip Lift while pregnant or breastfeeding; resume after. The peptide and HA layer alone (without retinoid) is acceptable; Lift isn\'t the right product for that interim.' },
-      { q: 'Do I still need SPF on my neck?', a: 'Yes — and this is the most important habit to build. The neck is the most-overlooked SPF zone on the body and shows it more than any other area. Apply Shield from chin to collarbone every morning. Without SPF, Lift\'s benefits are undone by the same UV damage that put the lines there.' }
-    ],
-    relatedSlugs: ['the-house-firm', 'the-house-bounce', 'the-house-shield', 'the-house-soft'],
-    resultsTimeline: [
-      { week: 'Day 1', text: 'Immediate firmness and smoothing from DMAE within 30 minutes; skin feels tighter through the day.' },
-      { week: 'Week 4', text: 'Texture noticeably smoother; the crepey-skin appearance softens. Horizontal lines stay visible but less etched.' },
-      { week: 'Week 8', text: 'Measurable improvement in skin firmness and tone; "necklace lines" soften visibly.' },
-      { week: 'Week 12+', text: 'Compounded effect of peptide-driven collagen and DMAE-driven tone. The neck no longer betrays your age relative to your face.' }
-    ],
-    proTip: 'Apply with the same care you give your face — most people slap on neck cream like an afterthought. The motion matters: always upward, never down. Gravity is already pulling; you don\'t need to help it.',
-    freeFrom: ['Paraben-Free', 'Sulfate-Free', 'Phthalate-Free', 'Fragrance-Free', 'Cruelty-Free', 'Made in USA', 'Third-Party Tested'],
-    daniels_note: 'I noticed my mom would spend twenty minutes on her face and ten seconds on her neck — then wonder why the neck aged faster. The neck needs its own product, with the right actives for thinner skin and different aging patterns. DMAE for the instant tone, peptides for the lines, gentle retinoid for the turnover. The most-skipped product in any anti-aging routine.'
-  },
-  {
-    slug: 'the-house-dream',
-    name: 'Dream',
-    category: 'skincare',
-    sub: 'weekly',
-    step: null,
-    routine: 'Weekly',
-    price: 44,
-    runtime: 3,
-    image: 'images/dream.jpeg',
-    tag: 'Overnight · Replenish · Plump',
-    tagline: 'The overnight collagen mask that does the work while you sleep.',
-    description: 'A high-density overnight mask built around soluble marine collagen, multi-weight hyaluronic acid, and a peptide complex that works during the 10pm-2am skin repair window when fibroblast activity is at its peak. Unlike rinse-off treatments, Dream is left on overnight as the final PM step — the formula absorbs progressively into skin, with peak delivery happening exactly when the skin\'s repair systems are most active. Use 2-3 nights per week as a treatment, or nightly during dry-skin seasons or post-flight recovery. Wake to plumper, more luminous, visibly hydrated skin.',
-    size: '2 fl oz / 60 ml',
-    ingredients: [
-      { name: 'Marine Soluble Collagen — 5%', what: 'A low-molecular-weight marine collagen with peptide fragments small enough to penetrate the upper layers of skin. Acts as a signaling molecule that activates fibroblast collagen synthesis, plus provides immediate surface plumping from its water-binding capacity.' },
-      { name: 'Multi-weight Hyaluronic Acid (high + medium + low MW) — 3%', what: 'Three molecular weights deliver hydration at three depths simultaneously. High MW seals moisture at the surface; medium MW plumps the mid-epidermis; low MW (sodium hyaluronate crosspolymer) reaches the deepest layers for structural hydration.' },
-      { name: 'Palmitoyl Tripeptide-38 — 1%', what: 'A signaling peptide that activates multiple skin matrix components — collagen I, III, IV, plus elastin and laminin. Documented in trials for measurable wrinkle reduction at 8-12 weeks.' },
-      { name: 'Sodium PCA + Glycerin', what: 'Skin-identical humectants that draw moisture from the environment into the upper layers and from the lower dermis up to the surface. The "drink-it-in" mechanism behind morning plumpness.' },
-      { name: 'Squalane — 5%', what: 'Plant-derived equivalent of skin\'s own sebum. Forms a breathable occlusive layer that holds the entire treatment in contact with skin overnight without clogging pores.' },
-      { name: 'Niacinamide — 2%', what: 'Strengthens the barrier overnight when transepidermal water loss is at its highest, locking in the formula\'s hydration delivery and supporting morning skin tone.' }
-    ],
-    howToUse: '2-3 nights per week, after your full PM routine: Apply a generous layer over your moisturizer (skip your face oil — Dream is the seal). Leave on overnight. Rinse with lukewarm water and follow your normal AM routine in the morning. For dry-skin seasons or post-flight recovery, nightly use is fine.',
-    bestFor: ['overnight-hydration', 'dryness', 'plumping', 'jet-lag-recovery', 'winter-skin', 'anti-aging'],
-    studies: [
-      { actor: 'Topical Marine Collagen', finding: 'Topical low-molecular-weight collagen peptides demonstrate measurable improvements in skin hydration, elasticity, and surface plumpness in 8-12 week clinical trials.', source: 'Journal of Cosmetic Dermatology, 2022' },
-      { actor: 'Overnight vs Rinse-off Masks', finding: 'Overnight leave-on treatments demonstrate significantly higher active ingredient delivery to the stratum corneum vs. 10-20 minute rinse-off masks, with sustained barrier strengthening and improved morning hydration metrics.', source: 'International Journal of Cosmetic Science, 2023' },
-      { actor: 'Multi-MW Hyaluronic Acid', finding: 'Multi-molecular-weight HA formulations demonstrate superior hydration retention at multiple skin depths vs. single-MW formulations, supporting both immediate surface plumping and long-term moisture reservoir building.', source: 'Scientific Reports, 2024' }
-    ],
-    faq: [
-      { q: 'How is this different from my regular moisturizer?', a: 'Dream is a treatment mask, not a daily moisturizer — higher active concentrations (5% marine collagen, 3% HA, 5% squalane) and a heavier occlusive base than a daily cream would tolerate. It sits on top of your normal moisturizer, layering as the final PM step rather than replacing it.' },
-      { q: 'Can I use it nightly?', a: 'Yes during dry-skin seasons, after flights, or post-procedure recovery. For most people, 2-3 nights per week produces the best balance — daily use can feel heavy for combination or oily skin types. Listen to your skin: if Dream feels too rich nightly, drop to a few times per week.' },
-      { q: 'Will I wake up with mask residue?', a: 'No — the formula is built to absorb progressively through the night. Some users feel a residual tacky finish in the first 30 minutes after application (this is the HA layer drawing moisture in), but by morning the formula is fully absorbed. If you wake up with residue, rinse with lukewarm water; you may be applying too much.' },
-      { q: 'Can I pair it with Bounce (retinol) the same night?', a: 'Yes — Dream acts as a buffer for retinol nights. Apply Bounce first (treatment layer), wait for it to absorb, then your moisturizer, then Dream as the final seal. The occlusion + hydration helps mitigate retinol\'s typical drying side effects.' },
-      { q: 'Is it pregnancy-safe?', a: 'Yes — no retinoids, no salicylic acid, no AHAs. The marine collagen, HA, peptide, niacinamide, and squalane stack is widely considered pregnancy-safe. Confirm with your provider.' }
-    ],
-    relatedSlugs: ['the-house-soft', 'the-house-glow', 'the-house-collagen', 'the-house-mask'],
-    resultsTimeline: [
-      { week: 'Use 1', text: 'Wake to visibly plumper, more luminous skin; immediate softness and hydration that lasts through the morning.' },
-      { week: 'Week 2', text: 'Surface hydration baseline shifts higher; daily moisturizer goes further. Skin looks "rested" even when you\'re not.' },
-      { week: 'Week 4', text: 'Cumulative collagen-peptide signaling begins to show — fine lines from dehydration soften; texture refines.' },
-      { week: 'Week 8+', text: 'Compounded plumping and firming from peptide + collagen working at the dermal level. Morning skin looks like spa-day skin as the new baseline.' }
-    ],
-    proTip: 'Apply Dream over your moisturizer, not under. The order is: treatments → serums → moisturizer → Dream. The mask\'s occlusive layer is what seals everything beneath it into skin overnight.',
-    freeFrom: ['Paraben-Free', 'Sulfate-Free', 'Phthalate-Free', 'Fragrance-Free', 'Color-Free', 'Cruelty-Free', 'Made in USA', 'Third-Party Tested'],
-    daniels_note: 'The 10pm-2am window is when skin actually repairs itself — fibroblast activity peaks, cellular turnover accelerates, and transepidermal water loss is highest. A treatment that delivers actives during that window outperforms anything you can do during the day. Dream is the easiest 2-3 nights a week of compound interest on your skincare investment.'
-  },
-  {
-    slug: 'the-house-spot',
-    name: 'Spot',
-    category: 'skincare',
-    sub: 'treatment',
-    step: 99,
-    routine: 'As-needed',
-    price: 26,
-    runtime: 6,
-    image: 'images/spot.jpeg',
-    tag: 'Dry · Calm · Clear',
-    tagline: 'The overnight spot drying lotion for active blemishes.',
-    description: 'A two-layer drying lotion in the classic apothecary tradition — calamine and salicylic acid sink overnight into a sediment at the bottom of the bottle; a clear alcohol-glycolic suspension floats above. Do not shake. Dip a cotton swab through the clear layer into the pink sediment, and dab directly onto an active blemish before bed. The formula dries the lesion overnight via osmotic and antimicrobial action. By morning, the spot is visibly flatter and drier — typically resolving 1-2 days faster than untreated. Targeted, not all-over. The companion to Clear (daily clarifier) for the moments when a single spot needs an aggressive overnight intervention.',
-    size: '1 fl oz / 30 ml',
-    ingredients: [
-      { name: 'Calamine — 8%', what: 'A zinc oxide + ferric oxide mineral suspension that draws fluid from the lesion via osmotic action and creates an antimicrobial dry environment hostile to the bacteria driving the breakout. The pink sediment layer.' },
-      { name: 'Salicylic Acid — 1%', what: 'Oil-soluble BHA that penetrates into the pore through the sebaceous channel, accelerating clearance of the sebum-plug-and-bacteria combination that forms a comedo. Active overnight on the targeted lesion.' },
-      { name: 'Colloidal Sulfur — 1%', what: 'A keratolytic and antimicrobial mineral with decades of dermatological evidence for inflammatory acne. Reduces the inflammation that gives a blemish its swelling and redness, accelerating cosmetic resolution.' },
-      { name: 'Zinc Oxide — 2%', what: 'Anti-inflammatory mineral that calms surface redness and supports the skin\'s barrier repair as the lesion shrinks.' },
-      { name: 'Camphor', what: 'A traditional botanical with mild astringent and anti-itch properties. Provides the cooling sensation on application and helps reduce the urge to pick.' },
-      { name: 'Ethanol carrier', what: 'The clear upper layer is an alcohol suspension that evaporates on contact, leaving the active minerals concentrated on the target lesion. Not for whole-face application.' }
-    ],
-    howToUse: 'DO NOT SHAKE. Before bed, dip a cotton swab through the clear top layer into the pink sediment at the bottom of the bottle (the active minerals). Dab directly onto the active blemish only — never on surrounding healthy skin. Leave on overnight. Rinse off in the morning with your normal cleanser. Use only on active spots, never as a treatment for the whole face.',
-    bestFor: ['active-blemishes', 'cystic-acne', 'overnight-spot', 'inflamed-acne', 'occasional-breakouts'],
-    studies: [
-      { actor: 'Calamine + Salicylic Spot Treatments', finding: 'Topical calamine-salicylic combinations demonstrate significant overnight reduction in lesion size and inflammation in studies of inflammatory acne, with the classic apothecary formulation continuing to serve as a dermatology reference for over a century.', source: 'Journal of Drugs in Dermatology, 2022' },
-      { actor: 'Colloidal Sulfur for Inflammatory Acne', finding: 'Topical sulfur in 1-2% concentrations demonstrates measurable reductions in inflammatory acne lesions through both keratolytic and antimicrobial pathways, with a long safety record across multi-decade dermatological use.', source: 'Journal of the American Academy of Dermatology' }
-    ],
-    faq: [
-      { q: 'Why can\'t I shake the bottle?', a: 'The two-layer design is functional, not aesthetic. The minerals (calamine, sulfur, zinc) sink so you can pick up a concentrated dose on the cotton swab. Shaking mixes them into a dilute suspension that won\'t deliver the same overnight drying effect. The apothecary tradition behind this formula goes back over a century — they figured out the suspension long before modern formulating did.' },
-      { q: 'Will this work on cystic acne?', a: 'Yes for the inflammatory surface symptoms — the lesion will visibly flatten and dry overnight. Cystic acne also has deep components that won\'t resolve from a topical alone; if cysts are recurring, the inside-out approach (Clear-Skin Bundle: Clear, Mask, Biome, Flow) addresses the gut-skin axis behind chronic deeper acne. Use Spot for the visible surface, the Bundle for the systemic cause.' },
-      { q: 'Can I use it on multiple spots?', a: 'Yes — one swab per spot, fresh swab each time (don\'t double-dip). Don\'t treat more than 3-4 active lesions in one night; the drying alcohol carrier can over-strip if applied across larger areas.' },
-      { q: 'How is this different from Clear?', a: 'Clear is the daily clarifier — 2% salicylic acid applied broadly across acne-prone zones, every day. Spot is the targeted overnight drying treatment for individual active lesions, used as-needed. Most acne-prone routines use both: Clear daily for prevention, Spot when a lesion still breaks through.' },
-      { q: 'Is it pregnancy-safe?', a: 'Topical salicylic acid in OTC concentrations is generally considered low-risk during pregnancy, but spot use is the safest application format. Some providers advise avoiding all salicylic acid during pregnancy — confirm with yours.' }
-    ],
-    relatedSlugs: ['the-house-clear', 'the-house-mask', 'the-house-balance', 'the-house-biome'],
-    resultsTimeline: [
-      { week: 'First Use', text: 'Visible flattening and drying of the treated lesion by morning; reduced redness and inflammation.' },
-      { week: 'Repeat Use', text: 'Active blemishes resolve 1-2 days faster than untreated; less post-inflammatory hyperpigmentation if used consistently early.' },
-      { week: 'Ongoing', text: 'Most effective when paired with a daily prevention routine (Clear) and gut-skin support (Biome). Spot is the surface tool; prevention is the system.' },
-      { week: '—', text: 'Spot is not a daily product — it\'s the overnight intervention. Continuous all-over use will damage the barrier.' }
-    ],
-    proTip: 'Don\'t pick. Dab Spot on, let it dry, go to bed. The temptation to extract a blemish is what creates post-inflammatory hyperpigmentation and scarring. Spot does the work overnight so you don\'t need to.',
-    freeFrom: ['Paraben-Free', 'Sulfate-Free', 'Phthalate-Free', 'Fragrance-Free', 'Cruelty-Free', 'Vegan', 'Made in USA', 'Third-Party Tested'],
-    daniels_note: 'The apothecary drying lotion is one of the oldest spot treatments in dermatology — the formula predates modern skincare by a century, and it still outperforms most modern alternatives because the basic mechanism (osmotic drying + antimicrobial mineral combination) is hard to beat. We make the version your dermatologist would recognize from the 1950s — same fundamental science, cleaner manufacturing.'
-  },
-  {
-    slug: 'the-house-lipid',
-    name: 'Lipid',
-    category: 'skincare',
-    sub: 'treatment',
-    step: 96,
-    routine: 'PM',
-    price: 52,
-    runtime: 3,
-    image: 'images/lipid.jpeg',
-    tag: 'Repair · Replenish · Calm',
-    tagline: 'The barrier-repair lipid blend for compromised skin.',
-    description: 'When the skin barrier is compromised — over-exfoliated, post-procedure, mid-flare, seasonal-shift dry, sensitized — what it needs isn\'t more actives; it\'s structural lipids the barrier is literally missing. Lipid delivers the three lipid classes the stratum corneum uses to build itself: ceramides (50% of barrier lipid mass), cholesterol (25%), and free fatty acids (15-25%) — at the 3:1:1 ratio dermatological research has identified as physiologically correct for restoration. Suspended in a base of skin-mimicking squalane and tocopherol antioxidant. Apply as the final PM step on barrier-stressed nights instead of (not on top of) your normal moisturizer. Skin rebuilds while you sleep.',
-    size: '1 fl oz / 30 ml',
-    ingredients: [
-      { name: 'Ceramide complex (NP, AP, EOP) — 3%', what: 'Three skin-identical ceramide species that match the natural composition of the stratum corneum lipid matrix. Ceramides account for ~50% of barrier lipid mass — the largest single lipid class skin needs to maintain its waterproofing function.' },
-      { name: 'Cholesterol — 1%', what: 'A barrier lipid that accounts for ~25% of stratum corneum mass. Critical to barrier function; in barrier-compromised skin, cholesterol is the rate-limiting lipid for repair. The 3:1:1 ceramide:cholesterol:fatty-acid ratio in this formula matches research-derived optimal repair conditions.' },
-      { name: 'Free Fatty Acids (linoleic, oleic, palmitic) — 1%', what: 'The third pillar of the stratum corneum lipid trio. Linoleic acid is especially important; topical linoleic acid is documented to reduce comedone formation in acne-prone skin in addition to repairing barrier function.' },
-      { name: 'Squalane — 60%', what: 'Plant-derived equivalent of skin\'s own sebum. The carrier oil that delivers the ceramide/cholesterol/fatty acid complex into the upper layers of skin without occluding the surface. Non-comedogenic.' },
-      { name: 'Phytosterols (plant-derived) — 2%', what: 'Beta-sitosterol and campesterol — botanical lipids that mimic cholesterol\'s structure and amplify its barrier-supporting effect. Documented for anti-inflammatory action in addition to barrier repair.' },
-      { name: 'Tocopherol (Vitamin E) — 0.5%', what: 'Lipid-soluble antioxidant that protects the polyunsaturated free fatty acids from oxidation and supports the barrier with its own membrane-stabilizing properties.' }
-    ],
-    howToUse: 'PM, as needed: When your skin is barrier-compromised (over-exfoliated, post-procedure, sensitive flare, seasonal dryness, post-flight, retinol-irritated), use Lipid as your final PM step in place of (not in addition to) your normal moisturizer. Apply 4-5 drops to clean skin. Press into face and neck. Skip actives that night — Bounce, Renewal, Balance — and let Lipid do the repair work. Resume actives the next night.',
-    bestFor: ['barrier-repair', 'over-exfoliation', 'post-procedure', 'sensitive-skin', 'seasonal-dryness', 'eczema-prone'],
-    studies: [
-      { actor: 'Ceramide Replacement for Barrier', finding: 'Topical ceramide complexes restore stratum corneum lipid balance in barrier-compromised skin within 2-4 weeks, with measurable improvements in transepidermal water loss and reduction in symptoms of dryness, irritation, and reactivity.', source: 'Journal of Cosmetic Dermatology, 2023' },
-      { actor: '3:1:1 Lipid Ratio', finding: 'The physiological 3:1:1 ratio of ceramides:cholesterol:free fatty acids in topical formulations demonstrates significantly faster barrier recovery vs. single-lipid or non-physiological-ratio formulations in studies of barrier-disrupted skin.', source: 'Journal of Investigative Dermatology' },
-      { actor: 'Linoleic Acid + Skin Health', finding: 'Topical linoleic acid demonstrates measurable reductions in comedone size in acne-prone skin and improvements in barrier function in dry-skin conditions, supporting its dual role in barrier and acne care.', source: 'International Journal of Cosmetic Science' }
-    ],
-    faq: [
-      { q: 'How is this different from Glow or Soft?', a: 'Glow is the daily PM finishing oil (squalane + HA spheres) — light occlusion, water-binding, suitable for nightly use. Soft is the daily moisturizer (multi-weight HA + niacinamide) — daily hydration. Lipid is the barrier-rebuild treatment for compromised skin — clinical-grade ceramide/cholesterol/fatty-acid replacement at physiologic ratio. Use Lipid when your skin is stressed; use Glow/Soft daily.' },
-      { q: 'How often should I use it?', a: 'On demand, not daily. Common triggers: after a retinol-heavy week, after a chemical peel or facial, post-flight (low humidity flights compromise barriers), winter weather shifts, after over-exfoliation. Most users go through phases of nightly use for 5-7 days when their skin is compromised, then return to it occasionally as needed.' },
-      { q: 'Can I use Lipid with my retinol?', a: 'Not the same night. The whole point of Lipid is barrier rebuild — adding actives (retinol, acids, vitamin C) interferes with the repair process. Use Lipid on rest nights between active treatments. As barrier recovers, you can layer Lipid over moisturizer on milder nights, but the barrier-stressed pattern is: pause actives, run Lipid, recover.' },
-      { q: 'Will it break me out?', a: 'For most skin types, no — the formulation is non-comedogenic and the lipid ratio is anti-inflammatory. Acne-prone skin should patch-test along the jawline for 3-5 nights first; comedogenic potential varies by individual.' },
-      { q: 'Is it pregnancy-safe?', a: 'Yes — no retinoids, acids, or restricted actives. Ceramides, cholesterol, fatty acids, squalane, and phytosterols are all routinely used during pregnancy. Confirm with your provider.' }
-    ],
-    relatedSlugs: ['the-house-glow', 'the-house-soft', 'the-house-flow', 'the-house-wash'],
-    resultsTimeline: [
-      { week: 'Night 1', text: 'Immediate calming and softening; redness from over-exfoliation reduces within 24 hours.' },
-      { week: 'Night 3-5', text: 'Visible barrier recovery — less tightness, less reactivity, restored ability to tolerate actives.' },
-      { week: 'Week 2', text: 'Sustained barrier resilience; sensitivity at baseline shifts down. Most users can return to their normal active routine.' },
-      { week: 'Ongoing', text: 'Use as needed during barrier-stressed periods. Not a daily product — a recovery tool kept on hand.' }
-    ],
-    proTip: 'When skin is stressed, less is more. The instinct to add a soothing cream + a serum + an oil all at once actually slows barrier repair. Lipid alone over clean skin (skip everything else for the night) recovers faster than Lipid plus three other steps.',
-    freeFrom: ['Paraben-Free', 'Sulfate-Free', 'Phthalate-Free', 'Fragrance-Free', 'Color-Free', 'Cruelty-Free', 'Vegan', 'Made in USA', 'Third-Party Tested'],
-    daniels_note: 'Most "barrier repair" creams skimp on the actual lipids the barrier is made of. Ceramides at 3%, cholesterol at 1%, free fatty acids at 1% in the 3:1:1 ratio dermatological research identifies as physiologically optimal — at this concentration in a clean carrier — is what your skin actually needs when it\'s in crisis. Keep one of these on hand. The night you over-exfoliate or get back from a long flight, you\'ll be glad it\'s there.'
   },
   // ═══════════════════════════════════════════════════════════
   // SUPPLEMENTS — FOUNDATION (5)
@@ -2067,8 +1831,8 @@ window.CONCERN_BUNDLES = [
     tab: 'skin',
     icon: 'A.',
     name: 'The Anti-Aging Bundle',
-    blurb: "Retinol and the five-peptide growth factor serum where age shows, daily mineral SPF that protects every gain, the neck-firming cream most routines forget, plus collagen and NAD+ for the cellular side. Anti-aging from every direction, because skin doesn't age in isolation from the body.",
-    slugs: ['the-house-bounce', 'the-house-firm', 'the-house-boost', 'the-house-shield', 'the-house-awake', 'the-house-lift', 'the-house-collagen', 'the-house-nad-plus', 'the-house-radiance']
+    blurb: "Retinol and the five-peptide growth factor serum where age shows, daily mineral SPF that protects every gain, plus collagen and NAD+ for the cellular side. Anti-aging from every direction, because skin doesn't age in isolation from the body.",
+    slugs: ['the-house-bounce', 'the-house-firm', 'the-house-boost', 'the-house-shield', 'the-house-awake', 'the-house-collagen', 'the-house-nad-plus', 'the-house-radiance']
   },
   {
     id: 'acne',
@@ -2076,8 +1840,8 @@ window.CONCERN_BUNDLES = [
     tab: 'skin',
     icon: 'B.',
     name: 'The Clear-Skin Bundle',
-    blurb: 'A daily 2% salicylic clarifier where blemishes flare, the overnight apothecary drying lotion for active spots, the zinc and sulfur clay mask weekly, plus probiotics and omega-3s for the gut-skin axis behind chronic breakouts. The full inside-out clear-skin protocol.',
-    slugs: ['the-house-clear', 'the-house-spot', 'the-house-mask', 'the-house-biome', 'the-house-flow']
+    blurb: 'A daily 2% salicylic clarifier where blemishes flare, the zinc and sulfur clay mask weekly, plus probiotics and omega-3s for the gut-skin axis behind chronic breakouts. The full inside-out clear-skin protocol.',
+    slugs: ['the-house-clear', 'the-house-mask', 'the-house-biome', 'the-house-flow']
   },
   {
     id: 'dryness',
@@ -2085,8 +1849,8 @@ window.CONCERN_BUNDLES = [
     tab: 'skin',
     icon: 'C.',
     name: 'The Hydration Bundle',
-    blurb: "Three layers of hydration plus the lipid that holds it all in. Plump delivers 1% sodium hyaluronate into the upper layers as a serum step. Mist refreshes that same layer mid-day without disturbing the routine underneath. Soft seals it in with multi-weight HA + ceramides + niacinamide. Lipid is the clinical-grade ceramide-cholesterol-fatty-acid blend for the nights skin asks for real barrier repair. And Flow at 600mg EPA + 400mg DHA builds the lipid matrix from inside — the half of skin hydration topicals can't reach.",
-    slugs: ['the-house-plump', 'the-house-mist', 'the-house-soft', 'the-house-lipid', 'the-house-flow']
+    blurb: "Three layers of hydration that work because each one does something different. Plump delivers 1% sodium hyaluronate into the upper layers as a serum step. Mist refreshes that same layer mid-day without disturbing the routine underneath. Soft seals it in with multi-weight HA + ceramides + niacinamide. And Flow at 600mg EPA + 400mg DHA builds the lipid matrix from inside — the half of skin hydration topicals can't reach.",
+    slugs: ['the-house-plump', 'the-house-mist', 'the-house-soft', 'the-house-flow']
   },
   {
     id: 'dullness',
@@ -2094,8 +1858,8 @@ window.CONCERN_BUNDLES = [
     tab: 'skin',
     icon: 'D.',
     name: 'The Brightening Bundle',
-    blurb: 'The multi-pathway brightening serum for active pigment correction, the CE Ferulic-tier antioxidant serum, and multi-acid resurfacing pads — paired with the beauty vitamins that compound the result from within. The inside-out approach to measurable luminosity in 6-8 weeks.',
-    slugs: ['the-house-defense', 'the-house-bright', 'the-house-renewal', 'the-house-radiance']
+    blurb: 'The CE Ferulic-tier antioxidant serum and multi-acid resurfacing pads paired with the beauty vitamins that compound the result from within. The inside-out approach to measurable luminosity in 6-8 weeks.',
+    slugs: ['the-house-defense', 'the-house-renewal', 'the-house-radiance']
   },
   {
     id: 'sensitivity',
@@ -2103,17 +1867,8 @@ window.CONCERN_BUNDLES = [
     tab: 'skin',
     icon: 'E.',
     name: 'The Soothing Bundle',
-    blurb: 'Gentle topicals that never trigger reactivity — barrier-respecting cleanser, multi-weight HA moisturizer, overnight squalane + HA seal, and the clinical-grade ceramide-cholesterol-fatty-acid blend for the flare-up nights — paired with probiotics and omega-3s that calm the systemic inflammation often behind sensitive skin. No fragrance, no acids, no aggressive actives.',
-    slugs: ['the-house-wash', 'the-house-soft', 'the-house-lipid', 'the-house-glow', 'the-house-biome', 'the-house-flow']
-  },
-  {
-    id: 'targeted',
-    discount: 0.12,
-    tab: 'skin',
-    icon: 'F.',
-    name: 'The Targeted Bundle',
-    blurb: "The four treatments your daily routine doesn't cover — the multi-pathway brightening serum for hyperpigmentation, the neck-firming cream for the area below the jawline, the clinical-grade ceramide-cholesterol-fatty-acid blend for barrier-stressed nights, and the overnight apothecary drying lotion for individual active blemishes. The targeted layer most people add on top of a working routine once they know what specific concerns are left.",
-    slugs: ['the-house-bright', 'the-house-lift', 'the-house-lipid', 'the-house-spot']
+    blurb: 'Gentle topicals that never trigger reactivity — barrier-respecting cleanser, multi-weight HA moisturizer, and overnight squalane + HA seal — paired with probiotics and omega-3s that calm the systemic inflammation often behind sensitive skin. No fragrance, no acids, no aggressive actives.',
+    slugs: ['the-house-wash', 'the-house-soft', 'the-house-glow', 'the-house-biome', 'the-house-flow']
   },
   {
     id: 'glow',
@@ -2121,8 +1876,8 @@ window.CONCERN_BUNDLES = [
     tab: 'skin',
     icon: 'G.',
     name: 'The Glow Bundle',
-    blurb: "The inside-out glow protocol. The multi-pathway brightening serum for active luminosity, the CE Ferulic antioxidant shield and the five-peptide growth factor serum for visible renewal, the weekly clay mask that primes everything, the squalane-plus-HA-spheres lipid seal at night, plus the overnight collagen sleep mask that works in the skin-repair window — paired with the daily beauty vitamins and 10g of collagen that build glow from within. Visible luminosity in 6-8 weeks.",
-    slugs: ['the-house-boost', 'the-house-defense', 'the-house-bright', 'the-house-glow', 'the-house-mask', 'the-house-dream', 'the-house-radiance', 'the-house-collagen']
+    blurb: "The inside-out glow protocol. The CE Ferulic antioxidant shield and the five-peptide growth factor serum for visible renewal, the weekly clay mask that primes everything, the squalane-plus-HA-spheres lipid seal at night — paired with the daily beauty vitamins and 10g of collagen that build glow from within. Visible luminosity in 6-8 weeks.",
+    slugs: ['the-house-boost', 'the-house-defense', 'the-house-glow', 'the-house-mask', 'the-house-radiance', 'the-house-collagen']
   },
   {
     id: 'starter',
@@ -2139,8 +1894,8 @@ window.CONCERN_BUNDLES = [
     tab: 'skin',
     icon: 'I.',
     name: 'The Spa Bundle',
-    blurb: "The weekly indulgence ritual. The zinc-and-sulfur clay detox mask and the gentle berry-seed polish for the resurfacing pair, the overnight collagen sleep mask that takes advantage of the 10pm-2am repair window, the HA moisturizer that drinks it all in, the hyaluronic mist that turns any moment into a refresh, and the squalane-plus-HA-spheres lipid oil to seal it all. Six products built to make your bathroom feel like a hotel spa. Run the polish-then-mask combo once a week; Dream 2-3 nights a week; the others daily as you wish.",
-    slugs: ['the-house-mask', 'the-house-polish', 'the-house-dream', 'the-house-soft', 'the-house-mist', 'the-house-glow']
+    blurb: "The weekly indulgence ritual. The zinc-and-sulfur clay detox mask and the gentle berry-seed polish for the resurfacing pair, the HA moisturizer that drinks it all in, the hyaluronic mist that turns any moment into a refresh, and the squalane-plus-HA-spheres lipid oil to seal it all. Five products built to make your bathroom feel like a hotel spa. Run the polish-then-mask combo once a week; the others daily as you wish.",
+    slugs: ['the-house-mask', 'the-house-polish', 'the-house-soft', 'the-house-mist', 'the-house-glow']
   },
 
   // ═══ WELLNESS GOALS — primary concern is systemic,
@@ -2151,17 +1906,17 @@ window.CONCERN_BUNDLES = [
     tab: 'goal',
     icon: 'A.',
     name: 'The Sleep Bundle',
-    blurb: "The wind-down stack: magnesium glycinate for nervous-system relaxation, KSM-66 ashwagandha for cortisol modulation, clinical-dose Reishi (Still at 500 mg) for sleep architecture, plus the overnight HA moisturizer, the overnight collagen sleep mask that works in the 10pm-2am repair window, and the eye treatment. Three different sleep mechanisms layered together inside, and the overnight skincare that takes advantage of them. Better sleep that visibly shows by morning.",
-    slugs: ['the-house-calm', 'the-house-tranquil', 'the-house-still', 'the-house-soft', 'the-house-dream', 'the-house-awake']
+    blurb: "The wind-down stack: magnesium glycinate for nervous-system relaxation, KSM-66 ashwagandha for cortisol modulation, clinical-dose Reishi (Still at 500 mg) for sleep architecture, plus the overnight skincare that puts your routine to bed. Three different sleep mechanisms layered together. Better sleep that visibly shows by morning.",
+    slugs: ['the-house-calm', 'the-house-tranquil', 'the-house-still', 'the-house-soft', 'the-house-awake']
   },
   {
     id: 'energy',
-    discount: 0.18,
+    discount: 0.12,
     tab: 'goal',
     icon: 'B.',
     name: 'The Energy Bundle',
-    blurb: 'Both halves of the energy equation in one purchase. The mitochondrial fuel stack — CoQ10 (Vitality), D3+K2 (Sunshine), omega-3 EPA+DHA (Flow), Multi as the micronutrient baseline, Surge for the clean morning lift — layered with the gut absorption stack (Greens + Biome). Seven products covering cellular ATP production and nutrient absorption simultaneously. The deepest concern-bundle discount on the site — 18% off — for the comprehensive inside-out approach to daily energy.',
-    slugs: ['the-house-multi','the-house-vitality','the-house-sunshine','the-house-flow','the-house-surge','the-house-greens','the-house-biome']
+    blurb: "The mitochondrial fuel stack. CoQ10 directly supplies the molecule mitochondria use to produce ATP, D3+K2 supports the cellular signaling that powers it, omega-3 EPA+DHA fuels brain and cardiovascular tissue specifically — with Multi as the micronutrient baseline and Surge for the optional clean morning lift. For both cellular fuel and gut absorption support in one purchase at the deepest discount, see The Full Energy Stack.",
+    slugs: ['the-house-multi', 'the-house-vitality', 'the-house-sunshine', 'the-house-flow', 'the-house-surge']
   },
   {
     id: 'focus',
@@ -2244,6 +1999,15 @@ window.CONCERN_BUNDLES = [
     blurb: "The clinical-dose mushroom set — Spark (Lion's Mane 1,000 mg for cognition and NGF), Still (Reishi 500 mg for stress and sleep architecture), and Forge (Cordyceps militaris 500 mg for cellular energy and endurance). The three mushrooms with the strongest published evidence base, each at the dose where the research begins. Three mushrooms, three mechanisms — cognition, stress, endurance.",
     slugs: ['the-house-spark', 'the-house-still', 'the-house-forge']
   },
+  {
+    id: 'full-energy',
+    discount: 0.18,
+    tab: 'goal',
+    icon: 'N.',
+    name: 'The Full Energy Stack',
+    blurb: 'Both halves of the energy equation in one purchase. The mitochondrial fuel stack from The Energy Bundle (Multi + Vitality + Sunshine + Flow + Surge) layered with the gut absorption stack (Greens + Biome). Seven products covering cellular ATP production and nutrient absorption simultaneously — the comprehensive inside-out approach at the deepest discount available outside the Ultimate Routine.',
+    slugs: ['the-house-multi','the-house-vitality','the-house-sunshine','the-house-flow','the-house-surge','the-house-greens','the-house-biome']
+  },
 ];
 
 // Helper to compute concern bundle pricing on demand
@@ -2299,12 +2063,12 @@ window.CURATED_BUNDLES = [
     slugs: [
       // AM (cleanse → tone → vitamin C → HA → defense → moisturizer → SPF)
       'the-house-wash','the-house-balance','the-house-boost','the-house-plump','the-house-defense','the-house-soft','the-house-shield',
-      // Daily treatments that ship with the line (the new targeted set has its own bundle)
+      // Targeted treatments
       'the-house-clear','the-house-awake',
       // PM (peptide treatments → retinol → hydration → seal)
       'the-house-bounce','the-house-renewal','the-house-firm','the-house-mist','the-house-glow',
       // Weekly reset
-      'the-house-mask','the-house-polish','the-house-dream'
+      'the-house-mask','the-house-polish'
     ]
   },
   {
@@ -2341,13 +2105,13 @@ window.CURATED_BUNDLES = [
     id: 'moms',
     name: "The Mom's Routine",
     discount: 0.18,
-    slugs: ['the-house-wash','the-house-defense','the-house-bounce','the-house-awake','the-house-lift','the-house-soft','the-house-multi','the-house-collagen','the-house-nad-plus','the-house-vitality','the-house-tranquil']
+    slugs: ['the-house-wash','the-house-defense','the-house-bounce','the-house-awake','the-house-soft','the-house-multi','the-house-collagen','the-house-nad-plus','the-house-vitality','the-house-tranquil']
   },
   {
     id: 'arianas',
     name: "The Ariana's Routine",
     discount: 0.18,
-    slugs: ['the-house-wash','the-house-boost','the-house-defense','the-house-bright','the-house-renewal','the-house-awake','the-house-soft','the-house-multi','the-house-radiance','the-house-collagen']
+    slugs: ['the-house-wash','the-house-boost','the-house-defense','the-house-renewal','the-house-awake','the-house-soft','the-house-multi','the-house-radiance','the-house-collagen']
   },
   // ─── GIFT SETS ─────────────────────────────────────────────────────────
   // Curated gift packages — same data shape as routines but flagged with
@@ -2368,7 +2132,7 @@ window.CURATED_BUNDLES = [
     name: 'The Skin Set',
     kind: 'gift',
     discount: 0.15,
-    blurb: "Five essentials for someone ready to take their skin seriously. Cleanser, CE Ferulic antioxidant, 5-active retinol, hydrating moisturizer, mineral SPF — the daily AM and PM routine in one gift. Sits between The Newcomer Set (first-time skincare) and Daniel's Daily Skincare (the complete 17-product daily ritual).",
+    blurb: "Five essentials for someone ready to take their skin seriously. Cleanser, CE Ferulic antioxidant, 5-active retinol, hydrating moisturizer, mineral SPF — the daily AM and PM routine in one gift. Sits between The Newcomer Set (first-time skincare) and Daniel's Daily Skincare (the complete 16-product ritual).",
     slugs: [
       'the-house-wash','the-house-defense','the-house-bounce','the-house-soft','the-house-shield'
     ]
