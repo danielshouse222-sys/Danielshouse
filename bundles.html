@@ -1159,7 +1159,7 @@
       <button class="search-panel-close" aria-label="Close search">✕</button>
     </div>
     <div class="search-panel-results" id="search-panel-results">
-      <div class="search-panel-hint">Type to search across all 45 products.</div>
+      <div class="search-panel-hint">Type to search across all 40 products.</div>
     </div>
   </div>
 </div>
@@ -1661,7 +1661,8 @@ document.addEventListener('DOMContentLoaded', () => {
     { kind: 'concern', id: 'sleep' },         // small bundle, universal wellness need
     { kind: 'concern', id: 'aging' },         // top skin concern across demographics
     { kind: 'routine', id: 'ultimate' },      // flagship — premium statement, max savings
-    { kind: 'concern', id: 'energy' },        // universal — both halves of the energy equation
+    { kind: 'concern', id: 'energy' },        // universal — broad supplement appeal
+    { kind: 'concern', id: 'full-energy' },   // Full Energy Stack — both halves combined, 18% off
     { kind: 'concern', id: 'hair-nails' },    // Hair & Nails — beauty-from-within entry
     { kind: 'concern', id: 'starter' },       // Skin Starter — skincare entry point
     { kind: 'routine', id: 'gift-newcomer' }, // Newcomer Set — paired with Skin Starter as entry skincare
@@ -1683,8 +1684,7 @@ document.addEventListener('DOMContentLoaded', () => {
     { kind: 'concern', id: 'sensitivity' },   // Soothing — sensitive-skin segment
     { kind: 'concern', id: 'spa' },           // Spa Bundle — weekly indulgence ritual
     { kind: 'concern', id: 'focus' },         // niche cognitive
-    { kind: 'concern', id: 'mushroom-trio' }, // Mushroom Bundle — clinical-dose mushrooms, adjacent to focus
-    { kind: 'concern', id: 'targeted' },      // Targeted Bundle — the four add-on treatments
+    { kind: 'concern', id: 'mushroom-trio' }, // Mushroom Bundle — adjacent to focus, cognition/stress/energy
     { kind: 'concern', id: 'joints' },        // older demographic
     { kind: 'routine', id: 'arianas' },       // narrow persona
     { kind: 'routine', id: 'longevity' }      // premium niche routine
@@ -1856,12 +1856,10 @@ document.addEventListener('DOMContentLoaded', () => {
     'glow':        ['beauty', 'anti-aging'],        // The Glow Bundle — inside-out glow
     'starter':     ['beginner', 'sensitive', 'parent'], // The Skin Starter Bundle — entry-level
     'spa':         ['beauty', 'busy-pro'],          // The Spa Bundle — weekly indulgence ritual
-    'targeted':    ['anti-aging', 'beauty', 'sensitive'], // The Targeted Bundle — pigmentation, neck, barrier repair, blemishes
     // WELLNESS-focused bundles
     'sleep':       ['parent', 'busy-pro', 'beginner'],
     'energy':      ['busy-pro', 'parent', 'beginner', 'active'],
     'focus':       ['busy-pro', 'active'],
-    'mushroom-trio': ['busy-pro', 'active', 'anti-aging'],
     'stress':      ['busy-pro', 'parent', 'sensitive'],
     'beauty':      ['beauty', 'anti-aging'],
     'longevity':   ['anti-aging', 'busy-pro'],

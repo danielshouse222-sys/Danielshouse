@@ -916,7 +916,7 @@
       <button class="search-panel-close" aria-label="Close search">✕</button>
     </div>
     <div class="search-panel-results" id="search-panel-results">
-      <div class="search-panel-hint">Type to search across all 45 products.</div>
+      <div class="search-panel-hint">Type to search across all 40 products.</div>
     </div>
   </div>
 </div>
@@ -1111,9 +1111,9 @@
 
   <div class="cats">
     <a href="skincare.html" class="cat">
-      <div class="cat-eyebrow">21 Products · AM + PM + Targeted</div>
+      <div class="cat-eyebrow">16 Products · AM + PM Routines</div>
       <div class="cat-name"><em>Skincare</em></div>
-      <p class="cat-desc">Cleanser to SPF — the full ritual. Seven AM steps, six PM steps, three weekly resets, four targeted treatments — all formulated to layer.</p>
+      <p class="cat-desc">Cleanser to SPF — the full ritual. Seven AM steps, six PM steps, two weekly resets, all formulated to layer.</p>
       <div class="cat-thumbs">
         <div class="cat-thumb"><img src="images/wash.jpeg" alt="Wash"/></div>
         <div class="cat-thumb"><img src="images/boost.jpeg" alt="Boost"/></div>
@@ -1124,7 +1124,7 @@
     </a>
 
     <a href="supplements.html" class="cat">
-      <div class="cat-eyebrow">24 Products · Daily, Workout & Beauty Stacks</div>
+      <div class="cat-eyebrow">18 Products · Daily, Workout & Beauty Stacks</div>
       <div class="cat-name"><em>Supplements</em></div>
       <p class="cat-desc">Foundational, longevity, workout, beauty — every product at a clinically-meaningful dose, in the form your body absorbs.</p>
       <div class="cat-thumbs">
@@ -1310,6 +1310,129 @@
     <p style="font-family: 'Poppins', sans-serif; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-soft); margin-top: 12px;">— Daniel, Founder</p>
   </div>
 </section>
+
+<!-- THE MATH -->
+<section class="sec" style="padding-top: clamp(80px, 9vw, 110px); padding-bottom: clamp(80px, 9vw, 110px);">
+  <style>
+    .math-grid { max-width: 1080px; margin: 56px auto 0; display: grid; grid-template-columns: 1fr auto 1fr; gap: 0; align-items: stretch; padding: 0 40px; box-sizing: border-box; }
+    .math-col { padding: 40px 44px; }
+    .math-col-divider { width: 1px; background: var(--rule); position: relative; }
+    .math-col-divider::after { content: 'vs'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: var(--cream); padding: 10px 0; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 22px; color: var(--ink-soft); }
+    .math-label { font-family: 'Poppins', sans-serif; font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 14px; }
+    .math-name { font-family: 'Cormorant Garamond', serif; font-size: 28px; line-height: 1.15; color: var(--ink); margin-bottom: 32px; font-weight: 500; }
+    .math-name em { font-style: italic; color: var(--sage); }
+    .math-lines { list-style: none; padding: 0; margin: 0 0 28px; }
+    .math-lines li { display: flex; justify-content: space-between; align-items: baseline; padding: 14px 0; border-bottom: 1px solid var(--rule); font-size: 14px; color: var(--ink-soft); }
+    .math-lines li:last-child { border-bottom: none; }
+    .math-lines .item-value { font-family: 'Cormorant Garamond', serif; font-size: 19px; color: var(--ink); }
+    .math-total { padding-top: 22px; border-top: 1px solid var(--ink); }
+    .math-total-label { font-family: 'Poppins', sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 10px; font-weight: 600; }
+    .math-total-num { font-family: 'Cormorant Garamond', serif; font-size: clamp(48px, 5.5vw, 72px); font-weight: 400; line-height: 1; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 6px; }
+    .math-col-ours .math-total-num { color: var(--sage); font-style: italic; }
+    .math-total-unit { font-size: 13px; color: var(--ink-soft); }
+    .math-takeaway { max-width: 880px; margin: 56px auto 0; padding: 0 40px; display: grid; grid-template-columns: auto 1fr; gap: 48px; align-items: start; box-sizing: border-box; }
+    .math-stat { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(44px, 5vw, 64px); line-height: 1; color: var(--ink); white-space: nowrap; }
+    .math-stat strong { font-weight: 400; font-style: normal; color: var(--sage); }
+    .math-takeaway-body { font-size: 15px; line-height: 1.7; color: var(--ink-soft); padding-top: 8px; }
+    .math-takeaway-body strong { color: var(--ink); font-weight: 600; }
+    .math-takeaway-body p + p { margin-top: 12px; }
+    .math-quote { max-width: 720px; margin: 48px auto 0; padding: 0 40px; text-align: center; box-sizing: border-box; }
+    .math-cta { max-width: 720px; margin: 40px auto 0; padding: 0 40px; text-align: center; box-sizing: border-box; }
+    .math-cta a { display: inline-block; margin: 6px; }
+    .math-footnote { max-width: 720px; margin: 36px auto 0; padding: 0 40px; text-align: center; font-size: 11px; line-height: 1.6; color: var(--ink-soft); opacity: 0.75; font-style: italic; box-sizing: border-box; }
+
+    @media (max-width: 768px) {
+      .math-grid { grid-template-columns: 1fr; padding: 0 20px; margin-top: 36px; max-width: 480px; gap: 0; }
+      .math-col { padding: 30px 0; }
+      .math-col-divider { width: 100%; height: 1px; margin: 0; }
+      .math-col-divider::after { padding: 0 14px; font-size: 19px; }
+      .math-takeaway { grid-template-columns: 1fr; gap: 20px; padding: 0 20px; margin-top: 40px; text-align: center; }
+      .math-stat { white-space: normal; }
+      .math-takeaway-body { padding-top: 0; }
+      .math-quote, .math-cta, .math-footnote { padding: 0 20px; }
+    }
+  </style>
+
+  <div class="sec-header">
+    <div class="sec-eyebrow">The Math</div>
+    <h2 class="sec-title">What the same routine <em>costs elsewhere.</em></h2>
+    <p class="sec-blurb">A full month of premium skincare and a complete daily supplement stack — bought from the legacy and clinical brands — runs $550 to $1,050. Same architectures. Same clinical doses. The Ultimate delivers it for a fraction.</p>
+  </div>
+
+  <div class="math-grid">
+
+    <!-- LEFT: legacy/premium -->
+    <div class="math-col math-col-legacy">
+      <div class="math-label">01 · The Legacy Route</div>
+      <h3 class="math-name">Luxury skincare<br>+ premium supplements</h3>
+
+      <ul class="math-lines">
+        <li>
+          <span>Skincare (full routine)</span>
+          <span class="item-value">$300 – 600</span>
+        </li>
+        <li>
+          <span>Supplements (complete stack)</span>
+          <span class="item-value">$250 – 450</span>
+        </li>
+      </ul>
+
+      <div class="math-total">
+        <div class="math-total-label">Monthly · all in</div>
+        <div class="math-total-num">$550–1,050</div>
+        <div class="math-total-unit">per month</div>
+      </div>
+    </div>
+
+    <div class="math-col-divider"></div>
+
+    <!-- RIGHT: The Ultimate -->
+    <div class="math-col math-col-ours">
+      <div class="math-label">02 · The Ultimate Routine</div>
+      <h3 class="math-name">The complete house —<br><em>23 products, one box</em></h3>
+
+      <ul class="math-lines">
+        <li>
+          <span>Retail value</span>
+          <span class="item-value">$895</span>
+        </li>
+        <li>
+          <span>Bundle price (25% off)</span>
+          <span class="item-value">$671.25</span>
+        </li>
+      </ul>
+
+      <div class="math-total">
+        <div class="math-total-label">Monthly · amortized</div>
+        <div class="math-total-num">$270–335</div>
+        <div class="math-total-unit">over 2–3 months of supply</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="math-takeaway">
+    <div class="math-stat">Roughly <strong>⅓</strong></div>
+    <div class="math-takeaway-body">
+      <p><strong>A single Ultimate purchase covers what the legacy route costs in 1 to 1.5 months — and delivers 2 to 3 months of supply.</strong></p>
+      <p>The gap isn't a formula gap. The House Defense runs the same C E Ferulic architecture SkinCeuticals sells at $185. The House Tranquil delivers the same clinical-grade ashwagandha at the cortisol-trial dose the legacy brands use. The difference is the brand premium — not the bottle.</p>
+    </div>
+  </div>
+
+  <div class="math-quote">
+    <p style="font-family: 'Cormorant Garamond', serif; font-size: 22px; line-height: 1.5; color: var(--ink); font-style: italic;">"You're paying a fraction of the price — for none of the compromise."</p>
+    <p style="font-family: 'Poppins', sans-serif; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-soft); margin-top: 12px;">— Daniel, Founder</p>
+  </div>
+
+  <div class="math-cta">
+    <a href="routine.html?slug=ultimate" class="featured-btn primary">Shop the Ultimate · $672 →</a>
+    <a href="routines.html" class="featured-btn secondary">Browse All Routines</a>
+  </div>
+
+  <p class="math-footnote">Comparison uses published retail pricing for premium DTC skincare and clinical supplement brands at clinical-dose formulations. Monthly amortization assumes typical replenishment cycles: 2–3 months for skincare, 30–60 days for supplements.</p>
+
+</section>
+
 
 <!-- THE RESEARCH (replaces former testimonials) -->
 <section class="home-research">
